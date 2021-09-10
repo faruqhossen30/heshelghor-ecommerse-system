@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
+use App\Http\Controllers\Admin\MarchantRegisterController;
 
 
 /*
@@ -39,6 +40,9 @@ Route::prefix('marchant')->group(function () {
     Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
     Route::post('login', [MarchantController::class, 'login'])->name('marchant.login');
     Route::post('logout', [MarchantController::class, 'logout'])->name('marchant.logout');
+
+    Route::get('register', [MarchantRegisterController::class, 'showRegistrationForm'])->name('marchant.register');
+    Route::post('register', [MarchantRegisterController::class, 'register'])->name('marchant.register');
 
     Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
 });
