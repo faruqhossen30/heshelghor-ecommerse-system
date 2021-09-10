@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'marchant' => [
+            'driver' => 'session',
+            'provider' => 'marchants',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Auth\Admin::class,
+        ],
+        'marchants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Auth\Marchant::class,
         ],
 
         // 'users' => [
@@ -103,6 +111,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'marchants' => [
+            'provider' => 'marchants',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

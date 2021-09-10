@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 // Admin Controller
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
+// Marchant Controller
+use App\Http\Controllers\Admin\MarchantController;
+use App\Http\Controllers\Admin\MarchantHomeController;
 
 
 /*
@@ -30,4 +33,12 @@ Route::prefix('admin')->group(function () {
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
+});
+
+Route::prefix('marchant')->group(function () {
+    Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
+    Route::post('login', [MarchantController::class, 'login'])->name('marchant.login');
+    Route::post('logout', [MarchantController::class, 'logout'])->name('marchant.logout');
+
+    Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
 });
