@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
+// Product Controller
+use App\Http\Controllers\Product\ProductController;
 
 
 /*
@@ -43,6 +45,7 @@ Route::prefix('marchant')->group(function () {
 
     Route::get('register', [MarchantRegisterController::class, 'showRegistrationForm'])->name('marchant.register');
     Route::post('register', [MarchantRegisterController::class, 'register'])->name('marchant.register');
-
     Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
+    // Product
+    Route::resource('product', ProductController::class);
 });
