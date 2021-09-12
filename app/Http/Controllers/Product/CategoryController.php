@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Category;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -45,10 +46,16 @@ class CategoryController extends Controller
         //     'Description' => 'required',
         // ]);
 
+        $image = $request->file('image');
+        $fileExtention = $image->getClientOriginalExtension();
+        $fileName = date('Ymdhis').'.'.$fileExtention;
+
+        Image::make($image)->save(public_path('uploads/category/').$fileName);
 
         Category::create([
             'name'=>$request->name,
             'description'=>$request->description,
+            'image'=> 'uploads/category/'.$fileName,
         ]);
 
         return redirect()->route('category.index');
