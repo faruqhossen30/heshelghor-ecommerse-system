@@ -39,6 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $validate = $request->validate([
+        //     'name' => 'required',
+        //     'Description' => 'required',
+        // ]);
+
+
         Category::create([
             'name'=>$request->name,
             'description'=>$request->description,
@@ -68,7 +75,6 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::where('id', $id)->get()->first();
-
         return view('marchant.category.edit', compact('category'));
     }
 
