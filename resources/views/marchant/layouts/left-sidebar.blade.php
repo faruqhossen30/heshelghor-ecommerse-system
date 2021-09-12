@@ -112,17 +112,17 @@
 
                 <li>
                     <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
-                        <i class="mdi mdi-table"></i>
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
                         <span> Category </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarCategory">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">All Category</a>
+                                <a href="{{route('category.index')}}">All Category</a>
                             </li>
                             <li>
-                                <a href="#">Add Category</a>
+                                <a href="{{route('category.create')}}">Add Category</a>
                             </li>
                         </ul>
                     </div>

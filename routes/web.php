@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 // Product Controller
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Product\CategoryController;
 
 
 /*
@@ -48,4 +49,6 @@ Route::prefix('marchant')->group(function () {
     Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
     // Product
     Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
+
 });
