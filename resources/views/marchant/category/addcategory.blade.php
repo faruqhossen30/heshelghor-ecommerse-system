@@ -49,7 +49,12 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Name</label>
                                                             <div class="col-md-10">
-                                                                <input name="name" type="text" id="simpleinput" class="form-control" placeholder="Name">
+                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name">
+                                                                <div class="text-danger">
+                                                                    @error('name')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -57,17 +62,26 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="example-textarea">Text area</label>
                                                             <div class="col-md-10">
-                                                                <textarea name="description" class="form-control" id="example-textarea"
+                                                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
                                                                     rows="5" placeholder="Category description..."></textarea>
+                                                                <div class="text-danger">
+                                                                    @error('description')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Image</label>
                                                             <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control"
+                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
                                                                     value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('image')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                             </div>
                                                         </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Category;
+use Illuminate\Support\Str;
 use Image;
 
 class CategoryController extends Controller
@@ -27,8 +28,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
-
         return view('marchant.category.addcategory');
     }
 
@@ -41,24 +40,28 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        // $validate = $request->validate([
-        //     'name' => 'required',
-        //     'Description' => 'required',
-        // ]);
+        $validate = $request->validate([
+            'name'        => 'required',
+            'description' => 'required',
+            'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+        ]);
+
 
         $image = $request->file('image');
         $fileExtention = $image->getClientOriginalExtension();
-        $fileName = date('Ymdhis').'.'.$fileExtention;
+        $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-        Image::make($image)->save(public_path('uploads/category/').$fileName);
+        Image::make($image)->save(public_path('uploads/category/') . $fileName);
 
         Category::create([
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'image'=> 'uploads/category/'.$fileName,
+            'name'        => $request->name,
+            'description' => $request->description,
+            'slug'        => Str::of($request->name)->slug('-'),
+            'image'       => 'uploads/category/' . $fileName,
         ]);
 
         return redirect()->route('category.index');
+
     }
 
     /**

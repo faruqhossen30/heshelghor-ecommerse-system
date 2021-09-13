@@ -68,8 +68,7 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$category->name}}</a></h5>
                                         </td>
                                         <td>
-                                            {{$serial2 ++}}
-                                            <img src="../assets/images/products/product-1.png" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
+                                            <img src="{{asset($category->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
                                         </td>
                                         <td>
                                             {{$category->description}}
@@ -93,8 +92,7 @@
                                                     <form action="" method="post" >
                                                         @csrf
                                                         @method('DELETE')
-
-                                                        <button type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
                                                     </form>
                                                 </li>
                                             </ul>

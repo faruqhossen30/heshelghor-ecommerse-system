@@ -71,6 +71,7 @@
                                                             <div class="col-md-10">
                                                                 <input name="image" type="file" id="simpleinput" class="form-control"
                                                                     value="Some text value...">
+                                                                    <img src="{{asset($category->image)}}" style="width: 100px; height:100px" alt="">
                                                             </div>
                                                         </div>
 
