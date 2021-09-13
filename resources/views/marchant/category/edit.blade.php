@@ -47,11 +47,17 @@
                                                     <form method="POST" action="{{route('category.update', $category->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         @method('PUT')
+                                                        <input type="hidden" name="old_image" value="{{$category->image}}">
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Name</label>
                                                             <div class="col-md-10">
-                                                                <input name="name" value="{{$category->name}}" type="text" id="simpleinput" class="form-control" placeholder="Name">
+                                                                <input name="name" value="{{$category->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
+                                                                <div class="text-danger">
+                                                                    @error('name')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -59,9 +65,14 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="example-textarea">Text area</label>
                                                             <div class="col-md-10">
-                                                                <textarea name="description"  class="form-control" id="example-textarea" rows="5" placeholder="Category description...">
+                                                                <textarea name="description"  class="form-control @error('description') is-invalid @enderror" id="example-textarea" rows="5" placeholder="Category description...">
                                                                     {{$category->description}}
                                                                 </textarea>
+                                                                <div class="text-danger">
+                                                                    @error('description')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -69,8 +80,13 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Image</label>
                                                             <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control"
+                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
                                                                     value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('image')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                     <img src="{{asset($category->image)}}" style="width: 100px; height:100px" alt="">
                                                             </div>
                                                         </div>

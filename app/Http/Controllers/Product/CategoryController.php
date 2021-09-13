@@ -39,28 +39,42 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validate = $request->validate([
-            'name'        => 'required',
-            'description' => 'required',
-            'image' => 'mimes:png,jpg,gif,bmp|max:1024',
-        ]);
-
-
         $image = $request->file('image');
-        $fileExtention = $image->getClientOriginalExtension();
-        $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-        Image::make($image)->save(public_path('uploads/category/') . $fileName);
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image'       => 'mimes: png,jpg,gif,bmp|max:1024',
+            ]);
 
-        Category::create([
-            'name'        => $request->name,
-            'description' => $request->description,
-            'slug'        => Str::of($request->name)->slug('-'),
-            'image'       => 'uploads/category/' . $fileName,
-        ]);
 
-        return redirect()->route('category.index');
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+
+            Category::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => Str::of($request->name)->slug('-'),
+                'image'       => 'uploads/category/' . $fileName,
+            ]);
+
+            return redirect()->route('category.index');
+        } else{
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+            Category::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => Str::of($request->name)->slug('-'),
+            ]);
+            return redirect()->route('category.index');
+        };
+
 
     }
 
@@ -97,13 +111,48 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-        ];
+        $image = $request->file('image');
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
 
-        $update = Category::where('id', $id)->update($data);
-        return redirect()->route('category.index');
+            $old_image = $request->old_image;
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+                'image'       => 'uploads/category/' . $fileName,
+            ];
+            if(isset($old_image)){
+                unlink($old_image);
+            }
+            $update = Category::where('id', $id)->update($data);
+            return redirect()->route('category.index');
+        } else{
+
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+            ];
+
+            $update = Category::where('id', $id)->update($data);
+            return redirect()->route('category.index');
+        }
+
+
     }
 
     /**
@@ -114,6 +163,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $category = Category::where('id', $id)->get()->first();
+        unlink($category->image);
         $update = Category::where('id', $id)->delete();
         return redirect()->route('category.index');
     }
