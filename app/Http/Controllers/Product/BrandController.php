@@ -39,27 +39,43 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name'        => 'required',
-            'description' => 'required',
-            'image' => 'mimes:png,jpg,gif,bmp|max:1024',
-        ]);
-
-
         $image = $request->file('image');
-        $fileExtention = $image->getClientOriginalExtension();
-        $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-        Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
 
-        Brand::create([
-            'name'        => $request->name,
-            'description' => $request->description,
-            'slug'        => Str::of($request->name)->slug('-'),
-            'image'       => 'uploads/brand/' . $fileName,
-        ]);
 
-        return redirect()->route('brand.index');
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+
+            Brand::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => Str::of($request->name)->slug('-'),
+                'image'       => 'uploads/brand/' . $fileName,
+            ]);
+
+            return redirect()->route('brand.index');
+        } else{
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+            Brand::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => Str::of($request->name)->slug('-'),
+            ]);
+            return redirect()->route('brand.index');
+        };
+
+
     }
 
     /**
@@ -71,7 +87,8 @@ class BrandController extends Controller
     public function show($id)
     {
         $brand = Brand::where('id', $id)->get()->first();
-        return $brand;
+        // return $brand;
+        return view('marchant.brand.show', compact('brand'));
     }
 
     /**
@@ -95,13 +112,48 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-        ];
+        $image = $request->file('image');
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
 
-        $update = Brand::where('id', $id)->update($data);
-        return redirect()->route('brand.index');
+            $old_image = $request->old_image;
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+                'image'       => 'uploads/brand/' . $fileName,
+            ];
+            if(isset($old_image)){
+                unlink($old_image);
+            }
+            $update = Brand::where('id', $id)->update($data);
+            return redirect()->route('brand.index');
+        } else{
+
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+            ];
+
+            $update = Brand::where('id', $id)->update($data);
+            return redirect()->route('brand.index');
+        }
+
+
     }
 
     /**
@@ -112,7 +164,11 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $update = Brand::where('id', $id)->delete();
+        $brand = Brand::where('id', $id)->get()->first();
+        if(isset($brand->image)){
+            unlink($brand->image);
+        };
+        $delete = Brand::where('id', $id)->delete();
         return redirect()->route('brand.index');
     }
 }

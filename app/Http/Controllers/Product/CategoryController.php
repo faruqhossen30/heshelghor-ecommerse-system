@@ -45,7 +45,7 @@ class CategoryController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image'       => 'mimes: png,jpg,gif,bmp|max:1024',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
             ]);
 
 
@@ -164,8 +164,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::where('id', $id)->get()->first();
-        unlink($category->image);
-        $update = Category::where('id', $id)->delete();
+        if(isset($category->image)){
+            unlink($category->image);
+        };
+        $delete = Category::where('id', $id)->delete();
         return redirect()->route('category.index');
     }
 }
