@@ -87,7 +87,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::where('id', $id)->get()->first();
-        return $category;
+        return view('marchant.category.show', compact('category'));
     }
 
     /**

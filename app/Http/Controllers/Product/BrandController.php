@@ -87,7 +87,6 @@ class BrandController extends Controller
     public function show($id)
     {
         $brand = Brand::where('id', $id)->get()->first();
-        // return $brand;
         return view('marchant.brand.show', compact('brand'));
     }
 
