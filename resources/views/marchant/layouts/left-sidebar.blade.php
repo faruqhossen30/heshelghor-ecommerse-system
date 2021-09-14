@@ -127,6 +127,23 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#sidebarBrand" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Brand </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarBrand">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('brand.index')}}">All Brand</a>
+                            </li>
+                            <li>
+                                <a href="{{route('brand.create')}}">Add Brand</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li>
                     <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">

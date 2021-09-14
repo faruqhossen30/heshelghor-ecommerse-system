@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product\Category;
+use App\Models\Product\Brand;
 use Illuminate\Support\Str;
 use Image;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('marchant.category.category', compact('categories'));
+        $brands = Brand::all();
+        return view('marchant.brand.brand', compact('brands'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('marchant.category.addcategory');
+        return view('marchant.brand.addbrand');
     }
 
     /**
@@ -52,27 +52,27 @@ class CategoryController extends Controller
             $fileExtention = $image->getClientOriginalExtension();
             $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
 
-            Category::create([
+            Brand::create([
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
-                'image'       => 'uploads/category/' . $fileName,
+                'image'       => 'uploads/brand/' . $fileName,
             ]);
 
-            return redirect()->route('category.index');
+            return redirect()->route('brand.index');
         } else{
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
             ]);
-            Category::create([
+            Brand::create([
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
             ]);
-            return redirect()->route('category.index');
+            return redirect()->route('brand.index');
         };
 
 
@@ -86,8 +86,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::where('id', $id)->get()->first();
-        return $category;
+        $brand = Brand::where('id', $id)->get()->first();
+        // return $brand;
+        return view('marchant.brand.show', compact('brand'));
     }
 
     /**
@@ -98,8 +99,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id)->get()->first();
-        return view('marchant.category.edit', compact('category'));
+        $brand = Brand::where('id', $id)->get()->first();
+        return view('marchant.brand.edit', compact('brand'));
     }
 
     /**
@@ -124,18 +125,18 @@ class CategoryController extends Controller
             $fileExtention = $image->getClientOriginalExtension();
             $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
 
             $data = [
                 'name'        => $request->name,
                 'description' => $request->description,
-                'image'       => 'uploads/category/' . $fileName,
+                'image'       => 'uploads/brand/' . $fileName,
             ];
             if(isset($old_image)){
                 unlink($old_image);
             }
-            $update = Category::where('id', $id)->update($data);
-            return redirect()->route('category.index');
+            $update = Brand::where('id', $id)->update($data);
+            return redirect()->route('brand.index');
         } else{
 
             $validate = $request->validate([
@@ -148,8 +149,8 @@ class CategoryController extends Controller
                 'description' => $request->description,
             ];
 
-            $update = Category::where('id', $id)->update($data);
-            return redirect()->route('category.index');
+            $update = Brand::where('id', $id)->update($data);
+            return redirect()->route('brand.index');
         }
 
 
@@ -163,11 +164,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::where('id', $id)->get()->first();
-        if(isset($category->image)){
-            unlink($category->image);
+        $brand = Brand::where('id', $id)->get()->first();
+        if(isset($brand->image)){
+            unlink($brand->image);
         };
-        $delete = Category::where('id', $id)->delete();
-        return redirect()->route('category.index');
+        $delete = Brand::where('id', $id)->delete();
+        return redirect()->route('brand.index');
     }
 }
