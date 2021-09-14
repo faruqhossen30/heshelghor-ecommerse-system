@@ -54,20 +54,36 @@
                                 <div class="tab-pane" id="general-info">
                                     <h4 class="header-title">General Information</h4>
                                     <p class="sub-header">Fill all information below</p>
-
                                     <div>
-
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="name" id="product-name" class="form-control" placeholder="e.g : Apple iMac">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                                    <input type="text" id="product-name" class="form-control" placeholder="e.g : Apple iMac">
+                                                    <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
+                                                    <select name="catagory_id" class="form-control" id="product-category">
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="product-reference" class="form-label">Reference <span class="text-danger">*</span></label>
-                                                    <input type="text" id="product-reference" class="form-control" placeholder="e.g : Apple iMac">
+                                                    <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span></label>
+                                                    <select name="subcatagory_id" class="form-control" id="product-category">
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>

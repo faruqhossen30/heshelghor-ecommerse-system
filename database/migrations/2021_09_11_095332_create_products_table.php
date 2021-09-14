@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->string('slug');
             $table->string('catagory_id');
+            $table->string('subcatagory_id');
             $table->string('brand_id');
             $table->integer('user_id');
             $table->integer('Vendor_id');
