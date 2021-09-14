@@ -99,7 +99,7 @@
                                         <td>
                                             <ul class="list-inline table-action m-0">
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{ route('product.show') }}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
