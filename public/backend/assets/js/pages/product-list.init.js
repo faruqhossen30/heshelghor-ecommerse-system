@@ -8,7 +8,7 @@ File: Products Init Js
 
 $(document).ready(function() {
     "use strict";
-  
+
     // Default Datatable
     $("#products-datatable").DataTable({
       language: {
