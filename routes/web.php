@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\MarchantRegisterController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\BrandController;
+use App\Http\Controllers\Product\SubCategoryController;
+
 
 
 /*
@@ -52,5 +54,6 @@ Route::prefix('marchant')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('brand', BrandController::class);
+    Route::resource('subcategory', SubCategoryController::class);
 
 });
