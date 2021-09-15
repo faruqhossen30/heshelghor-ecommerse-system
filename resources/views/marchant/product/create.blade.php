@@ -27,7 +27,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-
+                        <form action="{{route('product.store')}}" method="post">
+                            @csrf
                         <div id="addproduct-nav-pills-wizard" class="twitter-bs-wizard form-wizard-header">
                             <ul class="twitter-bs-wizard-nav mb-2">
                                 <li class="nav-item">
@@ -40,13 +41,6 @@
                                     <a href="#product-img" class="nav-link" data-bs-toggle="tab" data-toggle="tab">
                                         <span class="number">02</span>
                                         <span class="d-none d-sm-inline">Product Images</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#metadata" class="nav-link" data-bs-toggle="tab" data-toggle="tab">
-                                        <span class="number">03</span>
-                                        <span class="d-none d-sm-inline">Meta Data</span>
                                     </a>
                                 </li>
                             </ul>
@@ -93,46 +87,6 @@
                                             <div id="snow-editor" style="height: 200px;"></div> <!-- end Snow-editor-->
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="product-summary" class="form-label">Product Summary</label>
-                                                    <textarea class="form-control" id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="product-category" class="form-label">Categories <span class="text-danger">*</span></label>
-                                                    <select class="form-control select2" id="product-category">
-                                                        <option>Select</option>
-                                                        <optgroup label="Shopping">
-                                                            <option value="SH1">Shopping 1</option>
-                                                            <option value="SH2">Shopping 2</option>
-                                                            <option value="SH3">Shopping 3</option>
-                                                            <option value="SH4">Shopping 4</option>
-                                                        </optgroup>
-                                                        <optgroup label="CRM">
-                                                            <option value="CRM1">Crm 1</option>
-                                                            <option value="CRM2">Crm 2</option>
-                                                            <option value="CRM3">Crm 3</option>
-                                                            <option value="CRM4">Crm 4</option>
-                                                        </optgroup>
-                                                        <optgroup label="eCommerce">
-                                                            <option value="E1">eCommerce 1</option>
-                                                            <option value="E2">eCommerce 2</option>
-                                                            <option value="E3">eCommerce 3</option>
-                                                            <option value="E4">eCommerce 4</option>
-                                                        </optgroup>
-
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="product-price" class="form-label">Price <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="product-price" placeholder="Enter amount">
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="mb-3">
                                             <label class="mb-2">Status <span class="text-danger">*</span></label>
                                             <br/>
@@ -166,7 +120,7 @@
                                     <h4 class="header-title">Product Images</h4>
                                     <p class="sub-header">Upload product image</p>
 
-                                    <form action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                    <div action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
                                         data-upload-preview-template="#uploadPreviewTemplate">
                                         <div class="fallback">
                                             <input name="file" type="file" multiple />
@@ -180,7 +134,7 @@
                                             <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
                                                 <strong>not</strong> actually uploaded.)</span>
                                         </div>
-                                    </form>
+                                    </div>
 
                                     <!-- Preview -->
                                     <div class="dropzone-previews mt-3" id="file-previews"></div>
@@ -194,40 +148,12 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="tab-pane" id="metadata">
-                                    <h4 class="header-title">Meta Data</h4>
-                                    <p class="sub-header">Fill all information below</p>
-
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="product-meta-title" class="form-label">Meta title</label>
-                                            <input type="text" class="form-control" id="product-meta-title" placeholder="Enter title">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="product-meta-keywords" class="form-label">Meta Keywords</label>
-                                            <input type="text" class="form-control" id="product-meta-keywords" placeholder="Enter keywords">
-                                        </div>
-
-                                        <div>
-                                            <label for="product-meta-description" class="form-label">Meta Description </label>
-                                            <textarea class="form-control" rows="5" id="product-meta-description" placeholder="Please enter description"></textarea>
-                                        </div>
-                                    </form>
-
-                                    <ul class="pager wizard mb-0 list-inline text-end mt-3">
-                                        <li class="previous list-inline-item">
-                                            <button type="button" class="btn btn-secondary"><i class="mdi mdi-arrow-left"></i> Edit Information </button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button type="submit" class="btn btn-success">Publish Product <i class="mdi mdi-arrow-right ms-1"></i></button>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
-
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Submit Product</button>
+                    </form>
+                    </div>  {{--  card-body-end --}}
+
                 </div>
             </div>
         </div>

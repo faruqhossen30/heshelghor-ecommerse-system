@@ -38,7 +38,10 @@
                             </div><!-- end col-->
                         </div>
                         <!-- end row -->
-
+                        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                             This is a success alert—check it out!
+                         </div>
                         <div class="table-responsive">
                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">

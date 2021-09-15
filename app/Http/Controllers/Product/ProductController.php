@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product\Product;
+use Illuminate\Support\Str;
+use Image;
 
 class ProductController extends Controller
 {
@@ -14,7 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('marchant.page.product');
+        // return view('marchant.product.product');
+        return view('marchant.product.show');
 
     }
 
@@ -25,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('marchant.page.create');
+        return view('marchant.product.create');
     }
 
     /**
@@ -36,7 +40,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -47,7 +51,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        // $product = Product::where('id', $id)->get()->first();
+        return view('marchant.product.show', compact('product'));
     }
 
     /**
