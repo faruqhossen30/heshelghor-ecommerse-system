@@ -26,6 +26,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+
+                <!-- sweetalert -->
+                {{-- <h6 class="alert alert-success ">{{ session('status') }}</h6> --}}
+                    {{-- @if (Session('status'))
+                        <button type="button" class="btn btn-info btn-xs" id="sa-basic">{{ session('status') }}</button>
+                    @endif --}}
+
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
@@ -98,8 +105,8 @@
                                             </ul>
                                         </td>
                                     </tr>
-
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -130,4 +137,33 @@
 <script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+<!-- sweetalert js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (Session::has('create'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Category has been created Successfully!',
+            })
+        </script>
+    @endif
+
+    @if (Session::has('update'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Category has been updated Successfully!',
+            })
+        </script>
+    @endif
+
+    @if (Session::has('delete'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Category has been deleted Successfully!',
+            })
+        </script>
+    @endif
 @endpush
