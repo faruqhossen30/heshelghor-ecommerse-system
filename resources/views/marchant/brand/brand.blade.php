@@ -130,4 +130,35 @@
 <script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+
+<!-- sweetalert js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (Session::has('create'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Brand has been created Successfully!',
+            })
+        </script>
+    @endif
+
+    @if (Session::has('update'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Brand has been updated Successfully!',
+            })
+        </script>
+    @endif
+
+    @if (Session::has('delete'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Brand has been deleted Successfully!',
+            })
+        </script>
+    @endif
+
 @endpush
