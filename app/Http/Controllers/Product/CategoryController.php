@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product\Category;
 use Illuminate\Support\Str;
 use Image;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -61,7 +62,9 @@ class CategoryController extends Controller
                 'image'       => 'uploads/category/' . $fileName,
             ]);
 
+            Session::flash('create');
             return redirect()->route('category.index');
+
         } else{
             $validate = $request->validate([
                 'name'        => 'required',
@@ -72,9 +75,10 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
             ]);
+
+            Session::flash('create');
             return redirect()->route('category.index');
         };
-
 
     }
 
@@ -135,7 +139,9 @@ class CategoryController extends Controller
                 unlink($old_image);
             }
             $update = Category::where('id', $id)->update($data);
+            Session::flash('update');
             return redirect()->route('category.index');
+
         } else{
 
             $validate = $request->validate([
@@ -149,9 +155,9 @@ class CategoryController extends Controller
             ];
 
             $update = Category::where('id', $id)->update($data);
+            Session::flash('update');
             return redirect()->route('category.index');
         }
-
 
     }
 
@@ -168,6 +174,7 @@ class CategoryController extends Controller
             unlink($category->image);
         };
         $delete = Category::where('id', $id)->delete();
+        Session::flash('delete');
         return redirect()->route('category.index');
     }
 }

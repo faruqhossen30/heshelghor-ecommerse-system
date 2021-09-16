@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
+use Session;
 
 
 class SubCategoryController extends Controller
@@ -52,8 +53,9 @@ class SubCategoryController extends Controller
             'category_id' => $request->category_id,
             'slug' => Str::of($request->name)->slug('-'),
         ]);
-        return redirect()->route('subcategory.index');
 
+        Session::flash('create');
+        return redirect()->route('subcategory.index');
 
     }
 
@@ -103,9 +105,8 @@ class SubCategoryController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        return redirect()->route('category.index');
-
-
+        Session::flash('update');
+        return redirect()->route('subcategory.index');
 
     }
 
@@ -118,6 +119,7 @@ class SubCategoryController extends Controller
     public function destroy($id)
     {
         $delete = SubCategory::where('id', $id)->delete();
+        Session::flash('delete');
         return redirect()->route('subcategory.index');
     }
 }

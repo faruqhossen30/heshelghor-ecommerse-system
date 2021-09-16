@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product\Brand;
 use Illuminate\Support\Str;
 use Image;
+use Session;
 
 class BrandController extends Controller
 {
@@ -61,7 +62,9 @@ class BrandController extends Controller
                 'image'       => 'uploads/brand/' . $fileName,
             ]);
 
+            Session::flash('create');
             return redirect()->route('brand.index');
+
         } else{
             $validate = $request->validate([
                 'name'        => 'required',
@@ -72,7 +75,10 @@ class BrandController extends Controller
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
             ]);
+
+            Session::flash('create');
             return redirect()->route('brand.index');
+
         };
 
 
@@ -135,6 +141,7 @@ class BrandController extends Controller
                 unlink($old_image);
             }
             $update = Brand::where('id', $id)->update($data);
+            Session::flash('update');
             return redirect()->route('brand.index');
         } else{
 
@@ -149,6 +156,7 @@ class BrandController extends Controller
             ];
 
             $update = Brand::where('id', $id)->update($data);
+            Session::flash('update');
             return redirect()->route('brand.index');
         }
 
@@ -168,6 +176,7 @@ class BrandController extends Controller
             unlink($brand->image);
         };
         $delete = Brand::where('id', $id)->delete();
+        Session::flash('delete');
         return redirect()->route('brand.index');
     }
 }
