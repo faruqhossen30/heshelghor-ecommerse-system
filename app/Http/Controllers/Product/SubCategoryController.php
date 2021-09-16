@@ -67,7 +67,8 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $subcategory = SubCategory::where('id', $id)->get()->first();
+        return view('marchant.subcategory.show', compact('subcategory'));
     }
 
     /**

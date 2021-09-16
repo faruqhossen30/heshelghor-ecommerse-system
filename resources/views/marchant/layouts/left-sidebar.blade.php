@@ -146,12 +146,12 @@
                 </li>
 
                 <li>
-                    <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
+                    <a href="#sidebarSubCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
                         <i class="mdi mdi-text-box-multiple-outline"></i>
                         <span> Sub Category </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarCategory">
+                    <div class="collapse" id="sidebarSubCategory">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{route('subcategory.index')}}">All Sub-Category</a>

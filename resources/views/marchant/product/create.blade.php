@@ -27,7 +27,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-
+                        <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                         <div id="addproduct-nav-pills-wizard" class="twitter-bs-wizard form-wizard-header">
                             <ul class="twitter-bs-wizard-nav mb-2">
                                 <li class="nav-item">
@@ -42,176 +43,134 @@
                                         <span class="d-none d-sm-inline">Product Images</span>
                                     </a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <a href="#metadata" class="nav-link" data-bs-toggle="tab" data-toggle="tab">
-                                        <span class="number">03</span>
-                                        <span class="d-none d-sm-inline">Meta Data</span>
-                                    </a>
-                                </li>
                             </ul>
                             <div class="tab-content twitter-bs-wizard-tab-content">
                                 <div class="tab-pane" id="general-info">
                                     <h4 class="header-title">General Information</h4>
                                     <p class="sub-header">Fill all information below</p>
-
                                     <div>
-
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
+                                                    <input type="text" name="title" id="product-name" class="form-control" placeholder="e.g : Apple iMac" required>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                                    <input type="text" id="product-name" class="form-control" placeholder="e.g : Apple iMac">
+                                                    <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
+                                                    <select name="catagory_id" class="form-control" id="product-category">
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="product-reference" class="form-label">Reference <span class="text-danger">*</span></label>
-                                                    <input type="text" id="product-reference" class="form-control" placeholder="e.g : Apple iMac">
+                                                    <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span></label>
+                                                    <select name="subcatagory_id" class="form-control" id="product-category">
+                                                        @foreach ($subcategories as $subcategory)
+                                                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="brand_id" class="form-label">Brand <span class="text-danger">*</span></label>
+                                                    <select name="brand_id" class="form-control" id="brand_id">
+                                                        @foreach ($brands as $brand)
+                                                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="vendor" class="form-label">Select Vendor <span class="text-danger">*</span></label>
+                                                    <select name="vendor_id" class="form-control" id="vendor">
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                        <option value="">Select</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
-                                            <div id="snow-editor" style="height: 200px;"></div> <!-- end Snow-editor-->
+                                            <textarea name="description" class="form-control" rows="3" placeholder="Please enter comment"></textarea>
                                         </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="product-summary" class="form-label">Product Summary</label>
-                                                    <textarea class="form-control" id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="product-category" class="form-label">Categories <span class="text-danger">*</span></label>
-                                                    <select class="form-control select2" id="product-category">
-                                                        <option>Select</option>
-                                                        <optgroup label="Shopping">
-                                                            <option value="SH1">Shopping 1</option>
-                                                            <option value="SH2">Shopping 2</option>
-                                                            <option value="SH3">Shopping 3</option>
-                                                            <option value="SH4">Shopping 4</option>
-                                                        </optgroup>
-                                                        <optgroup label="CRM">
-                                                            <option value="CRM1">Crm 1</option>
-                                                            <option value="CRM2">Crm 2</option>
-                                                            <option value="CRM3">Crm 3</option>
-                                                            <option value="CRM4">Crm 4</option>
-                                                        </optgroup>
-                                                        <optgroup label="eCommerce">
-                                                            <option value="E1">eCommerce 1</option>
-                                                            <option value="E2">eCommerce 2</option>
-                                                            <option value="E3">eCommerce 3</option>
-                                                            <option value="E4">eCommerce 4</option>
-                                                        </optgroup>
-
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="product-price" class="form-label">Price <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="product-price" placeholder="Enter amount">
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="mb-3">
-                                            <label class="mb-2">Status <span class="text-danger">*</span></label>
-                                            <br/>
-                                            <div class="radio form-check-inline">
-                                                <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                                <label for="inlineRadio1"> Online </label>
+                                            <label for="product-summary" class="form-label">Product Summary</label>
+                                            <textarea name="short_description" class="form-control" id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="buyPrice" class="form-label">Buy Price<span class="text-danger">*</span></label>
+                                                    <input name="buy_price" type="text" class="form-control" id="buyPrice" placeholder="Buy Price">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="sellPrice" class="form-label">Sell Price <span class="text-danger">*</span></label>
+                                                    <input name="sell_price" type="text" class="form-control" id="sellPrice" placeholder="Enter amount">
+                                                </div>
                                             </div>
-                                            <div class="radio form-check-inline">
-                                                <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                                <label for="inlineRadio2"> Offline </label>
-                                            </div>
-                                            <div class="radio form-check-inline">
-                                                <input type="radio" id="inlineRadio3" value="option3" name="radioInline">
-                                                <label for="inlineRadio3"> Draft </label>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <div class="mb-3">
+                                                        <label for="retularPrice" class="form-label">Regular Price<span class="text-danger">*</span></label>
+                                                        <input name="regular_price" type="text" class="form-control" id="retularPrice" placeholder="Regular Price">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="quantity" class="form-label">Quantity<span class="text-danger">*</span></label>
+                                                        <input name="quantity" type="text" class="form-control" id="quantity" placeholder="Enter amount">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <label class="form-label">Comment</label>
-                                            <textarea class="form-control" rows="3" placeholder="Please enter comment"></textarea>
-                                        </div>
                                     </div>
 
                                     <ul class="pager wizard mb-0 list-inline text-end mt-3">
                                         <li class="next list-inline-item">
-                                            <button type="button" class="btn btn-success">Add More Info <i class="mdi mdi-arrow-right ms-1"></i></button>
+                                            <button type="button" class="btn btn-success">Add Photo <i class="mdi mdi-arrow-right ms-1"></i></button>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="tab-pane" id="product-img">
-                                    <h4 class="header-title">Product Images</h4>
-                                    <p class="sub-header">Upload product image</p>
 
-                                    <form action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-                                        data-upload-preview-template="#uploadPreviewTemplate">
-                                        <div class="fallback">
-                                            <input name="file" type="file" multiple />
-                                        </div>
-
-                                        <div class="dz-message needsclick">
-                                            <div class="mb-3">
-                                                <i class="h1 text-muted ri-upload-cloud-2-line"></i>
-                                            </div>
-                                            <h3>Drop files here or click to upload.</h3>
-                                            <span class="text-muted font-13">(This is just a demo dropzone. Selected files are
-                                                <strong>not</strong> actually uploaded.)</span>
-                                        </div>
-                                    </form>
-
-                                    <!-- Preview -->
-                                    <div class="dropzone-previews mt-3" id="file-previews"></div>
+                                    <div class="mb-3">
+                                        <label for="formFileMultiple" class="form-label">
+                                            <h4 class="header-title">Product Images</h4>
+                                            <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+                                        </label>
+                                        <input name="image[]" class="form-control" type="file" id="formFileMultiple" multiple>
+                                      </div>
 
                                     <ul class="pager wizard mb-0 list-inline text-end mt-3">
                                         <li class="previous list-inline-item">
                                             <button type="button" class="btn btn-secondary"><i class="mdi mdi-arrow-left"></i> Back to General </button>
                                         </li>
                                         <li class="next list-inline-item">
-                                            <button type="button" class="btn btn-success">Add Meta Data <i class="mdi mdi-arrow-right ms-1"></i></button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" id="metadata">
-                                    <h4 class="header-title">Meta Data</h4>
-                                    <p class="sub-header">Fill all information below</p>
-
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="product-meta-title" class="form-label">Meta title</label>
-                                            <input type="text" class="form-control" id="product-meta-title" placeholder="Enter title">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="product-meta-keywords" class="form-label">Meta Keywords</label>
-                                            <input type="text" class="form-control" id="product-meta-keywords" placeholder="Enter keywords">
-                                        </div>
-
-                                        <div>
-                                            <label for="product-meta-description" class="form-label">Meta Description </label>
-                                            <textarea class="form-control" rows="5" id="product-meta-description" placeholder="Please enter description"></textarea>
-                                        </div>
-                                    </form>
-
-                                    <ul class="pager wizard mb-0 list-inline text-end mt-3">
-                                        <li class="previous list-inline-item">
-                                            <button type="button" class="btn btn-secondary"><i class="mdi mdi-arrow-left"></i> Edit Information </button>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <button type="submit" class="btn btn-success">Publish Product <i class="mdi mdi-arrow-right ms-1"></i></button>
+                                            <button type="submit" class="btn btn-primary">Upload Product <i class="mdi mdi-arrow-right ms-1"></i></button>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
+
+                    </form>
+                    </div>  {{--  card-body-end --}}
+
                 </div>
             </div>
         </div>
