@@ -11,6 +11,10 @@ use Session;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isMarchent');
+    }
     /**
      * Display a listing of the resource.
      *

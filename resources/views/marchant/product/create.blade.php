@@ -105,7 +105,7 @@
 
                                         <div class="mb-3">
                                             <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" class="form-control" rows="3" placeholder="Please enter comment"></textarea>
+                                            <textarea name="description" id="summernote" class="form-control" rows="3" placeholder="Please enter comment"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label for="product-summary" class="form-label">Product Summary</label>
@@ -204,15 +204,16 @@
 </div> <!-- content -->
 @endsection
 
-@push('css')
-<!-- For create page  -->
-<link href="{{ asset('backend')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend')}}/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend')}}/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend')}}/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
-@endpush
+        @push('css')
+        <link href="{{ asset('backend')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend')}}/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        @endpush
 
 @push('scripts')
+
 <!-- third party js -->
 <script src="{{ asset('backend')}}/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 

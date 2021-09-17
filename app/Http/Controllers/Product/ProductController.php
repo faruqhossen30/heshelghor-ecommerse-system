@@ -87,6 +87,8 @@ class ProductController extends Controller
             'image'          => json_encode($images),
         ];
 
+        // return $request->all();
+
         $insert = Product::create($product);
 
         return redirect()->route('product.index');

@@ -12,7 +12,9 @@
 
         <!-- plugin css -->
         <link href="{{ asset('backend') }}/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        @stack('css')
+        <!-- Stack css Start -->
+@stack('css')
+        <!-- Stack css End -->
 
 		<!-- App css -->
 		<link href="{{ asset('backend') }}/assets/css/material/bootstrap-material.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
@@ -79,7 +81,24 @@
         <div class="rightbar-overlay"></div>
 
         <!-- Vendor js -->
+        <script>
+            $('#summernote').summernote({
+              placeholder: 'Hello stand alone ui',
+              tabsize: 2,
+              height: 120,
+              toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+              ]
+            });
+          </script>
         <script src="{{ asset('backend') }}/assets/js/vendor.min.js"></script>
+
 
         <!-- KNOB JS -->
         <script src="{{ asset('backend') }}/assets/libs/jquery-knob/jquery.knob.min.js"></script>
@@ -92,8 +111,9 @@
 
         <!-- Dashboard init-->
         <script src="{{ asset('backend') }}/assets/js/pages/dashboard-sales.init.js"></script>
-
+        <!-- Stack JS Start -->
         @stack('scripts')
+        <!-- Stack JS Start -->
         <!-- App js -->
         <script src="{{ asset('backend') }}/assets/js/app.min.js"></script>
 

@@ -47,7 +47,7 @@ class MarchantController extends Controller
      */
     public function showLoginForm()
     {
-        return view('marchant.login');
+        return view('marchant.auth.login');
     }
 
         /**

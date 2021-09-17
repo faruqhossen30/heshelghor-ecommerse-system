@@ -265,7 +265,9 @@
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="{{ asset('backend') }}/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ms-1">
-                        Admin Name <i class="mdi mdi-chevron-down"></i>
+                        @auth
+                        {{Auth::guard('marchant')->user()->name}} <i class="mdi mdi-chevron-down"></i>
+                        @endauth
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -299,12 +301,12 @@
 
                     <!-- item-->
 
-                    <a class="dropdown-item notify-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item notify-item" href="{{ route('marchant.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="ri-logout-box-line"></i>
                         <span>{{ __('Logout') }}</span>
                         </a>
 
-                        <form id="logout-form" action="" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('marchant.logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
 
