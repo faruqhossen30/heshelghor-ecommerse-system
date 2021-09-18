@@ -28,7 +28,7 @@ class MarchantController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'marchant/home';
+    protected $redirectTo = '/marchant/home';
 
     /**
      * Create a new controller instance.
@@ -47,7 +47,7 @@ class MarchantController extends Controller
      */
     public function showLoginForm()
     {
-        return view('marchant.login');
+        return view('marchant.auth.login');
     }
 
         /**

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class MarchantHomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isMarchent');
+    }
     public function index()
     {
         return view('marchant.home');
