@@ -16,7 +16,8 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
+            $table->longText('short_description');
             $table->string('slug');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
@@ -31,7 +32,6 @@ class CreateProductsTable extends Migration
             $table->double('quantity');
             $table->string('puk_code');
             $table->string('image');
-            $table->string('short_description');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

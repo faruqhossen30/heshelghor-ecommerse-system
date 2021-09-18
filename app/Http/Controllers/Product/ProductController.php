@@ -71,20 +71,21 @@ class ProductController extends Controller
         }
 
         $product = [
-            'title'          => $request->title,
-            'description'    => $request->description,
-            'slug'           => Str::of($request->title)->slug('-'),
-            'category_id'    => $request->catagory_id,
-            'subcatagory_id' => $request->subcatagory_id,
-            'brand_id'       => $request->brand_id,
-            // 'marchant_id' => $request->title,
-            // 'vendor_id'   => $request->title,
-            'buy_price'      => $request->buy_price,
-            'regular_price'  => $request->regular_price,
-            'sale_price'     => $request->sell_price,
-            'quantity'       => $request->quantity,
-            // 'puk_code'    => $request->title,
-            'image'          => json_encode($images),
+            'title'             => $request->title,
+            'description'       => $request->description,
+            'short_description' => $request->short_description,
+            'slug'              => Str::of($request->title)->slug('-'),
+            'category_id'       => $request->catagory_id,
+            'subcatagory_id'    => $request->subcatagory_id,
+            'brand_id'          => $request->brand_id,
+            // 'marchant_id'    => $request->title,
+            // 'vendor_id'      => $request->title,
+            'buy_price'         => $request->buy_price,
+            'regular_price'     => $request->regular_price,
+            'sale_price'        => $request->sell_price,
+            'quantity'          => $request->quantity,
+            // 'puk_code'       => $request->title,
+            'image'             => json_encode($images),
         ];
 
         // return $request->all();
