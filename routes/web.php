@@ -13,6 +13,8 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Product\SubCategoryController;
+// Order Controller
+use App\Http\Controllers\Merchant\OrderController;
 
 
 
@@ -55,5 +57,9 @@ Route::prefix('marchant')->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('subcategory', SubCategoryController::class);
+    // Order
+    Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
+    Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
 
 });
+

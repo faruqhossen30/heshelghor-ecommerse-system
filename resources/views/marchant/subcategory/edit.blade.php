@@ -43,14 +43,19 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('subcategory.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('subcategory.update', $subcatagory->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Select Category</label>
                                                             <div class="col-md-10">
-                                                                <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
-                                                                    <option selected value="">Select Category</option>
+
+                                                                <label for="subcatagory-name" class="form-label">Select Category <span class="text-danger">*</span></label>
+                                                                <select name="catagory_id" value="{{$subcatagory->catagory_id}}" class="form-control" id="subcatagory-category">
+
+                                                                {{-- <select class="form-select @error('category_id') is-invalid @enderror" value="{{$subcatagory->catagory_id}}" name="category_id">
+                                                                    <option selected value="">Select Category</option> --}}
+
                                                                     @foreach ($categories as $category)
                                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                                     @endforeach

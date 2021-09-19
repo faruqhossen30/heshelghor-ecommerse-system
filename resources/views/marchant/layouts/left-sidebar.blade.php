@@ -163,6 +163,27 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#sidebarOrders" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarOrders">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Orders </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarOrders">
+                        <ul class="nav-second-level">
+
+                            <li>
+                                <a href="{{route('marchant.order.index')}}">All Orders</a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('marchant.order.show')}}">Single Order</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
 
         </div>
