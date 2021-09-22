@@ -102,13 +102,17 @@
                                         <td>
                                             <ul class="list-inline table-action m-0">
                                                 <li class="list-inline-item">
-                                                    <a href="#" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{route('product.show', $product->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="{{route('product.edit', $product->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                    <form action="{{route('product.destroy', $product->id)}}" method="post" >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Are you sure you want to delete this ?')"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </td>
@@ -145,4 +149,60 @@
 <script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+
+
+<!-- sweetalert js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (Session::has('create'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Product has been created Successfully!'
+            })
+        </script>
+    @endif
+
+    @if (Session::has('update'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Product has been updated Successfully!'
+            })
+        </script>
+    @endif
+
+    @if (Session::has('delete'))
+        <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Product has been deleted Successfully!',
+            })
+        </script>
+    @endif
+
 @endpush
