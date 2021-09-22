@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isAdmin');
+    }
 
     /**
      * Show the application dashboard.

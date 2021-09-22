@@ -31,9 +31,11 @@ class RedirectIfAuthenticated
                 if (Auth::guard('marchant')->check()) {
                     return redirect('/marchant/home');
                 }
-            }elseif(Auth::guard('web')->check()){
-            return redirect(RouteServiceProvider::HOME);
-        };
+            } elseif(Auth::guard('admin')->check()){
+                return redirect(RouteServiceProvider::ADMIN);
+            } elseif(Auth::guard('web')->check()){
+                return redirect(RouteServiceProvider::HOME);
+            }
 
         return $next($request);
     }

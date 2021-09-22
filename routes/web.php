@@ -1,9 +1,12 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 // Admin Controller
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\AdminController;
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
@@ -39,7 +42,11 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-    Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
+    Route::group(['middleware' => 'isAdmin'], function () {
+        Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
+        Route::resource('roles', RolesController::class);
+        Route::resource('admin', AdminController::class);
+    });
 });
 
 Route::prefix('marchant')->group(function () {
