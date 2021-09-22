@@ -45,13 +45,14 @@
                                                 <div class="p-2">
                                                     <form method="POST" action="{{route('subcategory.update', $subcatagory->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
+                                                        @method('PUT')
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Select Category</label>
                                                             <div class="col-md-10">
 
                                                                 <label for="subcatagory-name" class="form-label">Select Category <span class="text-danger">*</span></label>
-                                                                <select name="catagory_id" value="{{$subcatagory->catagory_id}}" class="form-control" id="subcatagory-category">
+                                                                <select name="category_id" class="form-control" id="subcatagory-category">
 
                                                                 {{-- <select class="form-select @error('category_id') is-invalid @enderror" value="{{$subcatagory->catagory_id}}" name="category_id">
                                                                     <option selected value="">Select Category</option> --}}

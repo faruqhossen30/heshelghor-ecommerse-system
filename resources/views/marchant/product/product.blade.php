@@ -111,7 +111,7 @@
                                                     <form action="{{route('product.destroy', $product->id)}}" method="post" >
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Are you sure you want to delete this ?')"><i class="mdi mdi-delete"></i></button>
                                                     </form>
                                                 </li>
                                             </ul>

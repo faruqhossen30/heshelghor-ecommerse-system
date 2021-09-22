@@ -29,6 +29,7 @@
                     <div class="card-body">
                         <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                         <div id="addproduct-nav-pills-wizard" class="twitter-bs-wizard form-wizard-header">
                             <ul class="twitter-bs-wizard-nav mb-2">
                                 <li class="nav-item">

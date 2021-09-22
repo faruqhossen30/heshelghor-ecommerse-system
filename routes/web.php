@@ -15,6 +15,8 @@ use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Product\SubCategoryController;
 // Order Controller
 use App\Http\Controllers\Merchant\OrderController;
+// Merchant Profile Controller
+use App\Http\Controllers\Merchant\ProfileController;
 
 
 
@@ -60,6 +62,8 @@ Route::prefix('marchant')->group(function () {
     // Order
     Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
     Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
+    // Merchant Profile
+    Route::resource('merchantprofile', ProfileController::class);
 
 });
 

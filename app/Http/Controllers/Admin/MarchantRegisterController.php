@@ -75,7 +75,7 @@ class MarchantRegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('marchant.register');
+        return view('marchant.auth.register');
     }
 
     /**

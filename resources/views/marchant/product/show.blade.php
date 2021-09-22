@@ -104,57 +104,74 @@
                                     <h4>Price : <span class="text-muted me-2"><del>{{$product->regular_price}}</del>
                                         <b>{{$product->sale_price}}</b></h4>
                                 </div>
+
                                 <hr/>
 
+                            <div>
+
                                 <div>
-                                    <div class="mt-3">
-                                        <div><a href="#" class="text-primary"> {{$product->description}}</a></div>
-                                    </div>
+                                    {!! html_entity_decode($product->description) !!}
+                                </div>
+
+                                <div>
+                                    <form class="d-flex flex-wrap align-items-center mb-3">
+
+                                        <label class="my-1 me-2"
+                                        for="quantityinput">Quantity</label>
+                                        <div class="me-sm-3">
+                                            <select class="form-select my-1"
+                                            id="quantityinput">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                            </select>
+                                        </div>
+
+                                        <label class="my-1 me-2" for="sizeinput">Size</label>
+                                        <div class="me-sm-3">
+                                            <select class="form-select my-1" id="sizeinput">
+                                                <option selected>Small</option>
+                                                <option value="1">Medium</option>
+                                                <option value="2">Large</option>
+                                                <option value="3">X-large</option>
+                                            </select>
+                                        </div>
+
+                                    </form>
 
                                     <div>
-                                        <form class="d-flex flex-wrap align-items-center mb-3">
-
-                                            <label class="my-1 me-2"
-                                            for="quantityinput">Quantity</label>
-                                            <div class="me-sm-3">
-                                                <select class="form-select my-1"
-                                                id="quantityinput">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                </select>
-                                            </div>
-
-                                            <label class="my-1 me-2" for="sizeinput">Size</label>
-                                            <div class="me-sm-3">
-                                                <select class="form-select my-1" id="sizeinput">
-                                                    <option selected>Small</option>
-                                                    <option value="1">Medium</option>
-                                                    <option value="2">Large</option>
-                                                    <option value="3">X-large</option>
-                                                </select>
-                                            </div>
-
-                                        </form>
-
-                                        <div>
-                                            <button type="button"
-                                                class="btn btn-success waves-effect waves-light">
-                                                <span class="btn-label"><i
-                                                        class="mdi mdi-cart"></i></span>Edit
-                                            </button>
-                                            <button type="button"
-                                            class="btn btn-danger waves-effect waves-light">
+                                        <button type="button" class="btn btn-success waves-effect waves-light">
+                                            {{-- <span class="btn-label"><i
+                                                class="mdi mdi-cart"></i></span> --}}
+                                                <a href="{{route('product.edit', $product->id)}}" class="action-icon">Edit
+                                                </a>
+                                        </button>
+                                        <button type="button" class="btn btn-danger waves-effect waves-light">
                                             <span class="btn-label"><i
                                                     class="mdi mdi-cart"></i></span>Delete
                                         </button>
-                                        </div>
+
+
+                                        {{-- <button type="button" class="btn btn-danger waves-effect waves-light" onclick="confirm('Are you sure you want to delete this ?')">
+                                            <span class="btn-label"><i
+                                                    class="mdi mdi-cart"></i></span>
+                                                    <a href="{{route('product.destroy', $product->id)}}" class="action-icon"> Delete
+                                                    </a>
+                                                    <form action="{{route('product.destroy', $product->id)}}" method="post" >
+                                                        Delete
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="btn btn-danger waves-effect waves-light" type="submit" onclick="confirm('Are you sure you want to delete this ?')"> </button>
+                                                    </form>
+                                        </button> --}}
+
                                     </div>
                                 </div>
+                            </div>
 
                             </div>
                         </div>
