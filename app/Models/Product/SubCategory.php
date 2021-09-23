@@ -9,7 +9,7 @@ use App\Models\Product\Category;
 class SubCategory extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'category_id','slug'];
+    protected $fillable = ['name', 'category_id','slug', 'commission'];
 
     public function getCategory()
     {

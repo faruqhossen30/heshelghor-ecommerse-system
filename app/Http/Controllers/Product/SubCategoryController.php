@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
     {
         $subcategories = SubCategory::all();
         // return $subcategories;
-        return view('marchant.subcategory.subcategory', compact('subcategories'));
+        return view('admin.subcategory.subcategory', compact('subcategories'));
     }
 
     /**
@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('marchant.subcategory.addsubcategory', compact('categories'));
+        return view('admin.subcategory.addsubcategory', compact('categories'));
     }
 
     /**
@@ -43,14 +43,17 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $validate = $request->validate([
             'name'        => 'required',
             'category_id' => 'required',
+            'commission' => 'required',
         ]);
 
         $add = SubCategory::create([
             'name' => $request->name,
             'category_id' => $request->category_id,
+            'commission' => $request->commission,
             'slug' => Str::of($request->name)->slug('-'),
         ]);
 
@@ -68,7 +71,7 @@ class SubCategoryController extends Controller
     public function show($id)
     {
         $subcategory = SubCategory::where('id', $id)->get()->first();
-        return view('marchant.subcategory.show', compact('subcategory'));
+        return view('admin.subcategory.show', compact('subcategory'));
     }
 
     /**
@@ -82,7 +85,7 @@ class SubCategoryController extends Controller
         $categories = Category::all();
         $subcatagory = SubCategory::where('id', $id)->get()->first();
 
-        return view('marchant.subcategory.edit', compact('categories', 'subcatagory'));
+        return view('admin.subcategory.edit', compact('categories', 'subcatagory'));
     }
 
     /**
@@ -98,11 +101,13 @@ class SubCategoryController extends Controller
         $validate = $request->validate([
             'name'        => 'required',
             'category_id' => 'required',
+            'commission' => 'required',
         ]);
 
         $update = SubCategory::where('id', $id)->update([
             'name' => $request->name,
             'category_id' => $request->category_id,
+            'commission' => $request->commission,
         ]);
 
         Session::flash('update');

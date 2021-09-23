@@ -50,6 +50,9 @@ Route::prefix('admin')->group(function () {
         Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
         Route::resource('roles', RolesController::class);
         Route::resource('admin', AdminController::class);
+        // For Product
+        Route::resource('category', CategoryController::class);
+        Route::resource('subcategory', SubCategoryController::class);
     });
 });
 
@@ -63,9 +66,9 @@ Route::prefix('marchant')->group(function () {
     Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
     // Product
     Route::resource('product', ProductController::class);
-    Route::resource('category', CategoryController::class);
+
     Route::resource('brand', BrandController::class);
-    Route::resource('subcategory', SubCategoryController::class);
+
     // Order
     Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
     Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
