@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('marchant.category.category', compact('categories'));
+        return view('admin.category.category', compact('categories'));
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('marchant.category.addcategory');
+        return view('admin.category.addcategory');
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::where('id', $id)->get()->first();
-        return view('marchant.category.show', compact('category'));
+        return view('admin.category.show', compact('category'));
     }
 
     /**
@@ -103,7 +103,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::where('id', $id)->get()->first();
-        return view('marchant.category.edit', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**

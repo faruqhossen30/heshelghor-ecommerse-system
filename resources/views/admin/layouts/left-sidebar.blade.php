@@ -93,7 +93,7 @@
                 {{-- Admin start--}}
                 <li>
                     <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
+                        <i class="mdi mdi-account-circle"></i>
                         <span> Admin List </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -113,7 +113,7 @@
                 {{-- Roll and Permission start--}}
                 <li>
                     <a href="#rolesPermission" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
+                        <i class="mdi mdi-lock-minus"></i>
                         <span> Roll & Permission </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -132,7 +132,7 @@
                 {{-- Product Start --}}
                 <li>
                     <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
+                        <i class="mdi mdi-cart-outline"></i>
                         <span> Products </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -151,34 +151,17 @@
 
                 <li>
                     <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <i class="mdi mdi-layers-outline"></i>
                         <span> Category </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarCategory">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">All Category</a>
+                                <a href="{{route('category.index')}}">All Category</a>
                             </li>
                             <li>
-                                <a href="#">Add Category</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#sidebarBrand" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Brand </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarBrand">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="#">All Brand</a>
-                            </li>
-                            <li>
-                                <a href="#">Add Brand</a>
+                                <a href="{{route('category.create')}}">Add Category</a>
                             </li>
                         </ul>
                     </div>
@@ -193,10 +176,28 @@
                     <div class="collapse" id="sidebarSubCategory">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">All Sub-Category</a>
+                                <a href="{{route('subcategory.index')}}">All Sub-Category</a>
                             </li>
                             <li>
-                                <a href="#">Add Sub-Category</a>
+                                <a href="{{route('subcategory.create')}}">Add Sub-Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarBrand" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Brand </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarBrand">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="#">All Brand</a>
+                            </li>
+                            <li>
+                                <a href="#">Add Brand</a>
                             </li>
                         </ul>
                     </div>
