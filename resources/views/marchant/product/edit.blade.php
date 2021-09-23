@@ -155,9 +155,18 @@
                                             <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
                                         </label>
                                         <input name="image[]" class="form-control" type="file" id="formFileMultiple" multiple>
-                                        <img src="{{asset($product->image)}}" style="width: 100px; height:100px" alt="">
                                       </div>
-
+                                      <div>
+                                          @php
+                                              $images = json_decode($product->image);
+                                          @endphp
+                                            @foreach ($images as $image)
+                                                <img class="img-thumbnail" src="{{ asset('uploads/products/'.$image)}}" alt="" style="width: 150px; height:auto">
+                                            @endforeach
+                                      </div>
+                                      @php
+                                        //   exit;
+                                      @endphp
                                     <ul class="pager wizard mb-0 list-inline text-end mt-3">
                                         <li class="previous list-inline-item">
                                             <button type="button" class="btn btn-secondary"><i class="mdi mdi-arrow-left"></i> Back to General </button>

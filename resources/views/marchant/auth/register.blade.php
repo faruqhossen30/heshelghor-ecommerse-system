@@ -7,19 +7,25 @@ Register | Heshelghor
 <form method="POST" action="{{ route('marchant.register') }}">
     @csrf
     <div class="mb-2">
-        <label for="fullname" class="form-label">Full Name</label>
-        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+        <label for="fullname" class="form-label">{{ __('Name') }}</label>
+        <input class="form-control" name="name" type="text" id="fullname" placeholder="Enter your name" required>
     </div>
 
     <div class="mb-2">
-        <label for="emailaddress" class="form-label">Email address</label>
-        <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
+        <label for="emailaddress" class="form-label">{{ __('E-Mail Address') }}</label>
+        <input class="form-control" name="email" type="email" id="emailaddress" required placeholder="Enter your email">
+    </div>
+
+
+    <div class="mb-2">
+        <label for="phone-number" class="form-label">{{ __('Phone Number') }}</label>
+        <input class="form-control" type="text" name="phone_number" id="phone-number" required placeholder="Enter your phone number">
     </div>
 
     <div class="mb-2">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">{{ __('Password') }}</label>
         <div class="input-group input-group-merge">
-            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
 
             <div class="input-group-text" data-password="false">
                 <span class="password-eye"></span>
@@ -28,18 +34,13 @@ Register | Heshelghor
     </div>
 
     <div class="mb-2">
-        <label for="password-confirm" class="form-label">Confirm Password</label>
+        <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
         <div class="input-group input-group-merge">
-            <input type="password" id="password-confirm" class="form-control" placeholder="Enter your password">
+            <input type="password" id="password-confirm" name="confirm_password" class="form-control" placeholder="Enter your password">
             <div class="input-group-text" data-password="false">
                 <span class="password-eye"></span>
             </div>
         </div>
-    </div>
-
-    <div class="mb-2">
-        <label for="phone-number" class="form-label">Phone Number</label>
-        <input class="form-control" type="text" id="phone-number" required placeholder="Enter your phone number">
     </div>
 
     <div class="mb-3">
@@ -52,7 +53,7 @@ Register | Heshelghor
     </div>
 
     <div class="d-grid text-center">
-        <button class="btn btn-primary" type="submit"> Sign Up </button>
+        <button class="btn btn-primary" type="submit"> {{ __('Register') }} </button>
     </div>
 
 </form>

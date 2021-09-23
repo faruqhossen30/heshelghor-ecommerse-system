@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Sub Category Details</h4>
+                    <h4 class="page-title">Brand Details</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Category List</li>
+                            <li class="breadcrumb-item active">Brand List</li>
                         </ol>
                     </div>
                 </div>
@@ -29,8 +29,8 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('subcategory.index')}}" class="btn btn-success mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Sub Category</a>
+                                <a href="{{route('brands.index')}}" class="btn btn-success mb-2"><i
+                                        class="mdi mdi-format-list-bulleted me-1"></i> All Brand</a>
                             </div>
                         </div>
                         <!-- end row -->
@@ -50,48 +50,38 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>Sub Category Name: </td>
-                                                <td><strong>{{$subcategory->name}}</strong></td>
+                                                <td>Name: </td>
+                                                <td><strong>{{$brand->name}}</strong></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td>Category Name: </td>
-                                                <td><strong>{{$subcategory->getCategory->name}} -> {{$subcategory->name}}</strong></td>
+                                                <td>Description: </td>
+                                                <td>{{$brand->description}}</td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
-                                                <td>Commission: </td>
-                                                <td><strong>{{$subcategory->commission}}%</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Description: </td>
-                                                <td>{{$subcategory->description}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
                                                 <td>Create at: </td>
-                                                <td>{{$subcategory->created_at}}</td>
+                                                <td>{{$brand->created_at}}</td>
                                             </tr>
-                                            {{-- <tr>
+                                            <tr>
                                                 <td>4</td>
                                                 <td>Status</td>
                                                 <td>
                                                     <span class="badge badge-soft-success">
-                                                        {{$subcategory->status ? 'Active' : ''}}</td>
+                                                        {{$brand->status ? 'Active' : ''}}</td>
                                                     </span>
-                                            </tr> --}}
+                                            </tr>
                                             <tr>
-                                                <td>6</td>
+                                                <td>5</td>
                                                 <td>Photo</td>
                                                 <td>
-                                                    <img src="{{asset($subcategory->image)}}" alt="" style="width: 100px; height:100px">
+                                                    <img src="{{asset($brand->image)}}" alt="" style="width: 100px; height:100px">
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <hr>
-                                    <a href="{{route('subcategory.edit', $subcategory->id)}}" class="btn btn-success">Edit Sub Category</a>
+                                    <a href="{{route('brands.edit', $brand->id)}}" class="btn btn-success">Edit Brand</a>
                                 </div>
                             </div> <!-- end card-->
                         </div> <!-- end col -->

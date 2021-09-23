@@ -71,6 +71,7 @@ class MarchantRegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 
     public function showRegistrationForm()

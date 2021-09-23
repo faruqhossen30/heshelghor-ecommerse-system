@@ -194,10 +194,10 @@
                     <div class="collapse" id="sidebarBrand">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">All Brand</a>
+                                <a href="{{route('brands.index')}}">All Brand</a>
                             </li>
                             <li>
-                                <a href="#">Add Brand</a>
+                                <a href="{{route('brands.create')}}">Add Brand</a>
                             </li>
                         </ul>
                     </div>
