@@ -20,6 +20,8 @@ use App\Http\Controllers\Product\SubCategoryController;
 use App\Http\Controllers\Merchant\OrderController;
 // Merchant Profile Controller
 use App\Http\Controllers\Merchant\ProfileController;
+// Admin Controller
+use App\Http\Controllers\Admin\BrandsController;
 
 
 
@@ -46,6 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
+
     Route::group(['middleware' => 'isAdmin'], function () {
         Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
         Route::resource('roles', RolesController::class);
@@ -53,6 +56,8 @@ Route::prefix('admin')->group(function () {
         // For Product
         Route::resource('category', CategoryController::class);
         Route::resource('subcategory', SubCategoryController::class);
+        // Brand for Admin
+        Route::resource('brands', BrandsController::class);
     });
 });
 
@@ -67,7 +72,7 @@ Route::prefix('marchant')->group(function () {
     // Product
     Route::resource('product', ProductController::class);
 
-    Route::resource('brand', BrandController::class);
+    // Route::resource('brand', BrandController::class);
 
     // Order
     Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');

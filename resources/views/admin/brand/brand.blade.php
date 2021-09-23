@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Product List</h4>
+                    <h4 class="page-title">Brand List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
@@ -26,17 +26,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-
-                <!-- sweetalert -->
-                {{-- <h6 class="alert alert-success ">{{ session('status') }}</h6> --}}
-                    {{-- @if (Session('status'))
-                        <button type="button" class="btn btn-info btn-xs" id="sa-basic">{{ session('status') }}</button>
-                    @endif --}}
-
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('subcategory.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Sub Category</a>
+                                <a href="{{route('brands.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Brand</a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
@@ -50,16 +43,10 @@
                             <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="all" style="width: 20px;">
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck">
-                                                <label class="form-check-label" for="productlistCheck">&nbsp;</label>
-                                            </div>
+                                        <th>
+                                            Serial
                                         </th>
-                                        <th class="all">SN</th>
-                                        <th class="all">Sub Category</th>
-                                        <th class="all">Category</th>
-                                        <th class="all">Commission</th>
+                                        <th class="all"> Brand Name</th>
                                         <th>Photo</th>
                                         <th>Description</th>
                                         <th>Created at</th>
@@ -70,39 +57,24 @@
                                 <tbody>
                                     @php
                                         $serial = 1;
+                                        $serial2 = 1;
                                     @endphp
-                                    @foreach ($subcategories as $category)
+                                    @foreach ($brands as $brand)
                                     <tr>
                                         <td>
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck1">
-                                                <label class="form-check-label" for="productlistCheck1">&nbsp;</label>
-                                            </div>
+                                            {{$serial ++}}
                                         </td>
                                         <td>
-                                            {{$serial++}}
+                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$brand->name}}</a></h5>
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$category->name}}</a></h5>
+                                            <img src="{{asset($brand->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle">
-                                                <small>{{$category->getCategory->name}} -> {{$category->name}}</small>
-                                            </h5>
-                                        </td>
-
-
-                                        <td>
-                                            <h5 class="m-0 d-inline-block align-middle">{{$category->commission}}%</h5>
+                                            {{$brand->description}}
                                         </td>
                                         <td>
-                                            <img src="{{asset($category->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
-                                        </td>
-                                        <td>
-                                            {{$category->description}}
-                                        </td>
-                                        <td>
-                                            {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                            {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
                                             <span class="badge badge-soft-success">Active</span>
@@ -110,14 +82,14 @@
                                         <td>
                                             <ul class="list-inline table-action m-0">
                                                 <li class="list-inline-item">
-                                                    <a href="{{route('subcategory.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{route('brands.show', $brand->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="{{route('subcategory.edit', $category->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="{{route('brands.edit', $brand->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 </li>
                                                 <li class="list-inline-item">
                                                     {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
-                                                    <form action="{{route('subcategory.destroy', $category->id)}}" method="post" >
+                                                    <form action="{{route('brands.destroy', $brand->id)}}" method="post" >
                                                         @csrf
                                                         @method('DELETE')
                                                         <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
@@ -126,8 +98,8 @@
                                             </ul>
                                         </td>
                                     </tr>
-                                    @endforeach
 
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -158,6 +130,7 @@
 <script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+
 <!-- sweetalert js -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -177,7 +150,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Sub-Category has been created Successfully!'
+                title: 'Brand has been created Successfully!'
             })
         </script>
     @endif
@@ -198,18 +171,18 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Sub-Category has been updated Successfully!'
+                title: 'Brand has been updated Successfully!'
             })
         </script>
     @endif
-
 
     @if (Session::has('delete'))
         <script>
             Swal.fire({
             icon: 'success',
-            title: 'Sub-Category has been deleted Successfully!',
+            title: 'Brand has been deleted Successfully!',
             })
         </script>
     @endif
+
 @endpush
