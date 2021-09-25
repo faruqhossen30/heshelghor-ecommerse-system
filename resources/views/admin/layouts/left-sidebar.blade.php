@@ -202,6 +202,30 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarLocation">
+                        <i class="mdi mdi-map-marker"></i>
+                        <span>Location </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLocation">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="">All Location</a>
+                            </li>
+                            <li>
+                                <a href="{{route('upazila.create')}}">Upazila</a>
+                            </li>
+                            <li>
+                                <a href="">Divission</a>
+                            </li>
+                            <li>
+                                <a href="">District</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
 
             </ul>
 

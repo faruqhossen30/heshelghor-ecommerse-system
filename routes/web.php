@@ -7,6 +7,12 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminController;
+// Location Controller
+use App\Http\Controllers\Admin\Location\DivisionController;
+use App\Http\Controllers\Admin\Location\DistrictController;
+use App\Http\Controllers\Admin\Location\UpazilaController;
+
+
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
@@ -47,6 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+    Route::get('districts', [DistrictController::class, 'selectDistrict']);
 
 
     Route::group(['middleware' => 'isAdmin'], function () {
@@ -58,6 +65,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('subcategory', SubCategoryController::class);
         // Brand for Admin
         Route::resource('brands', BrandsController::class);
+        // For location
+        Route::resource('divission', DivisionController::class);
+        Route::resource('district', DistrictController::class);
+        Route::resource('upazila', UpazilaController::class);
     });
 });
 
