@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Product List</h4>
+                    <h4 class="page-title">Division List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
@@ -26,17 +26,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-
-                <!-- sweetalert -->
-                {{-- <h6 class="alert alert-success ">{{ session('status') }}</h6> --}}
-                    {{-- @if (Session('status'))
-                        <button type="button" class="btn btn-info btn-xs" id="sa-basic">{{ session('status') }}</button>
-                    @endif --}}
-
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('category.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Category</a>
+                                <a href="{{route('divission.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Division</a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
@@ -47,75 +40,51 @@
                         <!-- end row -->
 
                         <div class="table-responsive">
-                            <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="table-light">
+                            <table class="table mb-0">
+                                <thead>
                                     <tr>
-                                        <th class="all" style="width: 20px;">
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck">
-                                                <label class="form-check-label" for="productlistCheck">&nbsp;</label>
-                                            </div>
-                                        </th>
-                                        <th class="all">SN</th>
-                                        <th class="all">Category Name</th>
-                                        <th>Photo</th>
-                                        <th>Description</th>
-                                        <th>Created at</th>
-                                        <th>Status</th>
-                                        <th style="width: 85px;">Action</th>
+                                        <th>SN</th>
+                                        <th>Division Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
-                                        $serial = 1;
+                                    $serial = 1;
                                     @endphp
-                                    @foreach ($categories as $category)
+                                    @foreach ($divissions as $divission)
                                     <tr>
-                                        <td>
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck1">
-                                                <label class="form-check-label" for="productlistCheck1">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {{$serial++}}
-                                        </td>
-                                        <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$category->name}}</a></h5>
-                                        </td>
-                                        <td>
-                                            <img src="{{asset($category->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
-                                        </td>
-                                        <td>
-                                            {{$category->description}}
-                                        </td>
-                                        <td>
-                                            {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-soft-success">Active</span>
-                                        </td>
-                                        <td>
-                                            <ul class="list-inline table-action m-0">
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.edit', $category->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
-                                                    <form action="{{route('category.destroy', $category->id)}}" method="post" >
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </td>
+                                        <th scope="row"> {{$serial++}}</th>
+                                        <td><h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$divission->name}}</a></h5></td>
                                     </tr>
+                                    {{-- <tr>
+                                        <th scope="row">2</th>
+                                        <td>Khulna</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Barishal</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>Chittagong</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>Rajshahi</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td>Sylhet</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">7</th>
+                                        <td>Rangpur</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td>Mymensing</td>
+                                    </tr> --}}
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>

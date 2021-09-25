@@ -203,7 +203,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarLocation">
+                    <a href="#sidebarLocation" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarLocation">
                         <i class="mdi mdi-map-marker"></i>
                         <span>Location </span>
                         <span class="menu-arrow"></span>
@@ -217,10 +217,10 @@
                                 <a href="{{route('upazila.create')}}">Upazila</a>
                             </li>
                             <li>
-                                <a href="">Divission</a>
+                                <a href="{{route('divission.index')}}">Division</a>
                             </li>
                             <li>
-                                <a href="">District</a>
+                                <a href="{{route('district.create')}}">District</a>
                             </li>
 
                         </ul>

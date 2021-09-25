@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Location;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
 
 class DivisionController extends Controller
@@ -14,7 +15,8 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        $divissions = Division::all();
+        return view('admin.location.divission.divission', compact('divissions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class DivisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.location.divission.adddivission');
     }
 
     /**
@@ -35,7 +37,14 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $divission = Division::create([
+            'name' => $request->name,
+            'division_id' => $request->division_id,
+        ]);
+
+        // return back();
+        return redirect()->route('divission.index');
     }
 
     /**
