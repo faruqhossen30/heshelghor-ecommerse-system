@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Upazila extends Model
 {
     use HasFactory;
+    protected $fillable = ['division_id', 'district_id', 'name'];
 }

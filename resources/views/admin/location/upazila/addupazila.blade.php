@@ -66,13 +66,11 @@
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Select District : </label>
-                                                            <div class="col-md-10">
+                                                            <div class="col-md-10" style="position: relative">
                                                                 <select id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
-                                                                    <option selected value="">Select</option>
-
-                                                                        <option value="">Testing</option>
-
+                                                                    <option selected value=""></option>
                                                                 </select>
+                                                                <img id="loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
                                                                 <div class="text-danger">
                                                                     @error('district_id')
                                                                     <span>{{ $message }}</span>
@@ -103,6 +101,17 @@
                                         <!-- end row -->
                                     </div>
                                 </div> <!-- end card -->
+
+
+
+                                <div class="card-body" id="myroot">
+                                    <h3 id="heading"></h3>
+                                </div>
+
+
+
+
+
                             </div><!-- end col -->
                         </div>
                         <!-- end row -->
@@ -139,20 +148,37 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
-        {{-- <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
-            <script>
-                $(function(){
-                    var deivission = $('select[name="division_id"]');
-                    var district = $('select[name="district_id"]');
+        <script>
+            $(function(){
 
-                    district.attr('disabled', 'disabled');
-                    deivission.change(function(){
-                        var idValue = $(this).val();
-                        console.log(idValue);
-                        if(idValue){
-                            district.attr('disabled', 'disabled');
-                        }
-                    });
+                var division = $('select[name="division_id"]');
+                var district = $('select[name="district_id"]');
+                var loader = $('#loader');
+                loader.hide();
+
+                district.attr('disabled', 'disabled');
+
+                division.change(function(){
+                    district.removeAttr('disabled');
+
+                    var id = $(this).val();
+                    if(id){
+                        loader.show();
+                        $.get(`{{ url('admin/districts?division_id=') }}${id}`, function(data, status){
+                            if(data){
+                                loader.hide();
+                                district.empty();
+                                data.forEach(function(row){
+                                    district.append(`<option value="${row.id}">${row.name}</option>`);
+                                });
+                            }
+                        });
+                    }
                 });
-            </script> --}}
+
+
+            });
+
+
+        </script>
 @endpush

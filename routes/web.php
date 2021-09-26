@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-    Route::get('districts', [DistrictController::class, 'selectDistrict']);
+    Route::get('districts', [DistrictController::class, 'selectDistrict'])->name('districts');
 
 
     Route::group(['middleware' => 'isAdmin'], function () {
@@ -83,7 +83,7 @@ Route::prefix('marchant')->group(function () {
     // Product
     Route::resource('product', ProductController::class);
 
-    // Route::resource('brand', BrandController::class);
+    Route::resource('brand', BrandController::class);
 
     // Order
     Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');

@@ -81,22 +81,7 @@
         <div class="rightbar-overlay"></div>
 
         <!-- Vendor js -->
-        <script>
-            $('#summernote').summernote({
-              placeholder: 'Hello stand alone ui',
-              tabsize: 2,
-              height: 120,
-              toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-              ]
-            });
-          </script>
+        @stack('summernote')
         <script src="{{ asset('backend') }}/assets/js/vendor.min.js"></script>
 
 
@@ -107,7 +92,7 @@
         <script src="{{ asset('backend') }}/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
 
         <!-- Dashboard init-->
-        <script src="{{ asset('backend') }}/assets/js/pages/dashboard-sales.init.js"></script>
+        {{-- <script src="{{ asset('backend') }}/assets/js/pages/dashboard-sales.init.js"></script> --}}
         <!-- Stack JS Start -->
         @stack('scripts')
         <!-- Stack JS Start -->

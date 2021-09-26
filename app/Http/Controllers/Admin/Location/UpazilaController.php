@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Location;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\Division;
+use App\Models\Admin\Location\Upazila;
 use Illuminate\Http\Request;
 
 class UpazilaController extends Controller
@@ -38,7 +39,19 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $request->validate([
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $create = Upazila::create([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'name' => $request->name,
+        ]);
+
+        return back();
     }
 
     /**
