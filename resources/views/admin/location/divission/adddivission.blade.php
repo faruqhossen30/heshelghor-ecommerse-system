@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Create Category</h4>
+                    <h4 class="page-title">Create Division</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
@@ -29,8 +29,8 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('category.index')}}" class="btn btn-success mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Category</a>
+                                <a href="{{route('divission.index')}}" class="btn btn-success mb-2"><i
+                                        class="mdi mdi-format-list-bulleted me-1"></i> All Division</a>
                             </div>
                         </div>
                         <!-- end row -->
@@ -39,15 +39,14 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Category </h4> --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('category.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('divission.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Category Name</label>
+                                                                for="simpleinput">Division Name</label>
                                                             <div class="col-md-10">
                                                                 <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name">
                                                                 <div class="text-danger">
@@ -57,36 +56,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Description</label>
-                                                            <div class="col-md-10">
-                                                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
-                                                                    rows="5" placeholder="Category description..."></textarea>
-                                                                <div class="text-danger">
-                                                                    @error('description')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Category Image</label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
-                                                                    value="Some text value...">
-                                                                    <div class="text-danger">
-                                                                        @error('image')
-                                                                        <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-success">Add Catagory</button>
-
+                                                        <button type="submit" class="btn btn-success">Add Division</button>
                                                     </form>
                                                 </div>
                                             </div>

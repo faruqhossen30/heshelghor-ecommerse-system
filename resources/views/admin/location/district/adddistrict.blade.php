@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('subcategory.index')}}" class="btn btn-success mb-2"><i
+                                <a href="{{route('district.index')}}" class="btn btn-success mb-2"><i
                                         class="mdi mdi-format-list-bulleted me-1"></i> All District</a>
                             </div>
                         </div>
@@ -39,7 +39,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Category </h4> --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
@@ -50,7 +49,7 @@
                                                                 for="simpleinput">Select Division : </label>
                                                             <div class="col-md-10">
                                                                 <select class="form-select @error('category_id') is-invalid @enderror" name="division_id">
-                                                                    <option selected value="">Select Divission</option>
+                                                                    <option selected value="">Select Division</option>
                                                                     @foreach ($divisions as $division)
                                                                         <option value="{{$division->id}}">{{$division->name}}</option>
                                                                     @endforeach
@@ -75,7 +74,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <button type="submit" class="btn btn-success">Add Sub-Catagory</button>
+                                                        <button type="submit" class="btn btn-success">Add District</button>
 
                                                     </form>
                                                 </div>

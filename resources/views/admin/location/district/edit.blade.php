@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Edit Sub Category</h4>
+                    <h4 class="page-title">Edit District</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Category List</li>
+                            <li class="breadcrumb-item active">District List</li>
                         </ol>
                     </div>
                 </div>
@@ -29,39 +29,33 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('subcategory.index')}}" class="btn btn-success mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All SubCategory</a>
+                                <a href="{{route('district.index')}}" class="btn btn-success mb-2"><i
+                                        class="mdi mdi-format-list-bulleted me-1"></i> All District</a>
                             </div>
                         </div>
                         <!-- end row -->
-
-
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Category </h4> --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('subcategory.update', $subcatagory->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('district.update', $district->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         @method('PUT')
-                                                        <input type="hidden" name="old_image" value="{{$subcatagory->image}}">
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Select Category</label>
+                                                                for="simpleinput">Select Division</label>
                                                             <div class="col-md-10">
-
-                                                                <label for="subcatagory-name" class="form-label">Select Category <span class="text-danger">*</span></label>
-
-                                                                <select name="category_id" class="form-control" id="subcatagory-category">
-                                                                    @foreach ($categories as $category)
-                                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                <label for="district-name" class="form-label">Select Division <span class="text-danger">*</span></label>
+                                                                <select name="division_id" class="form-control" id="district-division">
+                                                                    @foreach ($divissions as $divission)
+                                                                        <option value="{{$divission->id}}">{{$divission->name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <div class="text-danger">
-                                                                    @error('category_id')
+                                                                    @error('division_id')
                                                                     <span>{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
@@ -69,9 +63,9 @@
                                                         </div>
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Sub Category Name</label>
+                                                                for="simpleinput">District Name</label>
                                                             <div class="col-md-10">
-                                                                <input name="name" value="{{$subcatagory->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
+                                                                <input name="name" value="{{$district->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
                                                                 <div class="text-danger">
                                                                     @error('name')
                                                                     <span>{{ $message }}</span>
@@ -80,54 +74,11 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Text area</label>
-                                                            <div class="col-md-10">
-                                                                <textarea name="description"  class="form-control @error('description') is-invalid @enderror" id="example-textarea" rows="5" placeholder="Category description...">
-                                                                    {{$subcatagory->description}}
-                                                                </textarea>
-                                                                <div class="text-danger">
-                                                                    @error('description')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Commission: %</label>
-                                                            <div class="col-md-10">
-                                                                <input name="commission" value="{{$subcatagory->commission}}" type="text" id="simpleinput" class="form-control @error('commission') is-invalid @enderror" placeholder="Name">
-                                                                <div class="text-danger">
-                                                                    @error('commission')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">SubCatagory Image</label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="mb-2 form-control @error('image') is-invalid @enderror"
-                                                                    value="Some text value...">
-                                                                    <div class="text-danger">
-                                                                        @error('image')
-                                                                        <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                    <img src="{{asset($subcatagory->image)}}" style="width: 100px; height:100px" alt="">
-                                                            </div>
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-success">Update SubCatagory</button>
+                                                        <button type="submit" class="btn btn-success">Update Districts</button>
 
                                                     </form>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <!-- end row -->
                                     </div>
@@ -135,13 +86,11 @@
                             </div><!-- end col -->
                         </div>
                         <!-- end row -->
-
                     </div>
                 </div>
-            </div>
+            </div><!-- end col -->
         </div>
         <!-- end row -->
-
 
     </div> <!-- container -->
 

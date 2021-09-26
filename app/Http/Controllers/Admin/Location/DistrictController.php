@@ -16,7 +16,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        $districts = District::all();
+        return view('admin.location.district.district', compact('districts'));
     }
 
     /**
@@ -40,14 +41,13 @@ class DistrictController extends Controller
     public function store(Request $request)
     {
 
-
-
         $district = District::create([
             'name' => $request->name,
             'division_id' => $request->division_id,
         ]);
 
-        return back();
+        // return back();
+        return redirect()->route('district.index');
 
     }
 
@@ -70,7 +70,10 @@ class DistrictController extends Controller
      */
     public function edit($id)
     {
-        //
+        $districts = District::all();
+        $district = District::where('id', $id)->get()->first();
+
+        return view('admin.location.district.edit', compact('districts', 'district'));
     }
 
     /**
