@@ -99,7 +99,9 @@ class DistrictController extends Controller
 
     public function selectDistrict(Request $request)
     {
-        $selectdevession = District::all();
-        return $selectdevession;
+       if($request->has('division_id')){
+           $district = District::where('division_id', $request->division_id)->get();
+           return $district;
+       };
     }
 }
