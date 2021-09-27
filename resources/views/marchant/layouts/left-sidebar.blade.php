@@ -117,6 +117,23 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#createShop" data-bs-toggle="collapse" aria-expanded="false" aria-controls="createShop">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Shops </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="createShop">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('shop.index')}}">All Shop</a>
+                            </li>
+                            <li>
+                                <a href="{{route('shop.create')}}">Create Shop</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li>
                     <a href="#sidebarOrders" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarOrders">
