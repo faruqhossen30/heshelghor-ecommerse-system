@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Merchant\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -24,7 +25,9 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('marchant.shop.addshop');
+        $divisions = Division::all();
+
+        return view('marchant.shop.addshop', compact('divisions'));
     }
 
     /**

@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+
+use App\Http\Controllers\APIController;
 // Admin Controller End ===========================
 
 // Marchant Controller
@@ -53,6 +55,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
+Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
+Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
 
 
 Route::prefix('admin')->group(function () {
