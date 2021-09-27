@@ -103,14 +103,14 @@
         <!-- KNOB JS -->
         <script src="{{ asset('backend') }}/assets/libs/jquery-knob/jquery.knob.min.js"></script>
         <!-- Apex js-->
-        <script src="{{ asset('backend') }}/assets/libs/apexcharts/apexcharts.min.js"></script>
+        {{-- <script src="{{ asset('backend') }}/assets/libs/apexcharts/apexcharts.min.js"></script> --}}
 
         <!-- Plugins js-->
         <script src="{{ asset('backend') }}/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="{{ asset('backend') }}/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
 
         <!-- Dashboard init-->
-        <script src="{{ asset('backend') }}/assets/js/pages/dashboard-sales.init.js"></script>
+        {{-- <script src="{{ asset('backend') }}/assets/js/pages/dashboard-sales.init.js"></script> --}}
         <!-- Stack JS Start -->
         @stack('scripts')
         <!-- Stack JS Start -->

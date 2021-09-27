@@ -19,6 +19,8 @@ class CreateBrandsTable extends Migration
             $table->string('slug');
             $table->string('image')->nullable();
             $table->string('description')->nullable();
+            $table->string('author');
+            $table->unsignedBigInteger('author_id');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

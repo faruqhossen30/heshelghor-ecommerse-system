@@ -79,7 +79,7 @@ class ProductController extends Controller
             'category_id'       => $request->catagory_id,
             'subcatagory_id'    => $request->subcatagory_id,
             'brand_id'          => $request->brand_id,
-            // 'marchant_id'    => $request->title,
+            'marchant_id'    => $request->title,
             // 'vendor_id'      => $request->title,
             'buy_price'         => $request->buy_price,
             'regular_price'     => $request->regular_price,
