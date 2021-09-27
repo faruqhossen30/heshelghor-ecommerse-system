@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Brand;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Image;
 use Session;
@@ -44,6 +45,9 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
+
         $image = $request->file('image');
 
         if($image){
@@ -64,6 +68,8 @@ class BrandController extends Controller
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
                 'image'       => 'uploads/brand/' . $fileName,
+                'author'      => 'merchant',
+                'author_id'   => Auth::guard('marchant')->user()->id,
             ]);
 
             Session::flash('create');
@@ -74,10 +80,13 @@ class BrandController extends Controller
                 'name'        => 'required',
                 'description' => 'required',
             ]);
+            $marchantname = 'merchant';
             Brand::create([
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
+                'author'      => 'merchant',
+                'author_id'   => Auth::guard('marchant')->user()->id,
             ]);
 
             Session::flash('create');
