@@ -72,9 +72,6 @@
                                                 <div class="mb-3">
                                                     <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span></label>
                                                     <select name="subcatagory_id" class="form-control" id="product-category">
-
-
-
                                                     </select>
                                                 </div>
                                             </div>
@@ -92,8 +89,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="vendor" class="form-label">Select Vendor <span class="text-danger">*</span></label>
-                                                    <select name="vendor_id" class="form-control" id="vendor">
+                                                    <label for="shop_id" class="form-label">Select Shop <span class="text-danger">*</span></label>
+                                                    <select name="shop_id" class="form-control" id="shop_id">
                                                         <option value="">Select</option>
                                                         <option value="">Select</option>
                                                         <option value="">Select</option>
@@ -115,27 +112,36 @@
 
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="buyPrice" class="form-label">Buy Price<span class="text-danger">*</span></label>
-                                                    <input name="buy_price" type="text" class="form-control" id="buyPrice" placeholder="Buy Price">
+                                                    <label for="retularPrice" class="form-label">Regular Price<span class="text-danger">*</span></label>
+                                                    <input name="regular_price" type="text" class="form-control" id="retularPrice" placeholder="Regular Price">
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="sellPrice" class="form-label">Sell Price <span class="text-danger">*</span></label>
-                                                    <input name="sell_price" type="text" class="form-control" id="sellPrice" placeholder="Enter amount">
+                                                    <input name="sale_price" type="text" class="form-control" id="sellPrice" placeholder="Enter amount">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <div class="mb-3">
-                                                        <label for="retularPrice" class="form-label">Regular Price<span class="text-danger">*</span></label>
-                                                        <input name="regular_price" type="text" class="form-control" id="retularPrice" placeholder="Regular Price">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="quantity" class="form-label">Quantity<span class="text-danger">*</span></label>
-                                                        <input name="quantity" type="text" class="form-control" id="quantity" placeholder="Enter amount">
-                                                    </div>
+                                                    <label for="offerPrice" class="form-label">Offer Price<span class="text-danger">*</span></label>
+                                                    <input name="offer_price" type="text" class="form-control" id="offerPrice" placeholder="Offer Price">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="price" class="form-label">Price<span class="text-danger">*</span></label>
+                                                    <input name="price" type="text" class="form-control" id="price" placeholder="Price">
                                                 </div>
                                             </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="quantity" class="form-label">Quantity<span class="text-danger">*</span></label>
+                                                    <input name="quantity" type="text" class="form-control" id="quantity" placeholder="Enter Quantity">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="review" class="form-label">Review<span class="text-danger">*</span></label>
+                                                    <input name="review" type="text" class="form-control" id="review" placeholder="Review">
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                     </div>
@@ -154,7 +160,7 @@
                                             <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
                                         </label>
                                         <input name="image[]" class="form-control" type="file" id="formFileMultiple" multiple>
-                                      </div>
+                                    </div>
 
                                     <ul class="pager wizard mb-0 list-inline text-end mt-3">
                                         <li class="previous list-inline-item">

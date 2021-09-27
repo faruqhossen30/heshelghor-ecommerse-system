@@ -86,4 +86,65 @@
     <!-- third party js ends -->
     <!-- Datatables init -->
     <script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
+    <!-- third party js 2 -->
+    <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+
+
+<!-- Added by minhaz -->
+<!-- sweetalert js -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (Session::has('create'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'New Admin has been created Successfully!'
+        })
+    </script>
+@endif
+
+@if (Session::has('update'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Admin info has been updated Successfully!'
+        })
+    </script>
+@endif
+
+
+@if (Session::has('delete'))
+    <script>
+        Swal.fire({
+        icon: 'success',
+        title: 'Admin has been deleted Successfully!',
+        })
+    </script>
+@endif
+
+
 @endpush

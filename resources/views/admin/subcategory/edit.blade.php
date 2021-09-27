@@ -40,7 +40,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Category </h4> --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">

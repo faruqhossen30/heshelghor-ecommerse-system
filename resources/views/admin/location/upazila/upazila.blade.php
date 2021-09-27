@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">District List</h4>
+                    <h4 class="page-title">Upazila List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Product List</li>
+                            <li class="breadcrumb-item active">Upazila List</li>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('district.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add District</a>
+                                <a href="{{route('upazila.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Upazila</a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
@@ -48,6 +48,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>SN</th>
+                                                        <th>Upazila</th>
                                                         <th>District</th>
                                                         <th>Division</th>
                                                         <th>Created at</th>
@@ -58,30 +59,31 @@
                                                     @php
                                                     $serial = 1;
                                                     @endphp
-                                                        @foreach ($districts as $district)
+                                                        @foreach ($upazilas as $upazila)
                                                             <tr>
                                                                 <td>
                                                                     {{$serial++}}
                                                                 </td>
                                                                 <td>
-                                                                    <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$district->name}}</a></h5>
+                                                                    <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$upazila->name}}</a></h5>
                                                                 </td>
                                                                 <td>
-                                                                    <h5 class="m-0 d-inline-block align-middle">
-                                                                        <small>{{$district->getDivision->name}} -> {{$district->name}}</small>
-                                                                    </h5>
+                                                                    <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$upazila->getDistrict->name}}</a></h5>
                                                                 </td>
                                                                 <td>
-                                                                    {{ Carbon\Carbon::parse($district->created_at)->diffForHumans() }}
+                                                                    <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$upazila->getDivision->name}}</a></h5>
+                                                                </td>
+                                                                <td>
+                                                                    {{ Carbon\Carbon::parse($upazila->created_at)->diffForHumans() }}
                                                                 </td>
                                                                 <td>
                                                                     <ul class="list-inline table-action m-0">
                                                                         <li class="list-inline-item">
-                                                                            <a href="{{route('district.edit', $district->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                            <a href="{{route('upazila.edit', $upazila->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                                         </li>
 
                                                                         <li class="list-inline-item">
-                                                                            <form action="{{route('district.destroy', $district->id)}}" method="post" >
+                                                                            <form action="{{route('upazila.destroy', $upazila->id)}}" method="post" >
                                                                                 @csrf
                                                                                 @method('DELETE')
                                                                                 <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
@@ -125,58 +127,61 @@
 <script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+
+
 <!-- sweetalert js -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @if (Session::has('create'))
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+@if (Session::has('create'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
-            Toast.fire({
-                icon: 'success',
-                title: 'District has been created Successfully!'
-            })
-        </script>
-    @endif
-
-    @if (Session::has('update'))
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon: 'success',
-                title: 'District has been updated Successfully!'
-            })
-        </script>
-    @endif
-
-
-    @if (Session::has('delete'))
-        <script>
-            Swal.fire({
+        Toast.fire({
             icon: 'success',
-            title: 'District has been deleted Successfully!',
-            })
-        </script>
-    @endif
+            title: 'Upazila has been created Successfully!'
+        })
+    </script>
+@endif
+
+@if (Session::has('update'))
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Upazila has been updated Successfully!'
+        })
+    </script>
+@endif
+
+
+@if (Session::has('delete'))
+    <script>
+        Swal.fire({
+        icon: 'success',
+        title: 'Upazila has been deleted Successfully!',
+        })
+    </script>
+@endif
+
 @endpush
