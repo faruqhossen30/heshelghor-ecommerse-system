@@ -7,6 +7,7 @@ use App\Models\Auth\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Session;
 
 class RolesController extends Controller
 {
@@ -57,6 +58,7 @@ class RolesController extends Controller
             $role->syncPermissions($permissions);
         };
 
+        Session::flash('create');
         return redirect()->route('roles.index');
     }
 
@@ -111,6 +113,7 @@ class RolesController extends Controller
             $role->syncPermissions($permissions);
         };
 
+        Session::flash('update');
         return redirect()->route('roles.index');
     }
 
@@ -127,6 +130,7 @@ class RolesController extends Controller
             $role->delete();
         }
 
+        Session::flash('delete');
         return redirect()->route('roles.index');
     }
 }

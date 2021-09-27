@@ -50,8 +50,8 @@
                                                             <div class="col-md-10">
                                                                 <label for="district-name" class="form-label">Select Division <span class="text-danger">*</span></label>
                                                                 <select name="division_id" class="form-control" id="district-division">
-                                                                    @foreach ($divissions as $divission)
-                                                                        <option value="{{$divission->id}}">{{$divission->name}}</option>
+                                                                    @foreach ($divisions as $division)
+                                                                        <option value="{{$division->id}}">{{$division->name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <div class="text-danger">

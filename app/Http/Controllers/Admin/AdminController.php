@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class AdminController extends Controller
 {
@@ -60,6 +61,7 @@ class AdminController extends Controller
             $admin->assignRole($request->roles);
         }
 
+        Session::flash('create');
         return redirect()->route('admin.index');
     }
 
@@ -114,6 +116,7 @@ class AdminController extends Controller
             $admin->assignRole($request->roles);
         }
 
+        Session::flash('update');
         return redirect()->route('admin.index');
     }
 
@@ -131,6 +134,7 @@ class AdminController extends Controller
             $admin->delete();
         }
 
+        Session::flash('delete');
         return back();
     }
 }

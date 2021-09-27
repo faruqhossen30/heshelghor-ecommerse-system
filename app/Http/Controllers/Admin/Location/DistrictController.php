@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Session;
 
 class DistrictController extends Controller
 {
@@ -47,6 +49,7 @@ class DistrictController extends Controller
         ]);
 
         // return back();
+        Session::flash('create');
         return redirect()->route('district.index');
 
     }
@@ -70,10 +73,12 @@ class DistrictController extends Controller
      */
     public function edit($id)
     {
-        $districts = District::all();
-        $district = District::where('id', $id)->get()->first();
 
-        return view('admin.location.district.edit', compact('districts', 'district'));
+        $divisions = Division::all();
+        // $divisions = Division::where('id', $id)->get()->first();
+        $district = District::where('id', $id)->get()->first();
+        return view('admin.location.district.edit', compact('divisions', 'district'));
+
     }
 
     /**
@@ -85,7 +90,15 @@ class DistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gross = [
+            'name' => $request->name,
+            'division_id' => $request->division_id,
+        ];
+
+        // return back();
+        $update = District::where('id', $id)->update($gross);
+        Session::flash('update');
+        return redirect()->route('district.index');
     }
 
     /**
@@ -96,7 +109,9 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = District::where('id', $id)->delete();
+        Session::flash('delete');
+        return redirect()->route('district.index');
     }
 
 

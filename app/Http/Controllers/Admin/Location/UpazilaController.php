@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin\Location;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\Division;
 use App\Models\Admin\Location\Upazila;
+use App\Models\Admin\Location\District;
 use Illuminate\Http\Request;
+use Session;
 
 class UpazilaController extends Controller
 {
@@ -16,7 +18,8 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+        $upazilas = Upazila::all();
+        return view('admin.location.upazila.upazila', compact('upazilas'));
     }
 
     /**
@@ -51,7 +54,8 @@ class UpazilaController extends Controller
             'name' => $request->name,
         ]);
 
-        return back();
+        Session::flash('create');
+        return redirect()->route('upazila.index');
     }
 
     /**
@@ -73,7 +77,10 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $divisions = Division::all();
+        $districts = District::all();
+        $upazila = Upazila::where('id', $id)->get()->first();
+        return view('admin.location.upazila.edit', compact('divisions', 'districts', 'upazila'));
     }
 
     /**
@@ -85,7 +92,21 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $pros = [
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'name' => $request->name,
+        ];
+
+        $update = Upazila::where('id', $id)->update($pros);
+        Session::flash('update');
+        return redirect()->route('upazila.index');
     }
 
     /**
@@ -96,6 +117,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Upazila::where('id', $id)->delete();
+        Session::flash('delete');
+        return redirect()->route('upazila.index');
     }
 }

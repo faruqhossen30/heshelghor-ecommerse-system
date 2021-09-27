@@ -202,7 +202,6 @@
         </script>
     @endif
 
-
     @if (Session::has('delete'))
         <script>
             Swal.fire({
