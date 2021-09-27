@@ -2,16 +2,18 @@
 
 
 use Illuminate\Support\Facades\Route;
-// Admin Controller
+// Admin Controller Srtart ===========================
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\AdminController;
+// Admin Controller
+use App\Http\Controllers\Admin\BrandsController;
 // Location Controller
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
-
+// Admin Controller End ===========================
 
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
@@ -22,12 +24,13 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Product\SubCategoryController;
+use App\Http\Controllers\Merchant\Shop\ShopController;
+
 // Order Controller
 use App\Http\Controllers\Merchant\OrderController;
 // Merchant Profile Controller
 use App\Http\Controllers\Merchant\ProfileController;
-// Admin Controller
-use App\Http\Controllers\Admin\BrandsController;
+
 
 
 
@@ -48,13 +51,15 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// For API
+Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
     Route::get('districts', [DistrictController::class, 'selectDistrict'])->name('districts');
-
 
     Route::group(['middleware' => 'isAdmin'], function () {
         Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
@@ -79,17 +84,21 @@ Route::prefix('marchant')->group(function () {
 
     Route::get('register', [MarchantRegisterController::class, 'showRegistrationForm'])->name('marchant.register');
     Route::post('register', [MarchantRegisterController::class, 'register'])->name('marchant.register');
-    Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
-    // Product
-    Route::resource('product', ProductController::class);
 
-    Route::resource('brand', BrandController::class);
 
-    // Order
-    Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
-    Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
-    // Merchant Profile
-    Route::resource('merchantprofile', ProfileController::class);
+    Route::group(['middleware' => 'isMarchent'], function () {
+        Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
+        // Product
+        Route::resource('product', ProductController::class);
+        Route::resource('brand', BrandController::class);
+        Route::resource('shop', ShopController::class);
+        // Order
+        Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
+        Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
+        // Profile
+        Route::resource('merchantprofile', ProfileController::class);
+    });
+
 
 });
 

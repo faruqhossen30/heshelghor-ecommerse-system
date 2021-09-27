@@ -24,10 +24,10 @@
 
     <body class="loading">
 
-        <div class="account-pages mt-5 mb-5">
+        <div class="account-pages mt-3 mb-3">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-4">
+                    <div class="col-md-8 col-lg-8 col-xl-5">
                         <div class="card">
 
                             <div class="card-body p-4">
@@ -39,10 +39,10 @@
                                                 <img src="{{ asset('backend') }}/assets/images/logo.jpg" alt="Heshel Ghor" height="50" width="200">
                                             </span>
                                         </a>
+                                        <p class="m-1 text-secondary">Merchant Register</p>
+
                                     </div>
                                 </div>
-                                <div class="mt-4"></div>
-                                {{-- @include('backend.partials.messages') --}}
 
                                 @yield('content')
 

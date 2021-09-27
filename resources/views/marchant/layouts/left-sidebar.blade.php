@@ -68,7 +68,7 @@
 
             <ul id="side-menu">
 
-                <li class="menu-title">Navigation</li>
+                <li class="menu-title">Marchant Dashboard</li>
 
                 <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
@@ -77,17 +77,7 @@
                         <span> Dashboards </span>
                     </a>
                     <div class="collapse" id="sidebarDashboards">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="index.html">Sales</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-crm.html">CRM</a>
-                            </li>
-                            <li>
-                                <a href="dashboard-analytics.html">Analytics</a>
-                            </li>
-                        </ul>
+
                     </div>
                 </li>
                 {{-- Product Start --}}
@@ -111,23 +101,6 @@
                 {{-- Product End --}}
 
                 <li>
-                    <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Category </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarCategory">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{route('category.index')}}">All Category</a>
-                            </li>
-                            <li>
-                                <a href="{{route('category.create')}}">Add Category</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
                     <a href="#sidebarBrand" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
                         <i class="mdi mdi-text-box-multiple-outline"></i>
                         <span> Brand </span>
@@ -140,24 +113,6 @@
                             </li>
                             <li>
                                 <a href="{{route('brand.create')}}">Add Brand</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#sidebarSubCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Sub Category </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarSubCategory">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{route('subcategory.index')}}">All Sub-Category</a>
-                            </li>
-                            <li>
-                                <a href="{{route('subcategory.create')}}">Add Sub-Category</a>
                             </li>
                         </ul>
                     </div>

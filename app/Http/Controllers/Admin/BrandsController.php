@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Brand;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Image;
 use Session;
 
@@ -64,6 +65,8 @@ class BrandsController extends Controller
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
                 'image'       => 'uploads/brand/' . $fileName,
+                'author'      => 'admin',
+                'author_id'   => Auth::guard('admin')->user()->id,
             ]);
 
             Session::flash('create');
@@ -78,6 +81,8 @@ class BrandsController extends Controller
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => Str::of($request->name)->slug('-'),
+                'author'      => 'admin',
+                'author_id'   => Auth::guard('admin')->user()->id,
             ]);
 
             Session::flash('create');

@@ -72,9 +72,9 @@
                                                 <div class="mb-3">
                                                     <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span></label>
                                                     <select name="subcatagory_id" class="form-control" id="product-category">
-                                                        @foreach ($subcategories as $subcategory)
-                                                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
-                                                        @endforeach
+
+
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -218,7 +218,7 @@
 <script src="{{ asset('backend')}}/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 
 <!-- Plugins js -->
-<script src="{{ asset('backend')}}/assets/libs/quill/quill.min.js"></script>
+{{-- <script src="{{ asset('backend')}}/assets/libs/quill/quill.min.js"></script> --}}
 
 <!-- Select2 js-->
 <script src="{{ asset('backend')}}/assets/libs/select2/js/select2.min.js"></script>
@@ -229,26 +229,32 @@
 <script src="{{ asset('backend')}}/assets/js/pages/form-fileuploads.init.js"></script>
 
 <!-- Init js -->
-<script src="{{ asset('backend')}}/assets/js/pages/add-product.init.js"></script>
-@endpush
+<script src="{{ asset('backend')}}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
+<script src="{{ asset('js/product.js') }}"></script>
+<script>
+    $(function(){
+    var catagory_id = $('select[name="catagory_id"]');
+    var subcatagory_id = $('select[name="subcatagory_id"]');
 
-{{-- @push('summernote')
-    <script>
-        <script>
-            $('#summernote').summernote({
-              placeholder: 'Hello stand alone ui',
-              tabsize: 2,
-              height: 120,
-              toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-              ]
+
+    catagory_id.change(function(){
+        var id = catagory_id.val();
+        if(id){
+            subcatagory_id.empty();
+            $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status){
+                if(data){
+                    data.forEach(function(row){
+                        subcatagory_id.append(`<option value="${row.id}">${row.name }</option>`);
+                    });
+                }
             });
-          </script>
-    </script>
-@endpush --}}
+        }
+
+    });
+
+
+
+})
+</script>
+
+@endpush

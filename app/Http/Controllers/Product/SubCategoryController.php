@@ -196,4 +196,11 @@ class SubCategoryController extends Controller
         Session::flash('delete');
         return redirect()->route('subcategory.index');
     }
+
+    // For api
+    public function getSubcategoryById(Request $request)
+    {
+        $allsubcategory = SubCategory::where('category_id', $request->category_id)->get();
+        return $allsubcategory;
+    }
 }
