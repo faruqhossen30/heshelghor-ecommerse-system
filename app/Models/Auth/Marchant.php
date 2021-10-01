@@ -20,7 +20,8 @@ class Marchant extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        // 'phone_number',
+        'phone_number',
+        'address',
         'password',
     ];
 

@@ -21,19 +21,22 @@ class CreateProductsTable extends Migration
             $table->longText('short_description');
             $table->string('slug');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('subcategory_id');
+            $table->unsignedBigInteger('subsub_category_id')->nullable();
             $table->unsignedBigInteger('brand_id');
-            $table->string('subcatagory_id');
-            $table->integer('marchant_id');
+            $table->string('author');
+            $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
+            $table->string('colors');
+            $table->string('sizes');
             // price
             $table->double('regular_price');
             $table->double('sale_price');
-            $table->double('offer_price');
             $table->double('price');
             $table->double('quantity');
             $table->double('quantity_alert');
             $table->double('review')->nullable();
-            $table->string('puk_code');
+            $table->string('puk_code')->nullable();
             $table->string('image');
             $table->boolean('status')->default(true);
             $table->timestamps();

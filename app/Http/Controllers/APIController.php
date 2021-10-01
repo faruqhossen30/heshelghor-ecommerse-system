@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Upazila;
+use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 
 class APIController extends Controller
@@ -22,6 +23,15 @@ class APIController extends Controller
         $upazillaList = Upazila::where('district_id', $request->district_id)->get();
         return $upazillaList;
         // return $request->division_id;
+        }
+    }
+
+    public function getCommission(Request $request)
+    {
+        // return $request->id;
+        if($request->id){
+        $commission = SubCategory::where('id', $request->id)->get()->first();
+        return $commission;
         }
     }
 }

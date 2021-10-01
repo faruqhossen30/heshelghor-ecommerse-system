@@ -71,7 +71,7 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Shop Description</label>
+                                                                for="example-textarea">Shop Description:</label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
                                                                     rows="5" placeholder="Optional"></textarea>
@@ -153,7 +153,7 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Image</label>
+                                                                for="simpleinput">Shop Image:</label>
                                                             <div class="col-md-10">
                                                                 <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
                                                                     value="Some text value...">
@@ -200,58 +200,53 @@
 @endpush
 
 @push('scripts')
-                                            <script>
-                                                $(function(){
-                                                    var division = $('select[name=division_id]');
-                                                    var district = $('select[name=district_id]');
-                                                    var upazila = $('select[name=upazila_id]');
-                                                    var district_loader = $('#district_loader');
-                                                    var upazila_loader = $('#upazila_loader');
+    <script>
+        $(function(){
+            var division = $('select[name=division_id]');
+            var district = $('select[name=district_id]');
+            var upazila = $('select[name=upazila_id]');
+            var district_loader = $('#district_loader');
+            var upazila_loader = $('#upazila_loader');
 
-                                                    district_loader.hide();
-                                                    upazila_loader.hide();
+            district_loader.hide();
+            upazila_loader.hide();
 
-                                                    // For District
-                                                    division.change(function(){
-                                                        district.removeAttr('disabled');
-                                                        district_loader.show();
-                                                        var divisionID = $(this).val();
-                                                        if(divisionID){
-                                                            $.get(`{{url('/getdistrict/${divisionID}')}}`, function(data, status){
-                                                                district.empty();
-                                                                if(data){
-                                                                    district_loader.hide();
-                                                                    data.forEach(function(row){
-                                                                        district.append(`<option selected value="${row.id}">${row.name}</option>`);
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
+            // For District
+            division.change(function(){
+                district.removeAttr('disabled');
+                district_loader.show();
+                var divisionID = $(this).val();
+                if(divisionID){
+                    $.get(`{{url('/getdistrict/${divisionID}')}}`, function(data, status){
+                        district.empty();
+                        if(data){
+                            district_loader.hide();
+                            data.forEach(function(row){
+                                district.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            });
+                        }
+                    });
+                }
 
-                                                    });
+            });
 
-                                                    // For Upazilla
-                                                    district.change(function(){
-                                                        upazila.removeAttr('disabled');
-                                                        var districtID = $(this).val();
-                                                        if(districtID){
-                                                            $.get(`{{url('/getupazila/${districtID}')}}`, function(data, status){
-                                                                upazila.empty();
-                                                                if(data){
-                                                                    upazila_loader.hide();
-                                                                    data.forEach(function(row){
-                                                                        upazila.append(`<option selected value="${row.id}">${row.name}</option>`);
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
-                                                    });
+            // For Upazilla
+            district.change(function(){
+                upazila.removeAttr('disabled');
+                var districtID = $(this).val();
+                if(districtID){
+                    $.get(`{{url('/getupazila/${districtID}')}}`, function(data, status){
+                        upazila.empty();
+                        if(data){
+                            upazila_loader.hide();
+                            data.forEach(function(row){
+                                upazila.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            });
+                        }
+                    });
+                }
+            });
 
-
-
-
-
-
-                                                });
-                                            </script>
+        });
+    </script>
 @endpush

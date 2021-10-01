@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+// Attribute Controller
+use App\Http\Controllers\Admin\Attribute\ColorController;
+use App\Http\Controllers\Admin\Attribute\SizeController;
 
 use App\Http\Controllers\APIController;
 // Admin Controller End ===========================
@@ -57,6 +60,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
 Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
 Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
+Route::get('commission/{id}', [APIController::class, 'getCommission']);
 
 
 Route::prefix('admin')->group(function () {
@@ -78,6 +82,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('divission', DivisionController::class);
         Route::resource('district', DistrictController::class);
         Route::resource('upazila', UpazilaController::class);
+        Route::resource('color', ColorController::class);
+        Route::resource('size', SizeController::class);
     });
 });
 
