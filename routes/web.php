@@ -50,9 +50,9 @@ use App\Http\Controllers\Merchant\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -87,7 +87,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::prefix('marchant')->group(function () {
+Route::prefix('merchant')->group(function () {
     Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
     Route::post('login', [MarchantController::class, 'login'])->name('marchant.login');
     Route::post('logout', [MarchantController::class, 'logout'])->name('marchant.logout');
@@ -110,5 +110,10 @@ Route::prefix('marchant')->group(function () {
     });
 
 
+});
+
+// For User
+Route::get('/', function () {
+    return view('frontend.layouts.app');
 });
 
