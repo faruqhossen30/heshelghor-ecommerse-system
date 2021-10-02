@@ -55,6 +55,8 @@ class MarchantRegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:2', 'confirmed'],
+            'phone_number' => ['required'],
+            'address' => ['required'],
         ]);
     }
 
@@ -70,12 +72,15 @@ class MarchantRegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone_number' => $data['phone_number'],
+            'address' => $data['address'],
         ]);
 
     }
 
     public function showRegistrationForm()
     {
+        // return view('marchant.auth.register_old');
         return view('marchant.auth.register');
     }
 

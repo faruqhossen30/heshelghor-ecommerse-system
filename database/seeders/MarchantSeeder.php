@@ -16,7 +16,7 @@ class MarchantSeeder extends Seeder
     {
         Marchant::create([
             'name' => 'Marchant One',
-            'email' => 'marchant@gmail.com',
+            'email' => 'merchant@gmail.com',
             'password' => bcrypt(123)
         ]);
     }

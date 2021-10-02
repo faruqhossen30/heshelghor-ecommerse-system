@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Attribute\Color;
+use App\Models\Admin\Attribute\Size;
+use App\Models\Admin\Shop\Shop;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
 use App\Models\Product\Brand;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 use Illuminate\Support\Str;
@@ -42,8 +46,11 @@ class ProductController extends Controller
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
+        $shops = Shop::all();
+        $colors = Color::all();
+        $sizes = Size::all();
 
-        return view('marchant.product.create', compact('categories', 'subcategories', 'brands'));
+        return view('marchant.product.create', compact('categories', 'subcategories', 'brands', 'shops', 'colors', 'sizes'));
     }
 
     /**
@@ -55,6 +62,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        // return $request->all();
 
         $images = [];
         if($request->hasFile('image')){
@@ -76,15 +84,20 @@ class ProductController extends Controller
             'description'       => $request->description,
             'short_description' => $request->short_description,
             'slug'              => Str::of($request->title)->slug('-'),
-            'category_id'       => $request->catagory_id,
-            'subcatagory_id'    => $request->subcatagory_id,
+            'category_id'       => $request->category_id,
+            'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,
-            'marchant_id'    => $request->title,
-            // 'vendor_id'      => $request->title,
-            'buy_price'         => $request->buy_price,
+            'colors'            => json_encode($request->colors),
+            'sizes'             => json_encode($request->sizes),
+            'author'            => 'merchant',
+            'author_id'         => Auth::guard('marchant')->user()->id,
+            'shop_id'           => $request->shop_id,
             'regular_price'     => $request->regular_price,
-            'sale_price'        => $request->sell_price,
+            'sale_price'        => $request->sale_price,
+            // 'offer_price'       => $request->offer_price,
+            'price'             => $request->price,
             'quantity'          => $request->quantity,
+            'quantity_alert'    => $request->quantity_alert,
             // 'puk_code'       => $request->title,
             'image'             => json_encode($images),
         ];

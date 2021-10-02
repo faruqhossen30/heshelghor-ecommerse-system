@@ -8,38 +8,69 @@ Register | Heshelghor
     @csrf
     <div class="mb-2">
         <label for="fullname" class="form-label">{{ __('Name') }}</label>
-        <input class="form-control" name="name" type="text" id="fullname" placeholder="Enter your name" required>
+        <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" id="fullname" placeholder="Enter your name">
+        @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 
     <div class="mb-2">
         <label for="emailaddress" class="form-label">{{ __('E-Mail Address') }}</label>
-        <input class="form-control" name="email" type="email" id="emailaddress" required placeholder="Enter your email">
+        <input class="form-control @error('email') is-invalid @enderror" name="email" type="email" id="emailaddress" required placeholder="Enter your email">
+        @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 
 
     <div class="mb-2">
         <label for="phone-number" class="form-label">{{ __('Phone Number') }}</label>
-        <input class="form-control" type="text" name="phone_number" id="phone-number" required placeholder="Enter your phone number">
+        <input class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" id="phone-number" required placeholder="Enter your phone number">
+        @error('phone_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-2">
+        <label for="fullname" class="form-label">{{ __('Address') }}</label>
+        <input class="form-control @error('address') is-invalid @enderror" name="address" type="text" id="fullname" placeholder="Enter your name">
+        @error('address')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 
     <div class="mb-2">
         <label for="password" class="form-label">{{ __('Password') }}</label>
         <div class="input-group input-group-merge">
-            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password">
 
             <div class="input-group-text" data-password="false">
                 <span class="password-eye"></span>
             </div>
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
     </div>
 
     <div class="mb-2">
         <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
         <div class="input-group input-group-merge">
-            <input type="password" id="password-confirm" name="confirm_password" class="form-control" placeholder="Enter your password">
+            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder="Enter your password" required>
             <div class="input-group-text" data-password="false">
                 <span class="password-eye"></span>
             </div>
+
         </div>
     </div>
 

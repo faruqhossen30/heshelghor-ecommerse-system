@@ -13,6 +13,9 @@ use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+// Attribute Controller
+use App\Http\Controllers\Admin\Attribute\ColorController;
+use App\Http\Controllers\Admin\Attribute\SizeController;
 
 use App\Http\Controllers\APIController;
 // Admin Controller End ===========================
@@ -47,9 +50,9 @@ use App\Http\Controllers\Merchant\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -57,6 +60,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
 Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
 Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
+Route::get('commission/{id}', [APIController::class, 'getCommission']);
 
 
 Route::prefix('admin')->group(function () {
@@ -78,10 +82,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('divission', DivisionController::class);
         Route::resource('district', DistrictController::class);
         Route::resource('upazila', UpazilaController::class);
+        Route::resource('color', ColorController::class);
+        Route::resource('size', SizeController::class);
     });
 });
 
-Route::prefix('marchant')->group(function () {
+Route::prefix('merchant')->group(function () {
     Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
     Route::post('login', [MarchantController::class, 'login'])->name('marchant.login');
     Route::post('logout', [MarchantController::class, 'logout'])->name('marchant.logout');
@@ -104,5 +110,10 @@ Route::prefix('marchant')->group(function () {
     });
 
 
+});
+
+// For User
+Route::get('/', function () {
+    return view('frontend.layouts.app');
 });
 

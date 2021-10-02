@@ -5,6 +5,7 @@
 /vendor
 .env
 .env.backup
+.htaccess
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
@@ -13,5 +14,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/public/uploads/category
-/public/uploads/brand
+/public/uploads/
