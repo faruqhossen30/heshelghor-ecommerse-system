@@ -139,7 +139,7 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="tradeLicence">Trade Licence No: </label>
                                                             <div class="col-md-10">
-                                                                <input name="trade_license" type="text" id="tradeLicence" class="form-control @error('address') is-invalid @enderror " placeholder="address">
+                                                                <input name="trade_license" type="text" id="tradeLicence" class="form-control @error('trade_license') is-invalid @enderror " placeholder="Optional">
                                                                 <div class="text-danger">
                                                                     @error('trade_license')
                                                                     <span>{{ $message }}</span>
@@ -151,7 +151,7 @@
 
 
 
-                                                        <div class="mb-2 row">
+                                                        {{-- <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Shop Image:</label>
                                                             <div class="col-md-10">
@@ -163,7 +163,7 @@
                                                                         @enderror
                                                                     </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Shop</button>
 

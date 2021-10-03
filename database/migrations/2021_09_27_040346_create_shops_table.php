@@ -16,14 +16,16 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('desription')->nullable();
+            $table->string('description')->nullable();
             $table->string('address');
             $table->string('trade_license')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('market_id')->nullable();
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('upazila_id');
+            $table->string('author');
+            $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });
     }

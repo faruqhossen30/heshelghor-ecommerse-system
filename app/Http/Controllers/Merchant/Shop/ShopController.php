@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Merchant\Shop;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
+use App\Models\Admin\Shop\Shop;
+use App\Models\Product\Category;
+use Illuminate\Support\Facades\Auth;
+use Image;
+use Session;
 
 class ShopController extends Controller
 {
@@ -15,7 +20,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = Shop::all();
+        return view('marchant.shop.shop', compact('shops'));
     }
 
     /**
@@ -38,7 +44,65 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        // return $request->all();
+
+        $image = $request->file('image');
+
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/shop/') . $fileName);
+
+            Shop::create([
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'description'    => $request->description,
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'author'        => 'merchant',
+                'author_id'     => Auth::guard('marchant')->user()->id,
+                'image'         => 'uploads/shop/' . $fileName,
+            ]);
+
+            Session::flash('create');
+            return redirect()->route('shop.index');
+
+        } else{
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+            $marchantname = 'merchant';
+            Shop::create([
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'desription'    => $request->desription,
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'author'        => 'merchant',
+                'author_id'     => Auth::guard('marchant')->user()->id,
+            ]);
+
+            Session::flash('create');
+            return redirect()->route('shop.index');
+
+        };
     }
 
     /**
