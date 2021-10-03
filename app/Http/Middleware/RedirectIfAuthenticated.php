@@ -27,9 +27,9 @@ class RedirectIfAuthenticated
         //     }
         // }
 
-            if($request->is('marchant/*')){
+            if($request->is('merchant/*')){
                 if (Auth::guard('marchant')->check()) {
-                    return redirect('/marchant/home');
+                    return redirect('/merchant/home');
                 }
             } elseif(Auth::guard('admin')->check()){
                 return redirect(RouteServiceProvider::ADMIN);
