@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Auth\Marchant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +28,12 @@ class Product extends Model
     {
         return $this->hasOne(Brand::class, 'id', 'brand_id');
     }
+
+    public function merchant()
+    {
+        return $this->hasOne(Marchant::class, 'id', 'author_id');
+    }
+
 
 
 }
