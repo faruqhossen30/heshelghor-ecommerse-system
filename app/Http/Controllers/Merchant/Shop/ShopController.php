@@ -103,7 +103,7 @@ class ShopController extends Controller
                 'author'        => 'merchant',
                 'author_id'     => Auth::guard('marchant')->user()->id,
             ]);
-
+            // ok
             Session::flash('create');
             return redirect()->route('shop.index');
 
