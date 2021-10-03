@@ -31,7 +31,7 @@ class MarchantRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'marchant/home';
+    protected $redirectTo = 'merchant/home';
 
     /**
      * Create a new controller instance.

@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('shop.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Category</a>
+                                <a href="{{route('shop.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Create Shop</a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
@@ -51,7 +51,7 @@
                                         </th>
                                         <th class="all">SN</th>
                                         <th class="all">Shop Name</th>
-                                        {{-- <th>Photo</th> --}}
+                                        <th>Address</th>
                                         <th>Description</th>
                                         <th>Created at</th>
                                         {{-- <th style="width: 85px;">Action</th> --}}
@@ -75,9 +75,9 @@
                                         <td>
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$shop->name}}</a></h5>
                                         </td>
-                                        {{-- <td>
-                                            <img src="{{asset($category->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
-                                        </td> --}}
+                                        <td>
+                                            {{$shop->address ?? 'No description found'}}
+                                        </td>
                                         <td>
                                             {{$shop->description ?? 'No description found'}}
                                         </td>
