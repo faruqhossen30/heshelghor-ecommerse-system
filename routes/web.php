@@ -50,9 +50,9 @@ use App\Http\Controllers\Merchant\ProfileController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('frontend.layouts.app');
+});
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -109,11 +109,4 @@ Route::prefix('merchant')->group(function () {
         Route::resource('merchantprofile', ProfileController::class);
     });
 
-
 });
-
-// For User
-Route::get('/', function () {
-    return view('frontend.layouts.app');
-});
-
