@@ -11,5 +11,22 @@ class Product extends Model
 
     protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'regular_price', 'sale_price', 'offer_price', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'image', 'status', 'colors', 'sizes'];
 
+    // Category
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+    // subCategory
+    public function subCategory()
+    {
+        return $this->hasOne(SubCategory::class, 'id', 'subcategory_id');
+    }
+
+
+    public function brand()
+    {
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
+    }
+
 
 }
