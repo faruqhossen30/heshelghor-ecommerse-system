@@ -28,26 +28,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-8 col-xl-5">
-                        <div class="card">
-
-                            <div class="card-body p-4">
-
-                                <div class="text-center w-75 m-auto">
-                                    <div class="auth-logo">
-                                        <a href="#" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
-                                                <img src="{{ asset('backend') }}/assets/images/logo.jpg" alt="Heshel Ghor" height="50" width="200">
-                                            </span>
-                                        </a>
-                                        <p class="m-1 text-secondary">Merchant Register</p>
-
-                                    </div>
-                                </div>
-
                                 @yield('content')
-
-                            </div> <!-- end card-body -->
-                        </div>
                         <!-- end card -->
 
 
