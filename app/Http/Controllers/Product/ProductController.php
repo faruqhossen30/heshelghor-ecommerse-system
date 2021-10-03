@@ -26,13 +26,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-
-        // return $products;
+        $userID = Auth::guard('marchant')->user()->id;
+        $products = Product::with('brand', 'category', 'subCategory')->where('author_id', $userID)->get();
 
         return view('marchant.product.product', compact('products'));
-        // return view('marchant.product.show');
 
     }
 

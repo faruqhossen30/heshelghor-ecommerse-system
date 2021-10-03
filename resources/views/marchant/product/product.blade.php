@@ -50,9 +50,10 @@
                                         </th>
                                         <th class="all">S.N</th>
                                         <th class="all">Product</th>
+                                        {{-- <th class="all">Photo</th> --}}
                                         <th>Category</th>
+                                        <th>SubCategory</th>
                                         <th>Brand</th>
-                                        <th>Added Date</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Status</th>
@@ -77,15 +78,19 @@
                                         <td>
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$product->title}}</a></h5>
                                         </td>
+                                        {{-- <td>
+                                            <img src="{{$product->}}" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
+                                        </td> --}}
                                         <td>
-                                            <span>{{$product->category_id}}</span>
+                                            <span>{{$product->category->name}}</span>
                                         </td>
                                         <td>
-                                            {{$product->brand_id}}
+                                            <span>{{$product->subCategory->name}}</span>
                                         </td>
                                         <td>
-                                            {{$product->created_at}}
+                                            {{$product->brand->name}}
                                         </td>
+
                                         <td>
                                             <div>
                                                 ৳{{$product->sale_price}}
