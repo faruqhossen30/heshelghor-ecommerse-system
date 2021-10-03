@@ -20,7 +20,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::all();
+        $userID = Auth::guard('marchant')->user()->id;
+        $shops = Shop::where('author_id', $userID)->get();
+        // return $shops;
         return view('marchant.shop.shop', compact('shops'));
     }
 
@@ -83,13 +85,16 @@ class ShopController extends Controller
         } else{
             $validate = $request->validate([
                 'name'        => 'required',
-                'description' => 'required',
+                'address'        => 'required',
+                'division_id'        => 'required',
+                'district_id'        => 'required',
+                'upazila_id'        => 'required',
             ]);
             $marchantname = 'merchant';
             Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
-                'desription'    => $request->desription,
+                'description'    => $request->description,
                 'trade_license' => $request->trade_license,
                 'market_id'     => $request->market_id,
                 'division_id'   => $request->division_id,
