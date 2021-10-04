@@ -4,7 +4,7 @@
             <a href="#" class="mobile-menu-toggle">
                 <i class="d-icon-bars2"></i>
             </a>
-            <a href="demo3.html" class="logo">
+            <a href="{{url('/')}}" class="logo">
                 <img src="{{asset('frontend/img/logo.jpg')}}" alt="logo" width="153" height="44" />
             </a>
             <!-- End Logo -->
