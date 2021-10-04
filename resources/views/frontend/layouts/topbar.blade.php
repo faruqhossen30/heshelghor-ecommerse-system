@@ -26,12 +26,38 @@
             <!-- End DropDown Menu -->
             <span class="divider"></span>
             <a href="{{route('marchant.login')}}" class="contact d-lg-show"><i class="d-icon-percent"></i>Merchant</a>
-            <a href="contact-us.html" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
+            <a href="#" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
             <a href="#" class="help d-lg-show"><i class="d-icon-info"></i> Need Help</a>
-            <a class="login-link" href="ajax/login.html" data-toggle="login-modal"><i
-                    class="d-icon-user"></i>Sign in</a>
+            @guest
+            <a class="login-link" href="{{route('login')}}" data-toggle="login-modal"><i
+                class="d-icon-user"></i>Sign in</a>
             <span class="delimiter">/</span>
-            <a class="register-link ml-0" href="ajax/login.html" data-toggle="login-modal">Register</a>
+            <a class="register-link ml-0" href="{{route('register')}}" data-toggle="login-modal">Register</a>
+            @endguest
+            @auth
+            <div class="dropdown ml-5">
+                <a href="#language">Account</a>
+                <ul class="dropdown-box">
+                    <li>
+                        <a href="#USD">Dashboard</a>
+                    </li>
+                    <li>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            @endauth
+
             <!-- End of Login -->
         </div>
     </div>

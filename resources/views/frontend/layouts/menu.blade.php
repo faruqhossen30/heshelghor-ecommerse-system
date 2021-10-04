@@ -4,14 +4,14 @@
             <nav class="main-nav">
                 <ul class="menu">
                     <li class="active">
-                        <a href="demo3.html">Home</a>
+                        <a href="{{url('/')}}">Home</a>
                     </li>
                     <li>
                         <a href="demo3-shop.html">Categories</a>
                         <div class="megamenu">
                             <div class="row">
                                 <div class="col-6 col-sm-4 col-md-3 col-lg-4">
-                                    <h4 class="menu-title">Variations 1</h4>
+                                    <h4 class="menu-title">All Popular Categories</h4>
                                     <ul>
                                         <li><a href="shop-banner-sidebar.html">Banner With Sidebar</a></li>
                                         <li><a href="shop-boxed-banner.html">Boxed Banner</a></li>
@@ -25,20 +25,7 @@
                                         <li><a href="shop-right-sidebar.html">Right Toggle Sidebar</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-4">
-                                    <h4 class="menu-title">Variations 2</h4>
-                                    <ul>
 
-                                        <li><a href="shop-grid-3cols.html">3 Columns Mode<span
-                                                    class="tip tip-new">New</span></a></li>
-                                        <li><a href="shop-grid-4cols.html">4 Columns Mode</a></li>
-                                        <li><a href="shop-grid-5cols.html">5 Columns Mode</a></li>
-                                        <li><a href="shop-grid-6cols.html">6 Columns Mode</a></li>
-                                        <li><a href="shop-grid-7cols.html">7 Columns Mode</a></li>
-                                        <li><a href="shop-grid-8cols.html">8 Columns Mode</a></li>
-                                        <li><a href="shop-list.html">List Mode</a></li>
-                                    </ul>
-                                </div>
                                 <div
                                     class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner1 banner banner-fixed">
                                     <figure>
