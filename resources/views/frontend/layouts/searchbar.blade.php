@@ -27,7 +27,7 @@
                 </div>
                 <div class="icon-box-content d-lg-show">
                     <h4 class="icon-box-title">Call Us Now:</h4>
-                    <p>0(800) 123-456</p>
+                    <p>+88 0421-61720</p>
                 </div>
             </a>
             <span class="divider"></span>
