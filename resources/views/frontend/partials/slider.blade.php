@@ -82,36 +82,4 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="category category-absolute category-badge">
-                <a href="#">
-                    <figure class="category-media">
-                        <img src="{{asset('frontend')}}/images/demos/demo3/banners/1.jpg" alt="category"
-                            width="430" height="189" style="background-color: #eceef2;" />
-                    </figure>
-                </a>
-                <div class="category-content">
-                    <h4 class="category-name font-weight-bold text-uppercase">Accessories
-                    </h4>
-                    <a href="demo3-shop.html" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="category category-absolute category-badge">
-                <a href="#">
-                    <figure class="category-media">
-                        <img src="{{asset('frontend')}}/images/demos/demo3/banners/2.jpg" alt="category"
-                            width="430" height="189" style="background-color: #929ca3;" />
-                    </figure>
-                </a>
-                <div class="category-content">
-                    <h4 class="category-name font-weight-bold text-uppercase">watches</h4>
-                    <a href="demo3-shop.html" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
