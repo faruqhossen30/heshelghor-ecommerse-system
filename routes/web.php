@@ -36,7 +36,8 @@ use App\Http\Controllers\Merchant\OrderController;
 // Merchant Profile Controller
 use App\Http\Controllers\Merchant\ProfileController;
 
-
+// Front-End Controller
+use App\Http\Controllers\FrontEnd\HomepageController;
 
 
 /*
@@ -50,9 +51,7 @@ use App\Http\Controllers\Merchant\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.layouts.app');
-});
+Route::get('/', [HomepageController::class, 'homePage']);
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

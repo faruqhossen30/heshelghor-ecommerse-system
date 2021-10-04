@@ -15,6 +15,14 @@ class ProductAPIController extends Controller
         $products = Product::with('brand', 'category', 'subCategory', 'merchant')->get();
         return $products;
     }
+
+    // All Product by paginateion
+    public function productByPage()
+    {
+
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->paginate(25);
+        return $products;
+    }
     // Category wise Product
     public function productByCategory(Request $request, $category_id)
     {

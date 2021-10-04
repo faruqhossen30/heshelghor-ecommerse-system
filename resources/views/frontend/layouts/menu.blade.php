@@ -10,27 +10,20 @@
                         <a href="demo3-shop.html">Categories</a>
                         <div class="megamenu">
                             <div class="row">
-                                <div class="col-6 col-sm-4 col-md-3 col-lg-4">
+                                <div class="col-6 col-sm-4 col-md-4 col-lg-4">
                                     <h4 class="menu-title">All Popular Categories</h4>
                                     <ul>
-                                        <li><a href="shop-banner-sidebar.html">Banner With Sidebar</a></li>
-                                        <li><a href="shop-boxed-banner.html">Boxed Banner</a></li>
-                                        <li><a href="shop-infinite-scroll.html">Infinite Ajaxscroll</a></li>
-                                        <li><a href="shop-horizontal-filter.html">Horizontal Filter</a>
-                                        </li>
-                                        <li><a href="shop-navigation-filter.html">Navigation Filter<span
-                                                    class="tip tip-hot">Hot</span></a></li>
-
-                                        <li><a href="shop-off-canvas.html">Off-Canvas Filter</a></li>
-                                        <li><a href="shop-right-sidebar.html">Right Toggle Sidebar</a></li>
+                                        @foreach ($categories as $category)
+                                            <li><a href="#">{{$category->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
                                 <div
-                                    class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner1 banner banner-fixed">
+                                    class="col-6 col-sm-8 col-md-8 col-lg-8 menu-banner menu-banner1 banner banner-fixed">
                                     <figure>
-                                        <img src="images/menu/banner-1.jpg" alt="Menu banner" width="221"
-                                            height="330" />
+                                        <img src="{{asset('frontend')}}/images/menu/banner-1.jpg" alt="Menu banner" width="150"
+                                            height="250" />
                                     </figure>
                                     <div class="banner-content y-50">
                                         <h4 class="banner-subtitle font-weight-bold text-primary ls-m">Sale.
@@ -170,8 +163,8 @@
             </nav>
         </div>
         <div class="header-right">
-            <a href="#">Limited Time Offer</a>
-            <a href="https://d-themes.com/buynow/riodehtml" target="_blank" class="ml-6">Buy Riode!</a>
+            <a href="#">Exclusive Offer</a>
+            <a href="" target="_blank" class="ml-6">Business with Us</a>
         </div>
     </div>
 </div>

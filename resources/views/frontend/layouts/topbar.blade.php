@@ -1,7 +1,7 @@
 <div class="header-top">
     <div class="container">
         <div class="header-left">
-            <p class="welcome-msg">HeshelGhor | Stores Of Needs</p>
+            <p class="welcome-msg">HeshelGhor | Stores Of Needs | <i class="far fa-envelope"></i> support@heshelghor.com</p>
         </div>
         <div class="header-right">
             {{-- <div class="dropdown">
