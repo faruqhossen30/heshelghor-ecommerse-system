@@ -20,7 +20,7 @@ class ProductAPIController extends Controller
     public function productByPage()
     {
 
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->paginate(25);
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->paginate(5);
         return $products;
     }
     // Category wise Product
