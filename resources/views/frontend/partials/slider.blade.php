@@ -5,7 +5,7 @@
         'dots': true,
         'nav': false,
         'loop': true,
-        'autoplay': false
+        'autoplay': true
     }">
         <div class="banner banner-fixed intro-slide1">
             <figure>
