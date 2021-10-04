@@ -73,8 +73,10 @@
                                                         </div>
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Image</label>
+                                                            for="simpleinput">Brand Image</label>
+
                                                             <div class="col-md-10">
+                                                                <small class="form-text">Image size mus be (360 X 200)px or (180 X 100)px</small>
                                                                 <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
                                                                     value="Some text value...">
                                                                     <div class="text-danger">

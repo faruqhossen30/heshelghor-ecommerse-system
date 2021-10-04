@@ -17,7 +17,7 @@ class CreateSubCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('category_id');
-            $table->string('description')->nullable();
+            $table->string('description', 1000)->nullable();
             $table->double('commission');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
