@@ -35,21 +35,21 @@
                         <ul class="widget-body">
                             <li>
                                 <label>Phone:</label>
-                                <a href="tel:#">Toll Free (123) 456-7890</a>
+                                <a href="tel:#">Toll Free +88 0421-61720</a>
                             </li>
                             <li>
                                 <label>Email:</label>
-                                <a href="mailto:mail@riode.com">mail@riode.com</a>
+                                <a href="mailto:mail@riode.com">support@heshelghor.com</a>
                             </li>
                             <li>
                                 <label>Address:</label>
-                                <a href="#">123 Street Name, City, England</a>
+                                <a href="#">58, Karbala Road Jashore, BD</a>
                             </li>
                             <li>
-                                <label>WORKING DAYS / HOURS:</label>
+                                <label>WORKING DAYS 7 / HOURS:8</label>
                             </li>
                             <li>
-                                <a href="#">Mon - Sun / 9:00 AM - 8:00 PM</a>
+                                <a href="#">Sar - T/ 9:00 AM - 6:00 PM</a>
                             </li>
                         </ul>
                     </div>
@@ -106,28 +106,28 @@
                         <h4 class="widget-title">Instagram</h4>
                         <figure class="widget-body row">
                             <div class="col-3">
-                                <img src="images/instagram/01.jpg" alt="instagram 1" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/01.jpg" alt="instagram 1" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/02.jpg" alt="instagram 2" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/02.jpg" alt="instagram 2" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/03.jpg" alt="instagram 3" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/03.jpg" alt="instagram 3" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/04.jpg" alt="instagram 4" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/04.jpg" alt="instagram 4" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/05.jpg" alt="instagram 5" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/05.jpg" alt="instagram 5" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/06.jpg" alt="instagram 6" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/06.jpg" alt="instagram 6" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/07.jpg" alt="instagram 7" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/07.jpg" alt="instagram 7" width="64" height="64" />
                             </div>
                             <div class="col-3">
-                                <img src="images/instagram/08.jpg" alt="instagram 8" width="64" height="64" />
+                                <img src="{{ asset('frontend') }}/images/instagram/08.jpg" alt="instagram 8" width="64" height="64" />
                             </div>
                         </figure>
                     </div>
@@ -139,15 +139,15 @@
         <div class="footer-bottom">
             <div class="footer-left">
                 <figure class="payment">
-                    <img src="images/payment.png" alt="payment" width="159" height="29" />
+                    <img src="{{ asset('frontend') }}/images/payment.png" alt="payment" width="159" height="29" />
                 </figure>
             </div>
             <div class="footer-center">
-                <p class="copyright">Riode eCommerce &copy; 2021. All Rights Reserved</p>
+                <p class="copyright">HeshelGhor eCommerce &copy; 2021. All Rights Reserved</p>
             </div>
             <div class="footer-right">
                 <div class="social-links">
-                    <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+                    <a href="https://www.facebook.com/heshelghorbangladesh/" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
                     <a href="#" class="social-link social-twitter fab fa-twitter"></a>
                     <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
                 </div>
@@ -355,7 +355,7 @@
 </div>
 </div>
 
-<div class="newsletter-popup mfp-hide" id="newsletter-popup"
+{{-- <div class="newsletter-popup mfp-hide" id="newsletter-popup"
 style="background-image: url(images/newsletter-popup.jpg)">
 <div class="newsletter-content">
     <h4 class="text-uppercase text-dark">Up to <span class="text-primary">20% Off</span></h4>
@@ -374,7 +374,7 @@ style="background-image: url(images/newsletter-popup.jpg)">
         <label for="hide-newsletter-popup">Don't show this popup again</label>
     </div>
 </div>
-</div>
+</div> --}}
 
 <!-- Plugins JS File -->
 <script src="{{asset('frontend')}}/vendor/jquery/jquery.min.js"></script>
