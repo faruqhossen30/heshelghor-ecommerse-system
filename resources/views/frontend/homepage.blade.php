@@ -15,62 +15,64 @@
                         @include('frontend.partials.slider')
                         {{-- Featured product --}}
                         <section class="product-wrapper mb-8">
-                            <h2 class="title title-line title-underline with-link appear-animate" data-animation-options="{'delay': '.3s'}">Featured Product
+                            <h2 class="title title-line title-underline with-link appear-animate"
+                                data-animation-options="{'delay': '.3s'}">Featured Product
                                 <a href="#" class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
                             </h2>
                             <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                 {{-- single product --}}
                                 @foreach ($products as $product)
-                                <div class="col-md-3 col-6 mb-4">
-                                    <div class="product text-center">
-                                        <figure class="product-media">
-                                            @php
-                                                $images = json_decode($product->image);
-                                                // echo print_r($images);
-                                                // echo $images[0]
-                                            @endphp
+                                    <div class="col-md-3 col-6 mb-4">
+                                        <div class="product text-center">
+                                            <figure class="product-media">
+                                                @php
+                                                    $images = json_decode($product->image);
+                                                    // echo print_r($images);
+                                                    // echo $images[0]
+                                                @endphp
 
-                                            <a href="demo3-product.html">
-                                                <img src="{{asset('uploads/products/'.$images[0])}}" alt="product" width="280"
-                                                    height="315" style="background-color: #f5f5f5;" />
-                                            </a>
+                                                <a href="demo3-product.html">
+                                                    <img src="{{ asset('uploads/products/' . $images[0]) }}" alt="product"
+                                                        width="280" height="315" style="background-color: #f5f5f5;" />
+                                                </a>
 
 
 
-                                            <div class="product-label-group">
-                                                <label class="product-label label-new">new</label>
-                                                <label class="product-label label-sale">15% off</label>
-                                            </div>
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                                    data-target="#addCartModal" title="Add to cart"><i
-                                                        class="d-icon-bag"></i></a>
-                                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                        class="d-icon-heart"></i></a>
-                                            </div>
-                                            <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                                    View</a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="product-cat"><a href="demo3-shop.html">{{$product->category->name}}</a></div>
-                                            <h3 class="product-name">
-                                                <a href="demo3-product.html">{{$product->title}}</a>
-                                            </h3>
-                                            <div class="product-price">
-                                                <ins class="new-price">৳{{$product->price}}</ins><del
-                                                    class="old-price">৳{{$product->regular_price}}</del>
-                                            </div>
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:80%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-new">new</label>
+                                                    <label class="product-label label-sale">15% off</label>
+                                                </div>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                        data-target="#addCartModal" title="Add to cart"><i
+                                                            class="d-icon-bag"></i></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist"
+                                                        title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                </div>
+                                                <div class="product-action">
+                                                    <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                                                        View</a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <div class="product-cat"><a
+                                                        href="demo3-shop.html">{{ $product->category->name }}</a></div>
+                                                <h3 class="product-name">
+                                                    <a href="demo3-product.html">{{ $product->title }}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <ins class="new-price">৳{{ $product->price }}</ins><del
+                                                        class="old-price">৳{{ $product->regular_price }}</del>
+                                                </div>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:80%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
 
 
@@ -78,19 +80,89 @@
                             </div>
                         </section>
 
+                        {{-- Show Category --}}
+                        <section class="pt-6 mt-10">
+                            <div class="container">
+                                <h2 class="title title-simple">Popular Categories</h2>
+                                <div class="owl-carousel owl-theme owl-loaded owl-drag" data-owl-options="{
+                                        'nav': false,
+                                        'dots': true,
+                                        'autoplay': true,
+                                        'margin': 20,
+                                        'responsive': {
+                                            '0': {
+                                                'items': 1
+                                            },
+                                            '480': {
+                                                'items': 2
+                                            },
+                                            '768': {
+                                                'items': 3
+                                            },
+                                            '992': {
+                                                'items': 4,
+                                                'dots': false
+                                            }
+                                        }
+                                    }">
+
+
+
+
+                                    <div class="owl-stage-outer">
+                                        <div class="owl-stage"
+                                            style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1200px;">
+
+                                            @foreach ($subcategories as $subcategory)
+                                                <div class="owl-item " style="width: 280px; margin-right: 20px;">
+                                                    <div class="category category-absolute category-classic">
+                                                        <a href="demo9-shop.html">
+                                                            <figure class="category-media">
+                                                                <img src="{{ asset('frontend') }}/images/demos/demo9/categories/1.jpg"
+                                                                    alt="Cateogry" width="280" height="280">
+                                                            </figure>
+                                                            <div class="category-content">
+                                                                <h4 class="category-name">{{$subcategory->name}}</h4>
+                                                                <span class="category-count">1 Products</span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="owl-nav disabled"><button type="button" role="presentation"
+                                            class="owl-prev"><i class="d-icon-angle-left"></i></button><button
+                                            type="button" role="presentation" class="owl-next"><i
+                                                class="d-icon-angle-right"></i></button></div>
+                                    <div class="owl-dots disabled"></div>
+                                </div>
+                            </div>
+                        </section>
+
+
+
+
+
                         <section class="mb-3">
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 mb-4">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                        'name': 'fadeInLeftShorter',
-                                        'delay': '.5s'
-                                    }">
+                                            'name': 'fadeInLeftShorter',
+                                            'delay': '.5s'
+                                        }">
                                         <h4 class="widget-title font-weight-bold">Sale Products</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/9.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/9.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -113,7 +185,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/10.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -135,7 +207,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/11.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -160,15 +232,15 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 mb-4 ">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                        'name': 'fadeIn',
-                                        'delay': '.3s'
-                                    }">
+                                            'name': 'fadeIn',
+                                            'delay': '.3s'
+                                        }">
                                         <h4 class="widget-title font-weight-bold">Latest Products</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/12.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -191,7 +263,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/13.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/13.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -213,7 +285,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/14.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/14.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -237,15 +309,15 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 mb-4">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                        'name': 'fadeInRightShorter',
-                                        'delay': '.5s'
-                                    }">
+                                            'name': 'fadeInRightShorter',
+                                            'delay': '.5s'
+                                        }">
                                         <h4 class="widget-title font-weight-bold">Best of the Week</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/15.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/15.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -267,7 +339,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/16.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/16.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>
@@ -290,7 +362,7 @@
                                             <div class="product product-list-sm">
                                                 <figure class="product-media">
                                                     <a href="demo3-product.html">
-                                                        <img src="images/demos/demo3/products/17.jpg" alt="product"
+                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/17.jpg" alt="product"
                                                             width="100" height="100" style="background-color: #f5f5f5;" />
                                                     </a>
                                                 </figure>

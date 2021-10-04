@@ -54,7 +54,7 @@
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
                 <figure>
-                    <img src="images/demos/demo3/banner2.jpg" width="280" height="312"
+                    <img src="{{ asset('frontend') }}/images/demos/demo3/banner2.jpg" width="280" height="312"
                         alt="banner" style="background-color: #26303c;" />
                 </figure>
                 <div class="banner-price-info font-weight-bold text-white text-uppercase">
@@ -86,7 +86,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/10.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -109,7 +109,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/11.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -132,7 +132,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/12.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -159,7 +159,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/10.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -182,7 +182,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/11.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -205,7 +205,7 @@
                             <div class="product product-list-sm">
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
-                                        <img src="images/demos/demo3/products/12.jpg"
+                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
                                             alt="product" width="100" height="100"
                                             style="background-color: #f5f5f5;" />
                                     </a>
@@ -246,7 +246,7 @@
                         <div class="post overlay-dark overlay-zoom">
                             <figure class="post-media">
                                 <a href="post-single.html">
-                                    <img src="images/demos/demo3/blog/1.jpg" width="280"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/blog/1.jpg" width="280"
                                         height="195" alt="post"
                                         style="background-color: #bcc3ca;" />
                                 </a>
@@ -267,7 +267,7 @@
                         <div class="post overlay-dark overlay-zoom">
                             <figure class="post-media">
                                 <a href="post-single.html">
-                                    <img src="images/demos/demo3/blog/2.jpg" width="280"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/blog/2.jpg" width="280"
                                         height="195" alt="post"
                                         style="background-color: #a1a7b6;" />
                                 </a>
@@ -287,7 +287,7 @@
                         <div class="post overlay-dark overlay-zoom">
                             <figure class="post-media">
                                 <a href="post-single.html">
-                                    <img src="images/demos/demo3/blog/3.jpg" width="280"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/blog/3.jpg" width="280"
                                         height="195" alt="post"
                                         style="background-color: #acb9bf;" />
                                 </a>
@@ -307,7 +307,7 @@
                         <div class="post overlay-dark overlay-zoom">
                             <figure class="post-media">
                                 <a href="post-single.html">
-                                    <img src="images/demos/demo3/blog/4.jpg" width="280"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/blog/4.jpg" width="280"
                                         height="195" alt="post"
                                         style="background-color: #2d3635;" />
                                 </a>
@@ -345,7 +345,7 @@
                                 likes it, too.</blockquote>
                             <div class="testimonial-info">
                                 <figure class="testimonial-author-thumbnail">
-                                    <img src="images/demos/demo3/agent.png" alt="user"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/agent.png" alt="user"
                                         width="40" height="40" />
                                 </figure>
                                 <cite class="font-weight-semi-bold text-capitalize">
@@ -360,7 +360,7 @@
                                 likes it, too.</blockquote>
                             <div class="testimonial-info">
                                 <figure class="testimonial-author-thumbnail">
-                                    <img src="images/demos/demo3/agent.png" alt="user"
+                                    <img src="{{ asset('frontend') }}/images/demos/demo3/agent.png" alt="user"
                                         width="40" height="40" />
                                 </figure>
                                 <cite>
