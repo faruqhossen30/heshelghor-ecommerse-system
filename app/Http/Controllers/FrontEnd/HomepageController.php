@@ -13,11 +13,11 @@ class HomepageController extends Controller
 {
     public function homePage()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::with('products')->orderBy('name', 'asc')->get();
         $subcategories = SubCategory::inRandomOrder()->get();
         $brands = Brand::latest('id')->get();
         $products = Product::latest('id')->paginate(8);
-        // return $subcategories;
+        // return $categories;
 
 
         return view('frontend.homepage', compact(
