@@ -39,7 +39,7 @@
                 <a href="#" class="cart-toggle label-block link">
                     <div class="cart-label d-lg-show">
                         <span class="cart-name">Shopping Cart:</span>
-                        <span class="cart-price">$0.00</span>
+                        <span class="cart-price">৳ 0.00</span>
                     </div>
                     <i class="d-icon-bag"><span class="cart-count">2</span></i>
                 </a>
