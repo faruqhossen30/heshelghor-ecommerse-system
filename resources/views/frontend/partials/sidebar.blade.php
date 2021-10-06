@@ -9,41 +9,36 @@
             <ul class="menu vertical-menu category-menu mb-4">
                 <li><a href="demo3-shop.html" class="menu-title">Popular Categories</a></li>
                 <li>
-                    <a href="demo3-shop.html"><i class="d-icon-camera1"></i>Electronics</a>
+                    <a href="{{url('/product/category/5')}}"><i class="d-icon-camera1"></i>Electronics</a>
                 </li>
                 <li>
-                    <a href="demo3-shop.html"><i class="d-icon-officebag"></i>Backpacks &amp;
-                        Fashion bags</a>
+                    <a href="{{url('/product/category/7')}}"><i class="d-icon-officebag"></i>Man's Fashion</a>
                 </li>
                 <li>
-                    <a href="demo3-shop.html"><i class="d-icon-gamepad1"></i>Gaming &amp;
-                        Accessories
-                    </a>
-                </li>
-                <li>
-                    <a href="demo3-shop.html"><i class="d-icon-basketball1"></i>Sporting
-                        Goods</a>
-                </li>
-                <li>
-                    <a href="demo3-shop.html">
+                    <a href="{{url('/product/category/8')}}">
                         <i class="d-icon-t-shirt1" style="
                             font-size: 23px;
                             margin-left: -1px;
                             margin-right: .8rem;
-                        "></i>Travel &amp; Clothing</a>
+                        "></i>Women's Fashion</a>
                 </li>
                 <li>
-                    <a href="demo3-shop.html"><i class="d-icon-desktop"></i>Computer
+                    <a href="{{url('/product/category/6')}}"><i class="d-icon-cook"></i>Home And Kitchen </a>
+                </li>
+
+                <li>
+                    <a href="{{url('/product/category/2')}}"><i class="d-icon-watch-round"></i>Health & Beauty
                     </a>
                 </li>
                 <li>
-                    <a href="demo3-shop.html"><i class="d-icon-cook"></i>Home &amp; Kitchen</a>
-                </li>
-                <li><a href="demo3-shop.html" class="menu-title mt-1">Today Coupon Deals</a>
+                    <a href="{{url('/product/category/4')}}"><i class="d-icon-basketball1"></i>Sports & Fitness</a>
                 </li>
                 <li>
-                    <a href="demo3-shop.html">
-                        <i class="d-icon-card"></i>Backpacks &amp; Fashion bags
+                    <a href="{{url('/product/category/3')}}"><i class="d-icon-babycare"></i>Kids & Toys</a>
+                </li>
+                <li>
+                    <a href="{{url('/product/category/1')}}">
+                        <i class="d-icon-cook"></i>Heritage Foods
                     </a>
                 </li>
                 <li>

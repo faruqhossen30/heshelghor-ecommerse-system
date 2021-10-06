@@ -19,5 +19,15 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt(123)
         ]);
+        Admin::create([
+            'name' => 'Super2 Admin',
+            'email' => 'admin2@gmail.com',
+            'password' => bcrypt(123)
+        ]);
+        Admin::create([
+            'name' => 'Super3 Admin',
+            'email' => 'admin3@gmail.com',
+            'password' => bcrypt(123)
+        ]);
     }
 }

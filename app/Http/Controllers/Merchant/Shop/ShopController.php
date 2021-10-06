@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Shop\Shop;
 use App\Models\Product\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Image;
 use Session;
 
@@ -68,7 +69,8 @@ class ShopController extends Controller
             Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
-                'description'    => $request->description,
+                'description'   => $request->description,
+                'slug'          => Str::of($request->name)->slug('-'),
                 'trade_license' => $request->trade_license,
                 'market_id'     => $request->market_id,
                 'division_id'   => $request->division_id,
@@ -94,7 +96,8 @@ class ShopController extends Controller
             Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
-                'description'    => $request->description,
+                'description'   => $request->description,
+                'slug'          => Str::of($request->name)->slug('-'),
                 'trade_license' => $request->trade_license,
                 'market_id'     => $request->market_id,
                 'division_id'   => $request->division_id,
