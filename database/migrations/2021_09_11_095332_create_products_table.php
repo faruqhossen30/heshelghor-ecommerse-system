@@ -37,7 +37,7 @@ class CreateProductsTable extends Migration
             $table->double('quantity_alert');
             $table->double('review')->nullable();
             $table->string('puk_code')->nullable();
-            $table->string('image');
+            $table->string('image', 1000);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
