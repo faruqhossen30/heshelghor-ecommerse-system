@@ -23,6 +23,12 @@ class AllListAPIController extends Controller
         $subcategories = SubCategory::all();
         return $subcategories;
     }
+    // All Sub-Category
+    public function subCategoryByCategory(Request $request, $id)
+    {
+        $subcategories = SubCategory::where('category_id', $id)->get();
+        return $subcategories;
+    }
 
     // All Brand
     public function allBrand()
