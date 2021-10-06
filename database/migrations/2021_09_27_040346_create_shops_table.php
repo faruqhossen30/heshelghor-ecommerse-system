@@ -18,6 +18,7 @@ class CreateShopsTable extends Migration
             $table->string('name');
             $table->string('description', 1000)->nullable();
             $table->string('address', 1000);
+            $table->string('slug')->unique();
             $table->string('trade_license')->nullable();
             $table->string('image', 1000)->nullable();
             $table->unsignedBigInteger('market_id')->nullable();

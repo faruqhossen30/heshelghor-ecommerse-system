@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->longText('short_description');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
             $table->unsignedBigInteger('subsub_category_id')->nullable();

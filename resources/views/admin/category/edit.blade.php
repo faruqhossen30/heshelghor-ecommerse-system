@@ -77,19 +77,6 @@
                                                         </div>
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Commission: %</label>
-                                                            <div class="col-md-10">
-                                                                <input name="commission" value="{{$category->commission}}" type="text" id="simpleinput" class="form-control @error('commission') is-invalid @enderror" placeholder="Name">
-                                                                <div class="text-danger">
-                                                                    @error('commission')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Image</label>
                                                             <div class="col-md-10">
                                                                 <input name="image" type="file" id="simpleinput" class="mb-2 form-control @error('image') is-invalid @enderror"
