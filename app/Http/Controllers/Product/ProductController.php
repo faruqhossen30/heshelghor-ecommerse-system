@@ -47,7 +47,7 @@ class ProductController extends Controller
         $colors = Color::all();
         $sizes = Size::all();
 
-        return view('marchant.product.create', compact('categories', 'subcategories', 'brands', 'shops', 'colors', 'sizes'));
+        return view('marchant.product.addproduct', compact('categories', 'subcategories', 'brands', 'shops', 'colors', 'sizes'));
     }
 
     /**
@@ -61,11 +61,11 @@ class ProductController extends Controller
 
         // return $request->all();
 
-        $images = [];
+
 
             $validate = $request->validate([
                 'title'             => 'required | max:255',
-                'description'       => 'required | max:1000',
+                'description'       => 'required | max:2000',
                 'short_description' => 'required | max:1000',
                 'category_id'       => 'required',
                 'subcategory_id'    => 'required',
@@ -76,10 +76,10 @@ class ProductController extends Controller
                 'regular_price'     => 'required',
                 'sale_price'        => 'required',
                 'price'             => 'required',
-                'image'             => 'required | mimes:png,jpg,gif,bmp|max:1024',
+                'image'             => 'required',
             ]);
 
-
+            $images = [];
             $i = 0;
             foreach($request->file('image') as $image){
 
@@ -92,9 +92,6 @@ class ProductController extends Controller
 
             };
 
-        $product = [
-
-        ];
 
         // return $request->all();
 
