@@ -7,18 +7,16 @@
             <ul class="widget-body filter-items search-ul">
 
                 @foreach ($categories as $category)
-                @php
-                    $subcategories = \App\Models\Product\Subcategory::where('category_id', $category->id)->get();
-
-                @endphp
-                <li>
-                    <a href="{{route('product.with.category', $category->id)}}">{{$category->name}}</a>
+                    <li>
+                        <a href="{{ route('product.with.category', $category->id) }}">{{ $category->name }}</a>
                         <ul>
-                            @foreach ($subcategories as $subcategory)
-                            <li><a href="{{route('product.with.subcategory', $subcategory->id)}}">{{$subcategory->name}}</a></li>
+                            @foreach ($category->subcategorylist as $subcategory)
+                                <li>
+                                    <a href="{{ route('product.with.subcategory', $subcategory->id) }}">{{ $subcategory->name }}</a>
+                                </li>
                             @endforeach
                         </ul>
-                </li>
+                    </li>
                 @endforeach
 
 
@@ -35,8 +33,7 @@
                         <div class="filter-price-text mb-4">Price:
                             <span class="filter-price-range"></span>
                         </div>
-                        <button type="submit"
-                            class="btn btn-dark btn-rounded btn-filter">Filter</button>
+                        <button type="submit" class="btn btn-dark btn-rounded btn-filter">Filter</button>
                     </div>
                 </form><!-- End Filter Price Form -->
             </div>

@@ -12,18 +12,18 @@ class ShopPageController extends Controller
     public function index(Request $request)
     {
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->latest('id')->paginate(12);
+        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(12);
 
-        // return $categories;
+        // return $products;
 
         return view('frontend.shoppage', compact('categories', 'products'));
     }
     public function productWithCategory(Request $request, $id)
     {
-        $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
+        $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
 
-        // return $products;
+        // return $categories;
 
         return view('frontend.shoppage', compact('categories', 'products'));
     }
@@ -31,8 +31,8 @@ class ShopPageController extends Controller
 
     public function productWithSubCategory(Request $request, $id)
     {
-        $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
+        $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
 
         // return $products;
 
