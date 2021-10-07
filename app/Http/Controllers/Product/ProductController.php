@@ -62,7 +62,24 @@ class ProductController extends Controller
         // return $request->all();
 
         $images = [];
-        if($request->hasFile('image')){
+
+            $validate = $request->validate([
+                'title'             => 'required | max:255',
+                'description'       => 'required | max:1000',
+                'short_description' => 'required | max:1000',
+                'category_id'       => 'required',
+                'subcategory_id'    => 'required',
+                'brand_id'          => 'required',
+                'colors'            => 'required',
+                'sizes'             => 'required',
+                'shop_id'           => 'required',
+                'regular_price'     => 'required',
+                'sale_price'        => 'required',
+                'price'             => 'required',
+                'image'             => 'required | mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+
             $i = 0;
             foreach($request->file('image') as $image){
 
@@ -74,9 +91,14 @@ class ProductController extends Controller
                 $i++;
 
             };
-        }
 
         $product = [
+
+        ];
+
+        // return $request->all();
+
+        $insert = Product::create([
             'title'             => $request->title,
             'description'       => $request->description,
             'short_description' => $request->short_description,
@@ -97,11 +119,8 @@ class ProductController extends Controller
             'quantity_alert'    => $request->quantity_alert,
             // 'puk_code'       => $request->title,
             'image'             => json_encode($images),
-        ];
+        ]);
 
-        // return $request->all();
-
-        $insert = Product::create($product);
         Session::flash('create');
         return redirect()->route('product.index');
     }

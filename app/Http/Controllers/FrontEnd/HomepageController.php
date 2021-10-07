@@ -17,7 +17,7 @@ class HomepageController extends Controller
         $subcategories = SubCategory::inRandomOrder()->get();
         $brands = Brand::latest('id')->get();
         $products = Product::latest('id')->paginate(8);
-        // return $categories;
+        // return $products;
 
 
         return view('frontend.homepage', compact(
