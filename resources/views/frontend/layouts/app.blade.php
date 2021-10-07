@@ -32,6 +32,8 @@
     <!-- Plugins CSS File -->
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/vendor/magnific-popup/magnific-popup.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/vendor/owl-carousel/owl.carousel.min.css">
+    {{-- For push --}}
+    @stack('styles')
 
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/css/demo3.min.css">
@@ -56,6 +58,21 @@
 
         <!-- End of Main/content -->
 @include('frontend.layouts.footer')
+
+
+<!-- Plugins JS File -->
+<script src="{{asset('frontend')}}/vendor/jquery/jquery.min.js"></script>
+<script src="{{asset('frontend')}}/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="{{asset('frontend')}}/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+<script src="{{asset('frontend')}}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="{{asset('frontend')}}/vendor/owl-carousel/owl.carousel.min.js"></script>
+<script src="{{asset('frontend')}}/vendor/sticky/sticky.min.js"></script>
+{{-- For stack --}}
+@stack('scripts')
+
+<!-- Main JS File -->
+<script src="{{asset('frontend')}}/js/main.min.js"></script>
 </body>
 
 </html>

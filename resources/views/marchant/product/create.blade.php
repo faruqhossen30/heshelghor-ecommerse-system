@@ -13,7 +13,7 @@
                     <h4 class="page-title">Create Product</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
                             <li class="breadcrumb-item active">Create Product</li>
                         </ol>
@@ -27,7 +27,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <div id="addproduct-nav-pills-wizard" class="twitter-bs-wizard form-wizard-header">
                             <div class="tab-content twitter-bs-wizard-tab-content">
@@ -39,7 +39,12 @@
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
-                                                    <input required type="text" name="title" id="product-name" class="form-control" placeholder="e.g : Apple iMac" required>
+                                                    <input required type="text" name="title" id="product-name" class="form-control @error('title') is-invalid @enderror" placeholder="e.g : Apple iMac">
+                                                    <div class="text-danger">
+                                                        @error('title')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -47,20 +52,30 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
-                                                    <select name="category_id" class="form-control" id="product-category">
+                                                    <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="product-category">
                                                         <option value="">Select</option>
                                                         @foreach ($categories as $category)
                                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="text-danger">
+                                                        @error('category_id')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span> <span id="catCom" class="badge bg-success float-end ml-5"></span></label>
-                                                    <select name="subcategory_id" class="form-control commission" id="product-category">
+                                                    <select name="subcategory_id" class="form-control commission @error('subcategory_id') is-invalid @enderror" id="product-category">
                                                         <option value="">Select</option>
                                                     </select>
+                                                    <div class="text-danger">
+                                                        @error('subcategory_id')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,22 +83,32 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="brand_id" class="form-label">Brand <span class="text-danger">*</span></label>
-                                                    <select name="brand_id" class="form-control" id="brand_id">
+                                                    <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror" id="brand_id">
                                                         @foreach ($brands as $brand)
                                                             <option value="{{$brand->id}}">{{$brand->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="text-danger">
+                                                        @error('brand_id')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="shop_id" class="form-label">Select Shop <span class="text-danger">*</span></label>
-                                                    <select name="shop_id" class="form-control" id="shop_id">
+                                                    <select name="shop_id" class="form-control @error('shop_id') is-invalid @enderror" id="shop_id">
                                                         <option value="">Select</option>
                                                         @foreach ($shops as $shop)
                                                             <option value="{{$shop->id}}">{{$shop->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="text-danger">
+                                                        @error('shop_id')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,11 +116,21 @@
 
                                         <div class="mb-3">
                                             <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
-                                            <textarea name="description" id="summernote" class="form-control" rows="3" placeholder="Please enter comment"></textarea>
+                                            <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror" rows="3" placeholder="Please enter comment"></textarea>
+                                            <div class="text-danger">
+                                                @error('description')
+                                                <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="product-summary" class="form-label">Product Summary</label>
-                                            <textarea name="short_description" class="form-control" id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
+                                            <textarea name="short_description" class="form-control @error('short_description') is-invalid @enderror" id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
+                                            <div class="text-danger">
+                                                @error('short_description')
+                                                <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
 
                                         <div class="row">
@@ -104,12 +139,18 @@
                                                     <h5 class="font-14 mb-2">Select Color</h5>
                                                     @foreach ($colors as $color)
                                                         <div class="form-check">
-                                                            <input name="colors[]" class="form-check-input" type="checkbox" value="{{$color->id}}" id="flexCheckDefault{{$color->id}}">
+                                                            <input name="colors[]" class="form-check-input @error('colors') is-invalid @enderror" type="checkbox" value="{{$color->id}}" id="flexCheckDefault{{$color->id}}">
                                                             <label class="form-check-label" for="flexCheckDefault{{$color->id}}">
                                                                 {{$color->name}}
                                                             </label>
+
                                                         </div>
                                                     @endforeach
+                                                    <div class="text-danger">
+                                                        @error('colors')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -118,12 +159,18 @@
                                                     <h5 class="font-14 mb-2">Select Size</h5>
                                                     @foreach ($sizes as $size)
                                                         <div class="form-check">
-                                                            <input name="sizes[]" class="form-check-input" type="checkbox" value="{{$size->id}}" id="flexCheckDefault{{$size->id}}">
+                                                            <input name="sizes[]" class="form-check-input @error('sizes') is-invalid @enderror" type="checkbox" value="{{$size->id}}" id="flexCheckDefault{{$size->id}}">
                                                             <label class="form-check-label" for="flexCheckDefault{{$size->id}}">
                                                                 {{$size->name}}
                                                             </label>
+
                                                         </div>
                                                     @endforeach
+                                                    <div class="text-danger">
+                                                        @error('sizes')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -139,14 +186,19 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="sellPriceID" class="form-label">Sale Price <span class="text-danger">*</span></label>
-                                                    <input name="sale_price" type="number" class="form-control" id="sellPriceID" placeholder="Enter amount">
+                                                    <input name="sale_price" type="number" class="form-control @error('sale_price') is-invalid @enderror" id="sellPriceID" placeholder="Enter amount">
+                                                    <div class="text-danger">
+                                                        @error('sale_price')
+                                                        <span>{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label for="price" class="form-label">Price<span class="text-danger">*</span></label>
-                                                    <input readonly name="price" type="text" class="form-control" id="price" placeholder="Price">
+                                                    <input readonly name="price" type="text" class="form-control @error('category_id') is-invalid @enderror" id="price" placeholder="Price">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -172,7 +224,12 @@
                                                     <h4 class="header-title">Product Images</h4>
                                                     <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
                                                 </label>
-                                                <input name="image[]" class="form-control" type="file" id="formFileMultiple" multiple>
+                                                <input name="image[]" class="form-control @error('image') is-invalid @enderror" type="file" id="formFileMultiple" multiple>
+                                                <div class="text-danger">
+                                                    @error('image')
+                                                    <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
 
                                             <ul class="pager wizard mb-0 list-inline text-end mt-3">

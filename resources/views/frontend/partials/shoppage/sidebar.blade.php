@@ -5,29 +5,24 @@
         <div class="widget widget-collapsible">
             <h3 class="widget-title">All Categories</h3>
             <ul class="widget-body filter-items search-ul">
-                <li><a href="#">Accessosries</a></li>
+
+                @foreach ($categories as $category)
+                @php
+                    $subcategories = App\Models\Product\Subcategory::where('category_id', $category->id)->get();
+
+                @endphp
                 <li>
-                    <a href="#">Bags</a>
-                    <ul>
-                        <li><a href="#">Backpacks & Fashion Bags</a></li>
-                    </ul>
+                    <a href="{{route('product.with.category', $category->id)}}">{{$category->name}}</a>
+                        <ul>
+                            @foreach ($subcategories as $subcategory)
+                            <li><a href="{{route('product.with.subcategory', $subcategory->id)}}">{{$subcategory->name}}</a></li>
+                            @endforeach
+                        </ul>
                 </li>
-                <li>
-                    <a href="#">Electronics</a>
-                    <ul>
-                        <li><a href="#">Computer</a></li>
-                        <li><a href="#">Gaming & Accessosries</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">For Fitness</a></li>
-                <li><a href="#">Home & Kitchen</a></li>
-                <li><a href="#">Men's</a></li>
-                <li><a href="#">Shoes</a></li>
-                <li><a href="#">Sporting Goods</a></li>
-                <li><a href="#">Summer Season's</a></li>
-                <li><a href="#">Travel & Clothing</a></li>
-                <li><a href="#">Watches</a></li>
-                <li><a href="#">Women’s</a></li>
+                @endforeach
+
+
+
             </ul>
         </div>
         <div class="widget widget-collapsible">

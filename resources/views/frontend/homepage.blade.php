@@ -108,9 +108,6 @@
                                             }
                                         }">
 
-
-
-
                                     <div class="owl-stage-outer">
                                         <div class="owl-stage"
                                             style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1200px;">
@@ -118,9 +115,9 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        <a href="{{route('product.with.subcategory', $product->category->id)}}">
+                                                        <a href="{{route('product.with.subcategory', $subcategory->id)}}">
                                                             <figure class="category-media">
-                                                                <img src="{{ asset('frontend') }}/images/demos/demo9/categories/1.jpg"
+                                                                <img src="{{$subcategory->image}}"
                                                                     alt="Cateogry" width="280" height="280">
                                                             </figure>
                                                             <div class="category-content">
@@ -150,80 +147,83 @@
 
                         {{-- Category wirse product --}}
                         @foreach ($categories as $category)
-                            <section class="product-wrapper mb-8">
-                                <h2 class="title title-line title-underline with-link appear-animate"
-                                    data-animation-options="{'delay': '.3s'}">{{ $category->name }}
-                                    <a href="{{ route('product.with.category', $category->id) }}"
-                                        class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
-                                </h2>
-                                <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                                    {{-- single product --}}
-                                    @php
-                                        $newporducts = \App\Models\Product\Product::latest('id')
-                                            ->where('category_id', $category->id)
-                                            ->paginate(4);
-                                    @endphp
+                        @if (count($category->products) > 0)
+                        <section class="product-wrapper mb-8">
+                            <h2 class="title title-line title-underline with-link appear-animate"
+                                data-animation-options="{'delay': '.3s'}">{{ $category->name }}
+                                <a href="{{ route('product.with.category', $category->id) }}"
+                                    class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
+                            </h2>
+                            <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
+                                {{-- single product --}}
+                                @php
+                                    $newporducts = \App\Models\Product\Product::latest('id')
+                                        ->where('category_id', $category->id)
+                                        ->paginate(4);
+                                @endphp
 
-                                    @foreach ($newporducts as $product)
-                                        <div class="col-md-3 col-6 mb-4">
-                                            <div class="product text-center">
-                                                <figure class="product-media">
-                                                    @php
-                                                        $images = json_decode($product->image);
-                                                    @endphp
+                                @foreach ($newporducts as $product)
+                                    <div class="col-md-3 col-6 mb-4">
+                                        <div class="product text-center">
+                                            <figure class="product-media">
+                                                @php
+                                                    $images = json_decode($product->image);
+                                                @endphp
 
-                                                    <a href="demo3-product.html">
-                                                        <img src="{{ asset('uploads/products/' . $images[0]) }}"
-                                                            alt="product" width="280" height="315"
-                                                            style="background-color: #f5f5f5;" />
-                                                    </a>
+                                                <a href="demo3-product.html">
+                                                    <img src="{{ asset('uploads/products/' . $images[0]) }}"
+                                                        alt="product" width="280" height="315"
+                                                        style="background-color: #f5f5f5;" />
+                                                </a>
 
 
 
-                                                    <div class="product-label-group">
-                                                        <label class="product-label label-new">new</label>
-                                                        <label class="product-label label-sale">15% off</label>
-                                                    </div>
-                                                    <div class="product-action-vertical">
-                                                        <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                                            data-target="#addCartModal" title="Add to cart"><i
-                                                                class="d-icon-bag"></i></a>
-                                                        <a href="#" class="btn-product-icon btn-wishlist"
-                                                            title="Add to wishlist"><i class="d-icon-heart"></i></a>
-                                                    </div>
-                                                    <div class="product-action">
-                                                        <a href="#" class="btn-product btn-quickview"
-                                                            title="Quick View">Quick
-                                                            View</a>
-                                                    </div>
-                                                </figure>
-                                                <div class="product-details">
-                                                    <div class="product-cat">
-                                                        <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                                        <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
-                                                    </div>
-                                                    <h3 class="product-name">
-                                                        <a href="demo3-product.html">{{ $product->title }}</a>
-                                                    </h3>
-                                                    <div class="product-price">
-                                                        <ins class="new-price">৳{{ $product->price }}</ins><del
-                                                            class="old-price">৳{{ $product->regular_price }}</del>
-                                                    </div>
-                                                    <div class="ratings-container">
-                                                        <div class="ratings-full">
-                                                            <span class="ratings" style="width:80%"></span>
-                                                            <span class="tooltiptext tooltip-top"></span>
-                                                        </div>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-new">new</label>
+                                                    <label class="product-label label-sale">15% off</label>
+                                                </div>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                        data-target="#addCartModal" title="Add to cart"><i
+                                                            class="d-icon-bag"></i></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist"
+                                                        title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                </div>
+                                                <div class="product-action">
+                                                    <a href="#" class="btn-product btn-quickview"
+                                                        title="Quick View">Quick
+                                                        View</a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <div class="product-cat">
+                                                    <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
+                                                    <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
+                                                </div>
+                                                <h3 class="product-name">
+                                                    <a href="demo3-product.html">{{ $product->title }}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <ins class="new-price">৳{{ $product->price }}</ins><del
+                                                        class="old-price">৳{{ $product->regular_price }}</del>
+                                                </div>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:80%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                @endforeach
 
 
 
-                                </div>
-                            </section>
+                            </div>
+                        </section>
+                        @endif
+
                         @endforeach
 
 
@@ -483,3 +483,4 @@
         </div>
     </main>
 @endsection
+

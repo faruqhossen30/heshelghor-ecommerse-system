@@ -142,3 +142,10 @@
 </main>
 <!-- End Main -->
 @endsection
+@push('styles')
+        <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/vendor/nouislider/nouislider.min.css">
+@endpush
+
+@push('scripts')
+    <script src="{{asset('frontend')}}/vendor/nouislider/nouislider.min.js"></script>
+@endpush
