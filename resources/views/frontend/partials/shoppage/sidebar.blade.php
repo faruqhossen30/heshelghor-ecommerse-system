@@ -8,7 +8,7 @@
 
                 @foreach ($categories as $category)
                 @php
-                    $subcategories = App\Models\Product\Subcategory::where('category_id', $category->id)->get();
+                    $subcategories = \App\Models\Product\Subcategory::where('category_id', $category->id)->get();
 
                 @endphp
                 <li>
