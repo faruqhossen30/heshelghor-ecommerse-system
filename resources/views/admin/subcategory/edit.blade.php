@@ -49,7 +49,7 @@
                                                         <input type="hidden" name="old_image" value="{{$subcatagory->image}}">
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Select Category</label>
+                                                                for="simpleinput">Select Category<span class="text-danger">*</span></label>
                                                             <div class="col-md-10">
 
                                                                 <label for="subcatagory-name" class="form-label">Select Category <span class="text-danger">*</span></label>
@@ -68,7 +68,7 @@
                                                         </div>
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Sub Category Name</label>
+                                                                for="simpleinput">Sub Category Name<span class="text-danger">*</span></label>
                                                             <div class="col-md-10">
                                                                 <input name="name" value="{{$subcatagory->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
                                                                 <div class="text-danger">
@@ -81,7 +81,7 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Text area</label>
+                                                                for="example-textarea">Description<span class="text-danger">*</span></label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description"  class="form-control @error('description') is-invalid @enderror" id="example-textarea" rows="5" placeholder="Category description...">
                                                                     {{$subcatagory->description}}

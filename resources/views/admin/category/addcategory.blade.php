@@ -47,9 +47,9 @@
                                                         @csrf
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Category Name</label>
+                                                                for="simpleinput">Category Name<span class="text-danger">*</span></label>
                                                             <div class="col-md-10">
-                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name">
+                                                                <input name="name" value="{{ old('name') }}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name">
                                                                 <div class="text-danger">
                                                                     @error('name')
                                                                     <span>{{ $message }}</span>
@@ -60,10 +60,10 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Description</label>
+                                                                for="example-textarea">Description<span class="text-danger">*</span></label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
-                                                                    rows="5" placeholder="Category description..."></textarea>
+                                                                    rows="5" placeholder="Category description...">{{ old('description') }}</textarea>
                                                                 <div class="text-danger">
                                                                     @error('description')
                                                                     <span>{{ $message }}</span>
