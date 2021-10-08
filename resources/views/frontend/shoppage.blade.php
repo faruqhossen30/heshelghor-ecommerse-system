@@ -71,7 +71,7 @@
                             <div class="product-wrap">
                                 <div class="product text-center">
                                     <figure class="product-media">
-                                        <a href="demo3-product.html">
+                                        <a href="{{route('singleproduct', $product->id)}}">
                                             <img src="{{ asset('uploads/products/'.$images[0]) }}" alt="product" width="280" height="315">
                                         </a>
                                         <div class="product-label-group">
