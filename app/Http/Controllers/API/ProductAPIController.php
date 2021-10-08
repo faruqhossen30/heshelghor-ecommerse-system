@@ -9,6 +9,12 @@ use App\Models\Product\Product;
 
 class ProductAPIController extends Controller
 {
+    // Single Product
+    public function singleProduct(Request $request, $id)
+    {
+        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant')->get();
+        return $products;
+    }
     // All Product
     public function allProduct()
     {
