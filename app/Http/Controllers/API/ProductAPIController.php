@@ -12,7 +12,7 @@ class ProductAPIController extends Controller
     // Single Product
     public function singleProduct(Request $request, $id)
     {
-        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant')->get();
+        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant')->first();
         return $products;
     }
     // All Product
