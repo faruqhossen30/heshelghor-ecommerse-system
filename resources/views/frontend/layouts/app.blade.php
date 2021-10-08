@@ -55,9 +55,9 @@
 
         <!-- Start of Main/content -->
             @yield('content')
-
         <!-- End of Main/content -->
-@include('frontend.layouts.footer')
+
+        @include('frontend.layouts.footer')
 
 
 <!-- Plugins JS File -->

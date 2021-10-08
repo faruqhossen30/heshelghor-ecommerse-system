@@ -31,7 +31,7 @@
                                                     // echo $images[0]
                                                 @endphp
 
-                                                <a href="demo3-product.html">
+                                                <a href="{{route('singleproduct', $product->id)}}">
                                                     <img src="{{ asset('uploads/products/' . $images[0]) }}" alt="product"
                                                         width="280" height="315" style="background-color: #f5f5f5;" />
                                                 </a>
@@ -170,7 +170,7 @@
                                                     $images = json_decode($product->image);
                                                 @endphp
 
-                                                <a href="demo3-product.html">
+                                                <a href="{{route('singleproduct', $product->id)}}">
                                                     <img src="{{ asset('uploads/products/' . $images[0]) }}"
                                                         alt="product" width="280" height="315"
                                                         style="background-color: #f5f5f5;" />

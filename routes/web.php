@@ -39,6 +39,7 @@ use App\Http\Controllers\Merchant\ProfileController;
 // Front-End Controller
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
+use App\Http\Controllers\FrontEnd\SingleProductController;
 
 
 /*
@@ -52,8 +53,9 @@ use App\Http\Controllers\FrontEnd\ShopPageController;
 |
 */
 
-Route::get('/', [HomepageController::class, 'homePage']);
-Route::get('/products', [ShopPageController::class, 'index']);
+Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
+Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
+Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 
