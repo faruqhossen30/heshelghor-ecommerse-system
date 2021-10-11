@@ -265,6 +265,20 @@
                                         <h4 class="header-title">Product Images</h4>
                                         <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
                                     </label>
+                                    <input name="photo" class="form-control @error('photo') is-invalid @enderror"
+                                        type="file" id="formFileMultiple" multiple>
+                                    <div class="text-danger">
+                                        @error('photo')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                {{-- <hr>
+                                <div class="mb-3">
+                                    <label for="formFileMultiple" class="form-label">
+                                        <h4 class="header-title">Product Images</h4>
+                                        <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+                                    </label>
                                     <input name="image[]" class="form-control @error('image') is-invalid @enderror"
                                         type="file" id="formFileMultiple" multiple>
                                     <div class="text-danger">
@@ -272,7 +286,7 @@
                                             <span>{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <button type="submit" class="btn btn-primary">Upload Product <i
                                         class="mdi mdi-arrow-right ms-1"></i></button>

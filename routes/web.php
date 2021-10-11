@@ -41,6 +41,8 @@ use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
 use App\Http\Controllers\FrontEnd\SingleProductController;
 use App\Http\Controllers\FrontEnd\SearchController;
+use App\Http\Controllers\FrontEnd\CartController;
+
 // User Controller
 use App\Http\Controllers\User\UserDashboardController;
 
@@ -64,7 +66,8 @@ Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWith
 Route::get('/search/{keyword}', [SearchController::class, 'index'])->name('search');
 
 // For Shoping Cart
-
+Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
 
 Auth::routes();
 
