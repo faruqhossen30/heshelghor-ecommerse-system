@@ -22,6 +22,7 @@ class RolePermissionSeeder extends Seeder
         // Permission List as array
         $permissions = [
             [
+                'guard_name ' => 'admin',
                 'group_name' => 'profile',
                 'permissions' => [
                     'profile.view',
@@ -31,6 +32,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'admin',
+                'guard_name ' => 'web',
                 'permissions' => [
                     'admin.create',
                     'admin.view',
@@ -41,6 +43,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'product',
+                'guard_name ' => 'admin',
                 'permissions' => [
                     'product.create',
                     'product.view',
@@ -51,6 +54,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'merchant',
+                'guard_name ' => 'admin',
                 'permissions' => [
                     'merchant.create',
                     'merchant.view',
@@ -61,6 +65,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'delivery man',
+                'guard_name ' => 'admin',
                 'permissions' => [
                     'deliveryman.create',
                     'deliveryman.view',
@@ -71,6 +76,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'roles',
+                'guard_name ' => 'admin',
                 'permissions' => [
                     'role.create',
                     'role.view',
@@ -81,6 +87,7 @@ class RolePermissionSeeder extends Seeder
             ],
             [
                 'group_name' => 'users',
+                'guard_name ' => 'admin',
                 'permissions' => [
                     'user.create',
                     'user.view',

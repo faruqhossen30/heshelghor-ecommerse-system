@@ -11,7 +11,7 @@
 
             <div class="header-search hs-simple">
                 <form action="#" class="input-wrapper">
-                    <input type="text" class="form-control" name="search" autocomplete="off"
+                    <input type="text" class="form-control" id="mySearch" name="search" autocomplete="off"
                         placeholder="Search..." required />
                     <button class="btn btn-search" type="submit">
                         <i class="d-icon-search"></i>
