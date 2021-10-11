@@ -41,11 +41,6 @@
                         <i class="d-icon-cook"></i>Heritage Foods
                     </a>
                 </li>
-                <li>
-                    <a href="demo3-shop.html">
-                        <i class="d-icon-card"></i>Daily Deals
-                    </a>
-                </li>
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
                 <figure>

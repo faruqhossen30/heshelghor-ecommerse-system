@@ -1,3 +1,9 @@
+@php
+    $totalitem = Cart::count();
+    $total = Cart::total();
+
+@endphp
+
 <div class="header-middle sticky-header fix-top sticky-content">
     <div class="container">
         <div class="header-left">
@@ -11,7 +17,7 @@
 
             <div class="header-search hs-simple">
                 <form action="#" class="input-wrapper">
-                    <input type="text" class="form-control" name="search" autocomplete="off"
+                    <input type="text" class="form-control" id="mySearch" name="search" autocomplete="off"
                         placeholder="Search..." required />
                     <button class="btn btn-search" type="submit">
                         <i class="d-icon-search"></i>
@@ -39,15 +45,15 @@
                 <a href="#" class="cart-toggle label-block link">
                     <div class="cart-label d-lg-show">
                         <span class="cart-name">Shopping Cart:</span>
-                        <span class="cart-price">৳ 0.00</span>
+                        <span class="cart-price">৳ {{$total}}</span>
                     </div>
-                    <i class="d-icon-bag"><span class="cart-count">2</span></i>
+                    <i class="d-icon-bag"><span class="cart-count">{{$totalitem}}</span></i>
                 </a>
                 <div class="cart-overlay"></div>
                 <!-- End Cart Toggle -->
                 <div class="dropdown-box">
                     <div class="cart-header">
-                        <h4 class="cart-title">Shopping Cart</h4>
+                        <h4 class="cart-title">test Cart</h4>
                         <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
                                 class="d-icon-arrow-right"></i><span class="sr-only">Cart</span></a>
                     </div>
@@ -100,7 +106,7 @@
                     </div>
                     <!-- End of Cart Total -->
                     <div class="cart-action">
-                        <a href="cart.html" class="btn btn-dark btn-link">View Cart</a>
+                        <a href="{{route('cart.page')}}" class="btn btn-dark btn-link">View Cart</a>
                         <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
                     </div>
                     <!-- End of Cart Action -->

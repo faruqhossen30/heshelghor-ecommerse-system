@@ -7,157 +7,153 @@
 <main class="main mt-6 single-product">
     <div class="page-content mb-10 pb-9">
         <div class="container">
-            <div class="product product-single row mb-8">
-                <div class="col-md-6">
-                    <div class="product-gallery">
-                        <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
-                            @php
-                                $images = json_decode($product->image);
-                                $i = 0;
-                                $j = 0;
-                            @endphp
-                            @foreach ($images as $image)
-                            <figure class="product-image">
-                                <img src="{{ asset('uploads/products/'.$images[$i++]) }}"
-                                    data-zoom-image="{{ asset('uploads/products/'.$images[$j++]) }}"
-                                    alt="Blue Pinafore Denim Dress" width="800" height="900"
-                                    style="background-color: #f5f5f5;" />
-                            </figure>
-                            @endforeach
 
-                        </div>
-                        <div class="product-thumbs-wrap">
-                            <div class="product-thumbs">
+                <div class="product product-single row mb-8">
+                    <div class="col-md-6">
+                        <div class="product-gallery">
+                            <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
                                 @php
-                                    $number = 0;
+                                    $images = json_decode($product->image);
+                                    $i = 0;
+                                    $j = 0;
                                 @endphp
                                 @foreach ($images as $image)
-                                    <div class="product-thumb ">
-                                        <img src="{{ asset('uploads/products/'.$images[$number++]) }}"
-                                            alt="product thumbnail" width="137" height="154"
-                                            style="background-color: #f5f5f5;" />
-                                    </div>
+                                <figure class="product-image">
+                                    <img src="{{ asset('uploads/products/'.$images[$i++]) }}"
+                                        data-zoom-image="{{ asset('uploads/products/'.$images[$j++]) }}"
+                                        alt="Blue Pinafore Denim Dress" width="800" height="900"
+                                        style="background-color: #f5f5f5;" />
+                                </figure>
                                 @endforeach
 
-
                             </div>
-                            <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
-                            <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>
+                            <div class="product-thumbs-wrap">
+                                <div class="product-thumbs">
+                                    @php
+                                        $number = 0;
+                                    @endphp
+                                    @foreach ($images as $image)
+                                        <div class="product-thumb ">
+                                            <img src="{{ asset('uploads/products/'.$images[$number++]) }}"
+                                                alt="product thumbnail" width="137" height="154"
+                                                style="background-color: #f5f5f5;" />
+                                        </div>
+                                    @endforeach
+
+
+                                </div>
+                                <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
+                                <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="product-details  product-gallery-sticky">
-                        <div class="product-navigation">
-                            <ul class="breadcrumb breadcrumb-lg">
-                                <li><a href="{{route('homepage')}}"><i class="d-icon-home"></i></a></li>
-                                <li><a href="{{route('pruductspage')}}" class="active">Products</a></li>
-                                <li>Detail</li>
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="product-details  product-gallery-sticky">
+                            <div class="product-navigation">
+                                <ul class="breadcrumb breadcrumb-lg">
+                                    <li><a href="{{route('homepage')}}"><i class="d-icon-home"></i></a></li>
+                                    <li><a href="{{route('pruductspage')}}" class="active">Products</a></li>
+                                    <li>Detail</li>
+                                </ul>
 
-                            {{-- <ul class="product-nav">
-                                <li class="product-nav-prev">
-                                    <a href="#">
-                                        <i class="d-icon-arrow-left"></i> Prev
-                                        <span class="product-nav-popup">
-                                            <img src="{{asset('frontend')}}/images/product/product-thumb-prev.jpg"
-                                                alt="product thumbnail" width="110" height="123">
-                                            <span class="product-name">Sed egtas Dnte Comfort</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="product-nav-next">
-                                    <a href="#">
-                                        Next <i class="d-icon-arrow-right"></i>
-                                        <span class="product-nav-popup">
-                                            <img src="{{asset('frontend')}}/images/product/product-thumb-next.jpg"
-                                                alt="product thumbnail" width="110" height="123">
-                                            <span class="product-name">Sed egtas Dnte Comfort</span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul> --}}
-                        </div>
+                                {{-- <ul class="product-nav">
+                                    <li class="product-nav-prev">
+                                        <a href="#">
+                                            <i class="d-icon-arrow-left"></i> Prev
+                                            <span class="product-nav-popup">
+                                                <img src="{{asset('frontend')}}/images/product/product-thumb-prev.jpg"
+                                                    alt="product thumbnail" width="110" height="123">
+                                                <span class="product-name">Sed egtas Dnte Comfort</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="product-nav-next">
+                                        <a href="#">
+                                            Next <i class="d-icon-arrow-right"></i>
+                                            <span class="product-nav-popup">
+                                                <img src="{{asset('frontend')}}/images/product/product-thumb-next.jpg"
+                                                    alt="product thumbnail" width="110" height="123">
+                                                <span class="product-name">Sed egtas Dnte Comfort</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul> --}}
+                            </div>
 
-                        <h1 class="product-name">{{$product->title}}</h1>
-                        <div class="product-meta">
-                            SKU:<span class="product-sku">123456701</span>
-                            CATEGORIES:<span class="product-brand">{{$product->category->name}}</span>
-                        </div>
-                        <div class="product-price">৳{{$product->price}}</div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:80%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
+                            <h1 class="product-name">{{$product->title}}</h1>
+                            <div class="product-meta">
+                                SKU:<span class="product-sku">123456701</span>
+                                CATEGORIES:<span class="product-brand">{{$product->category->name}}</span>
                             </div>
-                            <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
-                        </div>
-                        <p class="product-short-desc">{!! html_entity_decode($product->description) !!}</p>
-                        <div class="product-form product-color">
-                            <label>Color:</label>
-                            <div class="product-variations">
-                                <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
-                                    style="background-color: #0c0c0c"></a>
-                                <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
-                                    style="background-color: #1e73be"></a>
-                                <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
-                                    style="background-color: #9e6924"></a>
-                                <a class="color" data-src="images/demos/demo7/products/4.jpg" href="#"
-                                    style="background-color: #83b237"></a>
+                            <div class="product-price">৳{{$product->price}}</div>
+                            <div class="ratings-container">
+                                <div class="ratings-full">
+                                    <span class="ratings" style="width:80%"></span>
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div>
+                                <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
                             </div>
-                        </div>
-                        <div class="product-form product-size">
-                            <label>Size:</label>
-                            <div class="product-form-group">
+                            <p class="product-short-desc">{!! html_entity_decode($product->description) !!}</p>
+                            <div class="product-form product-color">
+                                <label>Color:</label>
                                 <div class="product-variations">
-                                    <a class="size" href="#">XL</a>
-                                    <a class="size" href="#">L</a>
-                                    <a class="size" href="#">M</a>
-                                    <a class="size" href="#">S</a>
+                                    <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
+                                        style="background-color: #0c0c0c"></a>
+                                    <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
+                                        style="background-color: #1e73be"></a>
+                                    <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
+                                        style="background-color: #9e6924"></a>
+                                    <a class="color" data-src="images/demos/demo7/products/4.jpg" href="#"
+                                        style="background-color: #83b237"></a>
                                 </div>
-                                <a href="#" class="product-variation-clean">Clean All</a>
                             </div>
-                        </div>
-                        <div class="product-variation-price">
-                            <span>$239.00</span>
-                        </div>
-
-                        <hr class="product-divider">
-
-                        <div class="product-form product-qty">
-                            <div class="product-form-group">
-                                <div class="input-group mr-2">
-                                    <button class="quantity-minus d-icon-minus"></button>
-                                    <input class="quantity form-control" type="number" min="1" max="1000000">
-                                    <button class="quantity-plus d-icon-plus"></button>
+                            <div class="product-form product-size">
+                                <label>Size:</label>
+                                <div class="product-form-group">
+                                    <div class="product-variations">
+                                        <a class="size" href="#">XL</a>
+                                        <a class="size" href="#">L</a>
+                                        <a class="size" href="#">M</a>
+                                        <a class="size" href="#">S</a>
+                                    </div>
+                                    <a href="#" class="product-variation-clean">Clean All</a>
                                 </div>
-                                <button
-                                    class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i
-                                        class="d-icon-bag"></i>Add to
-                                    Cart</button>
                             </div>
-                        </div>
-
-                        <hr class="product-divider mb-3">
-
-                        <div class="product-footer">
-                            <div class="social-links mr-4">
-                                <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                            <div class="product-variation-price">
+                                <span>$239.00</span>
                             </div>
-                            <hr class="divider d-lg-show">
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-wishlist mr-6"><i
-                                        class="d-icon-heart"></i>Add to wishlist</a>
 
-                                <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
-                                    to compare</a>
+                            <hr class="product-divider">
+                            <form action="{{route('cart.add', $product->id)}}" method="post">
+                                @csrf
+                                <div class="product-form product-qty">
+                                    <div class="product-form-group">
+                                        <div class="input-group mr-2">
+                                            <button type="button" class="quantity-minus d-icon-minus"></button>
+                                                <input class="quantity form-control" type="number" min="1"  max="1000000" value="1">
+                                            <button type="button" class="quantity-plus d-icon-plus"></button>
+                                        </div>
+                                        <button type="submit"
+                                            class="btn btn-dark "><i class="d-icon-bag mr-2"></i>Add toCart</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr class="product-divider mb-3">
+
+                            <div class="product-footer">
+                                <div class="social-links mr-4">
+                                    <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+                                    <a href="#" class="social-link social-twitter fab fa-twitter"></a>
+                                    <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+
 
             <div class="tab tab-nav-simple product-tabs mb-5">
                 <ul class="nav nav-tabs justify-content-center" role="tablist">

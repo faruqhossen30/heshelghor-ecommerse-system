@@ -40,6 +40,11 @@ use App\Http\Controllers\Merchant\ProfileController;
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
 use App\Http\Controllers\FrontEnd\SingleProductController;
+use App\Http\Controllers\FrontEnd\SearchController;
+use App\Http\Controllers\FrontEnd\CartController;
+
+// User Controller
+use App\Http\Controllers\User\UserDashboardController;
 
 
 /*
@@ -58,8 +63,24 @@ Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspag
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
+Route::get('/search/{keyword}', [SearchController::class, 'index'])->name('search');
+
+// For Shoping Cart
+Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
 
 Auth::routes();
+
+// Four User
+Route::prefix('user')->group(function () {
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    });
+
+});
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');

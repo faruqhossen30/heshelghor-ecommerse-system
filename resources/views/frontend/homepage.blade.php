@@ -25,14 +25,10 @@
                                     <div class="col-md-3 col-6 mb-4">
                                         <div class="product text-center">
                                             <figure class="product-media">
-                                                @php
-                                                    $images = json_decode($product->image);
-                                                    // echo print_r($images);
-                                                    // echo $images[0]
-                                                @endphp
+
 
                                                 <a href="{{route('singleproduct', $product->id)}}">
-                                                    <img src="{{ asset('uploads/products/' . $images[0]) }}" alt="product"
+                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product"
                                                         width="280" height="315" style="background-color: #f5f5f5;" />
                                                 </a>
 
@@ -166,12 +162,9 @@
                                     <div class="col-md-3 col-6 mb-4">
                                         <div class="product text-center">
                                             <figure class="product-media">
-                                                @php
-                                                    $images = json_decode($product->image);
-                                                @endphp
 
                                                 <a href="{{route('singleproduct', $product->id)}}">
-                                                    <img src="{{ asset('uploads/products/' . $images[0]) }}"
+                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
                                                         alt="product" width="280" height="315"
                                                         style="background-color: #f5f5f5;" />
                                                 </a>
