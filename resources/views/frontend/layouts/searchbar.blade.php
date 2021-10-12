@@ -1,7 +1,6 @@
 @php
     $totalitem = Cart::count();
     $total = Cart::total();
-
 @endphp
 
 <div class="header-middle sticky-header fix-top sticky-content">

@@ -5,7 +5,7 @@
 
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Cart Page
+    HeshelGhor | Your Cart page
 @endsection
 
 @section('content')

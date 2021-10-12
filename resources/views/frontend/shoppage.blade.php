@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Shop Page
+    HeshelGhor|Shop Page
 @endsection
 
 @section('content')
