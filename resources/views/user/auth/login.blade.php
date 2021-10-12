@@ -10,7 +10,7 @@ Log In User | Heshelghor
 
         <div class="text-center w-75 m-auto">
             <div class="auth-logo">
-                <a href="{{route('homepage')}}" class="logo logo-dark text-center">
+                <a href="#" class="logo logo-dark text-center">
                     <span class="logo-lg">
                         <img src="{{ asset('backend') }}/assets/images/logo.jpg" alt="Heshel Ghor" height="50" width="200">
                     </span>

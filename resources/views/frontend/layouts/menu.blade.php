@@ -1,6 +1,3 @@
-@php
-    $categories = App\Models\Product\Category::get();
-@endphp
 <div class="container">
     <div class="header-bottom d-lg-show w-100">
         <div class="header-left">
