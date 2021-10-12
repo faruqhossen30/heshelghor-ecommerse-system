@@ -76,32 +76,21 @@ class ProductController extends Controller
                 'regular_price'     => 'required',
                 'sale_price'        => 'required',
                 'price'             => 'required',
-                'photo'             => 'required|mimes:png,jpg,gif,bmp|max:1024',
-                // 'image'             => 'required',
+                'image'             => 'required',
             ]);
 
-            $photo = $request->file('photo');
+            $images = [];
+            $i = 0;
+            foreach($request->file('image') as $image){
 
-            $photofileExtention = $photo->getClientOriginalExtension();
-            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+                $fileExtention = $image->getClientOriginalExtension();
+                $fileName = hexdec(uniqid()) . '.' . $fileExtention;
+                Image::make($image)->save(public_path('uploads/products/') . $fileName);
 
+                $images[] = $fileName;
+                $i++;
 
-
-
-            // For Multiple Image
-            // $images = [];
-            // $i = 0;
-            // foreach($request->file('image') as $image){
-
-            //     $fileExtention = $image->getClientOriginalExtension();
-            //     $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-            //     Image::make($image)->save(public_path('uploads/products/') . $fileName);
-
-            //     $images[] = $fileName;
-            //     $i++;
-
-            // };
+            };
 
 
         // return $request->all();
@@ -126,7 +115,7 @@ class ProductController extends Controller
             'quantity'          => $request->quantity,
             'quantity_alert'    => $request->quantity_alert,
             // 'puk_code'       => $request->title,
-            'photo'             => $photofileName,
+            'image'             => json_encode($images),
         ]);
 
         Session::flash('create');

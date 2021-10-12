@@ -341,7 +341,7 @@ window.Riode = {};
 
 	/**
 	 * @function appear
-	 *
+	 * 
 	 * @param {HTMLElement} el
 	 * @param {function} fn
 	 * @param {object} options
@@ -600,7 +600,7 @@ window.Riode = {};
 
     /**
      * @function initShowVendorSearch
-     *
+     * 
      * @param {string} selector
      */
     Riode.initShowVendorSearch = function ( selector ) {
@@ -1987,7 +1987,7 @@ window.Riode = {};
         var onTranslated = function ( e ) {
             $( window ).trigger( 'appear.check' );
 
-            // Video Play
+            // Video Play	
             var $el = $( e.currentTarget ),
                 $activeVideos = $el.find( '.owl-item.active video' );
 
@@ -2193,7 +2193,7 @@ window.Riode = {};
         }
         QuantityInput.min = 1;
         QuantityInput.max = 1000000;
-        // QuantityInput.value = 1;
+        QuantityInput.value = 1;
         QuantityInput.prototype.init = function ( $el ) {
             var self = this;
 
@@ -2576,7 +2576,7 @@ window.Riode = {};
 
 	/**
 	 * @function floatSVG
-	 * @param {string|jQuery} selector
+	 * @param {string|jQuery} selector 
 	 * @param {object} options
 	 */
     Riode.floatSVG = ( function () {

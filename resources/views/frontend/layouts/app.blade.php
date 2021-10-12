@@ -37,7 +37,6 @@
 
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/css/demo3.min.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body class="home">
@@ -49,7 +48,6 @@
             @include('frontend.layouts.topbar')
             {{-- Headeer --}}
             @include('frontend.layouts.searchbar')
-
             {{-- Menu --}}
             @include('frontend.layouts.menu')
         </header>
@@ -74,29 +72,7 @@
 @stack('scripts')
 
 <!-- Main JS File -->
-<script src="{{asset('frontend')}}/js/main.js"></script>
-<script>
-
-    $(document).ready(function(){
-        $('form[class="input-wrapper"]').submit(function(event){
-            event.preventDefault();
-        });
-        $(document).on('keyup ', 'input[name="search"]', function(){
-            var search = $('input[name="search"]');
-            var keyowrd = search.val().trim();
-            // console.log(keyowrd);
-            if(keyowrd){
-                axios.get(`{{url('search')}}/${keyowrd}`)
-                .then(function(res){
-                    console.log(res);
-                });
-            };
-        });
-    });
-
-
-
-</script>
+<script src="{{asset('frontend')}}/js/main.min.js"></script>
 </body>
 
 </html>
