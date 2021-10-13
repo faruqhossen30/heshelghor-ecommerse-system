@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Home
+    HeshelGhor | Single Product
 @endsection
 
 @section('content')

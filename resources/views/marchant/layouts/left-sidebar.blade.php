@@ -18,11 +18,10 @@
                 <img src="{{ asset('backend') }}/assets/images/small-logo.png" alt="" height="24">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('backend') }}/assets/images/logo-light.png" alt="" height="20">
+                <img src="{{ asset('backend') }}/assets/images/heshelghor-dashboard-logo1.png" alt="" height="30">
             </span>
         </a>
     </div>
-
     <div class="h-100" data-simplebar>
 
         <!-- User box -->

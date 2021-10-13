@@ -125,88 +125,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- Description --}}
-                                <div class="mb-3">
-                                    <label for="product-description" class="form-label">Product Description <span
-                                            class="text-danger">*</span></label>
-                                    <textarea name="description" id="summernote"
-                                        class="form-control @error('description') is-invalid @enderror" rows="3"
-                                        placeholder="Please enter comment"></textarea>
-                                    <div class="text-danger">
-                                        @error('description')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                {{-- Short Description --}}
-                                <div class="mb-3">
-                                    <label for="product-summary" class="form-label">Product Summary</label>
-                                    <textarea name="short_description"
-                                        class="form-control @error('short_description') is-invalid @enderror"
-                                        id="product-summary" rows="5" placeholder="Please enter summary"></textarea>
-                                    <div class="text-danger">
-                                        @error('short_description')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                {{-- Color and Size --}}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Color</h5>
-                                            @foreach ($colors as $color)
-                                                <div class="form-check">
-                                                    <input name="colors[]"
-                                                        class="form-check-input @error('colors') is-invalid @enderror"
-                                                        type="checkbox" value="{{ $color->id }}"
-                                                        id="flexCheckDefault{{ $color->id }}">
-                                                    <label class="form-check-label"
-                                                        for="flexCheckDefault{{ $color->id }}">
-                                                        {{ $color->name }}
-                                                    </label>
-
-                                                </div>
-                                            @endforeach
-                                            <div class="text-danger">
-                                                @error('colors')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Size</h5>
-                                            @foreach ($sizes as $size)
-                                                <div class="form-check">
-                                                    <input name="sizes[]"
-                                                        class="form-check-input @error('sizes') is-invalid @enderror"
-                                                        type="checkbox" value="{{ $size->id }}"
-                                                        id="flexCheckDefault{{ $size->id }}">
-                                                    <label class="form-check-label"
-                                                        for="flexCheckDefault{{ $size->id }}">
-                                                        {{ $size->name }}
-                                                    </label>
-
-                                                </div>
-                                            @endforeach
-                                            <div class="text-danger">
-                                                @error('sizes')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
                                 {{-- Price and queantity --}}
                                 <div class="row">
+                                    <label class="form-label">
+                                        <h4 class="header-title">Product Price</h4>
+                                        <p class="sub-header">Please fillup all requried information.</p>
+                                    </label>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="retularPrice" class="form-label">Regular Price<span
@@ -258,11 +182,108 @@
                                 </div>
 
 
+                                {{-- Description --}}
+                                <div class="mb-3">
+                                    <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
+                                    <textarea name="description" id="summernote"
+                                        class="form-control @error('description') is-invalid @enderror" rows="3"
+                                        placeholder="Please enter comment"></textarea>
+                                    <div class="text-danger">
+                                        @error('description')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Short Description --}}
+                                <div class="mb-3">
+                                    <label for="product-summary" class="form-label">Product Summary</label>
+                                    <textarea name="short_description"
+                                        class="form-control @error('short_description') is-invalid @enderror"
+                                        id="product-summary" rows="5" placeholder="Promotion short description "></textarea>
+                                    <div class="text-danger">
+                                        @error('short_description')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Color and Size --}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mt-1 card card-body">
+                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span></h5>
+                                            @foreach ($colors as $color)
+                                                <div class="form-check">
+                                                    <input name="colors[]"
+                                                        class="form-check-input @error('colors') is-invalid @enderror"
+                                                        type="checkbox" value="{{ $color->id }}"
+                                                        id="flexCheckDefault{{ $color->id }}">
+                                                    <label class="form-check-label"
+                                                        for="flexCheckDefault{{ $color->id }}">
+                                                        {{ $color->name }}
+                                                    </label>
+
+                                                </div>
+                                            @endforeach
+                                            <div class="text-danger">
+                                                @error('colors')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-1 card card-body">
+                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span></h5>
+                                            @foreach ($sizes as $size)
+                                                <div class="form-check">
+                                                    <input name="sizes[]"
+                                                        class="form-check-input @error('sizes') is-invalid @enderror"
+                                                        type="checkbox" value="{{ $size->id }}"
+                                                        id="flexCheckDefault{{ $size->id }}">
+                                                    <label class="form-check-label"
+                                                        for="flexCheckDefault{{ $size->id }}">
+                                                        {{ $size->name }}
+                                                    </label>
+
+                                                </div>
+                                            @endforeach
+                                            <div class="text-danger">
+                                                @error('sizes')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                {{-- Image Section --}}
+                                <hr>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">
+                                        <h4 class="header-title">Product Images</h4>
+                                        <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+                                    </label>
+                                    <input name="photo" class="form-control @error('photo') is-invalid @enderror"
+                                        type="file" id="formFile">
+                                    <div class="text-danger">
+                                        @error('photo')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 {{-- Image Section --}}
                                 <hr>
                                 <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">
-                                        <h4 class="header-title">Product Images</h4>
+                                        <h4 class="header-title">Product Slider Image</h4>
                                         <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
                                     </label>
                                     <input name="image[]" class="form-control @error('image') is-invalid @enderror"
@@ -305,7 +326,7 @@
 @push('summernote')
     <script>
         $('#summernote').summernote({
-            placeholder: 'Hello stand alone ui',
+            placeholder: 'Describe your product in details.',
             tabsize: 2,
             height: 120,
             toolbar: [
