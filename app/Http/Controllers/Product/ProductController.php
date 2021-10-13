@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Attribute\Color;
 use App\Models\Admin\Attribute\Size;
@@ -11,7 +12,9 @@ use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
 use App\Models\Product\Brand;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Product\ProductColor;
+use App\Models\Product\ProductSize;
+use App\Models\Product\ProductImage;
 use Session;
 
 use Illuminate\Support\Str;
@@ -76,8 +79,18 @@ class ProductController extends Controller
                 'regular_price'     => 'required',
                 'sale_price'        => 'required',
                 'price'             => 'required',
-                'image'             => 'required',
+                'photo'             => 'required',
             ]);
+
+
+            $photo = $request->file('photo');
+
+            if($request->file('photo')){
+                $photofileExtention = $photo->getClientOriginalExtension();
+                $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
+                Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+
+            };
 
             $images = [];
             $i = 0;
@@ -95,7 +108,10 @@ class ProductController extends Controller
 
         // return $request->all();
 
-        $insert = Product::create([
+        $colors = $request->colors;
+        $sizes = $request->sizes;
+
+        $product = Product::create([
             'title'             => $request->title,
             'description'       => $request->description,
             'short_description' => $request->short_description,
@@ -103,8 +119,7 @@ class ProductController extends Controller
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,
-            'colors'            => json_encode($request->colors),
-            'sizes'             => json_encode($request->sizes),
+
             'author'            => 'merchant',
             'author_id'         => Auth::guard('marchant')->user()->id,
             'shop_id'           => $request->shop_id,
@@ -115,8 +130,47 @@ class ProductController extends Controller
             'quantity'          => $request->quantity,
             'quantity_alert'    => $request->quantity_alert,
             // 'puk_code'       => $request->title,
-            'image'             => json_encode($images),
+            'photo'             => $photofileName,
         ]);
+
+
+
+        if($product){
+            // Add Image
+            if(!empty($images)){
+                foreach($images as $image){
+                    ProductImage::create([
+                        'image' => $image,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+
+
+            // Add Color
+            if(!empty($colors)){
+                foreach($colors as $color){
+                    ProductColor::create([
+                        'color_id' => $color,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+            // Add Size
+            if(!empty($sizes)){
+                foreach($colors as $size){
+                    ProductSize::create([
+                        'size_id' => $size,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+
+        };
+
+
+
+
 
         Session::flash('create');
         return redirect()->route('product.index');

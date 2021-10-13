@@ -56,7 +56,7 @@
                                     <li>Detail</li>
                                 </ul>
 
-                                {{-- <ul class="product-nav">
+                                <ul class="product-nav">
                                     <li class="product-nav-prev">
                                         <a href="#">
                                             <i class="d-icon-arrow-left"></i> Prev
@@ -77,7 +77,7 @@
                                             </span>
                                         </a>
                                     </li>
-                                </ul> --}}
+                                </ul>
                             </div>
 
                             <h1 class="product-name">{{$product->title}}</h1>

@@ -27,8 +27,7 @@ class CreateProductsTable extends Migration
             $table->string('author');
             $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
-            $table->string('colors');
-            $table->string('sizes');
+
             // price
             $table->double('regular_price');
             $table->double('sale_price');
@@ -37,7 +36,7 @@ class CreateProductsTable extends Migration
             $table->double('quantity_alert');
             $table->double('review')->nullable();
             $table->string('puk_code')->nullable();
-            $table->string('image', 1000);
+            $table->string('photo');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
