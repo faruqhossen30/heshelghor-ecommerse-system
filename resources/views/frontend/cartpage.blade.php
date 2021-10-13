@@ -39,7 +39,7 @@
                                 <td class="product-thumbnail">
                                     <figure>
                                         <a href="product-simple.html">
-                                            <img src="images/products/product18.jpg" width="100" height="100"
+                                            <img src="{{ asset('uploads/product/'.$item->options->photo) }}" width="100" height="100"
                                                 alt="product">
                                         </a>
                                     </figure>
@@ -54,17 +54,17 @@
                                 </td>
                                 <td class="product-quantity">
                                     <div class="input-group">
-                                        <button class="quantity-minus d-icon-minus"></button>
-                                        <input class="quantity form-control" type="number" min="1"
+                                        <button class="d-icon-minus"></button>
+                                        <input class="form-control" type="number" min="1"
                                             max="1000000" value="{{$item->qty}}">
-                                        <button class="quantity-plus d-icon-plus"></button>
+                                        <button class="d-icon-plus"></button>
                                     </div>
                                 </td>
                                 <td class="product-price">
                                     <span class="amount">৳{{$item->subtotal}}</span>
                                 </td>
                                 <td class="product-close">
-                                    <a href="#" class="product-remove" title="Remove this product">
+                                    <a href="{{route('cart.removeItem', $item->rowId)}}" class="product-remove" title="Remove this product">
                                         <i class="fas fa-times"></i>
                                     </a>
                                 </td>
@@ -74,8 +74,13 @@
 
                         </tbody>
                     </table>
+                    <div class="text-end" style="text-align: right">
+                        @if (count($items) > 0)
+                        <a href="{{route('cart.removeallItem')}}" >Clear All</a>
+                        @endif
+                    </div>
                     <div class="cart-actions mb-6 pt-4">
-                        <a href="shop.html" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i class="d-icon-arrow-left"></i>Continue Shopping</a>
+                        <a href="{{route('homepage')}}" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i class="d-icon-arrow-left"></i>Continue Shopping</a>
                         <button type="submit" class="btn btn-outline btn-dark btn-md btn-rounded btn-disabled">Update Cart</button>
                     </div>
                     <div class="cart-coupon-box mb-8">
@@ -154,7 +159,7 @@
                                         <h4 class="summary-subtitle">Total</h4>
                                     </td>
                                     <td>
-                                        <p class="summary-total-price ls-s">$426.99</p>
+                                        <p class="summary-total-price ls-s">৳{{$totalPrice}}</p>
                                     </td>
                                 </tr>
                             </table>

@@ -11,7 +11,12 @@
                 <div class="col-md-6">
                     <div class="product-gallery">
                         <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
-
+                            <figure class="product-image">
+                                <img src="{{ asset('uploads/product/'.$product->photo) }}"
+                                    data-zoom-image="{{ asset('uploads/product/'.$product->photo) }}"
+                                    alt="Blue Pinafore Denim Dress" width="800" height="900"
+                                    style="background-color: #f5f5f5;" />
+                            </figure>
                             @foreach ($product->images as $image)
                             <figure class="product-image">
                                 <img src="{{ asset('uploads/products/'.$image->image) }}"
@@ -24,9 +29,11 @@
                         </div>
                         <div class="product-thumbs-wrap">
                             <div class="product-thumbs">
-                                @php
-                                    $number = 0;
-                                @endphp
+                                <div class="product-thumb active">
+                                    <img src="{{ asset('uploads/product/'.$product->photo) }}"
+                                        alt="product thumbnail" width="137" height="154"
+                                        style="background-color: #f5f5f5;" />
+                                </div>
                                 @foreach ($product->images as $image)
                                     <div class="product-thumb ">
                                         <img src="{{ asset('uploads/products/'.$image->image) }}"
@@ -78,7 +85,8 @@
                         <h1 class="product-name">{{$product->title}}</h1>
                         <div class="product-meta">
                             SKU:<span class="product-sku">123456701</span>
-                            CATEGORIES:<span class="product-brand">{{$product->category->name}}</span>
+                            CATEGORIES: <a href="{{route('product.with.category', $product->category->id)}}"><span class="product-brand mr-0">{{$product->category->name}}</span></a>
+                            <a href="{{route('product.with.subcategory', $product->subcategory_id)}}"><span class="product-brand">| {{$product->subcategory->name}}</span></a>
                         </div>
                         <div class="product-price">৳{{$product->price}}</div>
                         <div class="ratings-container">
@@ -88,51 +96,50 @@
                             </div>
                             <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
                         </div>
-                        <p class="product-short-desc">{!! html_entity_decode($product->description) !!}</p>
-                        <div class="product-form product-color">
-                            <label>Color:</label>
-                            <div class="product-variations">
-                                <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
-                                    style="background-color: #0c0c0c"></a>
-                                <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
-                                    style="background-color: #1e73be"></a>
-                                <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
-                                    style="background-color: #9e6924"></a>
-                                <a class="color" data-src="images/demos/demo7/products/4.jpg" href="#"
-                                    style="background-color: #83b237"></a>
-                            </div>
-                        </div>
-                        <div class="product-form product-size">
-                            <label>Size:</label>
-                            <div class="product-form-group">
-                                <div class="product-variations">
-                                    <a class="size" href="#">XL</a>
-                                    <a class="size" href="#">L</a>
-                                    <a class="size" href="#">M</a>
-                                    <a class="size" href="#">S</a>
+                        <p class="product-short-desc">
+                            {{$product->short_description}}
+                        </p>
+                        <form action="{{route('cart.add', $product->id)}}" method="post">
+                            @csrf
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label" style="font-size: 1.7rem">Color:</label>
+                                <div class="col-sm-4">
+                                    <select name="color" class="form-select form-select-lg" id="staticEmail" aria-label="Default select example" style="font-size: 1.5rem">
+                                        <option selected>Select Color </option>
+                                        @foreach ($colors as $color)
+                                            <option value="{{$color->color->name}}">{{$color->color->name}}</option>
+                                        @endforeach
+                                      </select>
                                 </div>
-                                <a href="#" class="product-variation-clean">Clean All</a>
+                              </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label" style="font-size: 1.7rem">Color:</label>
+                                <div class="col-sm-4">
+                                    <select name="size" class="form-select form-select-lg" id="staticEmail" aria-label="Default select example" style="font-size: 1.5rem">
+                                        <option selected>Select Size </option>
+                                        @foreach ($sizes as $size)
+                                            <option value="{{$size->size->name}}">{{$size->size->name}}</option>
+                                        @endforeach
+                                      </select>
+                                </div>
+                              </div>
+                              <div class="product-form product-qty">
+                                <div class="product-form-group">
+                                    <div class="input-group mr-2">
+                                        <button type="button" class="quantity-minus d-icon-minus"></button>
+                                        <input name="quantity" class="quantity form-control" type="number" min="1" max="1000000">
+                                        <button type="button" class="quantity-plus d-icon-plus"></button>
+                                    </div>
+                                    <button type="submit" class="btn btn btn-dark btn-sm">
+                                        <i class="d-icon-bag mr-2"></i>Add to Cart</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-variation-price">
-                            <span>$239.00</span>
-                        </div>
+
+                        </form>
 
                         <hr class="product-divider">
 
-                        <div class="product-form product-qty">
-                            <div class="product-form-group">
-                                <div class="input-group mr-2">
-                                    <button class="quantity-minus d-icon-minus"></button>
-                                    <input class="quantity form-control" type="number" min="1" max="1000000">
-                                    <button class="quantity-plus d-icon-plus"></button>
-                                </div>
-                                <button
-                                    class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i
-                                        class="d-icon-bag"></i>Add to
-                                    Cart</button>
-                            </div>
-                        </div>
+
 
                         <hr class="product-divider mb-3">
 
@@ -531,3 +538,10 @@
 <!-- End Main -->
 @endsection
 
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+@endpush
+
+@push('scripts')
+
+@endpush

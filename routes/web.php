@@ -30,6 +30,7 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Product\SubCategoryController;
 use App\Http\Controllers\Merchant\Shop\ShopController;
+use App\Http\Controllers\FrontEnd\CartController;
 
 // Order Controller
 use App\Http\Controllers\Merchant\OrderController;
@@ -58,6 +59,13 @@ Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspag
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
+
+// For Shoping Cart
+Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
+Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
+Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
+
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

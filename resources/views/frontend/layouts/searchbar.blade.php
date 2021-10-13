@@ -1,7 +1,7 @@
 @php
 // cart count
     $totalitem = Cart::count();
-    $total = Cart::total();
+    $totalprice = Cart::priceTotal();
 @endphp
 <div class="header-middle sticky-header fix-top sticky-content">
     <div class="container">
@@ -43,10 +43,10 @@
             <div class="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
                 <a href="#" class="cart-toggle label-block link">
                     <div class="cart-label d-lg-show">
-                        <span class="cart-name">Shopping Cart:</span>
-                        <span class="cart-price">৳ 0.00</span>
+                        <span class="cart-name">Shopping Cart</span>
+                        <span class="cart-price">৳{{$totalprice}}</span>
                     </div>
-                    <i class="d-icon-bag"><span class="cart-count">2</span></i>
+                    <i class="d-icon-bag"><span class="cart-count">{{$totalitem}}</span></i>
                 </a>
                 <div class="cart-overlay"></div>
                 <!-- End Cart Toggle -->
@@ -101,11 +101,11 @@
                     <!-- End of Products  -->
                     <div class="cart-total">
                         <label>Subtotal:</label>
-                        <span class="price">$139.00</span>
+                        <span class="price">{{$totalprice}}</span>
                     </div>
                     <!-- End of Cart Total -->
                     <div class="cart-action">
-                        <a href="cart.html" class="btn btn-dark btn-link">View Cart</a>
+                        <a href="{{route('cart.page')}}" class="btn btn-dark btn-link">View Cart</a>
                         <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
                     </div>
                     <!-- End of Cart Action -->

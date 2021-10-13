@@ -341,7 +341,7 @@ window.Riode = {};
 
 	/**
 	 * @function appear
-	 * 
+	 *
 	 * @param {HTMLElement} el
 	 * @param {function} fn
 	 * @param {object} options
@@ -600,7 +600,7 @@ window.Riode = {};
 
     /**
      * @function initShowVendorSearch
-     * 
+     *
      * @param {string} selector
      */
     Riode.initShowVendorSearch = function ( selector ) {
@@ -1623,34 +1623,34 @@ window.Riode = {};
             } );
         }
 
-        var initCartAction = function ( self ) {
+        // var initCartAction = function ( self ) {
 
-            // Product Single's Add To Cart Button
-            self.$wrapper.on( 'click', '.btn-cart', function ( e ) {
-                e.preventDefault();
+        //     // Product Single's Add To Cart Button
+        //     self.$wrapper.on( 'click', '.btn-cart', function ( e ) {
+        //         e.preventDefault();
 
-                var $product = self.$wrapper,
-                    name = $product.find( '.product-name' ).text();
+        //         var $product = self.$wrapper,
+        //             name = $product.find( '.product-name' ).text();
 
-                // minipopup if only quickview or home pages
-                if (
-                    $product.closest( '.product-popup' ).length ||
-                    document.body.classList.contains( 'home' )
-                ) {
-                    Riode.Minipopup.open( {
-                        message: 'Successfully Added',
-                        productClass: ' product-cart',
-                        name: name,
-                        nameLink: $product.find( '.product-name > a' ).attr( 'href' ),
-                        imageSrc: $product.find( '.product-image img' ).eq( 0 ).attr( 'src' ),
-                        imageLink: $product.find( '.product-name > a' ).attr( 'href' ),
-                        price: $product.find( '.product-variation-price' ).length > 0 ? $product.find( '.product-variation-price' ).children( 'span' ).html() : $product.find('.product-price .price').html(),
-                        count: $product.find( '.quantity' ).val(),
-                        actionTemplate: '<div class="action-group d-flex mt-3"><a href="cart.html" class="btn btn-sm btn-outline btn-primary btn-rounded mr-2">View Cart</a><a href="checkout.html" class="btn btn-sm btn-primary btn-rounded">Check Out</a></div>'
-                    } );
-                }
-            } );
-        }
+        //         // minipopup if only quickview or home pages
+        //         if (
+        //             $product.closest( '.product-popup' ).length ||
+        //             document.body.classList.contains( 'home' )
+        //         ) {
+        //             Riode.Minipopup.open( {
+        //                 message: 'Successfully Added',
+        //                 productClass: ' product-cart',
+        //                 name: name,
+        //                 nameLink: $product.find( '.product-name > a' ).attr( 'href' ),
+        //                 imageSrc: $product.find( '.product-image img' ).eq( 0 ).attr( 'src' ),
+        //                 imageLink: $product.find( '.product-name > a' ).attr( 'href' ),
+        //                 price: $product.find( '.product-variation-price' ).length > 0 ? $product.find( '.product-variation-price' ).children( 'span' ).html() : $product.find('.product-price .price').html(),
+        //                 count: $product.find( '.quantity' ).val(),
+        //                 actionTemplate: '<div class="action-group d-flex mt-3"><a href="cart.html" class="btn btn-sm btn-outline btn-primary btn-rounded mr-2">View Cart</a><a href="checkout.html" class="btn btn-sm btn-primary btn-rounded">Check Out</a></div>'
+        //             } );
+        //         }
+        //     } );
+        // }
 
         // For only Quickview
         var recalcDetailsHeight = function () {
@@ -1987,7 +1987,7 @@ window.Riode = {};
         var onTranslated = function ( e ) {
             $( window ).trigger( 'appear.check' );
 
-            // Video Play	
+            // Video Play
             var $el = $( e.currentTarget ),
                 $activeVideos = $el.find( '.owl-item.active video' );
 
@@ -2576,7 +2576,7 @@ window.Riode = {};
 
 	/**
 	 * @function floatSVG
-	 * @param {string|jQuery} selector 
+	 * @param {string|jQuery} selector
 	 * @param {object} options
 	 */
     Riode.floatSVG = ( function () {

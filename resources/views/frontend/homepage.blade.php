@@ -52,7 +52,7 @@
                                             <div class="product-details">
                                                 <div class="product-cat">
                                                     <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                                    <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
+                                                    <a href="{{route('product.with.subcategory', $product->subcategory_id)}}">| {{$product->subcategory->name}}</a>
                                                 </div>
                                                 <h3 class="product-name">
                                                     <a href="demo3-product.html">{{ $product->title }}</a>
