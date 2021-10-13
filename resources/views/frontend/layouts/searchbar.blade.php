@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 @php
+// cart count
     $totalitem = Cart::count();
     $total = Cart::total();
 @endphp
-
->>>>>>> final
 <div class="header-middle sticky-header fix-top sticky-content">
     <div class="container">
         <div class="header-left">

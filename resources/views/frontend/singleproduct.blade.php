@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Single Product
+    HeshelGhor | Home
 @endsection
 
 @section('content')
@@ -11,15 +11,11 @@
                 <div class="col-md-6">
                     <div class="product-gallery">
                         <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
-                            @php
-                                $images = json_decode($product->image);
-                                $i = 0;
-                                $j = 0;
-                            @endphp
-                            @foreach ($images as $image)
+
+                            @foreach ($product->images as $image)
                             <figure class="product-image">
-                                <img src="{{ asset('uploads/products/'.$images[$i++]) }}"
-                                    data-zoom-image="{{ asset('uploads/products/'.$images[$j++]) }}"
+                                <img src="{{ asset('uploads/products/'.$image->image) }}"
+                                    data-zoom-image="{{ asset('uploads/products/'.$image->image) }}"
                                     alt="Blue Pinafore Denim Dress" width="800" height="900"
                                     style="background-color: #f5f5f5;" />
                             </figure>
@@ -31,9 +27,9 @@
                                 @php
                                     $number = 0;
                                 @endphp
-                                @foreach ($images as $image)
+                                @foreach ($product->images as $image)
                                     <div class="product-thumb ">
-                                        <img src="{{ asset('uploads/products/'.$images[$number++]) }}"
+                                        <img src="{{ asset('uploads/products/'.$image->image) }}"
                                             alt="product thumbnail" width="137" height="154"
                                             style="background-color: #f5f5f5;" />
                                     </div>

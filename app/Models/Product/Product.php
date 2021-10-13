@@ -34,7 +34,11 @@ class Product extends Model
         return $this->hasOne(Marchant::class, 'id', 'author_id');
     }
 
-
+  // Image
+  public function images()
+  {
+      return $this->hasMany(ProductImage::class, 'product_id', 'id');
+  }
 
 
 }
