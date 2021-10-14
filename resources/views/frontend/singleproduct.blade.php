@@ -1,3 +1,7 @@
+@php
+$relatedProduct = App\Models\Product\Product::where('category_id', $product->category_id)->with('category', 'subcategory', 'brand', 'merchant', 'images')->get();
+@endphp
+
 @extends('frontend.layouts.app')
 @section('title')
     HeshelGhor | Home
@@ -150,13 +154,13 @@
                                 <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
                             </div>
                             <hr class="divider d-lg-show">
-                            <div class="product-action">
+                            {{-- <div class="product-action">
                                 <a href="#" class="btn-product btn-wishlist mr-6"><i
                                         class="d-icon-heart"></i>Add to wishlist</a>
 
                                 <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
                                     to compare</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -182,43 +186,7 @@
                         <div class="row mt-6">
                             <div class="col-md-6">
                                 <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Features</h5>
-                                <p class="mb-2">
-                                    Praesent id enim sit amet.Tdio vulputate eleifend in in tortor.
-                                    ellus massa. siti iMassa ristique sit amet condim vel, facilisis
-                                    quimequistiqutiqu amet condim Dilisis Facilisis quis sapien. Praesent id
-                                    enim sit amet.
-                                </p>
-                                <ul class="mb-8">
-                                    <li>Praesent id enim sit amet.Tdio vulputate</li>
-                                    <li>Eleifend in in tortor. ellus massa.Dristique sitii</li>
-                                    <li>Massa ristique sit amet condim vel</li>
-                                    <li>Dilisis Facilisis quis sapien. Praesent id enim sit amet</li>
-                                </ul>
-                                <h5 class="description-title mb-3 font-weight-semi-bold ls-m">Specifications
-                                </h5>
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="font-weight-semi-bold text-dark pl-0">Material</th>
-                                            <td class="pl-4">Praesent id enim sit amet.Tdio</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="font-weight-semi-bold text-dark pl-0">Claimed Size</th>
-                                            <td class="pl-4">Praesent id enim sit</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="font-weight-semi-bold text-dark pl-0">Recommended Use
-                                            </th>
-                                            <td class="pl-4">Praesent id enim sit amet.Tdio vulputate eleifend
-                                                in in tortor. ellus massa. siti</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="font-weight-semi-bold text-dark border-no pl-0">
-                                                Manufacturer</th>
-                                            <td class="border-no pl-4">Praesent id enim</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                {!! html_entity_decode($product->description) !!}
                             </div>
                             <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
                                 <h5 class="description-title font-weight-semi-bold ls-m mb-5">Video Description
@@ -230,7 +198,7 @@
                                         <i class="d-icon-play-solid"></i>
                                     </a>
                                 </figure>
-                                <div class="icon-box-wrap d-flex flex-wrap">
+                                {{-- <div class="icon-box-wrap d-flex flex-wrap">
                                     <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
                                         <div class="icon-box-icon">
                                             <i class="d-icon-lock"></i>
@@ -252,20 +220,28 @@
                                             <p>On orders over $50.00</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="product-tab-additional">
                         <ul class="list-none">
                             <li><label>Brands:</label>
-                                <p>Cinderella, SLS</p>
+                                <p>{{$product->brand->name}}</p>
                             </li>
                             <li><label>Color:</label>
-                                <p>Black, Blue, Brown, Green</p>
+                                <p>
+                                    @foreach ($colors as $color)
+                                            <span>-{{$color->color->name}}</span>
+                                    @endforeach
+                                </p>
                             </li>
                             <li><label>Size:</label>
-                                <p>Ectra Large, Large, Medium, Small</p>
+                                <p>
+                                    @foreach ($sizes as $size)
+                                            <span>-{{$size->size->name}}</span>
+                                    @endforeach
+                                </p>
                             </li>
                         </ul>
                     </div>
@@ -392,27 +368,22 @@
                         }
                     }
                 }">
+                    @foreach ($relatedProduct as $product)
                     <div class="product text-center">
                         <figure class="product-media">
-                            <a href="demo3-product.html">
-                                <img src="images/demos/demo3/products/2.jpg" alt="product" width="280"
+                            <a href="{{route('singleproduct', $product->id)}}">
+                                <img src="{{asset('uploads/product/'.$product->photo)}}" alt="product" width="280"
                                     height="315">
                             </a>
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                    data-target="#addCartModal" title="Add to cart"><i
-                                        class="d-icon-bag"></i></a>
-                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                        class="d-icon-heart"></i></a>
-                            </div>
+
                             <div class="product-action">
-                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick View</a>
+                                <a href="{{route('singleproduct', $product->id)}}" class="btn-product btn-quickview" title="Quick View">Quick View</a>
                             </div>
                         </figure>
                         <div class="product-details">
-                            <div class="product-cat"><a href="demo3-shop.html">Bags</a></div>
+                            <div class="product-cat"><a href="demo3-shop.html">{{$product->category->name}}</a></div>
                             <h3 class="product-name">
-                                <a href="demo3-product.html">Fashional Handbag</a>
+                                <a href="demo3-product.html"><a href="demo3-shop.html">{{$product->category->name}}</a>
                             </h3>
                             <div class="product-price">
                                 <span class="price">$83.32</span>
@@ -425,111 +396,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="product text-center">
-                        <figure class="product-media">
-                            <a href="demo3-product.html">
-                                <img src="images/demos/demo3/products/4.jpg" alt="product" width="280"
-                                    height="315">
-                            </a>
-                            <div class="product-label-group">
-                                <label class="product-label label-new">new</label>
-                            </div>
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                    data-target="#addCartModal" title="Add to cart"><i
-                                        class="d-icon-bag"></i></a>
-                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                        class="d-icon-heart"></i></a>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick View</a>
-                            </div>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-cat"><a href="demo3-shop.html">Bags</a></div>
-                            <h3 class="product-name">
-                                <a href="demo3-product.html">A Dress-suit Valise</a>
-                            </h3>
-                            <div class="product-price">
-                                <span class="price">$242.12</span>
-                            </div>
-                            <div class="ratings-container">
-                                <div class="ratings-full">
-                                    <span class="ratings" style="width:60%"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product text-center">
-                        <figure class="product-media">
-                            <a href="demo3-product.html">
-                                <img src="images/demos/demo3/products/5.jpg" alt="product" width="280"
-                                    height="315">
-                            </a>
-                            <div class="product-label-group">
-                                <label class="product-label label-sale">27% off</label>
-                            </div>
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                    data-target="#addCartModal" title="Add to cart"><i
-                                        class="d-icon-bag"></i></a>
-                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                        class="d-icon-heart"></i></a>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick View</a>
-                            </div>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-cat"><a href="demo3-shop.html">Watch</a></div>
-                            <h3 class="product-name">
-                                <a href="demo3-product.html">Fashion Electric Wrist Watch</a>
-                            </h3>
-                            <div class="product-price">
-                                <ins class="new-price">$472.14</ins><del class="old-price">$524.45</del>
-                            </div>
-                            <div class="ratings-container">
-                                <div class="ratings-full">
-                                    <span class="ratings" style="width:40%"></span>
-                                    <span class="tooltiptext tooltip-top"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product text-center">
-                        <figure class="product-media">
-                            <a href="demo3-product.html">
-                                <img src="images/demos/demo3/products/6.jpg" alt="product" width="280"
-                                    height="315">
-                            </a>
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                    data-target="#addCartModal" title="Add to cart"><i
-                                        class="d-icon-bag"></i></a>
-                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                        class="d-icon-heart"></i></a>
-                            </div>
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick View</a>
-                            </div>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-cat"><a href="demo3-shop.html">Women’s</a></div>
-                            <h3 class="product-name">
-                                <a href="demo3-product.html">Fashional Handbag</a>
-                            </h3>
-                            <div class="product-price">
-                                <span class="price">$72.34</span>
-                            </div>
-                            <div class="ratings-container">
-                                <div class="ratings-full">
-                                    <span class="ratings" style="width:80%"></span>
-                                    <span class="tooltiptext to oltip-top"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
+
                 </div>
             </section>
         </div>

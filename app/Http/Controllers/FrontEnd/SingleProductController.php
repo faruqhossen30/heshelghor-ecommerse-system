@@ -17,8 +17,8 @@ class SingleProductController extends Controller
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
         $colors = ProductColor::with('color')->where('product_id', $id)->get();
         $sizes = ProductSize::with('size')->where('product_id', $id)->get();
-        $product = Product::with('category', 'subcategory', 'brand', 'merchant')->where('id', $id)->get()->first();
-        // return $colors;
+        $product = Product::with('category', 'subcategory', 'brand', 'merchant', 'images')->where('id', $id)->get()->first();
+        // return $product;
         return view('frontend.singleproduct', compact('product', 'colors', 'sizes', 'categories'));
     }
 }

@@ -24,42 +24,53 @@
                             <tr>
                                 <th><span>S.N</span></th>
                                 <th><span>Product</span></th>
-                                <th></th>
+                                <th><span>Photo</span></th>
                                 <th><span>Price</span></th>
                                 <th><span>quantity</span></th>
+                                <th></th>
                                 <th>Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
+
                             <tr>
                                 <td class="product-thumbnail">
                                     {{$serial++}}
-                                </td>
-                                <td class="product-thumbnail">
-                                    <figure>
-                                        <a href="product-simple.html">
-                                            <img src="{{ asset('uploads/product/'.$item->options->photo) }}" width="100" height="100"
-                                                alt="product">
-                                        </a>
-                                    </figure>
                                 </td>
                                 <td class="product-name">
                                     <div class="product-name-section">
                                         <a href="product-simple.html">{{$item->name}}</a>
                                     </div>
                                 </td>
+                                <td class="product-thumbnail">
+                                    <figure>
+                                        <a href="product-simple.html">
+                                            <img src="{{ asset('uploads/product/'.$item->options->photo) }}" width="75" height="75"
+                                                alt="product">
+                                        </a>
+                                    </figure>
+                                </td>
+
                                 <td class="product-subtotal">
                                     <span class="amount">৳{{$item->price}}</span>
                                 </td>
-                                <td class="product-quantity">
-                                    <div class="input-group">
-                                        <button class="d-icon-minus"></button>
-                                        <input class="form-control" type="number" min="1"
-                                            max="1000000" value="{{$item->qty}}">
-                                        <button class="d-icon-plus"></button>
-                                    </div>
-                                </td>
+                                {{-- Update start --}}
+                                <form action="{{route('cart.ItemUpdate', $item->rowId)}}" method="post">
+                                    @csrf
+                                    <td class="product-quantity">
+                                        <div class="input-group">
+                                            <button id="qty_minus{{$item->rowId}}" class="d-icon-minus" type="button"></button>
+                                            <input name="quantity" id="qty_number{{$item->rowId}}" class="form-control" type="number" min="1"
+                                                max="1000000" value="{{$item->qty}}">
+                                            <button id="qty_plus{{$item->rowId}}" class="d-icon-plus" type="button"></button>
+                                        </div>
+                                    </td>
+                                   <td>
+                                    <button type="submit" class="btn btn-sm btn-light">Update</button>
+                                   </td>
+                                </form>
+                                {{-- Update start --}}
                                 <td class="product-price">
                                     <span class="amount">৳{{$item->subtotal}}</span>
                                 </td>
@@ -81,7 +92,7 @@
                     </div>
                     <div class="cart-actions mb-6 pt-4">
                         <a href="{{route('homepage')}}" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i class="d-icon-arrow-left"></i>Continue Shopping</a>
-                        <button type="submit" class="btn btn-outline btn-dark btn-md btn-rounded btn-disabled">Update Cart</button>
+                        {{-- <button type="submit" class="btn btn-outline btn-dark btn-md btn-rounded btn-disabled">Update Cart</button> --}}
                     </div>
                     <div class="cart-coupon-box mb-8">
                         <h4 class="title coupon-title text-uppercase ls-m">Coupon Discount</h4>
@@ -175,8 +186,27 @@
 @endsection
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/css/style.min.css">
+
 @endpush
 
 @push('scripts')
 
+<script>
+// $(document).ready(function(){
+//     function increase(){
+//         console.log('ok');
+//     }
+// });
+
+window.onload = function() {
+    if (window.jQuery) {
+        // jQuery is loaded
+        alert("Yeah! JQuery is working");
+    } else {
+        // jQuery is not loaded
+        alert("Doesn't Work");
+    }
+}
+
+</script>
 @endpush

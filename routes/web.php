@@ -63,6 +63,7 @@ Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWith
 // For Shoping Cart
 Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
+Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->name('cart.ItemUpdate');
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
 

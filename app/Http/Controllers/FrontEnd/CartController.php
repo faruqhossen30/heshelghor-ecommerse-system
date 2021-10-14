@@ -32,6 +32,13 @@ class CartController extends Controller
 
         }
     }
+
+    public function cartItemUpdate(Request $request, $rowId)
+    {
+        Cart::update($rowId, $request->quantity);
+        return redirect()->route('cart.page');
+    }
+
     // Remove Cart Item
 
     public function removeCartItem($rowId)
@@ -54,4 +61,5 @@ class CartController extends Controller
 
         return view('frontend.cartpage', compact('items'));
     }
+
 }
