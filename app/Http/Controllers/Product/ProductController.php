@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Attribute\Color;
 use App\Models\Admin\Attribute\Size;
-use App\Models\Admin\Shop\Shop;
+use App\Models\Merchant\Shop;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
