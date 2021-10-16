@@ -8,6 +8,7 @@ use App\Models\Auth\Marchant;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\Merchant\Shop;
 
 class AllListAPIController extends Controller
 {
@@ -40,6 +41,12 @@ class AllListAPIController extends Controller
     public function allMerchant()
     {
         $merchants = Marchant::all();
+        return $merchants;
+    }
+    // All Shoplist
+    public function allShop()
+    {
+        $merchants = Shop::all();
         return $merchants;
     }
 

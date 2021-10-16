@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\ProductAPIController;
 use App\Http\Controllers\API\AllListAPIController;
+use App\Http\Controllers\API\ShopAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('subcategories', [AllListAPIController::class, 'allSubCategory']); //
 Route::get('subcategory/category/{id}', [AllListAPIController::class, 'subCategoryByCategory']); // Sub-Category List
 Route::get('brands', [AllListAPIController::class, 'allBrand']); // Category List
 Route::get('merchants', [AllListAPIController::class, 'allMerchant']); // Merchant List
+Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
+Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
