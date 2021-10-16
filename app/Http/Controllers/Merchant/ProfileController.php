@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Merchant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Auth\Marchant;
 
 class ProfileController extends Controller
 {
@@ -15,7 +17,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('marchant.profile.merchantprofile');
+        $merchantId = Auth::guard('marchant')->user()->id;
+        $merchant = Marchant::where('id', $merchantId)->first();
+
+        return view('marchant.profile.merchantprofile', compact('merchant'));
     }
 
     /**

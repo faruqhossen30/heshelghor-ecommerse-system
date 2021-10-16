@@ -24,6 +24,7 @@ use App\Http\Controllers\APIController;
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
+use App\Http\Controllers\Merchant\MyBrandController;
 // Product Controller
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
@@ -115,6 +116,7 @@ Route::prefix('merchant')->group(function () {
         // Product
         Route::resource('product', ProductController::class);
         Route::resource('brand', BrandController::class);
+        Route::get('mybrand', [MyBrandController::class, 'index'])->name('myaddedbrand');
         Route::resource('shop', ShopController::class);
         // Order
         Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');

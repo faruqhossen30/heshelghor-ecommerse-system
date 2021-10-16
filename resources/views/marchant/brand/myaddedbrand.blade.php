@@ -96,6 +96,17 @@
                                                 <li class="list-inline-item">
                                                     <a href="{{route('brand.show', $brand->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                 </li>
+                                                <li class="list-inline-item">
+                                                    <a href="{{route('brand.edit', $brand->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                                    <form action="{{route('brand.destroy', $brand->id)}}" method="post" >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr>

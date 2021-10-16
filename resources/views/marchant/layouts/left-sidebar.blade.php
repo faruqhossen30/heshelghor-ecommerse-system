@@ -70,14 +70,11 @@
                 <li class="menu-title">Marchant Dashboard</li>
 
                 <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
+                    <a href="{{route('marchant.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="badge bg-success rounded-pill float-end">3</span>
                         <span> Dashboards </span>
                     </a>
-                    <div class="collapse" id="sidebarDashboards">
-
-                    </div>
                 </li>
                 {{-- Product Start --}}
                 <li>
@@ -112,6 +109,9 @@
                             </li>
                             <li>
                                 <a href="{{route('brand.create')}}">Add Brand</a>
+                            </li>
+                            <li>
+                                <a href="{{route('myaddedbrand')}}">My added brand</a>
                             </li>
                         </ul>
                     </div>
@@ -165,7 +165,10 @@
                         <ul class="nav-second-level">
 
                             <li>
-                                <a href="{{route('merchantprofile.index')}}">Update Profile</a>
+                                <a href="{{route('merchantprofile.index')}}">My Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">Update Profile</a>
                             </li>
 
                         </ul>

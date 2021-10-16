@@ -43,10 +43,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $merchantId = Auth::guard('marchant')->user()->id;
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
-        $shops = Shop::all();
+        $shops = Shop::where('author_id',$merchantId)->get();
         $colors = Color::all();
         $sizes = Size::all();
 

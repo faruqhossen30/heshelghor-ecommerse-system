@@ -73,7 +73,7 @@ class BrandController extends Controller
             ]);
 
             Session::flash('create');
-            return redirect()->route('brand.index');
+            return redirect()->route('myaddedbrand');
 
         } else{
             $validate = $request->validate([
@@ -90,7 +90,7 @@ class BrandController extends Controller
             ]);
 
             Session::flash('create');
-            return redirect()->route('brand.index');
+            return redirect()->route('myaddedbrand');
 
         };
 
@@ -155,7 +155,7 @@ class BrandController extends Controller
             }
             $update = Brand::where('id', $id)->update($data);
             Session::flash('update');
-            return redirect()->route('brand.index');
+            return redirect()->route('myaddedbrand');
         } else{
 
             $validate = $request->validate([
@@ -170,7 +170,7 @@ class BrandController extends Controller
 
             $update = Brand::where('id', $id)->update($data);
             Session::flash('update');
-            return redirect()->route('brand.index');
+            return redirect()->route('myaddedbrand');
         }
 
 

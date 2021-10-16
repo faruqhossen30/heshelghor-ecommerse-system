@@ -10,9 +10,9 @@
                     <h4 class="page-title">Merchant Profile</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Product List</li>
+                            <li class="breadcrumb-item active">Profile</li>
                         </ol>
                     </div>
                 </div>
@@ -34,15 +34,12 @@
                                 <div class="col-lg-4 col-xl-4">
                                     <div class="card text-center">
                                         <div class="card-body">
-                                            <img src="../assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail"
+                                            <img src="{{asset('backend')}}/assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail"
                                             alt="profile-image">
 
-                                            <h4 class="mt-3 mb-0">Nik G. Patel</h4>
-                                            <p class="text-muted">@webdesigner</p>
-
-                                            <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Follow</button>
-                                            <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Message</button>
-
+                                            <h4 class="mt-3 mb-0">{{$merchant->name}}</h4>
+                                            <p class="text-muted">{{$merchant->address}}</p>
+                                            <hr>
                                             <div class="text-start mt-3">
                                                 <h4 class="font-13 text-uppercase">About Me :</h4>
                                                 <p class="text-muted font-13 mb-3">
@@ -55,19 +52,19 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row">Full Name :</th>
-                                                                <td class="text-muted">Nik G. Patel</td>
+                                                                <td class="text-muted">{{$merchant->name}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Mobile :</th>
-                                                                <td class="text-muted">(123) 123 1234</td>
+                                                                <td class="text-muted">{{$merchant->phone_number}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Email :</th>
-                                                                <td class="text-muted">user@email.domain</td>
+                                                                <td class="text-muted">{{$merchant->email}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Location :</th>
-                                                                <td class="text-muted">USA</td>
+                                                                <td class="text-muted">{{$merchant->address}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -94,58 +91,6 @@
                                             </ul>
                                         </div>
                                     </div> <!-- end card-box -->
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="header-title">Skills</h4>
-                                            <p class="sub-header mb-3">Everyone realizes why a new common language would be desirable</p>
-
-                                            <div class="pt-1">
-                                                <h6 class="text-uppercase mt-0">HTML5 <span class="float-end">90%</span></h6>
-                                                <div class="progress progress-sm m-0">
-                                                    <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                                        <span class="visually-hidden">90% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-2 pt-1">
-                                                <h6 class="text-uppercase">PHP <span class="float-end">67%</span></h6>
-                                                <div class="progress progress-sm m-0">
-                                                    <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%">
-                                                        <span class="visually-hidden">67% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-2 pt-1">
-                                                <h6 class="text-uppercase">WordPress <span class="float-end">48%</span></h6>
-                                                <div class="progress progress-sm m-0">
-                                                    <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="width: 48%">
-                                                        <span class="visually-hidden">48% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-2 pt-1">
-                                                <h6 class="text-uppercase">Laravel <span class="float-end">95%</span></h6>
-                                                <div class="progress progress-sm m-0">
-                                                    <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
-                                                        <span class="visually-hidden">95% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mt-2 pt-1">
-                                                <h6 class="text-uppercase">ReactJs <span class="float-end">72%</span></h6>
-                                                <div class="progress progress-sm m-0">
-                                                    <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-                                                        <span class="visually-hidden">72% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- end card-box-->
 
                                 </div> <!-- end col-->
 

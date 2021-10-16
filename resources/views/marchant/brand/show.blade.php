@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- end page title -->
         <div class="row">
             <div class="col-lg-12">
@@ -50,38 +50,39 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>Name: </td>  
-                                                <td><strong>{{$brand->name}}</strong></td>                                                                                             
+                                                <td>Name: </td>
+                                                <td><strong>{{$brand->name}}</strong></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td>Description: </td>  
-                                                <td>{{$brand->description}}</td>                                                                                             
+                                                <td>Description: </td>
+                                                <td>{{$brand->description}}</td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
-                                                <td>Create at: </td>  
-                                                <td>{{$brand->created_at}}</td>                                                                                             
+                                                <td>Create at: </td>
+                                                <td>{{$brand->created_at}}</td>
                                             </tr>
                                             <tr>
                                                 <td>4</td>
-                                                <td>Status</td>  
+                                                <td>Status</td>
                                                 <td>
                                                     <span class="badge badge-soft-success">
                                                         {{$brand->status ? 'Active' : ''}}</td>
-                                                    </span>                                                                                                                                              
+                                                    </span>
                                             </tr>
                                             <tr>
                                                 <td>5</td>
-                                                <td>Photo</td>  
+                                                <td>Photo</td>
                                                 <td>
                                                     <img src="{{asset($brand->image)}}" alt="" style="width: 100px; height:100px">
-                                                </td>                                                                                             
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <hr>
-                                    <a href="{{route('brand.edit', $brand->id)}}" class="btn btn-success">Edit Brand</a>
+                                    <a href="{{route('brand.index')}}" class="btn btn-success">Back To All List</a>
+                                    <a href="{{route('myaddedbrand')}}" class="btn btn-success">Back To My List</a>
                                 </div>
                             </div> <!-- end card-->
                         </div> <!-- end col -->
