@@ -203,6 +203,24 @@
                     </div>
                 </li>
                 <li>
+                    <a href="#sidePayment" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
+                        <i class="mdi mdi-bank"></i>
+                        <span> Payment & Delivery </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidePayment">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('deliverysystem.index')}}"><span><i class="mdi mdi-truck-delivery-outline"></i></span>Delivery System</a>
+                            </li>
+                            <li>
+                                <a href="{{route('paymentmethod.index')}}"><span><i class="mdi mdi-cash-usd"></i></span>Payment Methods</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
                     <a href="#sidebarLocation" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarLocation">
                         <i class="mdi mdi-map-marker"></i>
                         <span>Location </span>

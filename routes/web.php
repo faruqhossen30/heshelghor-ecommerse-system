@@ -2,7 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-// Admin Controller Srtart ===========================
+// ====================== Admin Controller Srtart ===========================
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\RolesController;
@@ -16,9 +16,12 @@ use App\Http\Controllers\Admin\Location\UpazilaController;
 // Attribute Controller
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Attribute\SizeController;
+// For Order
+use App\Http\Controllers\Admin\Order\DeliverySystemController;
+use App\Http\Controllers\Admin\Order\PaymentMethodController;
 
 use App\Http\Controllers\APIController;
-// Admin Controller End ===========================
+// ====================== Admin Controller End ===========================
 
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
@@ -99,6 +102,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('upazila', UpazilaController::class);
         Route::resource('color', ColorController::class);
         Route::resource('size', SizeController::class);
+        // For order section
+        Route::resource('deliverysystem', DeliverySystemController::class);
+        Route::resource('paymentmethod', PaymentMethodController::class);
     });
 });
 

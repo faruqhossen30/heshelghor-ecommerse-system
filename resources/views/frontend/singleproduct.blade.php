@@ -362,7 +362,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                             'items': 3
                         },
                         '992': {
-                            'items': 4,
+                            'items': 5,
                             'dots': false,
                             'nav': true
                         }
@@ -378,6 +378,10 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
 
                             <div class="product-action">
                                 <a href="{{route('singleproduct', $product->id)}}" class="btn-product btn-quickview" title="Quick View">Quick View</a>
+                            </div>
+                            <div class="product-label-group">
+                                <label class="product-label label-new">new</label>
+                                <label class="product-label label-sale">15% off</label>
                             </div>
                         </figure>
                         <div class="product-details">
