@@ -45,6 +45,5 @@ Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
 
 // User API
-Route::post('/register', [UserAPIController::class, 'userSignupForApps']);
-Route::post('/login', [UserAPIController::class, 'userLoginForApps']);
-
+Route::post('/register', [UserAPIController::class, 'userRegister']);
+Route::post('/login', [UserAPIController::class, 'userLogin']);
