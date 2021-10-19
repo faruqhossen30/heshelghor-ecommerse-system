@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 use Cart;
+use App\Models\Admin\Order\DeliverySystem;
+use App\Models\Admin\Order\PaymentMethod;
 
 class CartController extends Controller
 {
@@ -57,9 +59,11 @@ class CartController extends Controller
     public function cartPage()
     {
         $items = Cart::content();
+        $deliverysystems = DeliverySystem::all();
+        $pamymentmethods = PaymentMethod::all();
         // return $items;
 
-        return view('frontend.cartpage', compact('items'));
+        return view('frontend.cartpage', compact('items', 'deliverysystems', 'pamymentmethods'));
     }
 
 }

@@ -383,9 +383,6 @@
 
             });
 
-
-
-
             // For Price
             var saleprice = $('input[name="sale_price"]');
             var price = $('input[name="price"]');
@@ -397,8 +394,6 @@
                 $(document).on('change click keyup select',
                     'input[name="sale_price"], select[name="subcategory_id"]',
                     function() {
-
-
                         var subCatID = subcategory_id.val();
                         if (subcategory_id) {
                             $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
@@ -406,8 +401,6 @@
                                 if (data) {
                                     catCom.text(`${data.commission}%`);
                                 }
-
-
                                 // console.log(data.commission);
                             });
                         };
@@ -416,8 +409,6 @@
                         calculatorFun();
 
                         console.log(total);
-
-
                     });
             });
 

@@ -6,6 +6,7 @@ use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Upazila;
 use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\Admin\Order\DeliverySystem;
 
 class APIController extends Controller
 {
@@ -32,6 +33,15 @@ class APIController extends Controller
         if($request->id){
         $commission = SubCategory::where('id', $request->id)->get()->first();
         return $commission;
+        }
+    }
+
+    public function getDeliveryCost(Request $request)
+    {
+        // return $request->id;
+        if($request->id){
+        $deliverycost = DeliverySystem::where('id', $request->id)->first();
+        return $deliverycost;
         }
     }
 }

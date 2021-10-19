@@ -41,7 +41,8 @@
             </a>
             <span class="divider"></span>
             <div class="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
-                <a href="#" class="cart-toggle label-block link">
+                {{-- <a href="#" class="cart-toggle label-block link"> --}}
+                <a href="{{route('cart.page')}}" class="label-block link">
                     <div class="cart-label d-lg-show">
                         <span class="cart-name">Shopping Cart</span>
                         <span class="cart-price">৳{{$totalprice}}</span>

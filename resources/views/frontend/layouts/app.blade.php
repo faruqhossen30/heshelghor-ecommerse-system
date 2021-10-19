@@ -69,10 +69,10 @@
 <script src="{{asset('frontend')}}/vendor/owl-carousel/owl.carousel.min.js"></script>
 <script src="{{asset('frontend')}}/vendor/sticky/sticky.min.js"></script>
 {{-- For stack --}}
-@stack('scripts')
 
 <!-- Main JS File -->
 <script src="{{asset('frontend')}}/js/main.min.js"></script>
+@stack('scripts')
 </body>
 
 </html>

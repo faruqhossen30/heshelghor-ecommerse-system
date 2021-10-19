@@ -1,7 +1,7 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
+
 // ====================== Admin Controller Srtart ===========================
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -19,25 +19,30 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 // For Order
 use App\Http\Controllers\Admin\Order\DeliverySystemController;
 use App\Http\Controllers\Admin\Order\PaymentMethodController;
-
 use App\Http\Controllers\APIController;
 // ====================== Admin Controller End ===========================
+
+// ====================== Admin User Order Start =========================
+use App\Http\Controllers\FrontEnd\UserOrderController;
+// ====================== Admin User Order End ===========================
 
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 use App\Http\Controllers\Merchant\MyBrandController;
+
 // Product Controller
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Product\SubCategoryController;
 use App\Http\Controllers\Merchant\Shop\ShopController;
-use App\Http\Controllers\FrontEnd\CartController;
 
-// Order Controller
+// Cart and Order Controller
 use App\Http\Controllers\Merchant\OrderController;
+use App\Http\Controllers\FrontEnd\CartController;
+use App\Http\Controllers\FrontEnd\CheckoutController;
 // Merchant Profile Controller
 use App\Http\Controllers\Merchant\ProfileController;
 
@@ -73,12 +78,19 @@ Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->n
 
 
 Auth::routes();
+// For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
+Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
+Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
+
+
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
 Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
 Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
 Route::get('commission/{id}', [APIController::class, 'getCommission']);
+Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 
 
 Route::prefix('admin')->group(function () {
