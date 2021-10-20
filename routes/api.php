@@ -47,3 +47,6 @@ Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagina
 // User API
 Route::post('/register', [UserAPIController::class, 'userRegister']);
 Route::post('/login', [UserAPIController::class, 'userLogin']);
+
+
+//Merchant API
