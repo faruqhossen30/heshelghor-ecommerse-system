@@ -28,7 +28,6 @@ use App\Http\Controllers\Merchant\ProfileController;
 // ====================== Admin User Order End ===========================
 
 // ======================  User Order Start =========================
-use App\Http\Controllers\FrontEnd\UserOrderController;
 use App\Http\Controllers\User\UserDashboardController;
 // ======================  User Order End ===========================
 
