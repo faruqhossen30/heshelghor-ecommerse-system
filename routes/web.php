@@ -22,9 +22,10 @@ use App\Http\Controllers\Admin\Order\PaymentMethodController;
 use App\Http\Controllers\APIController;
 // ====================== Admin Controller End ===========================
 
-// ====================== Admin User Order Start =========================
+// ======================  User Order Start =========================
 use App\Http\Controllers\FrontEnd\UserOrderController;
-// ====================== Admin User Order End ===========================
+use App\Http\Controllers\User\UserDashboardController;
+// ======================  User Order End ===========================
 
 // Marchant Controller
 use App\Http\Controllers\Admin\MarchantController;
@@ -84,6 +85,15 @@ Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage
 Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
 Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 
+// Four User
+Route::prefix('user')->group(function () {
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+        Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
+    });
+
+});
 
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');

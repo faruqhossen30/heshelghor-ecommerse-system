@@ -63,6 +63,7 @@ class UserOrderController extends Controller
                     'user_id'            => $userId,
                     'order_id'           => $order->id,
                     'product_id'         => $item->id,
+                    'merchant_id'        => $item->options->merchant_id,
                     'color'              => $item->options->color,
                     'size'               => $item->options->size,
                     'quantity'           => $item->qty,

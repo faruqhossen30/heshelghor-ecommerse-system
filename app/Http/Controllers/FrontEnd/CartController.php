@@ -22,9 +22,10 @@ class CartController extends Controller
                 'price'    => $product->price,
                 'weight'   => 550,
                 'options'  => [
-                    'color' => $request->color,
-                    'size' => $request->size,
-                    'photo'  => $product->photo,
+                    'merchant_id' => $product->author_id,
+                    'color'       => $request->color,
+                    'size'        => $request->size,
+                    'photo'       => $product->photo,
                     ]
             ]);
 
