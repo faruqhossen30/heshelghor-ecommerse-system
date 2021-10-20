@@ -1,56 +1,63 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // ====================== Admin Controller Srtart ===========================
-use App\Http\Controllers\Admin\AdminLoginController;
-use App\Http\Controllers\Admin\AdminHomeController;
-use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RolesController;
 // Admin Controller
 use App\Http\Controllers\Admin\BrandsController;
 // Location Controller
-use App\Http\Controllers\Admin\Location\DivisionController;
-use App\Http\Controllers\Admin\Location\DistrictController;
-use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\FrontEnd\CartController;
+use App\Http\Controllers\Product\BrandController;
+use App\Http\Controllers\Admin\MarchantController;
 // Attribute Controller
-use App\Http\Controllers\Admin\Attribute\ColorController;
-use App\Http\Controllers\Admin\Attribute\SizeController;
+use App\Http\Controllers\Merchant\OrderController;
+use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
-use App\Http\Controllers\Admin\Order\DeliverySystemController;
-use App\Http\Controllers\Admin\Order\PaymentMethodController;
-use App\Http\Controllers\APIController;
+use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Merchant\MyBrandController;
 // ====================== Admin Controller End ===========================
+
+
+// ====================== Admin User Order Start =========================
+use App\Http\Controllers\Merchant\ProfileController;
+// ====================== Admin User Order End ===========================
 
 // ======================  User Order Start =========================
 use App\Http\Controllers\FrontEnd\UserOrderController;
 use App\Http\Controllers\User\UserDashboardController;
 // ======================  User Order End ===========================
 
+
 // Marchant Controller
-use App\Http\Controllers\Admin\MarchantController;
-use App\Http\Controllers\Admin\MarchantHomeController;
-use App\Http\Controllers\Admin\MarchantRegisterController;
-use App\Http\Controllers\Merchant\MyBrandController;
-
-// Product Controller
-use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\CategoryController;
-use App\Http\Controllers\Product\BrandController;
-use App\Http\Controllers\Product\SubCategoryController;
-use App\Http\Controllers\Merchant\Shop\ShopController;
-
-// Cart and Order Controller
-use App\Http\Controllers\Merchant\OrderController;
-use App\Http\Controllers\FrontEnd\CartController;
 use App\Http\Controllers\FrontEnd\CheckoutController;
-// Merchant Profile Controller
-use App\Http\Controllers\Merchant\ProfileController;
-
-// Front-End Controller
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
+
+// Product Controller
+use App\Http\Controllers\Admin\MarchantHomeController;
+use App\Http\Controllers\FrontEnd\UserOrderController;
+use App\Http\Controllers\Merchant\Shop\ShopController;
+use App\Http\Controllers\Product\SubCategoryController;
+use App\Http\Controllers\Admin\Attribute\SizeController;
+
+// Cart and Order Controller
+use App\Http\Controllers\Admin\Attribute\ColorController;
+use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\Admin\MarchantRegisterController;
+// Merchant Profile Controller
 use App\Http\Controllers\FrontEnd\SingleProductController;
+
+// Front-End Controller
+use App\Http\Controllers\Admin\Location\DistrictController;
+use App\Http\Controllers\Admin\Location\DivisionController;
+use App\Http\Controllers\Admin\Order\PaymentMethodController;
+use App\Http\Controllers\Admin\Order\DeliverySystemController;
 
 
 /*
@@ -152,5 +159,4 @@ Route::prefix('merchant')->group(function () {
         // Profile
         Route::resource('merchantprofile', ProfileController::class);
     });
-
 });
