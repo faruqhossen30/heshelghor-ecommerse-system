@@ -22,9 +22,16 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Merchant\MyBrandController;
 // ====================== Admin Controller End ===========================
 
+
 // ====================== Admin User Order Start =========================
 use App\Http\Controllers\Merchant\ProfileController;
 // ====================== Admin User Order End ===========================
+
+// ======================  User Order Start =========================
+use App\Http\Controllers\FrontEnd\UserOrderController;
+use App\Http\Controllers\User\UserDashboardController;
+// ======================  User Order End ===========================
+
 
 // Marchant Controller
 use App\Http\Controllers\Product\CategoryController;
@@ -85,6 +92,15 @@ Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage
 Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
 Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 
+// Four User
+Route::prefix('user')->group(function () {
+
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+        Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
+    });
+
+});
 
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
