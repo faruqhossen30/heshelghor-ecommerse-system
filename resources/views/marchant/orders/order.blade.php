@@ -33,11 +33,14 @@
                                                 <label class="form-check-label" for="productlistCheck">&nbsp;</label>
                                             </div>
                                         </th>
-                                        <th class="all">SN</th>
                                         <th class="all">Order No</th>
+                                        <th>Billing Name</th>
                                         <th>Address</th>
-                                        <th>Description</th>
-                                        <th>Created at</th>
+                                        <th>QTY</th>
+                                        <th>Price</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                         {{-- <th style="width: 85px;">Action</th> --}}
                                     </tr>
                                 </thead>
@@ -45,7 +48,7 @@
                                     @php
                                         $serial = 1;
                                     @endphp
-
+                                    @foreach ($orderItems as $item)
                                     <tr>
                                         <td>
                                             <div class="form-check mb-0 font-16">
@@ -54,40 +57,40 @@
                                             </div>
                                         </td>
                                         <td>
-                                            11
+                                            <h5 class="m-0 d-inline-block align-middle">{{$item->order->order_no}}</h5>
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">shop name</a></h5>
+                                            {{$item->deliveryaddress->address}}
                                         </td>
                                         <td>
-                                            sdfsdf
-                                        </td>
-                                        <td>
-                                            sdfsdf
-                                        </td>
-                                        <td>
-                                            {{-- {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }} --}}
+                                            {{$item->product->title}}
                                         </td>
 
-                                        {{-- <td>
-                                            <ul class="list-inline table-action m-0">
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.edit', $category->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
+                                        <td>
+                                            {{$item->quantity}}
+                                        </td>
+                                        <td>
+                                            ৳{{$item->price}}
+                                        </td>
+                                        <td>
+                                            @if ($item->status == 0)
+                                                <span class="badge bg-danger">Pending</span></div>
+                                            @else
+                                                <span class="badge badge-soft-success">Aproved</span></div>
+                                            @endif
+                                        </td>
 
-                                                    <form action="{{route('category.destroy', $category->id)}}" method="post" >
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </td> --}}
+                                        <td>
+                                            {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-sm">View</a>
+                                        </td>
+
+
                                     </tr>
+                                    @endforeach
+
 
 
                                 </tbody>

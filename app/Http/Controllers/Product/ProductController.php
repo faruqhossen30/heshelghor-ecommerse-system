@@ -95,16 +95,21 @@ class ProductController extends Controller
 
             $images = [];
             $i = 0;
-            foreach($request->file('image') as $image){
+            $sliderimage = $request->file('image');
 
-                $fileExtention = $image->getClientOriginalExtension();
-                $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-                Image::make($image)->save(public_path('uploads/products/') . $fileName);
+            if($sliderimage){
+                foreach($request->file('image') as $image){
 
-                $images[] = $fileName;
-                $i++;
+                    $fileExtention = $image->getClientOriginalExtension();
+                    $fileName = hexdec(uniqid()) . '.' . $fileExtention;
+                    Image::make($image)->save(public_path('uploads/products/') . $fileName);
 
-            };
+                    $images[] = $fileName;
+                    $i++;
+
+                };
+            }
+
 
 
         // return $request->all();

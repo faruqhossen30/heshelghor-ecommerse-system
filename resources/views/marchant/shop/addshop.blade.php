@@ -48,7 +48,7 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Shop Name: </label>
                                                             <div class="col-md-10">
-                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name">
+                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name" value="{{old('name')}}">
                                                                 <div class="text-danger">
                                                                     @error('name')
                                                                     <span>{{ $message }}</span>
@@ -60,7 +60,7 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="addressID">Shop Address: </label>
                                                             <div class="col-md-10">
-                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " placeholder="address">
+                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " placeholder="address" value="{{old('address')}}">
                                                                 <div class="text-danger">
                                                                     @error('address')
                                                                     <span>{{ $message }}</span>
@@ -74,7 +74,7 @@
                                                                 for="example-textarea">Shop Description:</label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
-                                                                    rows="5" placeholder="Optional"></textarea>
+                                                                    rows="5" placeholder="Optional">{{old('description')}}</textarea>
                                                                 <div class="text-danger">
                                                                     @error('description')
                                                                     <span>{{ $message }}</span>

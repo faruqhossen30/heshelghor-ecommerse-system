@@ -18,9 +18,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::all();
+        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress')->get();
         // return $orderItems;
-        return view('marchant.orders.order');
+        return view('marchant.orders.order', compact('orderItems'));
     }
 
     public function show()

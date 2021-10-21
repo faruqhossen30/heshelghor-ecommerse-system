@@ -37,7 +37,7 @@
                                                     class="text-danger">*</span></label>
                                             <input required type="text" name="title" id="product-name"
                                                 class="form-control @error('title') is-invalid @enderror"
-                                                placeholder="Example: Apple iMac">
+                                                placeholder="Example: Apple iMac" value="{{ old('title') }}">
                                             <div class="text-danger">
                                                 @error('title')
                                                     <span>{{ $message }}</span>
@@ -135,8 +135,14 @@
                                         <div class="mb-3">
                                             <label for="retularPrice" class="form-label">Regular Price<span
                                                     class="text-danger">*</span></label>
-                                            <input name="regular_price" type="number" class="form-control"
-                                                id="retularPrice" placeholder="Regular Price">
+                                            <input name="regular_price" type="number" class="form-control @error('regular_price') is-invalid @enderror"
+                                                id="retularPrice" placeholder="Regular Price" value="{{ old('regular_price') }}">
+
+                                                <div class="text-danger">
+                                                    @error('regular_price')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -160,7 +166,7 @@
                                             <label for="price" class="form-label">Price<span
                                                     class="text-danger">*</span></label>
                                             <input readonly name="price" type="text"
-                                                class="form-control @error('category_id') is-invalid @enderror" id="price"
+                                                class="form-control @error('price') is-invalid @enderror" id="price"
                                                 placeholder="Price">
                                         </div>
                                     </div>
@@ -168,16 +174,28 @@
                                         <div class="mb-3">
                                             <label for="quantity" class="form-label">Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity" type="number" class="form-control" id="quantity"
-                                                placeholder="Enter Quantity">
+                                            <input name="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity"
+                                                placeholder="Enter Quantity" value="{{ old('quantity') }}">
+
+                                                <div class="text-danger">
+                                                    @error('quantity')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantity" class="form-label">Alert Quantity<span
+                                            <label for="quantityAlerm" class="form-label">Alert Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity_alert" type="text" class="form-control" id="quantity"
-                                                placeholder="Enter Quantity">
+                                            <input name="quantity_alert" type="text" class="form-control @error('quantity_alert') is-invalid @enderror" id="quantityAlerm"
+                                                placeholder="Enter Quantity" value="{{ old('quantity_alert') }}">
+
+                                                <div class="text-danger">
+                                                    @error('quantity_alert')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +207,7 @@
                                             class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
                                         class="form-control @error('description') is-invalid @enderror" rows="3"
-                                        placeholder="Please enter comment"></textarea>
+                                        placeholder="Please enter comment">{{old('description')}}</textarea>
                                     <div class="text-danger">
                                         @error('description')
                                             <span>{{ $message }}</span>
@@ -202,7 +220,7 @@
                                     <label for="product-summary" class="form-label">Product Summary</label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror"
-                                        id="product-summary" rows="5" placeholder="Promotion short description "></textarea>
+                                        id="product-summary" rows="5" placeholder="Promotion short description ">{{old('short_description')}}</textarea>
                                     <div class="text-danger">
                                         @error('short_description')
                                             <span>{{ $message }}</span>
