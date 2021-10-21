@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         $orders = Order::with('itemProducts')->get();
         $orderItems = OrderItem::all();
-        return $orderItems;
+        // return $orderItems;
         return view('marchant.orders.order');
     }
 

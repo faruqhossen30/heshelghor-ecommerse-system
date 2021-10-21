@@ -103,6 +103,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                         <p class="product-short-desc">
                             {{$product->short_description}}
                         </p>
+                        {{-- For Add To Cart --}}
                         <form action="{{route('cart.add', $product->id)}}" method="post">
                             @csrf
                             <div class="mb-3 row">

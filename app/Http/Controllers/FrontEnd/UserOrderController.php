@@ -17,6 +17,7 @@ class UserOrderController extends Controller
     {
         $userId = Auth::user()->id;
         $cartitems = Cart::content();
+        $subTotal = Cart::priceTotal();
 
         // return $cartitems;
 
@@ -37,12 +38,31 @@ class UserOrderController extends Controller
             'total_prodcut'      => $request->total_prodcut,
             'total_item'         => $request->total_item,
             'delivery_cost'      => $request->delivery_cost,
-            'product_price'      => $request->product_price,
+            'product_price'      => $subTotal,
             'total_price'        => $request->total_price,
             'delivery_system_id' => $request->delivery_system,
             'payment_method_id'  => $request->payment_method_id
         ]);
         if ($order) {
+
+            foreach($cartitems as $item){
+                OrderItem::create([
+                    'user_id'            => $userId,
+                    'merchant_id'        => $item->options->merchant_id,
+                    'order_id'           => $order->id,
+                    'product_id'         => $item->id,
+                    'regular_price'      => $item->options->regular_price,
+                    'discount'           => $item->options->discount,
+                    'price'              => $item->price,
+                    'quantity'           => $item->qty,
+                    'color'              => $item->options->color,
+                    'size'               => $item->options->size,
+                    'order_No'           => '2387123',
+                    'delivery_system_id' => $request->delivery_system,
+                    'payment_method_id'  => $request->payment_method_id
+                ]);
+            }
+
             DeliveryAddress::create([
                 'name'        => $request->name,
                 'user_id'     => $userId,
@@ -58,20 +78,7 @@ class UserOrderController extends Controller
                 'upazila_id'  => $request->upazila_id,
             ]);
 
-            foreach($cartitems as $item){
-                OrderItem::create([
-                    'user_id'            => $userId,
-                    'order_id'           => $order->id,
-                    'product_id'         => $item->id,
-                    'merchant_id'        => $item->options->merchant_id,
-                    'color'              => $item->options->color,
-                    'size'               => $item->options->size,
-                    'quantity'           => $item->qty,
-                    'order_No'           => '2387123',
-                    'delivery_system_id' => $request->delivery_system,
-                    'payment_method_id'  => $request->payment_method_id
-                ]);
-            }
+
 
             Cart::destroy();
 

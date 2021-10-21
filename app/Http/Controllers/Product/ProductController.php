@@ -79,7 +79,6 @@ class ProductController extends Controller
                 'sizes'             => 'required',
                 'shop_id'           => 'required',
                 'regular_price'     => 'required',
-                'sale_price'        => 'required',
                 'price'             => 'required',
                 'photo'             => 'required',
             ]);
@@ -126,7 +125,7 @@ class ProductController extends Controller
             'author_id'         => Auth::guard('marchant')->user()->id,
             'shop_id'           => $request->shop_id,
             'regular_price'     => $request->regular_price,
-            'sale_price'        => $request->sale_price,
+            'discount'          => $request->discount,
             // 'offer_price'       => $request->offer_price,
             'price'             => $request->price,
             'quantity'          => $request->quantity,

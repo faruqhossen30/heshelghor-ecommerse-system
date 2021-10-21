@@ -16,12 +16,15 @@ class CreateOrderItemsTable extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('merchant_id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('merchant_id');
+            $table->double('regular_price');
+            $table->double('discount');
+            $table->double('price');
+            $table->integer('quantity');
             $table->string('color');
             $table->string('size');
-            $table->integer('quantity');
             $table->string('order_No');
             $table->unsignedBigInteger('delivery_system_id');
             $table->unsignedBigInteger('payment_method_id');

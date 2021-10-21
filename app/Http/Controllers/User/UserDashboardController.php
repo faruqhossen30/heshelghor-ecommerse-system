@@ -21,9 +21,9 @@ class UserDashboardController extends Controller
     {
         $userId = Auth::user()->id;
 
-        $orders = Order::where('user_id', $userId)->get();
+        $orders = Order::with('user')->where('user_id', $userId)->get();
         // return $orders;
-        return view('user.userorder');
+        return view('user.userorder', compact('orders'));
 
     }
 }

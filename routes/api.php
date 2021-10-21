@@ -9,6 +9,8 @@ use App\Http\Controllers\API\ShopAPIController;
 use App\Http\Controllers\API\BrandAPIController;
 // User API
 use App\Http\Controllers\API\User\UserAPIController;
+// Location API
+use App\Http\Controllers\API\Location\LocationAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,13 @@ Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagina
 // User API
 Route::post('/register', [UserAPIController::class, 'userRegister']);
 Route::post('/login', [UserAPIController::class, 'userLogin']);
+
+// Location api
+Route::get('divisions', [LocationAPIController::class, 'divisions']); // all divission list
+Route::get('districts', [LocationAPIController::class, 'districts']); // all divission list
+Route::get('upazilas', [LocationAPIController::class, 'upazilas']); // all divission list
+Route::get('district/{id}', [LocationAPIController::class, 'getDristrictByDivision']); // all divission list
+Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict']); // all divission list
+
+
+

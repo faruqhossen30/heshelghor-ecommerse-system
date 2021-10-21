@@ -141,18 +141,19 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="sellPriceID" class="form-label">Sale Price <span
+                                            <label for="sellPriceID" class="form-label">Discount (%) <span
                                                     class="text-danger">*</span></label>
-                                            <input name="sale_price" type="number"
-                                                class="form-control @error('sale_price') is-invalid @enderror"
-                                                id="sellPriceID" placeholder="Enter amount">
+                                            <input name="discount" type="number" value="0" min="0" max="100"
+                                                class="form-control @error('discount') is-invalid @enderror"
+                                                id="sellPriceID" placeholder="Enter Discount">
                                             <div class="text-danger">
-                                                @error('sale_price')
+                                                @error('discount')
                                                     <span>{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="net_price" value="0">
 
                                     <div class="col-lg-12">
                                         <div class="mb-3">
@@ -184,7 +185,8 @@
 
                                 {{-- Description --}}
                                 <div class="mb-3">
-                                    <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
+                                    <label for="product-description" class="form-label">Product Description <span
+                                            class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
                                         class="form-control @error('description') is-invalid @enderror" rows="3"
                                         placeholder="Please enter comment"></textarea>
@@ -212,7 +214,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span></h5>
+                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span>
+                                            </h5>
                                             @foreach ($colors as $color)
                                                 <div class="form-check">
                                                     <input name="colors[]"
@@ -236,7 +239,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span></h5>
+                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span>
+                                            </h5>
                                             @foreach ($sizes as $size)
                                                 <div class="form-check">
                                                     <input name="sizes[]"
@@ -360,6 +364,78 @@
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
+    {{-- <script>
+        $(function() {
+            var category_id = $('select[name="category_id"]');
+            var subcategory_id = $('select[name="subcategory_id"]');
+
+            category_id.change(function() {
+                var id = category_id.val();
+                if (id) {
+                    subcategory_id.empty();
+                    subcategory_id.append(`<option value="">Please Select</option>`);
+                    $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
+                        if (data) {
+                            data.forEach(function(row) {
+                                subcategory_id.append(
+                                    `<option value="${row.id}"> ${row.name } </option>`);
+                            });
+                        }
+                    });
+                }
+
+            });
+
+            // For Price
+            var categoryCommission = 0;
+            var catCom = $('#catCom');
+
+            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
+                function() {
+                    var subCatID = subcategory_id.val();
+                    if (subcategory_id) {
+                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
+                            categoryCommission = data.commission;
+                            if (data) {
+                                catCom.text(`${data.commission}%`);
+                            }
+                        });
+                    };
+
+                });
+
+
+            var regular_price = $('input[name="regular_price"]');
+            var discount = $('input[name="discount"]');
+            var net_price = $('input[name="net_price"]');
+            var price = $('input[name="price"]');
+
+            // var regularPrice = regular_price.val();
+
+
+
+            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
+
+                var regularPrice = parseFloat(regular_price.val());
+                var disCount = parseFloat(discount.val());
+                var netPrice = parseFloat(net_price.val());
+
+                var some = regularPrice;
+                console.log(some);
+
+            });
+
+
+            function priceCalculate(){
+                var total = parseFloat(regular_price.val() ) + parseFloat( discount.val() )// + categoryCommission;
+                console.log(total);
+            }
+
+
+
+
+        })
+    </script> --}}
     <script>
         $(function() {
             var category_id = $('select[name="category_id"]');
@@ -372,7 +448,6 @@
                     subcategory_id.append(`<option value="">Please Select</option>`);
                     $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
                         if (data) {
-
                             data.forEach(function(row) {
                                 subcategory_id.append(
                                     `<option value="${row.id}"> ${row.name } </option>`);
@@ -384,45 +459,43 @@
             });
 
             // For Price
-            var saleprice = $('input[name="sale_price"]');
-            var price = $('input[name="price"]');
             var categoryCommission = 0;
             var catCom = $('#catCom');
 
+            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
+                function() {
+                    var subCatID = subcategory_id.val();
+                    if (subcategory_id) {
+                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
+                            categoryCommission = data.commission;
+                            if (data) {
+                                catCom.text(`${data.commission}%`);
 
-            $(document).ready(function() {
-                $(document).on('change click keyup select',
-                    'input[name="sale_price"], select[name="subcategory_id"]',
-                    function() {
-                        var subCatID = subcategory_id.val();
-                        if (subcategory_id) {
-                            $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
-                                categoryCommission = data.commission;
-                                if (data) {
-                                    catCom.text(`${data.commission}%`);
-                                }
-                                // console.log(data.commission);
-                            });
-                        };
+                            }
+                        });
+                    };
 
-                        // console.log(categoryCommission);
-                        calculatorFun();
+                });
 
-                        console.log(total);
-                    });
+
+            var regular_price = $('input[name="regular_price"]');
+            var discount = $('input[name="discount"]');
+            var net_price = $('input[name="net_price"]');
+            var price = $('input[name="price"]');
+
+
+            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function() {
+
+                var regularPrice = Number(regular_price.val());
+                var disCount = Number(discount.val());
+                var netPrice = Number(net_price.val());
+
+                var some = regularPrice + ((regularPrice * categoryCommission) / 100) - ((regularPrice *
+                    disCount) / 100);
+                $('#price').val(some);
+
             });
-
-            function calculatorFun() {
-                var lastSellPrice = parseInt(saleprice.val());
-                var total = lastSellPrice + (lastSellPrice * categoryCommission / 100);
-                price.val(total);
-            };
-
-
-
-
 
         })
     </script>
-
 @endpush

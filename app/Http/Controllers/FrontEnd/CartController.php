@@ -15,6 +15,7 @@ class CartController extends Controller
     {
         if($request->id){
             $product = Product::where('id', $id)->first();
+            // return $product;
             Cart::add([
                 'id'       => $id,
                 'name'     => $product->title,
@@ -22,10 +23,12 @@ class CartController extends Controller
                 'price'    => $product->price,
                 'weight'   => 550,
                 'options'  => [
-                    'merchant_id' => $product->author_id,
-                    'color'       => $request->color,
-                    'size'        => $request->size,
-                    'photo'       => $product->photo,
+                    'regular_price' => $product->regular_price,
+                    'discount'      => $product->discount,
+                    'merchant_id'   => $product->author_id,
+                    'color'         => $request->color,
+                    'size'          => $request->size,
+                    'photo'         => $product->photo,
                     ]
             ]);
 
