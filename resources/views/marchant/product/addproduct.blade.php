@@ -51,11 +51,8 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Category <span
-                                                    class="text-danger">*</span></label>
-                                            <select name="category_id"
-                                                class="form-control @error('category_id') is-invalid @enderror"
-                                                id="product-category">
+                                            <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
+                                            <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="product-category">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -363,64 +360,64 @@
     <script src="{{ asset('js/product.js') }}"></script>
     <script>
         $(function() {
-            var category_id = $('select[name="category_id"]');
-            var subcategory_id = $('select[name="subcategory_id"]');
+    var category_id = $('select[name="category_id"]');
+    var subcategory_id = $('select[name="subcategory_id"]');
 
-            category_id.change(function() {
-                var id = category_id.val();
-                if (id) {
-                    subcategory_id.empty();
-                    subcategory_id.append(`<option value="">Please Select</option>`);
-                    $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
-                        if (data) {
-                            data.forEach(function(row) {
-                                subcategory_id.append(
-                                    `<option value="${row.id}"> ${row.name } </option>`);
-                            });
-                        }
+    category_id.change(function() {
+        var id = category_id.val();
+        if (id) {
+            subcategory_id.empty();
+            subcategory_id.append(`<option value="">Please Select</option>`);
+            $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
+                if (data) {
+                    data.forEach(function(row) {
+                        subcategory_id.append(
+                            `<option value="${row.id}"> ${row.name } </option>`);
                     });
                 }
-
             });
+        }
 
-            // For Price
-            var categoryCommission = 0;
-            var catCom = $('#catCom');
+    });
 
-            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
-                function() {
-                    var subCatID = subcategory_id.val();
-                    if (subcategory_id) {
-                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
-                            categoryCommission = data.commission;
-                            if (data) {
-                                catCom.text(`${data.commission}%`);
+    // For Price
+    var categoryCommission = 0;
+    var catCom = $('#catCom');
 
-                            }
-                        });
-                    };
+    $(document).on('change keyup select', 'select[name = "subcategory_id"]',
+        function() {
+            var subCatID = subcategory_id.val();
+            if (subcategory_id) {
+                $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
+                    categoryCommission = data.commission;
+                    if (data) {
+                        catCom.text(`${data.commission}%`);
 
+                    }
                 });
+            };
+
+        });
 
 
-            var regular_price = $('input[name="regular_price"]');
-            var discount = $('input[name="discount"]');
-            var net_price = $('input[name="net_price"]');
-            var price = $('input[name="price"]');
+    var regular_price = $('input[name="regular_price"]');
+    var discount = $('input[name="discount"]');
+    var net_price = $('input[name="net_price"]');
+    var price = $('input[name="price"]');
 
-          
-            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
+  
+    $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
 
-                var regularPrice = Number(regular_price.val());
-                var disCount = Number(discount.val());
-                var netPrice = Number(net_price.val());
+        var regularPrice = Number(regular_price.val());
+        var disCount = Number(discount.val());
+        var netPrice = Number(net_price.val());
 
-                var some = regularPrice+((regularPrice*categoryCommission)/100)-((regularPrice*disCount)/100);
-                $('#price').val(some);
+        var some = regularPrice+((regularPrice*categoryCommission)/100)-((regularPrice*disCount)/100);
+        $('#price').val(some);
 
-            });
+    });
 
-        })
+})(jQuery)
     </script>
 
 @endpush

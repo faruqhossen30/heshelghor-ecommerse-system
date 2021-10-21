@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ProductAPIController;
 use App\Http\Controllers\API\AllListAPIController;
 use App\Http\Controllers\API\ShopAPIController;
 use App\Http\Controllers\API\BrandAPIController;
+use App\Http\Controllers\API\MerchantController;
 // User API
 use App\Http\Controllers\API\User\UserAPIController;
 
@@ -50,3 +51,15 @@ Route::post('/login', [UserAPIController::class, 'userLogin']);
 
 
 //Merchant API
+
+//register new merchant
+Route::post('/merchant/register', [MerchantController::class, 'register']);
+//login merchant
+Route::post('/merchant/login', [MerchantController::class, 'login']);
+//using middleware
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     Route::get('/profile', function (Request $request) {
+//         return auth()->user();
+//     });
+//     Route::post('/merchant/logout', [MerchantController::class, 'logout']);
+// });

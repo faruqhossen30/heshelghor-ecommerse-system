@@ -12,6 +12,8 @@ class Marchant extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'marchants';
+
     /**
      * The attributes that are mass assignable.
      *
