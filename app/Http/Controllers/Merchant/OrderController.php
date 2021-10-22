@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Merchant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Merchant\Order;
+use App\Models\Merchant\OrderItem;
 
 class OrderController extends Controller
 {
@@ -15,7 +17,10 @@ class OrderController extends Controller
     */
     public function index()
     {
-        return view('marchant.orders.order');
+        $orders = Order::with('itemProducts')->get();
+        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress')->get();
+        // return $orderItems;
+        return view('marchant.orders.order', compact('orderItems'));
     }
 
     public function show()

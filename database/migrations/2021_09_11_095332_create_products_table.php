@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
 
             // price
             $table->double('regular_price');
-            $table->double('sale_price');
+            $table->double('discount')->nullable();
             $table->double('price');
             $table->double('quantity');
             $table->double('quantity_alert');

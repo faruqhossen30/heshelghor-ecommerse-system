@@ -40,7 +40,7 @@
                     <a href="#language">Account</a>
                     <ul class="dropdown-box">
                         <li>
-                            <a href="#USD">Dashboard</a>
+                            <a href="{{route('user.dashboard')}}">Dashboard</a>
                         </li>
                         <li>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

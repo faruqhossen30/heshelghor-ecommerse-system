@@ -37,7 +37,7 @@
                                                     class="text-danger">*</span></label>
                                             <input required type="text" name="title" id="product-name"
                                                 class="form-control @error('title') is-invalid @enderror"
-                                                placeholder="Example: Apple iMac">
+                                                placeholder="Example: Apple iMac" value="{{ old('title') }}">
                                             <div class="text-danger">
                                                 @error('title')
                                                     <span>{{ $message }}</span>
@@ -51,8 +51,11 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
-                                            <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="product-category">
+                                            <label for="product-name" class="form-label">Category <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="category_id"
+                                                class="form-control @error('category_id') is-invalid @enderror"
+                                                id="product-category">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -130,19 +133,25 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="regular-price" class="form-label">Regular Price<span
+                                            <label for="retularPrice" class="form-label">Regular Price<span
                                                     class="text-danger">*</span></label>
-                                            <input name="regular_price" type="number" class="form-control"
-                                                id="regular-price" placeholder="Regular Price">
+                                            <input name="regular_price" type="number" class="form-control @error('regular_price') is-invalid @enderror"
+                                                id="retularPrice" placeholder="Regular Price" value="{{ old('regular_price') }}">
+
+                                                <div class="text-danger">
+                                                    @error('regular_price')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="discount-price" class="form-label">Discount (%) <span
+                                            <label for="sellPriceID" class="form-label">Discount (%) <span
                                                     class="text-danger">*</span></label>
-                                            <input name="discount" type="number" value="0"
+                                            <input name="discount" type="number" value="0" min="0" max="100"
                                                 class="form-control @error('discount') is-invalid @enderror"
-                                                id="discount-price" placeholder="Enter Discount">
+                                                id="sellPriceID" placeholder="Enter Discount">
                                             <div class="text-danger">
                                                 @error('discount')
                                                     <span>{{ $message }}</span>
@@ -157,7 +166,7 @@
                                             <label for="price" class="form-label">Price<span
                                                     class="text-danger">*</span></label>
                                             <input readonly name="price" type="text"
-                                                class="form-control @error('category_id') is-invalid @enderror" id="price"
+                                                class="form-control @error('price') is-invalid @enderror" id="price"
                                                 placeholder="Price">
                                         </div>
                                     </div>
@@ -165,16 +174,28 @@
                                         <div class="mb-3">
                                             <label for="quantity" class="form-label">Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity" type="number" class="form-control" id="quantity"
-                                                placeholder="Enter Quantity">
+                                            <input name="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity"
+                                                placeholder="Enter Quantity" value="{{ old('quantity') }}">
+
+                                                <div class="text-danger">
+                                                    @error('quantity')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantity" class="form-label">Alert Quantity<span
+                                            <label for="quantityAlerm" class="form-label">Alert Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity_alert" type="text" class="form-control" id="quantity"
-                                                placeholder="Enter Quantity">
+                                            <input name="quantity_alert" type="text" class="form-control @error('quantity_alert') is-invalid @enderror" id="quantityAlerm"
+                                                placeholder="Enter Quantity" value="{{ old('quantity_alert') }}">
+
+                                                <div class="text-danger">
+                                                    @error('quantity_alert')
+                                                        <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -182,10 +203,11 @@
 
                                 {{-- Description --}}
                                 <div class="mb-3">
-                                    <label for="product-description" class="form-label">Product Description <span class="text-danger">*</span></label>
+                                    <label for="product-description" class="form-label">Product Description <span
+                                            class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
                                         class="form-control @error('description') is-invalid @enderror" rows="3"
-                                        placeholder="Please enter comment"></textarea>
+                                        placeholder="Please enter comment">{{old('description')}}</textarea>
                                     <div class="text-danger">
                                         @error('description')
                                             <span>{{ $message }}</span>
@@ -198,7 +220,7 @@
                                     <label for="product-summary" class="form-label">Product Summary</label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror"
-                                        id="product-summary" rows="5" placeholder="Promotion short description "></textarea>
+                                        id="product-summary" rows="5" placeholder="Promotion short description ">{{old('short_description')}}</textarea>
                                     <div class="text-danger">
                                         @error('short_description')
                                             <span>{{ $message }}</span>
@@ -210,7 +232,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span></h5>
+                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span>
+                                            </h5>
                                             @foreach ($colors as $color)
                                                 <div class="form-check">
                                                     <input name="colors[]"
@@ -234,7 +257,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mt-1 card card-body">
-                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span></h5>
+                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span>
+                                            </h5>
                                             @foreach ($sizes as $size)
                                                 <div class="form-check">
                                                     <input name="sizes[]"
@@ -282,7 +306,7 @@
                                 <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">
                                         <h4 class="header-title">Product Slider Image</h4>
-                                        <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+                                        <p class="sub-header m-0">Image size should be ( width: 800px height: 800px )</p>
                                     </label>
                                     <input name="image[]" class="form-control @error('image') is-invalid @enderror"
                                         type="file" id="formFileMultiple" multiple>
@@ -358,66 +382,138 @@
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
-    <script>
+    {{-- <script>
         $(function() {
-    var category_id = $('select[name="category_id"]');
-    var subcategory_id = $('select[name="subcategory_id"]');
+            var category_id = $('select[name="category_id"]');
+            var subcategory_id = $('select[name="subcategory_id"]');
 
-    category_id.change(function() {
-        var id = category_id.val();
-        if (id) {
-            subcategory_id.empty();
-            subcategory_id.append(`<option value="">Please Select</option>`);
-            $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
-                if (data) {
-                    data.forEach(function(row) {
-                        subcategory_id.append(
-                            `<option value="${row.id}"> ${row.name } </option>`);
+            category_id.change(function() {
+                var id = category_id.val();
+                if (id) {
+                    subcategory_id.empty();
+                    subcategory_id.append(`<option value="">Please Select</option>`);
+                    $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
+                        if (data) {
+                            data.forEach(function(row) {
+                                subcategory_id.append(
+                                    `<option value="${row.id}"> ${row.name } </option>`);
+                            });
+                        }
                     });
                 }
+
             });
-        }
 
-    });
+            // For Price
+            var categoryCommission = 0;
+            var catCom = $('#catCom');
 
-    // For Price
-    var categoryCommission = 0;
-    var catCom = $('#catCom');
+            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
+                function() {
+                    var subCatID = subcategory_id.val();
+                    if (subcategory_id) {
+                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
+                            categoryCommission = data.commission;
+                            if (data) {
+                                catCom.text(`${data.commission}%`);
+                            }
+                        });
+                    };
 
-    $(document).on('change keyup select', 'select[name = "subcategory_id"]',
-        function() {
-            var subCatID = subcategory_id.val();
-            if (subcategory_id) {
-                $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
-                    categoryCommission = data.commission;
-                    if (data) {
-                        catCom.text(`${data.commission}%`);
-
-                    }
                 });
-            };
-
-        });
 
 
-    var regular_price = $('input[name="regular_price"]');
-    var discount = $('input[name="discount"]');
-    var net_price = $('input[name="net_price"]');
-    var price = $('input[name="price"]');
+            var regular_price = $('input[name="regular_price"]');
+            var discount = $('input[name="discount"]');
+            var net_price = $('input[name="net_price"]');
+            var price = $('input[name="price"]');
 
-  
-    $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
+            // var regularPrice = regular_price.val();
 
-        var regularPrice = Number(regular_price.val());
-        var disCount = Number(discount.val());
-        var netPrice = Number(net_price.val());
 
-        var some = regularPrice+((regularPrice*categoryCommission)/100)-((regularPrice*disCount)/100);
-        $('#price').val(some);
 
-    });
+            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
 
-})(jQuery)
+                var regularPrice = parseFloat(regular_price.val());
+                var disCount = parseFloat(discount.val());
+                var netPrice = parseFloat(net_price.val());
+
+                var some = regularPrice;
+                console.log(some);
+
+            });
+
+
+            function priceCalculate(){
+                var total = parseFloat(regular_price.val() ) + parseFloat( discount.val() )// + categoryCommission;
+                console.log(total);
+            }
+
+
+
+
+        })
+    </script> --}}
+    <script>
+        $(function() {
+            var category_id = $('select[name="category_id"]');
+            var subcategory_id = $('select[name="subcategory_id"]');
+
+            category_id.change(function() {
+                var id = category_id.val();
+                if (id) {
+                    subcategory_id.empty();
+                    subcategory_id.append(`<option value="">Please Select</option>`);
+                    $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
+                        if (data) {
+                            data.forEach(function(row) {
+                                subcategory_id.append(
+                                    `<option value="${row.id}"> ${row.name } </option>`);
+                            });
+                        }
+                    });
+                }
+
+            });
+
+            // For Price
+            var categoryCommission = 0;
+            var catCom = $('#catCom');
+
+            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
+                function() {
+                    var subCatID = subcategory_id.val();
+                    if (subcategory_id) {
+                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
+                            categoryCommission = data.commission;
+                            if (data) {
+                                catCom.text(`${data.commission}%`);
+
+                            }
+                        });
+                    };
+
+                });
+
+
+            var regular_price = $('input[name="regular_price"]');
+            var discount = $('input[name="discount"]');
+            var net_price = $('input[name="net_price"]');
+            var price = $('input[name="price"]');
+
+
+            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function() {
+
+                var regularPrice = Number(regular_price.val());
+                var disCount = Number(discount.val());
+                var netPrice = Number(net_price.val());
+
+                var some = regularPrice + ((regularPrice * categoryCommission) / 100) - ((regularPrice *
+                    disCount) / 100);
+                $('#price').val(some);
+
+            });
+
+        })
     </script>
-
 @endpush
