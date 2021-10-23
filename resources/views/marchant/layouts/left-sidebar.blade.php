@@ -148,7 +148,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('marchant.order.show')}}">Single Order</a>
+                                {{-- <a href="{{route('marchant.order.show')}}">Single Order</a> --}}
                             </li>
 
                         </ul>

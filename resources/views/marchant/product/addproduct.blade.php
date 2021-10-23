@@ -306,7 +306,7 @@
                                 <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">
                                         <h4 class="header-title">Product Slider Image</h4>
-                                        <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+                                        <p class="sub-header m-0">Image size should be ( width: 800px height: 800px )</p>
                                     </label>
                                     <input name="image[]" class="form-control @error('image') is-invalid @enderror"
                                         type="file" id="formFileMultiple" multiple>

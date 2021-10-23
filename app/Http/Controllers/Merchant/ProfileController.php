@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Auth\Marchant;
+use App\Models\Merchant\MerchantProfile;
 
 class ProfileController extends Controller
 {
@@ -30,7 +31,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('marchant.profile.upload');
     }
 
     /**
@@ -41,7 +42,31 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merchantId = Auth::guard('marchant')->user()->id;
+
+
+
+        // return $merchantId;
+        $request->validate([
+            'profile_photo'      => 'required|mimes:png,jpg,gif,bmp|max:2048',
+            'nid_no'             => 'required',
+            'tradelicense_no'    => 'max:50',
+            'tin_no'             => 'max:50',
+            'nid_photo'          => 'required|mimes:png,jpg,gif,bmp|max:2048',
+            'tradelicense_photo' => 'mimes:png,jpg,gif,bmp|max:2048',
+            'tin_photo'          => 'mimes:png,jpg,gif,bmp|max:2048'
+        ]);
+
+        MerchantProfile::create([
+            'merchant_id'        => $merchantId,
+            'photo'              => $request->profile_photo,
+            'nid_no'             => $request->nid_no,
+            'tradelicense_no'    => $request->tradelicense_no,
+            'tin_no'             => $request->tin_no,
+            'nid_photo'          => $request->nid_photo,
+            'tradelicense_photo' => $request->name,
+            'tin_photo'          => $request->tradelicense_photo
+        ]);
     }
 
     /**

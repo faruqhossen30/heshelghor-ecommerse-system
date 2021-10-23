@@ -97,6 +97,7 @@ Route::prefix('user')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
+        Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
     });
 
 });
@@ -153,8 +154,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('mybrand', [MyBrandController::class, 'index'])->name('myaddedbrand');
         Route::resource('shop', ShopController::class);
         // Order
-        Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
-        Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
+        Route::get('orders', [OrderController::class, 'index'])->name('marchant.order.index');
+        Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');
+        Route::get('order/acceptstatus/{id}', [OrderController::class, 'orderAccept'])->name('marchant.order.accept');
         // Profile
         Route::resource('merchantprofile', ProfileController::class);
     });

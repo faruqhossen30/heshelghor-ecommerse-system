@@ -5,6 +5,7 @@ namespace App\Models\Merchant;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin\Order\DeliveryAddress;
 
 class Order extends Model
 {
@@ -22,6 +23,10 @@ class Order extends Model
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
+    public function deliveryaddress()
+    {
+        return $this->hasOne(DeliveryAddress::class, 'order_id', 'id');
+    }
 
 
 }
