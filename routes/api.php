@@ -80,7 +80,7 @@ Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict
 // Merchant Order Items api
 Route::prefix('user')->group(function () {
     Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
-    Route::post('createitem', [UserOrderAPIController::class, 'createOrderitemAddress']);
+    Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
 });
 
 //Order Api
