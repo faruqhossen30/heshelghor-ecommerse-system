@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="p-2">
-                                    <form method="POST" action="{{ route('merchantprofile.store') }}"
+                                    <form method="POST" action="{{route('merchant.profile.store')}}"
                                         enctype="multipart/form-data" class="form-horizontal" role="form">
                                         @csrf
                                         <div class="mb-2 row">

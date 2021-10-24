@@ -165,7 +165,7 @@
                         <ul class="nav-second-level">
 
                             <li>
-                                <a href="{{route('merchantprofile.index')}}">My Profile</a>
+                                <a href="{{route('merchant.profile')}}">My Profile</a>
                             </li>
                             <li>
                                 <a href="#">Update Profile</a>

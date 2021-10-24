@@ -51,6 +51,7 @@ use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 // Merchant Profile Controller
 use App\Http\Controllers\FrontEnd\SingleProductController;
+use App\Http\Controllers\Merchant\MerchatProfileController;
 
 // Front-End Controller
 use App\Http\Controllers\Admin\Location\DistrictController;
@@ -158,6 +159,8 @@ Route::prefix('merchant')->group(function () {
         Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');
         Route::get('order/acceptstatus/{id}', [OrderController::class, 'orderAccept'])->name('marchant.order.accept');
         // Profile
-        Route::resource('merchantprofile', ProfileController::class);
+        Route::get('profile', [MerchatProfileController::class, 'index'])->name('merchant.profile');
+        Route::get('profile/create', [MerchatProfileController::class, 'create'])->name('merchant.profile.create');
+        Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
     });
 });

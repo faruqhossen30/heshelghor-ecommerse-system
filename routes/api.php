@@ -9,6 +9,7 @@ use App\Http\Controllers\API\ShopAPIController;
 use App\Http\Controllers\API\BrandAPIController;
 // User API
 use App\Http\Controllers\API\User\UserAPIController;
+use App\Http\Controllers\API\User\UserOrderAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 
@@ -57,5 +58,10 @@ Route::get('upazilas', [LocationAPIController::class, 'upazilas']); // all divis
 Route::get('district/{id}', [LocationAPIController::class, 'getDristrictByDivision']); // all divission list
 Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict']); // all divission list
 
+// Merchant Order Items api
+Route::prefix('user')->group(function () {
+    Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
+    Route::post('createitem', [UserOrderAPIController::class, 'createOrderitemAddress']);
+});
 
 
