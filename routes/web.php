@@ -51,6 +51,7 @@ use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 // Merchant Profile Controller
 use App\Http\Controllers\FrontEnd\SingleProductController;
+use App\Http\Controllers\Merchant\MerchatProfileController;
 
 // Front-End Controller
 use App\Http\Controllers\Admin\Location\DistrictController;
@@ -97,6 +98,7 @@ Route::prefix('user')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
+        Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
     });
 
 });
@@ -153,9 +155,12 @@ Route::prefix('merchant')->group(function () {
         Route::get('mybrand', [MyBrandController::class, 'index'])->name('myaddedbrand');
         Route::resource('shop', ShopController::class);
         // Order
-        Route::get('order', [OrderController::class, 'index'])->name('marchant.order.index');
-        Route::get('show', [OrderController::class, 'show'])->name('marchant.order.show');
+        Route::get('orders', [OrderController::class, 'index'])->name('marchant.order.index');
+        Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');
+        Route::get('order/acceptstatus/{id}', [OrderController::class, 'orderAccept'])->name('marchant.order.accept');
         // Profile
-        Route::resource('merchantprofile', ProfileController::class);
+        Route::get('profile', [MerchatProfileController::class, 'index'])->name('merchant.profile');
+        Route::get('profile/create', [MerchatProfileController::class, 'create'])->name('merchant.profile.create');
+        Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
     });
 });

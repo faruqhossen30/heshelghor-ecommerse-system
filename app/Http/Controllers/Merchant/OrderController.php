@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -17,14 +18,29 @@ class OrderController extends Controller
     */
     public function index()
     {
+        $merchantId = Auth::guard('marchant')->user()->id;
         $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress')->get();
+        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress')->where('merchant_id', $merchantId)->get();
         // return $orderItems;
-        return view('marchant.orders.order', compact('orderItems'));
+        return view('marchant.order.orders', compact('orderItems'));
     }
 
-    public function show()
+    public function orderItem($id)
     {
-        return view('marchant.orders.show');
+        $orderItem = OrderItem::with('product', 'deliveryaddress')->where('id', $id)->first();
+        // return $orderItem;
+        return view('marchant.order.orderitem', compact('orderItem'));
     }
+
+    // Order Accept
+    public function orderAccept($id)
+    {
+        $orderItem = OrderItem::where('id', $id)->update([
+            'order_status' => true
+        ]);
+
+        return redirect()->back();
+    }
+
+
 }

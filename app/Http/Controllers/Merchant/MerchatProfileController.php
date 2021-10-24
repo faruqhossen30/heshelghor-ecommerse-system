@@ -3,19 +3,14 @@
 namespace App\Http\Controllers\Merchant;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Auth\Marchant;
 use App\Models\Merchant\MerchantProfile;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Image;
 
-class ProfileController extends Controller
+class MerchatProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $merchantId = Auth::guard('marchant')->user()->id;
@@ -24,22 +19,11 @@ class ProfileController extends Controller
         return view('marchant.profile.merchantprofile', compact('merchant'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('marchant.profile.upload');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $merchantId = Auth::guard('marchant')->user()->id;
@@ -57,6 +41,32 @@ class ProfileController extends Controller
             'tin_photo'          => 'mimes:png,jpg,gif,bmp|max:2048'
         ]);
 
+        // For Profile Picture
+        $profile_photo = $request->file('profile_photo');
+        if ($profile_photo) {
+            $profile_photofileExtention = $profile_photo->getClientOriginalExtension();
+            $profile_photofileName = date('Ymdhis') . '.' . $profile_photofileExtention;
+            Image::make($profile_photo)->save(public_path('uploads/merchant/profile') . $profile_photofileName);
+        }
+        // NID Photo
+        $nid_photo = $request->file('nid_photo');
+        if ($nid_photo) {
+            $nid_photoileExtention = $nid_photo->getClientOriginalExtension();
+            $nid_photofileName = date('Ymdhis') . '.' . $nid_photoileExtention;
+            Image::make($nid_photo)->save(public_path('uploads/merchant/nid') . $nid_photofileName);
+        }
+
+
+        // For Profile Picture
+        // $profile_photo = $request->file('profile_photo');
+        // if ($profile_photo) {
+        //     $fileExtention = $profile_photo->getClientOriginalExtension();
+        //     $profile_photofileName = date('Ymdhis') . '.' . $fileExtention;
+        //     Image::make($profile_photo)->save(public_path('uploads/merchant/profile') . $profile_photofileName);
+        // }
+
+
+
         MerchantProfile::create([
             'merchant_id'        => $merchantId,
             'photo'              => $request->profile_photo,
@@ -67,50 +77,5 @@ class ProfileController extends Controller
             'tradelicense_photo' => $request->name,
             'tin_photo'          => $request->tradelicense_photo
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -23,12 +23,24 @@ class CreateOrderItemsTable extends Migration
             $table->double('discount');
             $table->double('price');
             $table->integer('quantity');
+            $table->double('merchant_price');
+            $table->double('merchant_price_total');
+            $table->double('delivery_cost');
+            $table->double('total_delivery_cost');
             $table->string('color');
             $table->string('size');
-            $table->string('order_No');
+            $table->string('order_no');
             $table->unsignedBigInteger('delivery_system_id');
             $table->unsignedBigInteger('payment_method_id');
-            $table->boolean('status')->default(false);
+            $table->boolean('order_status')->default(false);
+            $table->boolean('merchant_status')->default(false);
+            $table->boolean('colect_pointmanager_status')->default(false);
+            $table->boolean('colect_deliveryman_status')->default(false);
+            $table->boolean('vehicle_status')->default(false);
+            $table->boolean('delivery_pointmanager_status')->default(false);
+            $table->boolean('deliveryman_status')->default(false);
+            $table->boolean('user_accept_status')->default(false);
+            $table->string('order_pin_no');
             $table->timestamps();
         });
     }

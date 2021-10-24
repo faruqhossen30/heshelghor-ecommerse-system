@@ -73,7 +73,7 @@
                                             ৳{{$item->price}}
                                         </td>
                                         <td>
-                                            @if ($item->status == 0)
+                                            @if ($item->order_status == 0)
                                                 <span class="badge bg-danger">Pending</span></div>
                                             @else
                                                 <span class="badge badge-soft-success">Aproved</span></div>
@@ -84,15 +84,11 @@
                                             {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
+                                            <a href="{{route('marchant.order.show', $item->id)}}" class="btn btn-primary btn-sm">View</a>
                                         </td>
-
 
                                     </tr>
                                     @endforeach
-
-
-
                                 </tbody>
                             </table>
                         </div>

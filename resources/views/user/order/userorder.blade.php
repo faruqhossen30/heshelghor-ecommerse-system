@@ -119,7 +119,7 @@
                                             <td>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item">
-                                                        <a href="javascript:void(0);" class="btn btn-success btn-sm"> View</a>
+                                                        <a href="{{route('user.order.show', $order->id)}}" class="btn btn-success btn-sm"> View</a>
                                                     </li>
 
                                                 </ul>

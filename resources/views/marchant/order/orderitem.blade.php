@@ -10,9 +10,9 @@
                     <h4 class="page-title">Order Detail</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Product List</li>
+                            <li class="breadcrumb-item active">Order Details</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,15 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header border-bottom bg-transparent">
-                            <h5 class="header-title mb-0">Order #MN2048</h5>
+                            <h5 class="header-title mb-0">Order Detaild: {{$orderItem->order_no}}</h5>
+                            @if ($orderItem->order_status == 1)
+                                <span>accep</span>
+                                <span><button type="button" class="btn btn-success btn-sm float-end">Approved !</button></span>
+                            @endif
+                            @if ($orderItem->order_status == 0)
+                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end">Accept</a></span>
+                            @endif
+
                         </div>
                         <div class="card-body">
                             <div>
@@ -39,7 +47,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">ID No.</p>
                                                 <h5 class="mt-0">
-                                                    #MN2048
+                                                    {{$orderItem->order_no}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -53,7 +61,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Billing Name</p>
                                                 <h5 class="mt-0">
-                                                    Charles Wilson
+                                                    {{$orderItem->deliveryaddress->address}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -67,7 +75,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Date</p>
                                                 <h5 class="mt-0">
-                                                    Apr 16 2020 <small class="text-muted">10:29 PM</small>
+                                                    {{$orderItem->created_at}} <small class="text-muted">10:29 PM</small>
                                                 </h5>
                                             </div>
                                         </div>
@@ -90,7 +98,7 @@
                             </div>
 
                             <div class="mt-2">
-                                <h4 class="header-title mb-3">Items from Order #MN2048</h4>
+                                <h4 class="header-title mb-3">Items from Order {{$orderItem->order_no}}</h4>
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div>
@@ -106,54 +114,22 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="me-3">
+                                                                        <img src="{{asset('uploads/product/'.$orderItem->product->photo)}}" alt="product-img" height="40">
+                                                                    </div>
+                                                                    <div class="flex-1">
+                                                                        <h5 class="m-0">{{$orderItem->product->title}}</h5>
+                                                                        <p class="mb-0">Size : Large</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>{{$orderItem->quantity}}</td>
+                                                            <td>$41</td>
+                                                            <td>$41</td>
+                                                        </tr>
 
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="me-3">
-                                                                        <img src="../assets/images/products/product-1.png" alt="product-img" height="40">
-                                                                    </div>
-                                                                    <div class="flex-1">
-                                                                        <h5 class="m-0">Blue color T-shirt</h5>
-                                                                        <p class="mb-0">Size : Large</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>$41</td>
-                                                            <td>$41</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="me-3">
-                                                                        <img src="../assets/images/products/product-6.png" alt="product-img" height="40">
-                                                                    </div>
-                                                                    <div class="flex-1">
-                                                                        <h5 class="m-0">Blue Hoodie for men</h5>
-                                                                        <p class="mb-0">Size : Medium</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>2</td>
-                                                            <td>$45</td>
-                                                            <td>$90</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="me-3">
-                                                                        <img src="../assets/images/products/product-8.png" alt="product-img" height="40">
-                                                                    </div>
-                                                                    <div class="flex-1">
-                                                                        <h5 class="m-0">Full sleeve Pink T-shirt</h5>
-                                                                        <p class="mb-0">Size : Large</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>$45</td>
-                                                            <td>$45</td>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -174,14 +150,6 @@
                                                         <tr>
                                                             <th scope="row">Sub Total :</th>
                                                             <td>$176</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Shipping Charge :</th>
-                                                            <td>$24</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Estimated Tax :</th>
-                                                            <td>$12</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Total :</th>
