@@ -12,6 +12,7 @@ use App\Http\Controllers\API\MerchantController;
 use App\Http\Controllers\API\User\UserAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
+use App\Http\Controllers\API\Order\OrderApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,9 +66,16 @@ Route::post('/merchant/login', [MerchantController::class, 'login']);
 //     });
 //     Route::post('/merchant/logout', [MerchantController::class, 'logout']);
 // });
+
+
+
 // Location api
 Route::get('divisions', [LocationAPIController::class, 'divisions']); // all divission list
 Route::get('districts', [LocationAPIController::class, 'districts']); // all divission list
 Route::get('upazilas', [LocationAPIController::class, 'upazilas']); // all divission list
 Route::get('district/{id}', [LocationAPIController::class, 'getDristrictByDivision']); // all divission list
 Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict']); // all divission list
+
+
+//Order Api
+Route::post('/order/create', [OrderApiController::class, 'placeOrder']);

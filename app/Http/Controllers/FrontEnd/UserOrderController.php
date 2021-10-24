@@ -19,6 +19,8 @@ class UserOrderController extends Controller
         $cartitems = Cart::content();
         $subTotal = Cart::priceTotal();
 
+        // dd($request->all(), $userId, $cartitems, $subTotal);
+
         // return $cartitems;
 
         $request->validate([
@@ -45,7 +47,7 @@ class UserOrderController extends Controller
         ]);
         if ($order) {
 
-            foreach($cartitems as $item){
+            foreach ($cartitems as $item) {
                 OrderItem::create([
                     'user_id'            => $userId,
                     'merchant_id'        => $item->options->merchant_id,
@@ -83,9 +85,6 @@ class UserOrderController extends Controller
             Cart::destroy();
 
             return redirect()->route('ordercomplete');
-
-
-
         }
 
         return $request->all();
@@ -95,8 +94,4 @@ class UserOrderController extends Controller
     {
         return view('frontend.ordercomplete');
     }
-
-
-
-
 }
