@@ -42,7 +42,6 @@ class UserOrderAPIController extends Controller
             'message' => 'Data create successfully',
             'data'    => $order
         ]);
-
     }
 
     public function createOrderitemAddress(Request $request)
@@ -99,10 +98,5 @@ class UserOrderAPIController extends Controller
             'message' => 'Order Item create successfully',
             'data'    => $oderitems
         ]);
-
-
-
-
-
     }
 }
