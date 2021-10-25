@@ -15,8 +15,11 @@ class MerchatProfileController extends Controller
     {
         $merchantId = Auth::guard('marchant')->user()->id;
         $merchant = Marchant::where('id', $merchantId)->first();
+        $profile = MerchantProfile::where('merchant_id', $merchantId)->first();
 
-        return view('marchant.profile.merchantprofile', compact('merchant'));
+        // return $profile;
+
+        return view('marchant.profile.merchantprofile', compact('merchant', 'profile'));
     }
 
     public function create()
@@ -45,19 +48,32 @@ class MerchatProfileController extends Controller
 
         // For Profile Picture
         $profile_photo = $request->file('profile_photo');
-        if ($profile_photo) {
-            $profile_photofileExtention = $profile_photo->getClientOriginalExtension();
-            $profile_photofileName = date('Ymdhis') . '.' . $profile_photofileExtention;
-            Image::make($profile_photo)->save(public_path('uploads/merchant/profile') . $profile_photofileName);
-        }
-        // NID Photo
         $nid_photo = $request->file('nid_photo');
-        if ($nid_photo) {
+
+        if ($profile_photo && $nid_photo) {
+
+            $profile_photofileExtention = $profile_photo->getClientOriginalExtension();
+            $profile_photofileName = hexdec(uniqid()) . '.' . $profile_photofileExtention;
+            Image::make($profile_photo)->save(public_path('uploads/merchant/profile/') . $profile_photofileName);
+
             $nid_photoileExtention = $nid_photo->getClientOriginalExtension();
             $nid_photofileName = date('Ymdhis') . '.' . $nid_photoileExtention;
-            Image::make($nid_photo)->save(public_path('uploads/merchant/nid') . $nid_photofileName);
+            Image::make($nid_photo)->save(public_path('uploads/merchant/NID/') . $nid_photofileName);
+
+            MerchantProfile::create([
+                'merchant_id'        => $merchantId,
+                'photo'              => $profile_photofileName,
+                'nid_no'             => $request->nid_no,
+                'tradelicense_no'    => $request->tradelicense_no,
+                'tin_no'             => $request->tin_no,
+                'nid_photo'          => $nid_photofileName,
+                'tradelicense_photo' => $request->name,
+                'tin_photo'          => $request->tradelicense_photo
+            ]);
+
         }
 
+        return redirect()->route('merchant.profile');
 
         // For Profile Picture
         // $profile_photo = $request->file('profile_photo');
@@ -69,15 +85,6 @@ class MerchatProfileController extends Controller
 
 
 
-        MerchantProfile::create([
-            'merchant_id'        => $merchantId,
-            'photo'              => $request->profile_photofileName,
-            'nid_no'             => $request->nid_no,
-            'tradelicense_no'    => $request->tradelicense_no,
-            'tin_no'             => $request->tin_no,
-            'nid_photo'          => $request->nid_photofileName,
-            // 'tradelicense_photo' => $request->name,
-            // 'tin_photo'          => $request->tradelicense_photo
-        ]);
+
     }
 }

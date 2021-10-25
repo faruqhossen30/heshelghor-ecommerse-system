@@ -27,15 +27,17 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
-
-
                             <div class="row">
-                                <div class="col-lg-4 col-xl-4">
+                                <div class="col-lg-6 col-xl-6 offset-3">
                                     <div class="card text-center">
                                         <div class="card-body">
+                                            @if ($profile)
+                                            <img src="{{asset('uploads/merchant/profile/'.$profile->photo)}}" class="rounded-circle avatar-xl img-thumbnail"
+                                            alt="profile-image">
+                                            @else
                                             <img src="{{asset('backend')}}/assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail"
                                             alt="profile-image">
+                                            @endif
 
                                             <h4 class="mt-3 mb-0">{{$merchant->name}}</h4>
                                             <p class="text-muted">{{$merchant->address}}</p>
@@ -61,6 +63,10 @@
                                                             <tr>
                                                                 <th scope="row">Email :</th>
                                                                 <td class="text-muted">{{$merchant->email}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">NID Number :</th>
+                                                                <td class="text-muted">{{$profile->nid_no ?? "Not Found"}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Location :</th>
@@ -94,7 +100,7 @@
 
                                 </div> <!-- end col-->
 
-                                <div class="col-lg-8 col-xl-8">
+                                {{-- <div class="col-lg-8 col-xl-8">
                                     <div class="card">
                                         <div class="card-body">
 
@@ -111,7 +117,7 @@
                                                 </li>
                                             </ul>
 
-                                            {{-- <div class="tab-content">
+                                            <div class="tab-content">
 
                                                 <div class="tab-pane show active" id="about-me">
 
@@ -344,11 +350,11 @@
                                                 </div>
                                                 <!-- end settings content-->
 
-                                            </div> <!-- end tab-content --> --}}
+                                            </div> <!-- end tab-content -->
                                         </div>
                                     </div> <!-- end card-->
 
-                                </div> <!-- end col -->
+                                </div> <!-- end col --> --}}
                             </div>
 
 

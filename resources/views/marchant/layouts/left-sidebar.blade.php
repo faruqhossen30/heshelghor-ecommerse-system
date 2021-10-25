@@ -1,8 +1,11 @@
+@php
+    $merchantId = Auth::guard('marchant')->user()->id;
+    $profile = App\Models\Merchant\MerchantProfile::where('merchant_id', $merchantId)->first();
+@endphp
 <div class="left-side-menu">
-
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo logo-dark text-center">
+        <a href="{{route('marchant.home')}}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('backend') }}/assets/images/logo-sm-dark.png" alt="" height="24">
                 <!-- <span class="logo-lg-text-light">Minton</span> -->
@@ -13,7 +16,7 @@
             </span>
         </a>
 
-        <a href="index.html" class="logo logo-light text-center">
+        <a href="{{route('marchant.home')}}" class="logo logo-light text-center">
             <span class="logo-sm">
                 <img src="{{ asset('backend') }}/assets/images/small-logo.png" alt="" height="24">
             </span>
@@ -167,9 +170,11 @@
                             <li>
                                 <a href="{{route('merchant.profile')}}">My Profile</a>
                             </li>
-                            <li>
-                                <a href="#">Update Profile</a>
-                            </li>
+                            @if (!$profile)
+                                <li>
+                                    <a href="{{route('merchant.profile.create')}}">Update Profile</a>
+                                </li>
+                            @endif
 
                         </ul>
                     </div>

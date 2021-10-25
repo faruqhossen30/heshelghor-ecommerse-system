@@ -28,7 +28,6 @@
                         <div class="card-header border-bottom bg-transparent">
                             <h5 class="header-title mb-0">Order Detaild: {{$orderItem->order_no}}</h5>
                             @if ($orderItem->order_status == 1)
-                                <span>accep</span>
                                 <span><button type="button" class="btn btn-success btn-sm float-end">Approved !</button></span>
                             @endif
                             @if ($orderItem->order_status == 0)
@@ -61,7 +60,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Billing Name</p>
                                                 <h5 class="mt-0">
-                                                    {{$orderItem->deliveryaddress->address}}
+                                                    {{$orderItem->deliveryaddress->name}}
                                                 </h5>
                                             </div>
                                         </div>

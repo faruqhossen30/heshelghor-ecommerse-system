@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="mb-2 row">
+                                        {{-- <div class="mb-2 row">
                                             <label class="col-md-2 col-form-label" for="TradeLicence">Trade Licence
                                                 No</label>
                                             <div class="col-md-10">
@@ -75,7 +75,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="mb-2 row">
                                             <label class="col-md-2 col-form-label" for="tinNumber">TIN No</label>
@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+{{--
                                         <div class="mb-2 row">
                                             <label class="col-md-2 col-form-label" for="">Trade License Image
                                                 </label>
@@ -132,9 +132,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <button type="submit" class="btn btn-success">Add Brand</button>
+                                        <button type="submit" class="btn btn-primary">Update Profile</button>
 
                                     </form>
                                 </div>

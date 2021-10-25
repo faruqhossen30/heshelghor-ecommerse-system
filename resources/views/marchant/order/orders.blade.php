@@ -34,7 +34,7 @@
                                             </div>
                                         </th>
                                         <th class="all">Order No</th>
-                                        <th>Billing Name</th>
+                                        <th>Product Name</th>
                                         <th>Address</th>
                                         <th>QTY</th>
                                         <th>Price</th>
@@ -60,10 +60,10 @@
                                             <h5 class="m-0 d-inline-block align-middle">{{$item->order->order_no}}</h5>
                                         </td>
                                         <td>
-                                            {{$item->deliveryaddress->address}}
+                                            {{$item->product->title}}
                                         </td>
                                         <td>
-                                            {{$item->product->title}}
+                                            {{$item->deliveryaddress->address}}
                                         </td>
 
                                         <td>
