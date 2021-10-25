@@ -108,6 +108,7 @@
                                                         <tr>
                                                             <th>Product</th>
                                                             <th>Quantity</th>
+                                                            <th>Discount</th>
                                                             <th>Price</th>
                                                             <th>Total</th>
                                                         </tr>
@@ -126,8 +127,9 @@
                                                                 </div>
                                                             </td>
                                                             <td>{{$orderItem->quantity}}</td>
-                                                            <td>$41</td>
-                                                            <td>$41</td>
+                                                            <td>{{$orderItem->discount}}%</td>
+                                                            <td>৳{{$orderItem->merchant_price}}</td>
+                                                            <td>৳{{$orderItem->merchant_price_total}}</td>
                                                         </tr>
 
                                                     </tbody>
@@ -148,12 +150,8 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row">Sub Total :</th>
-                                                            <td>$176</td>
-                                                        </tr>
-                                                        <tr>
                                                             <th scope="row">Total :</th>
-                                                            <td>$212</td>
+                                                            <td>৳{{$orderItem->merchant_price_total}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -178,16 +176,15 @@
 
                                         <tbody>
                                             <tr>
-                                                <th colspan="2"><h5 class="font-15 m-0">Arnold Jackson</h5></th>
+                                                <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->deliveryaddress->name}}</h5></th>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address:</th>
-                                                <td>707 Locust View Drive
-                                                    San Francisco, CA 94115</td>
+                                                <td>{{$orderItem->deliveryaddress->address}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Phone :</th>
-                                                <td>(123) 456-7890</td>
+                                                <td>{{$orderItem->deliveryaddress->mobile}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Mobile :</th>

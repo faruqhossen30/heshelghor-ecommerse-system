@@ -77,7 +77,7 @@
                                             <th>Date</th>
                                             <th>Payment</th>
                                             <th>Total</th>
-                                            <th>Status</th>
+                                            {{-- <th>Status</th> --}}
                                             <th style="width: 125px;">Action</th>
                                         </tr>
                                     </thead>
@@ -107,15 +107,16 @@
                                             <td>
                                                 ৳{{$order->total_price}}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <div>
                                                     @if ($order->status == 0)
-                                                        <span class="badge bg-danger">Pending</span></div>
+                                                        <span class="badge bg-danger">Pending</span>
                                                     @else
-                                                        <span class="badge badge-soft-success">Aproved</span></div>
-                                                    @endif
+                                                        <span class="badge badge-soft-success">Aproved</span>
 
-                                            </td>
+                                                    @endif
+                                                </div>
+                                            </td> --}}
                                             <td>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item">

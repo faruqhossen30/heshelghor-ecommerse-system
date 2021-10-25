@@ -14,7 +14,14 @@ class UserDashboardController extends Controller
 
     public function index()
     {
-        return view('user.dashboard');
+        $userId = Auth::user()->id;
+        $totalorder = Order::where('user_id', $userId)->count();
+
+        // return $totalorder;
+
+        return view('user.dashboard', compact('totalorder'));
+
+
     }
 
     // For List order
@@ -23,7 +30,7 @@ class UserDashboardController extends Controller
         $userId = Auth::user()->id;
 
         $orders = Order::with('user')->where('user_id', $userId)->get();
-        // return $orders;
+
         return view('user.order.userorder', compact('orders'));
 
     }

@@ -22,10 +22,12 @@ class MerchatProfileController extends Controller
     public function create()
     {
         return view('marchant.profile.upload');
+        return "ok";
     }
 
     public function store(Request $request)
     {
+        // return $request->all();
         $merchantId = Auth::guard('marchant')->user()->id;
 
 
@@ -69,13 +71,13 @@ class MerchatProfileController extends Controller
 
         MerchantProfile::create([
             'merchant_id'        => $merchantId,
-            'photo'              => $request->profile_photo,
+            'photo'              => $request->profile_photofileName,
             'nid_no'             => $request->nid_no,
             'tradelicense_no'    => $request->tradelicense_no,
             'tin_no'             => $request->tin_no,
-            'nid_photo'          => $request->nid_photo,
-            'tradelicense_photo' => $request->name,
-            'tin_photo'          => $request->tradelicense_photo
+            'nid_photo'          => $request->nid_photofileName,
+            // 'tradelicense_photo' => $request->name,
+            // 'tin_photo'          => $request->tradelicense_photo
         ]);
     }
 }
