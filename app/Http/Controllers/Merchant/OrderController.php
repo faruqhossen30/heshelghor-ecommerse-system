@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function orderItem($id)
     {
         $orderItem = OrderItem::with('product', 'deliveryaddress')->where('id', $id)->first();
-        return $orderItem;
+        // return $orderItem;
         return view('marchant.order.orderitem', compact('orderItem'));
     }
 
