@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Order\DeliverySystem;
 use App\Models\Product\Brand;
 use App\Models\Auth\Marchant;
 use App\Models\Product\Category;
@@ -48,6 +49,13 @@ class AllListAPIController extends Controller
     {
         $merchants = Shop::all();
         return $merchants;
+    }
+
+
+    public function deliverySystem()
+    {
+        $deliverysystem = DeliverySystem::get();
+        return $deliverysystem;
     }
 
 }
