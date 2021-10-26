@@ -1,4 +1,4 @@
-@extends('marchant.layouts.app')
+@extends('admin.layouts.app')
 @section('content')
 <div class="content">
     <!-- Start Content-->
@@ -35,7 +35,7 @@
                                         </th>
                                         <th class="all">Order No</th>
                                         <th>Product Name</th>
-                                        <th>Address</th>
+                                        <th>Merchant</th>
                                         <th>QTY</th>
                                         <th>Price</th>
                                         <th>Status</th>
@@ -63,7 +63,7 @@
                                             {{$item->product->title}}
                                         </td>
                                         <td>
-                                            {{$item->deliveryaddress->address}}
+                                            {{$item->merchant->name}}
                                         </td>
 
                                         <td>
@@ -84,7 +84,7 @@
                                             {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
-                                            <a href="{{route('marchant.order.show', $item->id)}}" class="btn btn-primary btn-sm">View</a>
+                                            <a href="{{route('admin.order.single', $item->id)}}" class="btn btn-primary btn-sm">View</a>
                                         </td>
 
                                     </tr>

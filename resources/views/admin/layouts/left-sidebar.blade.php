@@ -148,6 +148,22 @@
                     </div>
                 </li>
                 {{-- Product End --}}
+                {{-- Order Start --}}
+                <li>
+                    <a href="#orderTable" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Orders </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="orderTable">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('admin.order.all')}}">All Order</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Order End --}}
 
                 <li>
                     <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">

@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Merchant\MyBrandController;
+use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // ====================== Admin Controller End ===========================
 
 
@@ -135,6 +136,8 @@ Route::prefix('admin')->group(function () {
         // For order section
         Route::resource('deliverysystem', DeliverySystemController::class);
         Route::resource('paymentmethod', PaymentMethodController::class);
+        Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
+        Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
     });
 });
 
