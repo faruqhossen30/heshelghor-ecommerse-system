@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin\Order\DeliveryAddress;
+use Exception;
+use Illuminate\Http\Request;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\Order\DeliveryAddress;
 
 class UserOrderAPIController extends Controller
 {
@@ -42,67 +44,77 @@ class UserOrderAPIController extends Controller
             'message' => 'Data create successfully',
             'data'    => $order
         ]);
-
     }
 
-    public function createOrderitemAddress(Request $request)
+    public function createOrderitem(Request $request)
     {
-        $oderitems = OrderItem::create([
-            'user_id'                      => $request->user_id,
-            'merchant_id'                  => $request->merchant_id,
-            'order_id'                     => $request->order_id,
-            'product_id'                   => $request->product_id,
-            'regular_price'                => $request->regular_price,
-            'discount'                     => $request->discount,
-            'price'                        => $request->price,
-            'quantity'                     => $request->quantity,
-            'merchant_price'               => $request->merchant_price,
-            'merchant_price_total'         => $request->merchant_price_total,
-            'delivery_cost'                => $request->delivery_cost,
-            'total_delivery_cost'          => $request->total_delivery_cost,
-            'color'                        => $request->color,
-            'size'                         => $request->size,
-            'order_no'                     => $request->order_No,
-            'delivery_system_id'           => $request->delivery_system_id,
-            'payment_method_id'            => $request->payment_method_id,
-            'order_status'                 => $request->order_status,
-            'merchant_status'              => $request->merchant_status,
-            'colect_pointmanager_status'   => $request->colect_pointmanager_status,
-            'colect_deliveryman_status'    => $request->colect_deliveryman_status,
-            'vehicle_status'               => $request->vehicle_status,
-            'delivery_pointmanager_status' => $request->delivery_pointmanager_status,
-            'deliveryman_status'           => $request->deliveryman_status,
-            'user_accept_status'           => $request->user_accept_status,
-            'order_pin_no'                 => $request->order_pin_no,
-        ]);
+        try {
+            $order_item_data = $request->only(
+                'user_id',
+                'merchant_id',
+                'order_id',
+                'product_id',
+                'regular_price',
+                'discount',
+                'price',
+                'quantity',
+                'color',
+                'size',
+                'order_No',
+                'delivery_system_id',
+                'payment_method_id',
+                'status'
+            );
+            // $oder_item_id = DB::table('order_items')->insertGetId($order_item_data);
+            // $inserted_item = DB::table('order_items')->find($oder_item_id);
 
+            $oder_item_id = OrderItem::insertGetId($order_item_data);
+            $inserted_item = OrderItem::find($oder_item_id);
 
-        // $deliveryaddress = DeliveryAddress::create([
-        //     'name'        => $request->name,
-        //     'user_id'     => $request->user_id,
-        //     'order_id'    => $request->order_id,
-        //     'email'       => $request->email,
-        //     'company'     => $request->company,
-        //     'address'     => $request->address,
-        //     'message'     => $request->message,
-        //     'zip_code'    => $request->zip_code,
-        //     'mobile'      => $request->mobile,
-        //     'division_id' => $request->division_id,
-        //     'district_id' => $request->district_id,
-        //     'upazila_id'  => $request->upazila_id
-        // ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Order Created successfully!',
+                'data'    => $inserted_item
+            ], 201);
+        } catch (Exception $e) {
+            $exception_code = $e->getCode();
+            $response_code = $exception_code < 200 || $exception_code > 500 ? 500 : $exception_code;
+            return response()->json($this->catch_exception($e), $response_code);
+        }
+    }
 
+    public function deliveryAddress(Request $request)
+    {
+        try {
+            $order_item_data = $request->only(
+                'name',
+                'user_id',
+                'order_id',
+                'email',
+                'company',
+                'address',
+                'message',
+                'zip_code',
+                'mobile',
+                'division_id',
+                'district_id',
+                'upazila_id',
+            );
+            // $oder_item_id = DB::table('order_items')->insertGetId($order_item_data);
+            // $inserted_item = DB::table('order_items')->find($oder_item_id);
 
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Order Item create successfully',
-            'data'    => $oderitems
-        ]);
+            $address_id = DeliveryAddress::insertGetId($order_item_data);
+            $inserted_address = DeliveryAddress::find($address_id);
 
-
-
-
-
+            return response()->json([
+                'success' => true,
+                'message' => 'Delivery Address Created successfully!',
+                'data'    => $inserted_address
+            ], 201);
+        } catch (Exception $e) {
+            $exception_code = $e->getCode();
+            $response_code = $exception_code < 200 || $exception_code > 500 ? 500 : $exception_code;
+            return response()->json($this->catch_exception($e), $response_code);
+        }
     }
 }
