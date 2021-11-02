@@ -60,31 +60,31 @@ class UserOrderAPIController extends Controller
 
     public function createOrderitem(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
 
-        $rules = [
-            'user_id'            => 'required',
-            'merchant_id'        => 'required',
-            'order_id'           => 'required',
-            'product_id'         => 'required',
-            'regular_price'      => 'required',
-            'discount'           => 'required',
-            'price'              => 'required',
-            'quantity'           => 'required',
-            'color'              => 'required',
-            'size'               => 'required',
-            'order_No'           => 'required',
-            'payment_method_id'  => 'required',
-            'delivery_system_id' => 'required',
-        ];
-        $errorMessage = [
-            'user_id.required' => 'Please input your User id '
-        ];
+        // $rules = [
+        //     'user_id'            => 'required',
+        //     'merchant_id'        => 'required',
+        //     'order_id'           => 'required',
+        //     'product_id'         => 'required',
+        //     'regular_price'      => 'required',
+        //     'discount'           => 'required',
+        //     'price'              => 'required',
+        //     'quantity'           => 'required',
+        //     'color'              => 'required',
+        //     'size'               => 'required',
+        //     'order_No'           => 'required',
+        //     'payment_method_id'  => 'required',
+        //     'delivery_system_id' => 'required',
+        // ];
+        // $errorMessage = [
+        //     'user_id.required' => 'Please input your User id '
+        // ];
 
-        $validator = Validator::make($data, $rules, $errorMessage);
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+        // $validator = Validator::make($data, $rules, $errorMessage);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors());
+        // }
 
 
         $orderItem = OrderItem::create([
@@ -113,27 +113,27 @@ class UserOrderAPIController extends Controller
 
     public function deliveryAddress(Request $request)
     {
-        $data = $request->all();
-        $rules = [
-            'name'        => 'required',
-            'user_id'     => 'required',
-            'order_id'    => 'required',
-            'email'       => 'required|email',
-            'address'     => 'required',
-            'mobile'      => 'required',
-            'division_id' => 'required',
-            'district_id' => 'required',
-            'upazila_id'  => 'required'
-        ];
+        // $data = $request->all();
+        // $rules = [
+        //     'name'        => 'required',
+        //     'user_id'     => 'required',
+        //     'order_id'    => 'required',
+        //     'email'       => 'required|email',
+        //     'address'     => 'required',
+        //     'mobile'      => 'required',
+        //     'division_id' => 'required',
+        //     'district_id' => 'required',
+        //     'upazila_id'  => 'required'
+        // ];
 
-        $errorMessage = [
-            'user_id.required' => 'Please input your User id '
-        ];
+        // $errorMessage = [
+        //     'user_id.required' => 'Please input your User id '
+        // ];
 
-        $validator = Validator::make($data, $rules, $errorMessage);
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+        // $validator = Validator::make($data, $rules, $errorMessage);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors());
+        // }
 
         $deliveryAddress = DeliveryAddress::create([
             'name'              => $request->name,
