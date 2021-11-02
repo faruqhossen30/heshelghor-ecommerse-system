@@ -15,27 +15,27 @@ class UserOrderAPIController extends Controller
 {
     public function createOrder(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
 
-        $rules = [
-            'user_id'            => 'required',
-            'order_no'           => 'required',
-            'total_prodcut'      => 'required',
-            'total_item'         => 'required',
-            'delivery_cost'      => 'required',
-            'product_price'      => 'required',
-            'total_price'        => 'required',
-            'delivery_system_id' => 'required',
-            'payment_method_id'  => 'required'
-        ];
-        $errorMessage = [
-            'user_id.required' => 'Please input your Uuser id '
-        ];
+        // $rules = [
+        //     'user_id'            => 'required',
+        //     'order_no'           => 'required',
+        //     'total_prodcut'      => 'required',
+        //     'total_item'         => 'required',
+        //     'delivery_cost'      => 'required',
+        //     'product_price'      => 'required',
+        //     'total_price'        => 'required',
+        //     'delivery_system_id' => 'required',
+        //     'payment_method_id'  => 'required'
+        // ];
+        // $errorMessage = [
+        //     'user_id.required' => 'Please input your Uuser id '
+        // ];
 
-        $validator = Validator::make($data, $rules, $errorMessage);
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+        // $validator = Validator::make($data, $rules, $errorMessage);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors());
+        // }
 
 
         $order = Order::create([
