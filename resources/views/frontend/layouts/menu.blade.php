@@ -79,7 +79,7 @@
                                 <div
                                     class="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner2 banner banner-fixed">
                                     <figure>
-                                        <img src="images/menu/banner-2.jpg" alt="Menu banner" width="221"
+                                        <img src="{{asset('frontend')}}/images/menu/banner-2.jpg" alt="Menu banner" width="221"
                                             height="330" />
                                     </figure>
                                     <div class="banner-content x-50 text-center">

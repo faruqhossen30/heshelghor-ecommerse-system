@@ -73,6 +73,9 @@ use App\Http\Controllers\Admin\Order\DeliverySystemController;
 */
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
+// search
+Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
+
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');

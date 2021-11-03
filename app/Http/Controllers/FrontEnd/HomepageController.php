@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\FrontEnd;
+
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -26,5 +27,14 @@ class HomepageController extends Controller
             'products',
             'subcategories'
         ));
+    }
+    // Search
+    public function search($keyword)
+    {
+
+        $result = Product::where('title', 'like', "%$keyword%")
+            ->orWhere('description', 'like', "%$keyword%")
+            ->get();
+        return $result;
     }
 }
