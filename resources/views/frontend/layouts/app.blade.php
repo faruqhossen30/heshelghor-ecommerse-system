@@ -73,7 +73,7 @@
                         <!-- End Logo -->
 
                         <div class="header-search hs-simple">
-                            <form action="#" class="input-wrapper" style="position: relative">
+                            <form action="#" method="GET" class="input-wrapper" style="position: relative">
                                 <input type="text" class="form-control" name="search" autocomplete="off"
                                     placeholder="Search..." required id="searchInpur" />
                                 <button class="btn btn-search" type="submit">
@@ -252,7 +252,7 @@
                         .then(function(res) {
                             if (res.data.length > 0) {
                                 searchResultDiv.style.display = 'block'
-                                console.log(res.data);
+                                // console.log(res);
                                 li = res.data.map(function(post) {
                                     // return `<a href="product/${post.id}" class="list-group-item">${post.title}</a>`;
                                     return `<a href="" class="list-group-item d-flex justify-content-between align-items-center">
@@ -274,7 +274,6 @@
                             console.log(err);
                         })
                 };
-                console.log(event.target.value);
             });
         </script>
 </body>

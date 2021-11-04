@@ -10,6 +10,7 @@ use App\Http\Controllers\API\BrandAPIController;
 // User API
 use App\Http\Controllers\API\User\UserAPIController;
 use App\Http\Controllers\API\User\UserOrderAPIController;
+use App\Http\Controllers\API\SearchAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 
@@ -27,6 +28,10 @@ use App\Http\Controllers\API\Location\LocationAPIController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Search API
+Route::get('search/{keyword}', [SearchAPIController::class, 'search']);
+
 // All Product
 Route::get('product/{id}', [ProductAPIController::class, 'singleProduct']);
 Route::get('allproduct/', [ProductAPIController::class, 'allProduct']);

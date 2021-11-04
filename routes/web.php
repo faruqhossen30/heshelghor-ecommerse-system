@@ -59,6 +59,7 @@ use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Order\PaymentMethodController;
 use App\Http\Controllers\Admin\Order\DeliverySystemController;
+use App\Http\Controllers\FrontEnd\SearchPageController;
 
 
 /*
@@ -75,6 +76,7 @@ use App\Http\Controllers\Admin\Order\DeliverySystemController;
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
+Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
