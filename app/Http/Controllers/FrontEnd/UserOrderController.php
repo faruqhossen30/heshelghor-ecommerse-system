@@ -15,6 +15,21 @@ class UserOrderController extends Controller
 {
     public function orderNow(Request $request)
     {
+        $today = date("ymd");
+        $number = intval($today.'001');
+
+
+
+
+        function numGenerate($number){
+            $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
+            // $suffix = $count ? $count+1:'';
+            // $number .=$suffix;
+            $number = $count ? $number+1 : $number;
+            return $number;
+        }
+        $orderNumber = numGenerate($number);
+
         $userId = Auth::user()->id;
         $cartitems = Cart::content();
         $subTotal = Cart::priceTotal();
@@ -50,6 +65,7 @@ class UserOrderController extends Controller
                     'user_id'                      => $userId,
                     'merchant_id'                  => $item->options->merchant_id,
                     'order_id'                     => $order->id,
+                    'order_number'                 => $orderNumber,
                     'product_id'                   => $item->id,
                     'regular_price'                => $item->options->regular_price,
                     'discount'                     => $item->options->discount,

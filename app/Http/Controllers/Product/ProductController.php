@@ -121,7 +121,6 @@ class ProductController extends Controller
             'title'             => $request->title,
             'description'       => $request->description,
             'short_description' => $request->short_description,
-            'slug'              => Str::of($request->title)->slug('-'),
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,

@@ -12,6 +12,21 @@ class Product extends Model
 
     protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status'];
 
+    // Unique Slug generate
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = $this->slugify($value);
+    }
+
+    private function slugify($value){
+        $slug = str_replace(' ', '-', strtolower($value));
+        $count = Product::where('slug', 'LIKE', $slug.'%')->count();
+        $suffix = $count ? $count+1:'';
+        $slug .=$suffix;
+        return $slug;
+    }
+
     // Category
     public function category()
     {

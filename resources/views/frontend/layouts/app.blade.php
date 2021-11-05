@@ -230,7 +230,7 @@
         <!-- Main JS File -->
         <script src="{{ asset('frontend') }}/js/main.min.js"></script>
 
-        @stack('search')
+        @stack('scripts')
 
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
