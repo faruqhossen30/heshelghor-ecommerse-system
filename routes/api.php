@@ -30,7 +30,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Search API
-Route::get('search/{keyword}', [SearchAPIController::class, 'search']);
+Route::get('search/{keyword}', [SearchAPIController::class, 'searchProduct']);
+Route::get('search/brand/{keyword}', [SearchAPIController::class, 'searchBrand']);
+Route::get('search/shop/{keyword}', [SearchAPIController::class, 'searchShop']);
 
 // All Product
 Route::get('product/{id}', [ProductAPIController::class, 'singleProduct']);
@@ -53,9 +55,7 @@ Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
 Route::get('deliverysystem', [AllListAPIController::class, 'deliverySystem']); // Shop List by pagination
 
-// User API
-Route::post('/register', [UserAPIController::class, 'userRegister']);
-Route::post('/login', [UserAPIController::class, 'userLogin']);
+
 
 // Location api
 Route::get('divisions', [LocationAPIController::class, 'divisions']); // all divission list
@@ -64,7 +64,11 @@ Route::get('upazilas', [LocationAPIController::class, 'upazilas']); // all divis
 Route::get('district/{id}', [LocationAPIController::class, 'getDristrictByDivision']); // all divission list
 Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict']); // all divission list
 
-// Merchant Order Items api
+// User API
+Route::post('/register', [UserAPIController::class, 'userRegister']);
+Route::post('/login', [UserAPIController::class, 'userLogin']);
+
+// User Order Items api
 Route::prefix('user')->group(function () {
     Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
     Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);

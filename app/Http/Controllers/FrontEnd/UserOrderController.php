@@ -16,16 +16,14 @@ class UserOrderController extends Controller
     public function orderNow(Request $request)
     {
         $today = date("ymd");
-        $number = intval($today.'001');
-
-
-
+        $number = intval($today.'000');
 
         function numGenerate($number){
             $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
             // $suffix = $count ? $count+1:'';
             // $number .=$suffix;
-            $number = $count ? $number+1 : $number;
+            $suffix = $count ? $count+1 : $count+1;
+            $number .= $suffix;
             return $number;
         }
         $orderNumber = numGenerate($number);
