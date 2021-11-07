@@ -11,6 +11,7 @@ use App\Http\Controllers\API\BrandAPIController;
 use App\Http\Controllers\API\User\UserAPIController;
 use App\Http\Controllers\API\User\UserOrderAPIController;
 use App\Http\Controllers\API\SearchAPIController;
+use App\Http\Controllers\API\User\UserOrderListAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 
@@ -70,6 +71,8 @@ Route::post('/login', [UserAPIController::class, 'userLogin']);
 
 // User Order Items api
 Route::prefix('user')->group(function () {
+    Route::get('/{userId}/order', [UserOrderListAPIController::class, 'order']);
+    Route::get('/{userId}/order/{oderId}', [UserOrderListAPIController::class, 'orderItem']);
     Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
     Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
     Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);

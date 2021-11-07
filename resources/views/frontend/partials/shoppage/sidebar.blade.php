@@ -2,6 +2,24 @@
 <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
 <div class="sidebar-content">
     <div class="sticky-sidebar">
+        <div class="widget">
+            <h3 class="widget-title">Location</h3>
+            <ul class="widget-body filter-items search-ul">
+                <div class="toolbox-item toolbox-sort select-box">
+                    <label>Sort By :</label>
+                    <select name="orderby" class="form-control">
+                        <option value="default">Default</option>
+                        <option value="popularity" selected="selected">Most Popular</option>
+                        <option value="rating">Average rating</option>
+                        <option value="date">Latest</option>
+                        <option value="price-low">Sort forward price low</option>
+                        <option value="price-high">Sort forward price high</option>
+                        <option value="">Clear custom sort</option>
+                    </select>
+                </div>
+            </ul>
+        </div>
+
         <div class="widget widget-collapsible">
             <h3 class="widget-title">All Categories</h3>
             <ul class="widget-body filter-items search-ul">
