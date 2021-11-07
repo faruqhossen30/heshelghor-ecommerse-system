@@ -133,7 +133,7 @@ class SubCategoryController extends Controller
         if($image){
         $validate = $request->validate([
             'name'        => 'required',
-            // 'category_id' => 'required',
+            'category_id' => 'required',
             'commission' => 'required',
             'description' => 'required',
             'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
@@ -148,7 +148,7 @@ class SubCategoryController extends Controller
 
         $data = [
             'name' => $request->name,
-            // 'category_id' => $request->category_id,
+            'category_id' => $request->category_id,
             'commission' => $request->commission,
             'description' => $request->description,
             'image'       => 'uploads/subcategory/' . $fileName,
@@ -165,14 +165,14 @@ class SubCategoryController extends Controller
         } else{
             $validate = $request->validate([
                 'name'        => 'required',
-                // 'category_id' => 'required',
+                'category_id' => 'required',
                 'commission' => 'required',
                 'description' => 'required',
             ]);
 
             $data = [
                 'name' => $request->name,
-                // 'category_id' => $request->category_id,
+                'category_id' => $request->category_id,
                 'commission' => $request->commission,
                 'description' => $request->description,
             ];

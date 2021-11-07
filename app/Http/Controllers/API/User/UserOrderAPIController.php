@@ -86,11 +86,25 @@ class UserOrderAPIController extends Controller
         //     return response()->json($validator->errors());
         // }
 
+        $today = date("ymd");
+        $number = intval($today.'000');
+
+        function numGenerate($number){
+            $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
+            // $suffix = $count ? $count+1:'';
+            // $number .=$suffix;
+            $suffix = $count ? $count+1 : $count+1;
+            $number .= $suffix;
+            return $number;
+        }
+        $orderNumber = numGenerate($number);
+
 
         $orderItem = OrderItem::create([
             'user_id'           => $request->user_id,
             'merchant_id'       => $request->merchant_id,
             'order_id'          => $request->order_id,
+            'order_number'      => $orderNumber,
             'product_id'        => $request->product_id,
             'regular_price'     => $request->regular_price,
             'discount'          => $request->discount,

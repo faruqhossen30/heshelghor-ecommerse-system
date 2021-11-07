@@ -125,6 +125,57 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- Shop and Location --}}
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="division_id" class="form-label">Division <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="division_id"
+                                                class="form-control @error('division_id') is-invalid @enderror"
+                                                id="division_id" readonly>
+                                                <option value="">Select Division</option>
+                                            </select>
+                                            <div class="text-danger">
+                                                @error('division_id')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="district_id" class="form-label">District <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="district_id"
+                                                class="form-control @error('district_id') is-invalid @enderror"
+                                                id="district_id" readonly>
+                                                <option value="">Select District</option>
+                                            </select>
+                                            <div class="text-danger">
+                                                @error('district_id')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="upazila_id" class="form-label">Upazila <span
+                                                    class="text-danger">*</span></label>
+                                            <select name="upazila_id"
+                                                class="form-control @error('upazila_id') is-invalid @enderror"
+                                                id="upazila_id" readonly>
+                                                <option value="">Select District</option>
+                                            </select>
+                                            <div class="text-danger">
+                                                @error('upazila_id')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 {{-- Price and queantity --}}
                                 <div class="row">
                                     <label class="form-label">
@@ -135,14 +186,16 @@
                                         <div class="mb-3">
                                             <label for="retularPrice" class="form-label">Regular Price<span
                                                     class="text-danger">*</span></label>
-                                            <input name="regular_price" type="number" class="form-control @error('regular_price') is-invalid @enderror"
-                                                id="retularPrice" placeholder="Regular Price" value="{{ old('regular_price') }}">
+                                            <input name="regular_price" type="number"
+                                                class="form-control @error('regular_price') is-invalid @enderror"
+                                                id="retularPrice" placeholder="Regular Price"
+                                                value="{{ old('regular_price') }}">
 
-                                                <div class="text-danger">
-                                                    @error('regular_price')
-                                                        <span>{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                                            <div class="text-danger">
+                                                @error('regular_price')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -174,28 +227,31 @@
                                         <div class="mb-3">
                                             <label for="quantity" class="form-label">Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity"
+                                            <input name="quantity" type="number"
+                                                class="form-control @error('quantity') is-invalid @enderror" id="quantity"
                                                 placeholder="Enter Quantity" value="{{ old('quantity') }}">
 
-                                                <div class="text-danger">
-                                                    @error('quantity')
-                                                        <span>{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                                            <div class="text-danger">
+                                                @error('quantity')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="quantityAlerm" class="form-label">Alert Quantity<span
                                                     class="text-danger">*</span></label>
-                                            <input name="quantity_alert" type="text" class="form-control @error('quantity_alert') is-invalid @enderror" id="quantityAlerm"
-                                                placeholder="Enter Quantity" value="{{ old('quantity_alert') }}">
+                                            <input name="quantity_alert" type="text"
+                                                class="form-control @error('quantity_alert') is-invalid @enderror"
+                                                id="quantityAlerm" placeholder="Enter Quantity"
+                                                value="{{ old('quantity_alert') }}">
 
-                                                <div class="text-danger">
-                                                    @error('quantity_alert')
-                                                        <span>{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                                            <div class="text-danger">
+                                                @error('quantity_alert')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +263,7 @@
                                             class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
                                         class="form-control @error('description') is-invalid @enderror" rows="3"
-                                        placeholder="Please enter comment">{{old('description')}}</textarea>
+                                        placeholder="Please enter comment">{{ old('description') }}</textarea>
                                     <div class="text-danger">
                                         @error('description')
                                             <span>{{ $message }}</span>
@@ -220,7 +276,8 @@
                                     <label for="product-summary" class="form-label">Product Summary</label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror"
-                                        id="product-summary" rows="5" placeholder="Promotion short description ">{{old('short_description')}}</textarea>
+                                        id="product-summary" rows="5"
+                                        placeholder="Promotion short description ">{{ old('short_description') }}</textarea>
                                     <div class="text-danger">
                                         @error('short_description')
                                             <span>{{ $message }}</span>
@@ -382,78 +439,7 @@
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
-    {{-- <script>
-        $(function() {
-            var category_id = $('select[name="category_id"]');
-            var subcategory_id = $('select[name="subcategory_id"]');
 
-            category_id.change(function() {
-                var id = category_id.val();
-                if (id) {
-                    subcategory_id.empty();
-                    subcategory_id.append(`<option value="">Please Select</option>`);
-                    $.get(`{{ url('/subcategory?category_id=') }}${id}`, function(data, status) {
-                        if (data) {
-                            data.forEach(function(row) {
-                                subcategory_id.append(
-                                    `<option value="${row.id}"> ${row.name } </option>`);
-                            });
-                        }
-                    });
-                }
-
-            });
-
-            // For Price
-            var categoryCommission = 0;
-            var catCom = $('#catCom');
-
-            $(document).on('change keyup select', 'select[name = "subcategory_id"]',
-                function() {
-                    var subCatID = subcategory_id.val();
-                    if (subcategory_id) {
-                        $.get(`{{ url('commission/${subCatID}') }}`, function(data, status) {
-                            categoryCommission = data.commission;
-                            if (data) {
-                                catCom.text(`${data.commission}%`);
-                            }
-                        });
-                    };
-
-                });
-
-
-            var regular_price = $('input[name="regular_price"]');
-            var discount = $('input[name="discount"]');
-            var net_price = $('input[name="net_price"]');
-            var price = $('input[name="price"]');
-
-            // var regularPrice = regular_price.val();
-
-
-
-            $(document).on('keyup change', 'input[name="regular_price"], input[name="discount"]', function(){
-
-                var regularPrice = parseFloat(regular_price.val());
-                var disCount = parseFloat(discount.val());
-                var netPrice = parseFloat(net_price.val());
-
-                var some = regularPrice;
-                console.log(some);
-
-            });
-
-
-            function priceCalculate(){
-                var total = parseFloat(regular_price.val() ) + parseFloat( discount.val() )// + categoryCommission;
-                console.log(total);
-            }
-
-
-
-
-        })
-    </script> --}}
     <script>
         $(function() {
             var category_id = $('select[name="category_id"]');
@@ -468,12 +454,39 @@
                         if (data) {
                             data.forEach(function(row) {
                                 subcategory_id.append(
-                                    `<option value="${row.id}"> ${row.name } </option>`);
+                                    `<option value="${row.id}"> ${row.name } </option>`
+                                );
                             });
                         }
                     });
                 }
 
+            });
+            // For Division, District and Upazila
+            var shop_id = $('#shop_id');
+            var division_id = $('#division_id');
+            var district_id = $('#district_id');
+            var upazila_id = $('#upazila_id');
+
+            $(document).on('change', 'select[id="shop_id"]', function() {
+                var shopno = shop_id.val();
+                console.log(shopno);
+                if (shopno) {
+                    $.get(`{{ url('getshop/${shopno}') }}`, function(data, status) {
+                        if (data) {
+                            console.log(data);
+                            division_id.append(
+                                `<option value="${data.division_id}" selected>${data.division.name}</option>`
+                            );
+                            district_id.append(
+                                `<option value="${data.district_id}" selected>${data.district.name}</option>`
+                            );
+                            upazila_id.append(
+                                `<option value="${data.upazila_id}" selected>${data.upazila.name}</option>`
+                            );
+                        }
+                    });
+                }
             });
 
             // For Price

@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status'];
+    protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'division_id', 'district_id', 'upazila_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status'];
 
     // Unique Slug generate
     public function setTitleAttribute($value)

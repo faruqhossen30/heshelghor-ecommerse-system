@@ -79,9 +79,10 @@ Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('se
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
-Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
+
+Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 
 // For Shoping Cart
 Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
@@ -115,6 +116,7 @@ Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDiv
 Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
 Route::get('commission/{id}', [APIController::class, 'getCommission']);
 Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
+Route::get('getshop/{id}', [APIController::class, 'getShop']);
 
 
 Route::prefix('admin')->group(function () {

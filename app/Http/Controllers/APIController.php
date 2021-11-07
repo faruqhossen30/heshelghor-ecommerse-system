@@ -7,6 +7,7 @@ use App\Models\Admin\Location\Upazila;
 use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\Admin\Order\DeliverySystem;
+use App\Models\Merchant\Shop;
 
 class APIController extends Controller
 {
@@ -44,4 +45,17 @@ class APIController extends Controller
         return $deliverycost;
         }
     }
+
+    public function getShop(Request $request)
+    {
+        if($request->id){
+            $result = Shop::with('division', 'district', 'upazila')->where('id', $request->id)->first();
+
+            return $result;
+
+        }
+    }
+
+
+
 }

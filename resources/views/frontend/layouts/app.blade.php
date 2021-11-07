@@ -73,9 +73,9 @@
                         <!-- End Logo -->
 
                         <div class="header-search hs-simple">
-                            <form action="#" method="GET" class="input-wrapper" style="position: relative">
+                            <form action="#" method="GET" class="input-wrapper" style="position: relative" id="searchFrom">
                                 <input type="text" class="form-control" name="search" autocomplete="off"
-                                    placeholder="Search..." required id="searchInpur" />
+                                    placeholder="Search..." id="searchInpur" />
                                 <button class="btn btn-search" type="submit">
                                     <i class="d-icon-search"></i>
                                 </button>
@@ -274,6 +274,14 @@
                             console.log(err);
                         })
                 };
+            });
+            // Form form search with submit method
+            var searchFrom = $('#searchFrom');
+            var searchInpur = $('#searchInpur');
+            $(document).on('submit', 'form[id="searchFrom"]', function(event){
+                event.preventDefault()
+                var value = $(this).val();
+                console.log(searchInpur.val())
             });
         </script>
 </body>

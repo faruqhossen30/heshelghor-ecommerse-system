@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Brand;
 use Illuminate\Http\Request;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
@@ -22,10 +23,11 @@ class ShopPageController extends Controller
     {
         $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
+        $brands = Brand::get();
+        // return $brands;
 
-        // return $categories;
 
-        return view('frontend.shoppage', compact('categories', 'products'));
+        return view('frontend.shoppage', compact('categories', 'products','brands'));
     }
     // Product with Sub-Category
 

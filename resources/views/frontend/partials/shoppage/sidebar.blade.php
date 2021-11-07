@@ -39,12 +39,15 @@
             </div>
         </div>
         <div class="widget widget-collapsible">
-            <h3 class="widget-title">Size</h3>
+            <h3 class="widget-title">Brand</h3>
             <ul class="widget-body filter-items">
-                <li><a href="#">Extra Large</a></li>
-                <li><a href="#">Large</a></li>
+                @foreach ($brands as $brand)
+
+                <li><a href="#">{{$brand->name}}</a></li>
+                @endforeach
+                {{-- <li><a href="#">Large</a></li>
                 <li><a href="#">Medium</a></li>
-                <li><a href="#">Small</a></li>
+                <li><a href="#">Small</a></li> --}}
             </ul>
         </div>
         <div class="widget widget-collapsible">

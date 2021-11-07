@@ -14,12 +14,12 @@
             <!-- End Breadcrumb -->
             <div class="row main-content-wrap gutter-lg">
                 <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
-                    @include('frontend.partials.shoppage.sidebar')
+                    @include('frontend.partials.shoppage.sidebar', compact('brands'))
                 </aside>
                 {{-- sidebar end --}}
 
                 <div class="col-lg-9 main-content">
-                    <div class="shop-banner banner"
+                    {{-- <div class="shop-banner banner"
                         style="background-image: url('{{ asset('frontend') }}/images/demos/demo3/shop_banner.jpg'); background-color: #f2f2f3;">
                         <div class="banner-content">
                             <h4
@@ -29,8 +29,8 @@
                                 Suede Bags</h1>
                             <a href="#" class="btn btn-outline btn-rounded btn-dark">Shop now</a>
                         </div>
-                    </div>
-                    <nav class="toolbox sticky-content sticky-toolbox fix-top">
+                    </div> --}}
+                    <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
                         <div class="toolbox-left">
                             <a href="#"
                                 class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary btn-rounded d-lg-none">Filters<i
@@ -52,14 +52,14 @@
                             <div class="toolbox-item toolbox-show select-box">
                                 <label>Show :</label>
                                 <select name="count" class="form-control">
-                                    <option value="12">12</option>
-                                    <option value="24">24</option>
-                                    <option value="36">36</option>
+                                    <option value="12">10</option>
+                                    <option value="24">20</option>
+                                    <option value="36">30</option>
                                 </select>
                             </div>
                             <div class="toolbox-item toolbox-layout">
-                                <a href="shop-list.html" class="d-icon-mode-list btn-layout"></a>
-                                <a href="shop.html" class="d-icon-mode-grid btn-layout active"></a>
+                                <a href="#" class="d-icon-mode-list btn-layout"></a>
+                                <a href="#" class="d-icon-mode-grid btn-layout active"></a>
                             </div>
                         </div>
                     </nav>
