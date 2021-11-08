@@ -30,7 +30,7 @@ class UserOrderListAPIController extends Controller
     }
     public function orderItem($userId, $orderId)
     {
-        $orderItem = OrderItem::where('user_id', $userId)->where('order_id', $orderId)->get();
+        $orderItem = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $orderId)->get();
         if(!empty($orderItem)){
             return response()->json([
                 'success' => true,

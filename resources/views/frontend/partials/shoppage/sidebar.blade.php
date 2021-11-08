@@ -1,22 +1,42 @@
+@php
+    $divisions = App\Models\Admin\Location\Division::get();
+
+@endphp
 <div class="sidebar-overlay"></div>
 <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
 <div class="sidebar-content">
     <div class="sticky-sidebar">
         <div class="widget">
-            <h3 class="widget-title">Location</h3>
-            <ul class="widget-body filter-items search-ul">
-                <div class="toolbox-item toolbox-sort select-box">
-                    <label>Sort By :</label>
-                    <select name="orderby" class="form-control">
-                        <option value="default">Default</option>
-                        <option value="popularity" selected="selected">Most Popular</option>
-                        <option value="rating">Average rating</option>
-                        <option value="date">Latest</option>
-                        <option value="price-low">Sort forward price low</option>
-                        <option value="price-high">Sort forward price high</option>
-                        <option value="">Clear custom sort</option>
-                    </select>
-                </div>
+            <h3 class="widget-title ">
+                <i class="d-icon-map p-1"></i>
+                Location</h3>
+            <ul class="list-group widget-body" >
+                <li class="mb-2">
+                    <select class="form-select form-select-lg" readonly>
+                        <option selected>Select Division</option>
+                        @foreach ($divisions as $division)
+                            <option value="{{$division->id}}">{{$division->name}}</option>
+                        @endforeach
+                      </select>
+                </li>
+                <li class="mb-2">
+                    <select class="form-select form-select-lg" disabled>
+                        <option selected>Select District</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </li>
+                <li class="mb-2">
+                    <select class="form-select form-select-lg" disabled>
+                        <option selected>Select Upazila</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </li>
+
+
             </ul>
         </div>
 
@@ -30,7 +50,8 @@
                         <ul>
                             @foreach ($category->subcategorylist as $subcategory)
                                 <li>
-                                    <a href="{{ route('product.with.subcategory', $subcategory->id) }}">{{ $subcategory->name }}</a>
+                                    <a
+                                        href="{{ route('product.with.subcategory', $subcategory->id) }}">{{ $subcategory->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -60,8 +81,7 @@
             <h3 class="widget-title">Brand</h3>
             <ul class="widget-body filter-items">
                 @foreach ($brands as $brand)
-
-                <li><a href="#">{{$brand->name}}</a></li>
+                    <li><a href="#">{{ $brand->name }}</a></li>
                 @endforeach
                 {{-- <li><a href="#">Large</a></li>
                 <li><a href="#">Medium</a></li>
@@ -89,3 +109,8 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+
+</script>
+@endpush

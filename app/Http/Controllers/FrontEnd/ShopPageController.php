@@ -35,9 +35,9 @@ class ShopPageController extends Controller
     {
         $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
-
+        $brands = Brand::get();
         // return $products;
 
-        return view('frontend.shoppage', compact('categories', 'products'));
+        return view('frontend.shoppage', compact('categories', 'products', 'brands'));
     }
 }
