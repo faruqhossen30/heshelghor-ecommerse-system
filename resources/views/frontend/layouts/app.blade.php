@@ -255,7 +255,7 @@
                                 // console.log(res);
                                 li = res.data.map(function(post) {
                                     // return `<a href="product/${post.id}" class="list-group-item">${post.title}</a>`;
-                                    return `<a href="" class="list-group-item d-flex justify-content-between align-items-center">
+                                    return `<a href="${window.location.origin}/product/${post.id}" class="list-group-item d-flex justify-content-between align-items-center">
                                        <div>
                                            <img src="${window.location.origin}/uploads/product/${post.photo}" alt="${post.title}" class="img-thumbnail" style="width: 40px; height:40px">
                                             <span>${post.title}</span>
