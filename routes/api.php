@@ -14,6 +14,10 @@ use App\Http\Controllers\API\SearchAPIController;
 use App\Http\Controllers\API\User\UserOrderListAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
+use App\Http\Controllers\API\Merchant\MerchantBrandAPIController;
+// Merchant API
+use App\Http\Controllers\API\Merchant\MerchantOrderItemAPIController;
+use App\Http\Controllers\API\Merchant\MerchantShopAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +68,16 @@ Route::get('districts', [LocationAPIController::class, 'districts']); // all div
 Route::get('upazilas', [LocationAPIController::class, 'upazilas']); // all divission list
 Route::get('district/{id}', [LocationAPIController::class, 'getDristrictByDivision']); // all divission list
 Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict']); // all divission list
+
+
+
+// Merchant Order Items api
+Route::prefix('merchant')->group(function () {
+    Route::get('/{merchantId}/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
+    Route::get('/{merchantId}/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'allOrder']);
+    Route::apiResource('/{merchantId}/brand', MerchantBrandAPIController::class);
+    Route::apiResource('/{merchantId}/shop', MerchantShopAPIController::class);
+});
 
 // User API
 Route::post('/register', [UserAPIController::class, 'userRegister']);

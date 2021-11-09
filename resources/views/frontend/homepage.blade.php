@@ -38,9 +38,9 @@
                                                     <label class="product-label label-sale">15% off</label>
                                                 </div>
                                                 <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                    {{-- <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
                                                         data-target="#addCartModal" title="Add to cart"><i
-                                                            class="d-icon-bag"></i></a>
+                                                            class="d-icon-bag"></i></a> --}}
                                                     <a href="#" class="btn-product-icon btn-wishlist"
                                                         title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                 </div>
@@ -55,7 +55,7 @@
                                                     <a href="{{route('product.with.subcategory', $product->subcategory_id)}}">| {{$product->subcategory->name}}</a>
                                                 </div>
                                                 <h3 class="product-name">
-                                                    <a href="demo3-product.html">{{ $product->title }}</a>
+                                                    <a href="{{route('singleproduct', $product->id)}}">{{ $product->title }}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <ins class="new-price">৳{{ $product->price }}</ins><del
@@ -193,7 +193,7 @@
                                                     <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
                                                 </div>
                                                 <h3 class="product-name">
-                                                    <a href="demo3-product.html">{{ $product->title }}</a>
+                                                    <a href="{{route('singleproduct', $product->id)}}">{{ $product->title }}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <ins class="new-price">৳{{ $product->price }}</ins><del
@@ -217,9 +217,6 @@
                         @endif
 
                         @endforeach
-
-
-
 
                         <section class="mb-3">
                             <div class="row">
