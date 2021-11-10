@@ -57,6 +57,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
+                                                            <div class="col-md-10">
+                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror ">
+                                                                <div class="text-danger">
+                                                                    @error('image')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="addressID">Shop Address: </label>
                                                             <div class="col-md-10">
@@ -133,37 +144,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
-                                                        {{-- <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="tradeLicence">Trade Licence No: </label>
-                                                            <div class="col-md-10">
-                                                                <input name="trade_license" type="text" id="tradeLicence" class="form-control @error('trade_license') is-invalid @enderror " placeholder="Optional">
-                                                                <div class="text-danger">
-                                                                    @error('trade_license')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div> --}}
-
-
-
-
-                                                        {{-- <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Shop Image:</label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
-                                                                    value="Some text value...">
-                                                                    <div class="text-danger">
-                                                                        @error('image')
-                                                                        <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                            </div>
-                                                        </div> --}}
 
                                                         <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Shop</button>
 

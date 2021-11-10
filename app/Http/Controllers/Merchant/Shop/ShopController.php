@@ -49,13 +49,8 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-        // return $request->all();
-
+        // return $request->file('image');
         $image = $request->file('image');
-
         if ($image) {
             $validate = $request->validate([
                 'name'        => 'required',
@@ -66,7 +61,8 @@ class ShopController extends Controller
             $fileExtention = $image->getClientOriginalExtension();
             $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-            Image::make($image)->save(public_path('uploads/shop/') . $fileName);
+            $photo = Image::make($image)->save(public_path('uploads/shop/') . $fileName);
+            // dd($fileName);
 
             Shop::create([
                 'name'          => $request->name,
@@ -78,9 +74,9 @@ class ShopController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
+                'image'         => $fileName,
                 'author'        => 'merchant',
                 'author_id'     => Auth::guard('marchant')->user()->id,
-                'image'         => 'uploads/shop/' . $fileName,
             ]);
 
             Session::flash('create');
@@ -88,10 +84,10 @@ class ShopController extends Controller
         } else {
             $validate = $request->validate([
                 'name'        => 'required',
-                'address'        => 'required',
-                'division_id'        => 'required',
-                'district_id'        => 'required',
-                'upazila_id'        => 'required',
+                'address'     => 'required',
+                'division_id' => 'required',
+                'district_id' => 'required',
+                'upazila_id'  => 'required',
             ]);
             $marchantname = 'merchant';
             Shop::create([

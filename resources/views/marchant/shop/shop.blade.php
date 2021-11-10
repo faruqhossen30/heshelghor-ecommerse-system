@@ -50,6 +50,7 @@
                                             </div>
                                         </th>
                                         <th class="all">SN</th>
+                                        <th>Photo</th>
                                         <th class="all">Shop Name</th>
                                         <th>Address</th>
                                         <th>Description</th>
@@ -73,6 +74,9 @@
                                             {{$serial++}}
                                         </td>
                                         <td>
+                                            <img src="{{asset('uploads/shop/photo2.png')}}" class="w-25" style="border-radius: 50%" alt="Photo">
+                                        </td>
+                                        <td>
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$shop->name}}</a></h5>
                                         </td>
                                         <td>
@@ -88,24 +92,7 @@
                                             <a href="{{route('shop.edit',$shop->id)}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                                             <a href="{{route('shop.delete',$shop->id)}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
                                         </td>
-                                        {{-- <td>
-                                            <ul class="list-inline table-action m-0">
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.edit', $category->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-
-                                                    <form action="{{route('category.destroy', $category->id)}}" method="post" >
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </td> --}}
+                                        
                                     </tr>
                                     @endforeach
 
