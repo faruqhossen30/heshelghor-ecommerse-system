@@ -54,7 +54,7 @@
                                         <th>Address</th>
                                         <th>Description</th>
                                         <th>Created at</th>
-                                        {{-- <th style="width: 85px;">Action</th> --}}
+                                        <th style="width: 85px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,7 +84,10 @@
                                         <td>
                                             {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }}
                                         </td>
-
+                                        <td>
+                                            <a href="{{route('shop.edit',$shop->id)}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <a href="{{route('shop.delete',$shop->id)}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
+                                        </td>
                                         {{-- <td>
                                             <ul class="list-inline table-action m-0">
                                                 <li class="list-inline-item">
@@ -166,7 +169,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Category has been created Successfully!'
+                title: 'Shop has been created Successfully!'
             })
         </script>
     @endif
@@ -187,7 +190,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Category has been updated Successfully!'
+                title: 'Shop has been updated Successfully!'
             })
         </script>
     @endif
@@ -196,7 +199,7 @@
         <script>
             Swal.fire({
             icon: 'success',
-            title: 'Category has been deleted Successfully!',
+            title: 'Shop has been deleted Successfully!',
             })
         </script>
     @endif
