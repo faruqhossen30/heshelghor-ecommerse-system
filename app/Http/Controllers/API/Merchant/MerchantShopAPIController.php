@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Merchant\Shop;
 
 class MerchantShopAPIController extends Controller
 {
@@ -12,9 +13,25 @@ class MerchantShopAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $merchantId = $request->user()->id;
+
+        $shops = Shop::where('author_id', $merchantId)->get();
+        if (count($shops) == 0) {
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message' => 'No brands found'
+            ]);
+        }
+        if (!empty($shops)) {
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $shops
+            ]);
+        }
     }
 
     /**
@@ -44,9 +61,16 @@ class MerchantShopAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $shop = Shop::where('author_id', $merchantId)->where('id', $id)->first();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $shop
+        ]);
     }
 
     /**

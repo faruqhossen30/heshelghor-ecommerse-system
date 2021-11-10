@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class MerchantOrderItemAPIController extends Controller
 {
-    public function allOrder($merchantId)
+    public function allOrder(Request $request)
     {
+        $merchantId = $request->user()->id;
         $orderItem = OrderItem::with('product')->where('merchant_id', $merchantId)->get();
         if(!empty($orderItem)){
             return response()->json([
@@ -19,8 +20,9 @@ class MerchantOrderItemAPIController extends Controller
             ]);
         }
     }
-    public function singleOrder($merchantId, $orderItemId)
+    public function singleOrder(Request $request, $orderItemId)
     {
+        $merchantId = $request->user()->id;
         $orderItem = OrderItem::with('product')->where('merchant_id', $merchantId)->get();
         if(!empty($orderItem)){
             return response()->json([

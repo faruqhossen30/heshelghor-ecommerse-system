@@ -13,8 +13,9 @@ class MerchantBrandAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($merchantId)
+    public function index(Request $request)
     {
+        $merchantId = $request->user()->id;
         $data = Brand::where('author', 'merchant')->where('author_id', $merchantId)->get();
         if(count($data) == 0){
             return response()->json([
@@ -60,8 +61,9 @@ class MerchantBrandAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($merchantId, $id)
+    public function show(Request $request, $id)
     {
+        $merchantId = $request->user()->id;
         $data = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
         if(!empty($data)){
             return response()->json([

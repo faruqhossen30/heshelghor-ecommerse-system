@@ -12,12 +12,14 @@ use App\Http\Controllers\API\User\UserAPIController;
 use App\Http\Controllers\API\User\UserOrderAPIController;
 use App\Http\Controllers\API\SearchAPIController;
 use App\Http\Controllers\API\User\UserOrderListAPIController;
+use App\Http\Controllers\API\User\UserAuthAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 use App\Http\Controllers\API\Merchant\MerchantBrandAPIController;
 // Merchant API
 use App\Http\Controllers\API\Merchant\MerchantOrderItemAPIController;
 use App\Http\Controllers\API\Merchant\MerchantShopAPIController;
+use App\Http\Controllers\API\Merchant\MerchantAuthAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,22 +75,38 @@ Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict
 
 // Merchant Order Items api
 Route::prefix('merchant')->group(function () {
-    Route::get('/{merchantId}/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
-    Route::get('/{merchantId}/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'allOrder']);
-    Route::apiResource('/{merchantId}/brand', MerchantBrandAPIController::class);
-    Route::apiResource('/{merchantId}/shop', MerchantShopAPIController::class);
+    Route::post('/login', [MerchantAuthAPIController::class, 'login']);
+    Route::post('/register', [MerchantAuthAPIController::class, 'register']);
+
+    Route::middleware('auth:sanctum')->group(function(){
+        Route::post('/logout', [MerchantAuthAPIController::class, 'logout']);
+        Route::get('/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
+        Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
+        Route::apiResource('/brand', MerchantBrandAPIController::class);
+        Route::apiResource('/shop', MerchantShopAPIController::class);
+    });
+
+
 });
 
 // User API
 Route::post('/register', [UserAPIController::class, 'userRegister']);
-Route::post('/login', [UserAPIController::class, 'userLogin']);
 
 // User Order Items api
+
 Route::prefix('user')->group(function () {
-    Route::get('/{userId}/order', [UserOrderListAPIController::class, 'order']);
-    Route::get('/{userId}/order/{orderId}', [UserOrderListAPIController::class, 'orderItem']);
-    Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
-    Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
-    Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
+    Route::post('/login', [UserAuthAPIController::class, 'login']);
+    Route::post('/register', [UserAuthAPIController::class, 'register']);
+
+    Route::middleware('auth:sanctum')->group(function(){
+        Route::post('/logout', [UserAuthAPIController::class, 'logout']);
+        Route::get('/orders', [UserOrderListAPIController::class, 'order']);
+        Route::get('/order/{id}', [UserOrderListAPIController::class, 'orderItem']);
+        Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
+        Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
+        Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
+
+    });
+
 });
 

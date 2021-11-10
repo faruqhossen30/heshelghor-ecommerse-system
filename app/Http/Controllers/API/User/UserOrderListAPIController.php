@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 
 class UserOrderListAPIController extends Controller
 {
-    public function order($userId)
+    public function order(Request $request)
     {
+        $userId = $request->user()->id;
         $order = Order::where('user_id', $userId)->get();
 
         if(count($order) == 0){
@@ -28,9 +29,11 @@ class UserOrderListAPIController extends Controller
             ]);
         }
     }
-    public function orderItem($userId, $orderId)
+    public function orderItem(Request $request, $id)
     {
-        $orderItem = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $orderId)->get();
+        $userId = $request->user()->id;
+        // return $userId;
+        $orderItem = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
         if(!empty($orderItem)){
             return response()->json([
                 'success' => true,
