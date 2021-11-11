@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Edit Brand</h4>
+                    <h4 class="page-title">Edit Shop</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Brand List</li>
+                            <li class="breadcrumb-item active">Shop Update</li>
                         </ol>
                     </div>
                 </div>
@@ -29,32 +29,40 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('brand.index')}}" class="btn btn-success mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Brand</a>
+                                <a href="{{route('shop.index')}}" class="btn btn-primary mb-2"><i
+                                        class="mdi mdi-format-list-bulleted me-1"></i> All Shop List</a>
                             </div>
                         </div>
                         <!-- end row -->
-
 
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Brand </h4> --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('brand.update', $brand->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('shop.update',$shop->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="old_image" value="{{$brand->image}}">
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Name</label>
+                                                                for="simpleinput">Shop Name: </label>
                                                             <div class="col-md-10">
-                                                                <input name="name" value="{{$brand->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
+                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror "  value="{{ $shop->name}}">
                                                                 <div class="text-danger">
                                                                     @error('name')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label"
+                                                                for="addressID">Shop Address: </label>
+                                                            <div class="col-md-10">
+                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " value="{{$shop->address}}">
+                                                                <div class="text-danger">
+                                                                    @error('address')
                                                                     <span>{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
@@ -63,11 +71,10 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Text area</label>
+                                                                for="example-textarea">Shop Description:</label>
                                                             <div class="col-md-10">
-                                                                <textarea name="description"  class="form-control @error('description') is-invalid @enderror" id="example-textarea" rows="5" placeholder="Brand description...">
-                                                                    {{$brand->description}}
-                                                                </textarea>
+                                                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
+                                                                    rows="5" placeholder="Optional">{{$shop->description}}</textarea>
                                                                 <div class="text-danger">
                                                                     @error('description')
                                                                     <span>{{ $message }}</span>
@@ -78,20 +85,63 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Image</label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
-                                                                    value="Some text value...">
-                                                                    <div class="text-danger">
-                                                                        @error('image')
-                                                                        <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                    <img src="{{asset($brand->image)}}" style="width: 100px; height:100px" alt="">
+                                                                for="simpleinput">Division: </label>
+                                                            <div class="col-md-10" style="position: relative">
+                                                                <select id="division" class="form-select @error('division_id') is-invalid @enderror" name="division_id">
+                                                                    <option selected value="">Select</option>
+                                                                    @foreach ($divisions as $division)
+                                                                        <option  value="{{$division->id}}" {{($shop->division_id==$division->id)?'selected':''}}> {{$division->name}}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                                <div class="text-danger">
+                                                                    @error('division_id')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
                                                             </div>
                                                         </div>
 
-                                                        <button type="submit" class="btn btn-success">Update Brand</button>
+                                                        <div class="mb-2 row">
+                                                            @php
+                                                                $district = DB::table('districts')->where('id',$shop->district_id)->first();
+                                                            @endphp
+                                                            <label class="col-md-2 col-form-label"
+                                                                for="simpleinput">Select District : </label>
+                                                            <div class="col-md-10" style="position: relative">
+                                                                <select  id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
+                                                                    <option value="{{$shop->district_id}}" selected> {{$district->name}}</option>
+                                                                </select>
+                                                                <img id="district_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
+                                                                <div class="text-danger">
+                                                                    @error('district_id')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-2 row">
+                                                            @php
+                                                                $upazila = DB::table('upazilas')->where('id',$shop->upazila_id)->first();
+                                                            @endphp
+                                                            <label class="col-md-2 col-form-label"
+                                                                for="upazila">Select Upazila : </label>
+                                                            <div class="col-md-10" style="position: relative">
+                                                                <select  id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
+                                                                    <option value="{{$shop->upazila_id}}" selected> {{$upazila->name}}</option>
+                                                                </select>
+                                                                <img id="upazila_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
+                                                                <div class="text-danger">
+                                                                    @error('upazila_id')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Update Shop</button>
 
                                                     </form>
                                                 </div>
@@ -126,12 +176,53 @@
 @endpush
 
 @push('scripts')
-<!-- third party js -->
-<script src="{{ asset('backend')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
-<!-- third party js ends -->
-<script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+    <script>
+        $(function(){
+            var division = $('select[name=division_id]');
+            var district = $('select[name=district_id]');
+            var upazila = $('select[name=upazila_id]');
+            var district_loader = $('#district_loader');
+            var upazila_loader = $('#upazila_loader');
+
+            district_loader.hide();
+            upazila_loader.hide();
+
+            // For District
+            division.change(function(){
+                district.removeAttr('disabled');
+                district_loader.show();
+                var divisionID = $(this).val();
+                if(divisionID){
+                    $.get(`{{url('/getdistrict/${divisionID}')}}`, function(data, status){
+                        district.empty();
+                        if(data){
+                            district_loader.hide();
+                            data.forEach(function(row){
+                                district.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            });
+                        }
+                    });
+                }
+
+            });
+
+            // For Upazilla
+            district.change(function(){
+                upazila.removeAttr('disabled');
+                var districtID = $(this).val();
+                if(districtID){
+                    $.get(`{{url('/getupazila/${districtID}')}}`, function(data, status){
+                        upazila.empty();
+                        if(data){
+                            upazila_loader.hide();
+                            data.forEach(function(row){
+                                upazila.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            });
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 @endpush
