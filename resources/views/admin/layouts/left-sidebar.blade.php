@@ -219,6 +219,23 @@
                     </div>
                 </li>
                 <li>
+                    <a href="#sidebarMarket" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Market </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarMarket">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('market.index')}}">All Market</a>
+                            </li>
+                            <li>
+                                <a href="{{route('market.create')}}">Add Market</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
                     <a href="#sidePayment" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
                         <i class="mdi mdi-bank"></i>
                         <span> Payment & Delivery </span>
@@ -245,7 +262,7 @@
                     <div class="collapse" id="sidebarLocation">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="">All Location</a>
+                                <a href="#">All Location</a>
                             </li>
                             <li>
                                 <a href="{{route('upazila.create')}}">Upazila</a>

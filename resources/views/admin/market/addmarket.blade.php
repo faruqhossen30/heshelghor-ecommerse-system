@@ -1,4 +1,4 @@
-@extends('marchant.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="content">
@@ -15,7 +15,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Brand List</li>
+                            <li class="breadcrumb-item active">Add Market</li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <a href="{{route('shop.index')}}" class="btn btn-primary mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Shop List</a>
+                                        class="mdi mdi-format-list-bulleted me-1"></i> Market List</a>
                             </div>
                         </div>
                         <!-- end row -->
@@ -42,11 +42,11 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('shop.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('market.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Shop Name: </label>
+                                                                for="simpleinput">Market Name: </label>
                                                             <div class="col-md-10">
                                                                 <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name" value="{{old('name')}}">
                                                                 <div class="text-danger">
@@ -56,20 +56,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror ">
-                                                                <div class="text-danger">
-                                                                    @error('image')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="addressID">Shop Address: </label>
+                                                                for="addressID">Address: </label>
                                                             <div class="col-md-10">
                                                                 <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " placeholder="address" value="{{old('address')}}">
                                                                 <div class="text-danger">
@@ -82,7 +72,7 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Shop Description:</label>
+                                                                for="example-textarea">Description:</label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
                                                                     rows="5" placeholder="Optional">{{old('description')}}</textarea>
@@ -93,25 +83,18 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Select Market</label>
-                                                            <div class="col-md-10">
-                                                                <select id="select-code-language" class="selectize-drop-header" placeholder="Select a language...">
-                                                                    {{-- <option data-display="Select">Nothing</option> --}}
-                                                                    @foreach ($markets as $item)
-                                                                    <option value="txt">{{$item->name}}</option>
-                                                                    @endforeach
 
-                                                                </select>
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
+                                                            <div class="col-md-10">
+                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror ">
                                                                 <div class="text-danger">
-                                                                    @error('description')
+                                                                    @error('image')
                                                                     <span>{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
-
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
@@ -164,7 +147,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Shop</button>
+                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Market </button>
 
                                                     </form>
                                                 </div>
@@ -196,31 +179,9 @@
     type="text/css" />
 <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
     rel="stylesheet" type="text/css" />
-
-    <link href="{{asset('backend') }}/assets/libs/mohithg-switchery/switchery.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('backend') }}/assets/libs/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('backend') }}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('backend') }}/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('backend') }}/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
-<script src="{{asset('backend') }}/assets/libs/selectize/js/standalone/selectize.min.js"></script>
-<script src="{{asset('backend') }}/assets/libs/mohithg-switchery/switchery.min.js"></script>
-<script src="{{asset('backend') }}/assets/libs/multiselect/js/jquery.multi-select.js"></script>
-<script src="{{asset('backend') }}/assets/libs/jquery.quicksearch/jquery.quicksearch.min.js"></script>
-<script src="{{asset('backend') }}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('backend') }}/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-<script src="{{asset('backend') }}/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
-
-<!-- Validation init js-->
-<script src="{{asset('backend') }}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('backend') }}/assets/js/pages/form-advanced.init.js"></script>
-
-
-
-
-
     <script>
         $(function(){
             var division = $('select[name=division_id]');

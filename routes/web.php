@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RolesController;
 // Admin Controller
 use App\Http\Controllers\Admin\BrandsController;
+use App\Http\Controllers\Admin\MarketController;
 // Location Controller
 use App\Http\Controllers\FrontEnd\CartController;
 use App\Http\Controllers\Product\BrandController;
@@ -107,7 +108,6 @@ Route::prefix('user')->group(function () {
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
     });
-
 });
 
 // For API
@@ -134,6 +134,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('subcategory', SubCategoryController::class);
         // Brand for Admin
         Route::resource('brands', BrandsController::class);
+        Route::resource('market', MarketController::class);
         // For location
         Route::resource('divission', DivisionController::class);
         Route::resource('district', DistrictController::class);
@@ -164,13 +165,15 @@ Route::prefix('merchant')->group(function () {
         Route::resource('brand', BrandController::class);
         Route::get('mybrand', [MyBrandController::class, 'index'])->name('myaddedbrand');
         Route::resource('shop', ShopController::class);
-                // Route::resource('shop', ShopController::class);
-                Route::get('shop', [ShopController::class, 'index'])->name('shop.index');
-                Route::get('shop/create', [ShopController::class, 'create'])->name('shop.create');
-                Route::post('shop/store', [ShopController::class, 'store'])->name('shop.store');
-                Route::get('shop/edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
-                Route::post('shop/update/{id}', [ShopController::class, 'update'])->name('shop.update');
-                Route::get('shop/delete/{id}', [ShopController::class, 'destroy'])->name('shop.delete');
+
+
+        // Route::resource('shop', ShopController::class);
+        Route::get('shop', [ShopController::class, 'index'])->name('shop.index');
+        Route::get('shop/create', [ShopController::class, 'create'])->name('shop.create');
+        Route::post('shop/store', [ShopController::class, 'store'])->name('shop.store');
+        Route::get('shop/edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
+        Route::post('shop/update/{id}', [ShopController::class, 'update'])->name('shop.update');
+        Route::get('shop/delete/{id}', [ShopController::class, 'destroy'])->name('shop.delete');
         // Order
         Route::get('orders', [OrderController::class, 'index'])->name('marchant.order.index');
         Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');
