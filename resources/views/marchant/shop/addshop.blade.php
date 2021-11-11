@@ -93,24 +93,21 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Select Market</label>
-                                                            <div class="col-md-10">
-                                                                <select id="select-code-language" class="selectize-drop-header" placeholder="Select a language...">
-                                                                    {{-- <option data-display="Select">Nothing</option> --}}
-                                                                    @foreach ($markets as $item)
-                                                                    <option value="txt">{{$item->name}}</option>
-                                                                    @endforeach
 
+
+                                                        <div class="mb-2 row">
+                                                            <label class="form-label col-md-2 col-form-label" for="select-code-language">Market/Mall</label>
+                                                            <div class="col-md-10">
+
+                                                                <select name="market_id" id="select-code-language" class="selectize-drop-header" placeholder="Select a language...">
+                                                                    @foreach ($markets as $item)
+                                                                    <option value="{{$item->id}}">{{$item->name}}</option>
+
+                                                                    @endforeach
                                                                 </select>
-                                                                <div class="text-danger">
-                                                                    @error('description')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
                                                             </div>
                                                         </div>
+
 
 
                                                         <div class="mb-2 row">

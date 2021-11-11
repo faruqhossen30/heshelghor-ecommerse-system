@@ -90,7 +90,7 @@
                                         </td>
                                         <td>
                                             <a href="{{route('shop.edit',$shop->id)}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('shop.delete',$shop->id)}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
+                                            <a href="{{route('shop.delete',$shop->id)}}" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are your want to delete shop ?')"><i class="fa fa-trash"></i></a>
                                         </td>
 
                                     </tr>
