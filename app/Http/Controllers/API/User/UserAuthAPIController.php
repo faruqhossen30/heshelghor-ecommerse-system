@@ -44,8 +44,7 @@ class UserAuthAPIController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
-            'device_name' => 'required',
+            'password' => 'required'
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -56,7 +55,16 @@ class UserAuthAPIController extends Controller
             ]);
         }
 
-        return $user->createToken($request->device_name)->plainTextToken;
+        // return $user->createToken($request->device_name)->plainTextToken;
+        $token = $user->createToken($request->device_name)->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'User Successfully login !',
+            'token'   => $token,
+            'data'    => $user
+        ]);
     }
 
     // Logout

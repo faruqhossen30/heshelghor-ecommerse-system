@@ -23,7 +23,11 @@ class MerchantAuthAPIController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json([
+                'success' => 'false',
+                'code' => 422,
+                'validation error' => $validator->errors()
+            ]);
         }
         $merchant = Marchant::create([
             'name' => $data['name'],
@@ -58,7 +62,16 @@ class MerchantAuthAPIController extends Controller
             ]);
         }
 
-        return $merchant->createToken($request->device_name)->plainTextToken;
+        // return $merchant->createToken($request->device_name)->plainTextToken;
+        $token = $merchant->createToken($request->device_name)->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'Merchant Successfully login !',
+            'token'   => $token,
+            'data'    => $merchant
+        ]);
     }
     // Merchant Logout
     public function logout(Request $request)
