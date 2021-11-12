@@ -10,7 +10,7 @@
                         <a href="{{url('/')}}">Home</a>
                     </li>
                     <li>
-                        <a href="demo3-shop.html">Categories</a>
+                        <a href="#">Categories</a>
                         <div class="megamenu">
                             <div class="row">
                                 <div class="col-6 col-sm-4 col-md-4 col-lg-4">
@@ -161,6 +161,9 @@
                     </li>
                     <li>
                         <a href="about-us.html">About Us</a>
+                    </li>
+                    <li>
+                        <a href="{{route('shoplist')}}">Shops</a>
                     </li>
                 </ul>
             </nav>
