@@ -13,7 +13,7 @@ class ShopListPageController extends Controller
 {
     public function allshop()
     {
-        $shops = Shop::with('market')->get();
+        $shops = Shop::with('market')->latest()->get();
         $brands = Brand::get();
         $products = Product::get();
         $categories = Category::get();

@@ -12,12 +12,13 @@ class ShopPageController extends Controller
 {
     public function index(Request $request)
     {
+        $brands = Brand::get();
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(12);
 
         // return $products;
 
-        return view('frontend.shoppage', compact('categories', 'products'));
+        return view('frontend.shoppage', compact('categories', 'products', 'brands'));
     }
     public function productWithCategory(Request $request, $id)
     {

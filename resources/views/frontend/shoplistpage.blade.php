@@ -80,13 +80,15 @@
                                                 <h6 class="card-title">{{$shop->name}}</h6>
                                             </a>
                                             <p class="text-muted text-truncate mb-0">
-                                                <i class="d-icon-map p-1"></i>{{$shop->address}}
+                                                <i class="d-icon-map mr-2"></i>{{$shop->address}}
                                             </p>
+                                            @if ($shop->market)
                                             <a href="#">
                                                 <p class="text-muted text-truncate mb-0">
-                                                    <i class="far fa-building p-1"></i>Basun Dara shopin complex
+                                                    <i class="far fa-building mr-2"></i>Basun Dara shopin complex
                                                 </p>
                                             </a>
+                                            @endif
                                             <hr style="margin-bottom: 1rem">
 
 
