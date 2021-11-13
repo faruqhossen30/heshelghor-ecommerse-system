@@ -18,6 +18,6 @@ class ShopListPageController extends Controller
         $products = Product::get();
         $categories = Category::get();
         // return $shops;
-        return view('frontend.shoplistpage', compact('shops','products', 'brands', 'categories'));
+        return view('frontend.viewshoplist', compact('shops','products', 'brands', 'categories'));
     }
 }

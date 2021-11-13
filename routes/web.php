@@ -62,6 +62,7 @@ use App\Http\Controllers\Admin\Order\PaymentMethodController;
 use App\Http\Controllers\Admin\Order\DeliverySystemController;
 use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
+use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
 
 
 /*
@@ -81,10 +82,12 @@ Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspag
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
+Route::get('{id}/product/', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
+
+
+
+
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
-
-
-
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');

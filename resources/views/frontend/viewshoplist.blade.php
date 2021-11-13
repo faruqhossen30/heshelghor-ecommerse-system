@@ -76,7 +76,7 @@
                                         @endif
 
                                         <div class="card-body">
-                                            <a href="#">
+                                            <a href="{{route('product.with.shop', $shop->id)}}">
                                                 <h6 class="card-title">{{$shop->name}}</h6>
                                             </a>
                                             <p class="text-muted text-truncate mb-0" style="font-size: 1.2rem">
