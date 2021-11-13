@@ -82,6 +82,8 @@ Route::prefix('merchant')->group(function () {
         Route::post('/logout', [MerchantAuthAPIController::class, 'logout']);
         Route::get('/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
         Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
+        Route::get('/order/accept/{orderItemId}', [MerchantOrderItemAPIController::class, 'acceptOrder']);
+        Route::get('/order/cancel/{orderItemId}', [MerchantOrderItemAPIController::class, 'cancelOrder']);
         Route::apiResource('/brand', MerchantBrandAPIController::class);
         Route::apiResource('/shop', MerchantShopAPIController::class);
     });

@@ -32,4 +32,48 @@ class MerchantOrderItemAPIController extends Controller
             ]);
         }
     }
+    // Accept Order
+    public function acceptOrder(Request $request, $orderItemId)
+    {
+        $merchantId = $request->user()->id;
+        $orderItem = OrderItem::where('merchant_id', $merchantId)->where('id', $orderItemId)->first();
+        // return $orderItem;
+        if($orderItem->order_status == 0 && $orderItem->cancel_status == 0){
+            $orderItem->order_status = true;
+            $orderItem->save();
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => 'Order accept successfully !'
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'code'    => 304,
+            'message'    => 'Opps! Something went wrong. Order Cancle or accepted.'
+        ]);
+
+    }
+
+    public function cancelOrder(Request $request, $orderItemId)
+    {
+        $merchantId = $request->user()->id;
+        $orderItem = OrderItem::where('merchant_id', $merchantId)->where('id', $orderItemId)->first();
+        // return $orderItem;
+        if($orderItem->order_status == 0 && $orderItem->cancel_status == 0){
+            $orderItem->cancel_status = true;
+            $orderItem->save();
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => 'Order has been  cancelled.'
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+            'code'    => 304,
+            'message'    => 'Opps! Something went wrong. Order Cancle or accepted.'
+        ]);
+
+    }
 }
