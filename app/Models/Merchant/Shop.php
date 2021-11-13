@@ -8,11 +8,21 @@ use App\Models\Admin\Location\Upazila;
 use App\Models\Admin\Market;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Shop extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
     protected $fillable = ['name', 'description', 'address', 'slug', 'trade_license', 'image', 'photo', 'market_id', 'division_id', 'district_id', 'upazila_id', 'author', 'author_id'];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function market()
     {

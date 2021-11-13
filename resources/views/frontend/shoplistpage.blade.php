@@ -65,7 +65,7 @@
                     </nav> --}}
                         <div class="row">
                             @foreach ($shops as $shop)
-                                <div class="col-xl-4 col-sm-6 my-4">
+                                <div class="col-xl-3 col-sm-4 my-4">
                                     <div class="card">
                                         @if ($shop->image)
                                         <img src="{{asset('uploads/shop/'.$shop->image)}}"
@@ -79,12 +79,12 @@
                                             <a href="#">
                                                 <h6 class="card-title">{{$shop->name}}</h6>
                                             </a>
-                                            <p class="text-muted text-truncate mb-0">
+                                            <p class="text-muted text-truncate mb-0" style="font-size: 1.2rem">
                                                 <i class="d-icon-map mr-2"></i>{{$shop->address}}
                                             </p>
                                             @if ($shop->market)
-                                            <a href="#">
-                                                <p class="text-muted text-truncate mb-0">
+                                            <a href="#" >
+                                                <p class="text-muted mb-0" style="font-size: 1.3rem">
                                                     <i class="far fa-building mr-2"></i>Basun Dara shopin complex
                                                 </p>
                                             </a>
