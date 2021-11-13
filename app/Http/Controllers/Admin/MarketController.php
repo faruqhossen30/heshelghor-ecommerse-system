@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Support\Str;
 use Session;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 
 class MarketController extends Controller
@@ -63,7 +64,7 @@ class MarketController extends Controller
                 'name'          => $request->name,
                 'address'       => $request->address,
                 'description'   => $request->description,
-                'slug'          => Str::of($request->name)->slug('-'),
+                'slug'          => SlugService::createSlug(Market::class, 'slug', $request->name, ['unique' => false]),
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
@@ -87,7 +88,7 @@ class MarketController extends Controller
                 'name'          => $request->name,
                 'address'       => $request->address,
                 'description'   => $request->description,
-                'slug'          => Str::of($request->name)->slug('-'),
+                'slug'          => SlugService::createSlug(Market::class, 'slug', $request->name, ['unique' => false]),
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,

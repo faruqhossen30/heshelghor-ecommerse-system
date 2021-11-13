@@ -99,7 +99,7 @@ class ShopController extends Controller
                 'name'          => $request->name,
                 'address'       => $request->address,
                 'description'   => $request->description,
-                'slug'          => Str::of($request->name)->slug('-'),
+                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
                 'market_id'     => $request->market_id,
                 'division_id'   => $request->division_id,
