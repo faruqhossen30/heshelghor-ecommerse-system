@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('status')->default(true);
             $table->rememberToken();
+            $table->string('android_token')->nullable();
+            $table->string('ios_token')->nullable();
             $table->timestamps();
         });
     }

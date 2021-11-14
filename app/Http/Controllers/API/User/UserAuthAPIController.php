@@ -44,7 +44,8 @@ class UserAuthAPIController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'android_token' => 'required'
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -57,7 +58,10 @@ class UserAuthAPIController extends Controller
 
         // return $user->createToken($request->device_name)->plainTextToken;
         $token = $user->createToken($request->device_name)->plainTextToken;
-
+        if($request->android_token){
+            $user->android_token = $request->android_token;
+            $user->save();
+        }
         return response()->json([
             'success' => true,
             'code'    => 200,
