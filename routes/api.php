@@ -104,7 +104,7 @@ Route::prefix('user')->group(function () {
         Route::post('/logout', [UserAuthAPIController::class, 'logout']);
         Route::get('/orders', [UserOrderListAPIController::class, 'order']);
         Route::get('/order/{id}', [UserOrderListAPIController::class, 'orderItem']);
-        Route::post('createorder', [UserOrderAPIController::class, 'createOrder']);
+        Route::post('/createorder', [UserOrderAPIController::class, 'createOrder']);
         Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
         Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
 

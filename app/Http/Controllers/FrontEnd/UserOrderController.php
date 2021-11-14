@@ -86,7 +86,7 @@ class UserOrderController extends Controller
                     'delivery_pointmanager_status' => false,
                     'deliveryman_status'           => false,
                     'user_accept_status'           => false,
-                    'order_pin_no'                 => rand(4,5),
+                    'order_pin_no'                 => rand(0001,9999),
                 ]);
             }
 

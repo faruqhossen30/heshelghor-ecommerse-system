@@ -37,9 +37,10 @@ class UserOrderAPIController extends Controller
         //     return response()->json($validator->errors());
         // }
 
+        $userId = $request->user()->id;
 
         $order = Order::create([
-            'user_id'            => $request->user_id,
+            'user_id'            => $userId,
             'order_no'           => '2387123',
             'total_prodcut'      => $request->total_prodcut,
             'total_item'         => $request->total_item,
@@ -50,12 +51,20 @@ class UserOrderAPIController extends Controller
             'payment_method_id'  => $request->payment_method_id
         ]);
 
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Order create successfully',
-            'data'    => $order
-        ]);
+        if($order){
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Order create successfully',
+                'data'    => $order
+            ]);
+        } else{
+            return response()->json([
+                'success' => false,
+                'code'    => 203,
+                'message' => 'Opps! Somethis is wrong !',
+            ]);
+        }
     }
 
     public function createOrderitem(Request $request)
@@ -86,6 +95,7 @@ class UserOrderAPIController extends Controller
         //     return response()->json($validator->errors());
         // }
 
+        $userId = $request->user()->id;
         $today = date("ymd");
         $number = intval($today.'000');
 
@@ -101,7 +111,7 @@ class UserOrderAPIController extends Controller
 
 
         $orderItem = OrderItem::create([
-            'user_id'           => $request->user_id,
+            'user_id'           => $userId,
             'merchant_id'       => $request->merchant_id,
             'order_id'          => $request->order_id,
             'order_number'      => $orderNumber,
@@ -114,15 +124,25 @@ class UserOrderAPIController extends Controller
             'size'              => $request->size,
             'order_No'          => $request->order_No,
             'payment_method_id' => $request->payment_method_id,
-            'delivery_system_id' => $request->delivery_system_id,
+            'delivery_system_id'=> $request->delivery_system_id,
+            'order_pin_no'      => rand(0001,9999),
         ]);
 
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Order Item create successfully',
-            'data'    => $orderItem
-        ]);
+        if($orderItem){
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Order Item create successfully',
+                'data'    => $orderItem
+            ]);
+        } else{
+            return response()->json([
+                'success' => true,
+                'code'    => 203,
+                'message' => 'Opps! Somethis is wrong !',
+            ]);
+        }
+
     }
 
     public function deliveryAddress(Request $request)
@@ -148,10 +168,10 @@ class UserOrderAPIController extends Controller
         // if ($validator->fails()) {
         //     return response()->json($validator->errors());
         // }
-
+        $userId = $request->user()->id;
         $deliveryAddress = DeliveryAddress::create([
             'name'              => $request->name,
-            'user_id'           => $request->user_id,
+            'user_id'           => $userId,
             'order_id'          => $request->order_id,
             'email'             => $request->email,
             'company'           => $request->company,
