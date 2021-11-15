@@ -20,6 +20,7 @@ use App\Http\Controllers\API\Merchant\MerchantBrandAPIController;
 use App\Http\Controllers\API\Merchant\MerchantOrderItemAPIController;
 use App\Http\Controllers\API\Merchant\MerchantShopAPIController;
 use App\Http\Controllers\API\Merchant\MerchantAuthAPIController;
+use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,10 +81,13 @@ Route::prefix('merchant')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('/logout', [MerchantAuthAPIController::class, 'logout']);
+        // Order
         Route::get('/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
         Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
         Route::get('/order/accept/{orderItemId}', [MerchantOrderItemAPIController::class, 'acceptOrder']);
         Route::get('/order/cancel/{orderItemId}', [MerchantOrderItemAPIController::class, 'cancelOrder']);
+        // Product
+        Route::get('product', [MerchantProductAPIController::class, 'index']);
         // Brand
         Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
         Route::post('/brand', [MerchantBrandAPIController::class, 'store']);
