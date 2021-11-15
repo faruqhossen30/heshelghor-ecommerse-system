@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API\Merchant;
 use App\Http\Controllers\Controller;
 use App\Models\Product\Brand;
 use Illuminate\Http\Request;
+use Image;
+use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class MerchantBrandAPIController extends Controller
 {
@@ -41,7 +44,11 @@ class MerchantBrandAPIController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'welcome'
+        ]);
     }
 
     /**
@@ -52,7 +59,59 @@ class MerchantBrandAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merchantId = $request->user()->id;
+        $image = $request->file('image');
+
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+
+            $brand = Brand::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => SlugService::createSlug(Brand::class, 'slug', $request->name, ['unique' => true]),
+                'image'       => 'uploads/brand/' . $fileName,
+                'author'      => 'merchant',
+                'author_id'   => $merchantId
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Brand has been created successfully !',
+                'data' =>$brand
+            ]);
+
+        } else{
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+            $brand = Brand::create([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'slug'        => SlugService::createSlug(Brand::class, 'slug', $request->name, ['unique' => true]),
+                'author'      => 'merchant',
+                'author_id'   => $merchantId
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Brand has been created successfully !',
+                'data' =>$brand
+            ]);
+
+        };
     }
 
     /**
@@ -94,7 +153,55 @@ class MerchantBrandAPIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+
+        $image = $request->file('image');
+        if($image){
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+            $old_image = $request->old_image;
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+                'image'       => 'uploads/brand/' . $fileName,
+            ];
+            if(isset($old_image)){
+                unlink($old_image);
+            }
+            $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
+            Session::flash('update');
+            return redirect()->route('brands.index');
+        } else{
+
+            // $validate = $request->validate([
+            //     'name'        => 'required',
+            //     'description' => 'required',
+            // ]);
+
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+            ];
+
+            // return "ol";
+            $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->update($data);
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $update
+            ]);
+
+        }
     }
 
     /**
