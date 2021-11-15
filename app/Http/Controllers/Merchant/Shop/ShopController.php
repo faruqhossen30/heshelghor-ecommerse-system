@@ -79,7 +79,7 @@ class ShopController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => $fileName,
+                'image'         => 'uploads/shop/' . $fileName,
                 'author'        => 'merchant',
                 'author_id'     => Auth::guard('marchant')->user()->id,
             ]);
@@ -121,7 +121,8 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $shop = Shop::find($id);
+        return view('marchant.shop.show', compact('shop'));
     }
 
     /**
@@ -161,7 +162,7 @@ class ShopController extends Controller
 
             Image::make($image)->save(public_path('uploads/shop/') . $fileName);
 
-            $shop->name = $request->name;
+            $shop->name          = $request->name;
             $shop->address       = $request->address;
             $shop->description   = $request->description;
             $shop->slug          = Str::of($request->name)->slug('-');
@@ -171,6 +172,7 @@ class ShopController extends Controller
             $shop->district_id   = $request->district_id;
             $shop->upazila_id    = $request->upazila_id;
             $shop->author_id     = Auth::guard('marchant')->user()->id;
+            $shop->image         = 'uploads/shop/' . $fileName;
             $shop->save();
 
             Session::flash('update');

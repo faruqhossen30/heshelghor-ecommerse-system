@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API\Merchant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Merchant\Shop;
-
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Image;
 class MerchantShopAPIController extends Controller
 {
     /**
@@ -52,7 +53,73 @@ class MerchantShopAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merchantId = $request->user()->id;
+
+        $image = $request->file('image');
+        if ($image) {
+            $validate = $request->validate([
+                'name'        => 'required',
+                'address'     => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            $photo = Image::make($image)->save(public_path('uploads/shop/') . $fileName);
+
+            $shop = Shop::create([
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'description'   => $request->description,
+                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'image'         => 'uploads/shop/' . $fileName,
+                'author'        => 'merchant',
+                'author_id'     => $merchantId
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Shop create successfully !',
+                'data'    => $shop
+            ]);
+
+        } else {
+            $validate = $request->validate([
+                'name'        => 'required',
+                'address'     => 'required',
+                'division_id' => 'required',
+                'district_id' => 'required',
+                'upazila_id'  => 'required',
+            ]);
+            $shop = Shop::create([
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'description'   => $request->description,
+                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'author'        => 'merchant',
+                'author_id'     => $merchantId
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 201,
+                'message' => 'Shop create successfully !',
+                'data'    => $shop
+            ]);
+        };
     }
 
     /**
@@ -93,7 +160,80 @@ class MerchantShopAPIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $shop = Shop::where('author_id', $merchantId)->where('id', $id)->first();
+        $image = $request->file('image');
+
+        if ($image) {
+            $validate = $request->validate([
+                'name'        => 'required',
+                'address'     => 'required',
+                'division_id' => 'required',
+                'district_id' => 'required',
+                'upazila_id'  => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            ]);
+
+            $fileExtention = $image->getClientOriginalExtension();
+            $fileName = date('Ymdhis') . '.' . $fileExtention;
+
+            $photo = Image::make($image)->save(public_path('uploads/shop/') . $fileName);
+
+            $data = [
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'description'   => $request->description,
+                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'image'         => 'uploads/shop/' . $fileName,
+                'author'        => 'merchant',
+                'author_id'     => $merchantId
+            ];
+
+            $update = Shop::where('author_id', $merchantId)->where('id', $id)->update($data);
+            if(isset($shop->image)){
+                unlink($shop->image);
+            }
+
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message' => 'Update successfully !',
+            ]);
+
+        } else {
+            $validate = $request->validate([
+                'name'        => 'required',
+                'address'     => 'required',
+                'division_id' => 'required',
+                'district_id' => 'required',
+                'upazila_id'  => 'required',
+            ]);
+            $data = [
+                'name'          => $request->name,
+                'address'       => $request->address,
+                'description'   => $request->description,
+                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
+                'trade_license' => $request->trade_license,
+                'market_id'     => $request->market_id,
+                'division_id'   => $request->division_id,
+                'district_id'   => $request->district_id,
+                'upazila_id'    => $request->upazila_id,
+                'author'        => 'merchant',
+                'author_id'     => $merchantId
+            ];
+            $update = Shop::where('author_id', $merchantId)->where('id', $id)->update($data);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message' => 'Update successfully !',
+            ]);
+        };
     }
 
     /**
@@ -102,8 +242,20 @@ class MerchantShopAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $shop = Shop::where('author_id', $merchantId)->where('id', $id)->first();
+        if(isset($shop->image)){
+            unlink($shop->image);
+        }
+        $delete = Shop::where('author_id', $merchantId)->where('id', $id)->delete();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message'    => "Delete Successfull !",
+        ]);
+
     }
 }

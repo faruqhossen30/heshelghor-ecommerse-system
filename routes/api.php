@@ -84,12 +84,18 @@ Route::prefix('merchant')->group(function () {
         Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
         Route::get('/order/accept/{orderItemId}', [MerchantOrderItemAPIController::class, 'acceptOrder']);
         Route::get('/order/cancel/{orderItemId}', [MerchantOrderItemAPIController::class, 'cancelOrder']);
+        // Brand
         Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
         Route::post('/brand', [MerchantBrandAPIController::class, 'store']);
         Route::get('/brand/{id}', [MerchantBrandAPIController::class, 'show']);
-        Route::post('/brand/{id}', [MerchantBrandAPIController::class, 'update']);
+        Route::post('/brand/update/{id}', [MerchantBrandAPIController::class, 'update']);
         Route::get('/brand/delete/{id}', [MerchantBrandAPIController::class, 'destroy']);
-        Route::apiResource('/shop', MerchantShopAPIController::class);
+        // Shop
+        Route::get('/shop', [MerchantShopAPIController::class, 'index']);
+        Route::post('/shop/create', [MerchantShopAPIController::class, 'store']);
+        Route::get('/shop/{id}', [MerchantShopAPIController::class, 'show']);
+        Route::post('/shop/update/{id}', [MerchantShopAPIController::class, 'update']);
+        Route::get('/shop/delete/{id}', [MerchantShopAPIController::class, 'destroy']);
     });
 
 

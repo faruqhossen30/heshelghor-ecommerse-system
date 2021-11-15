@@ -164,7 +164,7 @@ class MerchantBrandAPIController extends Controller
             ]);
 
             $brand = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
-            $old_image = $brand->image;
+
 
             $fileExtention = $image->getClientOriginalExtension();
             $fileName = date('Ymdhis') . '.' . $fileExtention;
@@ -176,8 +176,8 @@ class MerchantBrandAPIController extends Controller
                 'description' => $request->description,
                 'image'       => 'uploads/brand/' . $fileName,
             ];
-            if(isset($old_image)){
-                unlink($old_image);
+            if(isset($brand->image)){
+                unlink($brand->image);
             }
             $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->update($data);
             return response()->json([

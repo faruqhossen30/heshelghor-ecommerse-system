@@ -44,6 +44,21 @@
                                                 <div class="p-2">
                                                     <form method="POST" action="{{route('shop.update',$shop->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
+
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
+                                                            <div class="col-md-8">
+                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror " >
+                                                                <div class="text-danger">
+                                                                    @error('image')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <img src="{{asset($shop->image)}}" alt="Photo" class="img-responsive w-25">
+                                                            </div>
+                                                        </div>
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Shop Name: </label>
