@@ -35,9 +35,20 @@ class OrderController extends Controller
     // Order Accept
     public function orderAccept($id)
     {
-        $orderItem = OrderItem::where('id', $id)->update([
+        $orderItem = OrderItem::with('user')->where('id', $id)->first();
+        $update = OrderItem::where('id', $id)->update([
             'order_status' => true
         ]);
+
+        $android_token = $orderItem->user->android_token;
+        if($android_token){
+            $data = array(
+                'title' => 'Your Order accept !',
+                'body' => 'HeshelGhor | Store of Needs'
+            );
+            sendNotificateion($data, $android_token);
+        }
+
 
         return redirect()->back();
     }

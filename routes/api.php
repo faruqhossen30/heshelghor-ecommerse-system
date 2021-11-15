@@ -84,7 +84,11 @@ Route::prefix('merchant')->group(function () {
         Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
         Route::get('/order/accept/{orderItemId}', [MerchantOrderItemAPIController::class, 'acceptOrder']);
         Route::get('/order/cancel/{orderItemId}', [MerchantOrderItemAPIController::class, 'cancelOrder']);
-        Route::apiResource('/brand', MerchantBrandAPIController::class);
+        Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
+        Route::post('/brand', [MerchantBrandAPIController::class, 'store']);
+        Route::get('/brand/{id}', [MerchantBrandAPIController::class, 'show']);
+        Route::post('/brand/{id}', [MerchantBrandAPIController::class, 'update']);
+        Route::get('/brand/delete/{id}', [MerchantBrandAPIController::class, 'destroy']);
         Route::apiResource('/shop', MerchantShopAPIController::class);
     });
 

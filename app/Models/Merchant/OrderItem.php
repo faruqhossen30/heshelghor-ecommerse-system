@@ -5,6 +5,7 @@ namespace App\Models\Merchant;
 use App\Models\Admin\Order\DeliveryAddress;
 use App\Models\Auth\Marchant;
 use App\Models\Product\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +32,10 @@ class OrderItem extends Model
     public function merchant()
     {
         return $this->hasOne(Marchant::class, 'id' , 'merchant_id' );
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id' , 'user_id' );
     }
 
 }

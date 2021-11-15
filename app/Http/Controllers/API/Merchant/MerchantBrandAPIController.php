@@ -163,7 +163,8 @@ class MerchantBrandAPIController extends Controller
                 'image' => 'mimes:png,jpg,gif,bmp|max:1024',
             ]);
 
-            $old_image = $request->old_image;
+            $brand = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
+            $old_image = $brand->image;
 
             $fileExtention = $image->getClientOriginalExtension();
             $fileName = date('Ymdhis') . '.' . $fileExtention;
@@ -178,27 +179,27 @@ class MerchantBrandAPIController extends Controller
             if(isset($old_image)){
                 unlink($old_image);
             }
-            $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
-            Session::flash('update');
-            return redirect()->route('brands.index');
-        } else{
-
-            // $validate = $request->validate([
-            //     'name'        => 'required',
-            //     'description' => 'required',
-            // ]);
-
-            $data = [
-                'name'        => $request->name,
-                'description' => $request->description,
-            ];
-
-            // return "ol";
             $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->update($data);
             return response()->json([
                 'success' => true,
                 'code'    => 200,
-                'data'    => $update
+                'message'    => "Update Successfull !",
+            ]);
+        } else{
+
+            $validate = $request->validate([
+                'name'        => 'required',
+                'description' => 'required',
+            ]);
+            $data = [
+                'name'        => $request->name,
+                'description' => $request->description,
+            ];
+            $update = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->update($data);
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => "Update Successfull !",
             ]);
 
         }
@@ -210,8 +211,20 @@ class MerchantBrandAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $brand = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->first();
+
+        if(isset($brand->image)){
+            unlink($brand->image);
+        };
+        $delete = Brand::where('author', 'merchant')->where('author_id', $merchantId)->where('id', $id)->delete();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message'    => "Delete Successfull !",
+        ]);
     }
 }
