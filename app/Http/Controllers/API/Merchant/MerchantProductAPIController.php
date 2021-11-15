@@ -60,9 +60,19 @@ class MerchantProductAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $product = Product::with('brand', 'category', 'subCategory')
+            ->where('author_id', $merchantId)
+            ->where('id', $id)
+            ->first();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $product
+        ]);
     }
 
     /**
@@ -94,8 +104,23 @@ class MerchantProductAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $merchantId = $request->user()->id;
+        $delete = Product::where('author_id', $merchantId)
+            ->where('id', $id)
+            ->delete();
+
+        if($delete){
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => "Delete Successfull !",
+            ]);
+        } else{
+            return response()->json([
+                'message'    => "Opps! Something wrong !",
+            ]);
+        }
     }
 }

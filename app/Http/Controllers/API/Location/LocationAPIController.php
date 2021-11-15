@@ -14,31 +14,51 @@ class LocationAPIController extends Controller
     public function divisions()
     {
         $divisions = Division::all();
-        return $divisions;
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $divisions
+        ]);
     }
     // All Districs
     public function districts()
     {
         $districts = District::all();
-        return $districts;
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $districts
+        ]);
     }
     // All Upazila
     public function upazilas()
     {
         $upazilas = Upazila::all();
-        return $upazilas;
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $upazilas
+        ]);
     }
     // getDristrictByDivision
     public function getDristrictByDivision($id)
     {
         $districs = District::where('division_id', $id)->get();
-        return $districs;
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $districs
+        ]);
     }
     // getUpazillaByDistrict
     public function getUpazillaByDistrict($id)
     {
         $upazilas = Upazila::where('district_id', $id)->get();
-        return $upazilas;
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $upazilas
+        ]);
     }
 }
 
