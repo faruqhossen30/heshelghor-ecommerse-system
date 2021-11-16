@@ -4,8 +4,7 @@
 @section('content')
 @section('content')
 <div class="content">
-    <!-- Start Content-->
-    <div class="container-fluid">
+
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -24,8 +23,6 @@
         <!-- end page title -->
 
         <!-- Start Content-->
-        <div class="container-fluid">
-
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -72,7 +69,7 @@
                                                 </div>
                                             </th>
                                             <th>S.N</th>
-                                            <th>Order ID</th>
+                                            <th>Invoice ID</th>
                                             <th>Billing Name</th>
                                             <th>Date</th>
                                             <th>Payment</th>
@@ -94,10 +91,12 @@
                                                 </div>
                                             </td>
                                             <td>{{$serial++}}</td>
-                                            <td>{{$order->order_no}}</td>
+                                            <td>#{{$order->invoice_number}}</td>
                                             <td>{{$order->user->name}}</td>
                                             <td>
-                                                <small class="text-muted">{{$order->created_at}}</small>
+                                                <small class="text-muted">
+                                                    {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}
+                                                </small>
                                             </td>
                                             <td>
                                                 <div>
@@ -171,10 +170,6 @@
                 </div>
             </div>
             <!-- end row -->
-
-        </div> <!-- container -->
-
-    </div> <!-- container -->
 
 </div> <!-- content -->
 @endsection
