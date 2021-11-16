@@ -41,6 +41,8 @@ class OrderController extends Controller
         ]);
 
         $android_token = $orderItem->user->android_token;
+        $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
+
         // $registration_ids = array('Device ID 1', 'Device ID 2');
         if($android_token){
             $data = array(
@@ -49,6 +51,12 @@ class OrderController extends Controller
             );
             sendNotificateion($data, $android_token);
         }
+
+        // $array = [
+        //     $android_token
+        // ];
+
+        // sendNotificateions($data, $array);
 
 
         return redirect()->back();
