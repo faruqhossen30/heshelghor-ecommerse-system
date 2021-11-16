@@ -41,6 +41,7 @@ class OrderController extends Controller
         ]);
 
         $android_token = $orderItem->user->android_token;
+        // $registration_ids = array('Device ID 1', 'Device ID 2');
         if($android_token){
             $data = array(
                 'title' => 'Your Order accept !',

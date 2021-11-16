@@ -15,9 +15,13 @@ class UserOrderController extends Controller
 {
     public function orderNow(Request $request)
     {
+        $userId = Auth::user()->id;
+        $cartitems = Cart::content();
+        $subTotal = Cart::priceTotal();
+
+        // ------------------------------
         $today = date("ymd");
         $number = intval($today.'000');
-
         function numGenerate($number){
             $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
             // $suffix = $count ? $count+1:'';
@@ -27,10 +31,18 @@ class UserOrderController extends Controller
             return $number;
         }
         $orderNumber = numGenerate($number);
+        // ------------------------------
 
-        $userId = Auth::user()->id;
-        $cartitems = Cart::content();
-        $subTotal = Cart::priceTotal();
+        // ------------------------------
+        $invoice ='HG-'.$userId.'000';
+        function invoiceGenerate($invoice){
+            $count = Order::where('invoice_number', 'LIKE', $invoice.'%')->count();
+            $suffix = $count ? $count+1 : $count+1;
+            $invoice .= $suffix;
+            return $invoice;
+        }
+        $invoiceNumber = invoiceGenerate($invoice);
+        // ------------------------------
 
         // return $cartitems;
 
@@ -47,7 +59,7 @@ class UserOrderController extends Controller
         ]);
         $order = Order::create([
             'user_id'            => $userId,
-            'order_no'           => '2387123',
+            'invoice_number'     => $invoiceNumber,
             'total_prodcut'      => $request->total_prodcut,
             'total_item'         => $request->total_item,
             'delivery_cost'      => $request->delivery_cost,
@@ -75,17 +87,8 @@ class UserOrderController extends Controller
                     'total_delivery_cost'          => $request->delivery_cost * $item->qty,
                     'color'                        => $item->options->color,
                     'size'                         => $item->options->size,
-                    'order_No'                     => '2387123',
                     'delivery_system_id'           => $request->delivery_system,
                     'payment_method_id'            => $request->payment_method_id,
-                    'order_status'                 => false,
-                    'merchant_status'              => false,
-                    'colect_pointmanager_status'   => false,
-                    'colect_deliveryman_status'    => false,
-                    'vehicle_status'               => false,
-                    'delivery_pointmanager_status' => false,
-                    'deliveryman_status'           => false,
-                    'user_accept_status'           => false,
                     'order_pin_no'                 => rand(0001,9999),
                 ]);
             }

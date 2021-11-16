@@ -10,7 +10,7 @@ use App\Models\Admin\Order\DeliveryAddress;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'order_no', 'total_prodcut', 'total_item', 'product_price', 'delivery_cost', 'total_price', 'delivery_system_id', 'payment_method_id'];
+    protected $fillable = ['user_id', 'invoice_number', 'total_prodcut', 'total_item', 'product_price', 'delivery_cost', 'total_price', 'delivery_system_id', 'payment_method_id'];
 
     public function user()
     {

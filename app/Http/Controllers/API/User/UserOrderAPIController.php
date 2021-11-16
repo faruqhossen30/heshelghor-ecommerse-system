@@ -38,10 +38,20 @@ class UserOrderAPIController extends Controller
         // }
 
         $userId = $request->user()->id;
+        // ------------------------------
+        $invoice ='HG-'.$userId.'000';
+        function invoiceGenerate($invoice){
+            $count = Order::where('invoice_number', 'LIKE', $invoice.'%')->count();
+            $suffix = $count ? $count+1 : $count+1;
+            $invoice .= $suffix;
+            return $invoice;
+        }
+        $invoiceNumber = invoiceGenerate($invoice);
+        // ------------------------------
 
         $order = Order::create([
             'user_id'            => $userId,
-            'order_no'           => '2387123',
+            'invoice_number'     => $invoiceNumber,
             'total_prodcut'      => $request->total_prodcut,
             'total_item'         => $request->total_item,
             'delivery_cost'      => $request->delivery_cost,
@@ -96,9 +106,9 @@ class UserOrderAPIController extends Controller
         // }
 
         $userId = $request->user()->id;
+        // ------------------------------
         $today = date("ymd");
         $number = intval($today.'000');
-
         function numGenerate($number){
             $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
             // $suffix = $count ? $count+1:'';
@@ -108,24 +118,28 @@ class UserOrderAPIController extends Controller
             return $number;
         }
         $orderNumber = numGenerate($number);
+        // ------------------------------
 
 
         $orderItem = OrderItem::create([
-            'user_id'           => $userId,
-            'merchant_id'       => $request->merchant_id,
-            'order_id'          => $request->order_id,
-            'order_number'      => $orderNumber,
-            'product_id'        => $request->product_id,
-            'regular_price'     => $request->regular_price,
-            'discount'          => $request->discount,
-            'price'             => $request->price,
-            'quantity'          => $request->quantity,
-            'color'             => $request->color,
-            'size'              => $request->size,
-            'order_No'          => $request->order_No,
-            'payment_method_id' => $request->payment_method_id,
-            'delivery_system_id'=> $request->delivery_system_id,
-            'order_pin_no'      => rand(0001,9999),
+            'user_id'              => $userId,
+            'merchant_id'          => $request->merchant_id,
+            'order_id'             => $request->order_id,
+            'order_number'         => $orderNumber,
+            'product_id'           => $request->product_id,
+            'regular_price'        => $request->regular_price,
+            'discount'             => $request->discount,
+            'price'                => $request->price,
+            'quantity'             => $request->quantity,
+            'merchant_price'       => $request->quantity,
+            'merchant_price_total' => $request->quantity,
+            'delivery_cost'        => $request->quantity,
+            'total_delivery_cost'  => $request->quantity,
+            'color'                => $request->color,
+            'size'                 => $request->size,
+            'payment_method_id'    => $request->payment_method_id,
+            'delivery_system_id'   => $request->delivery_system_id,
+            'order_pin_no'         => rand(0001,9999),
         ]);
 
         if($orderItem){

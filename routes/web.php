@@ -64,7 +64,8 @@ use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
 
-
+// Test Controller
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -189,3 +190,5 @@ Route::prefix('merchant')->group(function () {
         Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
     });
 });
+
+Route::get('test', [TestController::class, 'test']);

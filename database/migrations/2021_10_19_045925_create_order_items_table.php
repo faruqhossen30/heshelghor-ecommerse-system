@@ -30,7 +30,6 @@ class CreateOrderItemsTable extends Migration
             $table->double('total_delivery_cost');
             $table->string('color');
             $table->string('size');
-            $table->string('order_no');
             $table->unsignedBigInteger('delivery_system_id');
             $table->unsignedBigInteger('payment_method_id');
             $table->boolean('order_status')->default(false);
