@@ -66,8 +66,8 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Date</p>
                                             <h5 class="mt-0">
-                                                {{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}
-                                                {{$order->created_at}} <small class="text-muted">10:29 PM</small>
+                                                {{ Carbon\Carbon::parse($order->created_at)->format('d F') }}
+                                                <small class="text-muted">{{ Carbon\Carbon::parse($order->created_at)->format('h:m A') }}</small>
                                             </h5>
                                         </div>
                                     </div>

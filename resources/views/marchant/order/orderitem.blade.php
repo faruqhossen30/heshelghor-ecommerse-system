@@ -21,7 +21,7 @@
         <!-- end page title -->
 
         <!-- Start Content-->
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -44,9 +44,9 @@
                                                 <i class="ri-hashtag h2 m-0 text-muted"></i>
                                             </div>
                                             <div class="flex-1">
-                                                <p class="mb-1">ID No.</p>
+                                                <p class="mb-1">Order No.</p>
                                                 <h5 class="mt-0">
-                                                    {{$orderItem->order_no}}
+                                                    #{{$orderItem->order_number}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -74,7 +74,10 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Date</p>
                                                 <h5 class="mt-0">
-                                                    {{$orderItem->created_at}} <small class="text-muted">10:29 PM</small>
+                                                    {{Carbon\Carbon::parse($orderItem->created_at)->format('d M')}}
+                                                    <small class="text-muted">
+                                                        {{Carbon\Carbon::parse($orderItem->created_at)->format('h:m A')}}
+                                                    </small>
                                                 </h5>
                                             </div>
                                         </div>
@@ -248,10 +251,6 @@
             </div>
 
 
-
-
-
-        </div> <!-- container -->
 
     </div> <!-- container -->
 

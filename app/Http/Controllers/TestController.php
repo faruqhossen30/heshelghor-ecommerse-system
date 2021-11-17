@@ -11,7 +11,8 @@ class TestController extends Controller
 {
     public function test()
     {
-        $data = User::get('android_token');
-       dd(date('H:i'));
+        return "jsut for test";
+        $user = User::first();
+        return view('test', compact('user'));
     }
 }
