@@ -43,13 +43,15 @@ class OrderController extends Controller
         $android_token = $orderItem->user->android_token;
         $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
 
+        $ruhul = "dSOg_OtQSR2-P9wzugw8HL:APA91bHcV8EnUTGpr1UM6XqVDHrqWFCcOKAodaNvnpq4U5yAzvBd7K996DlRDKa3AEHKnxxFW1VOXzLYirBqIXa5PITrlMI1EeVvv4VK7IrDtHNxUrHf6d0JYukY0dWgJBNCsTNIlzPb";
+
         // $registration_ids = array('Device ID 1', 'Device ID 2');
         if($android_token){
             $data = array(
                 'title' => 'Your Order accept !',
                 'body' => 'HeshelGhor | Store of Needs'
             );
-            sendNotificateion($data, $android_token);
+            sendNotificateion($data, $ruhul);
         }
 
         // $array = [

@@ -1,13 +1,12 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="content">
-    <!-- Start Content-->
-    <div class="container-fluid">
+    <div class="content">
+        <!-- Start Content-->
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Product List</h4>
+                    <h4 class="page-title">Order List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
@@ -23,25 +22,18 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h4 class="header-title">Orders table</h4>
                         <div class="table-responsive">
-                            <table class="table table-centered w-100 dt-responsive nowrap" id="basic-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-bordered mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="all" style="width: 20px;">
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck">
-                                                <label class="form-check-label" for="productlistCheck">&nbsp;</label>
-                                            </div>
-                                        </th>
-                                        <th class="all">Order No</th>
-                                        <th>Product Name</th>
-                                        <th>Merchant</th>
-                                        <th>QTY</th>
+                                        <th>S.N</th>
+                                        <th>Order No</th>
+                                        <th>Product</th>
+                                        <th>Shop Name</th>
+                                        <th>Q.T</th>
                                         <th>Price</th>
-                                        <th>Status</th>
-                                        <th>Time</th>
                                         <th>Action</th>
-                                        {{-- <th style="width: 85px;">Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,87 +41,70 @@
                                         $serial = 1;
                                     @endphp
                                     @foreach ($orderItems as $item)
-                                    <tr>
-                                        <td>
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck1">
-                                                <label class="form-check-label" for="productlistCheck1">&nbsp;</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5 class="m-0 d-inline-block align-middle">{{$item->order->order_no}}</h5>
-                                        </td>
-                                        <td>
-                                            {{$item->product->title}}
-                                        </td>
-                                        <td>
-                                            {{$item->merchant->name}}
-                                        </td>
-
-                                        <td>
-                                            {{$item->quantity}}
-                                        </td>
-                                        <td>
-                                            ৳{{$item->price}}
-                                        </td>
-                                        <td>
-                                            @if ($item->order_status == 0)
-                                                <span class="badge bg-danger">Pending</span></div>
-                                            @else
-                                                <span class="badge badge-soft-success">Aproved</span></div>
-                                            @endif
-                                        </td>
-
-                                        <td>
-                                            {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                        </td>
-                                        <td>
-                                            <a href="{{route('admin.order.single', $item->id)}}" class="btn btn-primary btn-sm">View</a>
-                                        </td>
-
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">{{$serial++}}</th>
+                                            <td>#{{$item->order_number}}
+                                                @if ($item->order_status == 0)
+                                                <i class="mdi mdi-alert text-danger"></i>
+                                                @else
+                                                <i class="mdi mdi-check-circle text-success"></i>
+                                                @endif
+                                            </td>
+                                            <td>{{$item->product->title}}</td>
+                                            <td>{{$item->merchant->name}}</td>
+                                            <td>{{$item->quantity}}</td>
+                                            <td>৳{{$item->regular_price}}</td>
+                                            <td>
+                                                <a class="btn btn-success btn-sm text-white" href="{{route('admin.order.single', $item->id)}}" title="Edit"><span class="mdi mdi mdi-eye"></span></a>
+                                                <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span class="mdi mdi-square-edit-outline"></span></a>
+                                            </td>
+                                        </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
-                        </div>
+                        </div> <!-- end .table-responsive-->
                     </div>
-                </div>
-            </div>
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+
         </div>
         <!-- end row -->
-
-    </div> <!-- container -->
-
-</div> <!-- content -->
+    </div> <!-- content -->
 @endsection
 
 @push('css')
-<!-- third party css -->
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- third party css -->
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
-<!-- third party js -->
-<script src="{{ asset('backend') }}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="{{ asset('backend') }}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-<!-- third party js ends -->
-<script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
-<script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
-<!-- sweetalert js -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- third party js -->
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js">
+    </script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <!-- third party js ends -->
+    <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script>
+    <script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
+    <!-- sweetalert js -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @endpush
