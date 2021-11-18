@@ -96,7 +96,7 @@
                                             <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
                                         </div>
                                         <h3 class="product-name">
-                                            <a href="demo3-product.html">{{$product->title}}</a>
+                                            <a href="{{route('singleproduct', $product->id)}}">{{$product->title}}</a>
                                         </h3>
                                         <div class="product-price">
                                             <ins class="new-price">৳{{ $product->price }}</ins><del class="old-price">৳{{ $product->regular_price }}</del>

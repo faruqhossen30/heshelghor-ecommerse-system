@@ -82,6 +82,7 @@ Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
+Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
 Route::get('merchant-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 

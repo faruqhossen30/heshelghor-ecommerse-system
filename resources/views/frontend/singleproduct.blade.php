@@ -87,10 +87,14 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                         </div>
 
                         <h1 class="product-name">{{$product->title}}</h1>
-                        <div class="product-meta">
-                            SKU:<span class="product-sku">123456701</span>
+                        <div class="product-meta" >
+                            {{-- SKU:<span class="product-sku">123456701</span> --}}
                             CATEGORIES: <a href="{{route('product.with.category', $product->category->id)}}"><span class="product-brand mr-0">{{$product->category->name}}</span></a>
                             <a href="{{route('product.with.subcategory', $product->subcategory_id)}}"><span class="product-brand">| {{$product->subcategory->name}}</span></a>
+                        </div>
+                        <div class="product-meta">
+                            Brand: <a href="{{route('product.with.brand', $product->brand->id)}}"><span class="product-brand mr-0">{{$product->brand->name}}</span></a>
+
                         </div>
                         <div class="product-price">৳{{$product->price}}</div>
                         <div class="ratings-container">
