@@ -151,7 +151,7 @@
                 {{-- Order Start --}}
                 <li>
                     <a href="#orderTable" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-cart-outline"></i>
+                        <i class="mdi mdi-gift-outline"></i>
                         <span> Orders </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -164,6 +164,38 @@
                     </div>
                 </li>
                 {{-- Order End --}}
+                {{-- Merchant Start --}}
+                <li>
+                    <a href="#merchantTable" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="mdi mdi-account-cash"></i>
+                        <span> Merchant </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="merchantTable">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('merchant.list.all')}}">Merchant List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Merchant End --}}
+                {{-- Merchant Start --}}
+                <li>
+                    <a href="#userTable" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="mdi mdi-contacts"></i>
+                        <span>Customer</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="userTable">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('customer.list.all')}}">Customer List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Merchant End --}}
 
                 <li>
                     <a href="#sidebarCategory" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarCategory">

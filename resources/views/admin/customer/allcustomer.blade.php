@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Merchant List</h4>
+                    <h4 class="page-title">Customer List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-3">
-                                <h4 class="header-title text-derk mt-1">Merchant List</h4>
+                                <h4 class="header-title text-derk mt-1">Customer List</h4>
                             </div>
                             <div class="col-sm-9">
                                 <div class="float-sm-end mt-3 mt-sm-0">
@@ -68,13 +68,13 @@
                                     @php
                                         $serial = 1;
                                     @endphp
-                                    @foreach ($merchants as $merchant)
+                                    @foreach ($customers as $customer)
                                         <tr>
                                             <th scope="row">{{ $serial++ }}</th>
-                                            <td>{{ $merchant->name }}</td>
-                                            <td>{{ $merchant->address }}</td>
-                                            <td>{{ $merchant->phone_number }}</td>
-                                            <td>{{ $merchant->email }}</td>
+                                            <td>{{ $customer->name }}</td>
+                                            <td>{{ $customer->address }}</td>
+                                            <td>{{ $customer->mobile }}</td>
+                                            <td>{{ $customer->email }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white" href="#" title="Edit"><span
                                                         class="mdi mdi mdi-eye"></span></a>
@@ -85,7 +85,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $merchants->links() }}
+                            {{ $customers->links() }}
                         </div> <!-- end .table-responsive-->
                     </div>
                 </div> <!-- end card -->

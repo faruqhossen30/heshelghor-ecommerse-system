@@ -24,6 +24,7 @@ use App\Http\Controllers\Merchant\MyBrandController;
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // Merchant
 use App\Http\Controllers\Admin\MerchantController;
+use App\Http\Controllers\Admin\CustomerController;
 // ====================== Admin Controller End ===========================
 
 
@@ -127,7 +128,7 @@ Route::get('commission/{id}', [APIController::class, 'getCommission']);
 Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 
-
+// Admin
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
@@ -154,13 +155,15 @@ Route::prefix('admin')->group(function () {
         Route::resource('deliverysystem', DeliverySystemController::class);
         Route::resource('paymentmethod', PaymentMethodController::class);
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
+        Route::get('allorderitem/search/{keyword}', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
         Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
         // Merchant Section
-        Route::get('/merchants', [MerchantController::class, 'allMerchant']);
+        Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');
+        Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
 
     });
 });
-
+// Merchant
 Route::prefix('merchant')->group(function () {
     Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
     Route::post('login', [MarchantController::class, 'login'])->name('marchant.login');

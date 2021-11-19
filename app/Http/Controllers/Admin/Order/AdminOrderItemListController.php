@@ -12,7 +12,7 @@ class AdminOrderItemListController extends Controller
     public function allOrderItem()
     {
         $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress', 'merchant')->get();
+        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress', 'merchant')->latest()->paginate(10);
 
         // return $orderItems;
 
@@ -24,5 +24,14 @@ class AdminOrderItemListController extends Controller
         $orderItem = OrderItem::with('product', 'merchant', 'deliveryaddress')->where('id', $id)->first();
         // return $orderItem;
         return view('admin.order.singleorderitem', compact('orderItem'));
+    }
+    public function searchOrderItem($keyword)
+    {
+        if ($keyword) {
+            $result = OrderItem::where('order_number', 'like', "%$keyword%")
+                ->get();
+
+            return $result;
+        }
     }
 }
