@@ -79,7 +79,7 @@ class ShopController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => 'uploads/shop/' . $fileName,
+                'image'         => $fileName,
                 'author'        => 'merchant',
                 'author_id'     => Auth::guard('marchant')->user()->id,
             ]);

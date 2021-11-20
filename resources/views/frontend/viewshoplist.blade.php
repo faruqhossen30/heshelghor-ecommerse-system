@@ -68,7 +68,7 @@
                                 <div class="col-xl-3 col-sm-4 my-4">
                                     <div class="card">
                                         @if ($shop->image)
-                                        <img src="{{asset('uploads/shop/'.$shop->image)}}"
+                                        <img src="{{asset('/uploads/shop/'.$shop->image)}}"
                                         class="card-img-top img-thumbnail" style="max-height: 200px" alt="...">
                                         @else
                                         <img src="https://picsum.photos/seed/picsum/200/300"
