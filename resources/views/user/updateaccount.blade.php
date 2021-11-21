@@ -51,7 +51,7 @@
                                                             </div>
                                                             <div class="col-md-6 ">
 
-                                                                <img class="img-thumbnail mt-3" src="{{asset('uploads/user/profile/'.$user->photo)}}" alt="" style="width: 150px; height:150px">
+                                                                <img class="img-thumbnail rounded-circle mt-3" src="{{asset('uploads/user/profile/'.$user->photo)}}" alt="" style="width: 150px; height:150px">
                                                             </div>
                                                         </div>
                                                         </div>

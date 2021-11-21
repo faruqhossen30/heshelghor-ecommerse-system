@@ -125,7 +125,11 @@
 
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    @if (Auth::user()->photo)
+                    <img src="{{ asset('uploads/user/profile/'.Auth::user()->photo) }}" alt="user-image" class="rounded-circle">
+                    @else
                     <img src="{{ asset('backend') }}/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                    @endif
                     <span class="pro-user-name ms-1">
                         @auth()
                         {{Auth::user()->name}} <i class="mdi mdi-chevron-down"></i>
