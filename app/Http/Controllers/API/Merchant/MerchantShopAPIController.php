@@ -247,7 +247,7 @@ class MerchantShopAPIController extends Controller
         $merchantId = $request->user()->id;
         $shop = Shop::where('author_id', $merchantId)->where('id', $id)->first();
         if(isset($shop->image)){
-            unlink($shop->image);
+            unlink('uploads/shop/'.$shop->image);
         }
         $delete = Shop::where('author_id', $merchantId)->where('id', $id)->delete();
 
