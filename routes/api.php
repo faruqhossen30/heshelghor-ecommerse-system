@@ -61,6 +61,7 @@ Route::get('brands', [BrandAPIController::class, 'brands']); // Category List
 Route::get('merchants', [AllListAPIController::class, 'allMerchant']); // Merchant List
 Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
+Route::get('markets', [AllListAPIController::class, 'allMarket']); // Shop List by pagination
 Route::get('deliverysystem', [AllListAPIController::class, 'deliverySystem']); // Shop List by pagination
 
 
