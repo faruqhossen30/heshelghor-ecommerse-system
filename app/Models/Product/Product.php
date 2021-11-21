@@ -5,26 +5,22 @@ namespace App\Models\Product;
 use App\Models\Auth\Marchant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'division_id', 'district_id', 'upazila_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status'];
 
     // Unique Slug generate
-    public function setTitleAttribute($value)
+    public function sluggable(): array
     {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = $this->slugify($value);
-    }
-
-    private function slugify($value){
-        $slug = str_replace(' ', '-', strtolower($value));
-        $count = Product::where('slug', 'LIKE', $slug.'%')->count();
-        $suffix = $count ? $count+1:'';
-        $slug .=$suffix;
-        return $slug;
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     // Category

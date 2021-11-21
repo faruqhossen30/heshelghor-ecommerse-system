@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('android_token')->nullable();
             $table->string('ios_token')->nullable();
+            $table->string('photo')->nullable();
+            $table->longText('bio')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

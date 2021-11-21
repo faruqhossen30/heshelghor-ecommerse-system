@@ -71,14 +71,11 @@
                 <li class="menu-title">My Dashboard</li>
 
                 <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
+                    <a href="{{route('user.dashboard')}}"aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="badge bg-success rounded-pill float-end">3</span>
                         <span> Dashboards </span>
                     </a>
-                    <div class="collapse" id="sidebarDashboards">
-
-                    </div>
                 </li>
 
                 <li>
@@ -92,6 +89,26 @@
 
                             <li>
                                 <a href="{{route('user.order')}}">My Orders</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarProfile" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarOrders">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Account </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarProfile">
+                        <ul class="nav-second-level">
+
+                            <li>
+                                <a href="{{route('user.account')}}">My Account</a>
+                            </li>
+                            <li>
+                                <a href="{{route('user.account.update')}}">Update Account</a>
                             </li>
 
                         </ul>

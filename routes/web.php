@@ -117,6 +117,8 @@ Route::prefix('user')->group(function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
+        Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
+        Route::get('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
     });
 });
 
@@ -180,8 +182,6 @@ Route::prefix('merchant')->group(function () {
         Route::resource('brand', BrandController::class);
         Route::get('mybrand', [MyBrandController::class, 'index'])->name('myaddedbrand');
         Route::resource('shop', ShopController::class);
-
-
         // Route::resource('shop', ShopController::class);
         Route::get('shop', [ShopController::class, 'index'])->name('shop.index');
         Route::get('shop/create', [ShopController::class, 'create'])->name('shop.create');

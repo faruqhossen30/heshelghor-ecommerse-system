@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -41,5 +42,20 @@ class UserDashboardController extends Controller
         $orderItems = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
         // return $order;
         return view('user.order.showorder', compact('order', 'orderItems'));
+    }
+
+    public function account()
+    {
+        $userId = Auth::user()->id;
+        $user = User::where('id', $userId)->first();
+
+        return view('user.account', compact('user'));
+    }
+    public function updateAccount()
+    {
+        $userId = Auth::user()->id;
+        $user = User::where('id', $userId)->first();
+
+        return view('user.updateaccount', compact('user'));
     }
 }

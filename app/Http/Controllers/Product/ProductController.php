@@ -16,6 +16,7 @@ use App\Models\Product\ProductColor;
 use App\Models\Product\ProductSize;
 use App\Models\Product\ProductImage;
 use Session;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 use Illuminate\Support\Str;
 use Image;
@@ -124,6 +125,7 @@ class ProductController extends Controller
             'title'             => $request->title,
             'description'       => $request->description,
             'short_description' => $request->short_description,
+            'slug'              => $slug = SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,

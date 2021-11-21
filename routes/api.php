@@ -90,6 +90,7 @@ Route::prefix('merchant')->group(function () {
         Route::get('products', [MerchantProductAPIController::class, 'index']);
         Route::get('product/{id}', [MerchantProductAPIController::class, 'show']);
         Route::get('product/delete/{id}', [MerchantProductAPIController::class, 'destroy']);
+        Route::post('product/store', [MerchantProductAPIController::class, 'store']);
         // Brand
         Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
         Route::post('/brand', [MerchantBrandAPIController::class, 'store']);
