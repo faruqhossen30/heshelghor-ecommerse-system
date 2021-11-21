@@ -108,7 +108,7 @@
                                 <a href="{{route('user.account')}}">My Account</a>
                             </li>
                             <li>
-                                <a href="{{route('user.account.update')}}">Update Account</a>
+                                <a href="{{route('user.account.edit')}}">Update Account</a>
                             </li>
 
                         </ul>

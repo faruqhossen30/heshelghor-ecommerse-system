@@ -32,7 +32,7 @@
                                     <div class="card text-center">
                                         <div class="card-body">
                                             @if ($user->photo)
-                                            <img src="{{asset('uploads/merchant/profile/'.$profile->photo)}}" class="rounded-circle avatar-xl img-thumbnail"
+                                            <img src="{{asset('uploads/user/profile/'.$user->photo)}}" class="rounded-circle avatar-xl img-thumbnail"
                                             alt="profile-image">
                                             @else
                                             <img src="{{asset('backend')}}/assets/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail"

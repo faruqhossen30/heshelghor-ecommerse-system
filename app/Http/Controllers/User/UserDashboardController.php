@@ -8,7 +8,8 @@ use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Image;
+use Ramsey\Uuid\Type\Hexadecimal;
 
 class UserDashboardController extends Controller
 {
@@ -21,8 +22,6 @@ class UserDashboardController extends Controller
         // return $totalorder;
 
         return view('user.dashboard', compact('totalorder'));
-
-
     }
 
     // For List order
@@ -33,12 +32,11 @@ class UserDashboardController extends Controller
 
         // return $orders;
         return view('user.order.userorder', compact('orders'));
-
     }
     public function showOrder($id)
     {
         $userId = Auth::user()->id;
-        $order = Order::with('itemProducts','deliveryaddress')->where('user_id', $userId)->where('id', $id)->first();
+        $order = Order::with('itemProducts', 'deliveryaddress')->where('user_id', $userId)->where('id', $id)->first();
         $orderItems = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
         // return $order;
         return view('user.order.showorder', compact('order', 'orderItems'));
@@ -51,11 +49,48 @@ class UserDashboardController extends Controller
 
         return view('user.account', compact('user'));
     }
-    public function updateAccount()
+    public function editAccount()
     {
         $userId = Auth::user()->id;
         $user = User::where('id', $userId)->first();
 
         return view('user.updateaccount', compact('user'));
+    }
+    public function updateAccount(Request $request)
+    {
+        $userId = Auth::user()->id;
+        // $request->validate([
+        //     'address' => 'required',
+        //     'photo' => 'required',
+        // ]);
+        $user = User::where('id', $userId)->first();
+        $photo = $request->file('photo');
+
+        if ($photo) {
+            $photoExtention = $photo->getClientOriginalExtension();
+            $photoName = hexdec(uniqid()) . '.' . $photoExtention;
+            $photo = Image::make($photo)->save(public_path('uploads/user/profile/') . $photoName);
+
+
+            $update = User::where('id', $userId)->update([
+                'name' => $request->name,
+                'bio' => $request->bio,
+                'address' => $request->address,
+                'photo' => $photoName
+            ]);
+            if($user->photo){
+                unlink('uploads/user/profile/'.$user->photo);
+            }
+
+            return redirect()->route('user.account');
+        } else{
+            $user = User::where('id', $userId)->update([
+                'name' => $request->name,
+                'bio' => $request->bio,
+                'address' => $request->address
+            ]);
+
+            return redirect()->route('user.account');
+        }
     }
 }

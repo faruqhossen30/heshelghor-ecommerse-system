@@ -63,8 +63,6 @@ class MerchantProductAPIController extends Controller
             'category_id'       => 'required',
             'subcategory_id'    => 'required',
             'brand_id'          => 'required',
-            // 'colors'            => 'required',
-            // 'sizes'             => 'required',
             'shop_id'           => 'required',
             'upazila_id'        => 'required',
             'district_id'       => 'required',
