@@ -93,6 +93,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('product/{id}', [MerchantProductAPIController::class, 'show']);
         Route::get('product/delete/{id}', [MerchantProductAPIController::class, 'destroy']);
         Route::post('product/store', [MerchantProductAPIController::class, 'store']);
+        Route::post('product/color', [MerchantProductAPIController::class, 'productColor']);
+        Route::post('product/size', [MerchantProductAPIController::class, 'productSize']);
+        Route::post('product/image', [MerchantProductAPIController::class, 'productImage']);
         // Brand
         Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
         Route::post('/brand', [MerchantBrandAPIController::class, 'store']);

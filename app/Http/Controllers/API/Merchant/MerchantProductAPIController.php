@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
+use App\Models\Product\ProductColor;
+use App\Models\Product\ProductImage;
+use App\Models\Product\ProductSize;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Image;
@@ -42,8 +45,6 @@ class MerchantProductAPIController extends Controller
      */
     public function create()
     {
-
-
     }
 
     /**
@@ -75,105 +76,133 @@ class MerchantProductAPIController extends Controller
 
         $photo = $request->file('photo');
 
-        if($request->file('photo')){
+        if ($request->file('photo')) {
             $photofileExtention = $photo->getClientOriginalExtension();
             $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
             Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
-
         };
 
-        // $images = [];
-        // $i = 0;
-        // $sliderimage = $request->file('image');
-
-        // if($sliderimage){
-        //     foreach($request->file('image') as $image){
-
-        //         $fileExtention = $image->getClientOriginalExtension();
-        //         $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-        //         Image::make($image)->save(public_path('uploads/products/') . $fileName);
-
-        //         $images[] = $fileName;
-        //         $i++;
-
-        //     };
-        // }
-
-
-
-    // return $request->all();
-
-    // $colors = $request->colors;
-    // $sizes = $request->sizes;
-
-    $product = Product::create([
-        'title'             => $request->title,
-        'description'       => $request->description,
-        'slug'              => $slug = SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
-        'short_description' => $request->short_description,
-        'category_id'       => $request->category_id,
-        'subcategory_id'    => $request->subcategory_id,
-        'brand_id'          => $request->brand_id,
-        'author'            => 'merchant',
-        'author_id'         => $merchantId,
-        'shop_id'           => $request->shop_id,
-        'division_id'       => $request->division_id,
-        'district_id'       => $request->district_id,
-        'upazila_id'        => $request->upazila_id,
-        'regular_price'     => $request->regular_price,
-        'discount'          => $request->discount,
-        'price'             => $request->price,
-        'quantity'          => $request->quantity,
-        'quantity_alert'    => $request->quantity_alert,
-        'photo'             => $photofileName,
-    ]);
+        $product = Product::create([
+            'title'             => $request->title,
+            'description'       => $request->description,
+            'slug'              => $slug = SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
+            'short_description' => $request->short_description,
+            'category_id'       => $request->category_id,
+            'subcategory_id'    => $request->subcategory_id,
+            'brand_id'          => $request->brand_id,
+            'author'            => 'merchant',
+            'author_id'         => $merchantId,
+            'shop_id'           => $request->shop_id,
+            'division_id'       => $request->division_id,
+            'district_id'       => $request->district_id,
+            'upazila_id'        => $request->upazila_id,
+            'regular_price'     => $request->regular_price,
+            'discount'          => $request->discount,
+            'price'             => $request->price,
+            'quantity'          => $request->quantity,
+            'quantity_alert'    => $request->quantity_alert,
+            'photo'             => $photofileName,
+        ]);
 
 
 
-    if($product){
-        // Add Image
-        if(!empty($images)){
-            foreach($images as $image){
-                ProductImage::create([
-                    'image' => $image,
-                    'product_id' => $product->id,
-                ]);
-            }
+        if ($product) {
+            // Add Image
+            if (!empty($images)) {
+                foreach ($images as $image) {
+                    ProductImage::create([
+                        'image' => $image,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+
+
+            // Add Color
+            if (!empty($colors)) {
+                foreach ($colors as $color) {
+                    ProductColor::create([
+                        'color_id' => $color,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+            // Add Size
+            if (!empty($sizes)) {
+                foreach ($colors as $size) {
+                    ProductSize::create([
+                        'size_id' => $size,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
         };
 
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product create successfully!',
+            'data'    => $product
+        ]);
+    }
+    public function productColor(Request $request)
+    {
+        $merchantId = $request->user()->id;
 
-        // Add Color
-        if(!empty($colors)){
-            foreach($colors as $color){
-                ProductColor::create([
-                    'color_id' => $color,
-                    'product_id' => $product->id,
-                ]);
-            }
-        };
-        // Add Size
-        if(!empty($sizes)){
-            foreach($colors as $size){
-                ProductSize::create([
-                    'size_id' => $size,
-                    'product_id' => $product->id,
-                ]);
-            }
-        };
+        $color = ProductColor::create([
+            'product_id' => $request->product_id,
+            'color_id' => $request->color_id
+        ]);
 
-    };
+        $result = ProductColor::where('product_id', $request->product_id,)->get();
 
-    return response()->json([
-        'success' => true,
-        'code'    => 201,
-        'message' => 'Product create successfully!',
-        'data'    => $product
-    ]);
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product color insert successfully!',
+            'data'    => $result
+        ]);
+    }
+    public function productSize(Request $request)
+    {
+        $merchantId = $request->user()->id;
 
+        $color = ProductSize::create([
+            'product_id' => $request->product_id,
+            'size_id' => $request->size_id
+        ]);
 
+        $result = ProductSize::where('product_id', $request->product_id,)->get();
 
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product size insert successfully!',
+            'data'    => $result
+        ]);
+    }
+    public function productImage(Request $request)
+    {
+        $merchantId = $request->user()->id;
+        $image = $request->file('image');
 
+        $imageExtention = $image->getClientOriginalExtension();
+        $imageName = hexdec(uniqid()).'.'.$imageExtention;
+        Image::make($image)->save(public_path('uploads/products/') . $imageName);
 
+        $color = ProductImage::create([
+            'product_id' => $request->product_id,
+            'image'      => $imageName
+        ]);
+
+        $result = ProductImage::where('product_id', $request->product_id,)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product Slider image insert successfully!',
+            'data'    => $result
+        ]);
     }
 
     /**
@@ -233,13 +262,13 @@ class MerchantProductAPIController extends Controller
             ->where('id', $id)
             ->delete();
 
-        if($delete){
+        if ($delete) {
             return response()->json([
                 'success' => true,
                 'code'    => 200,
                 'message'    => "Delete Successfull !",
             ]);
-        } else{
+        } else {
             return response()->json([
                 'message'    => "Opps! Something wrong !",
             ]);

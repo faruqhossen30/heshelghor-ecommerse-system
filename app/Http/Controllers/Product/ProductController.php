@@ -171,7 +171,7 @@ class ProductController extends Controller
             };
             // Add Size
             if(!empty($sizes)){
-                foreach($colors as $size){
+                foreach($sizes as $size){
                     ProductSize::create([
                         'size_id' => $size,
                         'product_id' => $product->id,
