@@ -13,6 +13,7 @@ use App\Http\Controllers\API\User\UserOrderAPIController;
 use App\Http\Controllers\API\SearchAPIController;
 use App\Http\Controllers\API\User\UserOrderListAPIController;
 use App\Http\Controllers\API\User\UserAuthAPIController;
+use App\Http\Controllers\API\User\UserProfileAPIController;
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 use App\Http\Controllers\API\Merchant\MerchantBrandAPIController;
@@ -120,6 +121,10 @@ Route::prefix('user')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function(){
         Route::post('/logout', [UserAuthAPIController::class, 'logout']);
+        // Profile
+        Route::get('/profile', [UserProfileAPIController::class, 'profile']);
+        Route::post('/profile/update', [UserProfileAPIController::class, 'profileUpdate']);
+        // Order
         Route::get('/orders', [UserOrderListAPIController::class, 'order']);
         Route::get('/order/{id}', [UserOrderListAPIController::class, 'orderItem']);
         Route::post('/createorder', [UserOrderAPIController::class, 'createOrder']);
