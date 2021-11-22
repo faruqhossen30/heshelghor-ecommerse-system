@@ -42,6 +42,12 @@ class UserDashboardController extends Controller
         return view('user.order.showorder', compact('order', 'orderItems'));
     }
 
+    public function trackOrder()
+    {
+        return view('user.order.trace');
+    }
+
+
     public function account()
     {
         $userId = Auth::user()->id;

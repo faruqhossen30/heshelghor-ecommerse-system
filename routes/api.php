@@ -117,7 +117,6 @@ Route::prefix('merchant')->group(function () {
 Route::post('/register', [UserAPIController::class, 'userRegister']);
 
 // User Order Items api
-
 Route::prefix('user')->group(function () {
     Route::post('/login', [UserAuthAPIController::class, 'login']);
     Route::post('/register', [UserAuthAPIController::class, 'register']);

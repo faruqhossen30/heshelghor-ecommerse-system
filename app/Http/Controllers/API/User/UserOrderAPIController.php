@@ -50,15 +50,15 @@ class UserOrderAPIController extends Controller
         // ------------------------------
 
         $order = Order::create([
-            'user_id'            => $userId,
-            'invoice_number'     => $invoiceNumber,
-            'total_prodcut'      => $request->total_prodcut,
-            'total_item'         => $request->total_item,
-            'delivery_cost'      => $request->delivery_cost,
-            'product_price'      => $request->product_price,
-            'total_price'        => $request->total_price,
-            'delivery_system_id' => $request->delivery_system_id,
-            'payment_method_id'  => $request->payment_method_id
+            'user_id'              => $userId,
+            'invoice_number'       => $invoiceNumber,
+            'total_prodcut'        => $request->total_prodcut,
+            'total_item'           => $request->total_item,
+            'delivery_cost'        => $request->delivery_cost,
+            'product_price'        => $request->product_price,
+            'total_price'          => $request->total_price,
+            'delivery_system_name' => $request->delivery_system_name,
+            'payment_method_name'  => $request->payment_method_name
         ]);
 
         if($order){
@@ -137,8 +137,8 @@ class UserOrderAPIController extends Controller
             'total_delivery_cost'  => $request->quantity,
             'color'                => $request->color,
             'size'                 => $request->size,
-            'payment_method_id'    => $request->payment_method_id,
-            'delivery_system_id'   => $request->delivery_system_id,
+            'payment_method_name'  => $request->payment_method_name,
+            'delivery_system_name' => $request->delivery_system_name,
             'order_pin_no'         => rand(0001,9999),
         ]);
 
@@ -184,19 +184,19 @@ class UserOrderAPIController extends Controller
         // }
         $userId = $request->user()->id;
         $deliveryAddress = DeliveryAddress::create([
-            'name'              => $request->name,
-            'user_id'           => $userId,
-            'order_id'          => $request->order_id,
-            'email'             => $request->email,
-            'company'           => $request->company,
-            'address'           => $request->address,
-            'message'           => $request->message,
-            'zip_code'          => $request->zip_code,
-            'mobile'            => $request->mobile,
-            'division_id'       => $request->division_id,
-            'district_id'       => $request->district_id,
-            'payment_method_id' => $request->payment_method_id,
-            'upazila_id'        => $request->upazila_id
+            'name'                => $request->name,
+            'user_id'             => $userId,
+            'order_id'            => $request->order_id,
+            'email'               => $request->email,
+            'company'             => $request->company,
+            'address'             => $request->address,
+            'message'             => $request->message,
+            'zip_code'            => $request->zip_code,
+            'mobile'              => $request->mobile,
+            'division_id'         => $request->division_id,
+            'district_id'         => $request->district_id,
+            'payment_method_name' => $request->payment_method_name,
+            'upazila_id'          => $request->upazila_id
         ]);
 
         return response()->json([

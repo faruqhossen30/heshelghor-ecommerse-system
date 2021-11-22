@@ -30,8 +30,8 @@ class CreateOrderItemsTable extends Migration
             $table->double('total_delivery_cost');
             $table->string('color');
             $table->string('size');
-            $table->unsignedBigInteger('delivery_system_id');
-            $table->unsignedBigInteger('payment_method_id');
+            $table->string('delivery_system_name');
+            $table->string('payment_method_name');
             $table->boolean('order_status')->default(false);
             $table->boolean('cancel_status')->default(false);
             $table->boolean('colect_pointmanager_status')->default(false);
