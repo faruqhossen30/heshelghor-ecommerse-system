@@ -32,20 +32,17 @@
                                         <div class="mb-3 mb-sm-0 me-sm-2">
                                             <form>
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Search...">
+                                                    <input type="text" class="form-control" name="keyword" id="search_text" placeholder="Search...">
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="mdi mdi-filter-variant"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" style="">
-                                                <a class="dropdown-item" href="#">Due Date</a>
-                                                <a class="dropdown-item" href="#">Added Date</a>
-                                                <a class="dropdown-item" href="#">Assignee</a>
-                                            </div>
+                                        <div>
+                                            <select class="form-select" id="search_key">
+                                                <option value="*" selected="" >All</option>
+                                                <option value="name">Name</option>
+                                                <option value="mobile">Mobile</option>
+                                                <option value="email">Email</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -58,13 +55,12 @@
                                     <tr>
                                         <th>S.N</th>
                                         <th>Name</th>
-                                        <th>Address</th>
                                         <th>Mobile</th>
                                         <th>Email</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tableBody">
                                     @php
                                         $serial = 1;
                                     @endphp
@@ -72,7 +68,6 @@
                                         <tr>
                                             <th scope="row">{{ $serial++ }}</th>
                                             <td>{{ $customer->name }}</td>
-                                            <td>{{ $customer->address }}</td>
                                             <td>{{ $customer->mobile }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>
@@ -129,5 +124,62 @@
     <script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
     <!-- sweetalert js -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        (function($){
+            $(document).ready(function () {
+
+                $("#search_text").on('keyup', searchData);
+
+            });
+        })(jQuery)
+
+        function searchData(){
+            let
+            searchText = $('#search_text').val().trim();
+            searchKey = $('#search_key').val();
+            setTimeout(() => {
+                $.ajax({
+                    type: "get",
+                    url: `allcustomer/search?searchkey=${searchKey}&searchtext=${searchText}`,
+                    dataType: "json",
+                    success: function (resp) {
+                        render_row(resp);
+                    }
+                });
+            }, 1000);
+        }
+
+
+
+      function render_row(data){
+        let
+        tableBody = $('#tableBody'),
+        tr        = ``,
+        sl        =0;
+
+        data.forEach(d => {
+            tr += `
+                <tr>
+                    <td>${++sl}</td>
+                    <td>${d.name}</td>
+                    <td>${d.mobile}</td>
+                    <td>${d.email}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm text-white" href="#" title="Edit"><span  class="mdi mdi mdi-eye"></span></a>
+                        <a class="btn btn-primary btn-sm text-white" href="#" title="Edit"><span class="mdi mdi-square-edit-outline"></span></a>
+                    </td>
+                </tr>
+            `;
+        })
+
+        if(!data.length){
+            tr += `<tr>
+                    <td colspan="5" class="text-center">No Data Found</td>
+                </tr>`;
+        }
+
+        tableBody.html(tr);
+      }
+    </script>
 
 @endpush

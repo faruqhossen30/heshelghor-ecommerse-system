@@ -164,6 +164,7 @@ Route::prefix('admin')->group(function () {
         // Merchant Section
         Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
+        Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
 
     });
 });

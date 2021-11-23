@@ -16,4 +16,27 @@ class CustomerController extends Controller
         return view('admin.customer.allcustomer', compact('customers'));
 
     }
+
+    public function searchCustomer()
+    {
+
+        $searchkey  = request('searchkey');
+        $searchtext = request('searchtext');
+
+        $result     = User::all();
+
+        if (isset($searchkey) && $searchkey !== "*")
+            $result = User::where("$searchkey", 'like', "%$searchtext%")->get();
+        elseif ($searchkey === "*") {
+            $sql = User::orWhere("name", "like", "%$searchtext%")
+                ->orWhere("email", "like", "%$searchtext%")
+                ->orWhere("mobile", "like", "%$searchtext%");
+
+            $result = $sql->get();
+        }
+
+
+
+        return response()->json($result, 200);
+    }
 }
