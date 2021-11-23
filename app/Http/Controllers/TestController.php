@@ -27,7 +27,7 @@ class TestController extends Controller
             "amount"            => "250",
             "currency"          => "BDT",
             "options"           => "cz1wYXltZW50LnRlc3QsaT0xMjcuMC4wLjE=",
-            "callback_url"      => "http://payment.test/merchant_callback.php",
+            "callback_url"      => "https://heshelghor.com/merchant_callback.php",
             "access_app_key"    => "509cadc12023e05d7e85a3355b472632141a4c16",
             "authorization"     => "Basic aGVzaGVsZ2hvcl8xNjE1MDY4MTk2Omhlc2hlbGdob3JfODU2NTIzNTkz"
         ]);
