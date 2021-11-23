@@ -163,6 +163,7 @@ Route::prefix('admin')->group(function () {
         Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
         // Merchant Section
         Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');
+        Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
 
