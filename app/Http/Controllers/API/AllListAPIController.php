@@ -89,4 +89,18 @@ class AllListAPIController extends Controller
         ]);
     }
 
+    public function getShopWithLocation(Request $request)
+    {
+        if($request->id){
+            $result = Shop::with('division', 'district', 'upazila')->where('id', $request->id)->first();
+
+            return response()->json([
+                'success' => true,
+                'code'=>200,
+                'data' => $result
+            ]);
+
+        }
+    }
+
 }

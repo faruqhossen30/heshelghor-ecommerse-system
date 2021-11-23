@@ -66,6 +66,7 @@ Route::get('markets', [AllListAPIController::class, 'allMarket']); // Shop List 
 Route::get('deliverysystem', [AllListAPIController::class, 'deliverySystem']); // Shop List by pagination
 Route::get('colors', [AllListAPIController::class, 'allColor']); // Shop List by pagination
 Route::get('sizes', [AllListAPIController::class, 'allSize']); // Shop List by pagination
+Route::get('getshopwithlocation/{id}', [AllListAPIController::class, 'getShopWithLocation']);
 
 
 
@@ -78,7 +79,7 @@ Route::get('upazila/{id}', [LocationAPIController::class, 'getUpazillaByDistrict
 
 
 
-// Merchant Order Items api
+// Merchant
 Route::prefix('merchant')->group(function () {
     Route::post('/login', [MerchantAuthAPIController::class, 'login']);
     Route::post('/register', [MerchantAuthAPIController::class, 'register']);
@@ -98,6 +99,8 @@ Route::prefix('merchant')->group(function () {
         Route::post('product/color', [MerchantProductAPIController::class, 'productColor']);
         Route::post('product/size', [MerchantProductAPIController::class, 'productSize']);
         Route::post('product/image', [MerchantProductAPIController::class, 'productImage']);
+
+
         // Brand
         Route::get('/brand', [MerchantBrandAPIController::class, 'index']);
         Route::post('/brand', [MerchantBrandAPIController::class, 'store']);
