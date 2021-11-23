@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Attribute\Color;
+use App\Models\Admin\Attribute\Size;
 use App\Models\Admin\Market;
 use App\Models\Admin\Order\DeliverySystem;
 use App\Models\Product\Brand;
@@ -66,6 +68,25 @@ class AllListAPIController extends Controller
     {
         $deliverysystem = DeliverySystem::get();
         return $deliverysystem;
+    }
+    // All Colors
+    public function allColor()
+    {
+        $colors = Color::orderBy('name', 'asc')->get();
+        return response()->json([
+            'success' => true,
+            'code'=>200,
+            'data' => $colors
+        ]);
+    }
+    public function allSize()
+    {
+        $sizes = Size::orderBy('name', 'asc')->get();
+        return response()->json([
+            'success' => true,
+            'code'=>200,
+            'data' => $sizes
+        ]);
     }
 
 }

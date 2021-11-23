@@ -64,6 +64,8 @@ Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
 Route::get('markets', [AllListAPIController::class, 'allMarket']); // Shop List by pagination
 Route::get('deliverysystem', [AllListAPIController::class, 'deliverySystem']); // Shop List by pagination
+Route::get('colors', [AllListAPIController::class, 'allColor']); // Shop List by pagination
+Route::get('sizes', [AllListAPIController::class, 'allSize']); // Shop List by pagination
 
 
 

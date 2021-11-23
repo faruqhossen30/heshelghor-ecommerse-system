@@ -22,45 +22,45 @@
 
         <!-- Start Content-->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <ul class="list-group list-group-horizontal mb-3 text-center">
-                            <li class="list-group-item m-1" style="color: green;">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 30px;"></i></p>
+                            <li class="list-group-item" style="padding: .75rem .75rem" >
+                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
                                 <h5>Accept</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item m-1">
+                            <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item">
+                            {{-- <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="padding: .75rem .75rem">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 30px"></i></p>
                                 <h5>Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </div>
