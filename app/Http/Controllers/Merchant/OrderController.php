@@ -40,19 +40,26 @@ class OrderController extends Controller
             'order_status' => true
         ]);
 
-        $android_token = $orderItem->user->android_token;
+        // $android_token = $orderItem->user->android_token;
         $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
 
-        $ruhul = "dSOg_OtQSR2-P9wzugw8HL:APA91bHcV8EnUTGpr1UM6XqVDHrqWFCcOKAodaNvnpq4U5yAzvBd7K996DlRDKa3AEHKnxxFW1VOXzLYirBqIXa5PITrlMI1EeVvv4VK7IrDtHNxUrHf6d0JYukY0dWgJBNCsTNIlzPb";
+        $ruhul = "fCTRPVu2RcmsRP_HKbaLUU:APA91bFGV_7APnKg-YnCATAfy3c1GMmwtwPfihtFqFGfJx32CYElaH6a4wczYltUibuSt1FCNux1GC5vlhmME4IIsHISHPin5gJ3YHw3eUSu0mmV7O5GyDzatPaorCnq7HJYYr8gq80C";
 
         // $registration_ids = array('Device ID 1', 'Device ID 2');
-        if($android_token){
+
             $data = array(
                 'title' => 'Your Order accept !',
                 'body' => 'HeshelGhor | Store of Needs'
             );
             sendNotificateion($data, $ruhul);
-        }
+
+        // if($android_token){
+        //     $data = array(
+        //         'title' => 'Your Order accept !',
+        //         'body' => 'HeshelGhor | Store of Needs'
+        //     );
+        //     sendNotificateion($data, $ruhul);
+        // }
 
         // $array = [
         //     $android_token

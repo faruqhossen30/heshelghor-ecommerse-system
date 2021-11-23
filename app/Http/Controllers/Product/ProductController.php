@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Attribute\Color;
 use App\Models\Admin\Attribute\Size;
+use App\Models\Admin\Location\District;
+use App\Models\Admin\Location\Division;
+use App\Models\Admin\Location\Upazila;
 use App\Models\Merchant\Shop;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
@@ -209,12 +212,23 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $merchantId = Auth::guard('marchant')->user()->id;
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
+        $divisions = Division::all();
+        $districts = District::all();
+        $upazilas = Upazila::all();
 
+        $shops = Shop::where('author_id', $merchantId)->get();
+        $colors = Color::all();
+        $sizes = Size::all();
+
+        $images = ProductImage::where('product_id', $id)->get();
         $product = Product::where('id', $id)->get()->first();
-        return view('marchant.product.edit', compact('product', 'categories', 'subcategories', 'brands'));
+        // return $product;
+        return view('marchant.product.edit', compact('product', 'categories', 'subcategories', 'brands', 'images', 'shops', 'colors', 'sizes', 'divisions', 'districts', 'upazilas'));
     }
 
     /**
