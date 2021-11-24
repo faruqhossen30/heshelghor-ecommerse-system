@@ -307,13 +307,22 @@
 
                                 {{-- Image Section --}}
                                 <hr>
-                                <div class="mb-3">
+                                <div class="mb-3 row">
                                     <label for="formFile" class="form-label">
                                         <h4 class="header-title">Product Images</h4>
                                         <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
-                                        <img class="avatar-lg rounded bg-light" src="{{asset('/uploads/product/'.$product->photo)}}" alt="photo">
+
                                     </label>
-                                    <input name="photo" class="form-control @error('photo') is-invalid @enderror" type="file" id="formFile">
+                                    <div class="col-3">
+                                        <input name="photo" class="form-control dropify @error('photo') is-invalid @enderror" type="file" id="formFile"
+                                        data-show-errors="true" data-errors-position="outside"
+                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="3M" data-max-file-size="1M"
+                                        >
+                                    </div>
+                                    <div class="col-3">
+                                        <small style="display: block">Product Photo</small>
+                                        <img style="width: 130px; height:130px" class="img-thumbnail" src="{{asset('/uploads/product/'.$product->photo)}}" alt="photo">
+                                    </div>
                                     <div class="text-danger">
                                         @error('photo')
                                             <span>{{ $message }}</span>
@@ -368,6 +377,19 @@
     </script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    {{-- Dropyfiy --}}
+    <link rel="stylesheet" href="{{ asset('css/dropify.min.css') }}">
+    <style>
+        .dropify-message .file-icon p {
+            font-size: 14px;
+        }
+
+        .dropify-wrapper {
+            width: 150px;
+            height: 150px;
+        }
+
+    </style>
 @endpush
 @push('summernote')
     <script>
@@ -406,6 +428,18 @@
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
+    {{-- Dorpyfi --}}
+    <script src="{{ asset('js/dropify.min.js') }}"></script>
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop product new photo or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong happended.'
+            }
+        });
+    </script>
 
     <script>
         $(function() {

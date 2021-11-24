@@ -41,19 +41,23 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="Id" class="form-label">Upload
-                                                                    photo</label>
-                                                                <input name="photo" type="file" class="form-control dropify"
-                                                                    data-show-errors="true" data-errors-position="outside"
-                                                                    data-allowed-file-extensions="jpg jpeg png bmp"
-                                                                    data-max-file-size-preview="1M" id="photo">
-                                                            </div>
-                                                            <div class="col-md-6 ">
+                                                                <div class="col-md-6">
+                                                                    <label for="Id" class="form-label">Upload
+                                                                        photo</label>
+                                                                    <input name="photo" type="file"
+                                                                        class="form-control dropify"
+                                                                        data-show-errors="true"
+                                                                        data-errors-position="outside"
+                                                                        data-allowed-file-extensions="jpg jpeg png bmp"
+                                                                        data-max-file-size-preview="1M" id="photo">
+                                                                </div>
+                                                                <div class="col-md-6 ">
 
-                                                                <img class="img-thumbnail rounded-circle mt-3" src="{{asset('uploads/user/profile/'.$user->photo)}}" alt="" style="width: 150px; height:150px">
+                                                                    <img class="img-thumbnail rounded-circle mt-3"
+                                                                        src="{{ asset('uploads/user/profile/' . $user->photo) }}"
+                                                                        alt="" style="width: 150px; height:150px">
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         </div>
                                                     </div>
 
@@ -72,10 +76,10 @@
                                                         <div class="col-md-12">
                                                             <div class="mb-2">
                                                                 <label for="firstname" class="form-label">Address
-                                                                    </label>
-                                                                <input required type="text" name="address" value="{{ $user->address }}"
-                                                                    class="form-control" id="firstname"
-                                                                    placeholder="Enter Full name">
+                                                                </label>
+                                                                <input required type="text" name="address"
+                                                                    value="{{ $user->address }}" class="form-control"
+                                                                    id="firstname" placeholder="Enter Full name">
                                                             </div>
                                                         </div>
                                                     </div> <!-- end row -->
@@ -225,7 +229,8 @@
         .dropify-message .file-icon p {
             font-size: 14px;
         }
-        .dropify-wrapper{
+
+        .dropify-wrapper {
             width: 150px;
             height: 150px;
         }
