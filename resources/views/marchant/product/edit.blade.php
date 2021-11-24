@@ -50,7 +50,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
-                                                <select name="catagory_id" value="{{$product->catagory_id}}" class="form-control" id="product-category">
+                                                <select name="category_id" value="{{$product->category_id}}" class="form-control" id="product-category">
                                                     @foreach ($categories as $category)
                                                         <option value="{{$category->id}}" {{($product->category_id == $category->id) ? ' selected' : ''}}>{{$category->name}}</option>
                                                     @endforeach
@@ -65,7 +65,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span> <span id="catCom" class="badge bg-success float-end ml-5"></span></label>
-                                            <select name="subcatagory_id" value="{{$product->subcatagory_id}}" class="form-control" id="product-category">
+                                            <select name="subcategory_id" value="{{$product->subcategory_id}}" class="form-control" id="product-category">
                                                 @foreach ($subcategories as $subcategory)
                                                     <option value="{{$subcategory->id}}" {{($product->subcategory_id == $subcategory->id) ? ' selected ' : ''}}>{{$subcategory->name}}</option>
                                                 @endforeach
@@ -260,7 +260,7 @@
                                             <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span></h5>
                                             @foreach ($colors as $color)
                                                 <div class="form-check">
-                                                    <input checked name="colors[]" class="form-check-input @error('colors') is-invalid @enderror"  type="checkbox" value="{{ $color->id }}"  id="flexCheckDefault{{ $color->id }}">
+                                                    <input @if (in_array(['color_id'=>$color->id], $colorArray)) checked @endif name="colors[]" class="form-check-input @error('colors') is-invalid @enderror"  type="checkbox" value="{{ $color->id }}"  id="flexCheckDefault{{ $color->id }}">
                                                     <label class="form-check-label" for="flexCheckDefault{{ $color->id }}">
                                                         {{ $color->name }}
                                                     </label>
@@ -281,6 +281,7 @@
                                             @foreach ($sizes as $size)
                                                 <div class="form-check">
                                                     <input name="sizes[]"
+                                                        @if (in_array(['size_id'=>$size->id], $sizeArray)) checked @endif
                                                         class="form-check-input @error('sizes') is-invalid @enderror"
                                                         type="checkbox" value="{{ $size->id }}"
                                                         id="flexCheckDefault{{ $size->id }}">
@@ -340,7 +341,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Upload Product <i
+                                <button type="submit" class="btn btn-primary">Update Product <i
                                         class="mdi mdi-arrow-right ms-1"></i></button>
 
 

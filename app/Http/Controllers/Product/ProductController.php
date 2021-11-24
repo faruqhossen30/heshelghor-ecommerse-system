@@ -36,8 +36,8 @@ class ProductController extends Controller
         $userID = Auth::guard('marchant')->user()->id;
         $products = Product::with('brand', 'category', 'subCategory')->where('author_id', $userID)->get();
 
+        // return $products;
         return view('marchant.product.product', compact('products'));
-
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
-        $shops = Shop::where('author_id',$merchantId)->get();
+        $shops = Shop::where('author_id', $merchantId)->get();
         $colors = Color::all();
         $sizes = Size::all();
 
@@ -72,50 +72,48 @@ class ProductController extends Controller
 
 
 
-            $validate = $request->validate([
-                'title'             => 'required | max:255',
-                'description'       => 'required | max:5000',
-                'short_description' => 'required | max:1000',
-                'category_id'       => 'required',
-                'subcategory_id'    => 'required',
-                'brand_id'          => 'required',
-                'colors'            => 'required',
-                'sizes'             => 'required',
-                'shop_id'           => 'required',
-                'upazila_id'        => 'required',
-                'district_id'       => 'required',
-                'division_id'       => 'required',
-                'regular_price'     => 'required',
-                'price'             => 'required',
-                'photo'             => 'required',
-            ]);
+        $validate = $request->validate([
+            'title'             => 'required | max:255',
+            'description'       => 'required | max:5000',
+            'short_description' => 'required | max:1000',
+            'category_id'       => 'required',
+            'subcategory_id'    => 'required',
+            'brand_id'          => 'required',
+            'colors'            => 'required',
+            'sizes'             => 'required',
+            'shop_id'           => 'required',
+            'upazila_id'        => 'required',
+            'district_id'       => 'required',
+            'division_id'       => 'required',
+            'regular_price'     => 'required',
+            'price'             => 'required',
+            'photo'             => 'required',
+        ]);
 
 
-            $photo = $request->file('photo');
+        $photo = $request->file('photo');
 
-            if($request->file('photo')){
-                $photofileExtention = $photo->getClientOriginalExtension();
-                $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-                Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+        if ($request->file('photo')) {
+            $photofileExtention = $photo->getClientOriginalExtension();
+            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
+            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+        };
 
+        $images = [];
+        $i = 0;
+        $sliderimage = $request->file('image');
+
+        if ($sliderimage) {
+            foreach ($request->file('image') as $image) {
+
+                $fileExtention = $image->getClientOriginalExtension();
+                $fileName = hexdec(uniqid()) . '.' . $fileExtention;
+                Image::make($image)->save(public_path('uploads/products/') . $fileName);
+
+                $images[] = $fileName;
+                $i++;
             };
-
-            $images = [];
-            $i = 0;
-            $sliderimage = $request->file('image');
-
-            if($sliderimage){
-                foreach($request->file('image') as $image){
-
-                    $fileExtention = $image->getClientOriginalExtension();
-                    $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-                    Image::make($image)->save(public_path('uploads/products/') . $fileName);
-
-                    $images[] = $fileName;
-                    $i++;
-
-                };
-            }
+        }
 
 
 
@@ -132,7 +130,6 @@ class ProductController extends Controller
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,
-
             'author'            => 'merchant',
             'author_id'         => Auth::guard('marchant')->user()->id,
             'shop_id'           => $request->shop_id,
@@ -151,10 +148,10 @@ class ProductController extends Controller
 
 
 
-        if($product){
+        if ($product) {
             // Add Image
-            if(!empty($images)){
-                foreach($images as $image){
+            if (!empty($images)) {
+                foreach ($images as $image) {
                     ProductImage::create([
                         'image' => $image,
                         'product_id' => $product->id,
@@ -164,8 +161,8 @@ class ProductController extends Controller
 
 
             // Add Color
-            if(!empty($colors)){
-                foreach($colors as $color){
+            if (!empty($colors)) {
+                foreach ($colors as $color) {
                     ProductColor::create([
                         'color_id' => $color,
                         'product_id' => $product->id,
@@ -173,15 +170,14 @@ class ProductController extends Controller
                 }
             };
             // Add Size
-            if(!empty($sizes)){
-                foreach($sizes as $size){
+            if (!empty($sizes)) {
+                foreach ($sizes as $size) {
                     ProductSize::create([
                         'size_id' => $size,
                         'product_id' => $product->id,
                     ]);
                 }
             };
-
         };
 
 
@@ -214,6 +210,7 @@ class ProductController extends Controller
     {
         $merchantId = Auth::guard('marchant')->user()->id;
 
+
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
@@ -227,8 +224,14 @@ class ProductController extends Controller
 
         $images = ProductImage::where('product_id', $id)->get();
         $product = Product::where('id', $id)->get()->first();
-        // return $product;
-        return view('marchant.product.edit', compact('product', 'categories', 'subcategories', 'brands', 'images', 'shops', 'colors', 'sizes', 'divisions', 'districts', 'upazilas'));
+
+        $colorArray = ProductColor::where('product_id', $id)->select('color_id')->get()->toArray();
+        $sizeArray = ProductSize::where('product_id', $id)->select('size_id')->get()->toArray();
+        // return $productColor;
+        // return $colorArray;
+
+
+        return view('marchant.product.edit', compact('product', 'categories', 'subcategories', 'brands', 'images', 'shops', 'colors', 'sizes', 'divisions', 'districts', 'upazilas', 'colorArray', 'sizeArray'));
     }
 
     /**
@@ -240,13 +243,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // return $request->all();
+        $product = Product::where('id', $id)->first();
         $images = [];
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $i = 0;
-            foreach($request->file('image') as $image){
+            foreach ($request->file('image') as $image) {
                 $old_image = $request->old_image;
-                if(isset($old_image)){
+                if (isset($old_image)) {
                     unlink($old_image);
                 }
                 $fileExtention = $image->getClientOriginalExtension();
@@ -255,32 +259,73 @@ class ProductController extends Controller
 
                 $images[] = $fileName;
                 $i++;
-
             };
         }
 
-        $product = [
-            'title'             => $request->title,
-            'description'       => $request->description,
-            'short_description' => $request->short_description,
-            'slug'              => Str::of($request->title)->slug('-'),
-            'category_id'       => $request->catagory_id,
-            'subcatagory_id'    => $request->subcatagory_id,
-            'brand_id'          => $request->brand_id,
-            // 'marchant_id'    => $request->title,
-            // 'vendor_id'      => $request->title,
-            'buy_price'         => $request->buy_price,
-            'regular_price'     => $request->regular_price,
-            'sale_price'        => $request->sell_price,
-            'quantity'          => $request->quantity,
-            // 'puk_code'       => $request->title,
-            'image'             => json_encode($images),
-        ];
+        $photo = $request->file('photo');
+        $colors = $request->colors;
+        $sizes = $request->sizes;
 
-        // return $request->all();
-        $update = Product::where('id', $id)->update($product);
-        Session::flash('update');
-        return redirect()->route('product.index');
+        if ($request->file('photo')) {
+            $photofileExtention = $photo->getClientOriginalExtension();
+            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
+            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+
+            $data = [
+                'title'             => $request->title,
+                'description'       => $request->description,
+                'short_description' => $request->short_description,
+                'category_id'       => $request->category_id,
+                'subcategory_id'    => $request->subcategory_id,
+                'brand_id'          => $request->brand_id,
+                'shop_id'           => $request->shop_id,
+                'division_id'       => $request->division_id,
+                'district_id'       => $request->district_id,
+                'upazila_id'        => $request->upazila_id,
+                'regular_price'     => $request->regular_price,
+                'discount'          => $request->discount,
+                'price'             => $request->price,
+                'quantity'          => $request->quantity,
+                'quantity_alert'    => $request->quantity_alert,
+                // 'puk_code'       => $request->title,
+                'photo'             => $photofileName,
+            ];
+
+            // return $request->all();
+            $update = Product::where('id', $id)->update($data);
+            if($product->photo){
+                unlink('uploads/product/'.$product->photo);
+            }
+
+            // Update Color
+            if (!empty($colors)) {
+                ProductColor::where('product_id', $id)->delete();
+            };
+            if (!empty($colors)) {
+                foreach ($colors as $color) {
+                    ProductColor::create([
+                        'color_id' => $color,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+            // Update Size
+            if (!empty($sizes)) {
+                ProductSize::where('product_id', $id)->delete();
+            };
+            if (!empty($sizes)) {
+                foreach ($sizes as $size) {
+                    ProductSize::create([
+                        'size_id' => $size,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+
+
+            Session::flash('update');
+            return redirect()->route('product.index');
+        };
     }
 
     /**
