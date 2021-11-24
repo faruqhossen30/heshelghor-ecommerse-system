@@ -37,12 +37,23 @@
         href="{{ asset('frontend') }}/vendor/magnific-popup/magnific-popup.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     {{-- For push --}}
     @stack('styles')
     <!-- Main CSS File -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/demo3.min.css">
+    <style>
+        .header-middle {
+            padding-top: .7rem;
+            padding-bottom: .7rem;
+            color: #222;
+            background: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+    </style>
 </head>
 
 <body class="home">
@@ -71,7 +82,8 @@
                         <!-- End Logo -->
 
                         <div class="header-search hs-simple">
-                            <form action="#" method="GET" class="input-wrapper" style="position: relative" id="searchFrom">
+                            <form action="#" method="GET" class="input-wrapper" style="position: relative"
+                                id="searchFrom">
                                 <input type="text" class="form-control" name="search" autocomplete="off"
                                     placeholder="Search..." id="searchInpur" />
                                 <button class="btn btn-search" type="submit">
@@ -276,7 +288,7 @@
             // Form form search with submit method
             var searchFrom = $('#searchFrom');
             var searchInpur = $('#searchInpur');
-            $(document).on('submit', 'form[id="searchFrom"]', function(event){
+            $(document).on('submit', 'form[id="searchFrom"]', function(event) {
                 event.preventDefault()
                 var value = $(this).val();
                 console.log(searchInpur.val())

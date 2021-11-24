@@ -9,8 +9,22 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
+use function PHPSTORM_META\type;
+
 class TestController extends Controller
 {
+public function checkAarray()
+    {
+        $user1 = User::get();
+        $user2 = User::get()->toArray();
+        return gettype($user2);
+        // return $user2;
+    }
+
+
+
+
+
     public function test()
     {
         $response = Http::post('https://sandbox.walletmix.com/init-payment-process', [
@@ -35,4 +49,6 @@ class TestController extends Controller
         $token =  $response['token'];
         return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
     }
+
+
 }

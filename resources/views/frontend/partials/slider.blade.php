@@ -1,5 +1,5 @@
 <section class="intro-section mb-6">
-    <div class="owl-carousel owl-theme row owl-dot-inner owl-dot-white intro-slider animation-slider cols-1 mb-4"
+    <div class="owl-carousel owl-theme row owl-dot-inner owl-dot-white intro-slider animation-slider cols-1"
         data-owl-options="{
         'items': 1,
         'dots': true,

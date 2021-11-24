@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    <main class="main mt-lg-4">
+    <main class="main mt-lg-1">
         <div class="page-content">
             <div class="container">
                 <div class="row">
