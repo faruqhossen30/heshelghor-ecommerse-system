@@ -204,4 +204,4 @@ Route::prefix('merchant')->group(function () {
     });
 });
 
-Route::get('test', [TestController::class, 'checkAarray']);
+Route::get('test', [TestController::class, 'checkAarray'])->name('test');

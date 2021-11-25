@@ -15,10 +15,7 @@ class TestController extends Controller
 {
 public function checkAarray()
     {
-        $user1 = User::get();
-        $user2 = User::get()->toArray();
-        return gettype($user2);
-        // return $user2;
+        return view('test');
     }
 
 

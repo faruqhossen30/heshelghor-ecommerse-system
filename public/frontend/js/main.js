@@ -2853,7 +2853,8 @@ window.Riode = {};
                 e.preventDefault();
                 Riode.popup( {
                     items: {
-                        src: "ajax/quickview.html"
+                        // src: "ajax/quickview.html"
+                        src: "ajax/quickview.php"
                     },
                     callbacks: {
                         ajaxContentAdded: function () {
