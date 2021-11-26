@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
+use App\Models\Product\Comment;
 use App\Models\Product\ProductColor;
 use App\Models\Product\ProductSize;
 
@@ -17,8 +18,11 @@ class SingleProductController extends Controller
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
         $colors = ProductColor::with('color')->where('product_id', $id)->get();
         $sizes = ProductSize::with('size')->where('product_id', $id)->get();
+        $comments = Comment::with('user')->where('product_id', $id)->orderBy('id', 'desc')->get();
+
+
         $product = Product::with('category', 'subcategory', 'brand', 'merchant', 'images')->where('id', $id)->get()->first();
-        // return $product;
-        return view('frontend.singleproduct', compact('product', 'colors', 'sizes', 'categories'));
+        // return $comments;
+        return view('frontend.singleproduct', compact('product', 'colors', 'sizes', 'categories', 'comments'));
     }
 }

@@ -51,6 +51,7 @@ Route::get('product/category/{id}', [ProductAPIController::class, 'productByCate
 Route::get('product/subcategory/{id}', [ProductAPIController::class, 'productBySubCategory']); // Sub-Category wise product
 Route::get('product/brand/{id}', [ProductAPIController::class, 'productByBrand']); // Brand wise product
 Route::get('product/merchant/{id}', [ProductAPIController::class, 'productByMerchant']); // Merchant wise product
+Route::get('product/shop/{id}', [ProductAPIController::class, 'productByShop']); // Shop wise product
 
 
 // All List

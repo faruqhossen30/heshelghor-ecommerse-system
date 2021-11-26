@@ -53,4 +53,14 @@ class ProductAPIController extends Controller
         $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'images')->where('author_id', $author_id)->get();
         return $products;
     }
+    // Shop wise product
+    public function productByShop($id)
+    {
+        $products = Product::where('shop_id', $id)->latest()->paginate(30);
+        return response()->json([
+            'success' => true,
+            'status' => 200,
+            'data' => $products
+        ]);
+    }
 }

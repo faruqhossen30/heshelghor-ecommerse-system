@@ -66,19 +66,11 @@ use App\Http\Controllers\Admin\Order\DeliverySystemController;
 use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
+use App\Http\Controllers\FrontEnd\CommentController;
 
 // Test Controller
 use App\Http\Controllers\TestController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 
@@ -87,11 +79,11 @@ Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCat
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
-Route::get('merchant-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
+Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 
-
-
-
+// Comment product
+Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment.store');
+// Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
@@ -124,13 +116,7 @@ Route::prefix('user')->group(function () {
     });
 });
 
-// For API
-Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
-Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
-Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
-Route::get('commission/{id}', [APIController::class, 'getCommission']);
-Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
-Route::get('getshop/{id}', [APIController::class, 'getShop']);
+
 
 // Admin
 Route::prefix('admin')->group(function () {
@@ -166,7 +152,6 @@ Route::prefix('admin')->group(function () {
         Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
-
     });
 });
 // Merchant
@@ -204,4 +189,13 @@ Route::prefix('merchant')->group(function () {
     });
 });
 
+
+// For API
+Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
+Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
+Route::get('getupazila/{district_id}', [APIController::class, 'getUpazilaByDistrictID']);
+Route::get('commission/{id}', [APIController::class, 'getCommission']);
+Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
+Route::get('getshop/{id}', [APIController::class, 'getShop']);
+// For Testing
 Route::get('test', [TestController::class, 'checkAarray'])->name('test');
