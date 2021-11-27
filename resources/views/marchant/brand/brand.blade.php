@@ -83,7 +83,7 @@
                                             <img src="{{asset($brand->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
                                         </td>
                                         <td>
-                                            {{$brand->description}}
+                                            <td>{{substr($brand->description,0,45)}} ...</td>
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}

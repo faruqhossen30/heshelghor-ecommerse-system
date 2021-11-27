@@ -196,8 +196,26 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::where('id', $id)->get()->first();
-        return view('marchant.product.show', compact('product'));
+        $merchantId = Auth::guard('marchant')->user()->id;
+
+
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        $brands = Brand::all();
+        $divisions = Division::all();
+        $districts = District::all();
+        $upazilas = Upazila::all();
+
+        $shops = Shop::where('author_id', $merchantId)->get();
+        $colors = Color::all();
+        $sizes = Size::all();
+
+        $images = ProductImage::where('product_id', $id)->get();
+
+        $product = Product::with('subcategory')->where('id', $id)->get()->first();
+
+        // return $product;
+        return view('marchant.product.show', compact('product', 'images'));
     }
 
     /**

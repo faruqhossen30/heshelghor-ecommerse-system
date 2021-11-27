@@ -85,40 +85,93 @@
                     <div class="card-body">
 
                         <div class="flexbox_container text-center" style="display: flex">
-                            <div class="col p-2 m-1 border  text-success border-success">
+                            <div class="col p-2 m-1 border shadow-lg   text-success border-success">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-success">Accept</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-                            <div class="col border p-2 m-1">
+                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-danger">Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-                            <div class="col border p-2 m-1">
+                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-danger">Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-                            <div class="col border p-2 m-1">
+                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-danger">Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-                            <div class="col border p-2 m-1">
+                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-danger">Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-                            <div class="col border p-2 m-1">
+                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5>Accept</h5>
+                                <h5 class="text-danger">Pending</h5>
                                 <p>25 Nov 21, 2:40 PM</p>
                             </div>
-
-
-
                         </div> <!-- flexbox_container -->
+
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="accordion" id="accordionExample"> <!-- Accroding -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="mdi mdi-help-circle me-1 text-primary"></i>  Can I use this template for my client?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                                    <div class="accordion-body">
+                                        <div class="tab-pane show active" id="about-me">
+
+                                            <h5 class="mb-4 text-uppercase">Experience</h5>
+
+                                            <ul class="list-unstyled timeline-sm">
+                                                <li class="timeline-sm-item">
+                                                    <span class="timeline-sm-date">2015 - 19</span>
+                                                    <h5 class="mt-0 mb-1">Lead designer / Developer</h5>
+                                                    <p>websitename.com</p>
+                                                    <p class="text-muted mt-2">Everyone realizes why a new common language
+                                                        would be desirable: one could refuse to pay expensive translators.
+                                                        To achieve this, it would be necessary to have uniform grammar,
+                                                        pronunciation and more common words.</p>
+
+                                                </li>
+                                                <li class="timeline-sm-item">
+                                                    <span class="timeline-sm-date">2012 - 15</span>
+                                                    <h5 class="mt-0 mb-1">Senior Graphic Designer</h5>
+                                                    <p>Software Inc.</p>
+                                                    <p class="text-muted mt-2">If several languages coalesce, the grammar
+                                                        of the resulting language is more simple and regular than that of
+                                                        the individual languages. The new common language will be more
+                                                        simple and regular than the existing European languages.</p>
+                                                </li>
+                                                <li class="timeline-sm-item">
+                                                    <span class="timeline-sm-date">2010 - 12</span>
+                                                    <h5 class="mt-0 mb-1">Graphic Designer</h5>
+                                                    <p>Coderthemes LLP</p>
+                                                    <p class="text-muted mt-2 mb-0">The European languages are members of
+                                                        the same family. Their separate existence is a myth. For science
+                                                        music sport etc, Europe uses the same vocabulary. The languages
+                                                        only differ in their grammar their pronunciation.</p>
+                                                </li>
+                                            </ul>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

@@ -76,7 +76,7 @@
                                                 <h5 class="mt-0">
                                                     {{Carbon\Carbon::parse($orderItem->created_at)->format('d M')}}
                                                     <small class="text-muted">
-                                                        {{Carbon\Carbon::parse($orderItem->created_at)->format('h:m A')}}
+                                                        {{Carbon\Carbon::parse($orderItem->created_at)->format('h:i A')}}
                                                     </small>
                                                 </h5>
                                             </div>

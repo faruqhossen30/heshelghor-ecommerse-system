@@ -38,10 +38,10 @@
                                             </form>
                                         </div>
                                         <div>
-                                            <select class="form-select" id="fileter">
-                                                <option selected="">All</option>
-                                                <option value="1">Order No</option>
-                                                <option value="2">Shop Name</option>
+                                            <select class="form-select" id="fileter" name="filter">
+                                                <option value="all" selected>All</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="accept">Accepted</option>
                                             </select>
                                         </div>
                                     </div>
@@ -145,36 +145,26 @@
             $(document).on('keyup', 'input[name=keyword]', function() {
                 var search = keyword.val().trim();
                 if (search.length > 0) {
-                    $.get(`allorderitem/search/${search}`, function(data, status) {
-                        if(data){
-                            tableBody.empty();
-                            console.log(data);
-                            data.map(function(order){
-                                return tableBody.append(
-                                `
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>#12
-                                     <i class="mdi mdi-alert text-danger"></i>
-                                    </td>
-                                    <td>sdfsdf</td>
-                                    <td>sdfsdf</td>
-                                    <td>sdf</td>
-                                    <td>sdf</td>
-                                    <td>
-                                        <a class="btn btn-success btn-sm text-white"
-                                            href="#" title="Edit"><span
-                                                class="mdi mdi mdi-eye"></span></a>
-                                        <a class="btn btn-primary btn-sm text-white" href="#" title="Edit"><span
-                                                class="mdi mdi-square-edit-outline"></span></a>
-                                    </td>
-                                </tr>
-                                `
-                            )
-                            });
+                    if(fileter.val() == 'all'){
+                        console.log('all search ', search);
+                    }else if(fileter.val() == 'pending'){
+                        console.log('pending search ', search);
+                    }
+                    }else if(fileter.val() == 'accept'){
+                        console.log('accept search ', search);
+                    }
 
-                        }
-                    });
+
+
+                    // $.get(`allorderitem/search/${search}`, function(data, status) {
+                    //     if(data){
+                    //         tableBody.empty();
+                    //         console.log(data);
+                    //         data.map(function(order){
+                    //             return tableBody.append()
+                    //         });
+                    //     }
+                    // });
                 }
             });
         });

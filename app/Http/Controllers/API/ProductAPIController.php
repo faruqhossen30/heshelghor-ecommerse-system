@@ -57,10 +57,6 @@ class ProductAPIController extends Controller
     public function productByShop($id)
     {
         $products = Product::where('shop_id', $id)->latest()->paginate(30);
-        return response()->json([
-            'success' => true,
-            'status' => 200,
-            'data' => $products
-        ]);
+        return $products;
     }
 }

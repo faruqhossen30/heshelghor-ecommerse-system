@@ -226,7 +226,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                                             <h4><a href="#">{{$comment->user->name}}</a></h4>
                                                             <span class="comment-date text-body">
                                                                 {{Carbon\Carbon::parse($comment->created_at)->format('d M Y')}}
-                                                                &#128337;{{Carbon\Carbon::parse($comment->created_at)->format('h:m A')}}
+                                                                &#128337; {{Carbon\Carbon::parse($comment->created_at)->format('h:i A')}}
                                                             </span>
                                                         </div>
 

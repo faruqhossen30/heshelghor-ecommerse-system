@@ -27,7 +27,7 @@ class ShopController extends Controller
     public function index()
     {
         $userID = Auth::guard('marchant')->user()->id;
-        $shops = Shop::where('author_id', $userID)->get();
+        $shops = Shop::where('author_id', $userID)->orderBy('id', 'desc')->get();
         // return $shops;
         return view('marchant.shop.shop', compact('shops'));
     }
