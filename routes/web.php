@@ -145,7 +145,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('deliverysystem', DeliverySystemController::class);
         Route::resource('paymentmethod', PaymentMethodController::class);
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
-        Route::get('allorderitem/search/{keyword}', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
+        Route::get('allorderitem/search', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
         Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
         // Merchant Section
         Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');

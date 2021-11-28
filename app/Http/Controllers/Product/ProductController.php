@@ -339,6 +339,24 @@ class ProductController extends Controller
                     ]);
                 }
             };
+            // Update Slider Image
+            $sliderImage = ProductImage::where('product_id', $id)->get();
+            if (!empty($sliderImage)) {
+                foreach ($sliderImage as $image) {
+                    if(!empty($image)){
+                        unlink('uploads/products/'.$image->image);
+                    };
+                };
+                ProductImage::where('product_id', $id)->delete();
+            };
+            if (!empty($images)) {
+                foreach ($images as $image) {
+                    ProductImage::create([
+                        'image' => $image,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
 
 
             Session::flash('update');
