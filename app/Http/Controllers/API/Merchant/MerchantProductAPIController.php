@@ -21,7 +21,7 @@ class MerchantProductAPIController extends Controller
     public function index(Request $request)
     {
         $merchantId = $request->user()->id;
-        $products = Product::with('brand', 'category', 'subCategory')->where('author_id', $merchantId)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'images', 'colors', 'sizes')->where('author_id', $merchantId)->get();
         if (count($products) == 0) {
             return response()->json([
                 'success' => true,
@@ -187,7 +187,7 @@ class MerchantProductAPIController extends Controller
         $image = $request->file('image');
 
         $imageExtention = $image->getClientOriginalExtension();
-        $imageName = hexdec(uniqid()).'.'.$imageExtention;
+        $imageName = hexdec(uniqid()) . '.' . $imageExtention;
         Image::make($image)->save(public_path('uploads/products/') . $imageName);
 
         $color = ProductImage::create([
@@ -246,7 +246,108 @@ class MerchantProductAPIController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return 'Product update function';
+        $merchantId = $request->user()->id;
+
+        $validate = $request->validate([
+            'title'             => 'required | max:255',
+            'description'       => 'required | max:5000',
+            'short_description' => 'required | max:1000',
+            'category_id'       => 'required',
+            'subcategory_id'    => 'required',
+            'brand_id'          => 'required',
+            'shop_id'           => 'required',
+            'upazila_id'        => 'required',
+            'district_id'       => 'required',
+            'division_id'       => 'required',
+            'regular_price'     => 'required',
+            'price'             => 'required',
+        ]);
+
+
+        $photo = $request->file('photo');
+
+        if ($request->file('photo')) {
+            $photofileExtention = $photo->getClientOriginalExtension();
+            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
+            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
+
+            $product = Product::where('author_id', $merchantId)->where('id', $id)->first();
+
+            if($product->photo){
+                unlink('uploads/product/'.$product->photo);
+            }
+
+            $update = Product::where('author_id', $merchantId)->where('id', $id)->update([
+                'title'             => $request->title,
+                'description'       => $request->description,
+                'short_description' => $request->short_description,
+                'category_id'       => $request->category_id,
+                'subcategory_id'    => $request->subcategory_id,
+                'brand_id'          => $request->brand_id,
+                'shop_id'           => $request->shop_id,
+                'division_id'       => $request->division_id,
+                'district_id'       => $request->district_id,
+                'upazila_id'        => $request->upazila_id,
+                'regular_price'     => $request->regular_price,
+                'discount'          => $request->discount,
+                'price'             => $request->price,
+                'quantity'          => $request->quantity,
+                'quantity_alert'    => $request->quantity_alert,
+                'photo'             => $photofileName,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message' => 'Product Update successfull!',
+            ]);
+
+
+        }else{
+            $update = Product::where('author_id', $merchantId)->where('id', $id)->update([
+                'title'             => $request->title,
+                'description'       => $request->description,
+                'short_description' => $request->short_description,
+                'category_id'       => $request->category_id,
+                'subcategory_id'    => $request->subcategory_id,
+                'brand_id'          => $request->brand_id,
+                'shop_id'           => $request->shop_id,
+                'division_id'       => $request->division_id,
+                'district_id'       => $request->district_id,
+                'upazila_id'        => $request->upazila_id,
+                'regular_price'     => $request->regular_price,
+                'discount'          => $request->discount,
+                'price'             => $request->price,
+                'quantity'          => $request->quantity,
+                'quantity_alert'    => $request->quantity_alert
+            ]);
+        };
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'Product Update successfull!',
+        ]);
+
+
+    }
+    // Product Color Update
+    public function productColorUpdate(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'product_id' => 'required',
+            'color_id' => 'required',
+        ]);
+        $colors = ProductColor::where('product_id', $id)->get();
+        // return $colors;
+        if(!empty($colors)){
+            ProductColor::where('product_id', $id)->delete();
+            ProductColor::create([
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id
+            ]);
+        }
     }
 
     /**

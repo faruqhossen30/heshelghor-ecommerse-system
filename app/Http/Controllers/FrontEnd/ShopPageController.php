@@ -50,4 +50,9 @@ class ShopPageController extends Controller
 
         return view('frontend.shoppage', compact('categories', 'products', 'brands'));
     }
+    // Product Filter
+    public function productFilter(Request $request)
+    {
+        return $request->all();
+    }
 }

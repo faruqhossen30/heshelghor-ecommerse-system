@@ -45,8 +45,11 @@
                                                         title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                 </div>
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                                        View</a>
+                                                    <a href="#" class="btn-product" title="Quick View"
+                                                    id="quickviewbutton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    >Quick View
+                                                    <input type="hidden" value="{{$product->id}}" name="some">
+                                                </a>
                                                 </div>
                                             </figure>
                                             <div class="product-details">

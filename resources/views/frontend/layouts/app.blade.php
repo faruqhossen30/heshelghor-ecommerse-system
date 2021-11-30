@@ -57,6 +57,137 @@
 </head>
 
 <body class="home">
+    <!-- Button trigger modal -->
+{{-- <a id="quickviewbutton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <input type="hidden" value="38" name="some">
+    Launch demo modal
+</a> --}}
+
+  <!-- Modal -->
+  <div style="z-index: 999999" class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalbody">
+            <div id="loading">
+                Loading .....
+
+            </div>
+
+            {{-- <div class="product product-single row product-popup">
+                <div class="col-md-6">
+                    <div class="product-gallery">
+                        <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-1-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-1-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-2-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-2-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-3-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-3-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-4-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-4-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-details scrollable pr-0 pr-md-3">
+                        <h1 class="product-name mt-0">Converse Training Shoes</h1>
+                        <div class="product-meta">
+                            SKU: <span class="product-sku">12345670</span>
+                            BRAND: <span class="product-brand">The Northland</span>
+                        </div>
+                        <div class="product-price">$113.00</div>
+                        <div class="ratings-container">
+                            <div class="ratings-full">
+                                <span class="ratings" style="width:80%"></span>
+                                <span class="tooltiptext tooltip-top"></span>
+                            </div>
+                            <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 11 reviews )</a>
+                        </div>
+                        <p class="product-short-desc">Sed egestas, ante et vulputate volutpat, eros pede semper
+                            est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus
+                            adipiscing.</p>
+
+                        <div class="product-form product-color">
+                            <label>Color:</label>
+                            <div class="product-variations">
+                                <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
+                                    style="background-color: #1e73be"></a>
+                                <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
+                                    style="background-color: #56962e"></a>
+                                <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
+                                    style="background-color: #965000"></a>
+                            </div>
+                        </div>
+                        <div class="product-form product-size">
+                            <label>Size:</label>
+                            <div class="product-form-group">
+                                <div class="product-variations">
+                                    <a class="size" href="#">M</a>
+                                    <a class="size" href="#">L</a>
+                                </div>
+                                <a href="#" class="product-variation-clean">Clean All</a>
+                            </div>
+                        </div>
+                        <div class="product-variation-price">
+                            <span>$239.00</span>
+                        </div>
+
+                        <hr class="product-divider">
+
+                        <div class="product-form product-qty">
+                            <div class="product-form-group">
+                                <div class="input-group mr-2">
+                                    <button class="quantity-minus d-icon-minus"></button>
+                                    <input class="quantity form-control" type="number" min="1" max="1000000">
+                                    <button class="quantity-plus d-icon-plus"></button>
+                                </div>
+                                <button class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i
+                                        class="d-icon-bag"></i>Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+
+                        <hr class="product-divider mb-3">
+                        <div class="product-footer">
+                            <div class="social-links mr-4">
+                                <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+                                <a href="#" class="social-link social-twitter fab fa-twitter"></a>
+                                <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                            </div>
+                            <a href="#" class="btn-product btn-wishlist mr-4"><i class="d-icon-heart"></i>Add to wishlist</a>
+
+                            <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
+                                to compare</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-sm btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn-sm btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    {{-- End Moda; --}}
 
     <div class="page-wrapper">
         <h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
@@ -226,7 +357,7 @@
 
         @include('frontend.layouts.footer')
 
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <!-- Plugins JS File -->
         <script src="{{ asset('frontend') }}/vendor/jquery/jquery.min.js"></script>
         <script src="{{ asset('frontend') }}/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -293,6 +424,124 @@
                 var value = $(this).val();
                 console.log(searchInpur.val())
             });
+        </script>
+        {{-- For Quic View Product --}}
+        <script>
+            var modalbody = $('#modalbody');
+            var loading = $('#loading');
+
+            $(document).on('click', '#quickviewbutton', function(){
+                var productId = $(this).children('input[name="some"]').val();
+                if(productId){
+                    $.ajax({
+                        url: `/product/quickview/${productId}`,
+                        type: 'GET',
+                        success: function(product){
+                            console.log(product);
+                            modalbody.empty()
+                            modalbody.append(`
+                            <div class="product product-single row product-popup">
+                <div class="col-md-6">
+                    <div class="product-gallery">
+                        <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-1-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-1-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-2-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-2-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-3-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-3-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                            <figure class="product-image">
+                                <img src="{{asset('frontend')}}/images/product/product-1-4-580x652.jpg"
+                                    data-zoom-image="images/product/product-1-4-800x900.jpg" alt="Blue Pinafore Denim Dress"
+                                    width="580" height="580">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="product-details scrollable pr-0 pr-md-3">
+                        <h1 class="product-name mt-0">${product.title}</h1>
+                        <div class="ratings-container">
+                            <div class="ratings-full">
+                                <span class="ratings" style="width:80%"></span>
+                                <span class="tooltiptext tooltip-top"></span>
+                            </div>
+                            <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 11 reviews )</a>
+                        </div>
+                        <div class="product-price">৳${product.price}</div>
+                        <p class="product-short-desc">${product.short_description}</p>
+
+                        <div class="product-form product-color">
+                            <label>Color:</label>
+                            <div class="product-variations">
+                                <a class="color" data-src="images/demos/demo7/products/big1.jpg" href="#"
+                                    style="background-color: #1e73be"></a>
+                                <a class="color" data-src="images/demos/demo7/products/2.jpg" href="#"
+                                    style="background-color: #56962e"></a>
+                                <a class="color" data-src="images/demos/demo7/products/3.jpg" href="#"
+                                    style="background-color: #965000"></a>
+                            </div>
+                        </div>
+                        <div class="product-form product-size">
+                            <label>Size:</label>
+                            <div class="product-form-group">
+                                <div class="product-variations">
+                                    <a class="size" href="#">M</a>
+                                    <a class="size" href="#">L</a>
+                                </div>
+                                <a href="#" class="product-variation-clean">Clean All</a>
+                            </div>
+                        </div>
+                        <div class="product-variation-price">
+                            <span>$239.00</span>
+                        </div>
+
+                        <hr class="product-divider">
+
+                        <div class="product-form product-qty">
+                            <div class="product-form-group">
+                                <div class="input-group mr-2">
+                                    <button class="quantity-minus d-icon-minus"></button>
+                                    <input class="quantity form-control" type="number" min="1" max="1000000">
+                                    <button class="quantity-plus d-icon-plus"></button>
+                                </div>
+                                <button class="btn-product btn-cart text-normal ls-normal font-weight-semi-bold"><i
+                                        class="d-icon-bag"></i>Add to
+                                    Cart</button>
+                            </div>
+                        </div>
+
+                        <hr class="product-divider mb-3">
+                        <div class="product-footer">
+                            <div class="social-links mr-4">
+                                <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
+                                <a href="#" class="social-link social-twitter fab fa-twitter"></a>
+                                <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                            </div>
+                            <a href="#" class="btn-product btn-wishlist mr-4"><i class="d-icon-heart"></i>Add to wishlist</a>
+
+                            <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
+                                to compare</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            `)
+                        }
+                    });
+                }
+            });
+
         </script>
 </body>
 

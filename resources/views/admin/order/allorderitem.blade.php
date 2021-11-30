@@ -22,36 +22,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-3">
-                                <h4 class="header-title text-derk mt-1">Merchant List</h4>
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="float-sm-end mt-3 mt-sm-0">
-                                    <div class="d-flex align-items-start flex-wrap">
-                                        <div class="mb-3 mb-sm-0 me-sm-2">
-                                            <form>
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" name="keyword"
-                                                        placeholder="Search...">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div>
-                                            <select class="form-select" id="fileter" name="filter">
-                                                <option value="all" selected>All</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="accepted">Accepted</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive" >
-                            <table class="table table-bordered mb-2" id="basic-datatable">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-2" id="example">
                                 <thead class="table-light">
                                     <tr>
                                         <th>S.N</th>
@@ -105,98 +77,18 @@
 @endsection
 
 @push('css')
-    <!-- third party css -->
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
-        rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
-        rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css"
-        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
 @endpush
 
 @push('scripts')
-    <!-- third party js -->
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js">
-    </script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-    <script src="{{ asset('backend') }}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-    <!-- third party js ends -->
-    {{-- <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script> --}}
-    <script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
-    <!-- sweetalert js -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script>
+    <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script>
         $(document).ready(function() {
-            var keyword = $('input[name=keyword]');
-            var fileter = $('#fileter');
-            var tableBody = $('#tableBody');
-            $(document).on('keyup change', 'input[name=keyword], select[name=filter]', function() {
-                var search = keyword.val().trim();
-                if (search.length > 0) {
-                    $.ajax({
-                        url: `allorderitem/search`,
-                        type: 'GET',
-                        data: {
-                            keyword: search,
-                            filter: fileter.val(),
-                        },
-                        success: function(data) {
-                            if (data) {
-                                tableBody.empty();
-                                console.log(data);
-                                data.map(function(order) {
-                                    return tableBody.append(`
-                                    <tr>
-                                            <th scope="row">{{ $serial++ }}</th>
-                                            <td># ${order.order_number}
-                                                @if ($item->order_status == 0)
-                                                    <i class="mdi mdi-alert text-danger"></i>
-                                                @else
-                                                    <i class="mdi mdi-check-circle text-success"></i>
-                                                @endif
-                                            </td>
-                                            <td>${order.product.title}</td>
-                                            <td>${ order.merchant.name}</td>
-                                            <td>${order.quantity}</td>
-                                            <td>৳${order.regular_price}</td>
-                                            <td>
-                                                <a class="btn btn-success btn-sm text-white"
-                                                    href="{{ route('admin.order.single', $item->id) }}" title="Edit"><span
-                                                        class="mdi mdi mdi-eye"></span></a>
-                                                <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
-                                                        class="mdi mdi-square-edit-outline"></span></a>
-                                            </td>
-                                        </tr>
-                                    `)
-                                });
-                            }
-                        },
-                    });
-
-                    // $.get(`allorderitem/search/${search}`, function(data, status) {
-                    //     if (data) {
-                    //         tableBody.empty();
-                    //         console.log(data);
-                    //         data.map(function(order) {
-                    //             return tableBody.append()
-                    //         });
-                    //     }
-                    // });
-                }
+            $('#example').DataTable({
+                "pageLength": 25,
+                "select": true
             });
         });
-    </script> --}}
-
+    </script>
 @endpush

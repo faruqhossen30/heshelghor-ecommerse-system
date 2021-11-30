@@ -2,23 +2,23 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo logo-dark text-center">
+        <a href="{{route('admin.home')}}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('backend') }}/assets/images/logo-sm-dark.png" alt="" height="24">
                 <!-- <span class="logo-lg-text-light">Minton</span> -->
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('backend') }}/assets/images/small-logo.png" alt="" height="20">
+                <img src="{{asset('backend/assets/images/logo/dashboard-lg.png')}}" alt="" height="35">
                 <!-- <span class="logo-lg-text-light">M</span> -->
             </span>
         </a>
 
-        <a href="index.html" class="logo logo-light text-center">
+        <a href="{{route('admin.home')}}" class="logo logo-light text-center">
             <span class="logo-sm">
                 <img src="{{ asset('backend') }}/assets/images/small-logo.png" alt="" height="24">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('backend') }}/assets/images/logo-light.png" alt="" height="20">
+                <img src="{{asset('backend/assets/images/logo/dashboard-lg.png')}}" alt="" height="35">
             </span>
         </a>
     </div>
@@ -79,7 +79,7 @@
                     <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="index.html">Sales</a>
+                                <a href="{{route('admin.home')}}">Sales</a>
                             </li>
                             <li>
                                 <a href="dashboard-crm.html">CRM</a>

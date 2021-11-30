@@ -67,6 +67,7 @@ use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
 use App\Http\Controllers\FrontEnd\CommentController;
+use App\Http\Controllers\FrontEnd\ProductQuickViewController;
 
 // Test Controller
 use App\Http\Controllers\TestController;
@@ -75,10 +76,12 @@ use App\Http\Controllers\TestController;
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
+Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
+Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quickView'])->name('quickview');
 Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 
 // Comment product

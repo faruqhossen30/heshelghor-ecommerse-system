@@ -12,7 +12,7 @@ class AdminOrderItemListController extends Controller
     public function allOrderItem()
     {
         $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress', 'merchant')->latest()->paginate(10);
+        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress', 'merchant')->latest()->get();
 
         // return $orderItems;
 

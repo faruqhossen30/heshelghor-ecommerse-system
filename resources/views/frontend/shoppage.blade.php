@@ -30,39 +30,37 @@
                             <a href="#" class="btn btn-outline btn-rounded btn-dark">Shop now</a>
                         </div>
                     </div> --}}
-                    <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
-                        <div class="toolbox-left">
-                            <a href="#"
-                                class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary btn-rounded d-lg-none">Filters<i
-                                    class="d-icon-arrow-right"></i></a>
-                            <div class="toolbox-item toolbox-sort select-box">
-                                <label>Sort By :</label>
-                                <select name="orderby" class="form-control">
-                                    <option value="default">Default</option>
-                                    <option value="popularity" selected="selected">Most Popular</option>
-                                    <option value="rating">Average rating</option>
-                                    <option value="date">Latest</option>
-                                    <option value="price-low">Sort forward price low</option>
-                                    <option value="price-high">Sort forward price high</option>
-                                    <option value="">Clear custom sort</option>
-                                </select>
+                    <form action="" method="post">
+                        <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
+                            <div class="toolbox-left">
+                                <a href="#"
+                                    class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary btn-rounded d-lg-none">Filters<i
+                                        class="d-icon-arrow-right"></i></a>
+                                <div class="toolbox-item toolbox-sort select-box">
+                                    <label>Sort By :</label>
+                                    <select name="orderby" class="form-control">
+                                        <option value="latest" selected>Latest</option>
+                                        <option value="lowtohigh">Low To High</option>
+                                        <option value="hithtolow">Hith To Low</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="toolbox-right">
-                            <div class="toolbox-item toolbox-show select-box">
-                                <label>Show :</label>
-                                <select name="count" class="form-control">
-                                    <option value="12">10</option>
-                                    <option value="24">20</option>
-                                    <option value="36">30</option>
-                                </select>
+                            <div class="toolbox-right">
+                                <div class="toolbox-item toolbox-show select-box">
+                                    <label>Show :</label>
+                                    <select name="count" class="form-control">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                </div>
+                                <div class="toolbox-item toolbox-layout">
+                                    <a href="#" class="d-icon-mode-list btn-layout"></a>
+                                    <a href="#" class="d-icon-mode-grid btn-layout active"></a>
+                                </div>
                             </div>
-                            <div class="toolbox-item toolbox-layout">
-                                <a href="#" class="d-icon-mode-list btn-layout"></a>
-                                <a href="#" class="d-icon-mode-grid btn-layout active"></a>
-                            </div>
-                        </div>
-                    </nav>
+                        </nav>
+                    </form>
                     <div class="row cols-2 cols-sm-3 product-wrapper">
                         @foreach ($products as $product)
                         @php
