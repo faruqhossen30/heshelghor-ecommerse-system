@@ -53,6 +53,6 @@ class ShopPageController extends Controller
     // Product Filter
     public function productFilter(Request $request)
     {
-        return $request->all();
+        dd($request->all());
     }
 }

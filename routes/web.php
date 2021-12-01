@@ -76,7 +76,7 @@ use App\Http\Controllers\TestController;
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
-Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
+Route::post('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');

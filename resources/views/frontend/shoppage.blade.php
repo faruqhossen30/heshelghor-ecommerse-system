@@ -30,7 +30,8 @@
                             <a href="#" class="btn btn-outline btn-rounded btn-dark">Shop now</a>
                         </div>
                     </div> --}}
-                    <form action="" method="post">
+                    <form action="{{route('pruductspage-filter')}}" method="post">
+                        @csrf
                         <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
                             <div class="toolbox-left">
                                 <a href="#"
@@ -38,8 +39,8 @@
                                         class="d-icon-arrow-right"></i></a>
                                 <div class="toolbox-item toolbox-sort select-box">
                                     <label>Sort By :</label>
-                                    <select name="orderby" class="form-control">
-                                        <option value="latest" selected>Latest</option>
+                                    <select name="orderby" class="form-control" onchange="this.form.submit();">
+                                        <option value="latest">Latest</option>
                                         <option value="lowtohigh">Low To High</option>
                                         <option value="hithtolow">Hith To Low</option>
                                     </select>
