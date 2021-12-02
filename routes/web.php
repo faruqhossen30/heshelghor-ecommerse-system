@@ -199,6 +199,7 @@ use App\Http\Controllers\PointManager\PointManagerHomeController;
 Route::prefix('pointmanager')->group(function(){
     Route::get('login', [PointManagerLoginController::class, 'showLoginForm'])->name('pointmanager.login');
     Route::post('login', [PointManagerLoginController::class, 'login'])->name('pointmanager.login');
+    Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
     Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
 });
 

@@ -309,12 +309,12 @@
 
                     <!-- item-->
 
-                    <a class="dropdown-item notify-item" href="{{ route('marchant.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="dropdown-item notify-item" href="{{ route('pointmanager.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="ri-logout-box-line"></i>
                         <span>{{ __('Logout') }}</span>
                         </a>
 
-                        <form id="logout-form" action="{{ route('marchant.logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('pointmanager.logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
 

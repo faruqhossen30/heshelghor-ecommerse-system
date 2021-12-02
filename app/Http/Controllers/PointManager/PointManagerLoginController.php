@@ -57,7 +57,7 @@ class PointManagerLoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect()->route('login');
+        Auth::guard('pointmanager')->logout();
+        return redirect()->route('pointmanager.login');
     }
 }
