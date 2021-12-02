@@ -43,6 +43,8 @@ use App\Http\Controllers\FrontEnd\CheckoutController;
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
 
+// Point Manager Controller
+
 // Product Controller
 use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\FrontEnd\UserOrderController;
@@ -191,6 +193,14 @@ Route::prefix('merchant')->group(function () {
         Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
     });
 });
+use App\Http\Controllers\PointManager\PointManagerLoginController;
+use App\Http\Controllers\PointManager\PointManagerHomeController;
+// Point-Manager
+Route::prefix('pointmanager')->group(function(){
+    Route::get('login', [PointManagerLoginController::class, 'showLoginForm'])->name('pointmanager.login');
+    Route::post('login', [PointManagerLoginController::class, 'login'])->name('pointmanager.login');
+    Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
+});
 
 
 // For API
@@ -201,4 +211,4 @@ Route::get('commission/{id}', [APIController::class, 'getCommission']);
 Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 // For Testing
-Route::get('test', [TestController::class, 'checkAarray'])->name('test');
+Route::get('test', [TestController::class, 'test'])->name('test');

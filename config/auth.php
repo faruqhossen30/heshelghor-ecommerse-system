@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'marchants',
         ],
+        'pointmanager' => [
+            'driver' => 'session',
+            'provider' => 'pointmanagers',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'marchants' => [
             'driver' => 'eloquent',
             'model' => App\Models\Auth\Marchant::class,
+        ],
+        'pointmanagers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PointManager\Pointmanager::class,
         ],
 
         // 'users' => [
@@ -117,6 +125,12 @@ return [
         ],
         'marchants' => [
             'provider' => 'marchants',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'pointmanagers' => [
+            'provider' => 'pointmanagers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
