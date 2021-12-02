@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use App\Models\Auth\Marchant;
+use App\Models\Merchant\Shop;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -43,6 +44,10 @@ class Product extends Model
     public function merchant()
     {
         return $this->hasOne(Marchant::class, 'id', 'author_id');
+    }
+    public function shop()
+    {
+        return $this->hasOne(Shop::class, 'id', 'shop_id');
     }
 
     // Image

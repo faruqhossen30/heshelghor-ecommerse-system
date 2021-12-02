@@ -12,7 +12,7 @@ class ProductAPIController extends Controller
     // Single Product
     public function singleProduct(Request $request, $id)
     {
-        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant', 'images')->first();
+        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->first();
         return $products;
     }
     // All Product
@@ -26,31 +26,31 @@ class ProductAPIController extends Controller
     public function productByPage()
     {
 
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'images', 'colors', 'sizes')->latest()->paginate(5);
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->latest()->paginate(5);
         return $products;
     }
     // Category wise Product
     public function productByCategory(Request $request, $category_id)
     {
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant','images')->where('category_id', $category_id)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant','shop', 'images', 'colors', 'sizes')->where('category_id', $category_id)->get();
         return $products;
     }
     // Sub-Category wise Product
     public function productBySubCategory(Request $request, $subcategory_id)
     {
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'images')->where('subcategory_id', $subcategory_id)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->where('subcategory_id', $subcategory_id)->get();
         return $products;
     }
     // Brand wise Product
     public function productByBrand(Request $request, $brand_id)
     {
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'images')->where('brand_id', $brand_id)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->where('brand_id', $brand_id)->get();
         return $products;
     }
     // Merchant wise Product
     public function productByMerchant(Request $request, $author_id)
     {
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'images')->where('author_id', $author_id)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->where('author_id', $author_id)->get();
         return $products;
     }
     // Shop wise product
