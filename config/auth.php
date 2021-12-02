@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'pointmanagers',
         ],
+        'deliveryman' => [
+            'driver' => 'session',
+            'provider' => 'deliverymen',
+        ],
     ],
 
     /*
@@ -87,6 +91,10 @@ return [
         'pointmanagers' => [
             'driver' => 'eloquent',
             'model' => App\Models\PointManager\Pointmanager::class,
+        ],
+        'deliverymen' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\DeliveryMan\Deliveryman::class,
         ],
 
         // 'users' => [
@@ -131,6 +139,12 @@ return [
         ],
         'pointmanagers' => [
             'provider' => 'pointmanagers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'deliverymen' => [
+            'provider' => 'deliverymen',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

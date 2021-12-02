@@ -202,6 +202,16 @@ Route::prefix('pointmanager')->group(function(){
     Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
     Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
 });
+use App\Http\Controllers\DeliveryMan\DeliveryManLoginController;
+use App\Http\Controllers\DeliveryMan\DeliveryManHomeController;
+// Delivery Man
+Route::prefix('deliveryman')->group(function(){
+    Route::get('login', [DeliveryManLoginController::class, 'showLoginForm'])->name('deliveryman.login');
+    Route::post('login', [DeliveryManLoginController::class, 'login'])->name('deliveryman.login');
+    Route::post('logout', [DeliveryManLoginController::class, 'logout'])->name('deliveryman.logout');
+    Route::get('home', [DeliveryManHomeController::class, 'index'])->name('deliveryman.home');
+});
+
 
 
 // For API

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\PointManager;
+namespace App\Models\DeliveryMan;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Pointmanager extends Authenticatable
+class Deliveryman extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 

@@ -35,11 +35,11 @@
         <div id="wrapper">
 
             <!-- Topbar Start -->
-            @include('pointmanager.layouts.topbar')
+            @include('deliveryman.layouts.topbar')
             <!-- end Topbar -->
 
             <!-- ========== Left Sidebar Start ========== -->
-            @include('pointmanager.layouts.left-sidebar')
+            @include('deliveryman.layouts.left-sidebar')
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
@@ -59,7 +59,7 @@
                 </div> <!-- content -->
 
                 <!-- Footer Start -->
-                @include('pointmanager.layouts.footer')
+                @include('deliveryman.layouts.footer')
                 <!-- end Footer -->
 
             </div>
@@ -73,7 +73,7 @@
         <!-- END wrapper -->
 
         <!-- Right Sidebar -->
-            @include('pointmanager.layouts.right-sidebar')
+            @include('deliveryman.layouts.right-sidebar')
 
         <!-- /Right-bar -->
 
