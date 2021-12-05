@@ -23,11 +23,11 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header border-bottom bg-transparent">
-                        <h5 class="header-title mb-0">Order Detaild: {{$orderItem->order_no}}
-                        @if ($orderItem->order_status == 1)
+                        <h5 class="header-title mb-0">Order Detaild: {{$product->orderitem->order_number}}
+                        @if ($product->accept_status == 1)
                         <span class="btn btn-success btn-sm">Accepted</span>
                         @endif
-                        @if ($orderItem->order_status == 0)
+                        @if ($product->accept_status == 0)
                             <span class="btn btn-danger btn-sm">Pending</span>
                         @endif
                     </h5>
@@ -44,7 +44,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Order No.</p>
                                             <h5 class="mt-0">
-                                                #{{$orderItem->order_number}}
+                                                #{{$product->orderitem->order_number}}
                                             </h5>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                {{$orderItem->deliveryaddress->name}}
+                                                {{$product->deliveryaddress->name}}
                                             </h5>
                                         </div>
                                     </div>
@@ -72,9 +72,9 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Date</p>
                                             <h5 class="mt-0">
-                                                {{Carbon\Carbon::parse($orderItem->created_at)->format('d M')}}
+                                                {{Carbon\Carbon::parse($product->created_at)->format('d M')}}
                                                 <small class="text-muted">
-                                                    {{Carbon\Carbon::parse($orderItem->created_at)->format('h:m A')}}
+                                                    {{Carbon\Carbon::parse($product->created_at)->format('h:m A')}}
                                                 </small>
                                             </h5>
                                         </div>
@@ -98,7 +98,7 @@
                         </div>
 
                         <div class="mt-2">
-                            <h4 class="header-title mb-3">Items from Order {{$orderItem->order_no}}</h4>
+                            <h4 class="header-title mb-3">Items from Order {{$product->order_no}}</h4>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div>
@@ -108,8 +108,7 @@
                                                     <tr>
                                                         <th>Product</th>
                                                         <th>Quantity</th>
-                                                        <th>Discount</th>
-                                                        <th>Price</th>
+                                                        <th>commission</th>
                                                         <th>Total</th>
                                                     </tr>
                                                 </thead>
@@ -118,18 +117,17 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="me-3">
-                                                                    <img src="{{asset('uploads/product/'.$orderItem->product->photo)}}" alt="product-img" height="40">
+                                                                    <img src="{{asset('uploads/product/'.$product->product->photo)}}" alt="product-img" height="40">
                                                                 </div>
                                                                 <div class="flex-1">
-                                                                    <h5 class="m-0">{{$orderItem->product->title}}</h5>
+                                                                    <h5 class="m-0">{{$product->product->title}}</h5>
                                                                     <p class="mb-0">Size : Large</p>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>{{$orderItem->quantity}}</td>
-                                                        <td>{{$orderItem->discount}}%</td>
-                                                        <td>৳{{$orderItem->merchant_price}}</td>
-                                                        <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                        <td>{{$product->orderitem->quantity}}</td>
+                                                        <td>৳{{$product->commission}}</td>
+                                                        <td>৳{{$product->total_commission}}</td>
                                                     </tr>
 
                                                 </tbody>
@@ -151,13 +149,13 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Merchant :</th>
-                                                        <td>{{$orderItem->quantity}}x{{$orderItem->merchant_price}}</td>
-                                                        <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                        <td>{{$product->quantity}}x{{$product->merchant_price}}</td>
+                                                        <td>৳{{$product->merchant_price_total}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Delivery :</th>
-                                                        <td>{{$orderItem->quantity}}x{{$orderItem->delivery_cost}}</td>
-                                                        <td>৳{{$orderItem->total_delivery_cost}}</td>
+                                                        <td>{{$product->quantity}}x{{$product->delivery_cost}}</td>
+                                                        <td>৳{{$product->total_delivery_cost}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th colspan="2">Toral: </th>
@@ -186,15 +184,15 @@
 
                                     <tbody>
                                         <tr>
-                                            <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->deliveryaddress->name}}</h5></th>
+                                            <th colspan="2"><h5 class="font-15 m-0">{{$product->deliveryaddress->name}}</h5></th>
                                         </tr>
                                         <tr>
                                             <th scope="row">Address:</th>
-                                            <td>{{$orderItem->deliveryaddress->address}}</td>
+                                            <td>{{$product->deliveryaddress->address}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Phone :</th>
-                                            <td>{{$orderItem->deliveryaddress->mobile}}</td>
+                                            <td>{{$product->deliveryaddress->mobile}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Mobile :</th>

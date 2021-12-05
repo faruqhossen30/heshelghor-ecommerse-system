@@ -193,13 +193,18 @@ $totalItem = count(Cart::content());
                                             </div>
                                         </div>
                                     </div>
+                                    <div>
+                                        <input type="hidden" value="" name="delivery_system_name">
+                                        <input type="hidden" value="" name="payment_method_name">
+
+                                    </div>
                                     <div class="">
                                         <label>Payment Method<strong></strong></label>
                                         <div class="select-box">
                                             <select name="payment_method_id" class="form-control @error('payment_method_id') is-invalid @enderror" required>
                                                 <option value="" >Select one</option>
                                                 @foreach ($pamymentmethods as $system)
-                                                    <option value="{{ $system->id }}">{{ $system->name }}</option>
+                                                    <option value="{{ $system->id }}" name="welcome" >{{ $system->name }}</option>
                                                 @endforeach
                                             </select>
                                             <div class="text-danger">
@@ -290,15 +295,20 @@ $totalItem = count(Cart::content());
         // For Hidden input
         var delivery_cost = $('input[name="delivery_cost"]');
         var total_price = $('input[name="total_price"]');
+        var delivery_system_name = $('input[name="delivery_system_name"]');
+
 
         $(document).on('change', 'select[name="delivery_system"]', function() {
             var deliverySystemId = $('select[name="delivery_system"]').val();
             if (deliverySystemId) {
                 $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
                     if (data) {
+                        console.log(data);
+                        delivery_system_name.val(data.name);
+                        // console.log(delivery_system_name.val());
+                        // console.log(payment_system_name.val());
                         delivery_cost.val(data.price *productNumber); // for hidden input
                         delivery_charge.text(data.price * productNumber); // For Show calculate
-                        console.log(delivery_charge.text());
                         totalAmount();
                     }
                 });
@@ -312,5 +322,23 @@ $totalItem = count(Cart::content());
             total_price.val(sum);
             total_product_price.html(sum);
         }
+
+
+        var payment_method_name = $('input[name="payment_method_name"]');
+
+        $(document).on('change', 'select[name="payment_method_id"]', function() {
+            var payment_method_id = $('select[name="payment_method_id"]').val();
+            if (payment_method_id) {
+                // console.log(payment_method_id);
+                $.get(`{{ url('paymentsystemname/${payment_method_id}') }}`, function(data, status) {
+                    if (data) {
+                        // console.log(data);
+                        payment_method_name.val(data.name)
+                    }
+                });
+            };
+
+
+        });
     </script>
 @endpush

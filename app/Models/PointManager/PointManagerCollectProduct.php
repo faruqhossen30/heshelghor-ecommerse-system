@@ -2,6 +2,7 @@
 
 namespace App\Models\PointManager;
 
+use App\Models\Admin\Order\DeliveryAddress;
 use App\Models\Merchant\OrderItem;
 use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,5 +25,11 @@ class PointManagerCollectProduct extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    public function deliveryaddress()
+    {
+        return $this->hasOne(DeliveryAddress::class, 'order_id', 'invoice_id');
+    }
+
 
 }

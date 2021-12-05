@@ -19,12 +19,15 @@ class CreateOrdersTable extends Migration
             $table->string('invoice_number');
             $table->integer('total_prodcut');
             $table->integer('total_item');
-            $table->double('product_price');
-            $table->double('delivery_cost');
-            $table->double('total_price');
+            $table->integer('product_price');
+            $table->integer('delivery_cost');
+            $table->integer('total_price');
+            $table->string('delivery_system_name');
+            $table->string('payment_method_name');
             $table->unsignedBigInteger('delivery_system_id');
             $table->unsignedBigInteger('payment_method_id');
             $table->boolean('status')->default(false);
+            $table->boolean('payment')->default(false);
             $table->timestamps();
         });
     }

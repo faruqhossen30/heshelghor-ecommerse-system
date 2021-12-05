@@ -8,6 +8,7 @@ use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 use App\Models\Admin\Order\DeliverySystem;
 use App\Models\Merchant\Shop;
+use App\Models\Admin\Order\PaymentMethod;
 
 class APIController extends Controller
 {
@@ -43,6 +44,15 @@ class APIController extends Controller
         if($request->id){
         $deliverycost = DeliverySystem::where('id', $request->id)->first();
         return $deliverycost;
+        }
+    }
+
+    public function getPaymentSystemName(Request $request)
+    {
+        // return $request->id;
+        if($request->id){
+        $name = PaymentMethod::where('id', $request->id)->first();
+        return $name;
         }
     }
 

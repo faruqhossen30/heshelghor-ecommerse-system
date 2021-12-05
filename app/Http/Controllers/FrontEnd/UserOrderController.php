@@ -15,6 +15,7 @@ class UserOrderController extends Controller
 {
     public function orderNow(Request $request)
     {
+        // return $request->all();
         $userId = Auth::user()->id;
         $cartitems = Cart::content();
         $subTotal = Cart::priceTotal();
@@ -58,15 +59,18 @@ class UserOrderController extends Controller
             'payment_method_id' => 'required'
         ]);
         $order = Order::create([
-            'user_id'            => $userId,
-            'invoice_number'     => $invoiceNumber,
-            'total_prodcut'      => $request->total_prodcut,
-            'total_item'         => $request->total_item,
-            'delivery_cost'      => $request->delivery_cost,
-            'product_price'      => $subTotal,
-            'total_price'        => $request->total_price,
-            'delivery_system_id' => $request->delivery_system,
-            'payment_method_id'  => $request->payment_method_id
+            'user_id'              => $userId,
+            'invoice_number'       => $invoiceNumber,
+            'total_prodcut'        => $request->total_prodcut,
+            'total_item'           => $request->total_item,
+            'delivery_cost'        => $request->delivery_cost,
+            'product_price'        => $subTotal,
+            'total_price'          => $request->total_price,
+            'delivery_system_id'   => $request->delivery_system,
+            'payment_method_id'    => $request->payment_method_id,
+            'delivery_system_name' => $request->delivery_system_name,
+            'payment_method_name'  => $request->payment_method_name,
+            'payment'              => false
         ]);
         if ($order) {
 
