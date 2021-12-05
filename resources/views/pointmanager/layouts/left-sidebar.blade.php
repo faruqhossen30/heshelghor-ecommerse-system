@@ -98,6 +98,25 @@
                     </div>
                 </li>
                 {{-- Product End --}}
+                {{-- Product Start --}}
+                <li>
+                    <a href="#sidebarCollectProduct" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="mdi mdi-table"></i>
+                        <span>Collect Products </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarCollectProduct">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('pointmanager.collect.product')}}">All Collect Products</a>
+                            </li>
+                            <li>
+                                <a href="{{route('product.create')}}">Collected Product</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Product End --}}
 
             </ul>
 

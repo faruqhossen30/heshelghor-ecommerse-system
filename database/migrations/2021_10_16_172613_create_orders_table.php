@@ -22,8 +22,8 @@ class CreateOrdersTable extends Migration
             $table->double('product_price');
             $table->double('delivery_cost');
             $table->double('total_price');
-            $table->string('delivery_system_name');
-            $table->string('payment_method_name');
+            $table->unsignedBigInteger('delivery_system_id');
+            $table->unsignedBigInteger('payment_method_id');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

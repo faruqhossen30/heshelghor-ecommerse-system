@@ -18,12 +18,11 @@ class CreatePointManagerCollectProductsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('orderitem_id');
+            $table->unsignedBigInteger('pointmanager_id')->default(null);
             $table->integer('commission');
             $table->integer('total_commission');
-            $table->string('mobile');
-            $table->string('address');
-            $table->dateTime('order_place');
-            $table->dateTime('order_accept');
+            $table->boolean('accept_status')->default(false);
+            $table->dateTime('accept_time');
             $table->timestamps();
         });
     }

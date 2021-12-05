@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PointManager\PointManagerCollectProduct;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -39,6 +41,20 @@ class OrderController extends Controller
         $update = OrderItem::where('id', $id)->update([
             'order_status' => true
         ]);
+        if($update){
+            $commission = ($orderItem->delivery_cost * 20)/100;
+            $total_commision = $commission * $orderItem->quantity;
+            $pt = PointManagerCollectProduct::create([
+                'product_id'          => $orderItem->product_id,
+                'invoice_id'          => $orderItem->order_id,
+                'orderitem_id'        => $orderItem->id,
+                'commission'          => $commission,
+                'total_commission'    => $total_commision,
+                'accept_statuss'      => false,
+                'accept_time'         => Carbon::now(),
+            ]);
+            return $pt;
+        }
 
         // $android_token = $orderItem->user->android_token;
         $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";

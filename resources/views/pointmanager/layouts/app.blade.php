@@ -13,7 +13,6 @@
         <!-- plugin css -->
         <link href="{{ asset('backend') }}/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
         <!-- Stack css Start -->
-@stack('css')
         <!-- Stack css End -->
 
 		<!-- App css -->
@@ -25,6 +24,7 @@
 
 		<!-- icons -->
 		<link href="{{ asset('backend') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        @stack('css')
 
 
     </head>

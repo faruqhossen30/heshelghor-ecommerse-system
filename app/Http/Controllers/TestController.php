@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
+use App\Models\PointManager\PointManagerCollectProduct;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
@@ -45,6 +47,20 @@ public function checkAarray()
 
         $token =  $response['token'];
         return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
+    }
+
+    public function carbon()
+    {
+        $pt = PointManagerCollectProduct::create([
+            'product_id'          => 2,
+            'invoice_id'          => 2,
+            'orderitem_id'        => 2,
+            'commission'          => 23,
+            'total_commission'    => 3,
+            'accept_statuss'      => false,
+            'accept_time'         => Carbon::now(),
+        ]);
+        return $pt;
     }
 
 

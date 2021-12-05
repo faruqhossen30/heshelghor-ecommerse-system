@@ -195,6 +195,7 @@ Route::prefix('merchant')->group(function () {
 });
 use App\Http\Controllers\PointManager\PointManagerLoginController;
 use App\Http\Controllers\PointManager\PointManagerHomeController;
+use App\Http\Controllers\PointManager\PointManagerCollectProductController;
 // Point-Manager
 Route::prefix('pointmanager')->group(function(){
     Route::get('login', [PointManagerLoginController::class, 'showLoginForm'])->name('pointmanager.login');
@@ -203,6 +204,7 @@ Route::prefix('pointmanager')->group(function(){
     Route::group(['middleware' => 'IsPointmanager'],function () {
         Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
         Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
+        Route::get('collectproductlist', [PointManagerCollectProductController::class, 'allCollectProductList'])->name('pointmanager.collect.product');
     });
 });
 
@@ -230,4 +232,4 @@ Route::get('commission/{id}', [APIController::class, 'getCommission']);
 Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 // For Testing
-Route::get('test', [TestController::class, 'test'])->name('test');
+Route::get('test', [TestController::class, 'carbon'])->name('test');
