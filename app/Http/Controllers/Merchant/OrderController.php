@@ -45,15 +45,16 @@ class OrderController extends Controller
             $commission = ($orderItem->delivery_cost * 20)/100;
             $total_commision = $commission * $orderItem->quantity;
             $pt = PointManagerCollectProduct::create([
-                'product_id'          => $orderItem->product_id,
-                'invoice_id'          => $orderItem->order_id,
-                'orderitem_id'        => $orderItem->id,
-                'commission'          => $commission,
-                'total_commission'    => $total_commision,
-                'accept_statuss'      => false,
-                'accept_time'         => Carbon::now(),
+                'product_id'       => $orderItem->product_id,
+                'invoice_id'       => $orderItem->order_id,
+                'orderitem_id'     => $orderItem->id,
+                'shop_id'          => $orderItem->shop_id,
+                'commission'       => $commission,
+                'total_commission' => $total_commision,
+                'accept_statuss'   => false,
+                'accept_time'      => null,
             ]);
-            return $pt;
+            // return $pt;
         }
 
         // $android_token = $orderItem->user->android_token;
@@ -67,7 +68,7 @@ class OrderController extends Controller
                 'title' => 'Your Order accept !',
                 'body' => 'HeshelGhor | Store of Needs'
             );
-            sendNotificateion($data, $ruhul);
+            // sendNotificateion($data, $ruhul);
 
         // if($android_token){
         //     $data = array(

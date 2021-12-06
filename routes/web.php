@@ -76,6 +76,7 @@ use App\Http\Controllers\TestController;
 
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
+Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::post('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');

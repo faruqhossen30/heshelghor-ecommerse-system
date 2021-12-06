@@ -50,8 +50,8 @@
                                                 @endif
                                             </td>
                                             <td>{{ $product->product->title }}</td>
-                                            <td>{{ $product->product->title }}</td>
-                                            <td>{{ $product->product->quantity }}</td>
+                                            <td>{{ $product->shop->name }}</td>
+                                            <td>{{ $product->orderitem->quantity }}</td>
                                             <td>৳{{ $product->total_commission }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"

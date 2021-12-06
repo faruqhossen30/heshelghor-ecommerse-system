@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PointManager;
 
 use App\Http\Controllers\Controller;
 use App\Models\PointManager\PointManagerCollectProduct;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,8 @@ class PointManagerCollectProductController extends Controller
 {
     public function allCollectProductList()
     {
-        $productlist = PointManagerCollectProduct::with('orderitem', 'product')->get();
+        $productlist = PointManagerCollectProduct::with('orderitem', 'shop', 'product')->get();
+
         // return $productlist;
 
         return view('pointmanager.collect.collectproduct', compact('productlist'));
@@ -19,7 +21,7 @@ class PointManagerCollectProductController extends Controller
 
     public function singleCollectProduct($id)
     {
-        $product = PointManagerCollectProduct::with('orderitem', 'product', 'deliveryaddress')->where('id', $id)->first();
+        $product = PointManagerCollectProduct::with('orderitem', 'shop', 'product', 'deliveryaddress')->where('id', $id)->first();
         // return $product;
         return view('pointmanager.collect.singleproduct', compact('product'));
     }
@@ -28,9 +30,17 @@ class PointManagerCollectProductController extends Controller
     {
         $pointmanagerId = Auth::guard('pointmanager')->user()->id;
 
-        $orderItem = OrderItem::with('user')->where('id', $id)->first();
-        $update = OrderItem::where('id', $id)->update([
-            'order_status' => true
-        ]);
+        $item = PointManagerCollectProduct::where('id', $id)->first();
+
+        if ($item->accept_status == 0) {
+            $update = PointManagerCollectProduct::where('id', $id)->update([
+                'accept_status' => true,
+                'accept_time' => Carbon::now(),
+                'pointmanager_id' => $pointmanagerId
+            ]);
+            if($update){
+                return redirect()->route('pointmanager.collect.product');
+            }
+        }
     }
 }

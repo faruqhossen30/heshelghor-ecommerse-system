@@ -37,4 +37,10 @@ class HomepageController extends Controller
             ->get();
         return $result;
     }
+
+
+    public function privacyPolicy()
+    {
+        return view('frontend.privacy-policy');
+    }
 }

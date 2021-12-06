@@ -29,6 +29,7 @@ class CartController extends Controller
                     'merchant_price'       => $merchantPrice,
                     'merchant_price_total' => $merchantPrice * $request->quantity,
                     'merchant_id'          => $product->author_id,
+                    'shop_id'              => $product->shop_id,
                     'color'                => $request->color,
                     'size'                 => $request->size,
                     'photo'                => $product->photo,

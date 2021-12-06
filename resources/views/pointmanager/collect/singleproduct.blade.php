@@ -24,12 +24,14 @@
                 <div class="card">
                     <div class="card-header border-bottom bg-transparent">
                         <h5 class="header-title mb-0">Order Detaild: {{$product->orderitem->order_number}}
-                        @if ($product->accept_status == 1)
+                        <div class="float-end">
+                            @if ($product->accept_status == 1)
                         <span class="btn btn-success btn-sm">Accepted</span>
                         @endif
                         @if ($product->accept_status == 0)
-                            <span class="btn btn-danger btn-sm">Pending</span>
+                            <a href="{{route('pointmanager.product.accept', $product->id)}}" class="btn btn-warning btn-sm" onclick="return confirm('Suer ! Accept for collect product ?');">Accept Now !</a>
                         @endif
+                        </div>
                     </h5>
 
                     </div>
@@ -184,7 +186,8 @@
 
                                     <tbody>
                                         <tr>
-                                            <th colspan="2"><h5 class="font-15 m-0">{{$product->deliveryaddress->name}}</h5></th>
+                                            <th scope="row">Name:</th>
+                                            <td>{{$product->deliveryaddress->name}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Address:</th>
@@ -194,10 +197,6 @@
                                             <th scope="row">Phone :</th>
                                             <td>{{$product->deliveryaddress->mobile}}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Mobile :</th>
-                                            <td>(+01) 12345 67890</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -205,27 +204,23 @@
                     </div>
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Billing  Information</h4>
+                            <h4 class="font-15 mb-2">Shop  Information</h4>
 
                             <div class="card p-2 mb-lg-0">
                                 <table class="table table-borderless table-sm mb-0">
 
                                     <tbody>
                                         <tr>
-                                            <th scope="row">Payment Type:</th>
-                                            <td>Credit Card</td>
+                                            <th scope="row">Shop Name:</th>
+                                            <td>{{$product->shop->name}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Provider :</th>
-                                            <td>Visa ending in 2851</td>
+                                            <th scope="row">Address :</th>
+                                            <td>{{$product->shop->address}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Valid Date :</th>
-                                            <td>02/2021</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">CVV :</th>
-                                            <td>xxx</td>
+                                            <th scope="row">Mobile :</th>
+                                            <td>01xxxxxxxxxxx</td>
                                         </tr>
                                     </tbody>
                                 </table>

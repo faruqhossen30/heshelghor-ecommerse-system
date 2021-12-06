@@ -31,7 +31,7 @@
                                 <span><button type="button" class="btn btn-success btn-sm float-end">Approved !</button></span>
                             @endif
                             @if ($orderItem->order_status == 0)
-                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end">Accept</a></span>
+                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end" onclick="return confirm('Suer ? Accept Order ?');">Accept</a></span>
                             @endif
 
                         </div>
