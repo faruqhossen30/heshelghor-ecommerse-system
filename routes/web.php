@@ -207,13 +207,15 @@ Route::prefix('pointmanager')->group(function(){
         Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
         Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
         Route::get('collectproductlist', [PointManagerCollectProductController::class, 'allCollectProductList'])->name('pointmanager.collect.product');
+        Route::get('processing-productlist', [PointManagerCollectProductController::class, 'processingProductList'])->name('pointmanager.processing.product');
         Route::get('collectproductlist/{id}', [PointManagerCollectProductController::class, 'singleCollectProduct'])->name('pointmanager.collect.single');
-        Route::get('collectproduc/accept/{id}', [PointManagerCollectProductController::class, 'acceptProduct'])->name('pointmanager.product.accept');
+        Route::get('collectproduct/accept/{id}', [PointManagerCollectProductController::class, 'acceptProduct'])->name('pointmanager.product.accept');
     });
 });
 
 use App\Http\Controllers\DeliveryMan\DeliveryManLoginController;
 use App\Http\Controllers\DeliveryMan\DeliveryManHomeController;
+use App\Http\Controllers\DeliveryMan\DeliveryManProductController;
 
 // Delivery Man
 Route::prefix('deliveryman')->group(function(){
@@ -223,6 +225,7 @@ Route::prefix('deliveryman')->group(function(){
     Route::group(['middleware' => 'IsDeliveryman'],function () {
         Route::post('logout', [DeliveryManLoginController::class, 'logout'])->name('deliveryman.logout');
         Route::get('home', [DeliveryManHomeController::class, 'index'])->name('deliveryman.home');
+        Route::get('collectproductlist', [DeliveryManProductController::class, 'productList'])->name('deliveryman.productlist');
     });
 });
 

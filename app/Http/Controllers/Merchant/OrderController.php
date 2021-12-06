@@ -42,7 +42,7 @@ class OrderController extends Controller
             'order_status' => true
         ]);
         if($update){
-            $commission = ($orderItem->delivery_cost * 20)/100;
+            $commission = ($orderItem->delivery_cost * 10)/100;
             $total_commision = $commission * $orderItem->quantity;
             $pt = PointManagerCollectProduct::create([
                 'product_id'       => $orderItem->product_id,

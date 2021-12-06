@@ -81,21 +81,18 @@
                 </li>
                 {{-- Product Start --}}
                 <li>
-                    <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
+                    <a href="{{route('deliveryman.productlist')}}" >
+                        <i class="mdi mdi-cart"></i>
+                        <span class="badge bg-success rounded-pill float-end">0</span>
                         <span> Products </span>
-                        <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarTables">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{route('product.index')}}">All Products</a>
-                            </li>
-                            <li>
-                                <a href="{{route('product.create')}}">Add Product</a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+                <li>
+                    <a href="{{route('deliveryman.home')}}" >
+                        <i class="mdi mdi-bike-fast"></i>
+                        <span class="badge bg-success rounded-pill float-end">0</span>
+                        <span> Processing </span>
+                    </a>
                 </li>
                 {{-- Product End --}}
 

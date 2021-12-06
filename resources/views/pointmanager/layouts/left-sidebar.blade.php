@@ -111,7 +111,7 @@
                                 <a href="{{route('pointmanager.collect.product')}}">All Collect Products</a>
                             </li>
                             <li>
-                                <a href="{{route('product.create')}}">Collected Product</a>
+                                <a href="{{route('pointmanager.processing.product')}}">Processing Product</a>
                             </li>
                         </ul>
                     </div>
