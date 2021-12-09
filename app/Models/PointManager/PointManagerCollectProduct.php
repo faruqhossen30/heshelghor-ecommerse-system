@@ -13,9 +13,9 @@ class PointManagerCollectProduct extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'invoice_id', 'orderitem_id', 'shop_id', 'delivery_address_id', 'commission', 'total_commission', 'mobile', 'address', 'pointmanager_id', 'accept_time'];
+    protected $fillable = ['product_id', 'invoice_id', 'orderitem_id', 'shop_id', 'pointmanager_id', 'commission', 'total_commission', 'accept_status', 'accept_time', 'deliveryman_status', 'deliveryman_accept_time', 'deliveryman_id', 'product_receive_status', 'product_receive_time'];
 
-    protected $dates = ['accept_time'];
+    protected $dates = ['accept_time', 'product_receive_time', 'deliveryman_accept_time'];
 
     public function orderitem()
     {

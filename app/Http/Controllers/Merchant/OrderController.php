@@ -45,14 +45,16 @@ class OrderController extends Controller
             $commission = ($orderItem->delivery_cost * 10)/100;
             $total_commision = $commission * $orderItem->quantity;
             $pt = PointManagerCollectProduct::create([
-                'product_id'       => $orderItem->product_id,
-                'invoice_id'       => $orderItem->order_id,
-                'orderitem_id'     => $orderItem->id,
-                'shop_id'          => $orderItem->shop_id,
-                'commission'       => $commission,
-                'total_commission' => $total_commision,
-                'accept_statuss'   => false,
-                'accept_time'      => null,
+                'product_id'             => $orderItem->product_id,
+                'invoice_id'             => $orderItem->order_id,
+                'orderitem_id'           => $orderItem->id,
+                'shop_id'                => $orderItem->shop_id,
+                'commission'             => $commission,
+                'total_commission'       => $total_commision,
+                'accept_statuss'         => false,
+                'accept_time'            => null,
+                'product_receive_status' => false,
+                'product_receive_time'   => null,
             ]);
             // return $pt;
         }

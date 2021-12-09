@@ -26,6 +26,8 @@ class CreateDeliveryManCollectProductsTable extends Migration
             $table->boolean('accept_status')->default(false);
             $table->dateTime('accept_time')->nullable();
             $table->unsignedBigInteger('deliveryman_id')->default(null);
+            $table->boolean('pointmanager_receive_status')->default(false);
+            $table->dateTime('pointmanager_receive_time')->nullable();
             $table->timestamps();
         });
     }

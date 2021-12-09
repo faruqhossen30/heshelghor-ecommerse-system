@@ -24,6 +24,11 @@ class CreatePointManagerCollectProductsTable extends Migration
             $table->integer('total_commission');
             $table->boolean('accept_status')->default(false);
             $table->dateTime('accept_time')->nullable();
+            $table->boolean('deliveryman_status')->default(false);
+            $table->dateTime('deliveryman_accept_time')->nullable();
+            $table->unsignedBigInteger('deliveryman_id')->nullable();
+            $table->boolean('product_receive_status')->default(false);
+            $table->dateTime('product_receive_time')->nullable();
             $table->timestamps();
         });
     }

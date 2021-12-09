@@ -1,4 +1,4 @@
-@extends('pointmanager.layouts.app')
+@extends('deliveryman.layouts.app')
 @section('content')
 <div class="content">
     <!-- Start Content-->
@@ -29,7 +29,7 @@
                         <span class="btn btn-success btn-sm">Accepted</span>
                         @endif
                         @if ($product->accept_status == 0)
-                            <a href="{{route('pointmanager.product.accept', $product->id)}}" class="btn btn-warning btn-sm" onclick="return confirm('Suer ! Accept for collect product ?');">Accept Now !</a>
+                            <a href="{{route('deliveryman.stack.product.accept', $product->id)}}" class="btn btn-warning btn-sm" onclick="return confirm('Suer ! Accept for collect product ?');">Accept Now !</a>
                         @endif
                         </div>
                     </h5>
@@ -178,33 +178,9 @@
                 <div class="row mb-3">
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Shipping Information</h4>
-
-                            <div class="card p-2 mb-lg-0">
-
-                                <table class="table table-borderless table-sm mb-0">
-
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Name:</th>
-                                            <td>{{$product->deliveryaddress->name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Address:</th>
-                                            <td>{{$product->deliveryaddress->address}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Phone :</th>
-                                            <td>{{$product->deliveryaddress->mobile}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div>
-                            <h4 class="font-15 mb-2">Shop  Information</h4>
+                            <h4 class="font-15 mb-2">
+                                <i class="mdi mdi-bike-fast h4 text-muted"></i>
+                                Shop  Address</h4>
 
                             <div class="card p-2 mb-lg-0">
                                 <table class="table table-borderless table-sm mb-0">
@@ -227,6 +203,35 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4">
+                        <div>
+                            <h4 class="font-15 mb-2">
+                                <i class="mdi mdi-gift h4 text-muted"></i>
+                                Point Manager Office</h4>
+
+                            <div class="card p-2 mb-lg-0">
+
+                                <table class="table table-borderless table-sm mb-0">
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Name:</th>
+                                            <td>{{$product->point->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Address:</th>
+                                            <td>{{$product->point->email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Phone :</th>
+                                            <td>{{$product->point->mobile}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="col-lg-4">
                         <div>

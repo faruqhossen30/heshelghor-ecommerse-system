@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Product Processing List</h4>
+                    <h4 class="page-title">Submited Product List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Product Processing List</li>
+                            <li class="breadcrumb-item active">Submited Product List</li>
                         </ol>
                     </div>
                 </div>
@@ -32,6 +32,7 @@
                                         <th>Shop Name</th>
                                         <th>Q.T</th>
                                         <th>%</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -42,20 +43,21 @@
                                     @foreach ($productlist as $product)
                                         <tr>
                                             <th scope="row">{{ $serial++ }}</th>
-                                            <td>#{{ $product->orderitem->order_number }}
+                                            <td>#121313
                                                 @if ($product->id == 0)
                                                     <i class="mdi mdi-alert text-danger"></i>
                                                 @else
                                                     <i class="mdi mdi-check-circle text-success"></i>
                                                 @endif
                                             </td>
-                                            <td>{{ $product->product->title }}</td>
-                                            <td>{{ $product->shop->name }}</td>
-                                            <td>{{ $product->orderitem->quantity }}</td>
+                                            <td>{{$product->product->title}}</td>
+                                            <td>{{$product->shop->name}}</td>
+                                            <td>3</td>
                                             <td>৳{{ $product->total_commission }}</td>
+                                            <td><span class="badge badge-soft-success">complete</span></td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"
-                                                    href="{{ route('pointmanager.collect.single', $product->id) }}"
+                                                    href="#"
                                                     title="Edit"><span class="mdi mdi mdi-eye"></span></a>
                                                 {{-- <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
                                                         class="mdi mdi-square-edit-outline"></span></a> --}}

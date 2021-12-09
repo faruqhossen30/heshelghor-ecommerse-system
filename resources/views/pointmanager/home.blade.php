@@ -23,15 +23,6 @@
 </div>
 <!-- end page title -->
 <div class="row">
-    Your are login as point manager
-    <br>
-
-    @auth('pointmanager')
-        Your are point manager with pointmanager guard!
-    @endauth
-
-</div>
-<div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card">
             <div class="card-body">

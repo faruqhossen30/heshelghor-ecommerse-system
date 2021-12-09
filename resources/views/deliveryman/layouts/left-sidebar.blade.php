@@ -75,23 +75,36 @@
                 <li>
                     <a href="{{route('deliveryman.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span class="badge bg-success rounded-pill float-end">3</span>
+
                         <span> Dashboards </span>
                     </a>
                 </li>
                 {{-- Product Start --}}
                 <li>
-                    <a href="{{route('deliveryman.productlist')}}" >
+                    <a href="{{route('deliveryman.stack.products')}}" >
                         <i class="mdi mdi-cart"></i>
-                        <span class="badge bg-success rounded-pill float-end">0</span>
-                        <span> Products </span>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\DeliveryMan\DeliveryManCollectProduct::where('accept_status', false)->get()->count();}}
+                        </span>
+                        <span> Stack </span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('deliveryman.home')}}" >
+                    <a href="{{route('deliveryman.processing.products')}}" >
                         <i class="mdi mdi-bike-fast"></i>
-                        <span class="badge bg-success rounded-pill float-end">0</span>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\DeliveryMan\DeliveryManCollectProduct::where('deliveryman_id', Auth::guard('deliveryman')->user()->id)->where('pointmanager_receive_status', false)->get()->count();}}
+                        </span>
                         <span> Processing </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('deliveryman.submited.products')}}" >
+                        <i class="mdi mdi-bike-fast"></i>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\DeliveryMan\DeliveryManCollectProduct::where('deliveryman_id', Auth::guard('deliveryman')->user()->id)->where('pointmanager_receive_status', true)->get()->count();}}
+                        </span>
+                        <span> Submited </span>
                     </a>
                 </li>
                 {{-- Product End --}}

@@ -75,48 +75,47 @@
                 <li>
                     <a href="{{route('pointmanager.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span class="badge bg-success rounded-pill float-end">3</span>
+
                         <span> Dashboards </span>
                     </a>
                 </li>
-                {{-- Product Start --}}
                 <li>
-                    <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
-                        <span> Products </span>
-                        <span class="menu-arrow"></span>
+                    <a href="{{route('pointmanager.stack.products')}}" >
+                        <i class="mdi mdi-cart"></i>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\PointManager\PointManagerCollectProduct::where('accept_status', false)->get()->count();}}
+                        </span>
+                        <span> Stack </span>
                     </a>
-                    <div class="collapse" id="sidebarTables">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{route('product.index')}}">All Products</a>
-                            </li>
-                            <li>
-                                <a href="{{route('product.create')}}">Add Product</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
-                {{-- Product End --}}
-                {{-- Product Start --}}
                 <li>
-                    <a href="#sidebarCollectProduct" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-table"></i>
-                        <span>Collect Products </span>
-                        <span class="menu-arrow"></span>
+                    <a href="{{route('pointmanager.queue.products')}}" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\PointManager\PointManagerCollectProduct::where('pointmanager_id', Auth::guard('pointmanager')->user()->id)->where('accept_status', true)->where('deliveryman_status', false)->get()->count();}}
+                        </span>
+                        <span> Queue </span>
                     </a>
-                    <div class="collapse" id="sidebarCollectProduct">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{route('pointmanager.collect.product')}}">All Collect Products</a>
-                            </li>
-                            <li>
-                                <a href="{{route('pointmanager.processing.product')}}">Processing Product</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
-                {{-- Product End --}}
+                <li>
+                    <a href="{{route('pointmanager.processing.products')}}" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span class="badge bg-success rounded-pill float-end">
+                            {{App\Models\PointManager\PointManagerCollectProduct::where('pointmanager_id', Auth::guard('pointmanager')->user()->id)->where('accept_status', true)->where('deliveryman_status', true)->where('product_receive_status', false)->get()->count();}}
+                        </span>
+                        <span> Processing </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span class="badge bg-success rounded-pill float-end">
+                            0{{-- {{App\Models\PointManager\PointManagerCollectProduct::where('pointmanager_id', Auth::guard('pointmanager')->user()->id)->where('accept_status', true)->where('deliveryman_status', true)->get()->count();}} --}}
+                        </span>
+                        <span> Reveived </span>
+                    </a>
+                </li>
+
 
             </ul>
 

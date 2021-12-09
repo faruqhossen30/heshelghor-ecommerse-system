@@ -206,8 +206,16 @@ Route::prefix('pointmanager')->group(function(){
     Route::group(['middleware' => 'IsPointmanager'],function () {
         Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
         Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
-        Route::get('collectproductlist', [PointManagerCollectProductController::class, 'allCollectProductList'])->name('pointmanager.collect.product');
-        Route::get('processing-productlist', [PointManagerCollectProductController::class, 'processingProductList'])->name('pointmanager.processing.product');
+        Route::get('stack-products', [PointManagerCollectProductController::class, 'stackProducts'])->name('pointmanager.stack.products');
+        Route::get('stack-product/{id}', [PointManagerCollectProductController::class, 'stackSingleProduct'])->name('pointmanager.stack.single');
+        Route::get('stack-products/accept/{id}', [PointManagerCollectProductController::class, 'acceptProduct'])->name('pointmanager.stack.products.accept');
+        Route::get('queue-products', [PointManagerCollectProductController::class, 'queueProducts'])->name('pointmanager.queue.products');
+        Route::get('queue-product/{id}', [PointManagerCollectProductController::class, 'queueSingleProduct'])->name('pointmanager.queue.single');
+        Route::get('processing-products', [PointManagerCollectProductController::class, 'processingProducts'])->name('pointmanager.processing.products');
+        Route::get('processing-product/{id}', [PointManagerCollectProductController::class, 'processingSingleProduct'])->name('pointmanager.processing.single');
+        Route::get('processing-product/receive/{id}', [PointManagerCollectProductController::class, 'processingProductReceive'])->name('pointmanager.processing.product.receive');
+
+        Route::get('processing-productlist/{id}', [PointManagerCollectProductController::class, 'singleProcessingProductList'])->name('pointmanager.single.processing.product');
         Route::get('collectproductlist/{id}', [PointManagerCollectProductController::class, 'singleCollectProduct'])->name('pointmanager.collect.single');
         Route::get('collectproduct/accept/{id}', [PointManagerCollectProductController::class, 'acceptProduct'])->name('pointmanager.product.accept');
     });
@@ -216,6 +224,7 @@ Route::prefix('pointmanager')->group(function(){
 use App\Http\Controllers\DeliveryMan\DeliveryManLoginController;
 use App\Http\Controllers\DeliveryMan\DeliveryManHomeController;
 use App\Http\Controllers\DeliveryMan\DeliveryManProductController;
+use App\Http\Controllers\DeliveryMan\DeliveryManCollectProductController;
 
 // Delivery Man
 Route::prefix('deliveryman')->group(function(){
@@ -225,7 +234,17 @@ Route::prefix('deliveryman')->group(function(){
     Route::group(['middleware' => 'IsDeliveryman'],function () {
         Route::post('logout', [DeliveryManLoginController::class, 'logout'])->name('deliveryman.logout');
         Route::get('home', [DeliveryManHomeController::class, 'index'])->name('deliveryman.home');
+        Route::get('stack-products', [DeliveryManCollectProductController::class, 'stackProducts'])->name('deliveryman.stack.products');
+        Route::get('stack-product/{id}', [DeliveryManCollectProductController::class, 'stackSingleproduct'])->name('deliveryman.stack.single');
+        Route::get('stack-products/accept/{id}', [DeliveryManCollectProductController::class, 'acceptStackProduct'])->name('deliveryman.stack.product.accept');
+        Route::get('processing-products', [DeliveryManCollectProductController::class, 'processingProducts'])->name('deliveryman.processing.products');
+        Route::get('processing-products', [DeliveryManCollectProductController::class, 'processingProducts'])->name('deliveryman.processing.products');
+        Route::get('submited-products', [DeliveryManCollectProductController::class, 'submitedProducts'])->name('deliveryman.submited.products');
+
+
         Route::get('collectproductlist', [DeliveryManProductController::class, 'productList'])->name('deliveryman.productlist');
+        Route::get('collectproduct/{id}', [DeliveryManProductController::class, 'singleproduct'])->name('deliveryman.singleproduct');
+        Route::get('collectproduct/accept/{id}', [DeliveryManProductController::class, 'acceptproduct'])->name('deliveryman.product.accept');
     });
 });
 
@@ -240,4 +259,4 @@ Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 // For Testing
-Route::get('test', [TestController::class, 'carbon'])->name('test');
+Route::get('test', [TestController::class, 'test'])->name('test');

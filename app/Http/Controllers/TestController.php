@@ -46,7 +46,13 @@ public function checkAarray()
         ]);
 
         $token =  $response['token'];
-        return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
+
+        if($token){
+            return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
+        }
+
+        // return $response;
+        // return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
     }
 
     public function carbon()

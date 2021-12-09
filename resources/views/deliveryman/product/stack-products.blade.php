@@ -49,13 +49,13 @@
                                                     <i class="mdi mdi-check-circle text-success"></i>
                                                 @endif
                                             </td>
-                                            <td>T-shirt</td>
-                                            <td>Monohori store</td>
+                                            <td>{{$product->product->title}}</td>
+                                            <td>{{$product->shop->name}}</td>
                                             <td>3</td>
                                             <td>৳{{ $product->total_commission }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"
-                                                    href="{{ route('pointmanager.collect.single', $product->id) }}"
+                                                    href="{{ route('deliveryman.stack.single', $product->id) }}"
                                                     title="Edit"><span class="mdi mdi mdi-eye"></span></a>
                                                 {{-- <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
                                                         class="mdi mdi-square-edit-outline"></span></a> --}}
