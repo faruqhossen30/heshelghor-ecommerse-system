@@ -85,7 +85,7 @@
 
                                     <div class="d-flex mb-2">
                                         <div class="me-2 align-self-center">
-                                            <a href="{{route('pointmanager.processing.product.receive', $product->id)}}" class="btn btn-primary"> <span><i class="mdi mdi-gift"></i></span> Receive Now</a>
+                                            <a href="{{route('pointmanager.processing.product.receive', $product->id)}}" class="btn btn-primary" onclick="return confirm('Are your get product from delivery man ?')"> <span><i class="mdi mdi-gift"></i></span> Receive Now</a>
                                         </div>
                                         {{-- <div class="flex-1">
                                             <p class="mb-1">Tracking ID</p>

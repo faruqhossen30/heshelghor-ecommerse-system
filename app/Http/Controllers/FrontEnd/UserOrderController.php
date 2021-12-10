@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
+use Illuminate\Support\Facades\Http;
 
 use App\Models\Merchant\Order;
 use App\Models\Admin\Order\DeliveryAddress;
@@ -44,6 +45,12 @@ class UserOrderController extends Controller
         }
         $invoiceNumber = invoiceGenerate($invoice);
         // ------------------------------
+
+        $desc = [];
+        foreach ($cartitems as $item) {
+            $desc[] = $item->name.' ['.$item->qty.' x '.$item->price.'='.$item->qty*$item->price.']';
+        }
+        $descriptions = json_encode($desc);
 
         // return $cartitems;
 
@@ -113,6 +120,31 @@ class UserOrderController extends Controller
                 'upazila_id'  => $request->upazila_id,
             ]);
 
+            // Payment
+            $response = Http::post('https://sandbox.walletmix.com/init-payment-process', [
+                "wmx_id"            => "WMX618a0f25cb7f4",
+                "merchant_order_id" => $order->id,
+                "merchant_ref_id"   => $order->invoice_number,
+                "app_name"          => "HeshelGhor",
+                "cart_info"         => "Tshiet12Heshelgohor",
+                "customer_name"     => $request->name,
+                "customer_email"    => $request->email,
+                "customer_add"      => $request->address,
+                "customer_phone"    => $request->mobile,
+                "product_desc"      => $descriptions,
+                "amount"            => $subTotal,
+                "currency"          => "BDT",
+                "options"           => "cz1wYXltZW50LnRlc3QsaT0xMjcuMC4wLjE=",
+                "callback_url"      => "https://heshelghor.com/merchant_callback.php",
+                "access_app_key"    => "509cadc12023e05d7e85a3355b472632141a4c16",
+                "authorization"     => "Basic aGVzaGVsZ2hvcl8xNjE1MDY4MTk2Omhlc2hlbGdob3JfODU2NTIzNTkz"
+            ]);
+
+            $token =  $response['token'];
+
+            if($token){
+                return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
+            }
 
 
             Cart::destroy();

@@ -250,6 +250,7 @@
 
     <!-- third party js ends -->
     <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script>
+    {{-- Dropify --}}
     <script src="{{ asset('js/dropify.min.js') }}"></script>
     <script>
         $('.dropify').dropify({

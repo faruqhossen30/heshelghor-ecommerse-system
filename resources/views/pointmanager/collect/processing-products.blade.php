@@ -56,9 +56,7 @@
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"
                                                     href="{{ route('pointmanager.processing.single', $product->id) }}"
-                                                    title="Edit"><span class="mdi mdi mdi-eye"></span></a>
-                                                {{-- <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
-                                                        class="mdi mdi-square-edit-outline"></span></a> --}}
+                                                    title="View Product Info"><span class="mdi mdi mdi-eye"></span></a>
                                             </td>
                                         </tr>
                                     @endforeach
