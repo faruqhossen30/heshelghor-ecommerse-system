@@ -53,11 +53,7 @@
                                                                     <input name="name" type="text" id="simpleinput"
                                                                         class="form-control @error('name') is-invalid @enderror "
                                                                         placeholder="Name" value="{{ old('name') }}">
-                                                                    <div class="text-danger">
-                                                                        @error('name')
-                                                                            <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                                    <x-error name='name' />
                                                                 </div>
                                                             </div>
 
@@ -69,11 +65,7 @@
                                                                         class="form-control @error('address') is-invalid @enderror "
                                                                         placeholder="Full Address"
                                                                         value="{{ old('address') }}">
-                                                                    <div class="text-danger">
-                                                                        @error('address')
-                                                                            <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                                    <x-error name='address' />
                                                                 </div>
                                                             </div>
 
@@ -85,11 +77,7 @@
                                                                         class="form-control @error('description') is-invalid @enderror"
                                                                         id="example-textarea" rows="5"
                                                                         placeholder="Description">{{ old('description') }}</textarea>
-                                                                    <div class="text-danger">
-                                                                        @error('description')
-                                                                            <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
+                                                                    <x-error name='description' />
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2 row">
@@ -102,11 +90,7 @@
                                                                         data-errors-position="outside"
                                                                         data-allowed-file-extensions="jpg jpeg png bmp"
                                                                         data-max-file-size-preview="1M" ">
-                                                                        <div class=" text-danger">
-                                                                    @error('image')
-                                                                        <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
+                                                                    <x-error name='image' />
                                                             </div>
                                                     </div>
 
@@ -142,11 +126,7 @@
                                                                 @endforeach
 
                                                             </select>
-                                                            <div class="text-danger">
-                                                                @error('division_id')
-                                                                    <span>{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
+                                                            <x-error name='division_id' />
                                                         </div>
                                                     </div>
 
@@ -162,11 +142,7 @@
                                                             <img id="district_loader" src="{{ asset('loading.gif') }}"
                                                                 alt=""
                                                                 style="width:20px; position:absolute; top:10px;left:30px">
-                                                            <div class="text-danger">
-                                                                @error('district_id')
-                                                                    <span>{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
+                                                                <x-error name='district_id' />
                                                         </div>
                                                     </div>
 
@@ -182,11 +158,7 @@
                                                             <img id="upazila_loader" src="{{ asset('loading.gif') }}"
                                                                 alt=""
                                                                 style="width:20px; position:absolute; top:10px;left:30px">
-                                                            <div class="text-danger">
-                                                                @error('upazila_id')
-                                                                    <span>{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
+                                                                <x-error name='upazila_id' />
                                                         </div>
                                                     </div>
 
