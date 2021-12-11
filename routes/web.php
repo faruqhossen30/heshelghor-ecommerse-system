@@ -25,6 +25,8 @@ use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // Merchant
 use App\Http\Controllers\Admin\MerchantController;
 use App\Http\Controllers\Admin\CustomerController;
+// Setting
+use App\Http\Controllers\Setting\SettingController;
 // ====================== Admin Controller End ===========================
 
 
@@ -70,7 +72,7 @@ use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
 use App\Http\Controllers\FrontEnd\CommentController;
 use App\Http\Controllers\FrontEnd\ProductQuickViewController;
-
+use App\Http\Controllers\Setting\FooterSetting;
 // Test Controller
 use App\Http\Controllers\TestController;
 
@@ -158,6 +160,11 @@ Route::prefix('admin')->group(function () {
         Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
+        // Settings
+        Route::get('setting', [SettingController::class, 'showSetting'])->name('setting');
+        Route::post('setting/contact', [SettingController::class, 'contactInformation'])->name('setting.contact');
+        Route::post('setting/social-media', [SettingController::class, 'socialMediaLink'])->name('setting.socialmedia');
+
     });
 });
 // Merchant
@@ -259,4 +266,10 @@ Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 // For Testing
+use App\Http\Controllers\FolderCreateControler;
+Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
+
+
 Route::get('test', [TestController::class, 'test'])->name('test');
+
+

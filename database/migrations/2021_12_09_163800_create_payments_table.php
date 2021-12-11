@@ -19,11 +19,11 @@ class CreatePaymentsTable extends Migration
             $table->float('amount');
             $table->float('discount');
             $table->string('currency');
-            $table->integer('txn_status ');
-            $table->string('payment_card ');
-            $table->string('card_details ');
-            $table->dateTime('init_time ');
-            $table->dateTime('txn_time ');
+            $table->integer('txn_status');
+            $table->string('payment_card');
+            $table->string('card_details');
+            $table->dateTime('init_time');
+            $table->dateTime('txn_time');
             $table->timestamps();
         });
     }

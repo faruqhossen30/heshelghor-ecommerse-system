@@ -65,6 +65,9 @@
 
   <!-- Modal -->
   <div style="z-index: 999999" class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -76,6 +79,8 @@
                 Loading .....
 
             </div>
+            <x-quick-view />
+            just for test
 
             {{-- <div class="product product-single row product-popup">
                 <div class="col-md-6">
@@ -426,7 +431,7 @@
             });
         </script>
         {{-- For Quic View Product --}}
-        <script>
+        {{-- <script>
             var modalbody = $('#modalbody');
             var loading = $('#loading');
 
@@ -542,7 +547,7 @@
                 }
             });
 
-        </script>
+        </script> --}}
 </body>
 
 </html>
