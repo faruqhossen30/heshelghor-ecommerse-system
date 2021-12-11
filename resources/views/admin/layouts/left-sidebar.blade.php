@@ -310,6 +310,13 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="{{route('setting')}}" >
+                        <i class="mdi mdi-youtube-studio"></i>
+                        <span> Setting </span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>
