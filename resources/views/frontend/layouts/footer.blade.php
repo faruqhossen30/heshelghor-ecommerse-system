@@ -35,21 +35,23 @@
                         <ul class="widget-body">
                             <li>
                                 <label>Phone:</label>
-                                <a href="tel:#">Toll Free +88 0421-61720</a>
+                                <a href="tel:#">{{$contact->phone}}</a>
                             </li>
                             <li>
                                 <label>Email:</label>
-                                <a href="mailto:mail@riode.com">support@heshelghor.com</a>
+                                <a href="mailto:mail@riode.com">{{$contact->email}}</a>
                             </li>
                             <li>
                                 <label>Address:</label>
-                                <a href="#">58, Karbala Road Jashore, BD</a>
+                                <a href="#">{{$contact->email}}</a>
                             </li>
                             <li>
-                                <label>WORKING DAYS 7 / HOURS:8</label>
+                                {{-- <label>WORKING DAYS 7 / HOURS:8</label> --}}
+                                <label>{{$contact->working_day}}</label>
                             </li>
                             <li>
-                                <a href="#">Sar - T/ 9:00 AM - 6:00 PM</a>
+                                {{-- <a href="#">Sar - T/ 9:00 AM - 6:00 PM</a> --}}
+                                <a href="#">{{$contact->working_time}}</a>
                             </li>
                         </ul>
                     </div>

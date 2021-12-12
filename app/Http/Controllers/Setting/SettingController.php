@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting\SettingContact;
+use App\Models\Setting\SettingHeader;
 use App\Models\Setting\SettingSocialMedia;
 use Illuminate\Http\Request;
+use Image;
 
 class SettingController extends Controller
 {
@@ -13,10 +15,11 @@ class SettingController extends Controller
     {
         $socialmedia = SettingSocialMedia::first();
         $contact = SettingContact::first();
+        $header = SettingHeader::first();
 
         // return $socialmedia;
 
-        return view('admin.settings.setting', compact('contact','socialmedia'));
+        return view('admin.settings.setting', compact('header','contact', 'socialmedia'));
     }
     public function contactInformation(Request $request)
     {
@@ -38,7 +41,9 @@ class SettingController extends Controller
 
     public function socialMediaLink(Request $request)
     {
-        // return $request->all();
+        $request->validate([
+            'email' => 'email'
+        ]);
 
         SettingSocialMedia::updateOrInsert([
             'id'        => 1
@@ -49,6 +54,18 @@ class SettingController extends Controller
             'linkedin'       => $request->linkedin,
             'instagram'      => $request->instagram,
             'youtube'        => $request->youtube,
+        ]);
+        return redirect()->route('setting');
+    }
+    public function header(Request $request)
+    {
+
+        SettingHeader::updateOrInsert([
+            'id'        => 1
+        ], [
+            'quate'  => $request->quate,
+            'email'  => $request->email,
+            'mobile' => $request->mobile
         ]);
         return redirect()->route('setting');
     }

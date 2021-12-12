@@ -1,3 +1,7 @@
+@php
+    $header = App\Models\Setting\SettingHeader::first();
+    $contact = App\Models\Setting\SettingContact::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -198,7 +202,7 @@
         <h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
         <header class="header">
             {{-- Topbar --}}
-            @include('frontend.layouts.topbar')
+            @include('frontend.layouts.topbar', compact('header'))
             {{-- Headeer --}}
             {{-- @include('frontend.layouts.searchbar') --}}
             @php
@@ -253,7 +257,7 @@
                             </div>
                             <div class="icon-box-content d-lg-show">
                                 <h4 class="icon-box-title">Call Us Now:</h4>
-                                <p>+88 0421-61720</p>
+                                <p>{{$header->mobile}}</p>
                             </div>
                         </a>
                         <span class="divider"></span>
@@ -360,7 +364,7 @@
         @yield('content')
         <!-- End of Main/content -->
 
-        @include('frontend.layouts.footer')
+        @include('frontend.layouts.footer', compact('contact'))
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <!-- Plugins JS File -->

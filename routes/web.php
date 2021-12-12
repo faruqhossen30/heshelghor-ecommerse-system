@@ -164,6 +164,7 @@ Route::prefix('admin')->group(function () {
         Route::get('setting', [SettingController::class, 'showSetting'])->name('setting');
         Route::post('setting/contact', [SettingController::class, 'contactInformation'])->name('setting.contact');
         Route::post('setting/social-media', [SettingController::class, 'socialMediaLink'])->name('setting.socialmedia');
+        Route::post('setting/header', [SettingController::class, 'header'])->name('setting.header');
 
     });
 });

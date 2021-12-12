@@ -29,11 +29,11 @@
                     </h2>
                     <div class="nav flex-column nav-pills nav-pills-tab" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
-                        <a class="nav-link border-bottom show mb-1 " id="v-pills-home-tab" data-bs-toggle="pill"
+                        <a class="nav-link border-bottom show active mb-1 " id="v-pills-home-tab" data-bs-toggle="pill"
                             href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">
                             <span> <i class="mdi mdi-youtube-studio"></i></span>
                             Header </a>
-                        <a class="nav-link border-bottom mb-1 active" id="v-pills-profile-tab" data-bs-toggle="pill"
+                        <a class="nav-link border-bottom mb-1" id="v-pills-profile-tab" data-bs-toggle="pill"
                             href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">
                             <span> <i class="mdi mdi-wrench-outline"></i></span>
                             Footer</a>
@@ -52,10 +52,72 @@
                 </div> <!-- end col-->
                 <div class="col-sm-9">
                     <div class="tab-content pt-0">
-                        <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            Header
+                        <div class="tab-pane active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="card-body pt-1">
+                                <form action="{{ route('setting.header') }}" method="POST">
+                                    @csrf
+                                    <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-earth me-1"></i>
+                                        Header Information</h5>
+                                    <div class="row">
+                                        {{-- <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label for="social-fb" class="form-label">lOGO</label>
+                                                <div class="input-group">
+                                                    <input name="logo" type="file" class="form-control"
+                                                        data-show-errors="true" data-errors-position="outside"
+                                                        data-allowed-file-extensions="jpg jpeg png bmp"
+                                                        data-max-file-size-preview="1M" id="photo"
+                                                        >
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label for="quate-fb" class="form-label">Quate Text</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i
+                                                            class="mdi mdi-card-text-outline"></i></span>
+                                                    <input name="quate" type="text" class="form-control"
+                                                        id="quate-fb" placeholder="Facebook Group Link"
+                                                        value="{{$header->quate}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label for="email-fb" class="form-label">Support Email</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i
+                                                            class="mdi mdi-email"></i></span>
+                                                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                                        id="email-fb" placeholder="Facebook Group Link"
+                                                        value="{{$header->email}}">
+                                                        <x-error name='email' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label for="mobile-tw" class="form-label">Customer Care</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="mdi mdi-phone"></i></span>
+                                                    <input name="mobile" type="text" class="form-control" id="mobile-tw"
+                                                        placeholder="Twitter Link" value="{{$header->mobile}}">
+                                                </div>
+                                            </div>
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+
+                                    <div class="text-start">
+                                        <button type="submit" onclick="return confirm('Update Header Information ?');"
+                                            class="btn btn-primary waves-effect waves-light mt-2"><i
+                                                class="mdi mdi-content-save"></i> Save</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
+                        <div class="tab-pane fade show" id="v-pills-profile" role="tabpanel"
                             aria-labelledby="v-pills-profile-tab">
                             footer
                         </div>
@@ -177,7 +239,8 @@
                                             <div class="mb-2">
                                                 <label for="social-fb" class="form-label">Teliphone</label>
                                                 <div class="input-group">
-                                                    <span class="input-group-text"><i class="mdi mdi-deskphone"></i></span>
+                                                    <span class="input-group-text"><i
+                                                            class="mdi mdi-deskphone"></i></span>
                                                     <input name="phone" type="text" class="form-control" id="social-fb"
                                                         placeholder="Office Number" value="{{ $contact->phone }}">
                                                 </div>
@@ -267,3 +330,33 @@
     <!-- end row -->
 
 @endsection
+
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/dropify.min.css') }}">
+<style>
+    .dropify-message .file-icon p {
+        font-size: 14px;
+    }
+    .dropify-wrapper {
+        width: 500px;
+        height: 120px;
+    }
+
+</style>
+@endpush
+
+@push('scripts')
+  {{-- Dropify --}}
+  <script src="{{ asset('js/dropify.min.js') }}"></script>
+  <script>
+      $('.dropify').dropify({
+          messages: {
+              'default': 'Drag and drop profile new photo or click',
+              'replace': 'Drag and drop or click to replace',
+              'remove': 'Remove',
+              'error': 'Ooops, something wrong happended.'
+          }
+      });
+  </script>
+
+@endpush
