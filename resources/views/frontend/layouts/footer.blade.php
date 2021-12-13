@@ -149,7 +149,7 @@
             </div>
             <div class="footer-right">
                 <div class="social-links">
-                    <a href="https://www.facebook.com/heshelghorbangladesh/" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
+                    <a href="{{$socialmedia->facebook}}" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
                     <a href="#" class="social-link social-twitter fab fa-twitter"></a>
                     <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
                 </div>

@@ -15,9 +15,9 @@ $totalItem = count(Cart::content());
     <main class="main checkout">
         <div class="page-content pt-7 pb-10 mb-10">
             <div class="step-by pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="cart.html">1. Shopping Cart</a></h3>
-                <h3 class="title title-simple title-step active"><a href="checkout.html">2. Checkout</a></h3>
-                <h3 class="title title-simple title-step"><a href="order.html">3. Order Complete</a></h3>
+                <h3 class="title title-simple title-step"><a href="{{route('cart.page')}}">1. Shopping Cart</a></h3>
+                <h3 class="title title-simple title-step active"><a href="{{route('checkoutpage')}}">2. Checkout</a></h3>
+                <h3 class="title title-simple title-step"><a href="#">3. Order Complete</a></h3>
             </div>
             <div class="container mt-7">
                 <form action="{{route('ordernow')}}" method="POST" class="form">
@@ -212,11 +212,14 @@ $totalItem = count(Cart::content());
                                                     <span>{{ $message }}</span>
                                                 @enderror
                                             </div>
+                                            <div id="payment_img">
+                                                <img src="{{asset('frontend/images/walletmix2.png')}}" alt="">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-checkbox mt-4 mb-5">
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
-                                            name="terms-condition" />
+                                            name="terms-condition" value="1" />
                                         <label class="form-control-label" for="terms-condition">
                                             I have read and agree to the website <a href="#">terms and conditions </a>*
                                         </label>
@@ -325,15 +328,29 @@ $totalItem = count(Cart::content());
 
 
         var payment_method_name = $('input[name="payment_method_name"]');
+        var payment_img = $('#payment_img');
+        payment_img.hide()
 
         $(document).on('change', 'select[name="payment_method_id"]', function() {
             var payment_method_id = $('select[name="payment_method_id"]').val();
+            payment_img.hide()
             if (payment_method_id) {
                 // console.log(payment_method_id);
                 $.get(`{{ url('paymentsystemname/${payment_method_id}') }}`, function(data, status) {
                     if (data) {
                         // console.log(data);
                         payment_method_name.val(data.name)
+                    }
+                });
+                // Online payment
+                $.get(`setting/setting-payment-system`, function(data, status) {
+                    if (data) {
+                        data.map(function(d){
+                            if(payment_method_id == d.payment_method_id){
+                                payment_img.show();
+                            }
+                        });
+
                     }
                 });
             };

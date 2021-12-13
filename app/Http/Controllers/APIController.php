@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Order\DeliverySystem;
 use App\Models\Merchant\Shop;
 use App\Models\Admin\Order\PaymentMethod;
+use App\Models\Setting\SettingPaymentSystem;
 
 class APIController extends Controller
 {
@@ -64,6 +65,12 @@ class APIController extends Controller
             return $result;
 
         }
+    }
+
+    public function settingPaymentSystem()
+    {
+        $payments = SettingPaymentSystem::select('payment_method_id')->get()->toArray();
+        return $payments;
     }
 
 

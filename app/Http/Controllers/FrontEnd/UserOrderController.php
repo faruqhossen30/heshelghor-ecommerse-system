@@ -132,7 +132,7 @@ class UserOrderController extends Controller
                 "customer_add"      => $request->address,
                 "customer_phone"    => $request->mobile,
                 "product_desc"      => $descriptions,
-                "amount"            => $subTotal,
+                "amount"            => $order->total_price,
                 "currency"          => "BDT",
                 "options"           => "cz1wYXltZW50LnRlc3QsaT0xMjcuMC4wLjE=",
                 "callback_url"      => "https://heshelghor.com/merchant_callback.php",

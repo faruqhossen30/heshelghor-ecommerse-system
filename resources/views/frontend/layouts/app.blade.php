@@ -1,6 +1,7 @@
 @php
     $header = App\Models\Setting\SettingHeader::first();
     $contact = App\Models\Setting\SettingContact::first();
+    $socialmedia = App\Models\Setting\SettingSocialMedia::first();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -364,7 +365,7 @@
         @yield('content')
         <!-- End of Main/content -->
 
-        @include('frontend.layouts.footer', compact('contact'))
+        @include('frontend.layouts.footer', compact('contact', 'socialmedia'))
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <!-- Plugins JS File -->

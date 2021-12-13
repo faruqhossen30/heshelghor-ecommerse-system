@@ -165,6 +165,7 @@ Route::prefix('admin')->group(function () {
         Route::post('setting/contact', [SettingController::class, 'contactInformation'])->name('setting.contact');
         Route::post('setting/social-media', [SettingController::class, 'socialMediaLink'])->name('setting.socialmedia');
         Route::post('setting/header', [SettingController::class, 'header'])->name('setting.header');
+        Route::post('setting/check-payment', [SettingController::class, 'checkForOnlinePayment'])->name('setting.checkpayment');
 
     });
 });
@@ -266,6 +267,7 @@ Route::get('commission/{id}', [APIController::class, 'getCommission']);
 Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
+Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
 // For Testing
 use App\Http\Controllers\FolderCreateControler;
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');

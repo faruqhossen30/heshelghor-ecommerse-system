@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Setting;
 use App\Http\Controllers\Controller;
 use App\Models\Setting\SettingContact;
 use App\Models\Setting\SettingHeader;
+use App\Models\Setting\SettingPaymentSystem;
 use App\Models\Setting\SettingSocialMedia;
 use Illuminate\Http\Request;
 use Image;
@@ -67,6 +68,22 @@ class SettingController extends Controller
             'email'  => $request->email,
             'mobile' => $request->mobile
         ]);
+        return redirect()->route('setting');
+    }
+    // Payment Method sellect for online payment
+    public function checkForOnlinePayment(Request $request)
+    {
+        // return $request->all();
+
+        $datas = $request->paymentmethod;
+        if(!empty($datas)){
+            SettingPaymentSystem::truncate();
+
+            foreach ($datas as $row) {
+                SettingPaymentSystem::create(['payment_method_id' => $row]);
+            }
+        }
+
         return redirect()->route('setting');
     }
 }

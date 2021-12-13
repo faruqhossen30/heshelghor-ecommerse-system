@@ -1,3 +1,8 @@
+@php
+    $payments = App\Models\Admin\Order\PaymentMethod::get();
+    $paymentdata = App\Models\Setting\SettingPaymentSystem::select('payment_method_id')->get()->toArray();
+@endphp
+
 @extends('admin.layouts.app')
 @section('title', 'HeshelGhor | Admin ')
 @section('content')
@@ -45,6 +50,11 @@
                             href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">
                             <span> <i class="mdi mdi-account-box"></i></span>
                             Contact</a>
+
+                        <a class="nav-link border-bottom mb-1" id="v-pills-payment-tab" data-bs-toggle="pill"
+                            href="#v-pills-payment" role="tab" aria-controls="v-pills-payment" aria-selected="false">
+                            <span> <i class="mdi mdi-bank"></i></span>
+                            Payment</a>
                         <a class="nav-link border-bottom mb-1" id="v-pills-settings-tab" data-bs-toggle="pill"
                             href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                             Settings</a>
@@ -310,6 +320,8 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- Payment --}}
+                        @include('admin.settings.inc.payment-setting', compact('payments', 'paymentdata'))
                         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                             aria-labelledby="v-pills-settings-tab">
                             <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id
