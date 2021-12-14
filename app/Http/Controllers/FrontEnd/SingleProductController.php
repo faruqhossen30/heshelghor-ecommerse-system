@@ -25,4 +25,19 @@ class SingleProductController extends Controller
         // return $comments;
         return view('frontend.singleproduct', compact('product', 'colors', 'sizes', 'categories', 'comments'));
     }
+
+
+
+    public function showProduct(Request $request)
+    {
+        if ($request->ajax()) {
+            // $data = Comment::get();
+            // $h1 = '<h1>Joson data</h1>';
+            $product = Product::where('id', $request->id)->first();
+
+            $data = view('frontend.quickview', compact('product'))->render();
+
+            return response()->json($data);
+        }
+    }
 }

@@ -45,17 +45,17 @@
                                                         title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                 </div>
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product" title="Quick View"
-                                                    id="quickviewbutton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                    <a class="btn-product view-data" title="Quick View"
+                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
                                                     >Quick View
-                                                    <input type="hidden" value="{{$product->id}}" name="some">
+                                                    {{-- <input type="hidden" value="{{$product->id}}" name="some"> --}}
                                                 </a>
                                                 </div>
                                             </figure>
                                             <div class="product-details">
                                                 <div class="product-cat">
                                                     <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                                    <a href="{{route('product.with.subcategory', $product->subcategory_id)}}">| {{$product->subcategory->name}}</a>
+                                                    <a href="{{route('product.with.subcategory', $product->subcategory_id)}}"> | {{$product->subcategory->name}}</a>
                                                 </div>
                                                 <h3 class="product-name">
                                                     <a href="{{route('singleproduct', $product->id)}}">{{ $product->title }}</a>

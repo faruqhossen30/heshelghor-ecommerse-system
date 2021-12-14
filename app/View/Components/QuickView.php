@@ -11,9 +11,10 @@ class QuickView extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $product;
+    public function __construct($product)
     {
-        //
+        $this->product = $product;
     }
 
     /**
@@ -23,6 +24,8 @@ class QuickView extends Component
      */
     public function render()
     {
-        return view('components.quick-view');
+        // return view('components.quick-view');
+        // return "Testing for render function";
+
     }
 }
