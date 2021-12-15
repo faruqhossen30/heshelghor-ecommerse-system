@@ -47,7 +47,6 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                         </div>
                                     @endforeach
 
-
                                 </div>
                                 <button class="thumb-up disabled"><i class="fas fa-chevron-left"></i></button>
                                 <button class="thumb-down disabled"><i class="fas fa-chevron-right"></i></button>

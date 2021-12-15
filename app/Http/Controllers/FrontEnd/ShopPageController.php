@@ -28,7 +28,7 @@ class ShopPageController extends Controller
         // return $brands;
 
 
-        return view('frontend.shoppage', compact('categories', 'products','brands'));
+        return view('frontend.shoppage', compact('categories', 'products', 'brands'));
     }
     // Product with Sub-Category
 
@@ -53,6 +53,20 @@ class ShopPageController extends Controller
     // Product Filter
     public function productFilter(Request $request)
     {
-        dd($request->all());
+        // return $request->all();
+        if ($request->orderby == 'lowtohigh') {
+            $brands = Brand::get();
+            $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'asc')->paginate(5);
+            // return $products;
+            return view('frontend.shoppage', compact('products', 'categories', 'brands'));
+        }
+        if ($request->orderby == 'hightolow') {
+            $brands = Brand::get();
+            $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'desc')->paginate(5);
+            // return $products;
+            return view('frontend.shoppage', compact('products', 'categories', 'brands'));
+        }
     }
 }

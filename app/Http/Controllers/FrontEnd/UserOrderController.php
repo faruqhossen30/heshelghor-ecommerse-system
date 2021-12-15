@@ -135,7 +135,7 @@ class UserOrderController extends Controller
                 "amount"            => $order->total_price,
                 "currency"          => "BDT",
                 "options"           => "cz1wYXltZW50LnRlc3QsaT0xMjcuMC4wLjE=",
-                "callback_url"      => "https://heshelghor.com/merchant_callback.php",
+                "callback_url"      => "http://127.0.0.1:8000/callback",
                 "access_app_key"    => "509cadc12023e05d7e85a3355b472632141a4c16",
                 "authorization"     => "Basic aGVzaGVsZ2hvcl8xNjE1MDY4MTk2Omhlc2hlbGdob3JfODU2NTIzNTkz"
             ]);
@@ -161,6 +161,11 @@ class UserOrderController extends Controller
     public function orderComplete()
     {
         return view('frontend.ordercomplete');
+    }
+
+    public function callback(Request $request)
+    {
+        return $request->all();
     }
 
 

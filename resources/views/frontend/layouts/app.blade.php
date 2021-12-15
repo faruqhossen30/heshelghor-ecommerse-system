@@ -431,23 +431,25 @@ $socialmedia = App\Models\Setting\SettingSocialMedia::first();
             //     // alert('form modal function');
             //     $('#viewDataModal').modal('show')
             // }
-
+            var modalLoading = $('#modalLoading');
             $(document).on('click', '.view-data', function() {
                 let id = $(this).data('id');
-                // alert(id)
-                // $('#viewDataModal').modal('show')
-                console.log(id);
 
                 if (id) {
+                    $('#viewDataModal').modal('show')
+                    modalLoading.show();
+                    $('#viewDataModal #modalBody').html('');
                     $.ajax({
                         url: '{{ route('showproduct') }}',
                         type: 'GET',
-                        data: {id:id},
+                        data: {
+                            id: id
+                        },
                         dataType: 'JSON',
                         success: function(data) {
-                            $('#viewDataModal').modal('show')
-                            $('#viewDataModal #loading').html(data);
-                            console.log(data);
+                            modalLoading.hide();
+                            $('#viewDataModal #modalBody').html(data);
+                            // console.log(data);
                         }
                     });
                 };

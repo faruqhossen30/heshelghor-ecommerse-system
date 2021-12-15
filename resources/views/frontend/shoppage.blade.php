@@ -30,8 +30,8 @@
                             <a href="#" class="btn btn-outline btn-rounded btn-dark">Shop now</a>
                         </div>
                     </div> --}}
-                    <form action="{{route('pruductspage-filter')}}" method="post">
-                        @csrf
+                    <form action="{{route('pruductspage-filter')}}" method="GET">
+                        {{-- @csrf --}}
                         <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
                             <div class="toolbox-left">
                                 <a href="#"
@@ -40,16 +40,16 @@
                                 <div class="toolbox-item toolbox-sort select-box">
                                     <label>Sort By :</label>
                                     <select name="orderby" class="form-control" onchange="this.form.submit();">
-                                        <option value="latest">Latest</option>
-                                        <option value="lowtohigh">Low To High</option>
-                                        <option value="hithtolow">Hith To Low</option>
+                                        <option value="latest" @if(request()->get('orderby') == 'latest') selected @endif >Latest</option>
+                                        <option value="lowtohigh" @if(request()->get('orderby') == 'lowtohigh') selected @endif  >Low To High</option>
+                                        <option value="hightolow" @if(request()->get('orderby') == 'hightolow') selected @endif >Hith To Low</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="toolbox-right">
                                 <div class="toolbox-item toolbox-show select-box">
                                     <label>Show :</label>
-                                    <select name="count" class="form-control">
+                                    <select name="count" class="form-control" onchange="this.form.submit();">
                                         <option value="10">10</option>
                                         <option value="20">20</option>
                                         <option value="30">30</option>
@@ -64,9 +64,6 @@
                     </form>
                     <div class="row cols-2 cols-sm-3 product-wrapper">
                         @foreach ($products as $product)
-                        @php
-                            $images = json_decode($product->image);
-                        @endphp
                             <div class="product-wrap">
                                 <div class="product text-center">
                                     <figure class="product-media">
@@ -85,8 +82,10 @@
                                                 title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                         </div>
                                         <div class="product-action">
-                                            <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                                View</a>
+                                            <a class="btn-product view-data" title="Quick View"
+                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
+                                                    >Quick View
+                                                </a>
                                         </div>
                                     </figure>
                                     <div class="product-details">
@@ -113,7 +112,8 @@
                         @endforeach
 
                     </div>
-                    <nav class="toolbox toolbox-pagination">
+                    {{$products->appends($_GET)->links()}}
+                    {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">
                             <li class="page-item disabled">
@@ -133,7 +133,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> --}}
                 </div>
             </div>
         </div>

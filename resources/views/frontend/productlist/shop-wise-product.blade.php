@@ -91,9 +91,6 @@
                         <div class="row cols-2 cols-sm-3 product-wrapper">
 
                             @foreach ($products as $product)
-                                @php
-                                    $images = json_decode($product->image);
-                                @endphp
                                 <div class="product-wrap">
                                     <div class="product text-center">
                                         <figure class="product-media">
@@ -113,8 +110,10 @@
                                                         class="d-icon-heart"></i></a>
                                             </div>
                                             <div class="product-action">
-                                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                                    View</a>
+                                                <a class="btn-product view-data" title="Quick View"
+                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
+                                                    >Quick View
+                                                </a>
                                             </div>
                                         </figure>
                                         <div class="product-details">

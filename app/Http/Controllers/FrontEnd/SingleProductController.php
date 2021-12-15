@@ -8,6 +8,7 @@ use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\Comment;
 use App\Models\Product\ProductColor;
+use App\Models\Product\ProductImage;
 use App\Models\Product\ProductSize;
 
 
@@ -35,7 +36,13 @@ class SingleProductController extends Controller
             // $h1 = '<h1>Joson data</h1>';
             $product = Product::where('id', $request->id)->first();
 
-            $data = view('frontend.quickview', compact('product'))->render();
+            $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+            $colors = ProductColor::with('color')->where('product_id', $request->id)->get();
+            $sizes = ProductSize::with('size')->where('product_id', $request->id)->get();
+
+            $images = ProductImage::where('product_id', $request->id)->get();
+
+            $data = view('frontend.quickview', compact('product', 'images', 'colors', 'sizes'))->render();
 
             return response()->json($data);
         }

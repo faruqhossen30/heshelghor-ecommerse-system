@@ -81,7 +81,7 @@ Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
-Route::post('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
+Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
@@ -277,5 +277,6 @@ Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
 
 Route::get('test', [TestController::class, 'test'])->name('test');
+Route::post('callback', [UserOrderController::class, 'callback'])->name('callback');
 
 

@@ -48,7 +48,6 @@
                                                     <a class="btn-product view-data" title="Quick View"
                                                     data-id="{{$product->id}}" type="button" class="btn btn-primary"
                                                     >Quick View
-                                                    {{-- <input type="hidden" value="{{$product->id}}" name="some"> --}}
                                                 </a>
                                                 </div>
                                             </figure>
