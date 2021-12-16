@@ -1,8 +1,8 @@
 <div class="header-top">
     <div class="container">
         <div class="header-left">
-            <p class="welcome-msg">{{$header->quate}} | <i class="far fa-envelope"></i>
-                {{$header->email}}</p>
+            <p class="welcome-msg">{{$header->quate ?? ''}} | <i class="far fa-envelope"></i>
+                {{$header->email ?? ''}}</p>
         </div>
         <div class="header-right">
             {{-- <div class="dropdown">

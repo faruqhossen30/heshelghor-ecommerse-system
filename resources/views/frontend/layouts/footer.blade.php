@@ -35,23 +35,23 @@
                         <ul class="widget-body">
                             <li>
                                 <label>Phone:</label>
-                                <a href="tel:#">{{$contact->phone}}</a>
+                                <a href="tel:#">{{$contact->phone ?? '01xxxxxxxxx'}}</a>
                             </li>
                             <li>
                                 <label>Email:</label>
-                                <a href="mailto:mail@riode.com">{{$contact->email}}</a>
+                                <a href="mailto:mail@riode.com">{{$contact->email ?? 'example@domain.com'}}</a>
                             </li>
                             <li>
                                 <label>Address:</label>
-                                <a href="#">{{$contact->email}}</a>
+                                <a href="#">{{$contact->address ?? '58, Karabala Jeshore'}}</a>
                             </li>
                             <li>
                                 {{-- <label>WORKING DAYS 7 / HOURS:8</label> --}}
-                                <label>{{$contact->working_day}}</label>
+                                <label>{{$contact->working_day ?? ''}}</label>
                             </li>
                             <li>
                                 {{-- <a href="#">Sar - T/ 9:00 AM - 6:00 PM</a> --}}
-                                <a href="#">{{$contact->working_time}}</a>
+                                <a href="#">{{$contact->working_time ?? ''}}</a>
                             </li>
                         </ul>
                     </div>
@@ -149,7 +149,7 @@
             </div>
             <div class="footer-right">
                 <div class="social-links">
-                    <a href="{{$socialmedia->facebook}}" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
+                    <a href="{{$socialmedia->facebook ?? '#'}}" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
                     <a href="#" class="social-link social-twitter fab fa-twitter"></a>
                     <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
                 </div>

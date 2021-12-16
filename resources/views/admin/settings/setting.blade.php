@@ -90,7 +90,7 @@
                                                             class="mdi mdi-card-text-outline"></i></span>
                                                     <input name="quate" type="text" class="form-control"
                                                         id="quate-fb" placeholder="Facebook Group Link"
-                                                        value="{{$header->quate}}">
+                                                        value="{{$header->quate ?? ''}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -102,7 +102,7 @@
                                                             class="mdi mdi-email"></i></span>
                                                     <input name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                                         id="email-fb" placeholder="Facebook Group Link"
-                                                        value="{{$header->email}}">
+                                                        value="{{$header->email ?? ''}}">
                                                         <x-error name='email' />
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="mdi mdi-phone"></i></span>
                                                     <input name="mobile" type="text" class="form-control" id="mobile-tw"
-                                                        placeholder="Twitter Link" value="{{$header->mobile}}">
+                                                        placeholder="Twitter Link" value="{{$header->mobile ?? ''}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -148,7 +148,7 @@
                                                             class="fab fa-facebook-square"></i></span>
                                                     <input name="facebook" type="url" class="form-control" id="social-fb"
                                                         placeholder="Facebook Page Link"
-                                                        value="{{ $socialmedia->facebook }}">
+                                                        value="{{ $socialmedia->facebook ?? '#'}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                             class="fab fa-facebook-square"></i></span>
                                                     <input name="facebook_group" type="url" class="form-control"
                                                         id="social-fb" placeholder="Facebook Group Link"
-                                                        value="{{ $socialmedia->facebook_group }}">
+                                                        value="{{ $socialmedia->facebook_group ?? '#' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="fab fa-twitter"></i></span>
                                                     <input name="twitter" type="url" class="form-control" id="social-tw"
-                                                        placeholder="Twitter Link" value="{{ $socialmedia->twitter }}">
+                                                        placeholder="Twitter Link" value="{{ $socialmedia->twitter ?? '#' }}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -184,7 +184,7 @@
                                                     <span class="input-group-text"><i class="fab fa-instagram"></i></span>
                                                     <input name="instagram" type="url" class="form-control"
                                                         id="social-insta" placeholder="Instagram Link"
-                                                        value="{{ $socialmedia->facebook_group }}">
+                                                        value="{{ $socialmedia->facebook_group ?? '#'}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -196,7 +196,7 @@
 
                                                     <input name="linkedin" type="url" class="form-control" id="social-lin"
                                                         placeholder="Linkedin Company Link"
-                                                        value="{{ $socialmedia->linkedin }}">
+                                                        value="{{ $socialmedia->linkedin ?? '#'}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -210,7 +210,7 @@
                                                     <span class="input-group-text"><i class="fab fa-instagram"></i></span>
                                                     <input name="instagram" type="url" class="form-control"
                                                         id="social-sky" placeholder="Instagram Profile Link"
-                                                        value="{{ $socialmedia->instagram }}">
+                                                        value="{{ $socialmedia->instagram ?? '#'}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@
 
                                                     <input name="youtube" type="url" class="form-control" id="social-gh"
                                                         placeholder="Youtube Channel Link"
-                                                        value="{{ $socialmedia->youtube }}">
+                                                        value="{{ $socialmedia->youtube ?? '#' }}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -252,7 +252,7 @@
                                                     <span class="input-group-text"><i
                                                             class="mdi mdi-deskphone"></i></span>
                                                     <input name="phone" type="text" class="form-control" id="social-fb"
-                                                        placeholder="Office Number" value="{{ $contact->phone }}">
+                                                        placeholder="Office Number" value="{{ $contact->phone ?? '' }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -263,7 +263,7 @@
                                                     <span class="input-group-text"><i
                                                             class="mdi mdi-cellphone-basic"></i></span>
                                                     <input name="mobile" type="text" class="form-control" id="social-tw"
-                                                        placeholder="Mobile Number" value="{{ $contact->mobile }}">
+                                                        placeholder="Mobile Number" value="{{ $contact->mobile ?? '' }}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -273,7 +273,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="mdi mdi-email"></i></span>
                                                     <input name="email" type="email" class="form-control" id="social-tw"
-                                                        placeholder="Email" value="{{ $contact->email }}">
+                                                        placeholder="Email" value="{{ $contact->email ?? ''}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -283,7 +283,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="mdi mdi-map"></i></span>
                                                     <input name="address" type="text" class="form-control" id="social-tw"
-                                                        placeholder="Address" value="{{ $contact->address }}">
+                                                        placeholder="Address" value="{{ $contact->address ?? ''}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -294,7 +294,7 @@
                                                     <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                                     <input name="working_day" type="text" class="form-control"
                                                         id="social-tw" placeholder="Working Days"
-                                                        value="{{ $contact->working_day }}">
+                                                        value="{{ $contact->working_day ?? ''}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->
@@ -305,7 +305,7 @@
                                                     <span class="input-group-text"><i class="mdi mdi-clock"></i></span>
                                                     <input name="working_time" name="working_time" type="text"
                                                         class="form-control" id="social-tw" placeholder="Office Time"
-                                                        value="{{ $contact->working_time }}">
+                                                        value="{{ $contact->working_time ?? ''}}">
                                                 </div>
                                             </div>
                                         </div> <!-- end col -->

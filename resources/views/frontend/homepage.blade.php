@@ -17,7 +17,7 @@
                         <section class="product-wrapper mb-8">
                             <h2 class="title title-line title-underline with-link appear-animate"
                                 data-animation-options="{'delay': '.3s'}">Featured Product
-                                <a href="#" class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
+                                <a href="{{route('pruductspage')}}" class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
                             </h2>
                             <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                 {{-- single product --}}
@@ -184,9 +184,10 @@
                                                         title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                 </div>
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product btn-quickview"
-                                                        title="Quick View">Quick
-                                                        View</a>
+                                                    <a class="btn-product view-data" title="Quick View"
+                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
+                                                    >Quick View
+                                                </a>
                                                 </div>
                                             </figure>
                                             <div class="product-details">

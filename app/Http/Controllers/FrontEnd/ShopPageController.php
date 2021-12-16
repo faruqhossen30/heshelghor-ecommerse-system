@@ -54,6 +54,13 @@ class ShopPageController extends Controller
     public function productFilter(Request $request)
     {
         // return $request->all();
+        if ($request->orderby == 'latest') {
+            $brands = Brand::get();
+            $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('id', 'asc')->paginate(5);
+            // return $products;
+            return view('frontend.shoppage', compact('products', 'categories', 'brands'));
+        }
         if ($request->orderby == 'lowtohigh') {
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
