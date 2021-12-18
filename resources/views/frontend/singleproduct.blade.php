@@ -121,7 +121,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                         <select name="color" class="form-select form-select-lg" id="staticEmail"
                                             aria-label="Default select example" style="font-size: 1.5rem">
                                             <option selected>Select Color </option>
-                                            @foreach ($colors as $color)
+                                            @foreach ($product->colors as $color)
                                                 <option value="{{ $color->color->name }}">{{ $color->color->name }}
                                                 </option>
                                             @endforeach
@@ -135,7 +135,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                         <select name="size" class="form-select form-select-lg" id="staticEmail"
                                             aria-label="Default select example" style="font-size: 1.5rem">
                                             <option selected>Select Size </option>
-                                            @foreach ($sizes as $size)
+                                            @foreach ($product->sizes as $size)
                                                 <option value="{{ $size->size->name }}">{{ $size->size->name }}</option>
                                             @endforeach
                                         </select>
@@ -208,7 +208,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                     {{-- Sho comment --}}
                                     <div class="comments pb-10 pt-2 border-no">
                                         <ul>
-                                            @foreach ($comments as $comment)
+                                            @foreach ($product->comments as $comment)
                                             <li>
                                                 <div class="comment">
                                                     <figure class="comment-media">
@@ -306,14 +306,14 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                 </li>
                                 <li><label>Color:</label>
                                     <p>
-                                        @foreach ($colors as $color)
+                                        @foreach ($product->colors as $color)
                                             <span>-{{ $color->color->name }}</span>
                                         @endforeach
                                     </p>
                                 </li>
                                 <li><label>Size:</label>
                                     <p>
-                                        @foreach ($sizes as $size)
+                                        @foreach ($product->sizes as $size)
                                             <span>-{{ $size->size->name }}</span>
                                         @endforeach
                                     </p>

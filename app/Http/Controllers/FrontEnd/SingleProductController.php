@@ -14,17 +14,17 @@ use App\Models\Product\ProductSize;
 
 class SingleProductController extends Controller
 {
-    public function index(Request $request, $id)
+    public function index(Request $request, $slug)
     {
-        $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        $colors = ProductColor::with('color')->where('product_id', $id)->get();
-        $sizes = ProductSize::with('size')->where('product_id', $id)->get();
-        $comments = Comment::with('user')->where('product_id', $id)->orderBy('id', 'desc')->get();
+        // $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+        // $colors = ProductColor::with('color')->where('product_id', $id)->get();
+        // $sizes = ProductSize::with('size')->where('product_id', $id)->get();
+        // $comments = Comment::with('user')->where('product_id', $id)->orderBy('id', 'desc')->get();
 
 
-        $product = Product::with('category', 'subcategory', 'brand', 'merchant', 'images')->where('id', $id)->get()->first();
-        // return $comments;
-        return view('frontend.singleproduct', compact('product', 'colors', 'sizes', 'categories', 'comments'));
+        $product = Product::with('category', 'subcategory', 'brand', 'merchant', 'images', 'colors', 'sizes', 'comments')->where('slug', $slug)->get()->first();
+        // return $product;
+        return view('frontend.singleproduct', compact('product'));
     }
 
 

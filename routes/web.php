@@ -85,7 +85,7 @@ Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->na
 Route::get('/product/category/{id}', [ShopPageController::class, 'productWithCategory'])->name('product.with.category');
 Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
-Route::get('/product/{id}', [SingleProductController::class, 'index'])->name('singleproduct');
+Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('singleproduct');
 // For Quick View
 Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name('showproduct');
 

@@ -3,7 +3,7 @@
         <div class="footer-top">
             <div class="row align-items-center">
                 <div class="col-lg-3">
-                    <a href="demo3.html" class="logo-footer">
+                    <a href="{{route('homepage')}}" class="logo-footer">
                         <img src="{{asset('frontend/img/logo.jpg')}}" alt="logo-footer" width="154"
                             height="43" />
                     </a>
