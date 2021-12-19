@@ -50,9 +50,9 @@
                                 <div class="toolbox-item toolbox-show select-box">
                                     <label>Show :</label>
                                     <select name="count" class="form-control" onchange="this.form.submit();">
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
+                                        <option value="20" @if(request()->query('count') == '20') selected @endif >20</option>
+                                        <option value="40" @if(request()->query('count') == '40') selected @endif >40</option>
+                                        <option value="60" @if(request()->query('count') == '60') selected @endif >60</option>
                                     </select>
                                 </div>
                                 <div class="toolbox-item toolbox-layout">
@@ -62,7 +62,7 @@
                             </div>
                         </nav>
                     </form>
-                    <div class="row cols-2 cols-sm-3 product-wrapper">
+                    <div class="row cols-3 cols-sm-4 product-wrapper">
                         @foreach ($products as $product)
                             <div class="product-wrap">
                                 <div class="product text-center">
@@ -94,7 +94,7 @@
                                             <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
                                         </div>
                                         <h3 class="product-name">
-                                            <a href="{{route('singleproduct', $product->id)}}">{{$product->title}}</a>
+                                            <a href="{{route('singleproduct', $product->slug)}}">{{$product->title}}</a>
                                         </h3>
                                         <div class="product-price">
                                             <ins class="new-price">৳{{ $product->price }}</ins><del class="old-price">৳{{ $product->regular_price }}</del>

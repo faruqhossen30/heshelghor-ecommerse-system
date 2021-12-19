@@ -53,22 +53,24 @@ class ShopPageController extends Controller
     // Product Filter
     public function productFilter(Request $request)
     {
-        // return $request->all();
         if ($request->orderby == 'latest') {
+            $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('id', 'asc')->paginate(5);
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('id', 'asc')->paginate($count);
             // return $products;
             return view('frontend.shoppage', compact('products', 'categories', 'brands'));
         }
         if ($request->orderby == 'lowtohigh') {
+            $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'asc')->paginate(5);
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'asc')->paginate($count);
             // return $products;
             return view('frontend.shoppage', compact('products', 'categories', 'brands'));
         }
         if ($request->orderby == 'hightolow') {
+            $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
             $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'desc')->paginate(5);

@@ -17,7 +17,8 @@
                         <section class="product-wrapper mb-8">
                             <h2 class="title title-line title-underline with-link appear-animate"
                                 data-animation-options="{'delay': '.3s'}">Featured Product
-                                <a href="{{route('pruductspage')}}" class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
+                                <a href="{{ route('pruductspage') }}" class="font-weight-semi-bold">View more<i
+                                        class="d-icon-arrow-right"></i></a>
                             </h2>
                             <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                 {{-- single product --}}
@@ -26,9 +27,10 @@
                                         <div class="product text-center">
                                             <figure class="product-media">
 
-                                                <a href="{{route('singleproduct', $product->id)}}">
-                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product"
-                                                        width="280" height="315" style="background-color: #f5f5f5;" />
+                                                <a href="{{ route('singleproduct', $product->slug) }}">
+                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                        alt="product" width="280" height="315"
+                                                        style="background-color: #f5f5f5;" />
                                                 </a>
 
 
@@ -46,18 +48,22 @@
                                                 </div>
                                                 <div class="product-action">
                                                     <a class="btn-product view-data" title="Quick View"
-                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
-                                                    >Quick View
-                                                </a>
+                                                        data-id="{{ $product->id }}" type="button"
+                                                        class="btn btn-primary">Quick View
+                                                    </a>
                                                 </div>
                                             </figure>
                                             <div class="product-details">
                                                 <div class="product-cat">
-                                                    <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                                    <a href="{{route('product.with.subcategory', $product->subcategory_id)}}"> | {{$product->subcategory->name}}</a>
+                                                    <a
+                                                        href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
+                                                    <a
+                                                        href="{{ route('product.with.subcategory', $product->subcategory_id) }}">
+                                                        | {{ $product->subcategory->name }}</a>
                                                 </div>
                                                 <h3 class="product-name">
-                                                    <a href="{{route('singleproduct', $product->id)}}">{{ $product->title }}</a>
+                                                    <a
+                                                        href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
                                                 </h3>
                                                 <div class="product-price">
                                                     <ins class="new-price">৳{{ $product->price }}</ins><del
@@ -84,26 +90,26 @@
                             <div class="container">
                                 <h2 class="title title-simple">Popular Categories</h2>
                                 <div class="owl-carousel owl-theme owl-loaded owl-drag" data-owl-options="{
-                                            'nav': false,
-                                            'dots': true,
-                                            'autoplay': true,
-                                            'margin': 20,
-                                            'responsive': {
-                                                '0': {
-                                                    'items': 1
-                                                },
-                                                '480': {
-                                                    'items': 2
-                                                },
-                                                '768': {
-                                                    'items': 3
-                                                },
-                                                '992': {
-                                                    'items': 4,
-                                                    'dots': false
+                                                'nav': false,
+                                                'dots': true,
+                                                'autoplay': true,
+                                                'margin': 20,
+                                                'responsive': {
+                                                    '0': {
+                                                        'items': 1
+                                                    },
+                                                    '480': {
+                                                        'items': 2
+                                                    },
+                                                    '768': {
+                                                        'items': 3
+                                                    },
+                                                    '992': {
+                                                        'items': 4,
+                                                        'dots': false
+                                                    }
                                                 }
-                                            }
-                                        }">
+                                            }">
 
                                     <div class="owl-stage-outer">
                                         <div class="owl-stage"
@@ -112,10 +118,11 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        <a href="{{route('product.with.subcategory', $subcategory->id)}}">
+                                                        <a
+                                                            href="{{ route('product.with.subcategory', $subcategory->id) }}">
                                                             <figure class="category-media">
-                                                                <img src="{{$subcategory->image}}"
-                                                                    alt="Cateogry" width="280" height="280">
+                                                                <img src="{{ $subcategory->image }}" alt="Cateogry"
+                                                                    width="280" height="280">
                                                             </figure>
                                                             <div class="category-content">
                                                                 <h4 class="category-name">{{ $subcategory->name }}</h4>
@@ -144,80 +151,84 @@
 
                         {{-- Category wirse product --}}
                         @foreach ($categories as $category)
-                        @if (count($category->products) > 0)
-                        <section class="product-wrapper mb-8">
-                            <h2 class="title title-line title-underline with-link appear-animate"
-                                data-animation-options="{'delay': '.3s'}">{{ $category->name }}
-                                <a href="{{ route('product.with.category', $category->id) }}"
-                                    class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
-                            </h2>
-                            <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                                {{-- single product --}}
-                                @php
-                                    $newporducts = \App\Models\Product\Product::latest('id')
-                                        ->where('category_id', $category->id)
-                                        ->paginate(4);
-                                @endphp
+                            @if (count($category->products) > 0)
+                                <section class="product-wrapper mb-8">
+                                    <h2 class="title title-line title-underline with-link appear-animate"
+                                        data-animation-options="{'delay': '.3s'}">{{ $category->name }}
+                                        <a href="{{ route('product.with.category', $category->id) }}"
+                                            class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
+                                    </h2>
+                                    <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
+                                        {{-- single product --}}
+                                        @php
+                                            $newporducts = \App\Models\Product\Product::latest('id')
+                                                ->where('category_id', $category->id)
+                                                ->paginate(4);
+                                        @endphp
 
-                                @foreach ($newporducts as $product)
-                                    <div class="col-md-3 col-6 mb-4">
-                                        <div class="product text-center">
-                                            <figure class="product-media">
+                                        @foreach ($newporducts as $product)
+                                            <div class="col-md-3 col-6 mb-4">
+                                                <div class="product text-center">
+                                                    <figure class="product-media">
 
-                                                <a href="{{route('singleproduct', $product->id)}}">
-                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
-                                                        alt="product" width="280" height="315"
-                                                        style="background-color: #f5f5f5;" />
-                                                </a>
+                                                        <a href="{{ route('singleproduct', $product->slug) }}">
+                                                            <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                                alt="product" width="280" height="315"
+                                                                style="background-color: #f5f5f5;" />
+                                                        </a>
 
 
 
-                                                <div class="product-label-group">
-                                                    <label class="product-label label-new">new</label>
-                                                    <label class="product-label label-sale">15% off</label>
-                                                </div>
-                                                <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                                        data-target="#addCartModal" title="Add to cart"><i
-                                                            class="d-icon-bag"></i></a>
-                                                    <a href="#" class="btn-product-icon btn-wishlist"
-                                                        title="Add to wishlist"><i class="d-icon-heart"></i></a>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a class="btn-product view-data" title="Quick View"
-                                                    data-id="{{$product->id}}" type="button" class="btn btn-primary"
-                                                    >Quick View
-                                                </a>
-                                                </div>
-                                            </figure>
-                                            <div class="product-details">
-                                                <div class="product-cat">
-                                                    <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                                    <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
-                                                </div>
-                                                <h3 class="product-name">
-                                                    <a href="{{route('singleproduct', $product->id)}}">{{ $product->title }}</a>
-                                                </h3>
-                                                <div class="product-price">
-                                                    <ins class="new-price">৳{{ $product->price }}</ins><del
-                                                        class="old-price">৳{{ $product->regular_price }}</del>
-                                                </div>
-                                                <div class="ratings-container">
-                                                    <div class="ratings-full">
-                                                        <span class="ratings" style="width:80%"></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
+                                                        <div class="product-label-group">
+                                                            <label class="product-label label-new">new</label>
+                                                            <label class="product-label label-sale">15% off</label>
+                                                        </div>
+                                                        <div class="product-action-vertical">
+                                                            <a href="#" class="btn-product-icon btn-cart"
+                                                                data-toggle="modal" data-target="#addCartModal"
+                                                                title="Add to cart"><i class="d-icon-bag"></i></a>
+                                                            <a href="#" class="btn-product-icon btn-wishlist"
+                                                                title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                        </div>
+                                                        <div class="product-action">
+                                                            <a class="btn-product view-data" title="Quick View"
+                                                                data-id="{{ $product->id }}" type="button"
+                                                                class="btn btn-primary">Quick View
+                                                            </a>
+                                                        </div>
+                                                    </figure>
+                                                    <div class="product-details">
+                                                        <div class="product-cat">
+                                                            <a
+                                                                href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
+                                                            <a
+                                                                href="{{ route('product.with.subcategory', $product->category->id) }}">|
+                                                                {{ $product->subcategory->name }}</a>
+                                                        </div>
+                                                        <h3 class="product-name">
+                                                            <a
+                                                                href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
+                                                        </h3>
+                                                        <div class="product-price">
+                                                            <ins class="new-price">৳{{ $product->price }}</ins><del
+                                                                class="old-price">৳{{ $product->regular_price }}</del>
+                                                        </div>
+                                                        <div class="ratings-container">
+                                                            <div class="ratings-full">
+                                                                <span class="ratings" style="width:80%"></span>
+                                                                <span class="tooltiptext tooltip-top"></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endforeach
+
+
+
                                     </div>
-                                @endforeach
-
-
-
-                            </div>
-                        </section>
-                        @endif
+                                </section>
+                            @endif
 
                         @endforeach
 
@@ -225,9 +236,9 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 mb-4">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                                'name': 'fadeInLeftShorter',
-                                                'delay': '.5s'
-                                            }">
+                                                    'name': 'fadeInLeftShorter',
+                                                    'delay': '.5s'
+                                                }">
                                         <h4 class="widget-title font-weight-bold">Sale Products</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
@@ -306,9 +317,9 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 mb-4 ">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                                'name': 'fadeIn',
-                                                'delay': '.3s'
-                                            }">
+                                                    'name': 'fadeIn',
+                                                    'delay': '.3s'
+                                                }">
                                         <h4 class="widget-title font-weight-bold">Latest Products</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
@@ -386,9 +397,9 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 mb-4">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
-                                                'name': 'fadeInRightShorter',
-                                                'delay': '.5s'
-                                            }">
+                                                    'name': 'fadeInRightShorter',
+                                                    'delay': '.5s'
+                                                }">
                                         <h4 class="widget-title font-weight-bold">Best of the Week</h4>
                                         <div class="products-col">
                                             <div class="product product-list-sm">
@@ -475,4 +486,3 @@
         </div>
     </main>
 @endsection
-

@@ -1,6 +1,6 @@
 @php
-$relatedProduct = App\Models\Product\Product::where('category_id', $product->category_id)
-    ->with('category', 'subcategory', 'brand', 'merchant', 'images')
+$relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'brand')
+    ->where('category_id', $product->category_id)
     ->get();
 @endphp
 
@@ -36,8 +36,9 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                             <div class="product-thumbs-wrap">
                                 <div class="product-thumbs">
                                     <div class="product-thumb active">
-                                        <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product thumbnail"
-                                            width="137" height="154" style="background-color: #f5f5f5;" />
+                                        <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                            alt="product thumbnail" width="137" height="154"
+                                            style="background-color: #f5f5f5;" />
                                     </div>
                                     @foreach ($product->images as $image)
                                         <div class="product-thumb ">
@@ -136,7 +137,8 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                             aria-label="Default select example" style="font-size: 1.5rem">
                                             <option selected>Select Size </option>
                                             @foreach ($product->sizes as $size)
-                                                <option value="{{ $size->size->name }}">{{ $size->size->name }}</option>
+                                                <option value="{{ $size->size->name }}">{{ $size->size->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -184,7 +186,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                 <div class="tab tab-nav-simple product-tabs mb-5">
                     <ul class="nav nav-tabs justify-content-center" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#product-tab-coment">Comment</a>
+                            <a class="nav-link active" href="#product-tab-comment">Comment</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#product-tab-description">Description</a>
@@ -201,7 +203,7 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                     </ul>
                     <div class="tab-content">
                         {{-- Comment --}}
-                        <div class="tab-pane active in mb-3" id="product-tab-coment">
+                        <div class="tab-pane active in mb-3" id="product-tab-comment">
                             <div class="row mt-6">
 
                                 <div class="col-md-6">
@@ -209,42 +211,45 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                     <div class="comments pb-10 pt-2 border-no">
                                         <ul>
                                             @foreach ($product->comments as $comment)
-                                            <li>
-                                                <div class="comment">
-                                                    <figure class="comment-media">
-                                                        <a href="#">
-                                                            @if ($comment->user->photo)
-                                                            <img src="{{asset('uploads/user/profile/'.$comment->user->photo)}}" alt="avatar" class="img-thumbnail">
-                                                            @else
-                                                            <img src="{{asset('uploads/user/profile/avatar.png')}}" alt="avatar" class="img-thumbnail">
-                                                            @endif
-                                                        </a>
-                                                    </figure>
-                                                    <div class="comment-body">
-                                                        <div class="comment-user">
-                                                            <h4><a href="#">{{$comment->user->name}}</a></h4>
-                                                            <span class="comment-date text-body">
-                                                                {{Carbon\Carbon::parse($comment->created_at)->format('d M Y')}}
-                                                                &#128337; {{Carbon\Carbon::parse($comment->created_at)->format('h:i A')}}
-                                                            </span>
-                                                        </div>
+                                                <li>
+                                                    <div class="comment">
+                                                        <figure class="comment-media">
+                                                            <a href="#">
+                                                                @if ($comment->user->photo)
+                                                                    <img src="{{ asset('uploads/user/profile/' . $comment->user->photo) }}"
+                                                                        alt="avatar" class="img-thumbnail">
+                                                                @else
+                                                                    <img src="{{ asset('uploads/user/profile/avatar.png') }}"
+                                                                        alt="avatar" class="img-thumbnail">
+                                                                @endif
+                                                            </a>
+                                                        </figure>
+                                                        <div class="comment-body">
+                                                            <div class="comment-user">
+                                                                <h4><a href="#">{{ $comment->user->name }}</a></h4>
+                                                                <span class="comment-date text-body">
+                                                                    {{ Carbon\Carbon::parse($comment->created_at)->format('d M Y') }}
+                                                                    &#128337;
+                                                                    {{ Carbon\Carbon::parse($comment->created_at)->format('h:i A') }}
+                                                                </span>
+                                                            </div>
 
-                                                        <div class="comment-content">
-                                                            <p>{{$comment->comment}}</p>
+                                                            <div class="comment-content">
+                                                                <p>{{ $comment->comment }}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
+                                                </li>
                                             @endforeach
 
                                         </ul>
                                     </div>
                                     {{-- add comment form --}}
                                     <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Add Comment</h5>
-                                    <form action="{{route('comment.store', $product->id)}}" method="POST">
+                                    <form action="{{ route('comment.store', $product->id) }}" method="POST">
                                         @csrf
-                                        <textarea name="comment" id="reply-message" cols="30" rows="6" class="form-control mb-4"
-                                            placeholder="Comment *" ></textarea>
+                                        <textarea name="comment" id="reply-message" cols="30" rows="6"
+                                            class="form-control mb-4" placeholder="Comment *"></textarea>
                                         @error('comment')
                                             <p class="text-danger">No comment text </p>
                                         @enderror
@@ -423,36 +428,37 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                        'items': 5,
-                        'nav': false,
-                        'loop': false,
-                        'dots': true,
-                        'margin': 20,
-                        'responsive': {
-                            '0': {
-                                'items': 2
-                            },
-                            '768': {
-                                'items': 3
-                            },
-                            '992': {
-                                'items': 5,
-                                'dots': false,
-                                'nav': true
+                            'items': 5,
+                            'nav': false,
+                            'loop': false,
+                            'dots': true,
+                            'margin': 20,
+                            'responsive': {
+                                '0': {
+                                    'items': 2
+                                },
+                                '768': {
+                                    'items': 3
+                                },
+                                '992': {
+                                    'items': 5,
+                                    'dots': false,
+                                    'nav': true
+                                }
                             }
-                        }
-                    }">
+                        }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
-                                    <a href="{{ route('singleproduct', $product->id) }}">
+                                    <a href="{{ route('singleproduct', $product->slug) }}">
                                         <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product"
                                             width="280" height="315">
                                     </a>
 
                                     <div class="product-action">
-                                        <a href="{{ route('singleproduct', $product->id) }}"
-                                            class="btn-product btn-quickview" title="Quick View">Quick View</a>
+                                        <a class="btn-product view-data" title="Quick View" data-id="{{ $product->id }}"
+                                            type="button" class="btn btn-primary">Quick View
+                                        </a>
                                     </div>
                                     <div class="product-label-group">
                                         <label class="product-label label-new">new</label>
@@ -460,14 +466,16 @@ $relatedProduct = App\Models\Product\Product::where('category_id', $product->cat
                                     </div>
                                 </figure>
                                 <div class="product-details">
-                                    <div class="product-cat"><a
-                                            href="demo3-shop.html">{{ $product->category->name }}</a></div>
+                                    <div class="product-cat">
+                                        <a href="demo3-shop.html">{{ $product->category->name }}</a>
+                                     | <a href="demo3-shop.html">{{ $product->subcategory->name }}</a>
+                                    </div>
                                     <h3 class="product-name">
                                         <a href="demo3-product.html"><a
-                                                href="demo3-shop.html">{{ $product->category->name }}</a>
+                                                href="{{route('singleproduct', $product->slug)}}">{{ $product->title }}</a>
                                     </h3>
                                     <div class="product-price">
-                                        <span class="price">$83.32</span>
+                                        <span class="price">৳{{$product->price}}</span>
                                     </div>
                                     <div class="ratings-container">
                                         <div class="ratings-full">
