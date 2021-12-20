@@ -46,12 +46,12 @@
 
                 @foreach ($categories as $category)
                     <li>
-                        <a href="{{ route('product.with.category', $category->id) }}">{{ $category->name }}</a>
+                        <a href="{{ route('product.with.category', $category->slug) }}">{{ $category->name }}</a>
                         <ul>
                             @foreach ($category->subcategorylist as $subcategory)
                                 <li>
                                     <a
-                                        href="{{ route('product.with.subcategory', $subcategory->id) }}">{{ $subcategory->name }}</a>
+                                        href="{{ route('product.with.subcategory', $subcategory->slug) }}">{{ $subcategory->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -109,8 +109,4 @@
         </div>
     </div>
 </div>
-@push('scripts')
-<script>
 
-</script>
-@endpush

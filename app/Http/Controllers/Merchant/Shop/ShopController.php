@@ -72,6 +72,7 @@ class ShopController extends Controller
             Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
@@ -98,6 +99,7 @@ class ShopController extends Controller
             Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
@@ -135,7 +137,8 @@ class ShopController extends Controller
     {
         $shop = Shop::find($id);
         $divisions = Division::all();
-        return view('marchant.shop.edit', compact('shop', 'divisions'));
+        $markets = Market::get();
+        return view('marchant.shop.edit', compact('shop', 'markets', 'divisions'));
     }
 
     /**
@@ -164,8 +167,8 @@ class ShopController extends Controller
 
             $shop->name          = $request->name;
             $shop->address       = $request->address;
+            $shop->mobile        = $request->mobile;
             $shop->description   = $request->description;
-            $shop->slug          = Str::of($request->name)->slug('-');
             $shop->trade_license = $request->trade_license;
             $shop->market_id     = $request->market_id;
             $shop->division_id   = $request->division_id;
@@ -188,8 +191,8 @@ class ShopController extends Controller
             $marchantname = 'merchant';
             $shop->name = $request->name;
             $shop->address       = $request->address;
+            $shop->mobile        = $request->mobile;
             $shop->description   = $request->description;
-            $shop->slug          = Str::of($request->name)->slug('-');
             $shop->trade_license = $request->trade_license;
             $shop->market_id     = $request->market_id;
             $shop->division_id   = $request->division_id;

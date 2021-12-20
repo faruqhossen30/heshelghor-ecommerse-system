@@ -68,6 +68,17 @@
                                                                     <x-error name='address' />
                                                                 </div>
                                                             </div>
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label" for="addressID">
+                                                                    Mobile Number: </label>
+                                                                <div class="col-md-10">
+                                                                    <input name="mobile" type="text" id="addressID"
+                                                                        class="form-control @error('mobile') is-invalid @enderror "
+                                                                        placeholder="Contact Number"
+                                                                        value="{{ old('mobile') ?? Auth::guard('marchant')->user()->phone_number  }}">
+                                                                    <x-error name='mobile' />
+                                                                </div>
+                                                            </div>
 
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"

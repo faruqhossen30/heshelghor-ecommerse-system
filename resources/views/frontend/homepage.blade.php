@@ -155,7 +155,7 @@
                                 <section class="product-wrapper mb-8">
                                     <h2 class="title title-line title-underline with-link appear-animate"
                                         data-animation-options="{'delay': '.3s'}">{{ $category->name }}
-                                        <a href="{{ route('product.with.category', $category->id) }}"
+                                        <a href="{{ route('product.with.category', $category->slug) }}"
                                             class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
                                     </h2>
                                     <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">

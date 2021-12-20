@@ -213,7 +213,7 @@
     <!-- End of Search Form -->
     <ul class="mobile-menu mmenu-anim">
         <li>
-            <a href="demo3.html">Home</a>
+            <a href="{{route('homepage')}}">Home</a>
         </li>
         <li>
             <a href="demo3-shop.html">Categories</a>
@@ -351,7 +351,7 @@
                 <li><a href="element-icons.html">Icons</a></li>
             </ul>
         </li>
-        <li><a href="riode.html">Buy Riode!</a></li>
+        <li><a href="{{route('marchant.login')}}">Merchant</a></li>
     </ul>
     <!-- End of MobileMenu -->
 </div>
