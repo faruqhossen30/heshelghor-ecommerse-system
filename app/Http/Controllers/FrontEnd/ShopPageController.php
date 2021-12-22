@@ -22,7 +22,7 @@ class ShopPageController extends Controller
     }
     public function productWithCategory(Request $request, $id)
     {
-        $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $brands;
@@ -34,7 +34,7 @@ class ShopPageController extends Controller
 
     public function productWithSubCategory(Request $request, $id)
     {
-        $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $products;
@@ -43,7 +43,7 @@ class ShopPageController extends Controller
     }
     public function productWithBrand(Request $request, $id)
     {
-        $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('brand_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $products;

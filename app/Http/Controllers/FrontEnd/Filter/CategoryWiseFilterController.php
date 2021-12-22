@@ -13,13 +13,15 @@ class CategoryWiseFilterController extends Controller
     public function productWithCategory(Request $request, $slug)
     {
         $cat = Category::firstWhere('slug', $slug);
-        $categories = Category::with('subcategorylist')->orderBy('name', 'asc')->get();
+        $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
         $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray());
         $brands = Brand::whereIn('id', $brands_id)->get();
 
         if (empty($_GET)) {
 
             $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(12);
+
+            // return $products;
 
             return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
         }
@@ -75,7 +77,7 @@ class CategoryWiseFilterController extends Controller
         //     $cat = Category::firstWhere('slug', $slug);
         //     $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray() );
 
-        //     $categories = Category::with('products', 'subcategorylist')->orderBy('name', 'asc')->get();
+        //     $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
         //     $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(12);
         //     $brands = Brand::whereIn('id', $brands_id)->get();
 

@@ -74,6 +74,7 @@ use App\Http\Controllers\FrontEnd\CommentController;
 use App\Http\Controllers\FrontEnd\ProductQuickViewController;
 
 use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
+use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
 use App\Http\Controllers\Setting\FooterSetting;
 // Test Controller
 use App\Http\Controllers\TestController;
@@ -86,8 +87,9 @@ Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspag
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
+// Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 
-Route::get('/product/subcategory/{id}', [ShopPageController::class, 'productWithSubCategory'])->name('product.with.subcategory');
+Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('singleproduct');
 // For Quick View

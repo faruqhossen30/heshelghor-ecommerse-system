@@ -90,8 +90,8 @@
                                     </figure>
                                     <div class="product-details">
                                         <div class="product-cat">
-                                            <a href="{{route('product.with.category', $product->category->id)}}">{{$product->category->name}}</a>
-                                            <a href="{{route('product.with.subcategory', $product->category->id)}}">| {{$product->subcategory->name}}</a>
+                                            <a href="{{route('product.with.category', $product->category->slug)}}">{{$product->category->name}}</a>
+                                            <a href="{{route('product.with.subcategory', ['category'=> $product->category->slug, 'slug'=> $product->subcategory->slug]) }}">| {{$product->subcategory->name}}</a>
                                         </div>
                                         <h3 class="product-name">
                                             <a href="{{route('singleproduct', $product->slug)}}">{{$product->title}}</a>

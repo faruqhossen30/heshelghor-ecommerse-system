@@ -56,9 +56,9 @@
                                             <div class="product-details">
                                                 <div class="product-cat">
                                                     <a
-                                                        href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
+                                                        href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                                     <a
-                                                        href="{{ route('product.with.subcategory', $product->subcategory_id) }}">
+                                                        href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
                                                         | {{ $product->subcategory->name }}</a>
                                                 </div>
                                                 <h3 class="product-name">
@@ -119,7 +119,7 @@
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
                                                         <a
-                                                            href="{{ route('product.with.subcategory', $subcategory->id) }}">
+                                                            href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
                                                             <figure class="category-media">
                                                                 <img src="{{ $subcategory->image }}" alt="Cateogry"
                                                                     width="280" height="280">
@@ -200,9 +200,9 @@
                                                     <div class="product-details">
                                                         <div class="product-cat">
                                                             <a
-                                                                href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
+                                                                href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                                             <a
-                                                                href="{{ route('product.with.subcategory', $product->category->id) }}">|
+                                                                href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">|
                                                                 {{ $product->subcategory->name }}</a>
                                                         </div>
                                                         <h3 class="product-name">

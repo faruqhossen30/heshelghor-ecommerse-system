@@ -104,7 +104,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
                                 CATEGORIES: <a href="{{ route('product.with.category', $product->category->id) }}"><span
                                         class="product-brand mr-0">{{ $product->category->name }}</span></a>
-                                <a href="{{ route('product.with.subcategory', $product->subcategory_id) }}"><span
+                                <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}"><span
                                         class="product-brand">| {{ $product->subcategory->name }}</span></a>
                             </div>
                             <div class="product-meta">
@@ -467,8 +467,8 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 </figure>
                                 <div class="product-details">
                                     <div class="product-cat">
-                                        <a href="demo3-shop.html">{{ $product->category->name }}</a>
-                                     | <a href="demo3-shop.html">{{ $product->subcategory->name }}</a>
+                                        <a href="{{route('product.with.category', $product->category->slug)}}">{{ $product->category->name }}</a>
+                                     | <a href="{{route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug])}}">{{ $product->subcategory->name }}</a>
                                     </div>
                                     <h3 class="product-name">
                                         <a href="demo3-product.html"><a
