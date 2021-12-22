@@ -5,82 +5,84 @@
 
 @section('content')
     <main class="main">
-        <div class="page-content mb-10 pb-2">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li><a href="demo3.html"><i class="d-icon-home"></i></a></li>
-                    <li>Shop</li>
-                </ul>
-                <!-- End Breadcrumb -->
-                <div class="row main-content-wrap gutter-lg">
-                    <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
-                        @php
-                            $divisions = App\Models\Admin\Location\Division::get();
+        <form action="{{ url()->current() }}" method="GET">
+            <div class="page-content mb-10 pb-2">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="demo3.html"><i class="d-icon-home"></i></a></li>
+                        <li>Shop</li>
+                    </ul>
+                    <!-- End Breadcrumb -->
+                    <div class="row main-content-wrap gutter-lg">
+                        <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
+                            @php
+                                $divisions = App\Models\Admin\Location\Division::get();
 
-                        @endphp
-                        <div class="sidebar-overlay"></div>
-                        <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
-                        <div class="sidebar-content">
-                            <div class="sticky-sidebar">
-                                <div class="widget">
-                                    <h3 class="widget-title ">
-                                        <i class="d-icon-map p-1"></i>
-                                        Location
-                                    </h3>
-                                    <ul class="list-group widget-body">
-                                        <li class="mb-2">
-                                            <select class="form-select form-select-lg" readonly>
-                                                <option selected>Select Division</option>
-                                                @foreach ($divisions as $division)
-                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </li>
-                                        <li class="mb-2">
-                                            <select class="form-select form-select-lg" disabled>
-                                                <option selected>Select District</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </li>
-                                        <li class="mb-2">
-                                            <select class="form-select form-select-lg" disabled>
-                                                <option selected>Select Upazila</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">All Categories</h3>
-                                    <ul class="widget-body filter-items search-ul">
-
-                                        @foreach ($categories as $category)
-                                            <li>
-                                                <a
-                                                    href="{{ route('product.with.category', $category->slug) }}">{{ $category->name }}</a>
-                                                <ul>
-                                                    @foreach ($category->subcategorylist as $subcategory)
-                                                        <li>
-                                                            <a
-                                                                href="{{ route('product.with.subcategory', $subcategory->slug) }}">{{ $subcategory->name }}</a>
-                                                        </li>
+                            @endphp
+                            <div class="sidebar-overlay"></div>
+                            <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
+                            <div class="sidebar-content">
+                                <div class="sticky-sidebar">
+                                    <div class="widget">
+                                        <h3 class="widget-title ">
+                                            <i class="d-icon-map p-1"></i>
+                                            Location
+                                        </h3>
+                                        <ul class="list-group widget-body">
+                                            <li class="mb-2">
+                                                <select class="form-select form-select-lg" readonly>
+                                                    <option selected>Select Division</option>
+                                                    @foreach ($divisions as $division)
+                                                        <option value="{{ $division->id }}">{{ $division->name }}
+                                                        </option>
                                                     @endforeach
-                                                </ul>
+                                                </select>
                                             </li>
-                                        @endforeach
+                                            <li class="mb-2">
+                                                <select class="form-select form-select-lg" disabled>
+                                                    <option selected>Select District</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </li>
+                                            <li class="mb-2">
+                                                <select class="form-select form-select-lg" disabled>
+                                                    <option selected>Select Upazila</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="widget widget-collapsible">
+                                        <h3 class="widget-title">All Categories</h3>
+                                        <ul class="widget-body filter-items search-ul">
+
+                                            @foreach ($categories as $category)
+                                                <li>
+                                                    <a
+                                                        href="{{ route('product.with.category', $category->slug) }}">{{ $category->name }}</a>
+                                                    <ul>
+                                                        @foreach ($category->subcategorylist as $subcategory)
+                                                            <li>
+                                                                <a
+                                                                    href="{{ route('product.with.subcategory', $subcategory->slug) }}">{{ $subcategory->name }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
 
 
 
-                                    </ul>
-                                </div>
-                                <div class="widget widget-collapsible">
+                                        </ul>
+                                    </div>
+                                    {{-- <div class="widget widget-collapsible">
                                     <h3 class="widget-title">Price</h3>
                                     <div class="widget-body mt-3">
                                         <form action="#">
@@ -95,69 +97,44 @@
                                             </div>
                                         </form><!-- End Filter Price Form -->
                                     </div>
-                                </div>
-
-                                <form action="{{ url()->current() }}" method="GET">
+                                </div> --}}
 
 
                                     <div class="widget widget-collapsible">
-
                                         <h3 class="widget-title">Brand</h3>
                                         <ul class="widget-body filter-items">
+                                            @php
+                                                $filter_brands = [];
+                                                if (isset($_GET['filter_brands'])) {
+                                                    $filter_brands = $_GET['filter_brands'];
+                                                }
+
+                                                // echo print_r($filter_brands);
+
+                                            @endphp
                                             @foreach ($brands as $brand)
-                                            <div class="form-checkbox mt-8">
-                                                <input type="checkbox" value="{{$brand->slug}}" class="custom-checkbox" id="{{$brand->id}}"
-                                                    name="account">
-                                                <label class="form-control-label" for="{{$brand->id}}">Create an
-                                                    account?</label>
-                                            </div>
+                                                <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
+                                                    <input type="checkbox" name="filter_brands[]"
+                                                        value="{{ $brand->slug }}" class="custom-checkbox"
+                                                        id="{{ $brand->id }}" name="account" @if(!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif onchange="this.form.submit();" >
+                                                    <label class="form-control-label" for="{{ $brand->id }}">
+                                                        {{ $brand->name }}</label>
+                                                </div>
                                             @endforeach
 
                                         </ul>
-                                        <button type="submit">sdfsd</button>
                                     </div>
+                                    <button type="submit" class="btn btn-dark btn-rounded btn-filter">Filter</button>
 
-                                </form>
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">Color</h3>
-                                    <ul class="widget-body filter-items">
-                                        <li><a href="#">Black</a></li>
-                                        <li><a href="#">Blue</a></li>
-                                        <li><a href="#">Green</a></li>
-                                        <li><a href="#">White</a></li>
-                                    </ul>
-                                </div>
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">Brands</h3>
-                                    <ul class="widget-body filter-items">
-                                        <li><a href="#">Cinderella</a></li>
-                                        <li><a href="#">Comedy</a></li>
-                                        <li><a href="#">Rightcheck</a></li>
-                                        <li><a href="#">SkillStar</a></li>
-                                        <li><a href="#">SLS</a></li>
-                                    </ul>
+
                                 </div>
                             </div>
-                        </div>
 
 
-                    </aside>
-                    {{-- sidebar end --}}
+                        </aside>
+                        {{-- sidebar end --}}
 
-                    <div class="col-lg-9 main-content">
-                        {{-- <div class="shop-banner banner"
-                        style="background-image: url('{{ asset('frontend') }}/images/demos/demo3/shop_banner.jpg'); background-color: #f2f2f3;">
-                        <div class="banner-content">
-                            <h4
-                                class="banner-subtitle mb-2 d-inline-block text-uppercase font-weight-bold text-white bg-dark">
-                                Through Thursday</h4>
-                            <h1 class="banner-title text-uppercase text-dark font-weight-bold ls-l">20% off
-                                Suede Bags</h1>
-                            <a href="#" class="btn btn-outline btn-rounded btn-dark">Shop now</a>
-                        </div>
-                    </div> --}}
-                        <form action="{{ url(url()->current()) }}" method="GET">
-                            {{-- @csrf --}}
+                        <div class="col-lg-9 main-content">
                             <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
                                 <div class="toolbox-left">
                                     <a href="#"
@@ -166,9 +143,9 @@
                                     <div class="toolbox-item toolbox-sort select-box">
                                         <label>Sort By :</label>
                                         <select name="orderby" class="form-control" onchange="this.form.submit();">
-                                            <option value="latest" @if (request()->get('orderby') == 'latest') selected @endif>Latest</option>
-                                            <option value="lowtohigh" @if (request()->get('orderby') == 'lowtohigh') selected @endif>Low To High</option>
-                                            <option value="hightolow" @if (request()->get('orderby') == 'hightolow') selected @endif>Hith To Low</option>
+                                            <option value="latest" @if ( !empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
+                                            <option value="lowtohigh" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'lowtohigh') selected @endif>Low To High</option>
+                                            <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>Hith To Low</option>
                                         </select>
                                     </div>
                                 </div>
@@ -187,66 +164,66 @@
                                     </div>
                                 </div>
                             </nav>
-                        </form>
-                        <div class="row cols-3 cols-sm-4 product-wrapper">
 
-                            @foreach ($products as $product)
-                                <div class="product-wrap">
-                                    <div class="product text-center">
-                                        <figure class="product-media">
-                                            <a href="{{ route('singleproduct', $product->slug) }}">
-                                                <img src="{{ asset('uploads/product/' . $product->photo) }}"
-                                                    alt="product" width="280" height="315">
-                                            </a>
-                                            <div class="product-label-group">
-                                                <label class="product-label label-new">new</label>
-                                                <label class="product-label label-sale">12% OFF</label>
-                                            </div>
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                                    data-target="#addCartModal" title="Add to cart"><i
-                                                        class="d-icon-bag"></i></a>
-                                                <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i
-                                                        class="d-icon-heart"></i></a>
-                                            </div>
-                                            <div class="product-action">
-                                                <a class="btn-product view-data" title="Quick View"
-                                                    data-id="{{ $product->id }}" type="button"
-                                                    class="btn btn-primary">Quick View
+                            <div class="row cols-3 cols-sm-4 product-wrapper">
+
+                                @foreach ($products as $product)
+                                    <div class="product-wrap">
+                                        <div class="product text-center">
+                                            <figure class="product-media">
+                                                <a href="{{ route('singleproduct', $product->slug) }}">
+                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                        alt="product" width="280" height="315">
                                                 </a>
-                                            </div>
-                                        </figure>
-                                        <div class="product-details">
-                                            <div class="product-cat">
-                                                <a
-                                                    href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
-                                                <a
-                                                    href="{{ route('product.with.subcategory', $product->category->id) }}">|
-                                                    {{ $product->subcategory->name }}</a>
-                                            </div>
-                                            <h3 class="product-name">
-                                                <a
-                                                    href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
-                                            </h3>
-                                            <div class="product-price">
-                                                <ins class="new-price">৳{{ $product->price }}</ins><del
-                                                    class="old-price">৳{{ $product->regular_price }}</del>
-                                            </div>
-                                            <div class="ratings-container">
-                                                <div class="ratings-full">
-                                                    <span class="ratings" style="width:60%"></span>
-                                                    <span class="tooltiptext tooltip-top"></span>
+                                                <div class="product-label-group">
+                                                    <label class="product-label label-new">new</label>
+                                                    <label class="product-label label-sale">12% OFF</label>
                                                 </div>
-                                                <a href="demo3-product.html" class="rating-reviews">( 16 reviews )</a>
+                                                <div class="product-action-vertical">
+                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                        data-target="#addCartModal" title="Add to cart"><i
+                                                            class="d-icon-bag"></i></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist"
+                                                        title="Add to wishlist"><i class="d-icon-heart"></i></a>
+                                                </div>
+                                                <div class="product-action">
+                                                    <a class="btn-product view-data" title="Quick View"
+                                                        data-id="{{ $product->id }}" type="button"
+                                                        class="btn btn-primary">Quick View
+                                                    </a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <div class="product-cat">
+                                                    <a
+                                                        href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
+                                                    <a
+                                                        href="{{ route('product.with.subcategory', $product->category->id) }}">|
+                                                        {{ $product->subcategory->name }}</a>
+                                                </div>
+                                                <h3 class="product-name">
+                                                    <a
+                                                        href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <ins class="new-price">৳{{ $product->price }}</ins><del
+                                                        class="old-price">৳{{ $product->regular_price }}</del>
+                                                </div>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:60%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="demo3-product.html" class="rating-reviews">( 16 reviews )</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
 
-                        </div>
-                        {{ $products->appends($_GET)->links() }}
-                        {{-- <nav class="toolbox toolbox-pagination">
+                            </div>
+                            {{ $products->appends($_GET)->links() }}
+                            {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">
                             <li class="page-item disabled">
@@ -267,10 +244,11 @@
                             </li>
                         </ul>
                     </nav> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </main>
     <!-- End Main -->
 @endsection
