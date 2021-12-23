@@ -311,8 +311,8 @@ class ProductController extends Controller
 
             // return $request->all();
             $update = Product::where('id', $id)->update($data);
-            if($product->photo){
-                unlink('uploads/product/'.$product->photo);
+            if ($product->photo) {
+                unlink('uploads/product/' . $product->photo);
             }
 
             // Update Color
@@ -340,16 +340,89 @@ class ProductController extends Controller
                 }
             };
             // Update Slider Image
-            $sliderImage = ProductImage::where('product_id', $id)->get();
-            if (!empty($sliderImage)) {
-                foreach ($sliderImage as $image) {
-                    if(!empty($image)){
-                        unlink('uploads/products/'.$image->image);
-                    };
-                };
-                ProductImage::where('product_id', $id)->delete();
-            };
+
             if (!empty($images)) {
+                $sliderImage = ProductImage::where('product_id', $id)->get();
+                if (!empty($sliderImage)) {
+                    foreach ($sliderImage as $image) {
+                        if (!empty($image)) {
+                            unlink('uploads/products/' . $image->image);
+                        };
+                    };
+                    ProductImage::where('product_id', $id)->delete();
+                };
+
+                foreach ($images as $image) {
+                    ProductImage::create([
+                        'image' => $image,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+
+
+            Session::flash('update');
+            return redirect()->route('product.index');
+        } else {
+            $data = [
+                'title'             => $request->title,
+                'description'       => $request->description,
+                'short_description' => $request->short_description,
+                'category_id'       => $request->category_id,
+                'subcategory_id'    => $request->subcategory_id,
+                'brand_id'          => $request->brand_id,
+                'shop_id'           => $request->shop_id,
+                'division_id'       => $request->division_id,
+                'district_id'       => $request->district_id,
+                'upazila_id'        => $request->upazila_id,
+                'regular_price'     => $request->regular_price,
+                'discount'          => $request->discount,
+                'price'             => $request->price,
+                'quantity'          => $request->quantity,
+                'quantity_alert'    => $request->quantity_alert,
+                // 'puk_code'       => $request->title,
+            ];
+
+            // return $request->all();
+            $update = Product::where('id', $id)->update($data);
+
+            // Update Color
+            if (!empty($colors)) {
+                ProductColor::where('product_id', $id)->delete();
+            };
+            if (!empty($colors)) {
+                foreach ($colors as $color) {
+                    ProductColor::create([
+                        'color_id' => $color,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+            // Update Size
+            if (!empty($sizes)) {
+                ProductSize::where('product_id', $id)->delete();
+            };
+            if (!empty($sizes)) {
+                foreach ($sizes as $size) {
+                    ProductSize::create([
+                        'size_id' => $size,
+                        'product_id' => $product->id,
+                    ]);
+                }
+            };
+            // Update Slider Image
+
+            if (!empty($images)) {
+                $sliderImage = ProductImage::where('product_id', $id)->get();
+                if (!empty($sliderImage)) {
+                    foreach ($sliderImage as $image) {
+                        if (!empty($image)) {
+                            unlink('uploads/products/' . $image->image);
+                        };
+                    };
+                    ProductImage::where('product_id', $id)->delete();
+                };
+
                 foreach ($images as $image) {
                     ProductImage::create([
                         'image' => $image,

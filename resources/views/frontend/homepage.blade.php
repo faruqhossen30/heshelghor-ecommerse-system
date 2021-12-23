@@ -161,7 +161,7 @@
                                     <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
                                         {{-- single product --}}
                                         @php
-                                            $newporducts = \App\Models\Product\Product::latest('id')
+                                            $newporducts = \App\Models\Product\Product::with('category', 'subcategory')->latest('id')
                                                 ->where('category_id', $category->id)
                                                 ->paginate(4);
                                         @endphp

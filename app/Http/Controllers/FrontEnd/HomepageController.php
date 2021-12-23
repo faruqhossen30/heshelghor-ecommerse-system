@@ -18,14 +18,14 @@ class HomepageController extends Controller
         $subcategories = SubCategory::inRandomOrder()->get();
         $brands = Brand::latest('id')->get();
         $products = Product::latest('id')->paginate(8);
-        // return $products;
+        // return $categories;
 
 
         return view('frontend.homepage', compact(
             'categories',
+            'subcategories',
             'brands',
-            'products',
-            'subcategories'
+            'products'
         ));
     }
     // Search
