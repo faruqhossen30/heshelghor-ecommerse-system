@@ -26,8 +26,9 @@ class ProductAPIController extends Controller
     public function productByPage()
     {
 
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->latest()->paginate(5);
+        $products = Product::select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo')->latest()->paginate(30);
         return $products;
+        // return 'ok';
     }
     // Category wise Product
     public function productByCategory(Request $request, $category_id)
