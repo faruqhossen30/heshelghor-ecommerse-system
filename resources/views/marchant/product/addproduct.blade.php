@@ -351,7 +351,7 @@
                                     </label>
                                     <input name="photo" class="form-control dropify @error('photo') is-invalid @enderror"
                                         type="file" id="formFile" data-show-errors="true" data-errors-position="outside"
-                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="3M" data-max-file-size="1M">
+                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="10M" data-max-file-size="10M">
                                     <div class="text-danger">
                                         @error('photo')
                                             <span>{{ $message }}</span>

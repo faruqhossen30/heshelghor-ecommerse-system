@@ -27,6 +27,8 @@ class ProductAPIController extends Controller
     {
 
         $products = Product::select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo')->latest()->paginate(30);
+
+        // $products = Product::latest()->paginate(30);
         return $products;
         // return 'ok';
     }
