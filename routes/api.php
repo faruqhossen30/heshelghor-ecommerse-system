@@ -69,7 +69,8 @@ Route::get('colors', [AllListAPIController::class, 'allColor']); // Shop List by
 Route::get('sizes', [AllListAPIController::class, 'allSize']); // Shop List by pagination
 Route::get('getshopwithlocation/{id}', [AllListAPIController::class, 'getShopWithLocation']);
 
-Route::get('district-wise-shop/{id}', [ShopAPIController::class, 'districtWiseShop']);
+Route::get('district-wise-shop/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
+// Route::get('district-wise-shop2/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
 
 
 
