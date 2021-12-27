@@ -245,6 +245,11 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         </ul>
                                     </div>
                                     {{-- add comment form --}}
+                                    @guest
+                                    <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Login For Comment</h5>
+                                    <h5><a href="{{route('login')}}" class="btn btn-primary btn-sm">Login && Comment Now !</a></h5>
+                                    @endguest
+                                    @auth
                                     <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Add Comment</h5>
                                     <form action="{{ route('comment.store', $product->id) }}" method="POST">
                                         @csrf
@@ -256,6 +261,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         <button type="submit" class="btn btn-primary btn-rounded btn-sm">Submit<i
                                                 class="d-icon-arrow-right"></i></button>
                                     </form>
+                                    @endauth
 
                                 </div>
                             </div>

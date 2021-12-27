@@ -72,6 +72,7 @@ class MerchantShopAPIController extends Controller
             $shop = Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
@@ -79,7 +80,7 @@ class MerchantShopAPIController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => 'uploads/shop/' . $fileName,
+                'image'         => $fileName,
                 'author'        => 'merchant',
                 'author_id'     => $merchantId
             ]);
@@ -102,6 +103,7 @@ class MerchantShopAPIController extends Controller
             $shop = Shop::create([
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
@@ -182,6 +184,7 @@ class MerchantShopAPIController extends Controller
             $data = [
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,
@@ -189,7 +192,7 @@ class MerchantShopAPIController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => 'uploads/shop/' . $fileName,
+                'image'         => $fileName,
                 'author'        => 'merchant',
                 'author_id'     => $merchantId
             ];
@@ -216,6 +219,7 @@ class MerchantShopAPIController extends Controller
             $data = [
                 'name'          => $request->name,
                 'address'       => $request->address,
+                'mobile'        => $request->mobile,
                 'description'   => $request->description,
                 'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
                 'trade_license' => $request->trade_license,

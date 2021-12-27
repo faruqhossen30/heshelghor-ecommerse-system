@@ -9,14 +9,29 @@ use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
 use App\Models\Product\Brand;
+use Illuminate\Support\Facades\Cache;
 
 class HomepageController extends Controller
 {
     public function homePage()
     {
-        $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        $subcategories = SubCategory::inRandomOrder()->get();
-        $brands = Brand::latest('id')->get();
+
+        $categories = Cache::remember('_categories', 60 * 60 * 60, function () {
+            return Category::with('products')->orderBy('name', 'asc')->get();
+        });
+
+        $subcategories = Cache::remember('_subcategories', 60 * 60 * 60, function () {
+            return SubCategory::inRandomOrder()->get();
+        });
+        $brands = Cache::remember('_brands', 60 * 60 * 60, function () {
+            return Brand::latest('id')->get();
+        });
+
+
+
+        // $categories = Category::with('products')->orderBy('name', 'asc')->get();
+        // $subcategories = SubCategory::inRandomOrder()->get();
+        // $brands = Brand::latest('id')->get();
         $products = Product::latest('id')->paginate(8);
         // return $categories;
 

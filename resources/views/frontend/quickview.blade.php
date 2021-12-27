@@ -44,7 +44,7 @@
 				<a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 11 reviews )</a>
 			</div>
 			<p class="product-short-desc">{{$product->short_description}}</p>
-            <a href="{{route('singleproduct', $product->id)}}" type="submit" class="btn btn btn-dark btn-sm">
+            <a href="{{route('singleproduct', $product->slug)}}" type="submit" class="btn btn btn-dark btn-sm">
                 <i class="d-icon-bag mr-2"></i>View Details</a>
 
 			{{-- <form action="{{ route('cart.add', $product->id) }}" method="post">

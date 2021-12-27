@@ -22,7 +22,7 @@ class SingleProductController extends Controller
         // $comments = Comment::with('user')->where('product_id', $id)->orderBy('id', 'desc')->get();
 
 
-        $product = Product::with('category', 'subcategory', 'brand', 'merchant', 'images', 'colors', 'sizes', 'comments')->where('slug', $slug)->get()->first();
+        $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors', 'sizes', 'comments')->where('slug', $slug)->get()->first();
         // return $product;
         return view('frontend.singleproduct', compact('product'));
     }
