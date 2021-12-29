@@ -15,8 +15,8 @@ $totalprice = Cart::priceTotal();
             <!-- End Logo -->
 
             <div class="header-search hs-simple">
-                <form action="#" class="input-wrapper" style="position: relative">
-                    <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search..."
+                <form action="{{url('/product/search')}}" method="GET" class="input-wrapper" style="position: relative" >
+                    <input type="text" class="form-control" name="search"  placeholder="Search..."
                         required id="searchInpur" />
                     <button class="btn btn-search" type="submit">
                         <i class="d-icon-search"></i>
@@ -140,8 +140,8 @@ $totalprice = Cart::priceTotal();
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+{{-- <script>
     let search = document.getElementById('searchInpur');
     let searchResultDiv = document.getElementById('searchResultDiv');
     let searchProductList = document.getElementById('searchProductList');
@@ -177,7 +177,7 @@ $totalprice = Cart::priceTotal();
         };
         console.log(event.target.value);
     });
-</script>
+</script> --}}
 
 
 

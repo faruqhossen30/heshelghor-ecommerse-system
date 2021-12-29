@@ -12,7 +12,7 @@ class ProductAPIController extends Controller
     // Single Product
     public function singleProduct(Request $request, $id)
     {
-        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors', 'sizes')->first();
+        $products = Product::where('id', $id)->with('brand', 'category', 'subCategory', 'merchant', 'shop', 'images', 'colors.color', 'sizes.size')->first();
         return $products;
     }
     // All Product
@@ -28,7 +28,7 @@ class ProductAPIController extends Controller
 
         $products = Product::select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo')->latest()->paginate(30);
 
-        // $products = Product::latest()->paginate(30);
+        // $products = Product::with('category.subcategories')->get();
         return $products;
         // return 'ok';
     }

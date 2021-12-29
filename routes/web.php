@@ -72,6 +72,7 @@ use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
 use App\Http\Controllers\FrontEnd\CommentController;
 use App\Http\Controllers\FrontEnd\ProductQuickViewController;
+use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 
 use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
@@ -86,6 +87,8 @@ Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->nam
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
+Route::get('/product/search', [SearchWiseFilterController::class, 'index'])->name('searchtest');
+// Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
 // Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 

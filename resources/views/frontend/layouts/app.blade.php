@@ -299,13 +299,13 @@ $socialmedia = App\Models\Setting\SettingSocialMedia::first();
                 };
             });
             // Form form search with submit method
-            var searchFrom = $('#searchFrom');
-            var searchInpur = $('#searchInpur');
-            $(document).on('submit', 'form[id="searchFrom"]', function(event) {
-                event.preventDefault()
-                var value = $(this).val();
-                console.log(searchInpur.val())
-            });
+            // var searchFrom = $('#searchFrom');
+            // var searchInpur = $('#searchInpur');
+            // $(document).on('submit', 'form[id="searchFrom"]', function(event) {
+            //     event.preventDefault()
+            //     var value = $(this).val();
+            //     console.log(searchInpur.val())
+            // });
         </script>
         {{-- For Quic View Product --}}
         {{-- <script>
