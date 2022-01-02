@@ -5,26 +5,22 @@ $(document).ready(function () {
         }
     });
 
-    var $modal = $('#modal');
-    var addMediaButton = $('#addMediaButton');
-
-    $('#addMediaButton').click(function () {
-        $modal.modal('show');
-    });
-    // collapse Close
-    $('#collapseClose').click(function () {
-        $('.collapse').collapse('hide')
+    $(document).ready(function(){
+        $galleryModal = $('#gallerymodal');
+        $('#thumbnail').on('click', function(){
+            $galleryModal.modal('show');
+        });
     });
 
     var $modal = $('#modal');
-    var image = document.getElementById('image');
+    var selectImage = document.getElementById('selectimage');
     var cropper;
-    $("body").on("change", ".image", function (e) {
-
+    $("body").on("change", ".selectimage", function (e) {
+        alert('tesing')
         var files = e.target.files;
 
         var done = function (url) {
-            image.src = url;
+            selectImage.src = url;
             $modal.modal('show');
         };
         var reader;
@@ -48,7 +44,7 @@ $(document).ready(function () {
     });
     $modal.on('shown.bs.modal', function () {
 
-        cropper = new Cropper(image, {
+        cropper = new Cropper(selectImage, {
             aspectRatio: 1,
             viewMode: 2,
             preview: '.preview',
@@ -72,7 +68,7 @@ $(document).ready(function () {
 
 
     $("#crop").click(function () {
-        var fileName = $('.image');
+        var fileName = $('.selectImage');
         var newFileName = fileName[0].files[0].name
         console.log();
         canvas = cropper.getCroppedCanvas({

@@ -54,12 +54,28 @@ $galleries = $user->getMedia();
                     </div>
                     <div class="tab-pane" id="upload">
                         <div class="row">
-                            <div class="col-8">
-                                Upload Media
-                            </div>
-
-                            <div class="col-4">
-                                ssdf
+                            <div class="col-sm-12">
+                                <div class="card card-body">
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <div style="display: flex; justify-content:space-between" class="my-1">
+                                                <label class="control-label text-center">Select Image For Upload</label>
+                                            </div>
+                                            <div class="preview-zone hidden">
+                                                <div class="box box-solid">
+                                                    <div class="box-body"></div>
+                                                </div>
+                                            </div>
+                                            <div class="dropzone-wrapper">
+                                                <div class="dropzone-desc">
+                                                    <i class="glyphicon glyphicon-download-alt"></i>
+                                                    <p>Choose an image file or drag it here.</p>
+                                                </div>
+                                                <input type="file" name="selectphotomedia" id="selectimage" class="dropzone selectImage">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

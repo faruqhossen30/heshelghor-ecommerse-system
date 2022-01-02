@@ -108,7 +108,7 @@
 @endsection
 @push('css')
     <link rel="stylesheet" href="{{ asset('backend') }}/assets/libs/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="{{ asset('css/addmediadropzone.css') }}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -136,67 +136,5 @@
 @endpush
 @push('scripts')
 
-
-    {{-- <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).ready(function() {
-            $('#collapseClose').click(function() {
-                $('.collapse').collapse('hide')
-            });
-
-
-            // For Croping Modal
-            var $mediaModal = $('#mediaModal');
-
-            $('#photomedia').change(function(e) {
-                var files = e.target.files;
-
-                var done = function(url) {
-                    image.src = url;
-                    $mediaModal.modal('show');
-                };
-                var reader;
-                var file;
-                var url;
-                if (files && files.length > 0) {
-                    file = files[0];
-                    if (URL) {
-                        // console.log(URL.createObjectURL)
-
-                        done(URL.createObjectURL(file));
-                    } else if (FileReader) {
-                        console.log(FileReader)
-                        reader = new FileReader();
-                        reader.onload = function(e) {
-                            done(reader.result);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                }
-            });
-            // Croping Canvas
-            $mediaModal.on('shown.bs.modal', function() {
-                cropper = new Cropper(image, {
-                    aspectRatio: 1,
-                    viewMode: 2,
-                    preview: '.preview',
-                    zoomOnWheel: true,
-                });
-            }).on('hidden.bs.modal', function() {
-                cropper.destroy();
-                cropper = null;
-            });
-
-
-        });
-    </script> --}}
-
-    {{-- <script src="{{ asset('backend')}}/assets/js/pages/gallery.init.js"></script> --}}
-    {{-- <script src="{{ asset('backend')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script> --}}
 
 @endpush

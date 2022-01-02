@@ -31,6 +31,10 @@
 
     <!-- icons -->
     <link href="{{ asset('backend') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    {{-- Custom CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/selectmediadropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/addmediadropzone.css') }}">
+
 
 
 </head>
@@ -230,6 +234,7 @@
     <!-- App js -->
     <script src="{{ asset('backend') }}/assets/js/app.min.js"></script>
     <script src="{{asset('js/merchantmediacrop.js')}}"></script>
+    {{-- <script src="{{asset('js/merchantselectmediacrop.js')}}"></script> --}}
 </body>
 
 </html>
