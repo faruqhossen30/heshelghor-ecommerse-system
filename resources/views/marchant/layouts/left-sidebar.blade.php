@@ -79,6 +79,12 @@
                         <span> Dashboards </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('merchant.veiw.gallery')}}" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> Galary </span>
+                    </a>
+                </li>
                 {{-- Product Start --}}
                 <li>
                     <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">

@@ -44,6 +44,11 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\FrontEnd\CheckoutController;
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
+use App\Http\Controllers\Merchant\MerchantGalleryController;
+
+// Merchant Profile Controller
+use App\Http\Controllers\FrontEnd\SingleProductController;
+use App\Http\Controllers\Merchant\MerchatProfileController;
 
 // Point Manager Controller
 
@@ -58,9 +63,7 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
-// Merchant Profile Controller
-use App\Http\Controllers\FrontEnd\SingleProductController;
-use App\Http\Controllers\Merchant\MerchatProfileController;
+
 
 // Front-End Controller
 use App\Http\Controllers\Admin\Location\DistrictController;
@@ -213,6 +216,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('profile', [MerchatProfileController::class, 'index'])->name('merchant.profile');
         Route::get('profile/create', [MerchatProfileController::class, 'create'])->name('merchant.profile.create');
         Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
+        // Gallery
+        Route::get('galary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
+        Route::post('galary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
     });
 });
 use App\Http\Controllers\PointManager\PointManagerLoginController;
