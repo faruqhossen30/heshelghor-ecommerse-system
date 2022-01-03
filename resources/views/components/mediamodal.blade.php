@@ -6,12 +6,12 @@ $galleries = $user->getMedia();
 
 @endphp
 
-<div class="modal" id="gallerymodal" tabindex="-1" aria-labelledby="scrollableModalTitle" aria-hidden="true"
+<div class="modal" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true"
     data-bs-keyboard="false" data-bs-backdrop="static">
     <div class="modal-dialog modal-lg modal-dialog-scrollable modal-full-width">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Modal title</h5>
+                <h5 class="modal-title" id="mediaModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -71,7 +71,7 @@ $galleries = $user->getMedia();
                                                     <i class="glyphicon glyphicon-download-alt"></i>
                                                     <p>Choose an image file or drag it here.</p>
                                                 </div>
-                                                <input type="file" name="selectphotomedia" id="selectimage" class="dropzone selectImage">
+                                                <input type="file" name="mediaImage" id="mediaImage" class="dropzone mediaImage">
                                             </div>
                                         </div>
                                     </form>

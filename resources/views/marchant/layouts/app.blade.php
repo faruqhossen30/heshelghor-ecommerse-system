@@ -69,7 +69,8 @@
                     Launch demo modal
                 </button>
 
-                <x-selectgalarymodal/>
+                <x-mediamodal/>
+                <x-mediacropmodal/>
                 <!-- Modal -->
                 <div class="modal" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
                     data-bs-keyboard="false" data-bs-backdrop="static">
@@ -233,8 +234,8 @@
     <!-- Stack JS Start -->
     <!-- App js -->
     <script src="{{ asset('backend') }}/assets/js/app.min.js"></script>
+    <script src="{{asset('js/merchantgallerycrop.js')}}"></script>
     <script src="{{asset('js/merchantmediacrop.js')}}"></script>
-    {{-- <script src="{{asset('js/merchantselectmediacrop.js')}}"></script> --}}
 </body>
 
 </html>

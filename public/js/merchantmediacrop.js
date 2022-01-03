@@ -5,27 +5,24 @@ $(document).ready(function () {
         }
     });
 
-    var $modal = $('#modal');
-    var addMediaButton = $('#addMediaButton');
-
-    $('#addMediaButton').click(function () {
-        $modal.modal('show');
-    });
-    // collapse Close
-    $('#collapseClose').click(function () {
-        $('.collapse').collapse('hide')
+    $(document).ready(function(){
+        $mediaModal = $('#mediaModal');
+        $('#thumbnail').on('click', function(){
+            $mediaModal.modal('show');
+        });
     });
 
-    var $modal = $('#modal');
-    var image = document.getElementById('image');
+    var $mediaCropModal = $('#mediaCropModal');
+    var mediaImage = document.getElementById('mediaimage');
     var cropper;
-    $("body").on("change", ".image", function (e) {
-
+    $("body").on("change", ".mediaImage", function (e) {
+        $mediaModal.hide()
+        // alert('tesing')
         var files = e.target.files;
 
         var done = function (url) {
-            image.src = url;
-            $modal.modal('show');
+            mediaImage.src = url;
+            $mediaCropModal.modal('show');
         };
         var reader;
         var file;
@@ -46,9 +43,10 @@ $(document).ready(function () {
             }
         }
     });
-    $modal.on('shown.bs.modal', function () {
+    $mediaCropModal.on('shown.bs.modal', function () {
 
-        cropper = new Cropper(image, {
+
+        cropper = new Cropper(mediaImage, {
             aspectRatio: 1,
             viewMode: 2,
             preview: '.preview',
@@ -72,7 +70,7 @@ $(document).ready(function () {
 
 
     $("#crop").click(function () {
-        var fileName = $('.image');
+        var fileName = $('.mediaImage');
         var newFileName = fileName[0].files[0].name
         console.log();
         canvas = cropper.getCroppedCanvas({
@@ -95,7 +93,7 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success(data) {
-                    $modal.modal('hide');
+                    $mediaCropModal.modal('hide');
                     $('.collapse').collapse('hide')
                     console.log(data);
                 },

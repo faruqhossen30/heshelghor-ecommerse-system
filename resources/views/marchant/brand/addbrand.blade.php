@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="selectmediadropzone-wrapper">
                                     <div class="selectmediadropzone-desc">
-                                        <i class="mdi mdi-image h1"></i>
+                                        <i class="mdi mdi-image h1 text-secondary"></i>
                                         <p>Select Image</p>
                                     </div>
                                     <button type="file" name="thumbnail" id="thumbnail" class="selectmediadropzone thumbnail"> Welcome </button>
@@ -182,16 +182,28 @@
     <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script>
 
 
-    <script>
-        $(document).ready(function(){
-            $galleryModal = $('#gallerymodal');
-            $('#thumbnail').on('click', function(){
-                $galleryModal.modal('show');
-            });
-        });
-
-        // image gallery
 
 
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style type="text/css">
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
+        }
+
+        .modal-lg {
+            max-width: 1000px !important;
+        }
+    </style>
+
 @endpush

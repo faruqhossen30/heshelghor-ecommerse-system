@@ -129,9 +129,6 @@
         .modal-lg {
             max-width: 1000px !important;
         }
-
-
-
     </style>
 @endpush
 @push('scripts')
