@@ -29,7 +29,6 @@
                         <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Graphic Design</a>
                         <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Illustrator</a>
                         <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Photography</a>
-                        <button class="btn btn-primary" data-rel="photography" id="addMediaButton">Add Photo</button>
                     </div>
                 </div>
                 <div class="row">

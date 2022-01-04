@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Merchant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Models\Auth\Marchant;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MerchantGalleryController extends Controller
 {
@@ -13,12 +15,17 @@ class MerchantGalleryController extends Controller
         $user = auth()->guard('marchant')->user();
         $galleries = $user->getMedia();
 
-        // $test = $galleries->where('id', 7)->first();
+        // $test = $galleries->where('id', 12)->first()->getUrl();
+        // return $test;
+
+        // return $galleries;
 
         $type = gettype($galleries);
-        // dd($test);
-        // return $test->getUrl('small');
+        // dd($galleries);
 
+        $some = Media::get();
+
+        return $some;
 
         return view('marchant.gallery.gallery', compact('galleries'));
     }

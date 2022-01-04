@@ -22,6 +22,10 @@ class CreateBrandsTable extends Migration
             $table->string('author');
             $table->unsignedBigInteger('author_id');
             $table->boolean('status')->default(true);
+            $table->string('img_full')->nullable();
+            $table->string('img_small')->nullable();
+            $table->string('img_medium')->nullable();
+            $table->string('img_large')->nullable();
             $table->timestamps();
         });
     }
