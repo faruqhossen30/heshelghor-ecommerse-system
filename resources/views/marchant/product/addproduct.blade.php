@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="content">
-
+        <x-mediamodal />
+        <x-multiplemediamodal />
         <!-- Start Content-->
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -22,7 +22,6 @@
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -30,6 +29,9 @@
                             <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 {{-- Title --}}
+                                <div id="addProductMedia">
+
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
@@ -351,7 +353,8 @@
                                     </label>
                                     <input name="photo" class="form-control dropify @error('photo') is-invalid @enderror"
                                         type="file" id="formFile" data-show-errors="true" data-errors-position="outside"
-                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="10M" data-max-file-size="10M">
+                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="10M"
+                                        data-max-file-size="10M">
                                     <div class="text-danger">
                                         @error('photo')
                                             <span>{{ $message }}</span>
@@ -360,36 +363,71 @@
                                 </div>
 
                                 {{-- Image Section --}}
-                                <hr>
+                                <p>testing</p>
                                 <div class="mb-3">
-                                    <label for="formFileMultiple" class="form-label">
-                                        <h4 class="header-title">Product Slider Image</h4>
-                                        <p class="sub-header m-0">Image size should be ( width: 800px height: 800px )</p>
-                                    </label>
-                                    <input name="image[]" class="form-control @error('image') is-invalid @enderror"
-                                        type="file" id="formFileMultiple" multiple>
-                                    <div class="text-danger">
-                                        @error('image')
-                                            <span>{{ $message }}</span>
-                                        @enderror
+                                    <div id="productImage" style="width: 100%; border:1px dashed gray"
+                                        class="text-center my-2">
+
+                                        <i class="mdi mdi-image h1 text-secondary"></i>
+                                        <p>Select Photos</p>
                                     </div>
                                 </div>
+                                <div id="productImageMediaArea">
 
-                                <button type="submit" class="btn btn-primary">Upload Product <i
-                                        class="mdi mdi-arrow-right ms-1"></i></button>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h4 class="header-title">Product Slider Photo</h4>
+                                    <div id="productSliderImage" style="width: 100%; border:1px dashed gray"
+                                        class="text-center my-2">
+
+                                        <i class="mdi mdi-image h1 text-secondary"></i>
+                                        <p>Prduct Gallery Photos</p>
+                                    </div>
+                                </div>
+                                <div id="productSliderMediaArea">
+
+                                </div>
+                        </div>
 
 
 
-                            </form>
-                        </div> {{-- card-body-end --}}
 
-                    </div>
+
+
+
+
+
+                        <hr>
+                        <div class="mb-3">
+                            <label for="formFileMultiple" class="form-label">
+                                <h4 class="header-title">Product Slider Image</h4>
+                                <p class="sub-header m-0">Image size should be ( width: 800px height: 800px )</p>
+                            </label>
+                            <input name="image[]" class="form-control @error('image') is-invalid @enderror" type="file"
+                                id="formFileMultiple" multiple>
+                            <div class="text-danger">
+                                @error('image')
+                                    <span>{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Upload Product <i
+                                class="mdi mdi-arrow-right ms-1"></i></button>
+
+
+
+                        </form>
+                    </div> {{-- card-body-end --}}
+
                 </div>
             </div>
-            <!-- end row -->
+        </div>
+        <!-- end row -->
 
 
-        </div> <!-- container -->
+    </div> <!-- container -->
 
     </div> <!-- content -->
 @endsection
@@ -435,6 +473,7 @@
     </script>
 @endpush
 @push('scripts')
+    <script src="{{ asset('js/addproductfunc.js') }}"></script>
 
     <!-- third party js -->
     <script src="{{ asset('backend') }}/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
@@ -444,27 +483,12 @@
 
     <!-- Select2 js-->
     <script src="{{ asset('backend') }}/assets/libs/select2/js/select2.min.js"></script>
-    <!-- Dropzone file uploads-->
-    <script src="{{ asset('backend') }}/assets/libs/dropzone/min/dropzone.min.js"></script>
-
-    <!-- Init js-->
-    <script src="{{ asset('backend') }}/assets/js/pages/form-fileuploads.init.js"></script>
 
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
-    {{-- Dorpyfi --}}
-    <script src="{{ asset('js/dropify.min.js') }}"></script>
-    <script>
-        $('.dropify').dropify({
-            messages: {
-                'default': 'Drag and drop profile new photo or click',
-                'replace': 'Drag and drop or click to replace',
-                'remove': 'Remove',
-                'error': 'Ooops, something wrong happended.'
-            }
-        });
-    </script>
+
+
 
     <script>
         $(function() {
@@ -553,6 +577,104 @@
 
             });
 
-        })
+        });
+
+
+
+
+        var mediaGallery = $('#mediaGallery');
+
+        function getSingleGallery(mediaGallery) {
+            mediaGallery.empty();
+            $.ajax({
+                url: '{{ route('merchant.modal.gallery') }}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if (data) {
+                        mediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
+        // For Image Gallery
+        var productImage = $('#productImage');
+        $mediaModal = $('#mediaModal');
+
+        $('#productImage').on('click', function() {
+            $mediaModal.modal('show');
+            getSingleGallery(mediaGallery)
+        });
+
+        // Media From Submit
+        $('#mediaForm').on('submit', function(event) {
+            event.preventDefault();
+            var selectimage = $('input[name="selectimage"]:checked');
+            var brandMediaSelectArea = $('#brandMediaSelectArea');
+            var brandMediaArea = $('#brandMediaArea');
+
+            var fullUrl = selectimage.data('urlfull');
+            var smallUrl = selectimage.data('rulsmall');
+            var mediumUrl = selectimage.data('urlmedium');
+            var largeUrl = selectimage.data('urllarge');
+
+            var productImageMediaArea = $('#productImageMediaArea');
+
+            $('#productImage').hide();
+            productImageMediaArea.append(`<div id="selectedProductImageMedia">
+                                        <img src="${smallUrl}" alt="" class="img-responsive p-2" style="width:100px;height:100px" >
+                                        <button  id="selectedProductImageMediaCloseButton" type="button" class="btn btn-danger"> Close</button>
+                                    </div>`);
+
+
+            $('#addProductMedia').append(
+                `<div>
+                    <input type="hidden" name="img_full" value="${fullUrl}">
+                    <input type="hidden" name="img_small" value="${smallUrl}">
+                    <input type="hidden" name="img_medium" value="${mediumUrl}">
+                    <input type="hidden" name="img_large" value="${largeUrl}">
+                </div>`
+            );
+            $mediaModal.modal('hide');
+
+        });
+
+        $(document).on('click', '#selectedProductImageMediaCloseButton', function() {
+            $('#addProductMedia').empty();
+            $(this).parent().remove();
+            $('#productImage').show();
+        });
+        // Multiple Media Modal
+
+        function getMultipleGallery(multipleMediaGallery) {
+            multipleMediaGallery.empty();
+            $.ajax({
+                url: '{{ route('merchant.modal.gallerymultiple') }}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if (data) {
+                        multipleMediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
+
+
+        var productSliderImage = $('#productSliderImage');
+        var multipleMediaGallery = $('#multipleMediaGallery');
+
+        $multipleMediaModal = $('#multipleMediaModal');
+        $('#productSliderImage').on('click', function() {
+            $multipleMediaModal.modal('show');
+            getMultipleGallery(multipleMediaGallery)
+
+        });
     </script>
 @endpush

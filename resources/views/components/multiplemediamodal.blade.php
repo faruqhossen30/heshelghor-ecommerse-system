@@ -6,35 +6,35 @@ $galleries = $user->getMedia();
 
 @endphp
 
-<div class="modal" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true"
+<div class="modal" id="multipleMediaModal" tabindex="-1" aria-labelledby="multipleMediaModalLabel" aria-hidden="true"
     data-bs-keyboard="false" data-bs-backdrop="static">
     <form action="" method="post" id="mediaForm">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="mediaModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="multipleMediaModalLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a href="#upload" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+                            <a href="#multipleUpload" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
                                 <span class="d-inline-block d-sm-none"><i class="mdi mdi-home-variant"></i></span>
-                                <span class="d-none d-sm-inline-block">Upload Photo</span>
+                                <span class="d-none d-sm-inline-block">multipleUpload Photo</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#mediaGallery" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <a href="#multipleMediaGallery" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
                                 <span class="d-inline-block d-sm-none"><i class="mdi mdi-account"></i></span>
                                 <span class="d-none d-sm-inline-block">Media Gallery</span>
                             </a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="mediaGallery">
-
+                        <div class="tab-pane active" id="multipleMediaGallery">
+                            this is photo
                         </div>
-                        <div class="tab-pane" id="upload">
+                        <div class="tab-pane" id="multipleUpload">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card card-body">

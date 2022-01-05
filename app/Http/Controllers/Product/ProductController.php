@@ -49,12 +49,12 @@ class ProductController extends Controller
     {
         $merchantId = Auth::guard('marchant')->user()->id;
 
-        $categories = Category::all();
-        $subcategories = SubCategory::all();
-        $brands = Brand::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::orderBy('name', 'asc')->get();
+        $brands = Brand::orderBy('name', 'asc')->get();
         $shops = Shop::where('author_id', $merchantId)->get();
-        $colors = Color::all();
-        $sizes = Size::all();
+        $colors = Color::orderBy('name', 'asc')->get();
+        $sizes = Size::orderBy('name', 'asc')->get();
 
         return view('marchant.product.addproduct', compact('categories', 'subcategories', 'brands', 'shops', 'colors', 'sizes'));
     }
@@ -68,7 +68,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        // return $request->all();
+        return $request->all();
 
 
 

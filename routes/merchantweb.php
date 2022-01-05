@@ -55,3 +55,4 @@ Route::prefix('merchant')->group(function () {
 });
 
 Route::get('merchant/galary/modalgallery', [MerchantGalleryController::class, 'merchantModalGallery'])->name('merchant.modal.gallery');
+Route::get('merchant/galary/modalgallerymultiple', [MerchantGalleryController::class, 'merchantModalGalleryMultiple'])->name('merchant.modal.gallerymultiple');

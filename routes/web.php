@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
 
 use App\Http\Controllers\Admin\AdminLoginController;
-use App\Http\Controllers\Merchant\MyBrandController;
+
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // Merchant
 use App\Http\Controllers\Admin\MerchantController;

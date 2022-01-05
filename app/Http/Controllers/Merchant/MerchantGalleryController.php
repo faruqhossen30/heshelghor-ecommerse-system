@@ -48,4 +48,15 @@ class MerchantGalleryController extends Controller
             return response()->json($data);
         };
     }
+
+    public function merchantModalGalleryMultiple(Request $request)
+    {
+        $user = auth()->guard('marchant')->user();
+        if($request->ajax()){
+            $galleries = $user->getMedia();
+            $data = view('marchant.inc.modalgalarymultiple', compact('galleries'))->render();
+
+            return response()->json($data);
+        };
+    }
 }
