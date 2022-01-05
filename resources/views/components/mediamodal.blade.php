@@ -32,28 +32,7 @@ $galleries = $user->getMedia();
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="mediaGallery">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="row">
-                                        @foreach ($galleries as $gallery)
-                                            <div class="col-md-3">
-                                                <label class="image-checkbox">
-                                                    <img class="img-responsive border border-secondary my-1"
-                                                        src="{{ $gallery->getUrl('small') }}"
-                                                        style="max-width: 100%; height:auto;">
-                                                    <input name="selectimage" value="{{$gallery->id}}" type="radio">
-                                                    {{-- <i class="fa fa-check hidden"></i> --}}
-                                                </label>
-                                            </div>
-                                        @endforeach
 
-                                    </div>
-                                </div>
-
-                                <div class="col-4">
-                                    ssdf
-                                </div>
-                            </div>
                         </div>
                         <div class="tab-pane" id="upload">
                             <div class="row">

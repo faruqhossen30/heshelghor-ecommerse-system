@@ -5,12 +5,12 @@ $(document).ready(function () {
         }
     });
 
-    $(document).ready(function(){
-        $mediaModal = $('#mediaModal');
-        $('#thumbnail').on('click', function(){
-            $mediaModal.modal('show');
-        });
-    });
+    // $(document).ready(function(){
+    //     $mediaModal = $('#mediaModal');
+    //     $('#thumbnail').on('click', function(){
+    //         $mediaModal.modal('show');
+    //     });
+    // });
 
     var $mediaCropModal = $('#mediaCropModal');
     var mediaImage = document.getElementById('mediaimage');

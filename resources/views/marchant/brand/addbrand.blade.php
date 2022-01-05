@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-
+        <x-mediamodal />
         <!-- Start Content-->
         <div class="container-fluid">
 
@@ -23,8 +23,11 @@
             </div>
             <!-- end page title -->
             <form method="POST" action="{{ route('brand.store') }}" enctype="multipart/form-data" class="form-horizontal"
-                role="form">
+                role="form" id="addBrandFrorm">
                 @csrf
+                <div id="addBrandFrormMedia">
+
+                </div>
                 <div class="row">
                     <div class="col-sm-9">
                         <div class="card">
@@ -62,6 +65,7 @@
                                                                 </div>
                                                             </div>
 
+
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"
                                                                     for="example-textarea">Description<span
@@ -78,7 +82,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-2 row">
+                                                            {{-- <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"
                                                                     for="simpleinput">Brand Image</label>
                                                                 <div class="col-md-10">
@@ -91,7 +95,7 @@
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <button type="submit" class="btn btn-success">Add Brand</button>
 
@@ -114,9 +118,9 @@
                     <div class="col-sm-3"> {{-- Galary Image Start --}}
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="text-center">Featured Image</h5>
+                                <h5 class="text-center m-0">Featured Image</h5>
                             </div>
-                            <div class="card-body" >
+                            <div class="card-body">
                                 <div class="form-group" id="brandMediaSelectArea">
                                     <div style="display: flex; justify-content:space-between" class="my-1">
                                         <label class="control-label text-center">Select Image For Upload</label>
@@ -208,19 +212,69 @@
     </style>
 
     <script>
-        $('#mediaForm').on('submit', function(event) {
-            event.preventDefault();
-            // var selectimage = $('input[name="selectimage"]:checked').val();
-            // var img = [];
-            // $.each($('input[name="selectimage"]:checked'), function() {
-                //     img.push(parseInt($(this).val()));
-                // });
+        function getGallery(mediaGallery) {
+            mediaGallery.empty();
+            $.ajax({
+                url: '{{route('merchant.modal.gallery')}}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if(data){
+                        mediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
 
-            var selectimage = $('input[name="selectimage"]:checked').val();
-            var brandMediaSelectArea = $('#brandMediaSelectArea');
-            var brandMediaArea = $('#brandMediaArea');
+        $(document).ready(function() {
+            var mediaGallery = $('#mediaGallery');
+            $mediaModal = $('#mediaModal');
+            $('#thumbnail').on('click', function() {
+                $mediaModal.modal('show');
+                getGallery(mediaGallery);
+            });
 
-            console.log(selectimage);
+            $('#mediaForm').on('submit', function(event) {
+                event.preventDefault();
+                var selectimage = $('input[name="selectimage"]:checked');
+                var brandMediaSelectArea = $('#brandMediaSelectArea');
+                var brandMediaArea = $('#brandMediaArea');
+
+                var fullUrl = selectimage.data('urlfull');
+                var smallUrl = selectimage.data('rulsmall');
+                var mediumUrl = selectimage.data('urlmedium');
+                var largeUrl = selectimage.data('urllarge');
+
+                var brandMediaArea = $('#brandMediaArea');
+
+                $('#brandMediaSelectArea').hide();
+                brandMediaArea.append(`<div id="selectedBrandMedia" class="text-center">
+                                        <h5>Brand Image</h5>
+                                        <img src="${smallUrl}" alt="" class="img-responsive p-2">
+                                        <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
+                                    </div>`);
+
+
+                $('#addBrandFrormMedia').append(
+                    `<div>
+                        <input type="hidden" name="img_full" value="${fullUrl}">
+                        <input type="hidden" name="img_small" value="${smallUrl}">
+                        <input type="hidden" name="img_medium" value="${mediumUrl}">
+                        <input type="hidden" name="img_large" value="${largeUrl}">
+                    </div>`
+                );
+                $mediaModal.modal('hide');
+                $('#selectedBrandMediaButton').on('click', function() {
+                    $('#addBrandFrormMedia').empty();
+                    $('#brandMediaSelectArea').show();
+                    $(this).parent().remove();
+                });
+
+
+            });
 
 
         });

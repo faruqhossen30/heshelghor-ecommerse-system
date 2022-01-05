@@ -4,15 +4,18 @@ use Illuminate\Support\Facades\Route;
 
 // Marchant Controller
 use App\Http\Controllers\Product\CategoryController;
-use App\Http\Controllers\FrontEnd\CheckoutController;
-use App\Http\Controllers\FrontEnd\HomepageController;
-use App\Http\Controllers\FrontEnd\ShopPageController;
 use App\Http\Controllers\Merchant\MerchantGalleryController;
 
 // Merchant Profile Controller
 use App\Http\Controllers\FrontEnd\SingleProductController;
 use App\Http\Controllers\Merchant\MerchatProfileController;
 use App\Http\Controllers\Admin\MarchantHomeController;
+use App\Http\Controllers\Product\BrandController;
+use App\Http\Controllers\Admin\MarchantController;
+use App\Http\Controllers\Merchant\MyBrandController;
+
+
+use App\Http\Controllers\Product\ProductController;
 
 Route::prefix('merchant')->group(function () {
     Route::get('login', [MarchantController::class, 'showLoginForm'])->name('marchant.login');
@@ -50,3 +53,5 @@ Route::prefix('merchant')->group(function () {
         Route::post('galary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
     });
 });
+
+Route::get('merchant/galary/modalgallery', [MerchantGalleryController::class, 'merchantModalGallery'])->name('merchant.modal.gallery');

@@ -12,13 +12,13 @@ use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\MarketController;
 // Location Controller
 use App\Http\Controllers\FrontEnd\CartController;
-use App\Http\Controllers\Product\BrandController;
-use App\Http\Controllers\Admin\MarchantController;
+
+
 // Attribute Controller
 use App\Http\Controllers\Merchant\OrderController;
 use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
-use App\Http\Controllers\Product\ProductController;
+
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Merchant\MyBrandController;
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
@@ -56,6 +56,16 @@ use App\Http\Controllers\Admin\MarchantRegisterController;
 
 
 // Front-End Controller
+
+
+use App\Http\Controllers\FrontEnd\CheckoutController;
+use App\Http\Controllers\FrontEnd\HomepageController;
+use App\Http\Controllers\FrontEnd\ShopPageController;
+
+
+
+
+
 use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Order\PaymentMethodController;

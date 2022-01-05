@@ -1,137 +1,269 @@
 @extends('marchant.layouts.app')
 
 @section('content')
-<div class="content">
+    <div class="content">
+        <x-mediamodal />
+        <!-- Start Content-->
+        <div class="container-fluid">
 
-    <!-- Start Content-->
-    <div class="container-fluid">
-
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Edit Brand</h4>
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Brand List</li>
-                        </ol>
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box page-title-box-alt">
+                        <h4 class="page-title">Create Brand</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                <li class="breadcrumb-item active">Brand List</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end page title -->
+            <!-- end page title -->
+            <form method="POST" action="{{ route('brand.update', $brand->id) }}" enctype="multipart/form-data" class="form-horizontal"
+                role="form" id="addBrandFrorm">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div id="addBrandFrormMedia"></div>
+                    <div class="col-sm-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <a href="{{ route('brand.index') }}" class="btn btn-success mb-2"><i
+                                                class="mdi mdi-format-list-bulleted me-1"></i> All Brand</a>
+                                    </div>
+                                </div>
+                                <!-- end row -->
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <a href="{{route('brand.index')}}" class="btn btn-success mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Brand</a>
-                            </div>
-                        </div>
-                        <!-- end row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                {{-- <h4 class="header-title">Create Brand </h4> --}}
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="p-2">
 
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        {{-- <h4 class="header-title">Create Brand </h4> --}}
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="p-2">
-                                                    <form method="POST" action="{{route('brand.update', $brand->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="old_image" value="{{$brand->image}}">
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Name</label>
-                                                            <div class="col-md-10">
-                                                                <input name="name" value="{{$brand->name}}" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror" placeholder="Name">
-                                                                <div class="text-danger">
-                                                                    @error('name')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Text area</label>
-                                                            <div class="col-md-10">
-                                                                <textarea name="description"  class="form-control @error('description') is-invalid @enderror" id="example-textarea" rows="5" placeholder="Brand description...">
-                                                                    {{$brand->description}}
-                                                                </textarea>
-                                                                <div class="text-danger">
-                                                                    @error('description')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Brand Image</label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
-                                                                    value="Some text value...">
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="simpleinput">Brand Name<span
+                                                                        class="text-danger">*</span></label>
+                                                                <div class="col-md-10">
+                                                                    <input name="name" type="text" id="simpleinput"
+                                                                        class="form-control @error('name') is-invalid @enderror "
+                                                                        placeholder="Name" value="{{ $brand->name }}">
                                                                     <div class="text-danger">
-                                                                        @error('image')
-                                                                        <span>{{ $message }}</span>
+                                                                        @error('name')
+                                                                            <span>{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
-                                                                    <img src="{{asset($brand->image)}}" style="width: 100px; height:100px" alt="">
+                                                                </div>
                                                             </div>
+
+
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="example-textarea">Description<span
+                                                                        class="text-danger">*</span> </label>
+                                                                <div class="col-md-10">
+                                                                    <textarea name="description"
+                                                                        class="form-control @error('description') is-invalid @enderror"
+                                                                        id="example-textarea" rows="5"
+                                                                        placeholder="Brand description...">{{ $brand->description }}</textarea>
+                                                                    <div class="text-danger">
+                                                                        @error('description')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-success">Add Brand</button>
+
+
                                                         </div>
+                                                    </div>
 
-                                                        <button type="submit" class="btn btn-success">Update Brand</button>
-
-                                                    </form>
                                                 </div>
+                                                <!-- end row -->
                                             </div>
+                                        </div> <!-- end card -->
+                                    </div><!-- end col -->
+                                </div>
+                                <!-- end row -->
 
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                </div> <!-- end card -->
-                            </div><!-- end col -->
+                            </div>
                         </div>
-                        <!-- end row -->
-
                     </div>
+
+                    <div class="col-sm-3"> {{-- Galary Image Start --}}
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center m-0">Featured Image</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" id="brandMediaSelectArea">
+                                    <div style="display: flex; justify-content:space-between" class="my-1">
+                                        <label class="control-label text-center">Select Image For Upload</label>
+                                        {{-- <button class="btn btn-danger btn-sm" id="collapseClose"
+                                        type="button">Close</button> --}}
+                                    </div>
+                                    <div class="selectmediadropzone-wrapper">
+                                        <div class="selectmediadropzone-desc">
+                                            <i class="mdi mdi-image h1 text-secondary"></i>
+                                            <p>Select Image</p>
+                                        </div>
+                                        <button name="thumbnail" id="thumbnail" type="button"
+                                            class="selectmediadropzone thumbnail"> Welcome </button>
+                                    </div>
+                                </div>
+                                <div id="brandMediaArea">
+                                    <div id="selectedBrandMedia" class="text-center">
+                                        <h5>Brand Image</h5>
+                                        <img src="{{$brand->img_full}}" alt="" class="img-responsive p-2">
+                                        <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> {{-- Galary Image End --}}
                 </div>
-            </div>
-        </div>
-        <!-- end row -->
-
-
-    </div> <!-- container -->
-
-</div> <!-- content -->
+            </form><!-- end row -->
+        </div> <!-- container -->
+    </div> <!-- content -->
 @endsection
 
 @push('css')
-<!-- third party css -->
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-    type="text/css" />
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
-    rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <!-- third party css -->
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
+
+    {{-- Style for image checkbox --}}
+    <style>
+        .image-checkbox {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .image-checkbox input {
+            /* display: none */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    </style>
 @endpush
 
 @push('scripts')
-<!-- third party js -->
-<script src="{{ asset('backend')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
-<!-- third party js ends -->
-<script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+    <!-- third party js -->
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js">
+    </script>
+    <script src="{{ asset('backend') }}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js">
+    </script>
+    <!-- third party js ends -->
+    <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style type="text/css">
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
+        }
+
+        .modal-lg {
+            max-width: 1000px !important;
+        }
+
+    </style>
+
+    <script>
+        function getGallery(mediaGallery) {
+            mediaGallery.empty();
+            $.ajax({
+                url: '{{route('merchant.modal.gallery')}}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if(data){
+                        mediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
+
+        $(document).ready(function() {
+            // $('#brandMediaSelectArea').hide();
+            var mediaGallery = $('#mediaGallery');
+            $mediaModal = $('#mediaModal');
+            $('#thumbnail').on('click', function() {
+                $mediaModal.modal('show');
+                getGallery(mediaGallery);
+            });
+
+            $('#mediaForm').on('submit', function(event) {
+                event.preventDefault();
+                var selectimage = $('input[name="selectimage"]:checked');
+                var brandMediaSelectArea = $('#brandMediaSelectArea');
+                var brandMediaArea = $('#brandMediaArea');
+
+                var fullUrl = selectimage.data('urlfull');
+                var smallUrl = selectimage.data('rulsmall');
+                var mediumUrl = selectimage.data('urlmedium');
+                var largeUrl = selectimage.data('urllarge');
+
+
+                $('#brandMediaSelectArea').hide();
+                brandMediaArea.append(`<div id="selectedBrandMedia" class="text-center">
+                                        <h5>Brand Image</h5>
+                                        <img src="${smallUrl}" alt="" class="img-responsive p-2">
+                                        <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
+                                    </div>`);
+
+
+                $('#addBrandFrormMedia').append(
+                    `<div>
+                        <input type="hidden" name="img_full" value="${fullUrl}">
+                        <input type="hidden" name="img_small" value="${smallUrl}">
+                        <input type="hidden" name="img_medium" value="${mediumUrl}">
+                        <input type="hidden" name="img_large" value="${largeUrl}">
+                    </div>`
+                );
+                $mediaModal.modal('hide');
+                $('#selectedBrandMediaButton').on('click', function() {
+                    $('#addBrandFrormMedia').empty();
+                    $('#brandMediaSelectArea').show();
+                    $(this).parent().remove();
+                });
+
+
+            });
+
+
+        });
+    </script>
+
 @endpush

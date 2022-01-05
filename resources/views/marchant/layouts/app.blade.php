@@ -63,7 +63,7 @@
             <div class="content">
 
                 <x-gallerycropmodal/>
-                <x-mediamodal/>
+                {{-- <x-mediamodal/> --}}
                 <x-mediacropmodal/>
                 <!-- Modal -->
 

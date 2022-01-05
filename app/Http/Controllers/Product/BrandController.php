@@ -45,54 +45,82 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-
         // return $request->all();
+
+
+        $validate = $request->validate([
+            'name'        => 'required',
+            'description' => 'required'
+        ]);
+
+        Brand::create([
+            'name'        => $request->name,
+            'description' => $request->description,
+            'slug'        => Str::of($request->name)->slug('-'),
+            'author'      => 'merchant',
+            'author_id'   => Auth::guard('marchant')->user()->id,
+            'img_full'    => $request->img_full,
+            'img_small'   => $request->img_small,
+            'img_medium'  => $request->img_medium,
+            'img_large'   => $request->img_large
+        ]);
+        Session::flash('create');
+        return redirect()->route('myaddedbrand');
+
+
+
+
+
 
         $image = $request->file('image');
 
-        if($image){
-            $validate = $request->validate([
-                'name'        => 'required',
-                'description' => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
-            ]);
 
 
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
 
-            Brand::create([
-                'name'        => $request->name,
-                'description' => $request->description,
-                'slug'        => Str::of($request->name)->slug('-'),
-                'image'       => 'uploads/brand/' . $fileName,
-                'author'      => 'merchant',
-                'author_id'   => Auth::guard('marchant')->user()->id,
-            ]);
+        // if($image){
+        //     $validate = $request->validate([
+        //         'name'        => 'required',
+        //         'description' => 'required',
+        //         'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+        //     ]);
 
-            Session::flash('create');
-            return redirect()->route('myaddedbrand');
 
-        } else{
-            $validate = $request->validate([
-                'name'        => 'required',
-                'description' => 'required',
-            ]);
-            $marchantname = 'merchant';
-            Brand::create([
-                'name'        => $request->name,
-                'description' => $request->description,
-                'slug'        => Str::of($request->name)->slug('-'),
-                'author'      => 'merchant',
-                'author_id'   => Auth::guard('marchant')->user()->id,
-            ]);
+        //     $fileExtention = $image->getClientOriginalExtension();
+        //     $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-            Session::flash('create');
-            return redirect()->route('myaddedbrand');
+        //     Image::make($image)->save(public_path('uploads/brand/') . $fileName);
 
-        };
+        //     Brand::create([
+        //         'name'        => $request->name,
+        //         'description' => $request->description,
+        //         'slug'        => Str::of($request->name)->slug('-'),
+        //         'image'       => 'uploads/brand/' . $fileName,
+        //         'author'      => 'merchant',
+        //         'author_id'   => Auth::guard('marchant')->user()->id,
+        //     ]);
+
+        //     Session::flash('create');
+        //     return redirect()->route('myaddedbrand');
+
+        // } else{
+        //     $validate = $request->validate([
+        //         'name'        => 'required',
+        //         'description' => 'required',
+        //     ]);
+        //     $marchantname = 'merchant';
+        //     Brand::create([
+        //         'name'        => $request->name,
+        //         'description' => $request->description,
+        //         'slug'        => Str::of($request->name)->slug('-'),
+        //         'author'      => 'merchant',
+        //         'author_id'   => Auth::guard('marchant')->user()->id,
+        //     ]);
+
+        //     Session::flash('create');
+        //     return redirect()->route('myaddedbrand');
+
+        // };
 
 
     }
@@ -130,50 +158,22 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $image = $request->file('image');
-        if($image){
-            $validate = $request->validate([
-                'name'        => 'required',
-                'description' => 'required',
-                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
-            ]);
 
-            $old_image = $request->old_image;
+        return $request->all();
 
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
+        $validate = $request->validate([
+            'name'        => 'required',
+            'description' => 'required',
+        ]);
 
-            Image::make($image)->save(public_path('uploads/brand/') . $fileName);
+        $data = [
+            'name'        => $request->name,
+            'description' => $request->description,
+        ];
 
-            $data = [
-                'name'        => $request->name,
-                'description' => $request->description,
-                'image'       => 'uploads/brand/' . $fileName,
-            ];
-            if(isset($old_image)){
-                unlink($old_image);
-            }
-            $update = Brand::where('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('myaddedbrand');
-        } else{
-
-            $validate = $request->validate([
-                'name'        => 'required',
-                'description' => 'required',
-            ]);
-
-            $data = [
-                'name'        => $request->name,
-                'description' => $request->description,
-            ];
-
-            $update = Brand::where('id', $id)->update($data);
-            Session::flash('update');
-            return redirect()->route('myaddedbrand');
-        }
-
-
+        $update = Brand::where('id', $id)->update($data);
+        Session::flash('update');
+        return redirect()->route('myaddedbrand');
     }
 
     /**
@@ -185,7 +185,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $brand = Brand::where('id', $id)->get()->first();
-        if(isset($brand->image)){
+        if (isset($brand->image)) {
             unlink($brand->image);
         };
         $delete = Brand::where('id', $id)->delete();
