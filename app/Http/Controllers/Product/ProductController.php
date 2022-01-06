@@ -237,11 +237,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $request->all();
+        return $request->all();
         $product = Product::where('id', $id)->first();
 
         $colors = $request->colors;
         $sizes = $request->sizes;
+
+        $validate = $request->validate([
+            'title'             => 'required | max:255',
+            'description'       => 'required | max:5000',
+            'short_description' => 'required | max:1000',
+            'category_id'       => 'required',
+            'subcategory_id'    => 'required',
+            'brand_id'          => 'required',
+            'shop_id'           => 'required',
+            'upazila_id'        => 'required',
+            'district_id'       => 'required',
+            'division_id'       => 'required',
+            'regular_price'     => 'required',
+            'price'             => 'required',
+            'quantity'          => 'required',
+            'quantity_alert'    => 'required'
+        ]);
 
             $data = [
                 'title'             => $request->title,
@@ -260,13 +277,14 @@ class ProductController extends Controller
                 'quantity'          => $request->quantity,
                 'quantity_alert'    => $request->quantity_alert,
                 // 'puk_code'       => $request->title,
+                'img_full'          => $request->img_full,
+                'img_small'         => $request->img_small,
+                'img_medium'        => $request->img_medium,
+                'img_large'         => $request->img_large
             ];
 
             // return $request->all();
             $update = Product::where('id', $id)->update($data);
-            if ($product->photo) {
-                unlink('uploads/product/' . $product->photo);
-            }
 
             // Update Color
             if (!empty($colors)) {
@@ -294,20 +312,11 @@ class ProductController extends Controller
             };
             // Update Slider Image
 
-            if (!empty($images)) {
-                $sliderImage = ProductImage::where('product_id', $id)->get();
-                if (!empty($sliderImage)) {
-                    foreach ($sliderImage as $image) {
-                        if (!empty($image)) {
-                            unlink('uploads/products/' . $image->image);
-                        };
-                    };
-                    ProductImage::where('product_id', $id)->delete();
-                };
-
-                foreach ($images as $image) {
-                    ProductImage::create([
-                        'image' => $image,
+            if (!empty($fullsizeimages)) {
+                ProductImgFull::where('product_id', $id)->delete();
+                foreach ($fullsizeimages as $image) {
+                    ProductImgFull::create([
+                        'url' => $image,
                         'product_id' => $product->id,
                     ]);
                 }

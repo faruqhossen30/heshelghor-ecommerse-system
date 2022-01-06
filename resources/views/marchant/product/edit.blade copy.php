@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="content">
-        <x-mediamodal />
-        <x-multiplemediamodal />
+
         <!-- Start Content-->
         <div class="container-fluid">
+
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -22,25 +22,20 @@
                 </div>
             </div>
             <!-- end page title -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('product.update', $product->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 {{-- Title --}}
-                                <div id="addProductMedia">
-
-                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Product Name <span
-                                                    class="text-danger">*</span></label>
-                                            <input required type="text" name="title" id="product-name"
-                                                class="form-control @error('title') is-invalid @enderror"
-                                                placeholder="Example: Apple iMac" value="{{ $product->title}}">
+                                            <label for="product-name" class="form-label">Product Name <span class="text-danger">*</span></label>
+                                            <input required type="text" name="title" id="product-name" class="form-control @error('title') is-invalid @enderror"  value="{{ $product->title}}">
                                             <div class="text-danger">
                                                 @error('title')
                                                     <span>{{ $message }}</span>
@@ -54,16 +49,12 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Category <span
-                                                    class="text-danger">*</span></label>
-                                            <select name="category_id"
-                                                class="form-control @error('category_id') is-invalid @enderror"
-                                                id="product-category">
-                                                <option value="">Select</option>
-                                                @foreach ($categories as $category)
-                                                <option value="{{$category->id}}" {{($product->category_id == $category->id) ? ' selected' : ''}}>{{$category->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="product-name" class="form-label">Category <span class="text-danger">*</span></label>
+                                                <select name="category_id" value="{{$product->category_id}}" class="form-control" id="product-category">
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}" {{($product->category_id == $category->id) ? ' selected' : ''}}>{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             <div class="text-danger">
                                                 @error('category_id')
                                                     <span>{{ $message }}</span>
@@ -265,21 +256,16 @@
                                 {{-- Color and Size --}}
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="card-body">
-                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span>
-                                            </h5>
-                                            <div style="display: flex; flex-wrap: wrap; ">
+                                        <div class="mt-1 card card-body">
+                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span></h5>
                                             @foreach ($colors as $color)
-                                                <div class="form-check" style="margin-right: 5px">
+                                                <div class="form-check">
                                                     <input @if (in_array(['color_id'=>$color->id], $colorArray)) checked @endif name="colors[]" class="form-check-input @error('colors') is-invalid @enderror"  type="checkbox" value="{{ $color->id }}"  id="flexCheckDefault{{ $color->id }}">
-                                                    <label class="form-check-label"
-                                                        for="flexCheckDefault{{ $color->id }}">
+                                                    <label class="form-check-label" for="flexCheckDefault{{ $color->id }}">
                                                         {{ $color->name }}
                                                     </label>
-
                                                 </div>
                                             @endforeach
-                                            </div>
                                             <div class="text-danger">
                                                 @error('colors')
                                                     <span>{{ $message }}</span>
@@ -289,27 +275,23 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card-body">
+                                        <div class="mt-1 card card-body">
                                             <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span>
                                             </h5>
-                                            <div style="display: flex; flex-wrap: wrap; ">
-                                                @foreach ($sizes as $size)
-                                                    <div class="form-check" style="margin-right: 5px">
-                                                        <input name="sizes[]"
+                                            @foreach ($sizes as $size)
+                                                <div class="form-check">
+                                                    <input name="sizes[]"
                                                         @if (in_array(['size_id'=>$size->id], $sizeArray)) checked @endif
                                                         class="form-check-input @error('sizes') is-invalid @enderror"
                                                         type="checkbox" value="{{ $size->id }}"
                                                         id="flexCheckDefault{{ $size->id }}">
-                                                        <label class="form-check-label"
-                                                            for="flexCheckDefault{{ $size->id }}">
-                                                            {{ $size->name }}
-                                                        </label>
+                                                    <label class="form-check-label"
+                                                        for="flexCheckDefault{{ $size->id }}">
+                                                        {{ $size->name }}
+                                                    </label>
 
-                                                    </div>
-                                                @endforeach
-                                            </div>
-
-
+                                                </div>
+                                            @endforeach
                                             <div class="text-danger">
                                                 @error('sizes')
                                                     <span>{{ $message }}</span>
@@ -318,67 +300,71 @@
 
                                         </div>
                                     </div>
-                                    <hr>
+                                </div>
+
+
+
+
+                                {{-- Image Section --}}
+                                <hr>
+                                <div class="mb-3 row">
+                                    <label for="formFile" class="form-label">
+                                        <h4 class="header-title">Product Images</h4>
+                                        <p class="sub-header">Image size should be ( width: 800px height: 800px )</p>
+
+                                    </label>
+                                    <div class="col-3">
+                                        <input name="photo" class="form-control dropify @error('photo') is-invalid @enderror" type="file" id="formFile"
+                                        data-show-errors="true" data-errors-position="outside"
+                                        data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="3M" data-max-file-size="1M"
+                                        >
+                                    </div>
+                                    <div class="col-3">
+                                        <small style="display: block">Product Photo</small>
+                                        <img style="width: 130px; height:130px" class="img-thumbnail" src="{{asset('/uploads/product/'.$product->photo)}}" alt="photo">
+                                    </div>
+                                    <div class="text-danger">
+                                        @error('photo')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
 
                                 {{-- Image Section --}}
+                                <hr>
                                 <div class="mb-3">
-                                    <h4 class="header-title">Product Photo</h4>
-                                    <div id="productImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2">
+                                    <label for="formFileMultiple" class="form-label">
+                                        <h4 class="header-title">Product Slider Image</h4>
+                                        <p class="sub-header m-0">Image size should be ( width: 800px height: 800px )</p>
+                                       @foreach ($images as $item)
+                                        <img class="avatar-lg rounded bg-light" src="{{asset('uploads/products/'.$item->image)}}" alt="photo">
+                                       @endforeach
 
-                                        <i class="mdi mdi-image h1 text-secondary"></i>
-                                        <p>Select Photos</p>
-                                    </div>
-                                </div>
-                                <div id="productImageMediaArea">
-                                </div>
-
-                                <div class="mb-3">
-                                    <h4 class="header-title mt-2">Product Slider Photos</h4>
-                                    <div id="productSliderImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2">
-
-                                        <i class="mdi mdi-image h1 text-secondary"></i>
-                                        <p>Prduct Gallery Photos</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div id="productSliderMediaArea" class="col-12"
-                                        style="display: flex; flex-wrap: wrap;">
-
+                                    </label>
+                                    <input name="image[]" class="form-control @error('image') is-invalid @enderror"
+                                        type="file" id="formFileMultiple" multiple>
+                                    <div class="text-danger">
+                                        @error('image')
+                                            <span>{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Update Product <i
-                                    class="mdi mdi-arrow-right ms-1"></i></button>
-
-                        </div>
+                                        class="mdi mdi-arrow-right ms-1"></i></button>
 
 
 
+                            </form>
+                        </div> {{-- card-body-end --}}
 
-
-
-
-
-
-
-
-
-
-
-
-                        </form>
-                    </div> {{-- card-body-end --}}
-
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- end row -->
+            <!-- end row -->
 
 
-    </div> <!-- container -->
+        </div> <!-- container -->
 
     </div> <!-- content -->
 @endsection
@@ -433,12 +419,27 @@
 
     <!-- Select2 js-->
     <script src="{{ asset('backend') }}/assets/libs/select2/js/select2.min.js"></script>
+    <!-- Dropzone file uploads-->
+    <script src="{{ asset('backend') }}/assets/libs/dropzone/min/dropzone.min.js"></script>
+
+    <!-- Init js-->
+    <script src="{{ asset('backend') }}/assets/js/pages/form-fileuploads.init.js"></script>
 
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
-
-
+    {{-- Dorpyfi --}}
+    <script src="{{ asset('js/dropify.min.js') }}"></script>
+    <script>
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop product new photo or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something wrong happended.'
+            }
+        });
+    </script>
 
     <script>
         $(function() {
@@ -527,146 +528,6 @@
 
             });
 
-        });
-
-
-
-
-        var mediaGallery = $('#mediaGallery');
-
-        function getSingleGallery(mediaGallery) {
-            mediaGallery.empty();
-            $.ajax({
-                url: '{{ route('merchant.modal.gallery') }}',
-                method: 'GET',
-                // dataType: "json",
-                success(data) {
-                    if (data) {
-                        mediaGallery.append(data);
-                    }
-                },
-                error() {
-                    console.log('Upload error');
-                }
-            });
-        };
-        // For Image Gallery
-        var productImage = $('#productImage');
-        $mediaModal = $('#mediaModal');
-
-        $('#productImage').on('click', function() {
-            $mediaModal.modal('show');
-            getSingleGallery(mediaGallery)
-        });
-
-        // Media From Submit
-        $('#mediaForm').on('submit', function(event) {
-            event.preventDefault();
-            var selectimage = $('input[name="selectimage"]:checked');
-            var brandMediaSelectArea = $('#brandMediaSelectArea');
-            var brandMediaArea = $('#brandMediaArea');
-
-            var fullUrl = selectimage.data('urlfull');
-            var smallUrl = selectimage.data('rulsmall');
-            var mediumUrl = selectimage.data('urlmedium');
-            var largeUrl = selectimage.data('urllarge');
-
-            var productImageMediaArea = $('#productImageMediaArea');
-
-            $('#productImage').hide();
-            productImageMediaArea.append(`<div id="selectedProductImageMedia">
-                                        <img src="${smallUrl}" alt="" class="img-responsive p-2 img-thumbnail" style="width:100px;height:100px" >
-                                        <button  id="selectedProductImageMediaCloseButton" type="button" class="btn btn-danger"> Close</button>
-                                    </div>`);
-
-
-            $('#addProductMedia').append(
-                `<div>
-                    <input type="hidden" name="img_full" value="${fullUrl}">
-                    <input type="hidden" name="img_small" value="${smallUrl}">
-                    <input type="hidden" name="img_medium" value="${mediumUrl}">
-                    <input type="hidden" name="img_large" value="${largeUrl}">
-                </div>`
-            );
-            $mediaModal.modal('hide');
-
-        });
-
-        $(document).on('click', '#selectedProductImageMediaCloseButton', function() {
-            $('#addProductMedia').empty();
-            $(this).parent().remove();
-            $('#productImage').show();
-        });
-        // Multiple Media Modal
-
-        function getMultipleGallery(multipleMediaGallery) {
-            multipleMediaGallery.empty();
-            $.ajax({
-                url: '{{ route('merchant.modal.gallerymultiple') }}',
-                method: 'GET',
-                // dataType: "json",
-                success(data) {
-                    if (data) {
-                        multipleMediaGallery.append(data);
-                    }
-                },
-                error() {
-                    console.log('Upload error');
-                }
-            });
-        };
-
-
-        var productSliderImage = $('#productSliderImage');
-        var multipleMediaGallery = $('#multipleMediaGallery');
-
-        $multipleMediaModal = $('#multipleMediaModal');
-        $('#productSliderImage').on('click', function() {
-            $multipleMediaModal.modal('show');
-            getMultipleGallery(multipleMediaGallery)
-
-        });
-
-
-        $('#multipleMediaForm').on('submit', function(event) {
-            event.preventDefault();
-            // alert('ok')
-            var selectimage = $('input[name="selectimage"]:checked');
-            var brandMediaSelectArea = $('#brandMediaSelectArea');
-            var brandMediaArea = $('#brandMediaArea');
-
-            // var fullUrl = selectimage.data('urlfull');
-            // var smallUrl = selectimage.data('urlsmall');
-            // var mediumUrl = selectimage.data('urlmedium');
-            // var largeUrl = selectimage.data('urllarge');
-            var urlfull = [];
-            var urlsmall = [];
-            var urlmedium = [];
-            var urllarge = [];
-
-            $.each(selectimage, function() {
-                urlfull.push($(this).data('urlfull'));
-                urlsmall.push($(this).data('urlsmall'));
-            });
-
-            // console.log(data);
-
-            var productSliderMediaArea = $('#productSliderMediaArea');
-
-            $.each(urlfull, function(key, value) {
-                console.log(value);
-
-                productSliderMediaArea.append(`<div class="selectedProductImageMedia p-1" style="text-align:center">
-                                        <img src="${value}" alt="" class="img-responsive p-2 img-thumbnail" style="width:150px;height:150px" > <br>
-                                        <button  type="button" class="selectedProductImageMediaCloseButton btn btn-danger btn-sm mt-1"> Close</button>
-                                        <input type="hidden" name="fullsizeimages[]" value="${value}">
-                                    </div>`);
-            });
-            $multipleMediaModal.modal('hide');
-
-        });
-        $(document).on('click', '.selectedProductImageMediaCloseButton', function() {
-            $(this).parent().remove()
-        });
+        })
     </script>
 @endpush

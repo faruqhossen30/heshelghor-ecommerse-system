@@ -22,7 +22,7 @@ use App\Http\Controllers\API\Merchant\MerchantOrderItemAPIController;
 use App\Http\Controllers\API\Merchant\MerchantShopAPIController;
 use App\Http\Controllers\API\Merchant\MerchantAuthAPIController;
 use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
-
+use App\Http\Controllers\API\MerChant\MerchantMediaAPIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -121,6 +121,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('/shop/{id}', [MerchantShopAPIController::class, 'show']);
         Route::post('/shop/update/{id}', [MerchantShopAPIController::class, 'update']);
         Route::get('/shop/delete/{id}', [MerchantShopAPIController::class, 'destroy']);
+        // Media
+        Route::get('/media/all', [MerchantMediaAPIController::class, 'getAllMedia']);
+        Route::post('/media/store', [MerchantMediaAPIController::class, 'store']);
     });
 
 
