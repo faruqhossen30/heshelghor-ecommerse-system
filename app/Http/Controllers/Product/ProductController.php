@@ -18,6 +18,7 @@ use App\Models\Product\Brand;
 use App\Models\Product\ProductColor;
 use App\Models\Product\ProductSize;
 use App\Models\Product\ProductImage;
+use App\Models\Product\ProductImgFull;
 use Session;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -68,7 +69,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        return $request->all();
+        // return $request->all();
 
 
 
@@ -85,40 +86,14 @@ class ProductController extends Controller
             'division_id'       => 'required',
             'regular_price'     => 'required',
             'price'             => 'required',
-            'photo'             => 'required',
+            'quantity'          => 'required',
+            'quantity_alert'    => 'required'
         ]);
 
 
-        $photo = $request->file('photo');
-
-        if ($request->file('photo')) {
-            $photofileExtention = $photo->getClientOriginalExtension();
-            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
-        };
-
-        $images = [];
-        $i = 0;
-        $sliderimage = $request->file('image');
-
-        if ($sliderimage) {
-            foreach ($request->file('image') as $image) {
-
-                $fileExtention = $image->getClientOriginalExtension();
-                $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-                Image::make($image)->save(public_path('uploads/products/') . $fileName);
-
-                $images[] = $fileName;
-                $i++;
-            };
-        }
-
-
-
-        // return $request->all();
-
         $colors = $request->colors;
         $sizes = $request->sizes;
+        $fullsizeimages = $request->fullsizeimages;
 
         $product = Product::create([
             'title'             => $request->title,
@@ -141,17 +116,20 @@ class ProductController extends Controller
             'quantity'          => $request->quantity,
             'quantity_alert'    => $request->quantity_alert,
             // 'puk_code'       => $request->title,
-            'photo'             => $photofileName,
+            'img_full'          => $request->img_full,
+            'img_small'         => $request->img_small,
+            'img_medium'        => $request->img_medium,
+            'img_large'         => $request->img_large
         ]);
 
 
 
         if ($product) {
             // Add Image
-            if (!empty($images)) {
-                foreach ($images as $image) {
-                    ProductImage::create([
-                        'image' => $image,
+            if (!empty($fullsizeimages)) {
+                foreach ($fullsizeimages as $image) {
+                    ProductImgFull::create([
+                        'url' => $image,
                         'product_id' => $product->id,
                     ]);
                 }
@@ -261,31 +239,9 @@ class ProductController extends Controller
     {
         // return $request->all();
         $product = Product::where('id', $id)->first();
-        $images = [];
-        if ($request->hasFile('image')) {
-            $i = 0;
-            foreach ($request->file('image') as $image) {
-                $old_image = $request->old_image;
-                if (isset($old_image)) {
-                    unlink($old_image);
-                }
-                $fileExtention = $image->getClientOriginalExtension();
-                $fileName = hexdec(uniqid()) . '.' . $fileExtention;
-                Image::make($image)->save(public_path('uploads/products/') . $fileName);
 
-                $images[] = $fileName;
-                $i++;
-            };
-        }
-
-        $photo = $request->file('photo');
         $colors = $request->colors;
         $sizes = $request->sizes;
-
-        if ($request->file('photo')) {
-            $photofileExtention = $photo->getClientOriginalExtension();
-            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
 
             $data = [
                 'title'             => $request->title,
@@ -304,7 +260,6 @@ class ProductController extends Controller
                 'quantity'          => $request->quantity,
                 'quantity_alert'    => $request->quantity_alert,
                 // 'puk_code'       => $request->title,
-                'photo'             => $photofileName,
             ];
 
             // return $request->all();
@@ -361,78 +316,7 @@ class ProductController extends Controller
 
             Session::flash('update');
             return redirect()->route('product.index');
-        } else {
-            $data = [
-                'title'             => $request->title,
-                'description'       => $request->description,
-                'short_description' => $request->short_description,
-                'category_id'       => $request->category_id,
-                'subcategory_id'    => $request->subcategory_id,
-                'brand_id'          => $request->brand_id,
-                'shop_id'           => $request->shop_id,
-                'division_id'       => $request->division_id,
-                'district_id'       => $request->district_id,
-                'upazila_id'        => $request->upazila_id,
-                'regular_price'     => $request->regular_price,
-                'discount'          => $request->discount,
-                'price'             => $request->price,
-                'quantity'          => $request->quantity,
-                'quantity_alert'    => $request->quantity_alert,
-                // 'puk_code'       => $request->title,
-            ];
 
-            // return $request->all();
-            $update = Product::where('id', $id)->update($data);
-
-            // Update Color
-            if (!empty($colors)) {
-                ProductColor::where('product_id', $id)->delete();
-            };
-            if (!empty($colors)) {
-                foreach ($colors as $color) {
-                    ProductColor::create([
-                        'color_id' => $color,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-            // Update Size
-            if (!empty($sizes)) {
-                ProductSize::where('product_id', $id)->delete();
-            };
-            if (!empty($sizes)) {
-                foreach ($sizes as $size) {
-                    ProductSize::create([
-                        'size_id' => $size,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-            // Update Slider Image
-
-            if (!empty($images)) {
-                $sliderImage = ProductImage::where('product_id', $id)->get();
-                if (!empty($sliderImage)) {
-                    foreach ($sliderImage as $image) {
-                        if (!empty($image)) {
-                            unlink('uploads/products/' . $image->image);
-                        };
-                    };
-                    ProductImage::where('product_id', $id)->delete();
-                };
-
-                foreach ($images as $image) {
-                    ProductImage::create([
-                        'image' => $image,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-
-
-            Session::flash('update');
-            return redirect()->route('product.index');
-        };
     }
 
     /**

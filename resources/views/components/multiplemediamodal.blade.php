@@ -8,7 +8,7 @@ $galleries = $user->getMedia();
 
 <div class="modal" id="multipleMediaModal" tabindex="-1" aria-labelledby="multipleMediaModalLabel" aria-hidden="true"
     data-bs-keyboard="false" data-bs-backdrop="static">
-    <form action="" method="post" id="mediaForm">
+    <form action="" method="post" id="multipleMediaForm">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">

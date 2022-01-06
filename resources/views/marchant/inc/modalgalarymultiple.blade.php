@@ -9,7 +9,7 @@
                             style="max-width: 100%; height:auto;">
                         <input name="selectimage" value="{{$gallery->id}}" type="checkbox"
                             data-urlfull="{{$gallery->getUrl()}}"
-                            data-rulsmall="{{$gallery->getUrl('small')}}"
+                            data-urlsmall="{{$gallery->getUrl('small')}}"
                             data-urlmedium="{{$gallery->getUrl('medium')}}"
                             data-urllarge="{{$gallery->getUrl('large')}}"
                         >

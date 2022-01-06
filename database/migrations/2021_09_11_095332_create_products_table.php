@@ -27,7 +27,6 @@ class CreateProductsTable extends Migration
             $table->string('author');
             $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
-
             // price
             $table->double('regular_price');
             $table->double('discount')->nullable();
@@ -38,6 +37,12 @@ class CreateProductsTable extends Migration
             $table->string('puk_code')->nullable();
             $table->string('photo');
             $table->boolean('status')->default(true);
+            // Photo
+            $table->string('img_full');
+            $table->string('img_small');
+            $table->string('img_medium');
+            $table->string('img_large');
+
             $table->timestamps();
         });
     }
