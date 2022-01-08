@@ -257,6 +257,8 @@ Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
 
 Route::get('test', [TestController::class, 'test'])->name('test');
+Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
+
 Route::post('callback', [UserOrderController::class, 'callback'])->name('callback');
 
 

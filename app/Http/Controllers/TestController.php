@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use App\Models\Auth\Marchant;
 
 use function PHPSTORM_META\type;
 
@@ -26,6 +27,9 @@ public function checkAarray()
 
     public function test()
     {
+        return "ok";
+
+
         $response = Http::post('https://sandbox.walletmix.com/init-payment-process', [
             "wmx_id"            => "WMX618a0f25cb7f4",
             "merchant_order_id" => "123",
@@ -67,6 +71,35 @@ public function checkAarray()
             'accept_time'         => Carbon::now(),
         ]);
         return $pt;
+    }
+
+
+    public function allmedia()
+    {
+        $merchant = Marchant::where('id', 1)->first();
+        $medias = $merchant->getMedia();
+
+        $data = [];
+        // $library = $$medias->transform(function ($item, $key) {
+            foreach ($merchant->getMedia() as $media) {
+                $data[] = [
+                    'file_name'    => $media->file_name,
+                    'original_url' => $media->getUrl(),
+                    'small_url'    => $media->getUrl('small'),
+                    'medium_url'   => $media->getUrl('medium'),
+                    'large_url'    => $media->getUrl('large')
+
+                ];
+                // return $data;
+
+            }
+
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $data
+            ]);
+
     }
 
 
