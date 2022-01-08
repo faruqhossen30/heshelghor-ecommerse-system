@@ -264,8 +264,28 @@ class MerchantShopAPIController extends Controller
     }
 
 
-    public function testing()
+    public function testing(Request $request)
     {
-        return "just for tesitn media api";
+        $merchant = $request->user();
+        $medias =  $merchant->getMedia();
+        $data = [];
+            foreach ($merchant->getMedia() as $media) {
+                $data[] = [
+                    'file_name'    => $media->file_name,
+                    'original_url' => $media->getUrl(),
+                    'small_url'    => $media->getUrl('small'),
+                    'medium_url'   => $media->getUrl('medium'),
+                    'large_url'    => $media->getUrl('large')
+
+                ];
+                // return $data;
+
+            }
+
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $data
+            ]);
     }
 }
