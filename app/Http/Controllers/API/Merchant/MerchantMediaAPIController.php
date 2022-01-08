@@ -38,6 +38,7 @@ class MerchantMediaAPIController extends Controller
     {
         $merchant = $request->user();
         // return $merchant;
+        return $request->all();
         $data = $merchant->addMedia($request->media)->toMediaCollection();
 
         return response()->json([
