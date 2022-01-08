@@ -1,9 +1,9 @@
-<div class="row">
-    <div class="col-8">
+<div class="row" style="max-height:60vh">
+    <div class="col-12">
         <div class="row">
             @foreach ($galleries as $gallery)
                 <div class="col-md-3">
-                    <label class="image-checkbox">
+                    <label class="image-checkbox" style="position: relative">
                         <img class="img-responsive border border-secondary my-1"
                             src="{{ $gallery->getUrl('small') }}"
                             style="max-width: 100%; height:auto;">
@@ -12,6 +12,7 @@
                             data-rulsmall="{{$gallery->getUrl('small')}}"
                             data-urlmedium="{{$gallery->getUrl('medium')}}"
                             data-urllarge="{{$gallery->getUrl('large')}}"
+                            style="position: absolute; top:5px; left:0px"
                         >
                         {{-- <i class="fa fa-check hidden"></i> --}}
                     </label>
@@ -19,9 +20,5 @@
             @endforeach
 
         </div>
-    </div>
-
-    <div class="col-4">
-        ssdf
     </div>
 </div>

@@ -275,7 +275,7 @@
 
                                 {{-- Short Description --}}
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label">Product Summary</label>
+                                    <label for="product-summary" class="form-label">Product Summary<span class="text-danger">*</span></label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror"
                                         id="product-summary" rows="5"
@@ -350,12 +350,17 @@
 
                                 {{-- Image Section --}}
                                 <div class="mb-3">
-                                    <h4 class="header-title">Product Photo</h4>
+                                    <h4 class="header-title">Product Photo<span class="text-danger">*</span></h4>
                                     <div id="productImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2">
+                                        class="text-center my-2 @error('img_full') is-invalid @enderror">
 
                                         <i class="mdi mdi-image h1 text-secondary"></i>
                                         <p>Select Photos</p>
+                                    </div>
+                                    <div class="text-danger">
+                                        @error('img_full')
+                                            <span>{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div id="productImageMediaArea">
@@ -381,21 +386,6 @@
                                     class="mdi mdi-arrow-right ms-1"></i></button>
 
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </form>
                     </div> {{-- card-body-end --}}
 
@@ -420,17 +410,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     {{-- Dropyfiy --}}
     <link rel="stylesheet" href="{{ asset('css/dropify.min.css') }}">
-    <style>
-        .dropify-message .file-icon p {
-            font-size: 14px;
-        }
-
-        .dropify-wrapper {
-            width: 150px;
-            height: 150px;
-        }
-
-    </style>
 @endpush
 @push('summernote')
     <script>
@@ -550,7 +529,7 @@
 
                 var some = regularPrice + ((regularPrice * categoryCommission) / 100) - ((regularPrice *
                     disCount) / 100);
-                $('#price').val(some);
+                $('#price').val(Math.round(some));
 
             });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product\Product;
 use App\Models\Product\ProductColor;
 use App\Models\Product\ProductImage;
+use App\Models\Product\ProductImgFull;
 use App\Models\Product\ProductSize;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -70,23 +71,17 @@ class MerchantProductAPIController extends Controller
             'division_id'       => 'required',
             'regular_price'     => 'required',
             'price'             => 'required',
-            'photo'             => 'required',
+            'quantity'          => 'required',
+            'quantity_alert'    => 'required'
         ]);
 
 
-        $photo = $request->file('photo');
-
-        if ($request->file('photo')) {
-            $photofileExtention = $photo->getClientOriginalExtension();
-            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
-        };
 
         $product = Product::create([
             'title'             => $request->title,
             'description'       => $request->description,
-            'slug'              => $slug = SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
             'short_description' => $request->short_description,
+            'slug'              => $slug = SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,
@@ -98,10 +93,15 @@ class MerchantProductAPIController extends Controller
             'upazila_id'        => $request->upazila_id,
             'regular_price'     => $request->regular_price,
             'discount'          => $request->discount,
+            // 'offer_price'    => $request->offer_price,
             'price'             => $request->price,
             'quantity'          => $request->quantity,
             'quantity_alert'    => $request->quantity_alert,
-            'photo'             => $photofileName,
+            // 'puk_code'       => $request->title,
+            'img_full'          => $request->img_full,
+            'img_small'         => $request->img_small,
+            'img_medium'        => $request->img_medium,
+            'img_large'         => $request->img_large
         ]);
 
 
@@ -184,18 +184,9 @@ class MerchantProductAPIController extends Controller
     public function productImage(Request $request)
     {
         $merchantId = $request->user()->id;
-        $image = $request->file('image');
 
-        $imageExtention = $image->getClientOriginalExtension();
-        $imageName = hexdec(uniqid()) . '.' . $imageExtention;
-        Image::make($image)->save(public_path('uploads/products/') . $imageName);
 
-        $color = ProductImage::create([
-            'product_id' => $request->product_id,
-            'image'      => $imageName
-        ]);
-
-        $result = ProductImage::where('product_id', $request->product_id,)->get();
+        $result = ProductImgFull::where('product_id', $request->product_id,)->get();
 
         return response()->json([
             'success' => true,

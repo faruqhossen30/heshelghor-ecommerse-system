@@ -28,11 +28,11 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
             // price
-            $table->double('regular_price');
-            $table->double('discount')->nullable();
-            $table->double('price');
-            $table->double('quantity');
-            $table->double('quantity_alert');
+            $table->integer('regular_price');
+            $table->integer('discount')->nullable();
+            $table->integer('price');
+            $table->integer('quantity');
+            $table->integer('quantity_alert');
             $table->double('review')->nullable();
             $table->string('puk_code')->nullable();
             $table->string('photo');

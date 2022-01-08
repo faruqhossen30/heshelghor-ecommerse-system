@@ -87,7 +87,10 @@ class ProductController extends Controller
             'regular_price'     => 'required',
             'price'             => 'required',
             'quantity'          => 'required',
-            'quantity_alert'    => 'required'
+            'quantity_alert'    => 'required',
+            'img_full'          => 'required'
+        ],[
+            'img_full.required' => 'Please select product photo'
         ]);
 
 
@@ -175,16 +178,17 @@ class ProductController extends Controller
         $merchantId = Auth::guard('marchant')->user()->id;
 
 
-        $categories = Category::all();
-        $subcategories = SubCategory::all();
-        $brands = Brand::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::orderBy('name', 'asc')->get();
+        $brands = Brand::orderBy('name', 'asc')->get();
+        $shops = Shop::where('author_id', $merchantId)->get();
+        $colors = Color::orderBy('name', 'asc')->get();
+        $sizes = Size::orderBy('name', 'asc')->get();
+
         $divisions = Division::all();
         $districts = District::all();
         $upazilas = Upazila::all();
 
-        $shops = Shop::where('author_id', $merchantId)->get();
-        $colors = Color::all();
-        $sizes = Size::all();
 
         $images = ProductImage::where('product_id', $id)->get();
 
@@ -205,24 +209,26 @@ class ProductController extends Controller
         $merchantId = Auth::guard('marchant')->user()->id;
 
 
-        $categories = Category::all();
-        $subcategories = SubCategory::all();
-        $brands = Brand::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::orderBy('name', 'asc')->get();
+        $brands = Brand::orderBy('name', 'asc')->get();
+        $shops = Shop::where('author_id', $merchantId)->get();
+        $colors = Color::orderBy('name', 'asc')->get();
+        $sizes = Size::orderBy('name', 'asc')->get();
+
         $divisions = Division::all();
         $districts = District::all();
         $upazilas = Upazila::all();
 
-        $shops = Shop::where('author_id', $merchantId)->get();
-        $colors = Color::all();
-        $sizes = Size::all();
 
-        $images = ProductImage::where('product_id', $id)->get();
+
+        $images = ProductImgFull::where('product_id', $id)->get();
         $product = Product::where('id', $id)->get()->first();
 
         $colorArray = ProductColor::where('product_id', $id)->select('color_id')->get()->toArray();
         $sizeArray = ProductSize::where('product_id', $id)->select('size_id')->get()->toArray();
         // return $productColor;
-        // return $colorArray;
+        // return $images;
 
 
         return view('marchant.product.edit', compact('product', 'categories', 'subcategories', 'brands', 'images', 'shops', 'colors', 'sizes', 'divisions', 'districts', 'upazilas', 'colorArray', 'sizeArray'));
@@ -237,11 +243,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        // return $request->all();
         $product = Product::where('id', $id)->first();
 
         $colors = $request->colors;
         $sizes = $request->sizes;
+        $fullsizeimages = $request->fullsizeimages;
 
         $validate = $request->validate([
             'title'             => 'required | max:255',
@@ -257,7 +264,10 @@ class ProductController extends Controller
             'regular_price'     => 'required',
             'price'             => 'required',
             'quantity'          => 'required',
-            'quantity_alert'    => 'required'
+            'quantity_alert'    => 'required',
+            'img_full'          => 'required'
+        ],[
+            'img_full.required' => 'Please select product photo'
         ]);
 
             $data = [

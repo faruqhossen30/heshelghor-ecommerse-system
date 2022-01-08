@@ -252,7 +252,7 @@
 
                                 {{-- Short Description --}}
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label">Product Summary</label>
+                                    <label for="product-summary" class="form-label">Product Summary<span class="text-danger">*</span></label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror" id="product-summary" rows="5">{{ $product->short_description }}</textarea>
                                     <div class="text-danger">
@@ -323,15 +323,33 @@
 
                                 {{-- Image Section --}}
                                 <div class="mb-3">
-                                    <h4 class="header-title">Product Photo</h4>
+                                    <h4 class="header-title">Product Photo<span class="text-danger">*</span></h4>
                                     <div id="productImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2">
+                                        class="text-center my-2 @error('img_full') is-invalid @enderror">
 
                                         <i class="mdi mdi-image h1 text-secondary"></i>
                                         <p>Select Photos</p>
                                     </div>
+                                    <div class="text-danger">
+                                        @error('img_full')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div id="productImageMediaArea">
+                                    {{-- @if ($product->img_full) --}}
+                                    <div id="selectedProductImageMedia">
+                                        <img src="{{$product->img_full}}" alt="" class="img-responsive p-2 img-thumbnail" style="width:100px;height:100px" >
+                                        <button  id="selectedProductImageMediaCloseButton" type="button" class="btn btn-danger"> Close</button>
+                                        <div>
+                                            <input type="hidden" name="img_full" value="{{$product->img_full}}">
+                                            <input type="hidden" name="img_small" value="{{$product->img_full}}">
+                                            <input type="hidden" name="img_medium" value="{{$product->img_full}}">
+                                            <input type="hidden" name="img_large" value="{{$product->img_full}}">
+                                        </div>
+                                    </div>
+                                    {{-- @endif --}}
+
                                 </div>
 
                                 <div class="mb-3">
@@ -346,6 +364,14 @@
                                 <div class="row">
                                     <div id="productSliderMediaArea" class="col-12"
                                         style="display: flex; flex-wrap: wrap;">
+                                    @foreach ($images as $image)
+                                        <div class="selectedProductImageMedia p-1" style="text-align:center">
+                                            <img src="{{$image->url}}" alt="" class="img-responsive p-2 img-thumbnail" style="width:150px;height:150px" > <br>
+                                            <button  type="button" class="selectedProductImageMediaCloseButton btn btn-danger btn-sm mt-1"> Close</button>
+                                            <input type="hidden" name="fullsizeimages[]" value="{{$image->url}}">
+                                        </div>
+                                    @endforeach
+
 
                                     </div>
                                 </div>
@@ -354,18 +380,6 @@
                                     class="mdi mdi-arrow-right ms-1"></i></button>
 
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -531,7 +545,10 @@
 
 
 
-
+        // For Image Gallery
+        if($('#selectedProductImageMediaCloseButton')){
+            $('#productImage').hide()
+        }
         var mediaGallery = $('#mediaGallery');
 
         function getSingleGallery(mediaGallery) {
