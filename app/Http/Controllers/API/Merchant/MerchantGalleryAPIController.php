@@ -31,4 +31,24 @@ class MerchantGalleryAPIController extends Controller
                 'data'    => $data
             ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'media' => 'required'
+        ]);
+        $merchant = $request->user();
+
+
+        // return $request->all();
+        $data = $merchant->addMedia($request->media)->toMediaCollection();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'Media Upload Successfully !'
+        ]);
+    }
+
+
 }
