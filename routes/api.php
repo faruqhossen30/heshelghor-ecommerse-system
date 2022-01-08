@@ -23,6 +23,7 @@ use App\Http\Controllers\API\Merchant\MerchantShopAPIController;
 use App\Http\Controllers\API\Merchant\MerchantAuthAPIController;
 use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
 use App\Http\Controllers\API\MerChant\MerchantMediaAPIController;
+use App\Http\Controllers\API\Merchant\MerchantGalleryAPIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -125,6 +126,8 @@ Route::prefix('merchant')->group(function () {
         Route::get('/media/all', [MerchantMediaAPIController::class, 'getAllMedia']);
         Route::post('/media/store', [MerchantMediaAPIController::class, 'store']);
         Route::post('/media/test', [MerchantShopAPIController::class, 'testing']);
+        Route::get('gallery/all', [MerchantGalleryAPIController::class, 'getAllGallery']);
+
     });
 
 
