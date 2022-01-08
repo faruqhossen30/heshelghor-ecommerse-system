@@ -262,4 +262,10 @@ class MerchantShopAPIController extends Controller
         ]);
 
     }
+
+
+    public function testing()
+    {
+        return "just for tesitn media api";
+    }
 }

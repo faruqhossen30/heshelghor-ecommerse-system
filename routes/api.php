@@ -124,6 +124,7 @@ Route::prefix('merchant')->group(function () {
         // Media
         Route::get('/media/all', [MerchantMediaAPIController::class, 'getAllMedia']);
         Route::post('/media/store', [MerchantMediaAPIController::class, 'store']);
+        Route::post('/media/test', [MerchantShopAPIController::class, 'testing']);
     });
 
 

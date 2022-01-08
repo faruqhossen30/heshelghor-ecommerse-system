@@ -12,7 +12,6 @@ class MerchantMediaAPIController extends Controller
         $merchant = $request->user();
         $medias =  $merchant->getMedia();
         $data = [];
-        // $library = $$medias->transform(function ($item, $key) {
             foreach ($merchant->getMedia() as $media) {
                 $data[] = [
                     'file_name'    => $media->file_name,
