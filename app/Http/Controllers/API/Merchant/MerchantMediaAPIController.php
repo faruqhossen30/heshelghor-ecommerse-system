@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\MerChant;
+namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -21,7 +21,6 @@ class MerchantMediaAPIController extends Controller
                     'large_url'    => $media->getUrl('large')
 
                 ];
-                // return $data;
 
             }
 
@@ -36,7 +35,6 @@ class MerchantMediaAPIController extends Controller
     public function store(Request $request)
     {
         $merchant = $request->user();
-        // return $merchant;
         return $request->all();
         $data = $merchant->addMedia($request->media)->toMediaCollection();
 
