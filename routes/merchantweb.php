@@ -49,8 +49,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('profile/create', [MerchatProfileController::class, 'create'])->name('merchant.profile.create');
         Route::post('profile/create', [MerchatProfileController::class, 'store'])->name('merchant.profile.store');
         // Gallery
-        Route::get('galary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
-        Route::post('galary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
+        Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
+        Route::post('gallary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
+        Route::post('gallary/delete/{id}', [MerchantGalleryController::class, 'deleteSingleMedia'])->name('merchant.delete.gallery');
     });
 });
 

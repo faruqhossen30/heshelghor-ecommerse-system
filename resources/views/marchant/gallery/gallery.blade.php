@@ -22,15 +22,6 @@
 
             <!-- Filter -->
             <div class="row">
-                <div class="col-12">
-                    <div class="text-center filter-menu">
-                        <a href="javascript: void(0);" class="filter-menu-item active" data-rel="all">All</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="web">Web Design</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="graphic">Graphic Design</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="illustrator">Illustrator</a>
-                        <a href="javascript: void(0);" class="filter-menu-item" data-rel="photography">Photography</a>
-                    </div>
-                </div>
                 <div class="row">
                     <p>
                         <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#uploadCollapse" role="button"
@@ -74,26 +65,21 @@
                 @foreach ($galleries as $gallery)
 
 
-
                 <div class="col-xs-2 col-sm-3 col-xl-2 filter-item all web illustrator p-1" style="">
-                    <div class="gal-box">
-                        <a href="{{$gallery->getUrl()}}" class="image-popup" title="Screenshot-1">
-                            <img src="{{$gallery->getUrl()}}" class="img-fluid img-thumbnail"
-                                alt="work-thumbnail">
-                        </a>
-                        {{-- <div class="gall-info">
-                            <h4 class="font-16 mt-0">Man wearing black jacket</h4>
-                            <a href="javascript: void(0);">
-                                <img src="{{ asset('backend') }}/assets/images/users/avatar-3.jpg" alt="user-img"
-                                    class="rounded-circle" height="24">
-                                <span class="text-muted ms-1">Justin Coke</span>
+                        <form action="{{route('merchant.delete.gallery', $gallery->id)}}" method="POST">
+                            @csrf
+                        <div class="gal-box">
+                            <a href="{{ $gallery->getUrl() }}" class="image-popup" title="Screenshot-1">
+                                <img src="{{ $gallery->getUrl() }}" class="img-fluid img-thumbnail" alt="work-thumbnail">
                             </a>
-                            <a href="javascript: void(0);" class="gal-like-btn"><i
-                                    class="mdi mdi-heart-outline text-muted"></i></a>
-                        </div> <!-- gallery info --> --}}
+                            <div class="gall-info py-1" style="display: flex; justify-content:space-between">
+                                <button type="button" class="border-0 text-success"><i class="mdi mdi-eye-check"></i></button>
+                                <button class="border-0 text-danger" onclick="return confirm('Are You Sure Delete Photo ?');"><i class="mdi mdi-trash-can-outline"></i></button>
+                            </div> <!-- gallery info -->
 
-                    </div> <!-- end gal-box -->
-                </div> <!-- end col -->
+                        </div> <!-- end gal-box -->
+                    </form>
+                    </div> <!-- end col -->
                 @endforeach
 
 
@@ -128,6 +114,7 @@
         .modal-lg {
             max-width: 1000px !important;
         }
+
     </style>
 @endpush
 @push('scripts')

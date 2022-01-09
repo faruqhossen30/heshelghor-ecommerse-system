@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Models\Auth\Marchant;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Collection;
 
 class MerchantGalleryController extends Controller
 {
     public function viewGallery()
     {
         $user = auth()->guard('marchant')->user();
-        $galleries = $user->getMedia();
+        $galleries = collect($user->getMedia())->reverse();
 
         // $test = $galleries->where('id', 12)->first()->getUrl('medium');
-        // return $test;
         $alluser = Marchant::where('id', 2)->first();
 
         // $some = $alluser->getMedia();
@@ -37,12 +37,24 @@ class MerchantGalleryController extends Controller
 
         return response()->json($some);
     }
+    // Delete Single Media
+    public function deleteSingleMedia(Request $request, $id)
+    {
+
+        $user = auth()->guard('marchant')->user();
+        $media = $user->deleteMedia($id);
+
+        // return $media;
+        return  redirect()->back();
+    }
+
+
 
     public function merchantModalGallery(Request $request)
     {
         $user = auth()->guard('marchant')->user();
         if($request->ajax()){
-            $galleries = $user->getMedia();
+            $galleries = collect($user->getMedia())->reverse();
             $data = view('marchant.inc.modalgalary', compact('galleries'))->render();
 
             return response()->json($data);
@@ -53,7 +65,7 @@ class MerchantGalleryController extends Controller
     {
         $user = auth()->guard('marchant')->user();
         if($request->ajax()){
-            $galleries = $user->getMedia();
+            $galleries = collect($user->getMedia())->reverse();
             $data = view('marchant.inc.modalgalarymultiple', compact('galleries'))->render();
 
             return response()->json($data);

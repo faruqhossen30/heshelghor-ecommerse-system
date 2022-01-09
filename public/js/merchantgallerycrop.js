@@ -25,6 +25,7 @@ $(document).ready(function () {
         var file;
         var url;
         if (files && files.length > 0) {
+
             file = files[0];
             if (URL) {
                 // console.log(URL.createObjectURL)
@@ -82,7 +83,7 @@ $(document).ready(function () {
 
             // Use `jQuery.ajax` method for example
             $.ajax({
-                url: '/merchant/galary/sotre',
+                url: '/merchant/gallary/sotre',
                 method: 'POST',
                 dataType: "json",
                 data: formData,
