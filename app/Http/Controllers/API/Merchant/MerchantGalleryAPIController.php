@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class MerchantGalleryAPIController extends Controller
 {
@@ -13,23 +14,22 @@ class MerchantGalleryAPIController extends Controller
         $medias =  $merchant->getMedia();
         // return $merchant;
         $data = [];
-            foreach ($merchant->getMedia() as $media) {
-                $data[] = [
-                    'file_name'    => $media->file_name,
-                    'original_url' => $media->getUrl(),
-                    'small_url'    => $media->getUrl('small'),
-                    'medium_url'   => $media->getUrl('medium'),
-                    'large_url'    => $media->getUrl('large')
+        foreach ($merchant->getMedia() as $media) {
+            $data[] = [
+                'file_name'    => $media->file_name,
+                'original_url' => $media->getUrl(),
+                'small_url'    => $media->getUrl('small'),
+                'medium_url'   => $media->getUrl('medium'),
+                'large_url'    => $media->getUrl('large')
 
-                ];
+            ];
+        }
 
-            }
-
-            return response()->json([
-                'success' => true,
-                'code'    => 200,
-                'data'    => $data
-            ]);
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $data
+        ]);
     }
 
     public function store(Request $request)
@@ -50,5 +50,18 @@ class MerchantGalleryAPIController extends Controller
         ]);
     }
 
+    // Delete Single Media
+    public function deleteSingleMedia(Request $request, $id)
+    {
 
+        // return $id;
+        $merchant = $request->user();
+        $media = $merchant->deleteMedia($id);
+
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'message' => 'Media delete Successfully !'
+        ]);
+    }
 }
