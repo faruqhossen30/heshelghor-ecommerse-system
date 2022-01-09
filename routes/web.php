@@ -45,14 +45,14 @@ use App\Http\Controllers\User\UserDashboardController;
 
 // Product Controller
 use App\Http\Controllers\FrontEnd\UserOrderController;
-use App\Http\Controllers\Merchant\Shop\ShopController;
+use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\SubCategoryController;
 use App\Http\Controllers\Admin\Attribute\SizeController;
 
 // Cart and Order Controller
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
-use App\Http\Controllers\Admin\MarchantRegisterController;
+
 
 
 // Front-End Controller

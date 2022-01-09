@@ -117,65 +117,7 @@ class MerchantProductAPIController extends Controller
             'data'    => $product
         ]);
     }
-    public function productColor(Request $request)
-    {
-        $merchantId = $request->user()->id;
 
-        $color = ProductColor::create([
-            'product_id' => $request->product_id,
-            'color_id' => $request->color_id
-        ]);
-
-        $result = ProductColor::where('product_id', $request->product_id,)->get();
-
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Product color insert successfully!',
-            'data'    => $result
-        ]);
-    }
-    public function productSize(Request $request)
-    {
-        $merchantId = $request->user()->id;
-
-        $color = ProductSize::create([
-            'product_id' => $request->product_id,
-            'size_id' => $request->size_id
-        ]);
-
-        $result = ProductSize::where('product_id', $request->product_id,)->get();
-
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Product size insert successfully!',
-            'data'    => $result
-        ]);
-    }
-    public function productSliderFullSize(Request $request)
-    {
-        $merchantId = $request->user()->id;
-
-        $request->validate([
-            'url' => 'required',
-            'product_id' => 'required'
-        ]);
-
-        ProductImgFull::create([
-            'url' => $request->url,
-            'product_id' => $request->product_id
-        ]);
-
-        $result = ProductImgFull::where('product_id', $request->product_id,)->get();
-
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Product Slider image insert successfully!',
-            'data'    => $result
-        ]);
-    }
 
     /**
      * Display the specified resource.
@@ -237,65 +179,6 @@ class MerchantProductAPIController extends Controller
         ]);
 
 
-        $photo = $request->file('photo');
-
-        if ($request->file('photo')) {
-            $photofileExtention = $photo->getClientOriginalExtension();
-            $photofileName = hexdec(uniqid()) . '.' . $photofileExtention;
-            Image::make($photo)->save(public_path('uploads/product/') . $photofileName);
-
-            $product = Product::where('author_id', $merchantId)->where('id', $id)->first();
-
-            if($product->photo){
-                unlink('uploads/product/'.$product->photo);
-            }
-
-            $update = Product::where('author_id', $merchantId)->where('id', $id)->update([
-                'title'             => $request->title,
-                'description'       => $request->description,
-                'short_description' => $request->short_description,
-                'category_id'       => $request->category_id,
-                'subcategory_id'    => $request->subcategory_id,
-                'brand_id'          => $request->brand_id,
-                'shop_id'           => $request->shop_id,
-                'division_id'       => $request->division_id,
-                'district_id'       => $request->district_id,
-                'upazila_id'        => $request->upazila_id,
-                'regular_price'     => $request->regular_price,
-                'discount'          => $request->discount,
-                'price'             => $request->price,
-                'quantity'          => $request->quantity,
-                'quantity_alert'    => $request->quantity_alert,
-                'photo'             => $photofileName,
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'code'    => 200,
-                'message' => 'Product Update successfull!',
-            ]);
-
-
-        }else{
-            $update = Product::where('author_id', $merchantId)->where('id', $id)->update([
-                'title'             => $request->title,
-                'description'       => $request->description,
-                'short_description' => $request->short_description,
-                'category_id'       => $request->category_id,
-                'subcategory_id'    => $request->subcategory_id,
-                'brand_id'          => $request->brand_id,
-                'shop_id'           => $request->shop_id,
-                'division_id'       => $request->division_id,
-                'district_id'       => $request->district_id,
-                'upazila_id'        => $request->upazila_id,
-                'regular_price'     => $request->regular_price,
-                'discount'          => $request->discount,
-                'price'             => $request->price,
-                'quantity'          => $request->quantity,
-                'quantity_alert'    => $request->quantity_alert
-            ]);
-        };
-
         return response()->json([
             'success' => true,
             'code'    => 200,
@@ -304,23 +187,7 @@ class MerchantProductAPIController extends Controller
 
 
     }
-    // Product Color Update
-    public function productColorUpdate(Request $request, $id)
-    {
-        $validate = $request->validate([
-            'product_id' => 'required',
-            'color_id' => 'required',
-        ]);
-        $colors = ProductColor::where('product_id', $id)->get();
-        // return $colors;
-        if(!empty($colors)){
-            ProductColor::where('product_id', $id)->delete();
-            ProductColor::create([
-                'product_id' => $request->product_id,
-                'color_id' => $request->color_id
-            ]);
-        }
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -346,5 +213,82 @@ class MerchantProductAPIController extends Controller
                 'message'    => "Opps! Something wrong !",
             ]);
         }
+    }
+
+    public function productColor(Request $request)
+    {
+        $merchantId = $request->user()->id;
+
+        $color = ProductColor::create([
+            'product_id' => $request->product_id,
+            'color_id' => $request->color_id
+        ]);
+
+        $result = ProductColor::where('product_id', $request->product_id,)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product color insert successfully!',
+            'data'    => $result
+        ]);
+    }
+    // Product Color Update
+    public function productColorUpdate(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'product_id' => 'required',
+            'color_id' => 'required',
+        ]);
+        $colors = ProductColor::where('product_id', $id)->get();
+        // return $colors;
+        if(!empty($colors)){
+            ProductColor::where('product_id', $id)->delete();
+            ProductColor::create([
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id
+            ]);
+        }
+    }
+    public function productSize(Request $request)
+    {
+        $merchantId = $request->user()->id;
+
+        $color = ProductSize::create([
+            'product_id' => $request->product_id,
+            'size_id' => $request->size_id
+        ]);
+
+        $result = ProductSize::where('product_id', $request->product_id,)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product size insert successfully!',
+            'data'    => $result
+        ]);
+    }
+    public function productSliderFullSize(Request $request)
+    {
+        $merchantId = $request->user()->id;
+
+        $request->validate([
+            'url' => 'required',
+            'product_id' => 'required'
+        ]);
+
+        ProductImgFull::create([
+            'url' => $request->url,
+            'product_id' => $request->product_id
+        ]);
+
+        $result = ProductImgFull::where('product_id', $request->product_id,)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product Slider image insert successfully!',
+            'data'    => $result
+        ]);
     }
 }

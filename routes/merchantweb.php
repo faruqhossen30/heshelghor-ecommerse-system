@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Marchant Controller
-use App\Http\Controllers\Product\CategoryController;
+
 use App\Http\Controllers\Merchant\MerchantGalleryController;
 
 // Merchant Profile Controller
@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\Admin\MarchantController;
 use App\Http\Controllers\Merchant\MyBrandController;
-
+use App\Http\Controllers\Admin\MarchantRegisterController;
+use App\Http\Controllers\Merchant\Shop\ShopController;
+use App\Http\Controllers\Merchant\OrderController;
 
 use App\Http\Controllers\Product\ProductController;
 

@@ -22,6 +22,7 @@ class CreateMarchantsTable extends Migration
             $table->string('phone_number');
             $table->string('address');
             $table->rememberToken();
+            $table->string('photo');
             $table->timestamps();
         });
     }
