@@ -61,6 +61,7 @@ use App\Http\Controllers\Admin\MarchantRegisterController;
 use App\Http\Controllers\FrontEnd\CheckoutController;
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
+use App\Http\Controllers\FrontEnd\SingleProductController;
 
 
 

@@ -72,7 +72,10 @@ class MerchantProductAPIController extends Controller
             'regular_price'     => 'required',
             'price'             => 'required',
             'quantity'          => 'required',
-            'quantity_alert'    => 'required'
+            'quantity_alert'    => 'required',
+            'img_full'          => 'required'
+        ],[
+            'img_full.required' => 'Please select product photo'
         ]);
 
 
@@ -106,37 +109,6 @@ class MerchantProductAPIController extends Controller
 
 
 
-        if ($product) {
-            // Add Image
-            if (!empty($images)) {
-                foreach ($images as $image) {
-                    ProductImage::create([
-                        'image' => $image,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-
-
-            // Add Color
-            if (!empty($colors)) {
-                foreach ($colors as $color) {
-                    ProductColor::create([
-                        'color_id' => $color,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-            // Add Size
-            if (!empty($sizes)) {
-                foreach ($colors as $size) {
-                    ProductSize::create([
-                        'size_id' => $size,
-                        'product_id' => $product->id,
-                    ]);
-                }
-            };
-        };
 
         return response()->json([
             'success' => true,
@@ -181,10 +153,19 @@ class MerchantProductAPIController extends Controller
             'data'    => $result
         ]);
     }
-    public function productImage(Request $request)
+    public function productSliderFullSize(Request $request)
     {
         $merchantId = $request->user()->id;
 
+        $request->validate([
+            'url' => 'required',
+            'product_id' => 'required'
+        ]);
+
+        ProductImgFull::create([
+            'url' => $request->url,
+            'product_id' => $request->product_id
+        ]);
 
         $result = ProductImgFull::where('product_id', $request->product_id,)->get();
 

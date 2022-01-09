@@ -7,7 +7,7 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Merchant\MerchantGalleryController;
 
 // Merchant Profile Controller
-use App\Http\Controllers\FrontEnd\SingleProductController;
+
 use App\Http\Controllers\Merchant\MerchatProfileController;
 use App\Http\Controllers\Admin\MarchantHomeController;
 use App\Http\Controllers\Product\BrandController;
