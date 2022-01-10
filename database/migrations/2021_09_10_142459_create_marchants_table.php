@@ -22,7 +22,13 @@ class CreateMarchantsTable extends Migration
             $table->string('phone_number');
             $table->string('address');
             $table->rememberToken();
-            $table->string('photo');
+            $table->string('photo')->nullable();
+            $table->string('nid_no')->nullable();
+            $table->string('tradelicense_no')->nullable();
+            $table->string('tin_no')->nullable();
+            $table->string('nid_photo')->nullable();
+            $table->string('tradelicense_photo')->nullable();
+            $table->string('tin_photo')->nullable();
             $table->timestamps();
         });
     }

@@ -44,6 +44,14 @@ class Marchant extends Authenticatable implements HasMedia
         'phone_number',
         'address',
         'password',
+        'photo',
+        'nid_no',
+        'tradelicense_no',
+        'tin_no',
+        'nid_photo',
+        'nid_photo',
+        'tradelicense_photo',
+        'tin_photo'
     ];
 
     /**

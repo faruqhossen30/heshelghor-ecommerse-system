@@ -15,7 +15,7 @@ use App\Http\Controllers\FrontEnd\CartController;
 
 
 // Attribute Controller
-use App\Http\Controllers\Merchant\OrderController;
+
 use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
 

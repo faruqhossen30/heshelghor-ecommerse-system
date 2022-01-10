@@ -22,7 +22,7 @@ class MerchantProductAPIController extends Controller
     public function index(Request $request)
     {
         $merchantId = $request->user()->id;
-        $products = Product::with('brand', 'category', 'subCategory', 'images', 'colors', 'sizes')->where('author_id', $merchantId)->get();
+        $products = Product::with('brand', 'category', 'subCategory', 'images', 'colors.color', 'sizes.size')->where('author_id', $merchantId)->get();
         if (count($products) == 0) {
             return response()->json([
                 'success' => true,
