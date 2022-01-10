@@ -56,7 +56,7 @@ class Product extends Model implements HasMedia
     // Image
     public function images()
     {
-        return $this->hasMany(ProductImage::class, 'product_id', 'id');
+        return $this->hasMany(ProductImgFull::class, 'product_id', 'id');
     }
     //   Comments
     public function comments()

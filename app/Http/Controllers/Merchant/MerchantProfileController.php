@@ -21,7 +21,20 @@ class MerchantProfileController extends Controller
 
     public function update(Request $request, $id)
     {
-        // return $request->id;
+        $merchantId = Auth::guard('marchant')->user()->id;
         return $request->all();
+
+        $merchant = Marchant::where('id', $merchantId)->update([
+            'name' => $request->name,
+            // 'email ' => $request->name,
+            'address' => $request->name,
+            'photo' => $request->name,
+            'nid_no' => $request->name,
+            'name' => $request->name,
+            'name' => $request->name,
+            'name' => $request->name,
+            'name' => $request->name,
+        ]);
+
     }
 }
