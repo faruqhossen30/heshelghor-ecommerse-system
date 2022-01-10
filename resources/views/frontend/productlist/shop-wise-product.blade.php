@@ -95,7 +95,7 @@
                                     <div class="product text-center">
                                         <figure class="product-media">
                                             <a href="{{ route('singleproduct', $product->id) }}">
-                                                <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product"
+                                                <img src="{{$product->img_small }}" alt="product"
                                                     width="280" height="315">
                                             </a>
                                             <div class="product-label-group">
@@ -119,12 +119,12 @@
                                         <div class="product-details">
                                             <div class="product-cat">
                                                 <a
-                                                    href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
-                                                <a href="{{ route('product.with.subcategory', $product->category->id) }}">|
+                                                    href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
+                                                <a href="{{ route('product.with.subcategory',['category' => $product->category->slug, 'slug'=> $product->subcategory->slug]) }}">|
                                                     {{ $product->subcategory->name }}</a>
                                             </div>
                                             <h3 class="product-name">
-                                                <a href="demo3-product.html">{{ $product->title }}</a>
+                                                <a href="{{route('singleproduct', $product->slug)}}">{{ $product->title }}</a>
                                             </h3>
                                             <div class="product-price">
                                                 <ins class="new-price">৳{{ $product->price }}</ins><del
@@ -135,7 +135,7 @@
                                                     <span class="ratings" style="width:60%"></span>
                                                     <span class="tooltiptext tooltip-top"></span>
                                                 </div>
-                                                <a href="demo3-product.html" class="rating-reviews">( 16 reviews )</a>
+                                                <a href="{{route('singleproduct', $product->slug)}}" class="rating-reviews">( 16 reviews )</a>
                                             </div>
                                         </div>
                                     </div>

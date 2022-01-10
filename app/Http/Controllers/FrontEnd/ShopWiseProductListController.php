@@ -17,7 +17,8 @@ class ShopWiseProductListController extends Controller
         $categories = Category::get();
         $shop = Shop::where('id', $id)->first();
 
-        $products = Product::where('shop_id', $id)->get();
+        $products = Product::with('category', 'subcategory')->where('shop_id', $id)->get();
+        // return $products;
         return view('frontend.productlist.shop-wise-product', compact('products', 'categories', 'brands', 'shop'));
     }
 }

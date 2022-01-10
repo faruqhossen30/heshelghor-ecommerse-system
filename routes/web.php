@@ -103,12 +103,12 @@ Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('
 Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name('showproduct');
 
 Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quickView'])->name('quickview');
-Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 
 // Comment product
 Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment.store');
 // Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
+Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');

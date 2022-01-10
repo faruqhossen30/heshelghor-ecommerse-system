@@ -171,7 +171,7 @@
                                         <div class="product text-center">
                                             <figure class="product-media">
                                                 <a href="{{ route('singleproduct', $product->slug) }}">
-                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                    <img src="{{ $product->img_small }}"
                                                         alt="product" width="280" height="315">
                                                 </a>
                                                 <div class="product-label-group">

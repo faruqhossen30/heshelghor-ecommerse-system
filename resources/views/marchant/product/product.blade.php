@@ -49,13 +49,13 @@
                                             </div>
                                         </th>
                                         <th class="all">S.N</th>
+                                        <th>Image</th>
                                         <th class="all">Product</th>
                                         {{-- <th class="all">Photo</th> --}}
                                         <th>Category</th>
                                         <th>SubCategory</th>
                                         <th>Brand</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
                                         <th>Status</th>
                                         <th style="width: 85px;">Action</th>
                                     </tr>
@@ -76,11 +76,12 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$serial++}}</a></h5>
                                         </td>
                                         <td>
+                                            <img src="{{$product->img_small}}" alt="contact-img" title="contact-img" class="avatar-sm">
+                                        </td>
+                                        <td>
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$product->title}}</a></h5>
                                         </td>
-                                        {{-- <td>
-                                            <img src="{{$product->}}" alt="contact-img" title="contact-img" class="rounded me-3" height="48">
-                                        </td> --}}
+
                                         <td>
                                             <span>{{$product->category->name}}</span>
                                         </td>
@@ -93,12 +94,8 @@
 
                                         <td>
                                             <div>
-                                                ৳{{$product->sale_price}}
+                                                ৳{{$product->price}}
                                             </div>
-                                        </td>
-
-                                        <td>
-                                            {{$product->quantity}}
                                         </td>
                                         <td>
                                             <span class="badge badge-soft-success">{{$product->status ? 'Active' : 'Deactive'}}</span>

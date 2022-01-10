@@ -28,7 +28,7 @@
                                             <figure class="product-media">
 
                                                 <a href="{{ route('singleproduct', $product->slug) }}">
-                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                    <img src="{{ $product->img_small }}"
                                                         alt="product" width="280" height="315"
                                                         style="background-color: #f5f5f5;" />
                                                 </a>
@@ -172,7 +172,7 @@
                                                     <figure class="product-media">
 
                                                         <a href="{{ route('singleproduct', $product->slug) }}">
-                                                            <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                            <img src="{{$product->img_small }}"
                                                                 alt="product" width="280" height="315"
                                                                 style="background-color: #f5f5f5;" />
                                                         </a>

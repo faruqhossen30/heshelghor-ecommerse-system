@@ -18,15 +18,15 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                         <div class="product-gallery">
                             <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
                                 <figure class="product-image">
-                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
-                                        data-zoom-image="{{ asset('uploads/product/' . $product->photo) }}"
+                                    <img src="{{ $product->img_full }}"
+                                        data-zoom-image="{{ $product->img_full }}"
                                         alt="Blue Pinafore Denim Dress" width="800" height="900"
                                         style="background-color: #f5f5f5;" />
                                 </figure>
                                 @foreach ($product->images as $image)
                                     <figure class="product-image">
-                                        <img src="{{ asset('uploads/products/' . $image->image) }}"
-                                            data-zoom-image="{{ asset('uploads/products/' . $image->image) }}"
+                                        <img src="{{$image->url }}"
+                                            data-zoom-image="{{ $image->url }}"
                                             alt="Blue Pinafore Denim Dress" width="800" height="900"
                                             style="background-color: #f5f5f5;" />
                                     </figure>
@@ -36,13 +36,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             <div class="product-thumbs-wrap">
                                 <div class="product-thumbs">
                                     <div class="product-thumb active">
-                                        <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                        <img src="{{ $product->img_full }}"
                                             alt="product thumbnail" width="137" height="154"
                                             style="background-color: #f5f5f5;" />
                                     </div>
                                     @foreach ($product->images as $image)
                                         <div class="product-thumb ">
-                                            <img src="{{ asset('uploads/products/' . $image->image) }}"
+                                            <img src="{{$image->url }}"
                                                 alt="product thumbnail" width="137" height="154"
                                                 style="background-color: #f5f5f5;" />
                                         </div>
@@ -457,7 +457,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             <div class="product text-center">
                                 <figure class="product-media">
                                     <a href="{{ route('singleproduct', $product->slug) }}">
-                                        <img src="{{ asset('uploads/product/' . $product->photo) }}" alt="product"
+                                        <img src="{{ $product->img_small }}" alt="product"
                                             width="280" height="315">
                                     </a>
 
