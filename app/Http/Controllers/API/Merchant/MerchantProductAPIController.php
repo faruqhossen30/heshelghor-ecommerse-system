@@ -128,7 +128,7 @@ class MerchantProductAPIController extends Controller
     public function show(Request $request, $id)
     {
         $merchantId = $request->user()->id;
-        $product = Product::with('brand', 'category', 'subCategory','images', 'colors', 'sizes')
+        $product = Product::with('brand', 'category', 'subCategory','images', 'colors.color', 'sizes.size')
             ->where('author_id', $merchantId)
             ->where('id', $id)
             ->first();
