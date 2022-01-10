@@ -1,5 +1,6 @@
 @extends('marchant.layouts.app')
 @section('content')
+    <x-mediamodal />
     <div class="content">
         <!-- Start Content-->
         <div class="container-fluid">
@@ -28,15 +29,15 @@
                         <div class="card text-center">
                             <div class="card-body">
                                 @if ($merchant->photo)
-                                    <img src="{{$merchant->photo}}"
-                                        class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
+                                    <img src="{{ $merchant->photo }}" class="rounded-circle avatar-xl img-thumbnail"
+                                        alt="profile-image">
                                 @else
                                     <img src="{{ asset('backend') }}/assets/images/users/avatar-1.jpg"
                                         class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
                                 @endif
 
-                                <h4 class="mt-3 mb-0">{{$merchant->name}}</h4>
-                                <p class="text-muted">{{$merchant->email}}</p>
+                                <h4 class="mt-3 mb-0">{{ $merchant->name }}</h4>
+                                <p class="text-muted">{{ $merchant->email }}</p>
 
                                 <button type="button"
                                     class="btn btn-success btn-xs waves-effect mb-2 waves-light">Follow</button>
@@ -55,19 +56,19 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">Full Name :</th>
-                                                    <td class="text-muted">{{$merchant->name}}</td>
+                                                    <td class="text-muted">{{ $merchant->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Mobile :</th>
-                                                    <td class="text-muted">{{$merchant->phone_number}}</td>
+                                                    <td class="text-muted">{{ $merchant->phone_number }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Email :</th>
-                                                    <td class="text-muted">{{$merchant->email}}</td>
+                                                    <td class="text-muted">{{ $merchant->email }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Address :</th>
-                                                    <td class="text-muted">{{$merchant->address}}</td>
+                                                    <td class="text-muted">{{ $merchant->address }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -131,7 +132,7 @@
                                     <!-- end timeline content-->
 
                                     <div class="tab-pane" id="settings">
-                                        <form action="{{route('merchant.profile.update', $merchant->id)}}" method="POST" >
+                                        <form action="{{ route('merchant.profile.update', $merchant->id) }}" method="POST">
                                             @csrf
                                             <h5 class="mb-3 text-uppercase bg-light p-2"><i
                                                     class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
@@ -140,14 +141,16 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-2">
                                                         <label for="firstname" class="form-label">Full Name</label>
-                                                        <input name="name" value="{{$merchant->name}}" type="text"  class="form-control" id="firstname"
+                                                        <input name="name" value="{{ $merchant->name }}" type="text"
+                                                            class="form-control" id="firstname"
                                                             placeholder="Enter FUll Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-2">
                                                         <label for="lastname" class="form-label">Mobile</label>
-                                                        <input name="phone_number" value="{{$merchant->phone_number}}" type="text" class="form-control" id="email"
+                                                        <input name="phone_number" value="{{ $merchant->phone_number }}"
+                                                            type="text" class="form-control" id="email"
                                                             placeholder="Mobile">
                                                     </div>
                                                 </div> <!-- end col -->
@@ -159,8 +162,9 @@
                                                         <label for="userbio" class="form-label">
                                                             <Address>Address</Address>
                                                         </label>
-                                                        <textarea name="address" class="form-control" id="userbio" rows="4"
-                                                            placeholder="Enter Full Address">{{$merchant->address}}</textarea>
+                                                        <textarea name="address" class="form-control" id="userbio"
+                                                            rows="4"
+                                                            placeholder="Enter Full Address">{{ $merchant->address }}</textarea>
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
@@ -170,8 +174,8 @@
                                                         <label for="Email" class="form-label">
                                                             <Address>Email</Address>
                                                         </label>
-                                                        <input value="{{$merchant->email}}" type="text" readonly class="form-control" id="Email"
-                                                            placeholder="Email">
+                                                        <input value="{{ $merchant->email }}" type="text" readonly
+                                                            class="form-control" id="Email" placeholder="Email">
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
@@ -184,37 +188,52 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-2">
                                                         <label for="NIDNo" class="form-label">NID No</label>
-                                                        <input name="nid_no" type="text" class="form-control" id="NIDNo"
-                                                            placeholder="National ID No">
+                                                        <input name="nid_no" value="{{ $merchant->nid_no }}" type="text"
+                                                            class="form-control" id="NIDNo" placeholder="National ID No">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-2">
-                                                        <label for="PINNo" class="form-label">PIN No</label>
-                                                        <input name="pin_no" type="text" class="form-control" id="PINNo"
-                                                            placeholder="PIN No">
+                                                        <label for="PINNo" class="form-label">TIN No</label>
+                                                        <input name="tin_no" value="{{ $merchant->tin_no }}" type="text"
+                                                            class="form-control" id="PINNo" placeholder="TIN No">
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end row -->
 
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="mb-0">
-                                                        <label for="Email" class="form-label">
-                                                            <Address>Photo</Address>
-                                                        </label>
-                                                        <input name="photo" type="file" class="form-control" id="Email"
-                                                            placeholder="Email">
-                                                    </div>
-                                                </div> <!-- end col -->
-                                            </div> <!-- end row -->
+
+
+                                            <div class="mb-3">
+                                                <h4 class="header-title">Profile Photo</h4>
+                                                <div id="profilePhoto" style="width: 100%; border:1px dashed gray"
+                                                    class="text-center my-2">
+
+                                                    <i class="mdi mdi-image h1 text-secondary"></i>
+                                                    <p>Select Photos</p>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div id="profileMediaArea">
+
+                                                        <div id="selectedBrandMedia" class="text-center">
+                                                            <h5>Profile Photo</h5>
+                                                            <img src="{{ $merchant->photo }}" alt=""
+                                                                class="img-responsive p-2" style="width:100px;height:100px">
+                                                            <input type="hidden" name="photo"
+                                                                value="{{ $merchant->photo }}">
+                                                            <button id="selectedBrandMediaButton" type="button"
+                                                                class="btn btn-danger"> Close</button>
+                                                        </div>
+
+                                                </div>
+                                            </div>
 
 
 
                                             <div class="text-end">
                                                 <button type="submit"
-                                                    class="btn btn-success waves-effect waves-light mt-2"><i
-                                                        class="mdi mdi-content-save"></i> Save</button>
+                                                    class="btn btn-primary waves-effect waves-light mt-2"><i
+                                                        class="mdi mdi-content-save"></i> Update</button>
                                             </div>
                                         </form>
                                     </div>
@@ -240,7 +259,63 @@
 @endpush
 
 @push('scripts')
-<script>
+    <script>
+        function getGallery(mediaGallery) {
+            mediaGallery.empty();
+            $.ajax({
+                url: '{{ route('merchant.modal.gallery') }}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if (data) {
+                        mediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
 
-</script>
+        $(document).ready(function() {
+                $('#profilePhoto').hide();
+
+            var mediaGallery = $('#mediaGallery');
+            $mediaModal = $('#mediaModal');
+            $('#profilePhoto').on('click', function() {
+                $mediaModal.modal('show');
+                getGallery(mediaGallery);
+            });
+
+            $('#mediaForm').on('submit', function(event) {
+                event.preventDefault();
+                var selectimage = $('input[name="selectimage"]:checked');
+                var profileMediaArea = $('#profileMediaArea');
+
+                var fullUrl = selectimage.data('urlfull');
+
+                var profileMediaArea = $('#profileMediaArea');
+
+                profileMediaArea.append(`<div id="selectedBrandMedia" class="text-center">
+                                    <h5>Profile Photo</h5>
+                                    <img src="${fullUrl}" alt="" class="img-responsive p-2" style="width:100px;height:100px">
+                                    <input type="hidden" name="photo" value="${fullUrl}">
+                                    <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
+                                </div>`);
+                $('#profilePhoto').hide();
+                $mediaModal.modal('hide');
+
+
+
+            });
+            $(document).on('click', '#selectedBrandMediaButton', function() {
+                $('#profilePhoto').show();
+                $(this).parent().remove();
+            });
+
+
+
+
+        });
+    </script>
 @endpush

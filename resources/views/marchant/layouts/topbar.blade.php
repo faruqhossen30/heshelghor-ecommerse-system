@@ -1,7 +1,4 @@
-@php
-    $merchantId = Auth::guard('marchant')->user()->id;
-    $profile = App\Models\Merchant\MerchantProfile::where('merchant_id', $merchantId)->first();
-@endphp
+
 <div class="navbar-custom">
     <div class="container-fluid">
 
@@ -267,8 +264,8 @@
 
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    @if ($profile)
-                    <img src="{{asset('uploads/merchant/profile/'.$profile->photo)}}" alt="user-image" class="rounded-circle">
+                    @if (Auth::guard('marchant')->user()->photo)
+                    <img src="{{Auth::guard('marchant')->user()->photo}}" alt="user-image" class="rounded-circle">
                     @else
                         <img src="{{ asset('backend') }}/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                     @endif
