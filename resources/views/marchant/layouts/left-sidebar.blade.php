@@ -165,25 +165,10 @@
                 </li>
 
                 <li>
-                    <a href="#sidebarProfile" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarProfile">
-                        <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Merchant Profile </span>
-                        <span class="menu-arrow"></span>
+                    <a href="{{route('merchant.profile')}}" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> Profile </span>
                     </a>
-                    <div class="collapse" id="sidebarProfile">
-                        <ul class="nav-second-level">
-
-                            <li>
-                                <a href="{{route('merchant.profile')}}">My Profile</a>
-                            </li>
-                            @if (!$profile)
-                                <li>
-                                    <a href="{{route('merchant.profile.create')}}">Update Profile</a>
-                                </li>
-                            @endif
-
-                        </ul>
-                    </div>
                 </li>
 
             </ul>

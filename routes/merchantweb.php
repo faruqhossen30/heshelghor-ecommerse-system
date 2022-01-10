@@ -48,7 +48,6 @@ Route::prefix('merchant')->group(function () {
         Route::get('order/acceptstatus/{id}', [OrderController::class, 'orderAccept'])->name('marchant.order.accept');
         // Profile
         Route::get('profile', [MerchantProfileController::class, 'index'])->name('merchant.profile');
-        // Route::get('profile/create', [MerchatProfileController::class, 'create'])->name('merchant.profile.create');
         Route::post('profile/update/{id}', [MerchantProfileController::class, 'update'])->name('merchant.profile.update');
         // Gallery
         Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');

@@ -281,16 +281,12 @@
 
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <a href="{{route('merchant.profile')}}" class="dropdown-item notify-item">
                         <i class="ri-account-circle-line"></i>
-                        <span>My Account</span>
+                        <span>Profile</span>
                     </a>
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="ri-settings-3-line"></i>
-                        <span>Settings</span>
-                    </a>
+
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
