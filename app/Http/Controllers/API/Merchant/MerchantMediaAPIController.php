@@ -11,9 +11,12 @@ class MerchantMediaAPIController extends Controller
     {
         $merchant = $request->user();
         $medias =  $merchant->getMedia();
+
+        return $medias;
         $data = [];
             foreach ($merchant->getMedia() as $media) {
                 $data[] = [
+                    'id'           => $media->id,
                     'file_name'    => $media->file_name,
                     'original_url' => $media->getUrl(),
                     'small_url'    => $media->getUrl('small'),

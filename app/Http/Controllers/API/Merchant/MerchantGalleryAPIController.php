@@ -16,6 +16,7 @@ class MerchantGalleryAPIController extends Controller
         $data = [];
         foreach ($merchant->getMedia() as $media) {
             $data[] = [
+                'id'    => $media->id,
                 'file_name'    => $media->file_name,
                 'original_url' => $media->getUrl(),
                 'small_url'    => $media->getUrl('small'),

@@ -176,7 +176,44 @@ class MerchantProductAPIController extends Controller
             'division_id'       => 'required',
             'regular_price'     => 'required',
             'price'             => 'required',
+            'quantity'          => 'required',
+            'quantity_alert'    => 'required',
+            'img_full'          => 'required',
+            'img_small'          => 'required',
+            'img_medium'          => 'required',
+            'img_large'          => 'required',
+        ],[
+            'img_full.required'   => 'Please select full size photo',
+            'img_full.img_small'  => 'Please select small size photo',
+            'img_full.img_medium' => 'Please select medium size photo',
+            'img_full.img_large'  => 'Please select large size photo'
         ]);
+
+        $data = [
+            'title'             => $request->title,
+            'description'       => $request->description,
+            'short_description' => $request->short_description,
+            'category_id'       => $request->category_id,
+            'subcategory_id'    => $request->subcategory_id,
+            'brand_id'          => $request->brand_id,
+            'shop_id'           => $request->shop_id,
+            'division_id'       => $request->division_id,
+            'district_id'       => $request->district_id,
+            'upazila_id'        => $request->upazila_id,
+            'regular_price'     => $request->regular_price,
+            'discount'          => $request->discount,
+            'price'             => $request->price,
+            'quantity'          => $request->quantity,
+            'quantity_alert'    => $request->quantity_alert,
+            // 'puk_code'       => $request->title,
+            'img_full'          => $request->img_full,
+            'img_small'         => $request->img_small,
+            'img_medium'        => $request->img_medium,
+            'img_large'         => $request->img_large
+        ];
+
+        // return $request->all();
+        $update = Product::where('id', $id)->update($data);
 
 
         return response()->json([
