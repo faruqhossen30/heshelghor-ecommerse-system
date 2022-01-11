@@ -179,9 +179,9 @@ class MerchantProductAPIController extends Controller
             'quantity'          => 'required',
             'quantity_alert'    => 'required',
             'img_full'          => 'required',
-            'img_small'          => 'required',
-            'img_medium'          => 'required',
-            'img_large'          => 'required',
+            'img_small'         => 'required',
+            'img_medium'        => 'required',
+            'img_large'         => 'required'
         ],[
             'img_full.required'   => 'Please select full size photo',
             'img_full.img_small'  => 'Please select small size photo',
@@ -327,5 +327,22 @@ class MerchantProductAPIController extends Controller
             'message' => 'Product Slider image insert successfully!',
             'data'    => $result
         ]);
+    }
+
+    public function productSliderFullSizeImageUpdate(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'product_id' => 'required',
+            'image' => 'required',
+        ]);
+        $images = ProductImgFull::where('product_id', $id)->get();
+        // return $images;
+        if(!empty($colors)){
+            ProductColor::where('product_id', $id)->delete();
+            ProductColor::create([
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id
+            ]);
+        }
     }
 }

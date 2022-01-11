@@ -109,6 +109,7 @@ Route::prefix('merchant')->group(function () {
         Route::post('product/size', [MerchantProductAPIController::class, 'productSize']);
         Route::post('product/image', [MerchantProductAPIController::class, 'productImage']);
         Route::post('product/sileder/image', [MerchantProductAPIController::class, 'productSliderFullSize']);
+        Route::post('product/sileder/image/update/{id}', [MerchantProductAPIController::class, 'productSliderFullSize']);
 
 
         // Brand
