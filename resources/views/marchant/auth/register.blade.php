@@ -24,7 +24,7 @@ Register | Heshelghor
             @csrf
             <div class="mb-2">
                 <label for="fullname" class="form-label">{{ __('Name') }}</label>
-                <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" id="fullname" placeholder="Enter your name">
+                <input class="form-control @error('name') is-invalid @enderror" name="name" type="text" id="fullname" placeholder="Enter your name" value="{{old('name')}}">
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@ Register | Heshelghor
 
             <div class="mb-2">
                 <label for="emailaddress" class="form-label">{{ __('E-Mail Address') }}</label>
-                <input class="form-control @error('email') is-invalid @enderror" name="email" type="email" id="emailaddress" required placeholder="Enter your email">
+                <input class="form-control @error('email') is-invalid @enderror" name="email" type="email" id="emailaddress" required placeholder="Enter your email" value="{{old('email')}}">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@ Register | Heshelghor
 
             <div class="mb-2">
                 <label for="phone-number" class="form-label">{{ __('Phone Number') }}</label>
-                <input class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" id="phone-number" required placeholder="Enter your phone number">
+                <input class="form-control @error('phone_number') is-invalid @enderror" type="text" name="phone_number" id="phone-number" required placeholder="Enter your Mobile number" value="{{old('phone_number')}}">
                 @error('phone_number')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@ Register | Heshelghor
 
             <div class="mb-2">
                 <label for="fullname" class="form-label">{{ __('Address') }}</label>
-                <input class="form-control @error('address') is-invalid @enderror" name="address" type="text" id="fullname" placeholder="Enter your name">
+                <input class="form-control @error('address') is-invalid @enderror" name="address" type="text" id="fullname" placeholder="Enter your name" value="{{old('address')}}">
                 @error('address')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

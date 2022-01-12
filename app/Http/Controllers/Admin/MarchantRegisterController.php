@@ -53,7 +53,7 @@ class MarchantRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:marchants'],
             'password' => ['required', 'string', 'min:2', 'confirmed'],
             'phone_number' => ['required'],
             'address' => ['required'],
