@@ -24,6 +24,7 @@ use App\Http\Controllers\API\Merchant\MerchantAuthAPIController;
 use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
 use App\Http\Controllers\API\MerChant\MerchantMediaAPIController;
 use App\Http\Controllers\API\Merchant\MerchantGalleryAPIController;
+use App\Http\Controllers\API\Merchant\MerchantProfileAPIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -131,6 +132,9 @@ Route::prefix('merchant')->group(function () {
         Route::get('gallery/all', [MerchantGalleryAPIController::class, 'getAllGallery']);
         Route::post('gallery/store', [MerchantGalleryAPIController::class, 'store']);
         Route::post('gallery/delete/{id}', [MerchantGalleryAPIController::class, 'deleteSingleMedia']);
+        // Profile
+        Route::get('profile', [MerchantProfileAPIController::class, 'viewProfile']);
+        Route::post('profile/update', [MerchantProfileAPIController::class, 'profileUpdate']);
 
     });
 

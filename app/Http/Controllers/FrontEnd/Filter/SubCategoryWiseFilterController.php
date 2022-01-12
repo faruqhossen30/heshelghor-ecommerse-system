@@ -26,7 +26,7 @@ class SubCategoryWiseFilterController extends Controller
 
         // return $subcat;
         if (empty($_GET)) {
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $subcat->id)->latest('id')->paginate(12);
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $subcat->id)->latest('id')->paginate(20);
             return view('frontend.product-filter.subcategory-wise-filter', compact('categories', 'products', 'brands'));
         }
 

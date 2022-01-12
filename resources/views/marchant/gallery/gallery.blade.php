@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
-
+            <x-gallerycropmodal/>
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -118,6 +118,6 @@
     </style>
 @endpush
 @push('scripts')
-
-
+<script src="{{asset('js/merchantgallerycrop.js')}}"></script>
+<script src="{{asset('js/merchantmediacrop.js')}}"></script>
 @endpush

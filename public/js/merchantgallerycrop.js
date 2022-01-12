@@ -6,6 +6,7 @@ $(document).ready(function () {
     });
 
     var $modal = $('#modal');
+    $('#uploadingbutton').hide()
     // collapse Close
     $('#collapseClose').click(function () {
         $('.collapse').collapse('hide')
@@ -78,8 +79,16 @@ $(document).ready(function () {
         canvas.toBlob((blob) => {
             const formData = new FormData();
 
+            $('#uploadingbutton').show()
             // Pass the image file name as the third parameter if necessary.
             formData.append('croppedImage', blob, newFileName);
+
+            $('#footerButton').append(`
+            <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            uploading .......
+            </button>
+            `);
 
             // Use `jQuery.ajax` method for example
             $.ajax({
@@ -92,6 +101,7 @@ $(document).ready(function () {
                 success(data) {
                     $modal.modal('hide');
                     $('.collapse').collapse('hide')
+                    $('#uploadingbutton').hide()
                     console.log(data);
                 },
                 error() {

@@ -67,62 +67,6 @@ class BrandController extends Controller
         Session::flash('create');
         return redirect()->route('myaddedbrand');
 
-
-
-
-
-
-        $image = $request->file('image');
-
-
-
-
-
-        // if($image){
-        //     $validate = $request->validate([
-        //         'name'        => 'required',
-        //         'description' => 'required',
-        //         'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
-        //     ]);
-
-
-        //     $fileExtention = $image->getClientOriginalExtension();
-        //     $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-        //     Image::make($image)->save(public_path('uploads/brand/') . $fileName);
-
-        //     Brand::create([
-        //         'name'        => $request->name,
-        //         'description' => $request->description,
-        //         'slug'        => Str::of($request->name)->slug('-'),
-        //         'image'       => 'uploads/brand/' . $fileName,
-        //         'author'      => 'merchant',
-        //         'author_id'   => Auth::guard('marchant')->user()->id,
-        //     ]);
-
-        //     Session::flash('create');
-        //     return redirect()->route('myaddedbrand');
-
-        // } else{
-        //     $validate = $request->validate([
-        //         'name'        => 'required',
-        //         'description' => 'required',
-        //     ]);
-        //     $marchantname = 'merchant';
-        //     Brand::create([
-        //         'name'        => $request->name,
-        //         'description' => $request->description,
-        //         'slug'        => Str::of($request->name)->slug('-'),
-        //         'author'      => 'merchant',
-        //         'author_id'   => Auth::guard('marchant')->user()->id,
-        //     ]);
-
-        //     Session::flash('create');
-        //     return redirect()->route('myaddedbrand');
-
-        // };
-
-
     }
 
     /**
@@ -159,7 +103,7 @@ class BrandController extends Controller
     public function update(Request $request, $id)
     {
 
-        return $request->all();
+        // return $request->all();
 
         $validate = $request->validate([
             'name'        => 'required',
@@ -169,6 +113,10 @@ class BrandController extends Controller
         $data = [
             'name'        => $request->name,
             'description' => $request->description,
+            'img_full'    => $request->img_full,
+            'img_small'   => $request->img_small,
+            'img_medium'  => $request->img_medium,
+            'img_large'   => $request->img_large
         ];
 
         $update = Brand::where('id', $id)->update($data);

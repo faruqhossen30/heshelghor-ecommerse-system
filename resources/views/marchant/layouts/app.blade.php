@@ -62,7 +62,7 @@
         <div class="content-page">
             <div class="content">
 
-                <x-gallerycropmodal/>
+
                 {{-- <x-mediamodal/> --}}
                 <x-mediacropmodal/>
                 <!-- Modal -->
@@ -123,8 +123,7 @@
     <!-- Stack JS Start -->
     <!-- App js -->
     <script src="{{ asset('backend') }}/assets/js/app.min.js"></script>
-    <script src="{{asset('js/merchantgallerycrop.js')}}"></script>
-    <script src="{{asset('js/merchantmediacrop.js')}}"></script>
+
 </body>
 
 </html>

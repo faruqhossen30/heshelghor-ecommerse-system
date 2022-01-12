@@ -82,7 +82,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <button type="submit" class="btn btn-success">Add Brand</button>
+                                                            <button type="submit" class="btn btn-success">Update Brand</button>
 
 
                                                         </div>
@@ -124,7 +124,7 @@
                                 <div id="brandMediaArea">
                                     <div id="selectedBrandMedia" class="text-center">
                                         <h5>Brand Image</h5>
-                                        <img src="{{$brand->img_full}}" alt="" class="img-responsive p-2">
+                                        <img src="{{$brand->img_full}}" alt="Brand Image" class="img-responsive p-2" style="width: 100%">
                                         <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
         };
 
         $(document).ready(function() {
-            // $('#brandMediaSelectArea').hide();
+            $('#brandMediaSelectArea').hide();
             var mediaGallery = $('#mediaGallery');
             $mediaModal = $('#mediaModal');
             $('#thumbnail').on('click', function() {
@@ -253,13 +253,18 @@
                     </div>`
                 );
                 $mediaModal.modal('hide');
-                $('#selectedBrandMediaButton').on('click', function() {
-                    $('#addBrandFrormMedia').empty();
+
+            });
+            // $('#selectedBrandMediaButton').on('click', function() {
+            //         $('#addBrandFrormMedia').empty();
+            //         $('#brandMediaSelectArea').show();
+            //         $(this).parent().remove();
+            //     });
+
+            $(document).on('click', '#selectedBrandMediaButton', function(){
+                $('#addBrandFrormMedia').empty();
                     $('#brandMediaSelectArea').show();
                     $(this).parent().remove();
-                });
-
-
             });
 
 

@@ -19,7 +19,7 @@ class CategoryWiseFilterController extends Controller
 
         if (empty($_GET)) {
 
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(12);
+            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
 
             // return $products;
 
