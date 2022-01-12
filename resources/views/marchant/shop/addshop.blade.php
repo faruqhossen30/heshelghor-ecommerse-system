@@ -203,7 +203,7 @@
                             <h5 class="text-center m-0">Featured Image</h5>
                         </div>
                         <div class="card-body">
-                            <div class="form-group" id="brandMediaSelectArea">
+                            <div class="form-group" id="shopMediaSelectArea">
                                 <div style="display: flex; justify-content:space-between" class="my-1">
                                     <label class="control-label text-center">Select Image For Upload</label>
                                     {{-- <button class="btn btn-danger btn-sm" id="collapseClose"
@@ -218,7 +218,7 @@
                                         class="selectmediadropzone thumbnail"> Welcome </button>
                                 </div>
                             </div>
-                            <div id="brandMediaArea">
+                            <div id="shopMediaArea">
 
                             </div>
                         </div>
@@ -354,25 +354,26 @@
         $('#mediaForm').on('submit', function(event) {
             event.preventDefault();
             var selectimage = $('input[name="selectimage"]:checked');
-            var brandMediaSelectArea = $('#brandMediaSelectArea');
-            var brandMediaArea = $('#brandMediaArea');
+
+            var shopMediaSelectArea = $('#shopMediaSelectArea');
+            var shopMediaArea = $('#shopMediaArea');
 
             var fullUrl = selectimage.data('urlfull');
             var smallUrl = selectimage.data('rulsmall');
             var mediumUrl = selectimage.data('urlmedium');
             var largeUrl = selectimage.data('urllarge');
 
-            var brandMediaArea = $('#brandMediaArea');
+            var shopMediaArea = $('#shopMediaArea');
 
-            $('#brandMediaSelectArea').hide();
-            brandMediaArea.append(`<div id="selectedBrandMedia" class="text-center">
+            $('#shopMediaSelectArea').hide();
+            shopMediaArea.append(`<div id="selectedBrandMedia" class="text-center">
                                     <h5>Brand Image</h5>
                                     <img src="${smallUrl}" alt="" class="img-responsive p-2" style="max-width:100%">
                                     <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger" > Close</button>
                                 </div>`);
 
 
-            $('#addBrandFrormMedia').append(
+            $('#shopMediaArea').append(
                 `<div>
                     <input type="hidden" name="img_full" value="${fullUrl}">
                     <input type="hidden" name="img_small" value="${smallUrl}">
@@ -382,8 +383,8 @@
             );
             $mediaModal.modal('hide');
             $('#selectedBrandMediaButton').on('click', function() {
-                $('#addBrandFrormMedia').empty();
-                $('#brandMediaSelectArea').show();
+                $('#shopMediaArea').empty();
+                $('#shopMediaSelectArea').show();
                 $(this).parent().remove();
             });
 

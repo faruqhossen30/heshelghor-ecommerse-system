@@ -28,8 +28,8 @@ class MerchantProfileAPIController extends Controller
 
         $merchant = Marchant::where('id', $merchantId)->update([
             'name'               => $request->name,
-            // 'email '          => $request->name,
             'address'            => $request->address,
+            'phone_number'       => $request->phone_number,
             'photo'              => $request->photo,
             'nid_no'             => $request->nid_no,
             'tradelicense_no'    => $request->tradelicense_no,
