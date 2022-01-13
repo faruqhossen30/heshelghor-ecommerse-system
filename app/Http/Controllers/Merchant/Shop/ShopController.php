@@ -54,65 +54,35 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         // return $request->file('image');
-        return $request->all();
-        $image = $request->file('image');
-        if ($image) {
-            $validate = $request->validate([
-                'name'        => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
-            ]);
+        // return $request->all();
+        $validate = $request->validate([
+            'name'    => 'required',
+            'address' => 'required',
+            'mobile'  => 'required'
+        ]);
 
+        Shop::create([
+            'name'          => $request->name,
+            'address'       => $request->address,
+            'mobile'        => $request->mobile,
+            'description'   => $request->description,
+            'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
+            'trade_license' => $request->trade_license,
+            'market_id'     => $request->market_id,
+            'division_id'   => $request->division_id,
+            'district_id'   => $request->district_id,
+            'upazila_id'    => $request->upazila_id,
+            'image'         => $request->image,
+            'author'        => 'merchant',
+            'author_id'     => Auth::guard('marchant')->user()->id,
+            'img_full'      => $request->img_full,
+            'img_small'     => $request->img_small,
+            'img_medium'    => $request->img_medium,
+            'img_large'     => $request->img_large
+        ]);
 
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            $photo = Image::make($image)->save(public_path('uploads/shop/') . $fileName);
-            // dd($fileName);
-
-            Shop::create([
-                'name'          => $request->name,
-                'address'       => $request->address,
-                'mobile'        => $request->mobile,
-                'description'   => $request->description,
-                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
-                'trade_license' => $request->trade_license,
-                'market_id'     => $request->market_id,
-                'division_id'   => $request->division_id,
-                'district_id'   => $request->district_id,
-                'upazila_id'    => $request->upazila_id,
-                'image'         => $fileName,
-                'author'        => 'merchant',
-                'author_id'     => Auth::guard('marchant')->user()->id,
-            ]);
-
-            Session::flash('create');
-            return redirect()->route('shop.index');
-        } else {
-            $validate = $request->validate([
-                'name'        => 'required',
-                'address'     => 'required',
-                'division_id' => 'required',
-                'district_id' => 'required',
-                'upazila_id'  => 'required',
-            ]);
-            $marchantname = 'merchant';
-            Shop::create([
-                'name'          => $request->name,
-                'address'       => $request->address,
-                'mobile'        => $request->mobile,
-                'description'   => $request->description,
-                'slug'          => SlugService::createSlug(Shop::class, 'slug', $request->name, ['unique' => true]),
-                'trade_license' => $request->trade_license,
-                'market_id'     => $request->market_id,
-                'division_id'   => $request->division_id,
-                'district_id'   => $request->district_id,
-                'upazila_id'    => $request->upazila_id,
-                'author'        => 'merchant',
-                'author_id'     => Auth::guard('marchant')->user()->id,
-            ]);
-            Session::flash('create');
-            return redirect()->route('shop.index');
-        };
+        Session::flash('create');
+        return redirect()->route('shop.index');
     }
 
     /**
@@ -150,59 +120,48 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $shop = Shop::find($id);
-        $image = $request->file('image');
+        // return $request->all();
+        $validate = $request->validate([
+            'name'    => 'required',
+            'address' => 'required',
+            'mobile'  => 'required'
+        ]);
 
-        if ($image) {
-            $validate = $request->validate([
-                'name'        => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
-            ]);
+        $data = [
+            'name'          => $request->name,
+            'address'       => $request->address,
+            'mobile'        => $request->mobile,
+            'description'   => $request->description,
+            'trade_license' => $request->trade_license,
+            'market_id'     => $request->market_id,
+            'division_id'   => $request->division_id,
+            'district_id'   => $request->district_id,
+            'upazila_id'    => $request->upazila_id,
+            'img_full'      => $request->img_full,
+            'img_small'     => $request->img_small,
+            'img_medium'    => $request->img_medium,
+            'img_large'     => $request->img_large
+        ];
 
+        $userID = Auth::guard('marchant')->user()->id;
+        Shop::where('author_id', $userID)->where('id', $id)->update([
+            'name'          => $request->name,
+            'address'       => $request->address,
+            'mobile'        => $request->mobile,
+            'description'   => $request->description,
+            'trade_license' => $request->trade_license,
+            'market_id'     => $request->market_id,
+            'division_id'   => $request->division_id,
+            'district_id'   => $request->district_id,
+            'upazila_id'    => $request->upazila_id,
+            'img_full'      => $request->img_full,
+            'img_small'     => $request->img_small,
+            'img_medium'    => $request->img_medium,
+            'img_large'     => $request->img_large
+        ]);
 
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            Image::make($image)->save(public_path('uploads/shop/') . $fileName);
-
-            $shop->name          = $request->name;
-            $shop->address       = $request->address;
-            $shop->mobile        = $request->mobile;
-            $shop->description   = $request->description;
-            $shop->trade_license = $request->trade_license;
-            $shop->market_id     = $request->market_id;
-            $shop->division_id   = $request->division_id;
-            $shop->district_id   = $request->district_id;
-            $shop->upazila_id    = $request->upazila_id;
-            $shop->author_id     = Auth::guard('marchant')->user()->id;
-            $shop->image         = 'uploads/shop/' . $fileName;
-            $shop->save();
-
-            Session::flash('update');
-            return redirect()->route('shop.index');
-        } else {
-            $validate = $request->validate([
-                'name'        => 'required',
-                'address'     => 'required',
-                'division_id' => 'required',
-                'district_id' => 'required',
-                'upazila_id'  => 'required',
-            ]);
-            $marchantname = 'merchant';
-            $shop->name = $request->name;
-            $shop->address       = $request->address;
-            $shop->mobile        = $request->mobile;
-            $shop->description   = $request->description;
-            $shop->trade_license = $request->trade_license;
-            $shop->market_id     = $request->market_id;
-            $shop->division_id   = $request->division_id;
-            $shop->district_id   = $request->district_id;
-            $shop->upazila_id    = $request->upazila_id;
-            $shop->author_id     = Auth::guard('marchant')->user()->id;
-            $shop->save();
-            Session::flash('update');
-            return redirect()->route('shop.index');
-        };
+        Session::flash('update');
+        return redirect()->route('shop.index');
     }
 
     /**

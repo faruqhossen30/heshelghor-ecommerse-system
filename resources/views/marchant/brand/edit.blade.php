@@ -126,6 +126,12 @@
                                         <h5>Brand Image</h5>
                                         <img src="{{$brand->img_full}}" alt="Brand Image" class="img-responsive p-2" style="width: 100%">
                                         <button  id="selectedBrandMediaButton" type="button" class="btn btn-danger"> Close</button>
+                                        <div>
+                                            <input type="hidden" name="img_full" value="{{$brand->img_full}}">
+                                            <input type="hidden" name="img_small" value="{{$brand->img_full}}">
+                                            <input type="hidden" name="img_medium" value="{{$brand->img_full}}">
+                                            <input type="hidden" name="img_large" value="{{$brand->img_full}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

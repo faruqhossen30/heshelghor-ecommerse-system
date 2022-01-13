@@ -28,6 +28,10 @@ class CreateShopsTable extends Migration
             $table->unsignedBigInteger('upazila_id');
             $table->string('author');
             $table->unsignedBigInteger('author_id');
+            $table->string('img_full')->nullable();
+            $table->string('img_small')->nullable();
+            $table->string('img_medium')->nullable();
+            $table->string('img_large')->nullable();
             $table->timestamps();
         });
     }
