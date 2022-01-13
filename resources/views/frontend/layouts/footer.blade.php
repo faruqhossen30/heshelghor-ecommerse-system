@@ -216,6 +216,9 @@
             <a href="{{route('homepage')}}">Home</a>
         </li>
         <li>
+            <a href="{{route('pruductspage')}}">Products</a>
+        </li>
+        <li>
             <a href="demo3-shop.html">Categories</a>
             <ul>
                 <li>

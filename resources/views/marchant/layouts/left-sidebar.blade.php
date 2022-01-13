@@ -73,6 +73,12 @@
                 <li class="menu-title">Marchant Dashboard</li>
 
                 <li>
+                    <a href="{{route('homepage')}}" >
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span> Home </span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('marchant.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="badge bg-success rounded-pill float-end">3</span>

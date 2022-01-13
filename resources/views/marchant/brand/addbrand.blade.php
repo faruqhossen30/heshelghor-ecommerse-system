@@ -13,7 +13,7 @@
                         <h4 class="page-title">Create Brand</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('homepage')}}">Heshelghor</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
                                 <li class="breadcrumb-item active">Brand List</li>
                             </ol>
@@ -156,21 +156,6 @@
     <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
         rel="stylesheet" type="text/css" />
 
-    {{-- Style for image checkbox --}}
-    <style>
-        .image-checkbox {
-            cursor: pointer;
-            position: relative;
-        }
-
-        .image-checkbox input {
-            /* display: none */
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-    </style>
 @endpush
 
 @push('scripts')
@@ -279,5 +264,6 @@
 
         });
     </script>
+    <script src="{{asset('js/merchantmediacrop.js')}}"></script>
 
 @endpush

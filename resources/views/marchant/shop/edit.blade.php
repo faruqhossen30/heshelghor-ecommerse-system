@@ -134,7 +134,9 @@
                                                                             class="form-select @error('district_id') is-invalid @enderror"
                                                                             name="district_id">
 
-                                                                            <option selected value="">Select</option>
+                                                                            @foreach ($districts as $district)
+                                                                                <option value="{{$district->id}}" @if( $district->id == $shop->district_id) selected @endif>{{$district->name}}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                         <img id="district_loader"
                                                                             src="{{ asset('loading.gif') }}" alt=""
@@ -152,6 +154,9 @@
                                                                             class="form-select @error('upazila_id') is-invalid @enderror"
                                                                             name="upazila_id">
                                                                             <option selected value=""></option>
+                                                                            @foreach ($upazilas as $upazila)
+                                                                                <option value="{{$upazila->id}}" @if( $upazila->id == $shop->upazila_id) selected @endif>{{$upazila->name}}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                         <img id="upazila_loader"
                                                                             src="{{ asset('loading.gif') }}" alt=""

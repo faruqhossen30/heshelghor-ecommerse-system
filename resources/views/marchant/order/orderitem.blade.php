@@ -10,7 +10,7 @@
                     <h4 class="page-title">Order Detail</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('homepage')}}">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
                             <li class="breadcrumb-item active">Order Details</li>
                         </ol>

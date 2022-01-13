@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Merchant\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
+use App\Models\Admin\Location\Upazila;
 use App\Models\Admin\Market;
 use Illuminate\Http\Request;
 // use App\Models\Admin\Shop\Shop;
@@ -56,9 +58,12 @@ class ShopController extends Controller
         // return $request->file('image');
         // return $request->all();
         $validate = $request->validate([
-            'name'    => 'required',
-            'address' => 'required',
-            'mobile'  => 'required'
+            'name'        => 'required',
+            'address'     => 'required',
+            'mobile'      => 'required',
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'upazila_id'  => 'required'
         ]);
 
         Shop::create([
@@ -106,9 +111,12 @@ class ShopController extends Controller
     public function edit($id)
     {
         $shop = Shop::find($id);
-        $divisions = Division::all();
-        $markets = Market::get();
-        return view('marchant.shop.edit', compact('shop', 'markets', 'divisions'));
+        $divisions = Division::orderBy('name', 'asc')->get();
+        $districts = District::orderBy('name', 'asc')->get();
+        $upazilas = Upazila::orderBy('name', 'asc')->get();
+        $markets = Market::orderBy('name', 'asc')->get();
+        // return $upazilas;
+        return view('marchant.shop.edit', compact('shop', 'markets', 'divisions', 'districts', 'upazilas'));
     }
 
     /**
@@ -122,9 +130,12 @@ class ShopController extends Controller
     {
         // return $request->all();
         $validate = $request->validate([
-            'name'    => 'required',
-            'address' => 'required',
-            'mobile'  => 'required'
+            'name'        => 'required',
+            'address'     => 'required',
+            'mobile'      => 'required',
+            'division_id' => 'required',
+            'district_id' => 'required',
+            'upazila_id'  => 'required'
         ]);
 
         $data = [

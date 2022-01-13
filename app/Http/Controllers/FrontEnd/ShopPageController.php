@@ -14,7 +14,7 @@ class ShopPageController extends Controller
     {
         $brands = Brand::get();
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(12);
+        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
 
         // return $products;
 

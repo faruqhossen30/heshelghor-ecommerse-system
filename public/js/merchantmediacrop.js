@@ -15,9 +15,9 @@ $(document).ready(function () {
     var $mediaCropModal = $('#mediaCropModal');
     var mediaImage = document.getElementById('mediaimage');
     var cropper;
-    $("body").on("change", ".mediaImage", function (e) {
+    $(document).on("change", ".mediaImage", function (e) {
         $mediaModal.hide()
-        // alert('tesing')
+        alert('tesing')
         var files = e.target.files;
 
         var done = function (url) {
