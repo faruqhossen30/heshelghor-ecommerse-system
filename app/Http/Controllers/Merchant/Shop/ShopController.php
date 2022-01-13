@@ -54,7 +54,7 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         // return $request->file('image');
-        // return $request->all();
+        return $request->all();
         $image = $request->file('image');
         if ($image) {
             $validate = $request->validate([

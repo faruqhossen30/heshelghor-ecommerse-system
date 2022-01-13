@@ -44,10 +44,20 @@ class MerchantGalleryAPIController extends Controller
         // return $request->all();
         $data = $merchant->addMedia($request->media)->toMediaCollection();
 
+        $media = [
+            'id'           => $data->id,
+            'file_name'    => $data->file_name,
+            'original_url' => $data->getUrl(),
+            'small_url'    => $data->getUrl('small'),
+            'medium_url'   => $data->getUrl('medium'),
+            'large_url'    => $data->getUrl('large')
+
+        ];
+
         return response()->json([
             'success' => true,
             'code'    => 200,
-            'message' => 'Media Upload Successfully !'
+            'data' => $media
         ]);
     }
 
