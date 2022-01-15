@@ -3,8 +3,8 @@
 		<div class="product-gallery">
 			<div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
 				<figure class="product-image">
-					<img src="{{ asset('uploads/product/'.$product->photo) }}" class="img-thumbnail"
-						data-zoom-image="images/product/product-1-1-800x900.jpg" alt="Blue Pinafore Denim Dress"
+					<img src="{{$product->img_full }}" class="img-thumbnail"
+						data-zoom-image="{{$product->img_full }}" alt="Blue Pinafore Denim Dress"
 						width="580" height="580">
 				</figure>
 				{{-- <figure class="product-image">

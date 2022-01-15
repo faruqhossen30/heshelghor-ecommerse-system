@@ -17,14 +17,11 @@ class CategoryWiseFilterController extends Controller
         $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray());
         $brands = Brand::whereIn('id', $brands_id)->get();
 
-        if (empty($_GET)) {
+        // if (empty($_GET)) {
 
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
-
-            // return $products;
-
-            return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-        }
+            // $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
+            // return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
+        // }
 
         if (!empty($_GET['filter_brands']) && !empty($_GET['orderby']) && !empty($_GET['count'])) {
             // Brand Filter
@@ -70,6 +67,8 @@ class CategoryWiseFilterController extends Controller
             }
 
         }
+        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
+        return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
 
 
 

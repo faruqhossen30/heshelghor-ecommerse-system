@@ -221,6 +221,7 @@
                                 @endforeach
 
                             </div>
+                            {{-- {{ $products->appends($_GET)->links() }} --}}
                             {{ $products->appends($_GET)->links() }}
                             {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
