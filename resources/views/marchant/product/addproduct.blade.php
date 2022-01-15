@@ -96,7 +96,7 @@
                                             <label for="brand_id" class="form-label">Brand <span
                                                     class="text-danger">*</span></label>
                                             <select name="brand_id"
-                                                class="form-control @error('brand_id') is-invalid @enderror" id="brand_id">
+                                                class="form-control @error('brand_id') is-invalid @enderror selectize-drop-header" id="select-code-language" >
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                 @endforeach
@@ -401,7 +401,8 @@
 @endsection
 
 @push('css')
-    <link href="{{ asset('backend') }}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('backend') }}/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -438,7 +439,14 @@
     {{-- <script src="{{ asset('backend')}}/assets/libs/quill/quill.min.js"></script> --}}
 
     <!-- Select2 js-->
+    <script src="{{ asset('backend') }}/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+    {{-- <script src="{{ asset('backend') }}/assets/libs/mohithg-switchery/switchery.min.js"></script> --}}
+    {{-- <script src="{{ asset('backend') }}/assets/libs/multiselect/js/jquery.multi-select.js"></script> --}}
+    {{-- <script src="{{ asset('backend') }}/assets/libs/jquery.quicksearch/jquery.quicksearch.min.js"></script> --}}
     <script src="{{ asset('backend') }}/assets/libs/select2/js/select2.min.js"></script>
+    {{-- <script src="{{ asset('backend') }}/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script> --}}
+    <script src="{{ asset('backend') }}/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/js/pages/form-advanced.init.js"></script>
 
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}

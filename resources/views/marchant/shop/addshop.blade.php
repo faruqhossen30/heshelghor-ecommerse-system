@@ -250,6 +250,19 @@
     <!-- Validation init js-->
     {{-- <script src="{{ asset('backend') }}/assets/js/pages/form-validation.init.js"></script> --}}
     <script src="{{ asset('backend') }}/assets/js/pages/form-advanced.init.js"></script>
+    <script>
+       $(document){
+        $('.selectize-drop-header').selectize({
+            sortField: 'text',
+            hideSelected: false,
+            plugins: {
+                'dropdown_header': {
+                    title: 'On Test'
+                }
+            }
+        })
+       }
+    </script>
 
 
 

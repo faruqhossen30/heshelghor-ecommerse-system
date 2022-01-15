@@ -201,7 +201,7 @@ File: Form advanced init js
             hideSelected: false,
             plugins: {
                 'dropdown_header': {
-                    title: 'Language'
+                    title: 'Search or Select'
                 }
             }
         })

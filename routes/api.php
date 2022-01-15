@@ -106,7 +106,9 @@ Route::prefix('merchant')->group(function () {
         Route::post('product/color/update/{id}', [MerchantProductAPIController::class, 'productColorUpdate']);
         Route::get('product/delete/{id}', [MerchantProductAPIController::class, 'destroy']);
         Route::post('product/store', [MerchantProductAPIController::class, 'store']);
+        // Color
         Route::post('product/color', [MerchantProductAPIController::class, 'productColor']);
+        // Size
         Route::post('product/size', [MerchantProductAPIController::class, 'productSize']);
         Route::post('product/image', [MerchantProductAPIController::class, 'productImage']);
         Route::post('product/sileder/image', [MerchantProductAPIController::class, 'productSliderFullSize']);
