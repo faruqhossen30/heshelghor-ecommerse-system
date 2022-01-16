@@ -12,7 +12,7 @@ class ShopAPIController extends Controller
     // Shop list with pagination
     public function shops()
     {
-        $shops = Shop::latest()->paginate(30);
+        $shops = Shop::latest()->paginate(15);
         return $shops;
     }
 

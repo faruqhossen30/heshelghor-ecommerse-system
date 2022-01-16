@@ -10,7 +10,7 @@ class BrandAPIController extends Controller
 {
     public function brands()
     {
-        $shops = Brand::latest()->paginate(30);
+        $shops = Brand::latest()->paginate(15);
         return $shops;
     }
 }
