@@ -3,6 +3,7 @@
 @section('content')
     <div class="content">
         <x-mediamodal />
+        <x-gallerycropmodal />
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -44,7 +45,8 @@
 
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-3 col-form-label"
-                                                                    for="simpleinput">Shop Name:<span class="text-danger">*</span> </label>
+                                                                    for="simpleinput">Shop Name:<span
+                                                                        class="text-danger">*</span> </label>
                                                                 <div class="col-md-9">
                                                                     <input name="name" type="text" id="simpleinput"
                                                                         class="form-control @error('name') is-invalid @enderror "
@@ -66,7 +68,8 @@
                                                             </div>
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-3 col-form-label" for="addressID">
-                                                                    Mobile Number:<span class="text-danger">*</span> </label>
+                                                                    Mobile Number:<span class="text-danger">*</span>
+                                                                </label>
                                                                 <div class="col-md-9">
                                                                     <input name="mobile" type="text" id="addressID"
                                                                         class="form-control @error('mobile') is-invalid @enderror "
@@ -89,125 +92,126 @@
                                                             </div>
 
 
-                                                                                <div class="       mb-2 row">
-                                                                    <label class="form-label col-md-3 col-form-label"
-                                                                        for="select-code-language">Market/Mall</label>
-                                                                    <div class="col-md-9">
+                                                            <div class="       mb-2 row">
+                                                                <label class="form-label col-md-3 col-form-label"
+                                                                    for="select-code-language">Market/Mall</label>
+                                                                <div class="col-md-9">
 
-                                                                        <select name="market_id" id="select-code-language"
-                                                                            class="selectize-drop-header"
-                                                                            placeholder="Select a Shoping Mall/Market">
-                                                                            @foreach ($markets as $item)
-                                                                                <option value="{{ $item->id }}">
-                                                                                    {{ $item->name }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
+                                                                    <select name="market_id" id="select-code-language"
+                                                                        class="selectize-drop-header"
+                                                                        placeholder="Select a Shoping Mall/Market">
+                                                                        @foreach ($markets as $item)
+                                                                            <option value="{{ $item->id }}">
+                                                                                {{ $item->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
-
-
-
-                                                                <div class="mb-2 row">
-                                                                    <label class="col-md-3 col-form-label"
-                                                                        for="simpleinput">Division:<span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <div class="col-md-9" style="position: relative">
-                                                                        <select id="division"
-                                                                            class="form-select @error('division_id') is-invalid @enderror"
-                                                                            name="division_id">
-                                                                            <option selected value="">Select</option>
-                                                                            @foreach ($divisions as $division)
-                                                                                <option value="{{ $division->id }}">
-                                                                                    {{ $division->name }}</option>
-                                                                            @endforeach
-
-                                                                        </select>
-                                                                        <x-error name='division_id' />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="mb-2 row">
-                                                                    <label class="col-md-3 col-form-label"
-                                                                        for="simpleinput">Select
-                                                                        District :<span class="text-danger">*</span> </label>
-                                                                    <div class="col-md-9" style="position: relative">
-                                                                        <select disabled id="district"
-                                                                            class="form-select @error('district_id') is-invalid @enderror"
-                                                                            name="district_id">
-                                                                            <option selected value="">Select</option>
-                                                                        </select>
-                                                                        <img id="district_loader"
-                                                                            src="{{ asset('loading.gif') }}" alt=""
-                                                                            style="width:20px; position:absolute; top:10px;left:30px">
-                                                                        <x-error name='district_id' />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="mb-2 row">
-                                                                    <label class="col-md-3 col-form-label"
-                                                                        for="upazila">Select
-                                                                        Upazila :<span class="text-danger">*</span> </label>
-                                                                    <div class="col-md-9" style="position: relative">
-                                                                        <select disabled id="upazila"
-                                                                            class="form-select @error('upazila_id') is-invalid @enderror"
-                                                                            name="upazila_id">
-                                                                            <option selected value=""></option>
-                                                                        </select>
-                                                                        <img id="upazila_loader"
-                                                                            src="{{ asset('loading.gif') }}" alt=""
-                                                                            style="width:20px; position:absolute; top:10px;left:30px">
-                                                                        <x-error name='upazila_id' />
-                                                                    </div>
-                                                                </div>
-
-                                                                <button type="submit" class="btn btn-primary"> <i
-                                                                        class="mdi mdi-content-save me-1"></i> Create
-                                                                    Shop</button>
-
-
                                                             </div>
+
+
+
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-3 col-form-label"
+                                                                    for="simpleinput">Division:<span
+                                                                        class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-md-9" style="position: relative">
+                                                                    <select id="division"
+                                                                        class="form-select @error('division_id') is-invalid @enderror"
+                                                                        name="division_id">
+                                                                        <option selected value="">Select</option>
+                                                                        @foreach ($divisions as $division)
+                                                                            <option value="{{ $division->id }}">
+                                                                                {{ $division->name }}</option>
+                                                                        @endforeach
+
+                                                                    </select>
+                                                                    <x-error name='division_id' />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-3 col-form-label"
+                                                                    for="simpleinput">Select
+                                                                    District :<span class="text-danger">*</span> </label>
+                                                                <div class="col-md-9" style="position: relative">
+                                                                    <select disabled id="district"
+                                                                        class="form-select @error('district_id') is-invalid @enderror"
+                                                                        name="district_id">
+                                                                        <option selected value="">Select</option>
+                                                                    </select>
+                                                                    <img id="district_loader"
+                                                                        src="{{ asset('loading.gif') }}" alt=""
+                                                                        style="width:20px; position:absolute; top:10px;left:30px">
+                                                                    <x-error name='district_id' />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-3 col-form-label" for="upazila">Select
+                                                                    Upazila :<span class="text-danger">*</span> </label>
+                                                                <div class="col-md-9" style="position: relative">
+                                                                    <select disabled id="upazila"
+                                                                        class="form-select @error('upazila_id') is-invalid @enderror"
+                                                                        name="upazila_id">
+                                                                        <option selected value=""></option>
+                                                                    </select>
+                                                                    <img id="upazila_loader"
+                                                                        src="{{ asset('loading.gif') }}" alt=""
+                                                                        style="width:20px; position:absolute; top:10px;left:30px">
+                                                                    <x-error name='upazila_id' />
+                                                                </div>
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-primary"> <i
+                                                                    class="mdi mdi-content-save me-1"></i> Create
+                                                                Shop</button>
+
+
                                                         </div>
-
                                                     </div>
-                                                    <!-- end row -->
-                                                </div>
-                                            </div> <!-- end card -->
-                                        </div><!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                </div>
-                            </div>
 
+                                                </div>
+                                                <!-- end row -->
+                                            </div>
+                                        </div> <!-- end card -->
+                                    </div><!-- end col -->
+                                </div>
+                                <!-- end row -->
+                            </div>
                         </div>
 
-                        <div class="col-sm-3"> {{-- Galary Image Start --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="text-center m-0">Featured Image</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group" id="shopMediaSelectArea">
-                                        <div style="display: flex; justify-content:space-between" class="my-1">
-                                            <label class="control-label text-center">Select Image For Upload <span class="text-danger">*</span></label>
-                                            {{-- <button class="btn btn-danger btn-sm" id="collapseClose"
-                                type="button">Close</button> --}}
-                                        </div>
-                                        <div class="selectmediadropzone-wrapper">
-                                            <div class="selectmediadropzone-desc">
-                                                <i class="mdi mdi-image h1 text-secondary"></i>
-                                                <p>Select Image</p>
-                                            </div>
-                                            <button name="thumbnail" id="thumbnail" type="button"
-                                                class="selectmediadropzone thumbnail"> Welcome </button>
-                                        </div>
-                                    </div>
-                                    <div id="shopMediaArea">
+                    </div>
 
+                    <div class="col-sm-3"> {{-- Galary Image Start --}}
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center m-0">Featured Image</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" id="shopMediaSelectArea">
+                                    <div style="display: flex; justify-content:space-between" class="my-1">
+                                        <label class="control-label text-center">Select Image For Upload <span
+                                                class="text-danger">*</span></label>
+                                        {{-- <button class="btn btn-danger btn-sm" id="collapseClose"
+                                type="button">Close</button> --}}
                                     </div>
+                                    <div class="selectmediadropzone-wrapper">
+                                        <div class="selectmediadropzone-desc">
+                                            <i class="mdi mdi-image h1 text-secondary"></i>
+                                            <p>Select Image</p>
+                                        </div>
+                                        <button name="thumbnail" id="thumbnail" type="button"
+                                            class="selectmediadropzone thumbnail"> Welcome </button>
+                                    </div>
+                                </div>
+                                <div id="shopMediaArea">
+
                                 </div>
                             </div>
-                        </div> {{-- Galary Image End --}}
-                    </div>
+                        </div>
+                    </div> {{-- Galary Image End --}}
+                </div>
 
             </form>
         </div> <!-- container-fluid -->
@@ -250,22 +254,9 @@
     <!-- Validation init js-->
     {{-- <script src="{{ asset('backend') }}/assets/js/pages/form-validation.init.js"></script> --}}
     <script src="{{ asset('backend') }}/assets/js/pages/form-advanced.init.js"></script>
-    <script>
-       $(document){
-        $('.selectize-drop-header').selectize({
-            sortField: 'text',
-            hideSelected: false,
-            plugins: {
-                'dropdown_header': {
-                    title: 'On Test'
-                }
-            }
-        })
-       }
-    </script>
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <script>
@@ -322,7 +313,7 @@
         });
     </script>
 
-
+    {{-- Select media --}}
     <script>
         function getGallery(mediaGallery) {
             mediaGallery.empty();
@@ -388,6 +379,130 @@
 
 
             });
+
+
+        });
+    </script>
+    <script>
+        // Crop Image
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var $modal = $('#modal');
+            $('#uploadingbutton').hide()
+            // collapse Close
+            $('#collapseClose').click(function() {
+                $('.collapse').collapse('hide')
+            });
+
+            var image = document.getElementById('image');
+            var cropper;
+            $("body").on("change", ".image", function(e) {
+                $mediaModal.modal('hide');
+
+                var files = e.target.files;
+                // console.log(files);
+
+                var done = function(url) {
+                    image.src = url;
+                    $modal.modal('show');
+                };
+                var reader;
+                var file;
+                var url;
+                if (files && files.length > 0) {
+
+                    file = files[0];
+                    if (URL) {
+                        // console.log(URL.createObjectURL)
+
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        console.log(FileReader)
+                        reader = new FileReader();
+                        reader.onload = function(e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+            $modal.on('shown.bs.modal', function() {
+
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    viewMode: 2,
+                    preview: '.preview',
+                    zoomOnWheel: true,
+                });
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            // For Editing Image
+            $('#roatedPlus').click(function() {
+                cropper.rotate(90)
+            });
+            $('#roatedMinus').click(function() {
+                cropper.rotate(-90)
+            });
+            $('#roatedReset').click(function() {
+                cropper.reset()
+            });
+
+
+            $("#crop").click(function() {
+                var fileName = $('.image');
+                var newFileName = fileName[0].files[0].name
+                console.log();
+                canvas = cropper.getCroppedCanvas({
+                    width: 1000,
+                    height: 1000,
+                });
+
+                canvas.toBlob((blob) => {
+                    const formData = new FormData();
+
+                    $('#uploadingbutton').show()
+                    // Pass the image file name as the third parameter if necessary.
+                    formData.append('croppedImage', blob, newFileName);
+
+                    $('#footerButton').append(`
+            <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            uploading .......
+            </button>
+            `);
+
+                    // Use `jQuery.ajax` method for example
+                    $.ajax({
+                        url: '/merchant/gallary/sotre',
+                        method: 'POST',
+                        dataType: "json",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success(data) {
+                            $modal.modal('hide');
+                            $('.collapse').collapse('hide')
+                            $('#uploadingbutton').hide()
+                            $mediaModal.modal('show');
+                            console.log(data);
+                        },
+                        error() {
+                            console.log('Upload error');
+                        },
+                    });
+                } /*, 'image/png' */ );
+            })
+
+
+
 
 
         });

@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="content">
+        <!-- Single Modal-->
         <x-mediamodal />
+        <x-gallerycropmodal />
+        <!-- Multiple Modal-->
         <x-multiplemediamodal />
+
         <!-- Start Content-->
         <div class="container-fluid">
             <!-- start page title -->
@@ -291,7 +295,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card-body">
-                                            <h5 class="font-14 mb-2">Select Color<span class="text-danger">*</span>
+                                            <h5 class="font-14 mb-2">Select Color
                                             </h5>
                                             <div style="display: flex; flex-wrap: wrap; ">
                                             @foreach ($colors as $color)
@@ -318,7 +322,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card-body">
-                                            <h5 class="font-14 mb-2">Select Size<span class="text-danger">*</span>
+                                            <h5 class="font-14 mb-2">Select Size
                                             </h5>
                                             <div style="display: flex; flex-wrap: wrap; ">
                                                 @foreach ($sizes as $size)
@@ -451,6 +455,10 @@
     <!-- Init js -->
     <script src="{{ asset('backend') }}/assets/js/pages/add-product.init.js"></script> {{-- Edit this line for js error --}}
     <script src="{{ asset('js/product.js') }}"></script>
+    {{-- Cropm And Modal --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
 
@@ -542,9 +550,6 @@
             });
 
         });
-
-
-
 
         var mediaGallery = $('#mediaGallery');
 
@@ -649,10 +654,6 @@
             var brandMediaSelectArea = $('#brandMediaSelectArea');
             var brandMediaArea = $('#brandMediaArea');
 
-            // var fullUrl = selectimage.data('urlfull');
-            // var smallUrl = selectimage.data('urlsmall');
-            // var mediumUrl = selectimage.data('urlmedium');
-            // var largeUrl = selectimage.data('urllarge');
             var urlfull = [];
             var urlsmall = [];
             var urlmedium = [];
@@ -681,6 +682,132 @@
         });
         $(document).on('click', '.selectedProductImageMediaCloseButton', function() {
             $(this).parent().remove()
+        });
+    </script>
+    <script>
+        // Crop Image
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var $modal = $('#modal');
+            $('#uploadingbutton').hide()
+            // collapse Close
+            $('#collapseClose').click(function() {
+                $('.collapse').collapse('hide')
+            });
+
+            var image = document.getElementById('image');
+            var cropper;
+            $("body").on("change", ".image, .mediaImage", function(e) {
+                $mediaModal.modal('hide');
+
+                console.log('change');
+
+                var files = e.target.files;
+                console.log(files);
+
+                var done = function(url) {
+                    image.src = url;
+                    $modal.modal('show');
+                };
+                var reader;
+                var file;
+                var url;
+                if (files && files.length > 0) {
+
+                    file = files[0];
+                    if (URL) {
+                        // console.log(URL.createObjectURL)
+
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        console.log(FileReader)
+                        reader = new FileReader();
+                        reader.onload = function(e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+            $modal.on('shown.bs.modal', function() {
+
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    viewMode: 2,
+                    preview: '.preview',
+                    zoomOnWheel: true,
+                });
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            // For Editing Image
+            $('#roatedPlus').click(function() {
+                cropper.rotate(90)
+            });
+            $('#roatedMinus').click(function() {
+                cropper.rotate(-90)
+            });
+            $('#roatedReset').click(function() {
+                cropper.reset()
+            });
+
+
+            $("#crop").click(function() {
+                var fileName = $('.image');
+                var newFileName = fileName[0].files[0].name
+                console.log();
+                canvas = cropper.getCroppedCanvas({
+                    width: 1000,
+                    height: 1000,
+                });
+
+                canvas.toBlob((blob) => {
+                    const formData = new FormData();
+
+                    $('#uploadingbutton').show()
+                    // Pass the image file name as the third parameter if necessary.
+                    formData.append('croppedImage', blob, newFileName);
+
+                    $('#footerButton').append(`
+            <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            uploading .......
+            </button>
+            `);
+
+                    // Use `jQuery.ajax` method for example
+                    $.ajax({
+                        url: '/merchant/gallary/sotre',
+                        method: 'POST',
+                        dataType: "json",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success(data) {
+                            $modal.modal('hide');
+                            $('.collapse').collapse('hide')
+                            $('#uploadingbutton').hide()
+                            $mediaModal.modal('show');
+                            console.log(data);
+                        },
+                        error() {
+                            console.log('Upload error');
+                        },
+                    });
+                } /*, 'image/png' */ );
+            })
+
+
+
+
+
         });
     </script>
 @endpush
