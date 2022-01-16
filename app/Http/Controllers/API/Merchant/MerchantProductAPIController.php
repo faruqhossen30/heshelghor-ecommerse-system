@@ -257,28 +257,28 @@ class MerchantProductAPIController extends Controller
         $merchantId = $request->user()->id;
 
         // return $request->color_id;
-        $some = json_decode($request->color_id);
+        // $some = json_decode($request->color_id);
         // $types = gettype($some);
 
         // return $types;
 
-        if (!empty($some)) {
-            foreach ($some as $color) {
-                ProductColor::create([
-                    'color_id' => $color,
-                    'product_id' => $request->product_id,
-                ]);
-            }
-        };
+        // if (!empty($some)) {
+        //     foreach ($some as $color) {
+        //         ProductColor::create([
+        //             'color_id' => $color,
+        //             'product_id' => $request->product_id,
+        //         ]);
+        //     }
+        // };
 
-        $result = ProductColor::where('product_id', $request->product_id,)->get();
+        // $result = ProductColor::where('product_id', $request->product_id,)->get();
 
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Product color insert successfully!',
-            'data'    => $result
-        ]);
+        // return response()->json([
+        //     'success' => true,
+        //     'code'    => 201,
+        //     'message' => 'Product color insert successfully!',
+        //     'data'    => $result
+        // ]);
 
 
 
