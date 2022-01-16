@@ -3,6 +3,7 @@
 @section('content')
     <div class="content">
         <x-mediamodal />
+        <x-gallerycropmodal />
         <!-- Start Content-->
         <div class="container-fluid">
 
@@ -213,7 +214,7 @@
                 }
             });
         };
-
+        // Show Gallery
         $(document).ready(function() {
             var mediaGallery = $('#mediaGallery');
             $mediaModal = $('#mediaModal');
@@ -264,26 +265,40 @@
 
         });
     </script>
+
     <script>
+        // Crop Image
         $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+            var $modal = $('#modal');
+            $('#uploadingbutton').hide()
+            // collapse Close
+            $('#collapseClose').click(function() {
+                $('.collapse').collapse('hide')
+            });
 
-            var $mediaCropModal = $('#mediaCropModal');
-            var mediaImage = document.getElementById('mediaimage');
+            var image = document.getElementById('image');
             var cropper;
-            $(document).on("change", ".mediaImage", function(e) {
-                $mediaModal.hide()
-                alert('tesing')
+            $("body").on("change", ".image", function(e) {
+                $mediaModal.modal('hide');
+
                 var files = e.target.files;
+                // console.log(files);
 
                 var done = function(url) {
-                    mediaImage.src = url;
-                    $mediaCropModal.modal('show');
+                    image.src = url;
+                    $modal.modal('show');
                 };
                 var reader;
                 var file;
                 var url;
                 if (files && files.length > 0) {
+
                     file = files[0];
                     if (URL) {
                         // console.log(URL.createObjectURL)
@@ -299,10 +314,9 @@
                     }
                 }
             });
-            $mediaCropModal.on('shown.bs.modal', function() {
+            $modal.on('shown.bs.modal', function() {
 
-
-                cropper = new Cropper(mediaImage, {
+                cropper = new Cropper(image, {
                     aspectRatio: 1,
                     viewMode: 2,
                     preview: '.preview',
@@ -326,7 +340,7 @@
 
 
             $("#crop").click(function() {
-                var fileName = $('.mediaImage');
+                var fileName = $('.image');
                 var newFileName = fileName[0].files[0].name
                 console.log();
                 canvas = cropper.getCroppedCanvas({
@@ -337,20 +351,30 @@
                 canvas.toBlob((blob) => {
                     const formData = new FormData();
 
+                    $('#uploadingbutton').show()
                     // Pass the image file name as the third parameter if necessary.
                     formData.append('croppedImage', blob, newFileName);
 
+                    $('#footerButton').append(`
+            <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            uploading .......
+            </button>
+            `);
+
                     // Use `jQuery.ajax` method for example
                     $.ajax({
-                        url: '/merchant/galary/sotre',
+                        url: '/merchant/gallary/sotre',
                         method: 'POST',
                         dataType: "json",
                         data: formData,
                         processData: false,
                         contentType: false,
                         success(data) {
-                            $mediaCropModal.modal('hide');
+                            $modal.modal('hide');
                             $('.collapse').collapse('hide')
+                            $('#uploadingbutton').hide()
+                            $mediaModal.modal('show');
                             console.log(data);
                         },
                         error() {

@@ -119,5 +119,5 @@
 @endpush
 @push('scripts')
 <script src="{{asset('js/merchantgallerycrop.js')}}"></script>
-<script src="{{asset('js/merchantmediacrop.js')}}"></script>
+{{-- <script src="{{asset('js/merchantmediacrop.js')}}"></script> --}}
 @endpush
