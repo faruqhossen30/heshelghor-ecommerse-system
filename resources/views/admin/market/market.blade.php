@@ -90,7 +90,12 @@
                                         </td>
                                         <td>
                                             <a href="{{route('market.edit',$market->id)}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('market.destroy',$market->id)}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
+                                            <form action="{{route('market.destroy',$market->id)}}" method="post" style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Sure ? Want to delete market ?')"><i class="mdi mdi-delete"></i></button>
+                                            </form>
+
                                         </td>
 
                                     </tr>

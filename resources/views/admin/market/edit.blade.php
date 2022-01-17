@@ -1,4 +1,4 @@
-@extends('marchant.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="content">
@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Edit Shop</h4>
+                    <h4 class="page-title">Create Shop</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Shop Update</li>
+                            <li class="breadcrumb-item active">Add Market</li>
                         </ol>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <a href="{{route('shop.index')}}" class="btn btn-primary mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> All Shop List</a>
+                                        class="mdi mdi-format-list-bulleted me-1"></i> Market List</a>
                             </div>
                         </div>
                         <!-- end row -->
@@ -42,13 +42,13 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('shop.update',$shop->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('market.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Shop Name: </label>
+                                                                for="simpleinput">Market Name: </label>
                                                             <div class="col-md-10">
-                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror "  value="{{ $shop->name}}">
+                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name" value="{{$market->name}}">
                                                                 <div class="text-danger">
                                                                     @error('name')
                                                                     <span>{{ $message }}</span>
@@ -56,11 +56,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="addressID">Shop Address: </label>
+                                                                for="addressID">Address: </label>
                                                             <div class="col-md-10">
-                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " value="{{$shop->address}}">
+                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " placeholder="address" value="{{$market->address}}">
                                                                 <div class="text-danger">
                                                                     @error('address')
                                                                     <span>{{ $message }}</span>
@@ -71,12 +72,24 @@
 
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Shop Description:</label>
+                                                                for="example-textarea">Description:</label>
                                                             <div class="col-md-10">
                                                                 <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
-                                                                    rows="5" placeholder="Optional">{{$shop->description}}</textarea>
+                                                                    rows="5" placeholder="Optional">{{$market->description}}</textarea>
                                                                 <div class="text-danger">
                                                                     @error('description')
+                                                                    <span>{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
+                                                            <div class="col-md-10">
+                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror ">
+                                                                <div class="text-danger">
+                                                                    @error('image')
                                                                     <span>{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
@@ -90,7 +103,7 @@
                                                                 <select id="division" class="form-select @error('division_id') is-invalid @enderror" name="division_id">
                                                                     <option selected value="">Select</option>
                                                                     @foreach ($divisions as $division)
-                                                                        <option  value="{{$division->id}}" {{($shop->division_id==$division->id)?'selected':''}}> {{$division->name}}</option>
+                                                                        <option value="{{$division->id}}" @if( $division->id == $market->division_id ) selected @endif> {{$division->name}}</option>
                                                                     @endforeach
 
                                                                 </select>
@@ -103,14 +116,14 @@
                                                         </div>
 
                                                         <div class="mb-2 row">
-                                                            @php
-                                                                $district = DB::table('districts')->where('id',$shop->district_id)->first();
-                                                            @endphp
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Select District : </label>
                                                             <div class="col-md-10" style="position: relative">
-                                                                <select  id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
-                                                                    <option value="{{$shop->district_id}}" selected> {{$district->name}}</option>
+                                                                <select disabled id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
+                                                                    @foreach ($districts as $district)
+                                                                        <option value="{{$district->id}}" @if( $district->id == $market->district_id ) selected @endif> {{$district->name}}</option>
+                                                                    @endforeach
+
                                                                 </select>
                                                                 <img id="district_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
                                                                 <div class="text-danger">
@@ -122,14 +135,13 @@
                                                         </div>
 
                                                         <div class="mb-2 row">
-                                                            @php
-                                                                $upazila = DB::table('upazilas')->where('id',$shop->upazila_id)->first();
-                                                            @endphp
                                                             <label class="col-md-2 col-form-label"
                                                                 for="upazila">Select Upazila : </label>
                                                             <div class="col-md-10" style="position: relative">
-                                                                <select  id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
-                                                                    <option value="{{$shop->upazila_id}}" selected> {{$upazila->name}}</option>
+                                                                <select disabled id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
+                                                                    @foreach ($upazilas as $upazila)
+                                                                        <option value="{{$upazila->id}}" @if( $upazila->id == $market->upazila_id ) selected @endif> {{$upazila->name}}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 <img id="upazila_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
                                                                 <div class="text-danger">
@@ -140,8 +152,7 @@
                                                             </div>
                                                         </div>
 
-
-                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Update Shop</button>
+                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Market </button>
 
                                                     </form>
                                                 </div>
