@@ -49,7 +49,7 @@ class MarketController extends Controller
         $image = $request->file('image');
         if ($image) {
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:shops',
                 'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
             ]);
 
@@ -77,7 +77,7 @@ class MarketController extends Controller
             return redirect()->route('market.index');
         } else {
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:shops',
                 'address'     => 'required',
                 'division_id' => 'required',
                 'district_id' => 'required',

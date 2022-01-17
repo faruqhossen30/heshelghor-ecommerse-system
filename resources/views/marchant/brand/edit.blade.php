@@ -205,7 +205,8 @@
     </style>
 
     <script>
-        function getGallery(mediaGallery) {
+        function getGallery() {
+            var mediaGallery = $('#mediaGallery');
             mediaGallery.empty();
             $.ajax({
                 url: '{{route('merchant.modal.gallery')}}',
@@ -224,11 +225,10 @@
 
         $(document).ready(function() {
             $('#brandMediaSelectArea').hide();
-            var mediaGallery = $('#mediaGallery');
             $mediaModal = $('#mediaModal');
             $('#thumbnail').on('click', function() {
                 $mediaModal.modal('show');
-                getGallery(mediaGallery);
+                getGallery();
             });
 
             $('#mediaForm').on('submit', function(event) {

@@ -301,18 +301,55 @@ class MerchantProductAPIController extends Controller
     public function productColorUpdate(Request $request, $id)
     {
         $validate = $request->validate([
-            'product_id' => 'required',
+            'id' => 'required',
             'color_id' => 'required',
         ]);
-        $colors = ProductColor::where('product_id', $id)->get();
+
+        $colors = $request->color_id;
+
+
+
         // return $colors;
         if(!empty($colors)){
             ProductColor::where('product_id', $id)->delete();
-            ProductColor::create([
-                'product_id' => $request->product_id,
-                'color_id' => $request->color_id
-            ]);
+            foreach ($colors as $color) {
+                ProductColor::create([
+                    'product_id' => $request->id,
+                    'color_id' => $color
+                ]);
+            }
+
         }
+
+        $result = ProductColor::where('product_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product color update successfully!',
+            'data'    => $result
+        ]);
+
+
+
+
+
+
+
+
+        // $validate = $request->validate([
+        //     'product_id' => 'required',
+        //     'color_id' => 'required',
+        // ]);
+        // $colors = ProductColor::where('product_id', $id)->get();
+        // // return $colors;
+        // if(!empty($colors)){
+        //     ProductColor::where('product_id', $id)->delete();
+        //     ProductColor::create([
+        //         'product_id' => $request->product_id,
+        //         'color_id' => $request->color_id
+        //     ]);
+        // }
     }
     public function productSize(Request $request)
     {

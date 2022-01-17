@@ -24,7 +24,7 @@ $galleries = $user->getMedia();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#mediaGallery" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <a href="#mediaGallery" data-bs-toggle="tab" aria-expanded="true" class="nav-link active" onclick="getGallery();">
                                 <span class="d-inline-block d-sm-none"><i class="mdi mdi-account"></i></span>
                                 <span class="d-none d-sm-inline-block">Media Gallery</span>
                             </a>

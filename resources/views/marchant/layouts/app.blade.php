@@ -123,7 +123,25 @@
     <!-- Stack JS Start -->
     <!-- App js -->
     <script src="{{ asset('backend') }}/assets/js/app.min.js"></script>
-
+    <script>
+        function getGallery() {
+            var mediaGallery = $('#mediaGallery');
+            mediaGallery.empty();
+            $.ajax({
+                url: '{{ route('merchant.modal.gallery') }}',
+                method: 'GET',
+                // dataType: "json",
+                success(data) {
+                    if (data) {
+                        mediaGallery.append(data);
+                    }
+                },
+                error() {
+                    console.log('Upload error');
+                }
+            });
+        };
+    </script>
 </body>
 
 </html>

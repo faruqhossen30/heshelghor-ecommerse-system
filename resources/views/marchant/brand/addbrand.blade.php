@@ -198,29 +198,14 @@
     </style>
 
     <script>
-        function getGallery(mediaGallery) {
-            mediaGallery.empty();
-            $.ajax({
-                url: '{{ route('merchant.modal.gallery') }}',
-                method: 'GET',
-                // dataType: "json",
-                success(data) {
-                    if (data) {
-                        mediaGallery.append(data);
-                    }
-                },
-                error() {
-                    console.log('Upload error');
-                }
-            });
-        };
+
         // Show Gallery
         $(document).ready(function() {
-            var mediaGallery = $('#mediaGallery');
+
             $mediaModal = $('#mediaModal');
             $('#thumbnail').on('click', function() {
                 $mediaModal.modal('show');
-                getGallery(mediaGallery);
+                getGallery();
             });
 
             $('#mediaForm').on('submit', function(event) {
