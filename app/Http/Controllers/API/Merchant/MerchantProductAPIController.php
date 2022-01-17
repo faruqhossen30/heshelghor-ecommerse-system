@@ -301,7 +301,6 @@ class MerchantProductAPIController extends Controller
     public function productColorUpdate(Request $request, $id)
     {
         $validate = $request->validate([
-            'id' => 'required',
             'color_id' => 'required',
         ]);
 
