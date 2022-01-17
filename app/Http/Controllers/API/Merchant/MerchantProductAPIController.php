@@ -304,7 +304,10 @@ class MerchantProductAPIController extends Controller
             'color_id' => 'required',
         ]);
 
-        $colors = $request->color_id;
+        $colors = json_decode($request->color_id);
+
+        // $checktype = gettype($colors);
+        // return $checktype;
 
 
 
