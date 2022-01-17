@@ -306,11 +306,6 @@ class MerchantProductAPIController extends Controller
 
         $colors = json_decode($request->color_id);
 
-        // $checktype = gettype($colors);
-        // return $checktype;
-
-
-
         // return $colors;
         if(!empty($colors)){
             ProductColor::where('product_id', $id)->delete();
@@ -332,26 +327,6 @@ class MerchantProductAPIController extends Controller
             'data'    => $result
         ]);
 
-
-
-
-
-
-
-
-        // $validate = $request->validate([
-        //     'product_id' => 'required',
-        //     'color_id' => 'required',
-        // ]);
-        // $colors = ProductColor::where('product_id', $id)->get();
-        // // return $colors;
-        // if(!empty($colors)){
-        //     ProductColor::where('product_id', $id)->delete();
-        //     ProductColor::create([
-        //         'product_id' => $request->product_id,
-        //         'color_id' => $request->color_id
-        //     ]);
-        // }
     }
     public function productSize(Request $request)
     {
@@ -371,7 +346,40 @@ class MerchantProductAPIController extends Controller
             'data'    => $result
         ]);
     }
-    public function productSliderFullSize(Request $request)
+
+    // Product Size Update
+    public function productSizeUpdate(Request $request, $id)
+    {
+        // return "ok";
+        $validate = $request->validate([
+            'size_id' => 'required',
+        ]);
+
+        $sizes = json_decode($request->size_id);
+
+        // return $sizes;
+        if(!empty($sizes)){
+            ProductSize::where('product_id', $id)->delete();
+            foreach ($sizes as $size) {
+                ProductSize::create([
+                    'product_id' => $request->id,
+                    'size_id' => $size
+                ]);
+            }
+
+        }
+
+        $result = productSize::where('product_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product size update successfully!',
+            'data'    => $result
+        ]);
+
+    }
+    public function productSliderFullSizeImg(Request $request)
     {
         $merchantId = $request->user()->id;
 
@@ -395,20 +403,36 @@ class MerchantProductAPIController extends Controller
         ]);
     }
 
-    public function productSliderFullSizeImageUpdate(Request $request, $id)
+    // Product Color Update
+    public function productSliderFullSizeUpdate(Request $request, $id)
     {
+        // return 'slider image update';
         $validate = $request->validate([
-            'product_id' => 'required',
-            'image' => 'required',
+            'url' => 'required',
         ]);
-        $images = ProductImgFull::where('product_id', $id)->get();
-        // return $images;
-        if(!empty($colors)){
-            ProductColor::where('product_id', $id)->delete();
-            ProductColor::create([
-                'product_id' => $request->product_id,
-                'color_id' => $request->color_id
-            ]);
+
+        $urls = json_decode($request->url);
+
+        // return $urls;
+        if(!empty($urls)){
+            ProductImgFull::where('product_id', $id)->delete();
+            foreach ($urls as $url) {
+                ProductImgFull::create([
+                    'product_id' => $request->id,
+                    'url' => $url
+                ]);
+            }
+
         }
+
+        $result = ProductImgFull::where('product_id', $id)->get();
+
+        return response()->json([
+            'success' => true,
+            'code'    => 201,
+            'message' => 'Product slider image update successfully!',
+            'data'    => $result
+        ]);
+
     }
 }
