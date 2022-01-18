@@ -114,7 +114,7 @@ Route::prefix('merchant')->group(function () {
         Route::post('product/size/update/{id}', [MerchantProductAPIController::class, 'productSizeUpdate']);
 
         Route::post('product/image', [MerchantProductAPIController::class, 'productImage']);
-        Route::post('product/sileder/image', [MerchantProductAPIController::class, 'productSliderFullSize']);
+        Route::post('product/sileder/image', [MerchantProductAPIController::class, 'productSliderFullSizeImg']);
         Route::post('product/sileder/image/update/{id}', [MerchantProductAPIController::class, 'productSliderFullSizeUpdate']);
 
 

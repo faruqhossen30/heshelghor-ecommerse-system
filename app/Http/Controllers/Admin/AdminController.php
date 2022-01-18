@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Auth\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +13,7 @@ use Session;
 
 class AdminController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +21,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.view')){
+            abort(403, 'You have no access this page.');
+        };
         $admins = Admin::get();
         return view('admin.index', compact('admins'));
     }
@@ -30,6 +35,9 @@ class AdminController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.create')){
+            abort(403, 'You have no access this page.');
+        };
         $roles = Role::all();
 
         return view('admin.create', compact('roles'));
@@ -73,6 +81,9 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.view')){
+            abort(403, 'You have no access this page.');
+        };
         return "ok";
     }
 
@@ -84,6 +95,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.edit')){
+            abort(403, 'You have no access this page.');
+        };
         $admin = Admin::where('id', $id)->get()->first();
         $roles = Role::all();
 
@@ -128,6 +142,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.delete')){
+            abort(403, 'You have no access this page.');
+        };
         $admin = Admin::where('id', $id)->get()->first();
 
         if (!is_null($admin)) {

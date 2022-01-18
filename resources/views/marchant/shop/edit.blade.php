@@ -131,7 +131,7 @@
                                                                         for="simpleinput">Select
                                                                         District : <span class="text-danger">*</span></label>
                                                                     <div class="col-md-9" style="position: relative">
-                                                                        <select disabled id="district"
+                                                                        <select readonly id="district"
                                                                             class="form-select @error('district_id') is-invalid @enderror"
                                                                             name="district_id">
 
@@ -151,7 +151,7 @@
                                                                         for="upazila">Select
                                                                         Upazila :<span class="text-danger">*</span> </label>
                                                                     <div class="col-md-9" style="position: relative">
-                                                                        <select disabled id="upazila"
+                                                                        <select readonly id="upazila"
                                                                             class="form-select @error('upazila_id') is-invalid @enderror"
                                                                             name="upazila_id">
                                                                             <option selected value=""></option>
@@ -286,7 +286,7 @@
 
             // For District
             division.change(function() {
-                district.removeAttr('disabled');
+                district.removeAttr('readonly');
                 district_loader.show();
                 var divisionID = $(this).val();
                 if (divisionID) {

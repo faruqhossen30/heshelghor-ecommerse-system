@@ -388,19 +388,41 @@ class MerchantProductAPIController extends Controller
             'product_id' => 'required'
         ]);
 
-        ProductImgFull::create([
-            'url' => $request->url,
-            'product_id' => $request->product_id
-        ]);
+        $urls = json_decode($request->url);
 
-        $result = ProductImgFull::where('product_id', $request->product_id,)->get();
+        // return $urls;
+        if(!empty($urls)){
+            foreach ($urls as $url) {
+                ProductImgFull::create([
+                    'product_id' => $request->product_id,
+                    'url' => $url
+                ]);
+            }
+
+        }
+
+        $result = ProductImgFull::where('product_id', $request->product_id)->get();
 
         return response()->json([
             'success' => true,
             'code'    => 201,
-            'message' => 'Product Slider image insert successfully!',
+            'message' => 'Product slider image update successfully!',
             'data'    => $result
         ]);
+
+        // ProductImgFull::create([
+        //     'url' => $request->url,
+        //     'product_id' => $request->product_id
+        // ]);
+
+        // $result = ProductImgFull::where('product_id', $request->product_id,)->get();
+
+        // return response()->json([
+        //     'success' => true,
+        //     'code'    => 201,
+        //     'message' => 'Product Slider image insert successfully!',
+        //     'data'    => $result
+        // ]);
     }
 
     // Product Color Update
