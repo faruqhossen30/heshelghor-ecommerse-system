@@ -68,7 +68,9 @@
 
             <ul id="side-menu">
 
-                <li class="menu-title">Navigation | Admin</li>
+                <li>
+                    <a style="text-align: center">Role : <strong>{{Auth::guard('admin')->user()->getRoleNames()->first();}}</strong></a>
+                </li>
 
                 <li>
                     <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
