@@ -75,7 +75,7 @@
                                                 <td>5</td>
                                                 <td>Photo</td>
                                                 <td>
-                                                    <img src="{{asset($brand->image)}}" alt="" style="width: 100px; height:100px">
+                                                    <img src="{{$brand->img_small)}}" alt="" style="width: 100px; height:100px">
                                                 </td>
                                             </tr>
                                         </tbody>

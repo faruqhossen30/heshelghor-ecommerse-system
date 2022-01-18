@@ -98,7 +98,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style type="text/css">
-        img {
+        .preview img {
             display: block;
             max-width: 100%;
         }
