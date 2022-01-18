@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product\Category;
@@ -20,6 +21,10 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.view')){
+            abort(403, 'You have no access this page.');
+        };
+
         $subcategories = SubCategory::all();
         // return $subcategories;
         return view('admin.subcategory.subcategory', compact('subcategories'));
@@ -32,6 +37,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')){
+            abort(403, 'You have no access this page.');
+        };
         $categories = Category::all();
         return view('admin.subcategory.addsubcategory', compact('categories'));
     }
@@ -44,6 +52,9 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')){
+            abort(403, 'You have no access this page.');
+        };
         // return $request->all();
         $image = $request->file('image');
         if($image){
@@ -101,6 +112,9 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.view')){
+            abort(403, 'You have no access this page.');
+        };
         $subcategory = SubCategory::where('id', $id)->get()->first();
         return view('admin.subcategory.show', compact('subcategory'));
     }
@@ -113,6 +127,9 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')){
+            abort(403, 'You have no access this page.');
+        };
         $categories = Category::all();
         $subcatagory = SubCategory::where('id', $id)->get()->first();
 
@@ -129,6 +146,9 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')){
+            abort(403, 'You have no access this page.');
+        };
         $image = $request->file('image');
         if($image){
         $validate = $request->validate([
@@ -192,6 +212,9 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.delete')){
+            abort(403, 'You have no access this page.');
+        };
         $delete = SubCategory::where('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('subcategory.index');

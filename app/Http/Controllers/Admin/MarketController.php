@@ -24,6 +24,9 @@ class MarketController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.view')){
+            abort(403, 'You have no access this page.');
+        };
         $markets = Market::get();
         return view('admin.market.market', compact('markets'));
     }
@@ -35,6 +38,9 @@ class MarketController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.create')){
+            abort(403, 'You have no access this page.');
+        };
         $divisions = Division::get();
         return view('admin.market.addmarket', compact('divisions'));
     }
@@ -47,6 +53,9 @@ class MarketController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.create')){
+            abort(403, 'You have no access this page.');
+        };
         // return $request->all();
         $image = $request->file('image');
         if ($image) {
@@ -112,6 +121,9 @@ class MarketController extends Controller
      */
     public function show($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.view')){
+            abort(403, 'You have no access this page.');
+        };
         //
     }
 
@@ -123,6 +135,9 @@ class MarketController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
+            abort(403, 'You have no access this page.');
+        };
         // return "under construction";
         $divisions = Division::get();
         $districts = District::get();
@@ -142,7 +157,9 @@ class MarketController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
+            abort(403, 'You have no access this page.');
+        };
         return $request->all();
         $image = $request->file('image');
         if ($image) {
@@ -206,6 +223,9 @@ class MarketController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.delete')){
+            abort(403, 'You have no access this page.');
+        };
         $market = Market::where('id', $id)->get()->first();
 
         $delete = Market::where('id', $id)->delete();

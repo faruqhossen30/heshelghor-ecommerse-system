@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product\Category;
 use Illuminate\Support\Str;
@@ -18,6 +19,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.view')){
+            abort(403, 'You have no access this page.');
+        };
         $categories = Category::all();
         return view('admin.category.category', compact('categories'));
     }
@@ -29,6 +33,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.create')){
+            abort(403, 'You have no access this page.');
+        };
         return view('admin.category.addcategory');
     }
 
@@ -40,6 +47,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.create')){
+            abort(403, 'You have no access this page.');
+        };
         $image = $request->file('image');
 
         if($image){
@@ -90,6 +100,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.view')){
+            abort(403, 'You have no access this page.');
+        };
         $category = Category::where('id', $id)->get()->first();
         return view('admin.category.show', compact('category'));
     }
@@ -102,6 +115,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.edit')){
+            abort(403, 'You have no access this page.');
+        };
         $category = Category::where('id', $id)->get()->first();
         return view('admin.category.edit', compact('category'));
     }
@@ -115,6 +131,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.update')){
+            abort(403, 'You have no access this page.');
+        };
         $image = $request->file('image');
         if($image){
             $validate = $request->validate([
@@ -169,6 +188,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.delete')){
+            abort(403, 'You have no access this page.');
+        };
         $category = Category::where('id', $id)->get()->first();
         if(isset($category->image)){
             unlink($category->image);

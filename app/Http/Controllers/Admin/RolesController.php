@@ -95,7 +95,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.update')){
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
             abort(403, 'You have no access this page.');
         };
         $role = Role::findById($id, 'admin');
@@ -114,7 +114,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.update')){
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
             abort(403, 'You have no access this page.');
         };
         $request->validate([
