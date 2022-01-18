@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Product List</h4>
+                    <h4 class="page-title">Category List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Product List</li>
+                            <li class="breadcrumb-item active">Category List</li>
                         </ol>
                     </div>
                 </div>
@@ -59,7 +59,6 @@
                                         <th class="all">SN</th>
                                         <th class="all">Category Name</th>
                                         <th>Photo</th>
-                                        <th>Description</th>
                                         <th>Created at</th>
                                         <th>Status</th>
                                         <th style="width: 85px;">Action</th>
@@ -85,9 +84,6 @@
                                         </td>
                                         <td>
                                             <img src="{{asset($category->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
-                                        </td>
-                                        <td>
-                                            {{$category->description}}
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}

@@ -131,7 +131,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.update')){
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.edit')){
             abort(403, 'You have no access this page.');
         };
         $image = $request->file('image');
@@ -154,9 +154,9 @@ class CategoryController extends Controller
                 'description' => $request->description,
                 'image'       => 'uploads/category/' . $fileName,
             ];
-            if(isset($old_image)){
-                unlink($old_image);
-            }
+            // if(isset($old_image)){
+            //     unlink($old_image);
+            // }
             $update = Category::where('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('category.index');
