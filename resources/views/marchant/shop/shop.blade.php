@@ -77,7 +77,7 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$shop->name}}</a></h5>
                                         </td>
                                         <td>
-                                            <img src="{{asset('uploads/shop/'.$shop->image)}}"  style="width:50px" alt="Photo">
+                                            <img src="{{$shop->img_full}}"  style="width:50px" alt="Photo">
                                         </td>
                                         <td>
                                             {{$shop->address ?? 'No description found'}}

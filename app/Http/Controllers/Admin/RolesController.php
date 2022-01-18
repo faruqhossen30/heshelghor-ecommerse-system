@@ -19,9 +19,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.view')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.view')){
+        //     abort(403, 'You have no access this page.');
+        // };
 
         $roles = Role::get();
         return view('admin.roles.index', compact('roles'));
@@ -34,9 +34,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.create')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.create')){
+        //     abort(403, 'You have no access this page.');
+        // };
         $permissions = Permission::all();
         $permission_groups = Admin::getpermissionGroups();
 
@@ -51,9 +51,9 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.create')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.create')){
+        //     abort(403, 'You have no access this page.');
+        // };
         $request->validate([
             'name' => 'required |unique:roles'
         ],[
@@ -81,9 +81,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.view')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.view')){
+        //     abort(403, 'You have no access this page.');
+        // };
         return "ok";
     }
 
@@ -95,9 +95,9 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
+        //     abort(403, 'You have no access this page.');
+        // };
         $role = Role::findById($id, 'admin');
         $permissions = Permission::all();
         $permission_groups = Admin::getpermissionGroups();
@@ -114,9 +114,9 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.edit')){
+        //     abort(403, 'You have no access this page.');
+        // };
         $request->validate([
             'name' => 'required'
         ],[
@@ -145,9 +145,9 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.delete')){
-            abort(403, 'You have no access this page.');
-        };
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('role.delete')){
+        //     abort(403, 'You have no access this page.');
+        // };
         $role = Role::findById($id,'admin');
         if (!is_null($role)) {
             $role->delete();
