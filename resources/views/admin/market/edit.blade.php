@@ -42,8 +42,9 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="p-2">
-                                                    <form method="POST" action="{{route('market.store')}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
+                                                    <form method="POST" action="{{route('market.update', $market->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
                                                         @csrf
+                                                        @method('PUT')
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Market Name: </label>
@@ -119,7 +120,7 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Select District : </label>
                                                             <div class="col-md-10" style="position: relative">
-                                                                <select disabled id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
+                                                                <select readonly id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
                                                                     @foreach ($districts as $district)
                                                                         <option value="{{$district->id}}" @if( $district->id == $market->district_id ) selected @endif> {{$district->name}}</option>
                                                                     @endforeach
@@ -138,7 +139,7 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="upazila">Select Upazila : </label>
                                                             <div class="col-md-10" style="position: relative">
-                                                                <select disabled id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
+                                                                <select readonly id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
                                                                     @foreach ($upazilas as $upazila)
                                                                         <option value="{{$upazila->id}}" @if( $upazila->id == $market->upazila_id ) selected @endif> {{$upazila->name}}</option>
                                                                     @endforeach

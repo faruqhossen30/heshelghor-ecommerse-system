@@ -60,7 +60,7 @@ class MarketController extends Controller
         $image = $request->file('image');
         if ($image) {
             $validate = $request->validate([
-                'name'        => 'required | unique:shops',
+                'name'        => 'required | unique:markets',
                 'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
@@ -88,7 +88,7 @@ class MarketController extends Controller
             return redirect()->route('market.index');
         } else {
             $validate = $request->validate([
-                'name'        => 'required | unique:shops',
+                'name'        => 'required | unique:markets',
                 'address'     => 'required',
                 'division_id' => 'required',
                 'district_id' => 'required',
@@ -157,15 +157,15 @@ class MarketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
-            abort(403, 'You have no access this page.');
-        };
-        return $request->all();
+        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
+        //     abort(403, 'You have no access this page.');
+        // };
+        // return $request->all();
         $image = $request->file('image');
         if ($image) {
             $validate = $request->validate([
-                'name'        => 'required | unique:shops',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+                'name'        => 'required',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
 
@@ -191,24 +191,23 @@ class MarketController extends Controller
             return redirect()->route('market.index');
         } else {
             $validate = $request->validate([
-                'name'        => 'required | unique:shops',
+                'name'        => 'required',
                 'address'     => 'required',
                 'division_id' => 'required',
                 'district_id' => 'required',
                 'upazila_id'  => 'required',
             ]);
 
-            Market::create([
+            $data = [
                 'name'          => $request->name,
                 'address'       => $request->address,
                 'description'   => $request->description,
-                'slug'          => SlugService::createSlug(Market::class, 'slug', $request->name, ['unique' => false]),
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
-                'upazila_id'    => $request->upazila_id,
-                'author'        => 'admin',
-                'author_id'     => Auth::guard('admin')->user()->id,
-            ]);
+                'upazila_id'    => $request->upazila_id
+            ];
+
+            $update = Market::where('id', $id)->update($data);
 
             Session::flash('create');
             return redirect()->route('market.index');

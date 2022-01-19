@@ -158,6 +158,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('subcategory', SubCategoryController::class);
         // Brand for Admin
         Route::resource('brands', BrandsController::class);
+        // Market
         Route::resource('market', MarketController::class);
         // For location
         Route::resource('divission', DivisionController::class);

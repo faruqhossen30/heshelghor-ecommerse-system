@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <a href="{{ route('shop.index') }}" class="btn btn-primary mb-2"><i
+                                    <a href="{{ route('market.index') }}" class="btn btn-primary mb-2"><i
                                             class="mdi mdi-format-list-bulleted me-1"></i> Market List</a>
                                 </div>
                             </div>

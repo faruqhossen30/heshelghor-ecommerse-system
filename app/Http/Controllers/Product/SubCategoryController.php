@@ -153,7 +153,7 @@ class SubCategoryController extends Controller
         $image = $request->file('image');
         if($image){
         $validate = $request->validate([
-            'name'        => 'required | unique:sub_categories',
+            'name'        => 'required',
             'category_id' => 'required',
             'commission' => 'required',
             'description' => 'required',
@@ -185,7 +185,7 @@ class SubCategoryController extends Controller
 
         } else{
             $validate = $request->validate([
-                'name'        => 'required | unique:sub_categories',
+                'name'        => 'required',
                 'category_id' => 'required',
                 'commission' => 'required',
                 'description' => 'required',
