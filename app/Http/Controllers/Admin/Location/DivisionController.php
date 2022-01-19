@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Location;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,10 @@ class DivisionController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
+
         $divissions = Division::all();
         return view('admin.location.divission.divission', compact('divissions'));
     }
@@ -26,6 +31,9 @@ class DivisionController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         return view('admin.location.divission.adddivission');
     }
 
@@ -38,6 +46,9 @@ class DivisionController extends Controller
     public function store(Request $request)
     {
 
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $divission = Division::create([
             'name' => $request->name,
             'division_id' => $request->division_id,

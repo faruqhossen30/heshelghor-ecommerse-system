@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Setting\SettingContact;
 use App\Models\Setting\SettingHeader;
 use App\Models\Setting\SettingPaymentSystem;
@@ -12,8 +13,17 @@ use Image;
 
 class SettingController extends Controller
 {
+    // public function __construct()
+    // {
+    //     if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('setting')){
+    //         abort(403, 'You have no access this page.');
+    //     };
+    // }
     public function showSetting()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('setting')){
+            abort(403, 'You have no access this page.');
+        };
         $socialmedia = SettingSocialMedia::first();
         $contact = SettingContact::first();
         $header = SettingHeader::first();
@@ -25,6 +35,10 @@ class SettingController extends Controller
     public function contactInformation(Request $request)
     {
         // return $request->all();
+
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('setting')){
+            abort(403, 'You have no access this page.');
+        };
 
         SettingContact::updateOrInsert([
             'id'        => 1
@@ -42,6 +56,10 @@ class SettingController extends Controller
 
     public function socialMediaLink(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('setting')){
+            abort(403, 'You have no access this page.');
+        };
+
         $request->validate([
             'email' => 'email'
         ]);
@@ -60,6 +78,10 @@ class SettingController extends Controller
     }
     public function header(Request $request)
     {
+
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('setting')){
+            abort(403, 'You have no access this page.');
+        };
 
         SettingHeader::updateOrInsert([
             'id'        => 1

@@ -18,6 +18,10 @@ class DeliverySystemController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
+
         $deliverySystems = DeliverySystem::all();
         // return $deliverySystems;
         return view('admin.delivery.deliverysystems', compact('deliverySystems'));
@@ -30,7 +34,9 @@ class DeliverySystemController extends Controller
      */
     public function create()
     {
-
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         return view('admin.delivery.add');
     }
 
@@ -42,6 +48,9 @@ class DeliverySystemController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $request->validate([
             'name' => 'required',
             'price' => 'required'
@@ -65,6 +74,9 @@ class DeliverySystemController extends Controller
      */
     public function show($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $deliverySystem = DeliverySystem::where('id', $id)->first();
         return view('admin.delivery.show', compact('deliverySystem'));
     }
@@ -77,6 +89,9 @@ class DeliverySystemController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $deliverySystem = DeliverySystem::where('id', $id)->first();
 
         return view('admin.delivery.edit', compact('deliverySystem'));
@@ -92,7 +107,9 @@ class DeliverySystemController extends Controller
     public function update(Request $request, $id)
     {
         // $deliverySystem = DeliverySystem::where('id', $id)->first();
-
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $request->validate([
             'name' => 'required',
             'price' => 'required'
@@ -115,6 +132,9 @@ class DeliverySystemController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $delete = DeliverySystem::where('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('deliverysystem.index');

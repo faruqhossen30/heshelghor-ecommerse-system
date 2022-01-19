@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Location;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
@@ -18,6 +19,10 @@ class DistrictController extends Controller
      */
     public function index()
     {
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')) {
+            abort(403, 'You have no access this page.');
+        };
+
         $districts = District::all();
         return view('admin.location.district.district', compact('districts'));
     }
@@ -29,6 +34,10 @@ class DistrictController extends Controller
      */
     public function create()
     {
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')) {
+            abort(403, 'You have no access this page.');
+        };
+
         $divisions = Division::all();
 
         return view('admin.location.district.adddistrict', compact('divisions'));
@@ -42,7 +51,9 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')) {
+            abort(403, 'You have no access this page.');
+        };
         $district = District::create([
             'name' => $request->name,
             'division_id' => $request->division_id,
@@ -51,7 +62,6 @@ class DistrictController extends Controller
         // return back();
         Session::flash('create');
         return redirect()->route('district.index');
-
     }
 
     /**
@@ -73,12 +83,13 @@ class DistrictController extends Controller
      */
     public function edit($id)
     {
-
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $divisions = Division::all();
         // $divisions = Division::where('id', $id)->get()->first();
         $district = District::where('id', $id)->get()->first();
         return view('admin.location.district.edit', compact('divisions', 'district'));
-
     }
 
     /**
@@ -90,6 +101,9 @@ class DistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $gross = [
             'name' => $request->name,
             'division_id' => $request->division_id,
@@ -109,6 +123,9 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $delete = District::where('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('district.index');
@@ -117,9 +134,9 @@ class DistrictController extends Controller
 
     public function selectDistrict(Request $request)
     {
-       if($request->has('division_id')){
-           $district = District::where('division_id', $request->division_id)->get();
-           return $district;
-       };
+        if ($request->has('division_id')) {
+            $district = District::where('division_id', $request->division_id)->get();
+            return $district;
+        };
     }
 }

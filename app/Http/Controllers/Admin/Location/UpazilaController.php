@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Location;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Location\Division;
 use App\Models\Admin\Location\Upazila;
 use App\Models\Admin\Location\District;
@@ -18,6 +19,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $upazilas = Upazila::all();
         return view('admin.location.upazila.upazila', compact('upazilas'));
     }
@@ -29,6 +33,9 @@ class UpazilaController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
+            abort(403, 'You have no access this page.');
+        };
         $divisions = Division::all();
 
         return view('admin.location.upazila.addupazila', compact('divisions'));

@@ -18,6 +18,9 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $paymentmethodlist = PaymentMethod::all();
         return view('admin.payment.paymentmethodlist', compact('paymentmethodlist'));
     }
@@ -29,6 +32,9 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         return view('admin.payment.add');
     }
 
@@ -40,6 +46,9 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $request->validate([
             'name' => 'required'
         ]);
@@ -72,6 +81,9 @@ class PaymentMethodController extends Controller
      */
     public function edit($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $paymentmethod = PaymentMethod::where('id', $id)->first();
         return view('admin.payment.edit', compact('paymentmethod'));
     }
@@ -85,6 +97,9 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
         $paymentmethod = PaymentMethod::where('id', $id)->first();
         $request->validate([
             'name' => 'required'
@@ -107,6 +122,10 @@ class PaymentMethodController extends Controller
      */
     public function destroy($id)
     {
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('payment')){
+            abort(403, 'You have no access this page.');
+        };
+
         $delete = PaymentMethod::where('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('paymentmethod.index');

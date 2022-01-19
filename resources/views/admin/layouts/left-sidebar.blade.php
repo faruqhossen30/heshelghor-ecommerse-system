@@ -83,7 +83,7 @@ $admin = Auth::guard('admin')->user();
                         <span class="badge bg-success rounded-pill float-end">3</span>
                         <span> Dashboards </span>
                     </a>
-                    <div class="collapse" id="sidebarDashboards">
+                    {{-- <div class="collapse" id="sidebarDashboards">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('admin.home') }}">Sales</a>
@@ -95,47 +95,54 @@ $admin = Auth::guard('admin')->user();
                                 <a href="dashboard-analytics.html">Analytics</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </li>
                 {{-- Admin start --}}
-                <li>
-                    <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
-                        <i class="mdi mdi-account-circle"></i>
-                        <span> Admin List </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="admin">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('admin.index') }}">All Admin</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.create') }}">Create Admin</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                @if ($admin->can('admin.create') || $admin->can('admin.view') || $admin->can('admin.edit') || $admin->can('admin.delete') || $admin->can('admin.status'))
+
+                    <li>
+                        <a href="#admin" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
+                            <i class="mdi mdi-account-circle"></i>
+                            <span> Admin List </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="admin">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.index') }}">All Admin</a>
+                                </li>
+                                @if ($admin->can('admin.create'))
+                                <li>
+                                    <a href="{{ route('admin.create') }}">Create Admin</a>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 {{-- Admin  End --}}
 
                 {{-- Roll and Permission start --}}
-                <li>
-                    <a href="#rolesPermission" data-bs-toggle="collapse" aria-expanded="false"
-                        aria-controls="sidebarTables">
-                        <i class="mdi mdi-lock-minus"></i>
-                        <span> Roll & Permission </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="rolesPermission">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('roles.index') }}">All Roles</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('roles.create') }}">Add Role & Permission</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                @if ($admin->can('role.create') || $admin->can('role.view') || $admin->can('role.edit') || $admin->can('role.delete') || $admin->can('role.status'))
+                    <li>
+                        <a href="#rolesPermission" data-bs-toggle="collapse" aria-expanded="false"
+                            aria-controls="sidebarTables">
+                            <i class="mdi mdi-lock-minus"></i>
+                            <span> Roll & Permission </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="rolesPermission">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('roles.index') }}">All Roles</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('roles.create') }}">Add Role & Permission</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
                 {{-- Roll and permission  End --}}
                 {{-- Product Start --}}
                 <li>
@@ -301,59 +308,69 @@ $admin = Auth::guard('admin')->user();
                         </div>
                     </li>
                 @endif
+                @if ($admin->can('payment'))
+                    <li>
+                        <a href="#sidePayment" data-bs-toggle="collapse" aria-expanded="false"
+                            aria-controls="sidebarBrand">
+                            <i class="mdi mdi-bank"></i>
+                            <span> Payment & Delivery </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidePayment">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('deliverysystem.index') }}"><span><i
+                                                class="mdi mdi-truck-delivery-outline"></i></span>Delivery System</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('paymentmethod.index') }}"><span><i
+                                                class="mdi mdi-cash-usd"></i></span>Payment Methods</a>
+                                </li>
 
-                <li>
-                    <a href="#sidePayment" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarBrand">
-                        <i class="mdi mdi-bank"></i>
-                        <span> Payment & Delivery </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidePayment">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="{{ route('deliverysystem.index') }}"><span><i
-                                            class="mdi mdi-truck-delivery-outline"></i></span>Delivery System</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('paymentmethod.index') }}"><span><i
-                                            class="mdi mdi-cash-usd"></i></span>Payment Methods</a>
-                            </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
 
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#sidebarLocation" data-bs-toggle="collapse" aria-expanded="false"
-                        aria-controls="sidebarLocation">
-                        <i class="mdi mdi-map-marker"></i>
-                        <span>Location </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <div class="collapse" id="sidebarLocation">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="#">All Location</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('upazila.create') }}">Upazila</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('divission.index') }}">Division</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('district.create') }}">District</a>
-                            </li>
+                @if ($admin->can('location'))
+                    <li>
+                        <a href="#sidebarLocation" data-bs-toggle="collapse" aria-expanded="false"
+                            aria-controls="sidebarLocation">
+                            <i class="mdi mdi-map-marker"></i>
+                            <span>Location </span>
+                            <span class="menu-arrow"></span>
+                        </a>
 
-                        </ul>
-                    </div>
-                </li>
+                        <div class="collapse" id="sidebarLocation">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="#">All Location</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('upazila.create') }}">Upazila</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('divission.index') }}">Division</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('district.create') }}">District</a>
+                                </li>
 
-                <li>
-                    <a href="{{ route('setting') }}">
-                        <i class="mdi mdi-youtube-studio"></i>
-                        <span> Setting </span>
-                    </a>
-                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
+
+                @if ($admin->can('setting'))
+                    <li>
+                        <a href="{{ route('setting') }}">
+                            <i class="mdi mdi-youtube-studio"></i>
+                            <span> Setting </span>
+                        </a>
+                    </li>
+                @endif
+
 
             </ul>
 
