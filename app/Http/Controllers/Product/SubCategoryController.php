@@ -10,6 +10,7 @@ use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
 use Image;
 use Session;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 
 class SubCategoryController extends Controller
@@ -59,11 +60,11 @@ class SubCategoryController extends Controller
         $image = $request->file('image');
         if($image){
         $validate = $request->validate([
-            'name'        => 'required',
+            'name'        => 'required | unique:sub_categories',
             'category_id' => 'required',
             'commission' => 'required',
             'description' => 'required',
-            'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
         ]);
 
         $fileExtention = $image->getClientOriginalExtension();
@@ -72,11 +73,11 @@ class SubCategoryController extends Controller
         Image::make($image)->save(public_path('uploads/subcategory/') . $fileName);
 
         $add = SubCategory::create([
-            'name' => $request->name,
+            'name'        => $request->name,
             'category_id' => $request->category_id,
-            'commission' => $request->commission,
+            'commission'  => $request->commission,
             'description' => $request->description,
-            'slug' => Str::of($request->name)->slug('-'),
+            'slug'        => SlugService::createSlug(SubCategory::class, 'slug', $request->name, ['unique' => true]),
             'image'       => 'uploads/subcategory/' . $fileName,
         ]);
 
@@ -85,7 +86,7 @@ class SubCategoryController extends Controller
 
         } else{
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:sub_categories',
                 'category_id' => 'required',
                 'commission' => 'required',
                 'description' => 'required',
@@ -95,7 +96,7 @@ class SubCategoryController extends Controller
                 'category_id' => $request->category_id,
                 'commission' => $request->commission,
                 'description' => $request->description,
-                'slug'        => Str::of($request->name)->slug('-'),
+                'slug'        => SlugService::createSlug(SubCategory::class, 'slug', $request->name, ['unique' => true]),
             ]);
 
             Session::flash('create');
@@ -152,11 +153,11 @@ class SubCategoryController extends Controller
         $image = $request->file('image');
         if($image){
         $validate = $request->validate([
-            'name'        => 'required',
+            'name'        => 'required | unique:sub_categories',
             'category_id' => 'required',
             'commission' => 'required',
             'description' => 'required',
-            'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+            'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
         ]);
 
         $old_image = $request->old_image;
@@ -184,7 +185,7 @@ class SubCategoryController extends Controller
 
         } else{
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:sub_categories',
                 'category_id' => 'required',
                 'commission' => 'required',
                 'description' => 'required',
