@@ -104,8 +104,11 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
                                 CATEGORIES: <a href="{{ route('product.with.category', $product->category->id) }}"><span
                                         class="product-brand mr-0">{{ $product->category->name }}</span></a>
-                                <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}"><span
-                                        class="product-brand">| {{ $product->subcategory->name }}</span></a>
+                                        @if (optional($product->subcategory)->name)
+                                        <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}"><span
+                                                class="product-brand">| {{ $product->subcategory->name }}</span></a>
+
+                                        @endif
                             </div>
                             <div class="product-meta">
                                 Brand: <a href="{{ route('product.with.brand', $product->brand->id) }}"><span
@@ -474,7 +477,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 <div class="product-details">
                                     <div class="product-cat">
                                         <a href="{{route('product.with.category', $product->category->slug)}}">{{ $product->category->name }}</a>
-                                     | <a href="{{route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug])}}">{{ $product->subcategory->name }}</a>
+                                        @if (optional($product->subcategory)->name)
+                                        | <a href="{{route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug])}}">{{ $product->subcategory->name }}</a>
+
+                                        @endif
                                     </div>
                                     <h3 class="product-name">
                                         <a href="demo3-product.html"><a
