@@ -78,7 +78,7 @@ class CategoryController extends Controller
 
         } else{
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:categories',
                 'description' => 'required',
             ]);
             Category::create([
@@ -138,7 +138,7 @@ class CategoryController extends Controller
         $image = $request->file('image');
         if($image){
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:categories',
                 'description' => 'required',
                 'image' => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
@@ -165,7 +165,7 @@ class CategoryController extends Controller
         } else{
 
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:categories',
                 'description' => 'required',
             ]);
 
