@@ -9,6 +9,7 @@ use App\Models\Product\Category;
 use Illuminate\Support\Str;
 use Image;
 use Session;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class CategoryController extends Controller
 {
@@ -54,9 +55,9 @@ class CategoryController extends Controller
 
         if($image){
             $validate = $request->validate([
-                'name'        => 'required',
+                'name'        => 'required | unique:categories',
                 'description' => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
 
@@ -68,7 +69,7 @@ class CategoryController extends Controller
             Category::create([
                 'name'        => $request->name,
                 'description' => $request->description,
-                'slug'        => Str::of($request->name)->slug('-'),
+                'slug'        => SlugService::createSlug(Category::class, 'slug', $request->name, ['unique' => true]),
                 'image'       => 'uploads/category/' . $fileName,
             ]);
 
@@ -83,7 +84,7 @@ class CategoryController extends Controller
             Category::create([
                 'name'        => $request->name,
                 'description' => $request->description,
-                'slug'        => Str::of($request->name)->slug('-'),
+                'slug'        => SlugService::createSlug(Category::class, 'slug', $request->name, ['unique' => true]),
             ]);
 
             Session::flash('create');
@@ -139,7 +140,7 @@ class CategoryController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+                'image' => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
             $old_image = $request->old_image;

@@ -379,13 +379,12 @@ class MerchantProductAPIController extends Controller
         ]);
 
     }
-    public function productSliderFullSizeImg(Request $request)
+    public function productSliderFullSizeImg(Request $request, $id)
     {
         $merchantId = $request->user()->id;
 
         $request->validate([
             'url' => 'required',
-            'product_id' => 'required'
         ]);
 
         $urls = json_decode($request->url);
@@ -394,14 +393,14 @@ class MerchantProductAPIController extends Controller
         if(!empty($urls)){
             foreach ($urls as $url) {
                 ProductImgFull::create([
-                    'product_id' => $request->product_id,
+                    'product_id' => $request->id,
                     'url' => $url
                 ]);
             }
 
         }
 
-        $result = ProductImgFull::where('product_id', $request->product_id)->get();
+        $result = ProductImgFull::where('product_id', $request->id)->get();
 
         return response()->json([
             'success' => true,

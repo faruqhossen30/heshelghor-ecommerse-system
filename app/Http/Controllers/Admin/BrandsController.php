@@ -51,7 +51,7 @@ class BrandsController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
 
@@ -130,7 +130,7 @@ class BrandsController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
+                'image' => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
             $old_image = $request->old_image;
