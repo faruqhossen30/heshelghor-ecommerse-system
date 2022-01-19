@@ -61,7 +61,7 @@ class MarketController extends Controller
         if ($image) {
             $validate = $request->validate([
                 'name'        => 'required | unique:shops',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);
 
 
