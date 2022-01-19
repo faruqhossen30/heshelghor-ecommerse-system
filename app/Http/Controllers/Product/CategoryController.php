@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.view')){
+        if(is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('category.view') || Auth::guard('admin')->user()->can('category.edit') )   ){
             abort(403, 'You have no access this page.');
         };
         $categories = Category::all();

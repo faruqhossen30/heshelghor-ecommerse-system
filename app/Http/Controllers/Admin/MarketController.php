@@ -24,7 +24,7 @@ class MarketController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.view')){
+        if(is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('market.view') || Auth::guard('admin')->user()->can('market.edit'))){
             abort(403, 'You have no access this page.');
         };
         $markets = Market::get();

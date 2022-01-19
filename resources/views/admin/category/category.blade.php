@@ -1,5 +1,7 @@
+@php
+    $admin = Auth::guard('admin')->user();
+@endphp
 @extends('admin.layouts.app')
-
 @section('content')
 <div class="content">
 
@@ -35,14 +37,18 @@
 
                     <div class="card-body">
                         <div class="row mb-2">
+                            @if($admin->can('category.create'))
                             <div class="col-sm-6">
                                 <a href="{{route('category.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Category</a>
                             </div>
+
+
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
                                     <button type="button" class="btn btn-success mb-2 mb-sm-0"><i class="mdi mdi-cog"></i></button>
                                 </div>
                             </div><!-- end col-->
+                            @endif
                         </div>
                         <!-- end row -->
 
@@ -93,12 +99,18 @@
                                         </td>
                                         <td>
                                             <ul class="list-inline table-action m-0">
-                                                <li class="list-inline-item">
-                                                    <a href="{{route('category.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                                </li>
+                                                @if($admin->can('category.view'))
+                                                    <li class="list-inline-item">
+                                                        <a href="{{route('category.show', $category->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                    </li>
+                                                @endif
+
+                                                @if($admin->can('category.edit'))
                                                 <li class="list-inline-item">
                                                     <a href="{{route('category.edit', $category->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 </li>
+                                                @endif
+                                                @if($admin->can('category.delete'))
                                                 <li class="list-inline-item">
                                                     {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
                                                     <form action="{{route('category.destroy', $category->id)}}" method="post" >
@@ -107,6 +119,7 @@
                                                         <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
                                                     </form>
                                                 </li>
+                                                @endif
                                             </ul>
                                         </td>
                                     </tr>

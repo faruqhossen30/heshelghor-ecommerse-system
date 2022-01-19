@@ -18,7 +18,7 @@ class MerchantShopAPIController extends Controller
     {
         $merchantId = $request->user()->id;
 
-        $shops = Shop::where('author_id', $merchantId)->get();
+        $shops = Shop::with('market', 'division', 'district', 'upazila')->where('author_id', $merchantId)->get();
         if (count($shops) == 0) {
             return response()->json([
                 'success' => true,

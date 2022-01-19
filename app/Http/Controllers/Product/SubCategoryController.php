@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.view')){
+        if(is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('subcategory.view') || Auth::guard('admin')->user()->can('subcategory.edit') )){
             abort(403, 'You have no access this page.');
         };
 

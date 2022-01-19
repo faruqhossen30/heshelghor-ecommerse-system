@@ -35,7 +35,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.create')){
+        if(is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('admin.create') || Auth::guard('admin')->user()->can('admin.view'))){
             abort(403, 'You have no access this page.');
         };
         $roles = Role::all();
@@ -51,6 +51,10 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('admin.create')){
+            abort(403, 'You have no access this page.');
+        };
 
         $request->validate([
             'name' => 'required|max:50',
