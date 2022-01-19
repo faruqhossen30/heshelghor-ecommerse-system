@@ -55,11 +55,12 @@
                                             </figure>
                                             <div class="product-details">
                                                 <div class="product-cat">
-                                                    <a
-                                                        href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
-                                                    <a
-                                                        href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
-                                                        | {{ $product->subcategory->name }}</a>
+                                                    <a href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
+                                                    @if (optional($product->subcategory)->name)
+                                                    <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
+                                                    | {{ optional($product->subcategory)->name }}</a>
+                                                    @endif
+
                                                 </div>
                                                 <h3 class="product-name">
                                                     <a
@@ -118,8 +119,10 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        <a
-                                                            href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
+                                                        @if (optional($product->subcategory)->slug)
+
+                                                        <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">
+                                                        @endif
                                                             <figure class="category-media">
                                                                 <img src="{{ $subcategory->image }}" alt="Cateogry"
                                                                     width="280" height="280">
@@ -201,9 +204,11 @@
                                                         <div class="product-cat">
                                                             <a
                                                                 href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
-                                                            <a
-                                                                href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">|
-                                                                {{ $product->subcategory->name }}</a>
+                                                                @if (optional($product->subcategory)->name)
+
+                                                                <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">|
+                                                                    {{ $product->subcategory->name }}</a>
+                                                                @endif
                                                         </div>
                                                         <h3 class="product-name">
                                                             <a

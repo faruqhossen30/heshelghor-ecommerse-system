@@ -280,7 +280,7 @@ $socialmedia = App\Models\Setting\SettingSocialMedia::first();
                                     // return `<a href="product/${post.id}" class="list-group-item">${post.title}</a>`;
                                     return `<a href="${window.location.origin}/product/${post.slug}" class="list-group-item d-flex justify-content-between align-items-center">
                                        <div>
-                                           <img src="${window.location.origin}/uploads/product/${post.photo}" alt="${post.title}" class="img-thumbnail" style="width: 40px; height:40px">
+                                           <img src="${post.img_small}" alt="${post.title}" class="img-thumbnail" style="width: 40px; height:40px">
                                             <span>${post.title}</span>
                                        </div>
                                        <div>

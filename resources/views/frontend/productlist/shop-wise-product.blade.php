@@ -120,8 +120,11 @@
                                             <div class="product-cat">
                                                 <a
                                                     href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
-                                                <a href="{{ route('product.with.subcategory',['category' => $product->category->slug, 'slug'=> $product->subcategory->slug]) }}">|
-                                                    {{ $product->subcategory->name }}</a>
+                                                    @if (optional($product->subcategory)->name)
+
+                                                    <a href="{{ route('product.with.subcategory',['category' => $product->category->slug, 'slug'=> $product->subcategory->slug]) }}">|
+                                                        {{ $product->subcategory->name }}</a>
+                                                    @endif
                                             </div>
                                             <h3 class="product-name">
                                                 <a href="{{route('singleproduct', $product->slug)}}">{{ $product->title }}</a>
