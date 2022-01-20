@@ -111,8 +111,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         @endif
                             </div>
                             <div class="product-meta">
-                                Brand: <a href="{{ route('product.with.brand', $product->brand->id) }}"><span
-                                        class="product-brand mr-0">{{ $product->brand->name }}</span></a>
+                                Brand:
+                                @if ($product->brand)
+                                    <a href="{{ route('product.with.brand', $product->brand->id) }}"><span
+                                    class="product-brand mr-0">{{ $product->brand->name }}</span></a>
+                                @else
+                                    N/A
+                                @endif
                             </div>
 
                             {{-- For Add To Cart --}}

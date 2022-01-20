@@ -1,7 +1,8 @@
 @php
-$header = App\Models\Setting\SettingHeader::first();
-$contact = App\Models\Setting\SettingContact::first();
-$socialmedia = App\Models\Setting\SettingSocialMedia::first();
+    $header = App\Models\Setting\SettingHeader::first();
+    $contact = App\Models\Setting\SettingContact::first();
+    $socialmedia = App\Models\Setting\SettingSocialMedia::first();
+    $categories = App\Models\Product\Category::with('subcategories')->get();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
