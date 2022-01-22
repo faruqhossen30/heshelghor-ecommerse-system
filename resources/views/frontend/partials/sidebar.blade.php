@@ -8,39 +8,12 @@
         <div class="sticky-sidebar">
             <ul class="menu vertical-menu category-menu mb-4">
                 <li><a href="demo3-shop.html" class="menu-title">Popular Categories</a></li>
-                <li>
-                    <a href="{{url('/product/category/1')}}"><i class="d-icon-camera1"></i>Electronics</a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/2')}}"><i class="d-icon-officebag"></i>Man's Fashion</a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/3')}}">
-                        <i class="d-icon-t-shirt1" style="
-                            font-size: 23px;
-                            margin-left: -1px;
-                            margin-right: .8rem;
-                        "></i>Women's Fashion</a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/4')}}"><i class="d-icon-cook"></i>Home And Kitchen </a>
-                </li>
 
-                <li>
-                    <a href="{{url('/product/category/5')}}"><i class="d-icon-watch-round"></i>Health & Beauty
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/6')}}"><i class="d-icon-basketball1"></i>Sports & Fitness</a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/7')}}"><i class="d-icon-babycare"></i>Kids & Toys</a>
-                </li>
-                <li>
-                    <a href="{{url('/product/category/8')}}">
-                        <i class="d-icon-cook"></i>Heritage Foods
-                    </a>
-                </li>
+                @foreach ($categories as $category)
+                    <li>
+                        <a href="{{ route('product.with.category', $category->slug) }}"><i class="d-icon-th-list"></i>{{$category->name}}</a>
+                    </li>
+                @endforeach
 
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
@@ -51,11 +24,9 @@
                 <div class="banner-price-info font-weight-bold text-white text-uppercase">
                     20-22<sup>th</sup> April</div>
                 <div class="banner-content text-center w-100">
-                    <h4
-                        class="banner-subtitle d-inline-block bg-primary font-weight-semi-bold text-uppercase">
+                    <h4 class="banner-subtitle d-inline-block bg-primary font-weight-semi-bold text-uppercase">
                         Ultimate Sale</h4>
-                    <h3
-                        class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
+                    <h3 class="banner-title ls-m lh-1 text-uppercase text-white font-weight-bold">
                         Up
                         to 70%</h3>
                     <p class="mb-4 font-primary text-white lh-1">Discount Selected Items</p>
@@ -78,8 +49,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -101,8 +71,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -124,8 +93,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -151,8 +119,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -174,8 +141,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -197,8 +163,7 @@
                                 <figure class="product-media">
                                     <a href="demo3-product.html">
                                         <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
-                                            alt="product" width="100" height="100"
-                                            style="background-color: #f5f5f5;" />
+                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
@@ -238,8 +203,7 @@
                             <figure class="post-media">
                                 <a href="post-single.html">
                                     <img src="{{ asset('frontend') }}/images/demos/demo3/blog/1.jpg" width="280"
-                                        height="195" alt="post"
-                                        style="background-color: #bcc3ca;" />
+                                        height="195" alt="post" style="background-color: #bcc3ca;" />
                                 </a>
                             </figure>
                             <div class="post-details">
@@ -250,8 +214,7 @@
                                 <h3 class="post-title"><a href="post-single.html">Explore
                                         Fashion Trending For
                                         Women</a></h3>
-                                <a href="post-single.html"
-                                    class="btn btn-primary btn-link btn-underline btn-sm">Read
+                                <a href="post-single.html" class="btn btn-primary btn-link btn-underline btn-sm">Read
                                     More<i class="d-icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -259,8 +222,7 @@
                             <figure class="post-media">
                                 <a href="post-single.html">
                                     <img src="{{ asset('frontend') }}/images/demos/demo3/blog/2.jpg" width="280"
-                                        height="195" alt="post"
-                                        style="background-color: #a1a7b6;" />
+                                        height="195" alt="post" style="background-color: #a1a7b6;" />
                                 </a>
                             </figure>
                             <div class="post-details">
@@ -270,8 +232,7 @@
                                 </div>
                                 <h3 class="post-title"><a href="post-single.html">Just a cool
                                         blog post with Images</a></h3>
-                                <a href="post-single.html"
-                                    class="btn btn-link btn-underline btn-primary btn-sm">Read
+                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
                                     More<i class="d-icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -279,8 +240,7 @@
                             <figure class="post-media">
                                 <a href="post-single.html">
                                     <img src="{{ asset('frontend') }}/images/demos/demo3/blog/3.jpg" width="280"
-                                        height="195" alt="post"
-                                        style="background-color: #acb9bf;" />
+                                        height="195" alt="post" style="background-color: #acb9bf;" />
                                 </a>
                             </figure>
                             <div class="post-details">
@@ -290,8 +250,7 @@
                                 </div>
                                 <h3 class="post-title"><a href="post-single.html">Just a cool
                                         blog post with Images</a></h3>
-                                <a href="post-single.html"
-                                    class="btn btn-link btn-underline btn-primary btn-sm">Read
+                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
                                     More<i class="d-icon-arrow-right"></i></a>
                             </div>
                         </div>
@@ -299,8 +258,7 @@
                             <figure class="post-media">
                                 <a href="post-single.html">
                                     <img src="{{ asset('frontend') }}/images/demos/demo3/blog/4.jpg" width="280"
-                                        height="195" alt="post"
-                                        style="background-color: #2d3635;" />
+                                        height="195" alt="post" style="background-color: #2d3635;" />
                                 </a>
                             </figure>
                             <div class="post-details">
@@ -310,8 +268,7 @@
                                 </div>
                                 <h3 class="post-title"><a href="post-single.html">Just a cool
                                         blog post with Images</a></h3>
-                                <a href="post-single.html"
-                                    class="btn btn-link btn-underline btn-primary btn-sm">Read
+                                <a href="post-single.html" class="btn btn-link btn-underline btn-primary btn-sm">Read
                                     More<i class="d-icon-arrow-right"></i></a>
                             </div>
                         </div>
