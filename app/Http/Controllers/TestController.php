@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Location\Division;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use App\Models\PointManager\PointManagerCollectProduct;
@@ -16,11 +17,17 @@ use function PHPSTORM_META\type;
 
 class TestController extends Controller
 {
-public function checkAarray()
+    public function checkAarray()
     {
         return view('test');
     }
 
+    public function ontest()
+    {
+
+        $list = Division::with('districts')->get();
+        return $list;
+    }
 
 
 
@@ -51,8 +58,8 @@ public function checkAarray()
 
         $token =  $response['token'];
 
-        if($token){
-            return redirect("https://sandbox.walletmix.com/bank-payment-process/".$token);
+        if ($token) {
+            return redirect("https://sandbox.walletmix.com/bank-payment-process/" . $token);
         }
 
         // return $response;
@@ -81,26 +88,23 @@ public function checkAarray()
 
         $data = [];
         // $library = $$medias->transform(function ($item, $key) {
-            foreach ($merchant->getMedia() as $media) {
-                $data[] = [
-                    'file_name'    => $media->file_name,
-                    'original_url' => $media->getUrl(),
-                    'small_url'    => $media->getUrl('small'),
-                    'medium_url'   => $media->getUrl('medium'),
-                    'large_url'    => $media->getUrl('large')
+        foreach ($merchant->getMedia() as $media) {
+            $data[] = [
+                'file_name'    => $media->file_name,
+                'original_url' => $media->getUrl(),
+                'small_url'    => $media->getUrl('small'),
+                'medium_url'   => $media->getUrl('medium'),
+                'large_url'    => $media->getUrl('large')
 
-                ];
-                // return $data;
+            ];
+            // return $data;
 
-            }
+        }
 
-            return response()->json([
-                'success' => true,
-                'code'    => 200,
-                'data'    => $data
-            ]);
-
+        return response()->json([
+            'success' => true,
+            'code'    => 200,
+            'data'    => $data
+        ]);
     }
-
-
 }

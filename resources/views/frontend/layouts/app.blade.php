@@ -3,6 +3,9 @@
     $contact = App\Models\Setting\SettingContact::first();
     $socialmedia = App\Models\Setting\SettingSocialMedia::first();
     $categories = App\Models\Product\Category::with('subcategories')->get();
+    $divissions = App\Models\Admin\Location\Division::with('districts')
+        ->orderBy('name', 'asc')
+        ->get();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -94,8 +97,36 @@
                         <!-- End Logo -->
 
                         <div class="header-search hs-simple">
-                            <form action="#" method="GET" class="input-wrapper" style="position: relative"
+                            <form action="#" method="GET" class="input-wrapper border" style="position: relative"
                                 id="searchFrom">
+                                <div class="select-box">
+                                    <select id="category" name="category">
+                                        <option value="">All Location</option>
+                                        @foreach ($divissions as $divission)
+                                            <option value="" style="font-weight: bolder">
+                                                <strong>{{ $divission->name }}</strong></option>
+                                            @foreach ($divission->districts as $district)
+                                                <option value="{{ $district->id }}">- {{ $district->name }}</option>
+                                            @endforeach
+
+                                        @endforeach
+                                        {{-- <option value="12">- Women</option>
+                                        <option value="13">- Men</option>
+                                        <option value="66">- Jewellery</option>
+                                        <option value="67">- Kids Fashion</option>
+                                        <option value="5">Electronics</option>
+                                        <option value="21">- Smart TVs</option>
+                                        <option value="22">- Cameras</option>
+                                        <option value="63">- Games</option>
+                                        <option value="7">Home &amp; Garden</option>
+                                        <option value="11">Motors</option>
+                                        <option value="31">- Cars and Trucks</option>
+                                        <option value="32">- Motorcycles &amp; Powersports</option>
+                                        <option value="33">- Parts &amp; Accessories</option>
+                                        <option value="34">- Boats</option>
+                                        <option value="57">- Auto Tools &amp; Supplies</option> --}}
+                                    </select>
+                                </div>
                                 <input type="text" class="form-control" name="search" autocomplete="off"
                                     placeholder="Search..." id="searchInpur" />
                                 <button class="btn btn-search" type="submit">
