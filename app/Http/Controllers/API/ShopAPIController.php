@@ -7,6 +7,7 @@ use App\Models\Admin\Location\District;
 use Illuminate\Http\Request;
 use App\Models\Merchant\Shop;
 
+
 class ShopAPIController extends Controller
 {
     // Shop list with pagination
@@ -14,6 +15,21 @@ class ShopAPIController extends Controller
     {
         $shops = Shop::latest()->paginate(15);
         return $shops;
+    }
+
+    public function marketWiseShopList(Request $request, $id)
+    {
+        try {
+            $shops = Shop::where('market_id', $id)->paginate(15);
+
+            return response()->json([
+                'success' => true,
+                'code' => 200,
+                'data' => $shops
+            ]);
+        } catch (\Exception $e) {
+            return abort(404);
+        };
     }
 
     public function districtWiseShop(Request $request, $id)
