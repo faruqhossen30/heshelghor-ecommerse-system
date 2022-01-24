@@ -15,10 +15,11 @@ class ShoplistAjaxController extends Controller
     public function ajaxshoplist(Request $request)
     {
         if($request->ajax()){
+            $requestlocation = $request->location;
             if($request->keyword && $request->location == 'all'){
                $shops = Shop::where('name', 'like', '%'.$request->keyword.'%')->get();
 
-               $data = view('frontend.inc.ajaxshoplist', compact('shops'))->render();
+               $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                return response()->json($data);
 
             }
@@ -26,14 +27,14 @@ class ShoplistAjaxController extends Controller
                 $locationid = District::where('slug', $request->location)->first()->id;
                 $shops = Shop::where('district_id', $locationid)->where('name', 'like', '%'.$request->keyword.'%')->get();
 
-                $data = view('frontend.inc.ajaxshoplist', compact('shops'))->render();
+                $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);
             };
             if($request->location == 'all' && !($request->keyword)){
                 // $locationid = District::where('slug', $request->location)->first()->id;
                 $shops = Shop::get();
 
-                $data = view('frontend.inc.ajaxshoplist', compact('shops'))->render();
+                $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);
                 // return "some";
             };
@@ -41,7 +42,7 @@ class ShoplistAjaxController extends Controller
                 $locationid = District::where('slug', $request->location)->first()->id;
                 $shops = Shop::where('district_id', $locationid)->get();
 
-                $data = view('frontend.inc.ajaxshoplist', compact('shops'))->render();
+                $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);
             };
 

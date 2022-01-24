@@ -1,3 +1,12 @@
+<ul class="breadcrumb mt-3">
+    <li><a href="#"><i class="d-icon-home"></i></a></li>
+    <li><a href="#">Shop</a></li>
+    @if ($requestlocation == 'all')
+        <li><a href="#">All Location</a></li>
+    @else
+        <li><a href="#" style="text-transform: capitalize">{{ $requestlocation }}</a></li>
+    @endif
+</ul>
 @foreach ($shops as $shop)
     <div class="col-xl-2 col-sm-3 col-xs-6 my-4">
         <div class="card">

@@ -11,10 +11,10 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 @section('content')
     <main class="main" style="margin-top: -22px">
         <div class="page-content mb-10 pb-2">
-            <div class="container">
+            <div class="container-fluid" style="background: url({{ asset('frontend/images/banner.jpg') }}); background-position:center; background-color:red">
                 <div class="page-header"
-                    style="background: url({{ asset('frontend/images/banner.jpg') }}); background-position:center">
-                    <div class="header-search hs-simple" style="flex: none; width:100%">
+                    style="height:200px; background-color:transparent">
+                    <div class="header-search hs-simple" style="flex: none; width:100%;">
                         <form action="#" method="GET" class="input-wrapper" style="position: relative">
                             <div class="select-box">
 
@@ -35,7 +35,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                             </div>
                             <input type="text" class="form-control" name="shopsearchkeyword" autocomplete="off"
                                 placeholder="Enter Shop Name..." style="border-radius: 0">
-                            <button class="btn btn-search" type="submit">
+                            <button class="btn btn-search" type="button">
                                 <i class="d-icon-search"></i>
                             </button>
                         </form>
@@ -69,6 +69,11 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 
                     <div class="col-lg-12 main-content">
                         <div class="row" id="shoplistdiv">
+                            <ul class="breadcrumb mt-3">
+                                <li><a href="#"><i class="d-icon-home"></i></a></li>
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">All Location</a></li>
+                            </ul>
                             @foreach ($shops as $shop)
                                 <div class="col-xl-2 col-sm-3 col-xs-6 my-4">
                                     <div class="card">
