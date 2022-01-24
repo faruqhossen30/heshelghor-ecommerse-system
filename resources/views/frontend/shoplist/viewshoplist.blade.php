@@ -11,14 +11,15 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 @section('content')
     <main class="main" style="margin-top: -22px">
         <div class="page-content mb-10 pb-2">
-            <div class="container" >
-                <div class="page-header" style="background: url({{asset('frontend/images/banner.jpg')}}); background-position:center">
+            <div class="container">
+                <div class="page-header"
+                    style="background: url({{ asset('frontend/images/banner.jpg') }}); background-position:center">
                     <div class="header-search hs-simple" style="flex: none; width:100%">
                         <form action="#" method="GET" class="input-wrapper" style="position: relative">
                             <div class="select-box">
 
-                                <select name="shoploaction" >
-                                    <option value="">All Location</option>
+                                <select name="shoploaction">
+                                    <option value="all">All Location</option>
                                     @foreach ($divissions as $divission)
                                         <option style="font-weight: bolder">
                                             <strong>{{ $divission->name }}</strong>
@@ -67,7 +68,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                 <div class="row main-content-wrap gutter-lg">
 
                     <div class="col-lg-12 main-content">
-                        <div class="row">
+                        <div class="row" id="shoplistdiv">
                             @foreach ($shops as $shop)
                                 <div class="col-xl-2 col-sm-3 col-xs-6 my-4">
                                     <div class="card">
@@ -102,27 +103,6 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                             @endforeach
 
                         </div>
-                        <nav class="toolbox toolbox-pagination">
-                            <p class="show-info">Showing <span>12 of 56</span> Products</p>
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                        aria-disabled="true">
-                                        <i class="d-icon-arrow-left"></i>Prev
-                                    </a>
-                                </li>
-                                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item page-item-dots"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item">
-                                    <a class="page-link page-link-next" href="#" aria-label="Next">
-                                        Next<i class="d-icon-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -132,17 +112,32 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 @endsection
 
 @push('scripts')
-<script>
-$(document).ready(function(){
-    var shoploaction = $('select[name="shoploaction"]');
-    var shopsearchkeyword = $('input[name="shopsearchkeyword"]');
+    <script>
+        $(document).ready(function() {
+            var shoploaction = $('select[name="shoploaction"]');
+            var shopsearchkeyword = $('input[name="shopsearchkeyword"]');
+            var shoplistdiv = $('#shoplistdiv');
 
-    $(document).on('change keyup', 'select[name="shoploaction"], input[name="shopsearchkeyword"]', function(){
-
-        $.ajax({
-
-        })
-    });
-});
-</script>
+            $(document).on('change keyup', 'select[name="shoploaction"], input[name="shopsearchkeyword"]',
+            function() {
+                let location = shoploaction.val();
+                let keyword = shopsearchkeyword.val().trim();
+                // console.log(keyword);
+                $.ajax({
+                    url: '{{ route('ajaxshoplist') }}',
+                    type: 'GET',
+                    data: {
+                        location,
+                        keyword,
+                    },
+                    // dataType: 'JSON',
+                    success: function(data) {
+                        shoplistdiv.empty()
+                        shoplistdiv.append(data)
+                        // console.log(data);
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

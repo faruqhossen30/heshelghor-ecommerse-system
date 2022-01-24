@@ -81,6 +81,7 @@ use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
 use App\Http\Controllers\Setting\FooterSetting;
+use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
 // Test Controller
 use App\Http\Controllers\TestController;
 
@@ -108,6 +109,7 @@ Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quick
 Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment.store');
 // Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
+Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
 Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
