@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FrontEnd;
+namespace App\Http\Controllers\FrontEnd\Shoplist;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\District;
@@ -10,7 +10,7 @@ use App\Models\Product\Category;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
-class ShopListPageController extends Controller
+class ShoplistAjaxController extends Controller
 {
     public function allshop()
     {
@@ -19,10 +19,10 @@ class ShopListPageController extends Controller
         $categories = Category::get();
         // return $shops;
         $shops = Shop::with('market')->latest()->get();
-        if(!empty($_GET['shoploaction']) && !empty($_GET['shopsearchkeyword'])){
+        if(!empty($_GET['shoploaction']) && !empty($_GET['shopsearch'])){
             $locationid = District::where('slug', $_GET['shoploaction'])->first()->id;
 
-            $shops = Shop::where('district_id', $locationid)->where('name', 'like', '%'.$_GET['shopsearchkeyword'].'%')->get();
+            $shops = Shop::where('district_id', $locationid)->where('name', 'like', '%'.$_GET['shopsearch'].'%')->get();
 
             return view('frontend.shoplist.viewshoplist', compact('shops','products', 'brands', 'categories'));
         }

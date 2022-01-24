@@ -110,21 +110,6 @@
                                             @endforeach
 
                                         @endforeach
-                                        {{-- <option value="12">- Women</option>
-                                        <option value="13">- Men</option>
-                                        <option value="66">- Jewellery</option>
-                                        <option value="67">- Kids Fashion</option>
-                                        <option value="5">Electronics</option>
-                                        <option value="21">- Smart TVs</option>
-                                        <option value="22">- Cameras</option>
-                                        <option value="63">- Games</option>
-                                        <option value="7">Home &amp; Garden</option>
-                                        <option value="11">Motors</option>
-                                        <option value="31">- Cars and Trucks</option>
-                                        <option value="32">- Motorcycles &amp; Powersports</option>
-                                        <option value="33">- Parts &amp; Accessories</option>
-                                        <option value="34">- Boats</option>
-                                        <option value="57">- Auto Tools &amp; Supplies</option> --}}
                                     </select>
                                 </div>
                                 <input type="text" class="form-control" name="search" autocomplete="off"

@@ -1,32 +1,39 @@
+@php
+$divissions = App\Models\Admin\Location\Division::with('districts')
+    ->orderBy('name', 'asc')
+    ->get();
+@endphp
 @extends('frontend.layouts.app')
 @section('title')
     HeshelGhor|Shop Page
 @endsection
 
 @section('content')
-    <main class="main">
+    <main class="main" style="margin-top: -22px">
         <div class="page-content mb-10 pb-2">
-            {{-- <div class="container" style="display: flex; justify-content:center"> --}}
-            <div class="container">
-                <div class="page-header" style="background-color:#28475c" >
-                    <div class="header-search hs-simple" style="flex: none">
+            <div class="container" >
+                <div class="page-header" style="background: url({{asset('frontend/images/banner.jpg')}}); background-position:center">
+                    <div class="header-search hs-simple" style="flex: none; width:100%">
                         <form action="#" method="GET" class="input-wrapper" style="position: relative">
                             <div class="select-box">
-                                <select id="category" name="category">
+
+                                <select name="shoploaction" >
                                     <option value="">All Location</option>
-                                    <option value="" style="font-weight: bolder">
-                                        Barisal</option>
-                                    <option value="24">- Barguna</option>
-                                    <option value="25">- Barishal</option>
-                                    <option value="26">- Bhola</option>
-                                    <option value="27">- Jhalokati</option>
-                                    <option value="28">- Patuakhali</option>
-                                    <option value="29">- Pirojpur</option>
+                                    @foreach ($divissions as $divission)
+                                        <option style="font-weight: bolder">
+                                            <strong>{{ $divission->name }}</strong>
+                                        </option>
+                                        @foreach ($divission->districts as $district)
+                                            <option value="{{ $district->slug }}" @if (!empty($_GET['shoploaction']) && $_GET['shoploaction'] == $district->slug) selected @endif> -
+                                                {{ $district->name }} </option>
+                                        @endforeach
+
+                                    @endforeach
 
                                 </select>
                             </div>
-                            <input type="text" class="form-control" name="search" autocomplete="off"
-                                placeholder="Search..." id="searchInpur" style="border-radius: 0">
+                            <input type="text" class="form-control" name="shopsearchkeyword" autocomplete="off"
+                                placeholder="Enter Shop Name..." style="border-radius: 0">
                             <button class="btn btn-search" type="submit">
                                 <i class="d-icon-search"></i>
                             </button>
@@ -123,16 +130,19 @@
     </main>
     <!-- End Main -->
 @endsection
-{{-- @push('styles')
-        <link rel="stylesheet" type="text/css" href="{{asset('frontend')}}/vendor/nouislider/nouislider.min.css">
-        		<!-- App css -->
-		<link href="{{asset('backend')}}/assets/css/material/bootstrap-material.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
-		<link href="{{asset('backend')}}/assets/css/material/app-material.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
-
-		<!-- icons -->
-		<link href="{{asset('backend')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-@endpush --}}
 
 @push('scripts')
-    <script src="{{ asset('frontend') }}/vendor/nouislider/nouislider.min.js"></script>
+<script>
+$(document).ready(function(){
+    var shoploaction = $('select[name="shoploaction"]');
+    var shopsearchkeyword = $('input[name="shopsearchkeyword"]');
+
+    $(document).on('change keyup', 'select[name="shoploaction"], input[name="shopsearchkeyword"]', function(){
+
+        $.ajax({
+
+        })
+    });
+});
+</script>
 @endpush
