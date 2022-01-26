@@ -16,15 +16,18 @@ class HomepageController extends Controller
     public function homePage()
     {
 
-        $categories = Cache::remember('_categories', 60 * 60 * 60, function () {
+        $categories = Cache::rememberForever('categories', function () {
             return Category::with('products')->orderBy('name', 'asc')->get();
         });
 
-        $subcategories = Cache::remember('_subcategories', 60 * 60 * 60, function () {
+        $subcategories = Cache::rememberForever('subcategories', function () {
             return SubCategory::inRandomOrder()->get();
         });
-        $brands = Cache::remember('_brands', 60 * 60 * 60, function () {
+        $brands = Cache::rememberForever('brands', function () {
             return Brand::latest('id')->get();
+        });
+        $products = Cache::rememberForever('products', function () {
+            return Product::latest('id')->paginate(8);
         });
 
 
@@ -32,7 +35,9 @@ class HomepageController extends Controller
         // $categories = Category::with('products')->orderBy('name', 'asc')->get();
         // $subcategories = SubCategory::inRandomOrder()->get();
         // $brands = Brand::latest('id')->get();
-        $products = Product::latest('id')->paginate(8);
+
+
+        // $products = Product::latest('id')->paginate(8);
         // return $categories;
 
 

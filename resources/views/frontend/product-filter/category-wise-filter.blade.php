@@ -70,7 +70,8 @@
                                                     <ul>
                                                         @foreach ($category->subcategories as $subcategory)
                                                             <li>
-                                                                <a  href="{{ route('product.with.subcategory', ['category'=>$category->slug, 'slug'=>$subcategory->slug]) }}">{{ $subcategory->name }}</a>
+                                                                <a
+                                                                    href="{{ route('product.with.subcategory', ['category' => $category->slug, 'slug' => $subcategory->slug]) }}">{{ $subcategory->name }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -115,7 +116,8 @@
                                                 <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
                                                     <input type="checkbox" name="filter_brands[]"
                                                         value="{{ $brand->slug }}" class="custom-checkbox"
-                                                        id="{{ $brand->id }}" name="account" @if(!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif onchange="this.form.submit();" >
+                                                        id="{{ $brand->id }}" name="account" @if (!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif
+                                                        onchange="this.form.submit();">
                                                     <label class="form-control-label" for="{{ $brand->id }}">
                                                         {{ $brand->name }}</label>
                                                 </div>
@@ -142,7 +144,7 @@
                                     <div class="toolbox-item toolbox-sort select-box">
                                         <label>Sort By :</label>
                                         <select name="orderby" class="form-control" onchange="this.form.submit();">
-                                            <option value="latest" @if ( !empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
+                                            <option value="latest" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
                                             <option value="lowtohigh" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'lowtohigh') selected @endif>Low To High</option>
                                             <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>Hith To Low</option>
                                         </select>
@@ -171,12 +173,14 @@
                                         <div class="product text-center">
                                             <figure class="product-media">
                                                 <a href="{{ route('singleproduct', $product->slug) }}">
-                                                    <img src="{{ $product->img_small }}"
-                                                        alt="product" width="280" height="315">
+                                                    <img src="{{ $product->img_small }}" alt="product" width="280"
+                                                        height="315">
                                                 </a>
                                                 <div class="product-label-group">
                                                     <label class="product-label label-new">new</label>
-                                                    <label class="product-label label-sale">12% OFF</label>
+                                                    @if ($product->discount > 0)
+                                                        <label class="product-label label-sale">{{$product->discount}}% OFF</label>
+                                                    @endif
                                                 </div>
                                                 <div class="product-action-vertical">
                                                     <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
@@ -196,19 +200,23 @@
                                                 <div class="product-cat">
                                                     <a
                                                         href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
-                                                        @if (optional($product->subcategory)->name)
-                                                        <a href="{{ route('product.with.subcategory',['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">|
+                                                    @if (optional($product->subcategory)->name)
+                                                        <a
+                                                            href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}">|
                                                             {{ $product->subcategory->name }}</a>
 
-                                                        @endif
+                                                    @endif
                                                 </div>
                                                 <h3 class="product-name">
                                                     <a
                                                         href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
                                                 </h3>
                                                 <div class="product-price">
-                                                    <ins class="new-price">৳{{ $product->price }}</ins><del
-                                                        class="old-price">৳{{ $product->regular_price }}</del>
+                                                    <ins class="new-price">৳{{ $product->price }}</ins>
+                                                    @if ($product->discount > 0)
+                                                        <del
+                                                            class="old-price">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                                    @endif
                                                 </div>
                                                 <div class="ratings-container">
                                                     <div class="ratings-full">

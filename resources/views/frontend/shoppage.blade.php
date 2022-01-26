@@ -72,7 +72,10 @@
                                         </a>
                                         <div class="product-label-group">
                                             <label class="product-label label-new">new</label>
-                                            <label class="product-label label-sale">12% OFF</label>
+                                            @if ($product->discount > 0)
+                                            <label class="product-label label-sale">{{$product->discount}}%</label>
+
+                                            @endif
                                         </div>
                                         <div class="product-action-vertical">
                                             <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
@@ -99,7 +102,10 @@
                                             <a href="{{route('singleproduct', $product->slug)}}">{{$product->title}}</a>
                                         </h3>
                                         <div class="product-price">
-                                            <ins class="new-price">৳{{ $product->price }}</ins><del class="old-price">৳{{ $product->regular_price }}</del>
+                                            <ins class="new-price">৳{{ $product->price }}</ins>
+                                            @if ($product->discount > 0)
+                                            <del class="old-price">৳{{ (($product->regular_price * $product->discount)/100) +  $product->regular_price}}</del>
+                                            @endif
                                         </div>
                                         <div class="ratings-container">
                                             <div class="ratings-full">
