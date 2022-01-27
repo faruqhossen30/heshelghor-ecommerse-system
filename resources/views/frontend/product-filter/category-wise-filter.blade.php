@@ -17,7 +17,6 @@
                         <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
                             @php
                                 $divisions = App\Models\Admin\Location\Division::get();
-
                             @endphp
                             <div class="sidebar-overlay"></div>
                             <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
@@ -28,7 +27,7 @@
                                             <i class="d-icon-map p-1"></i>
                                             Location
                                         </h3>
-                                        <ul class="list-group widget-body">
+                                        {{-- <ul class="list-group widget-body">
                                             <li class="mb-2">
                                                 <select class="form-select form-select-lg" readonly>
                                                     <option selected>Select Division</option>
@@ -56,7 +55,7 @@
                                             </li>
 
 
-                                        </ul>
+                                        </ul> --}}
                                     </div>
 
                                     <div class="widget widget-collapsible">
@@ -179,7 +178,8 @@
                                                 <div class="product-label-group">
                                                     <label class="product-label label-new">new</label>
                                                     @if ($product->discount > 0)
-                                                        <label class="product-label label-sale">{{$product->discount}}% OFF</label>
+                                                        <label class="product-label label-sale">{{ $product->discount }}%
+                                                            OFF</label>
                                                     @endif
                                                 </div>
                                                 <div class="product-action-vertical">

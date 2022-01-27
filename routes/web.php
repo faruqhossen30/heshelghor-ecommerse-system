@@ -3,74 +3,28 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// ====================== Admin Controller Srtart ===========================
-use App\Http\Controllers\APIController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\RolesController;
-// Admin Controller
-use App\Http\Controllers\Admin\BrandsController;
-use App\Http\Controllers\Admin\MarketController;
 // Location Controller
 use App\Http\Controllers\FrontEnd\CartController;
 
-
-// Attribute Controller
-
-use App\Http\Controllers\Admin\AdminHomeController;
-// For Order
-
-use App\Http\Controllers\Admin\AdminLoginController;
-
-use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
-// Merchant
-use App\Http\Controllers\Admin\MerchantController;
-use App\Http\Controllers\Admin\CustomerController;
-// Setting
-use App\Http\Controllers\Setting\SettingController;
-// ====================== Admin Controller End ===========================
-
-
+use App\Http\Controllers\APIController;
 // ====================== Admin User Order Start =========================
 use App\Http\Controllers\Merchant\ProfileController;
-// ====================== Admin User Order End ===========================
-
 // ======================  User Order Start =========================
 use App\Http\Controllers\User\UserDashboardController;
 // ======================  User Order End ===========================
-
-
-
 
 // Point Manager Controller
 
 // Product Controller
 use App\Http\Controllers\FrontEnd\UserOrderController;
-use App\Http\Controllers\Product\CategoryController;
+
 use App\Http\Controllers\Product\SubCategoryController;
-use App\Http\Controllers\Admin\Attribute\SizeController;
-
-// Cart and Order Controller
-use App\Http\Controllers\Admin\Attribute\ColorController;
-use App\Http\Controllers\Admin\Location\UpazilaController;
-
-
-
 // Front-End Controller
-
-
 use App\Http\Controllers\FrontEnd\CheckoutController;
 use App\Http\Controllers\FrontEnd\HomepageController;
 use App\Http\Controllers\FrontEnd\ShopPageController;
 use App\Http\Controllers\FrontEnd\SingleProductController;
 
-
-
-
-
-use App\Http\Controllers\Admin\Location\DistrictController;
-use App\Http\Controllers\Admin\Location\DivisionController;
-use App\Http\Controllers\Admin\Order\PaymentMethodController;
-use App\Http\Controllers\Admin\Order\DeliverySystemController;
 use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
@@ -80,7 +34,7 @@ use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 
 use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
-use App\Http\Controllers\Setting\FooterSetting;
+
 use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
 // Test Controller
 use App\Http\Controllers\TestController;
@@ -92,7 +46,7 @@ Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->nam
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
-Route::get('/product/search', [SearchWiseFilterController::class, 'index'])->name('searchtest');
+Route::get('/search', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
 // Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
 // Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
@@ -141,54 +95,6 @@ Route::prefix('user')->group(function () {
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
     });
 });
-
-
-
-// Admin
-Route::prefix('admin')->group(function () {
-    Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('login', [AdminLoginController::class, 'login'])->name('admin.login');
-    Route::post('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-    Route::get('districts', [DistrictController::class, 'selectDistrict'])->name('districts');
-
-    Route::group(['middleware' => 'isAdmin'], function () {
-        Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
-        Route::resource('roles', RolesController::class);
-        Route::resource('admin', AdminController::class);
-        // For Product
-        Route::resource('category', CategoryController::class);
-        Route::resource('subcategory', SubCategoryController::class);
-        // Brand for Admin
-        Route::resource('brands', BrandsController::class);
-        // Market
-        Route::resource('market', MarketController::class);
-        // For location
-        Route::resource('divission', DivisionController::class);
-        Route::resource('district', DistrictController::class);
-        Route::resource('upazila', UpazilaController::class);
-        Route::resource('color', ColorController::class);
-        Route::resource('size', SizeController::class);
-        // For order section
-        Route::resource('deliverysystem', DeliverySystemController::class);
-        Route::resource('paymentmethod', PaymentMethodController::class);
-        Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
-        Route::get('allorderitem/search', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
-        Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
-        // Merchant Section
-        Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');
-        Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
-        Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
-        Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
-        // Settings
-        Route::get('setting', [SettingController::class, 'showSetting'])->name('setting');
-        Route::post('setting/contact', [SettingController::class, 'contactInformation'])->name('setting.contact');
-        Route::post('setting/social-media', [SettingController::class, 'socialMediaLink'])->name('setting.socialmedia');
-        Route::post('setting/header', [SettingController::class, 'header'])->name('setting.header');
-        Route::post('setting/check-payment', [SettingController::class, 'checkForOnlinePayment'])->name('setting.checkpayment');
-
-    });
-});
-// Merchant
 
 use App\Http\Controllers\PointManager\PointManagerLoginController;
 use App\Http\Controllers\PointManager\PointManagerHomeController;
@@ -244,8 +150,6 @@ Route::prefix('deliveryman')->group(function(){
     });
 });
 
-
-
 // For API
 Route::get('subcategory', [SubCategoryController::class, 'getSubcategoryById'])->name('get.subcategory');
 Route::get('getdistrict/{division_id}', [APIController::class, 'getDistrictByDivisionID']);
@@ -259,14 +163,11 @@ Route::get('setting/setting-payment-system', [APIController::class, 'settingPaym
 use App\Http\Controllers\FolderCreateControler;
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
-
 Route::get('test', [TestController::class, 'test'])->name('test');
 Route::get('ontest', [TestController::class, 'ontest'])->name('ontest');
 Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
 
 Route::post('callback', [UserOrderController::class, 'callback'])->name('callback');
-
-
 // SSLCOMMERZ Start
 use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);

@@ -97,16 +97,16 @@
                         <!-- End Logo -->
 
                         <div class="header-search hs-simple">
-                            <form action="#" method="GET" class="input-wrapper border" style="position: relative"
+                            <form action="{{route('searchtest')}}" method="GET" class="input-wrapper border" style="position: relative"
                                 id="searchFrom">
                                 <div class="select-box">
-                                    <select id="category" name="category">
-                                        <option value="">All Location</option>
+                                    <select id="category" name="location">
+                                        <option value="all">All Location</option>
                                         @foreach ($divissions as $divission)
                                             <option value="" style="font-weight: bolder">
                                                 <strong>{{ $divission->name }}</strong></option>
                                             @foreach ($divission->districts as $district)
-                                                <option value="{{ $district->id }}">- {{ $district->name }}</option>
+                                                <option value="{{ $district->slug }}">- {{ $district->name }}</option>
                                             @endforeach
 
                                         @endforeach

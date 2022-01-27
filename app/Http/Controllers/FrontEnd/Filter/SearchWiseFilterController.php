@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd\Filter;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\District;
 use App\Models\Product\Brand;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
@@ -14,31 +15,63 @@ class SearchWiseFilterController extends Controller
 
     public function index(Request $request)
     {
-        return "sdkfjsldkfjkl";
-        return $request->all();
-        // if (!empty($_GET['search'])) {
-        //     return 'jsut for test';
-        // }
+        // return "sdkfjsldkfjkl";
+        // return $request->all();
+        if (!empty($_GET['search'])) {
+            return 'jsut for test';
+        }
     }
     public function productWithSearch(Request $request)
     {
-        return "search ";
-        $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
-        $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray());
-        $brands = Brand::whereIn('id', $brands_id)->get();
-
-        if (empty($_GET)) {
-
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(12);
-
-            // return $products;
-
-            return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
+        $location = '';
+        if($request->location == 'all'){
+            $location = null;
+        }else{
+            $location = $request->location;
         }
+        $locationid = District::where('slug', $location)->first()->id ?? null;
+
+        // return $locationid;
+
+
+
+        // $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
+        // $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray());
+        // $brands = Brand::whereIn('id', $brands_id)->get();
+
+        if ($locationid) {
+            if(!empty($_GET['search'])){
+                // return "location ase  search ase";
+                $products = Product::where('district_id', $locationid)->where('title', 'like', '%'.$_GET['search'].'%')->get()->count();
+                return $products;
+            }
+            if (empty($_GET['search'])) {
+                // return "location ase  search empty";
+                $products = Product::where('district_id', $locationid)->get()->count();
+                return $products;
+            }
+        }
+        // All location
+        if(!$location){
+            if (!empty($_GET['search'])) {
+                // return "location empty and search empty";
+                $products = Product::where('title', 'like', '%'.$_GET['search'].'%')->get()->count();
+                return $products;
+            }
+            if (empty($_GET['search'])) {
+                // return "location empty and search empty";
+                $products = Product::get()->count();
+                return $products;
+            }
+        }
+
+
+
+
 
         if (!empty($_GET['search'])) {
 
-            return "search page";
+            return "search ase";
 
 
 
