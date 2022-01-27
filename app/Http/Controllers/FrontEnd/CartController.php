@@ -32,7 +32,7 @@ class CartController extends Controller
                     'shop_id'              => $product->shop_id,
                     'color'                => $request->color,
                     'size'                 => $request->size,
-                    'photo'                => $product->photo,
+                    'photo'                => $product->img_small,
                     ]
             ]);
 

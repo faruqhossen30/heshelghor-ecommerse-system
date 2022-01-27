@@ -46,7 +46,7 @@ $totalitem = Cart::count();
                                         <td class="product-thumbnail">
                                             <figure>
                                                 <a href="product-simple.html">
-                                                    <img src="{{ asset('uploads/product/' . $item->options->photo) }}"
+                                                    <img src="{{ $item->options->photo }}"
                                                         width="75" height="75" alt="product">
                                                 </a>
                                             </figure>
@@ -111,7 +111,7 @@ $totalitem = Cart::count();
                         <div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
                             <div class="summary mb-4">
                                 <h3 class="summary-title text-left">Order Summery</h3>
-                                <div class="shipping-address">
+                                {{-- <div class="shipping-address">
                                     <label style="margin-bottom:0px">Delivery System<strong></strong></label>
                                     <div class="select-box">
                                         <select name="delivery_system" class="form-control">
@@ -122,7 +122,7 @@ $totalitem = Cart::count();
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <table class="shipping">
                                     <tr class="summary-subtotal">
                                         <td>
@@ -140,14 +140,14 @@ $totalitem = Cart::count();
                                             <p class="summary-subtotal-price"><span id="product_quantity">{{$totalitem}}</span></p>
                                         </td>
                                     </tr>
-                                    <tr class="summary-subtotal">
+                                    {{-- <tr class="summary-subtotal">
                                         <td>
                                             <h4 class="summary-subtitle">Delivery Charge</h4>
                                         </td>
                                         <td>
                                             <p class="summary-subtotal-price">$<span id="delivery_charge">0</span></p>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
 
 
                                 </table>
@@ -180,7 +180,7 @@ $totalitem = Cart::count();
 @endpush
 
 @push('scripts')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
 
             // var deliveryCost = 0;
@@ -213,5 +213,5 @@ $totalitem = Cart::count();
 
         }); // Document ready
 
-    </script>
+    </script> --}}
 @endpush

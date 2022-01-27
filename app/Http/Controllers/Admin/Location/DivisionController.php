@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DivisionController extends Controller
 {
@@ -16,6 +17,11 @@ class DivisionController extends Controller
      */
     public function index()
     {
+
+        $divisionlist = Cache::rememberForever('divisionlist', function () {
+            return Division::with('districts')->orderBy('name', 'asc')->get();
+        });
+
         if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('location')){
             abort(403, 'You have no access this page.');
         };

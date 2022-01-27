@@ -1,9 +1,8 @@
 @php
-$serial = 1;
-$subTotal = Cart::priceTotal();
-$totalProduct = Cart::count();
-$totalItem = count(Cart::content());
-
+    $serial = 1;
+    $subTotal = Cart::priceTotal();
+    $totalProduct = Cart::count();
+    $totalItem = count(Cart::content());
 @endphp
 
 @extends('frontend.layouts.app')
@@ -20,7 +19,7 @@ $totalItem = count(Cart::content());
                 <h3 class="title title-simple title-step"><a href="#">3. Order Complete</a></h3>
             </div>
             <div class="container mt-7">
-                <form action="{{route('ordernow')}}" method="POST" class="form">
+                <form action="{{route('pay')}}" method="POST" class="form">
                     @csrf
 
                     <input type="hidden" value="{{$totalProduct}}" name="total_prodcut">
@@ -49,7 +48,7 @@ $totalItem = count(Cart::content());
                             <div class="row">
                                 <div class="col">
                                     <label>Delivery Address *</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" required/>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" />
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -66,7 +65,7 @@ $totalItem = count(Cart::content());
                                 <div class="col-xs-6">
                                     <label>Mobile No *</label>
                                     <input value="{{ $user->mobile }}" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
-                                        required />
+                                         />
                                     <div class="text-danger">
                                         @error('mobile')
                                             <span>{{ $message }}</span>
@@ -77,11 +76,11 @@ $totalItem = count(Cart::content());
 
                             <label>Email Address *</label>
                             <input type="text" value="{{ $user->email }}" class="form-control" name="email"
-                                required="" />
+                                 />
                             <div>
                                 <label>Select Divission *</label>
                                 <div class="select-box">
-                                    <select name="division_id" class="form-control" required>
+                                    <select name="division_id" class="form-control" >
                                         <option value="" >Select Divission</option>
                                         @foreach ($divisions as $division)
                                             <option value="{{ $division->id }}">{{ $division->name }}</option>
