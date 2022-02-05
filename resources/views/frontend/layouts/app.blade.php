@@ -9,7 +9,6 @@
 @endphp
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -79,12 +78,13 @@
             {{-- Topbar --}}
             @include('frontend.layouts.topbar', compact('header'))
             {{-- Headeer --}}
-            {{-- @include('frontend.layouts.searchbar') --}}
+            @include('frontend.layouts.searchbar')
             @php
                 // cart count
                 $totalitem = Cart::count();
                 $totalprice = Cart::priceTotal();
             @endphp
+            {{--
             <div class="header-middle sticky-header fix-top sticky-content">
                 <div class="container">
                     <div class="header-left">
@@ -106,7 +106,7 @@
                                             <option value="" style="font-weight: bolder">
                                                 <strong>{{ $divission->name }}</strong></option>
                                             @foreach ($divission->districts as $district)
-                                                <option value="{{ $district->slug }}">- {{ $district->name }}</option>
+                                                <option value="{{ $district->slug }}" @if(request()->query('location') == $district->slug) selected @endif >- {{ $district->name }}</option>
                                             @endforeach
 
                                         @endforeach
@@ -154,7 +154,7 @@
                         </a>
                         <span class="divider"></span>
                         <div class="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
-                            {{-- <a href="#" class="cart-toggle label-block link"> --}}
+
                             <a href="{{ route('cart.page') }}" class="label-block link">
                                 <div class="cart-label d-lg-show">
                                     <span class="cart-name">Shopping Cart</span>
@@ -242,6 +242,8 @@
                     </div>
                 </div>
             </div>
+
+            --}}
 
             {{-- Menu --}}
             @include('frontend.layouts.menu')

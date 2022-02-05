@@ -32,6 +32,7 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Setting\FooterSetting;
+use App\Http\Controllers\Product\SubCategoryController;
 
 
 // Admin

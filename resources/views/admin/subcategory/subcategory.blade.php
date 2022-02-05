@@ -145,7 +145,7 @@ $admin = Auth::guard('admin')->user();
                                                                     <button
                                                                         style="border: none; background:none; color:gray; font-size:17px"
                                                                         type="submit"
-                                                                        onclick="confirm('Sure ? Want to delete Tender ?')"><i
+                                                                        onclick="return confirm('Sure ? Want to delete Sub-catetyro ?');"><i
                                                                             class="mdi mdi-delete"></i></button>
                                                                 </form>
                                                             </li>

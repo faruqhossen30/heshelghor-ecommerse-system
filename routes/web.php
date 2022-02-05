@@ -18,7 +18,7 @@ use App\Http\Controllers\User\UserDashboardController;
 // Product Controller
 use App\Http\Controllers\FrontEnd\UserOrderController;
 
-use App\Http\Controllers\Product\SubCategoryController;
+
 // Front-End Controller
 use App\Http\Controllers\FrontEnd\CheckoutController;
 use App\Http\Controllers\FrontEnd\HomepageController;
@@ -46,7 +46,8 @@ Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->nam
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
-Route::get('/search', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
+Route::match(['GET', 'POST'],'/search/', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
+Route::get('/searchs/{data}', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest2');
 // Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
 // Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');

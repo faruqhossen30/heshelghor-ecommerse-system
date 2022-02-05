@@ -5,14 +5,29 @@
 
 @section('content')
     <main class="main">
-        <form action="{{ url()->current() }}" method="GET">
+        <form action="{{ route('searchtest') }}" method="GET">
             <div class="page-content mb-10 pb-2">
                 <div class="container">
-                    <ul class="breadcrumb">
+                    {{-- <ul class="breadcrumb">
                         <li><a href="demo3.html"><i class="d-icon-home"></i></a></li>
                         <li>Shop</li>
-                    </ul>
+                    </ul> --}}
                     <!-- End Breadcrumb -->
+                    {{-- @php
+                        $location = '';
+                        if (isset($_GET['location'])) {
+                            $location = $_GET['location'];
+                        }
+                    @endphp --}}
+                    @if (request()->session()->get('location'))
+                        <input type="text" name="location" value="{{ request()->session()->get('location') }}">
+                        location ase
+                    @endif
+                    @if (request()->session()->get('search'))
+                        <input type="text" name="search" value="{{ request()->session()->get('search') }}">
+                        keyword ase
+                    @endif
+
                     <div class="row main-content-wrap gutter-lg">
                         <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
                             @php
@@ -26,58 +41,31 @@
                                     <div class="widget">
                                         <h3 class="widget-title ">
                                             <i class="d-icon-map p-1"></i>
-                                            Location
+                                            @if (request()->query('location'))
+                                                {{ request()->query('location') }}
+                                            @endif
                                         </h3>
-                                        <ul class="list-group widget-body">
-                                            <li class="mb-2">
-                                                <select class="form-select form-select-lg" readonly>
-                                                    <option selected>Select Division</option>
-                                                    @foreach ($divisions as $division)
-                                                        <option value="{{ $division->id }}">{{ $division->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </li>
-                                            <li class="mb-2">
-                                                <select class="form-select form-select-lg" disabled>
-                                                    <option selected>Select District</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </li>
-                                            <li class="mb-2">
-                                                <select class="form-select form-select-lg" disabled>
-                                                    <option selected>Select Upazila</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </li>
-
-
-                                        </ul>
                                     </div>
 
                                     <div class="widget widget-collapsible">
-                                        <h3 class="widget-title">All Categories</h3>
-                                        <ul class="widget-body filter-items search-ul">
-
+                                        <h3 class="widget-title">Category</h3>
+                                        @php
+                                            $filter_categories = [];
+                                            if (isset($_GET['filter_categories'])) {
+                                                $filter_categories = $_GET['filter_categories'];
+                                            }
+                                        @endphp
+                                        <ul class="widget-body filter-items">
                                             @foreach ($categories as $category)
-                                                <li>
-                                                    <a
-                                                        href="{{ route('product.with.category', $category->slug) }}">{{ $category->name }}</a>
-                                                    <ul>
-                                                        @foreach ($category->subcategories as $subcategory)
-                                                            <li>
-                                                                <a  href="{{ route('product.with.subcategory', ['category'=>$category->slug, 'slug'=>$subcategory->slug]) }}">{{ $subcategory->name }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
+                                                <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
+                                                    <input type="checkbox" name="filter_categories[]"
+                                                        value="{{ $category->slug }}" class="custom-checkbox"
+                                                        id="{{ $category->id }}" name="account" @if (!empty($filter_categories) && in_array($category->slug, $filter_categories)) checked @endif
+                                                        onchange="this.form.submit();" >
+                                                    <label class="form-control-label" for="{{ $category->id }}">
+                                                        {{ $category->name }}</label>
+                                                </div>
                                             @endforeach
-
-
 
                                         </ul>
                                     </div>
@@ -107,15 +95,13 @@
                                                 if (isset($_GET['filter_brands'])) {
                                                     $filter_brands = $_GET['filter_brands'];
                                                 }
-
-                                                // echo print_r($filter_brands);
-
                                             @endphp
                                             @foreach ($brands as $brand)
                                                 <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
                                                     <input type="checkbox" name="filter_brands[]"
                                                         value="{{ $brand->slug }}" class="custom-checkbox"
-                                                        id="{{ $brand->id }}" name="account" @if(!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif onchange="this.form.submit();" >
+                                                        id="{{ $brand->id }}" name="account" @if (!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif
+                                                        onchange="this.form.submit();">
                                                     <label class="form-control-label" for="{{ $brand->id }}">
                                                         {{ $brand->name }}</label>
                                                 </div>
@@ -134,6 +120,20 @@
                         {{-- sidebar end --}}
 
                         <div class="col-lg-9 main-content">
+                            {{-- <ul class="breadcrumb">
+                                <li><a href="#"><i class="d-icon-home"></i></a></li>
+                                <li>Category</li>
+                            </ul> --}}
+                            <div class="product-variations my-1">
+                                <div>
+                                    <span>Subcategory: </span>
+                                    @foreach ($subcategories as $subcategory)
+                                        <a
+                                            href="{{ route('product.with.subcategory', ['category' => $category->slug, 'slug' => $subcategory->slug]) }}"><span
+                                                class="badge bg-primary">{{ $subcategory->name }}</span></a>
+                                    @endforeach
+                                </div>
+                            </div>
                             <nav class="toolbox sticky-content sticky-toolbox fix-top pt-0">
                                 <div class="toolbox-left">
                                     <a href="#"
@@ -142,7 +142,7 @@
                                     <div class="toolbox-item toolbox-sort select-box">
                                         <label>Sort By :</label>
                                         <select name="orderby" class="form-control" onchange="this.form.submit();">
-                                            <option value="latest" @if ( !empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
+                                            <option value="latest" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
                                             <option value="lowtohigh" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'lowtohigh') selected @endif>Low To High</option>
                                             <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>Hith To Low</option>
                                         </select>
@@ -197,7 +197,7 @@
                                                     <a
                                                         href="{{ route('product.with.category', $product->category->id) }}">{{ $product->category->name }}</a>
                                                     <a
-                                                        href="{{ route('product.with.subcategory',['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}">|
+                                                        href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">|
                                                         {{ $product->subcategory->name }}</a>
                                                 </div>
                                                 <h3 class="product-name">
@@ -221,7 +221,7 @@
                                 @endforeach
 
                             </div>
-                            {{ $products->appends($_GET)->links() }}
+                            {{-- {{ $products->appends($_GET)->links() }} --}}
                             {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">

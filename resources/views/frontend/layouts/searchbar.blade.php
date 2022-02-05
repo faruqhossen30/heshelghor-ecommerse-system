@@ -15,40 +15,43 @@ $totalprice = Cart::priceTotal();
             <!-- End Logo -->
 
             <div class="header-search hs-simple">
-                <form action="{{url('/product/search')}}" method="GET" class="input-wrapper" style="position: relative" >
+                <form action="{{route('searchtest')}}" method="get" class="input-wrapper border" style="position: relative"
+                    id="searchFrom">
+                    {{-- @csrf --}}
                     <div class="select-box">
-                        <select id="category" name="category">
-                            <option value="">All Categories</option>
-                            <option value="4">Fashion</option>
-                            <option value="12">- Women</option>
-                            <option value="13">- Men</option>
-                            <option value="66">- Jewellery</option>
-                            <option value="67">- Kids Fashion</option>
-                            <option value="5">Electronics</option>
-                            <option value="21">- Smart TVs</option>
-                            <option value="22">- Cameras</option>
-                            <option value="63">- Games</option>
-                            <option value="7">Home &amp; Garden</option>
-                            <option value="11">Motors</option>
-                            <option value="31">- Cars and Trucks</option>
-                            <option value="32">- Motorcycles &amp; Powersports</option>
-                            <option value="33">- Parts &amp; Accessories</option>
-                            <option value="34">- Boats</option>
-                            <option value="57">- Auto Tools &amp; Supplies</option>
+                        <select id="category" name="location">
+                            <option value="all">All Location</option>
+                            @foreach ($divissions as $divission)
+                                <option value="" style="font-weight: bolder">
+                                    <strong>{{ $divission->name }}</strong></option>
+                                @foreach ($divission->districts as $district)
+                                    <option value="{{ $district->slug }}" @if(request()->query('location') == $district->slug) selected @endif >- {{ $district->name }}</option>
+                                @endforeach
+
+                            @endforeach
                         </select>
                     </div>
-                    <input type="text" class="form-control" name="search"  placeholder="Search..."
-                        required id="searchInpur" />
+                    <input type="text" class="form-control" name="search" autocomplete="off"
+                        placeholder="Search..." id="searchInpur" />
                     <button class="btn btn-search" type="submit">
                         <i class="d-icon-search"></i>
                     </button>
                 </form>
-                <div class="" style="z-index: 999999999;position: absolute; width:100%; display:none"
+                <div class=""
+                    style="z-index: 999999999;position: absolute; width:100%; display:none"
                     id="searchResultDiv">
                     <ul class="list-group" id="searchProductList">
-                        {{-- <a href="" class="list-group-item"> Just for test</a> --}}
-                        {{-- <a href="" class="list-group-item"> Just for test</a>
-                        <a href="" class="list-group-item"> Just for test</a> --}}
+                        <a href=""
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <img src="https://picsum.photos/id/1005/367/267" alt=""
+                                    class="img-thumbnail" style="width: 40px; height:40px">
+                                <span>Just for test</span>
+                            </div>
+                            <div>
+                                <span>$500</span>
+                            </div>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -61,7 +64,7 @@ $totalprice = Cart::priceTotal();
                 </div>
                 <div class="icon-box-content d-lg-show">
                     <h4 class="icon-box-title">Call Us Now:</h4>
-                    <p>+88 0421-61720</p>
+                    <p>{{ $header->mobile ?? '' }}</p>
                 </div>
             </a>
             <span class="divider"></span>
@@ -90,8 +93,8 @@ $totalprice = Cart::priceTotal();
                         <div class="product product-cart">
                             <figure class="product-media">
                                 <a href="product.html">
-                                    <img src="{{ asset('frontend') }}/images/cart/product-1.jpg" alt="product"
-                                        width="80" height="88" />
+                                    <img src="{{ asset('frontend') }}/images/cart/product-1.jpg"
+                                        alt="product" width="80" height="88" />
                                 </a>
                                 <button class="btn btn-link btn-close">
                                     <i class="fas fa-times"></i><span class="sr-only">Close</span>
@@ -110,8 +113,8 @@ $totalprice = Cart::priceTotal();
                         <div class="product product-cart">
                             <figure class="product-media">
                                 <a href="product.html">
-                                    <img src="{{ asset('frontend') }}/images/cart/product-2.jpg" alt="product"
-                                        width="80" height="88" />
+                                    <img src="{{ asset('frontend') }}/images/cart/product-2.jpg"
+                                        alt="product" width="80" height="88" />
                                 </a>
                                 <button class="btn btn-link btn-close">
                                     <i class="fas fa-times"></i><span class="sr-only">Close</span>

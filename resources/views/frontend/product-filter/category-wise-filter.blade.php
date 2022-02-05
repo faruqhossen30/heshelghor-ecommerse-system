@@ -107,9 +107,6 @@
                                                 if (isset($_GET['filter_brands'])) {
                                                     $filter_brands = $_GET['filter_brands'];
                                                 }
-
-                                                // echo print_r($filter_brands);
-
                                             @endphp
                                             @foreach ($brands as $brand)
                                                 <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
