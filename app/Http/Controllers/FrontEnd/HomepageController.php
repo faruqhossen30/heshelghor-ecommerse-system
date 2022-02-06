@@ -16,28 +16,28 @@ class HomepageController extends Controller
     public function homePage()
     {
 
-        $categories = Cache::rememberForever('categories', function () {
-            return Category::with('products')->orderBy('name', 'asc')->get();
-        });
+        // $categories = Cache::rememberForever('categories', function () {
+        //     return Category::with('products')->orderBy('name', 'asc')->get();
+        // });
 
-        $subcategories = Cache::rememberForever('subcategories', function () {
-            return SubCategory::inRandomOrder()->get();
-        });
-        $brands = Cache::rememberForever('brands', function () {
-            return Brand::latest('id')->get();
-        });
-        $products = Cache::rememberForever('products', function () {
-            return Product::latest('id')->paginate(8);
-        });
-
-
-
-        // $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        // $subcategories = SubCategory::inRandomOrder()->get();
-        // $brands = Brand::latest('id')->get();
+        // $subcategories = Cache::rememberForever('subcategories', function () {
+        //     return SubCategory::inRandomOrder()->get();
+        // });
+        // $brands = Cache::rememberForever('brands', function () {
+        //     return Brand::latest('id')->get();
+        // });
+        // $products = Cache::rememberForever('products', function () {
+        //     return Product::latest('id')->paginate(8);
+        // });
 
 
-        // $products = Product::latest('id')->paginate(8);
+
+        $categories = Category::with('products')->orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::inRandomOrder()->get();
+        $brands = Brand::latest('id')->get();
+
+
+        $products = Product::latest('id')->paginate(8);
         // return $categories;
 
 
