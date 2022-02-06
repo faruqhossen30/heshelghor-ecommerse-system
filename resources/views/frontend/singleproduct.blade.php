@@ -6,7 +6,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Home
+    {{$product->title}}
 @endsection
 
 @section('content')

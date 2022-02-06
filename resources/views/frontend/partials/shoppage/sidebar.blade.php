@@ -6,40 +6,6 @@
 <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
 <div class="sidebar-content">
     <div class="sticky-sidebar">
-        <div class="widget">
-            <h3 class="widget-title ">
-                <i class="d-icon-map p-1"></i>
-                Location</h3>
-            <ul class="list-group widget-body" >
-                <li class="mb-2">
-                    <select class="form-select form-select-lg" readonly>
-                        <option selected>Select Division</option>
-                        @foreach ($divisions as $division)
-                            <option value="{{$division->id}}">{{$division->name}}</option>
-                        @endforeach
-                      </select>
-                </li>
-                <li class="mb-2">
-                    <select class="form-select form-select-lg" disabled>
-                        <option selected>Select District</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                </li>
-                <li class="mb-2">
-                    <select class="form-select form-select-lg" disabled>
-                        <option selected>Select Upazila</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                </li>
-
-
-            </ul>
-        </div>
-
         <div class="widget widget-collapsible">
             <h3 class="widget-title">All Categories</h3>
             <ul class="widget-body filter-items search-ul">

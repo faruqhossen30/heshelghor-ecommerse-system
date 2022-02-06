@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor | Home
+    HeshelGhor | Privacy Policy
 @endsection
 
 @section('content')

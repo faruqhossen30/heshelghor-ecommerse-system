@@ -5,7 +5,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 @endphp
 @extends('frontend.layouts.app')
 @section('title')
-    HeshelGhor|Shop Page
+    HeshelGhor | Shop List Page
 @endsection
 
 @section('content')
