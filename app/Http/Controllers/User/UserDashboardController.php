@@ -8,6 +8,8 @@ use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserWelcome;
 use Image;
 use Ramsey\Uuid\Type\Hexadecimal;
 
@@ -18,7 +20,6 @@ class UserDashboardController extends Controller
     {
         $userId = Auth::user()->id;
         $totalorder = Order::where('user_id', $userId)->count();
-
         // return $totalorder;
 
         return view('user.dashboard', compact('totalorder'));

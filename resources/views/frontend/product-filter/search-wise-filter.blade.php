@@ -20,12 +20,12 @@
                         }
                     @endphp --}}
                     @if (request()->session()->get('location'))
-                        <input type="text" name="location" value="{{ request()->session()->get('location') }}">
-                        location ase
+                        <input type="hidden" name="location" value="{{ request()->session()->get('location') }}">
+
                     @endif
                     @if (request()->session()->get('search'))
-                        <input type="text" name="search" value="{{ request()->session()->get('search') }}">
-                        keyword ase
+                        <input type="hidden" name="search" value="{{ request()->session()->get('search') }}">
+
                     @endif
 
                     <div class="row main-content-wrap gutter-lg">
@@ -42,7 +42,7 @@
                                         <h3 class="widget-title ">
                                             <i class="d-icon-map p-1"></i>
                                             @if (request()->query('location'))
-                                                {{ request()->query('location') }}
+                                                {{ request()->query('location') == 'all' ? 'All Location' : request()->query('location') }}
                                             @endif
                                         </h3>
                                     </div>
@@ -220,8 +220,9 @@
                                     </div>
                                 @endforeach
 
+
                             </div>
-                            {{-- {{ $products->appends($_GET)->links() }} --}}
+                            {{ $products->appends($_GET)->links() ?? '' }}
                             {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">
