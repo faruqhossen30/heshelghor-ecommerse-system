@@ -98,7 +98,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             <div class="product-price">৳{{ $product->price }}</div>
                             <p class="product-short-desc">
                                 {{ Str::substr($product->short_description, 0, 200) }}
-                                <a href="#product-tab-description" class="text-warning">View more</a>
+                                <a href="{{route('singleproduct', $product->slug)}}#product-tab-description" class="text-warning">View more</a>
                             </p>
                             <div class="product-meta">
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
@@ -391,15 +391,16 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 </div>
                                 <div class="rating-form">
                                     <label for="rating" class="text-dark">Your rating * </label>
-                                    <span class="rating-stars selected">
-                                        <a class="star-1" href="#">1</a>
-                                        <a class="star-2" href="#">2</a>
-                                        <a class="star-3" href="#">3</a>
-                                        <a class="star-4 active" href="#">4</a>
-                                        <a class="star-5" href="#">5</a>
+                                    <span class="rating-stars">
+                                        <label for="radion1"><span><i class="d-icon-phone"></i></span></label>
+                                        <input id="radion1" type="radio" name="rating" class="star-1" value="1">
+                                        <input id="radion2" type="radio" name="rating" class="star-2" value="2">
+                                        <input id="radion3" type="radio" name="rating" class="star-3" value="3">
+                                        <input id="radion4" type="radio" name="rating" class="star-4 active" value="4">
+                                        <input id="radion5" type="radio" name="rating" class="star-5" value="5">
                                     </span>
 
-                                    <select name="rating" id="rating" required="" style="display: none;">
+                                    <select name="rating" id="rating" required="" style="display: block;">
                                         <option value="">Rate…</option>
                                         <option value="5">Perfect</option>
                                         <option value="4">Good</option>

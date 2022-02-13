@@ -15,6 +15,9 @@ class CreateProductReviewsTable extends Migration
     {
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('mark')->min(1)->max(5);
             $table->timestamps();
         });
     }

@@ -13,4 +13,9 @@ class BrandAPIController extends Controller
         $shops = Brand::latest()->paginate(15);
         return $shops;
     }
+    public function allbarand()
+    {
+        $shops = Brand::orderby('name', 'asc')->get();
+        return $shops;
+    }
 }

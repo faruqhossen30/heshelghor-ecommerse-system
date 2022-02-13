@@ -12,11 +12,11 @@ use App\Http\Controllers\Merchant\ProfileController;
 // ======================  User Order Start =========================
 use App\Http\Controllers\User\UserDashboardController;
 // ======================  User Order End ===========================
-
-// Point Manager Controller
+use App\Http\Controllers\User\UserProductReviewController;
 
 // Product Controller
 use App\Http\Controllers\FrontEnd\UserOrderController;
+use App\Http\Controllers\Product\SubCategoryController;
 
 
 // Front-End Controller
@@ -94,6 +94,8 @@ Route::prefix('user')->group(function () {
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
         Route::get('account/update', [UserDashboardController::class, 'editAccount'])->name('user.account.edit');
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
+        Route::get('review', [UserProductReviewController::class, 'index'])->name('user.product.review.list');
+        Route::get('review/product', [UserProductReviewController::class, 'reviewproduct'])->name('user.product.review.product');
     });
 });
 

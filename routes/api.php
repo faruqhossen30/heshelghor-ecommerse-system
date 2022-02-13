@@ -62,7 +62,8 @@ Route::get('subcategories', [AllListAPIController::class, 'allSubCategory']); //
 Route::get('subcategory/category/{id}', [AllListAPIController::class, 'subCategoryByCategory']); // Sub-Category List
 // Brand List
 Route::get('allbrand', [AllListAPIController::class, 'allBrand']); // Category List
-Route::get('brands', [BrandAPIController::class, 'brands']); // Category List
+Route::get('brands', [BrandAPIController::class, 'brands']); // Brand List
+Route::get('allbarand', [BrandAPIController::class, 'allbarand']); // Brand List
 Route::get('merchants', [AllListAPIController::class, 'allMerchant']); // Merchant List
 Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
