@@ -15,7 +15,7 @@ class BrandAPIController extends Controller
     }
     public function allbarand()
     {
-        $shops = Brand::orderby('name', 'asc')->get();
+        $shops = Brand::select('id', 'name', 'img_small')->orderby('name', 'asc')->get();
         return $shops;
     }
 }
