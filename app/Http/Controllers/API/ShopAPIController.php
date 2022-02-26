@@ -46,7 +46,7 @@ class ShopAPIController extends Controller
     {
         try {
             $district = District::where('slug', $slug)->first();
-            $shops = Shop::where('district_id', $district->id)->get();
+            $shops = Shop::where('district_id', $district->id)->orderBy('name', 'asc')->paginate(20);
 
             return response()->json([
                 'success' => true,
