@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Product Name <span
+                                            <label for="product-name" class="form-label text-dark">Product Name <span
                                                     class="text-danger">*</span></label>
                                             <input required type="text" name="title" id="product-name"
                                                 class="form-control @error('title') is-invalid @enderror"
@@ -54,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Category <span
+                                            <label for="product-name" class="form-label text-dark">Category <span
                                                     class="text-danger">*</span></label>
                                             <select name="category_id"
                                                 class="form-control @error('category_id') is-invalid @enderror"
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-reference" class="form-label">Sub-Category <span class="text-danger">*</span> <span id="catCom" class="badge bg-success float-end ml-5"></span></label>
+                                            <label for="product-reference" class="form-label text-dark">Sub-Category <span class="text-danger">*</span> <span id="catCom" class="badge bg-success float-end ml-5"></span></label>
                                             <select name="subcategory_id" value="{{$product->subcategory_id}}" class="form-control" id="product-category">
                                                 @foreach ($subcategories as $subcategory)
                                                     <option value="{{$subcategory->id}}" {{($product->subcategory_id == $subcategory->id) ? ' selected ' : ''}}>{{$subcategory->name}}</option>
@@ -92,7 +92,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="brand_id" class="form-label">Brand <span class="text-danger">*</span></label>
+                                            <label for="brand_id" class="form-label text-dark">Brand <span class="text-danger">*</span></label>
                                                 <select name="brand_id" value="{{$product->brand_id}}" class="form-control selectize-drop-header" id="select-code-language">
                                                     @foreach ($brands as $brand)
                                                         <option value="{{$brand->id}}" {{($product->brand_id == $brand->id) ? ' selected ' : ''}}>{{$brand->name}}</option>
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="shop_id" class="form-label">Select Shop <span class="text-danger">*</span></label>
+                                            <label for="shop_id" class="form-label text-dark">Select Shop <span class="text-danger">*</span></label>
                                             <select name="shop_id" value="{{$product->shop_id}}"  class="form-control @error('shop_id') is-invalid @enderror" id="shop_id" >
                                                 @foreach ($shops as $shop)
                                                     <option value="{{ $shop->id }}" {{($product->shop_id == $shop->id) ? ' selected ' : ''}}>{{ $shop->name }}</option>
@@ -125,7 +125,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="division_id" class="form-label">Division <span
+                                            <label for="division_id" class="form-label text-dark">Division <span
                                                     class="text-danger">*</span></label>
                                             <select name="division_id" class="form-control @error('division_id') is-invalid @enderror" id="division_id">
                                                 @foreach ($divisions as $division)
@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="district_id" class="form-label">District <span class="text-danger">*</span></label>
+                                            <label for="district_id" class="form-label text-dark">District <span class="text-danger">*</span></label>
                                             <select name="district_id" class="form-control @error('district_id') is-invalid @enderror" id="district_id" readonly>
                                                 @foreach ($districts as $district)
                                                     <option value="{{ $district->id }}" {{($product->district_id == $district->id) ? ' selected ' : ''}}>{{ $district->name }}</option>
@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="upazila_id" class="form-label">Upazila <span
+                                            <label for="upazila_id" class="form-label text-dark">Upazila <span
                                                     class="text-danger">*</span></label>
                                             <select name="upazila_id"
                                                 class="form-control @error('upazila_id') is-invalid @enderror"
@@ -177,13 +177,13 @@
                                 </div>
                                 {{-- Price and queantity --}}
                                 <div class="row">
-                                    <label class="form-label">
+                                    <label class="form-label text-dark">
                                         <h4 class="header-title">Product Price</h4>
                                         <p class="sub-header">Please fillup all requried information.</p>
                                     </label>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="retularPrice" class="form-label">Regular Price<span class="text-danger">*</span></label>
+                                            <label for="retularPrice" class="form-label text-dark">Regular Price<span class="text-danger">*</span></label>
                                             <input name="regular_price" type="number" class="form-control @error('regular_price') is-invalid @enderror" id="retularPrice"  value="{{ $product->regular_price }}">
 
                                             <div class="text-danger">
@@ -195,7 +195,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="sellPriceID" class="form-label">Discount (%) <span class="text-danger">*</span></label>
+                                            <label for="sellPriceID" class="form-label text-dark">Discount (%) <span class="text-danger">*</span></label>
                                             <input name="discount" type="number" value="{{$product->discount}}" min="0" max="100" class="form-control @error('discount') is-invalid @enderror" id="sellPriceID">
                                             <div class="text-danger">
                                                 @error('discount')
@@ -208,13 +208,13 @@
 
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="price" class="form-label">Price<span class="text-danger">*</span></label>
+                                            <label for="price" class="form-label text-dark">Price<span class="text-danger">*</span></label>
                                             <input readonly name="price" type="text" class="form-control @error('price') is-invalid @enderror" id="price" value="{{$product->price}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantity" class="form-label">Quantity<span class="text-danger">*</span></label>
+                                            <label for="quantity" class="form-label text-dark">Quantity<span class="text-danger">*</span></label>
                                             <input name="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" id="quantity"  value="{{ $product->quantity }}">
 
                                             <div class="text-danger">
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantityAlerm" class="form-label">Alert Quantity<span  class="text-danger">*</span></label>
+                                            <label for="quantityAlerm" class="form-label text-dark">Alert Quantity<span  class="text-danger">*</span></label>
                                             <input name="quantity_alert" type="text" class="form-control @error('quantity_alert') is-invalid @enderror"  id="quantityAlerm"  value="{{ $product->quantity_alert }}">
 
                                             <div class="text-danger">
@@ -241,7 +241,7 @@
 
                                 {{-- Description --}}
                                 <div class="mb-3">
-                                    <label for="product-description" class="form-label">Product Description <span  class="text-danger">*</span></label>
+                                    <label for="product-description" class="form-label text-dark">Product Description <span  class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror" rows="3">{{ $product->description}}</textarea>
                                     <div class="text-danger">
                                         @error('description')
@@ -252,7 +252,7 @@
 
                                 {{-- Short Description --}}
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label">Product Summary<span class="text-danger">*</span></label>
+                                    <label for="product-summary" class="form-label text-dark">Product Summary<span class="text-danger">*</span></label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror" id="product-summary" rows="5">{{ $product->short_description }}</textarea>
                                     <div class="text-danger">

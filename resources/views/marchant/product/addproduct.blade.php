@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Product Name <span
+                                            <label for="product-name" class="form-label text-dark">Product Name <span
                                                     class="text-danger">*</span></label>
                                             <input required type="text" name="title" id="product-name"
                                                 class="form-control @error('title') is-invalid @enderror"
@@ -57,7 +57,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-name" class="form-label">Category <span
+                                            <label for="product-name" class="form-label text-dark">Category <span
                                                     class="text-danger">*</span></label>
                                             <select name="category_id"
                                                 class="form-control @error('category_id') is-invalid @enderror"
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="product-reference" class="form-label">Sub-Category <span
+                                            <label for="product-reference" class="form-label text-dark">Sub-Category <span
                                                     class="text-danger">*</span> <span id="catCom"
                                                     class="badge bg-success float-end ml-5"></span></label>
                                             <select name="subcategory_id"
@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="brand_id" class="form-label">Brand <span
+                                            <label for="brand_id" class="form-label text-dark">Brand <span
                                                     class="text-danger">*</span></label>
                                             <select name="brand_id"
                                                 class="form-control @error('brand_id') is-invalid @enderror selectize-drop-header" id="select-code-language" >
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="shop_id" class="form-label">Select Shop <span
+                                            <label for="shop_id" class="form-label text-dark">Select Shop <span
                                                     class="text-danger">*</span></label>
                                             <select name="shop_id"
                                                 class="form-control @error('shop_id') is-invalid @enderror" id="shop_id">
@@ -135,7 +135,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="division_id" class="form-label">Division <span
+                                            <label for="division_id" class="form-label text-dark">Division <span
                                                     class="text-danger">*</span></label>
                                             <select name="division_id"
                                                 class="form-control @error('division_id') is-invalid @enderror"
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="district_id" class="form-label">District <span
+                                            <label for="district_id" class="form-label text-dark">District <span
                                                     class="text-danger">*</span></label>
                                             <select name="district_id"
                                                 class="form-control @error('district_id') is-invalid @enderror"
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label for="upazila_id" class="form-label">Upazila <span
+                                            <label for="upazila_id" class="form-label text-dark">Upazila <span
                                                     class="text-danger">*</span></label>
                                             <select name="upazila_id"
                                                 class="form-control @error('upazila_id') is-invalid @enderror"
@@ -184,13 +184,13 @@
                                 </div>
                                 {{-- Price and queantity --}}
                                 <div class="row">
-                                    <label class="form-label">
+                                    <label class="form-label text-dark">
                                         <h4 class="header-title">Product Price</h4>
                                         <p class="sub-header">Please fillup all requried information.</p>
                                     </label>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="retularPrice" class="form-label">Regular Price<span
+                                            <label for="retularPrice" class="form-label text-dark">Regular Price<span
                                                     class="text-danger">*</span></label>
                                             <input name="regular_price" type="number"
                                                 class="form-control @error('regular_price') is-invalid @enderror"
@@ -206,7 +206,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="sellPriceID" class="form-label">Discount (%) <span
+                                            <label for="sellPriceID" class="form-label text-dark">Discount (%) <span
                                                     class="text-danger">*</span></label>
                                             <input name="discount" type="number" value="0" min="0" max="100"
                                                 class="form-control @error('discount') is-invalid @enderror"
@@ -222,7 +222,7 @@
 
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label for="price" class="form-label">Price<span
+                                            <label for="price" class="form-label text-dark">Price<span
                                                     class="text-danger">*</span></label>
                                             <input readonly name="price" type="text"
                                                 class="form-control @error('price') is-invalid @enderror" id="price"
@@ -231,7 +231,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantity" class="form-label">Quantity<span
+                                            <label for="quantity" class="form-label text-dark">Quantity<span
                                                     class="text-danger">*</span></label>
                                             <input name="quantity" type="number"
                                                 class="form-control @error('quantity') is-invalid @enderror" id="quantity"
@@ -246,7 +246,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="quantityAlerm" class="form-label">Alert Quantity<span
+                                            <label for="quantityAlerm" class="form-label text-dark">Alert Quantity<span
                                                     class="text-danger">*</span></label>
                                             <input name="quantity_alert" type="text"
                                                 class="form-control @error('quantity_alert') is-invalid @enderror"
@@ -265,7 +265,7 @@
 
                                 {{-- Description --}}
                                 <div class="mb-3">
-                                    <label for="product-description" class="form-label">Product Description <span
+                                    <label for="product-description" class="form-label text-dark">Product Description <span
                                             class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
                                         class="form-control @error('description') is-invalid @enderror" rows="3"
@@ -279,7 +279,7 @@
 
                                 {{-- Short Description --}}
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label">Product Summary<span class="text-danger">*</span></label>
+                                    <label for="product-summary" class="form-label text-dark">Product Summary<span class="text-danger">*</span></label>
                                     <textarea name="short_description"
                                         class="form-control @error('short_description') is-invalid @enderror"
                                         id="product-summary" rows="5"
@@ -375,7 +375,8 @@
                                     <div id="productSliderImage" style="width: 100%; border:1px dashed gray"
                                         class="text-center my-2">
 
-                                        <i class="mdi mdi-image h1 text-secondary"></i>
+                                        {{-- <i class="mdi mdi-image h1 text-secondary"></i> --}}
+                                        <i class="fa fa-file-image-o"></i>
                                         <p>Prduct Gallery Photos</p>
                                     </div>
                                 </div>
@@ -684,6 +685,8 @@
             $(this).parent().remove()
         });
     </script>
+
+    {{-- For Crop Image --}}
     <script>
         // Crop Image
         $(document).ready(function() {

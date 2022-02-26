@@ -116,7 +116,7 @@
                                                     <form action="{{route('category.destroy', $category->id)}}" method="post" >
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="return confirm('Sure ? Want to delete Sub-catetyro ?');" ><i class="mdi mdi-delete"></i></button>
                                                     </form>
                                                 </li>
                                                 @endif
