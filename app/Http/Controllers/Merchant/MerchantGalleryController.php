@@ -14,7 +14,7 @@ class MerchantGalleryController extends Controller
     public function viewGallery()
     {
         $user = auth()->guard('marchant')->user();
-        $galleries = collect($user->getMedia())->reverse();
+        $galleries = $user->media()->orderBy('id', 'desc')->paginate(12);
 
         // $test = $galleries->where('id', 12)->first()->getUrl('medium');
         $alluser = Marchant::where('id', 2)->first();

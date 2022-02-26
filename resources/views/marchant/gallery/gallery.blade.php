@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
-            <x-gallerycropmodal/>
+            <x-gallerycropmodal />
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -10,7 +10,7 @@
                         <h4 class="page-title">Gallery</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{route('homepage')}}">Heshelghor</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Heshelghor</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Extras</a></li>
                                 <li class="breadcrumb-item active">Gallery</li>
                             </ol>
@@ -63,24 +63,27 @@
 
 
                 @foreach ($galleries as $gallery)
-
-
-                <div class="col-xs-2 col-sm-3 col-xl-2 filter-item all web illustrator p-1" style="">
-                        <form action="{{route('merchant.delete.gallery', $gallery->id)}}" method="POST">
+                    <div class="col-xs-2 col-sm-3 col-lg-3 col-xl-3 filter-item all web illustrator p-1" style="">
+                        <form action="{{ route('merchant.delete.gallery', $gallery->id) }}" method="POST">
                             @csrf
-                        <div class="gal-box">
-                            <a href="{{ $gallery->getUrl() }}" class="image-popup" title="Screenshot-1">
-                                <img src="{{ $gallery->getUrl() }}" class="img-fluid img-thumbnail" alt="work-thumbnail">
-                            </a>
-                            <div class="gall-info py-1" style="display: flex; justify-content:space-between">
-                                <button type="button" class="border-0 text-success"><i class="mdi mdi-eye-check"></i></button>
-                                <button class="border-0 text-danger" onclick="return confirm('Are You Sure Delete Photo ?');"><i class="mdi mdi-trash-can-outline"></i></button>
-                            </div> <!-- gallery info -->
+                            <div class="gal-box">
+                                <a href="{{ $gallery->getUrl() }}" class="image-popup" title="Screenshot-1">
+                                    <img src="{{ $gallery->getUrl('small') }}" class="img-fluid img-thumbnail"
+                                        alt="work-thumbnail">
+                                </a>
+                                <div class="gall-info py-1" style="display: flex; justify-content:space-between">
+                                    <button type="button" class="border-0 text-success"><i
+                                            class="mdi mdi-eye-check"></i></button>
+                                    <button class="border-0 text-danger"
+                                        onclick="return confirm('Are You Sure Delete Photo ?');"><i
+                                            class="mdi mdi-trash-can-outline"></i></button>
+                                </div> <!-- gallery info -->
 
-                        </div> <!-- end gal-box -->
-                    </form>
+                            </div> <!-- end gal-box -->
+                        </form>
                     </div> <!-- end col -->
                 @endforeach
+                {{$galleries->links();}}
 
 
 
@@ -118,6 +121,6 @@
     </style>
 @endpush
 @push('scripts')
-<script src="{{asset('js/merchantgallerycrop.js')}}"></script>
-{{-- <script src="{{asset('js/merchantmediacrop.js')}}"></script> --}}
+    <script src="{{ asset('js/merchantgallerycrop.js') }}"></script>
+    {{-- <script src="{{asset('js/merchantmediacrop.js')}}"></script> --}}
 @endpush
