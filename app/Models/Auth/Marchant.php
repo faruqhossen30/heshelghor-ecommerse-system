@@ -18,15 +18,15 @@ class Marchant extends Authenticatable implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('small')
+        $this->addMediaConversion('small')->keepOriginalImageFormat()
             ->width(250)
             ->height(250)
             ->sharpen(10);
-        $this->addMediaConversion('medium')
+        $this->addMediaConversion('medium')->keepOriginalImageFormat()
             ->width(500)
             ->height(500)
             ->sharpen(10);
-        $this->addMediaConversion('large')
+        $this->addMediaConversion('large')->keepOriginalImageFormat()
             ->width(1000)
             ->height(1000)
             ->sharpen(10);
