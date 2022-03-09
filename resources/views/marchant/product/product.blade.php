@@ -89,7 +89,7 @@
                                             <span>{{$product->subCategory->name}}</span>
                                         </td>
                                         <td>
-                                            {{$product->brand->name}}
+                                            {{$product->brand->name ?? ''}}
                                         </td>
 
                                         <td>
