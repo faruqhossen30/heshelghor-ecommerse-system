@@ -321,7 +321,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                         <div class="tab-pane" id="product-tab-additional">
                             <ul class="list-none">
                                 <li><label>Brands:</label>
-                                    <p>{{ $product->brand->name }}</p>
+                                    <p>{{ $product->brand->name ?? 'N/A' }}</p>
                                 </li>
                                 <li><label>Color:</label>
                                     <p>
