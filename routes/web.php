@@ -28,7 +28,6 @@ use App\Http\Controllers\FrontEnd\SingleProductController;
 use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
-use App\Http\Controllers\FrontEnd\CommentController;
 use App\Http\Controllers\FrontEnd\ProductQuickViewController;
 use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 
@@ -60,8 +59,6 @@ Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name
 
 Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quickView'])->name('quickview');
 
-// Comment product
-Route::post('comment/{id}', [CommentController::class, 'store'])->name('comment.store');
 // Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
 Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');

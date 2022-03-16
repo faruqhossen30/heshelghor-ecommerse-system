@@ -10,10 +10,10 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
+use Laravelista\Comments\Commentable;
 class Product extends Model implements HasMedia
 {
-    use HasFactory, Sluggable, InteractsWithMedia;
+    use HasFactory, Sluggable, InteractsWithMedia, Commentable;
 
     protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'division_id', 'district_id', 'upazila_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status', 'img_full', 'img_small', 'img_medium', 'img_large'];
 
@@ -57,11 +57,6 @@ class Product extends Model implements HasMedia
     public function images()
     {
         return $this->hasMany(ProductImgFull::class, 'product_id', 'id');
-    }
-    //   Comments
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
     }
     public function colors()
     {
