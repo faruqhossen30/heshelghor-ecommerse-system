@@ -65,13 +65,6 @@
 </head>
 
 <body class="home">
-    <!-- Button trigger modal -->
-    {{-- <a id="quickviewbutton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveDataModal">
-    <input type="hidden" value="38" name="some">
-    Launch demo modal
-</a> --}}
-
-
     <div class="page-wrapper">
         <h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
         <header class="header">

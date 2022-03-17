@@ -257,13 +257,9 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                         </div>
                         {{-- Comment --}}
                         <div class="tab-pane in mb-3" id="product-tab-comment">
-                            <div class="row mt-6">
+                            <!-- Button trigger modal -->
 
-                                <div class="col-md-6">
-
-
-                                </div>
-                            </div>
+                            @comments(['model' => $product])
                         </div>
                         <div class="tab-pane" id="product-tab-additional">
                             <ul class="list-none">
@@ -462,8 +458,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 @endsection
 
 @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 @endpush
 
 @push('scripts')

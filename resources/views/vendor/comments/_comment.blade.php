@@ -5,37 +5,58 @@
 @endphp
 
 <div id="comment-{{ $comment->getKey() }}" class="media">
-    <img class="mr-3" src="https://www.gravatar.com/avatar/{{ md5($comment->commenter->email ?? $comment->guest_email) }}.jpg?s=64" alt="{{ $comment->commenter->name ?? $comment->guest_name }} Avatar">
+    {{-- <img class="mr-3" src="https://www.gravatar.com/avatar/{{ md5($comment->commenter->email ?? $comment->guest_email) }}.jpg?s=64" alt="{{ $comment->commenter->name ?? $comment->guest_name }} Avatar"> --}}
     <div class="media-body">
-        <h5 class="mt-0 mb-1">{{ $comment->commenter->name ?? $comment->guest_name }} <small class="text-muted">- {{ $comment->created_at->diffForHumans() }}</small></h5>
-        <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}</div>
+        <ul>
+            <li>
+                <div class="comment">
+                    <figure class="comment-media">
+                        <a href="#">
+                            <img src="images/blog/comments/2.jpg" alt="avatar">
+                        </a>
+                    </figure>
+                    <div class="comment-body card pb-2 pt-2">
+                        <div class="comment-user">
+                            <h4><a href="#">{{ $comment->commenter->name ?? $comment->guest_name }}</a></h4>
+                            <small class="comment-date text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                        </div>
 
-        <div>
-            @can('reply-to-comment', $comment)
-                <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.reply')</button>
-            @endcan
-            @can('edit-comment', $comment)
-                <button data-toggle="modal" data-target="#comment-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.edit')</button>
-            @endcan
-            @can('delete-comment', $comment)
-                <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="btn btn-sm btn-link text-danger text-uppercase">@lang('comments::comments.delete')</a>
-                <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
-                    @method('DELETE')
-                    @csrf
-                </form>
-            @endcan
-        </div>
+                        <div class="comment-content">
+                            {!! $markdown->line($comment->comment) !!}
+                                <div>
+                                    @can('reply-to-comment', $comment)
+                                        <button data-bs-toggle="modal" data-bs-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.reply')</button>
+                                    @endcan
+                                    @can('edit-comment', $comment)
+                                        <button data-bs-toggle="modal" data-bs-target="#comment-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.edit')</button>
+                                    @endcan
+                                    @can('delete-comment', $comment)
+                                        <a href="{{ route('comments.destroy', $comment->getKey()) }}" onclick="event.preventDefault();document.getElementById('comment-delete-form-{{ $comment->getKey() }}').submit();" class="btn btn-sm btn-link text-danger text-uppercase">@lang('comments::comments.delete')</a>
+                                        <form id="comment-delete-form-{{ $comment->getKey() }}" action="{{ route('comments.destroy', $comment->getKey()) }}" method="POST" style="display: none;">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
+                                    @endcan
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        {{-- <h5 class="mt-0 mb-1">{{ $comment->commenter->name ?? $comment->guest_name }} <small class="text-muted">- {{ $comment->created_at->diffForHumans() }}</small></h5>
+        <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}</div> --}}
+
 
         @can('edit-comment', $comment)
-            <div class="modal fade" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+            <div class="modal" id="comment-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog" style="z-index: 999999">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('comments.update', $comment->getKey()) }}">
                             @method('PUT')
                             @csrf
                             <div class="modal-header">
                                 <h5 class="modal-title">@lang('comments::comments.edit_comment')</h5>
-                                <button type="button" class="close" data-dismiss="modal">
+                                <button type="button" class="close" data-bs-dismiss="modal">
                                 <span>&times;</span>
                                 </button>
                             </div>
@@ -47,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-outline-secondary text-uppercase" data-dismiss="modal">@lang('comments::comments.cancel')</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary text-uppercase" data-bs-dismiss="modal">@lang('comments::comments.cancel')</button>
                                 <button type="submit" class="btn btn-sm btn-outline-success text-uppercase">@lang('comments::comments.update')</button>
                             </div>
                         </form>
@@ -57,14 +78,14 @@
         @endcan
 
         @can('reply-to-comment', $comment)
-            <div class="modal fade" id="reply-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+            <div class="modal" id="reply-modal-{{ $comment->getKey() }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form method="POST" action="{{ route('comments.reply', $comment->getKey()) }}">
                             @csrf
                             <div class="modal-header">
                                 <h5 class="modal-title">@lang('comments::comments.reply_to_comment')</h5>
-                                <button type="button" class="close" data-dismiss="modal">
+                                <button type="button" class="close" data-bs-dismiss="modal">
                                 <span>&times;</span>
                                 </button>
                             </div>
@@ -76,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-outline-secondary text-uppercase" data-dismiss="modal">@lang('comments::comments.cancel')</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary text-uppercase" data-bs-dismiss="modal">@lang('comments::comments.cancel')</button>
                                 <button type="submit" class="btn btn-sm btn-outline-success text-uppercase">@lang('comments::comments.reply')</button>
                             </div>
                         </form>
