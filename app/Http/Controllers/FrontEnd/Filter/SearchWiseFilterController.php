@@ -25,194 +25,66 @@ class SearchWiseFilterController extends Controller
     }
     public function productWithSearch(Request $request)
     {
-        $location = '';
-        $filter_brands_id = [];
-        $filter_categories_id = [];
+        $keyword = '';
+        $filter_location = [];
+        $filter_category = [];
+        $filter_brand = [];
+        $orderby = '';
 
 
-        $request->session()->put('location', $request->location);
-        $request->session()->put('search', $request->search);
 
-        if ($request->location == 'all') {
-            $location = null;
-        } else {
-            $location = $request->location;
-        }
-        $locationid = District::where('slug', $location)->first()->id ?? null;
-
-        // Filter Categories
-        $filter_categories_id = [];
-        if (!empty($_GET['filter_categories'])) {
-            $filter_categories = $_GET['filter_categories'];
-            $filter_categories_id = array_unique(Category::whereIn('slug', $filter_categories)->pluck('id')->toArray());
+        if (isset($_GET['keyword'])) {
+            $keyword = $_GET['keyword'];
         }
 
-        // Filter Brands
-        $filter_brands_id = [];
-        if (!empty($_GET['filter_brands'])) {
-            $filter_brands = $_GET['filter_brands'];
-            $filter_brands_id = array_unique(Brand::whereIn('slug', $filter_brands)->pluck('id')->toArray());
+        if (isset($_GET['location'])) {
+            $filter_location = $_GET['location'];
         }
 
-        // Filter sorting
-        $orderby = null;
-        if (!empty($_GET['orderby'])) {
-            $orderby = $_GET['orderby'];
-        }
-        // Filter Count
-        $count = null;
-        if(!empty($_GET['count'])){
-            $count = $_GET['count'];
+        if (isset($_GET['category'])) {
+            $filter_category = $_GET['category'];
         }
 
+        if (isset($_GET['brand'])) {
+            $filter_brand = $_GET['brand'];
+        }
 
-        // return $filter_brands_id;
+        if (isset($_GET['orderby'])) {
 
-        if ($locationid) {
-            if (!empty($_GET['search'])) {
-                $products         = Product::where('district_id', $locationid)->where('title', 'like', '%' . $_GET['search'] . '%')->get();
-                $categories_id    = array_unique($products->pluck('category_id')->toArray());
-                $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
-                $brands_id        = array_unique($products->pluck('brand_id')->toArray());
-
-                $categories    = Category::whereIn('id', $categories_id)->get();
-                $subcategories = SubCategory::whereIn('id', $subcategories_id)->get();
-                $brands        = Brand::whereIn('id', $brands_id)->get();
-
-                $products         = Product::where('district_id', $locationid)->where('title', 'like', '%' . $_GET['search'] . '%')->paginate($count ?? 20);
-
-                if($filter_categories_id && $filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('category_id', $filter_categories_id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_categories_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('category_id', $filter_categories_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-
-                return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
+            if($_GET['orderby'] == 'lowtohigh'){
+                $orderby = 'asc';
             }
-            if (empty($_GET['search'])) {
-                // return "location ase  search empty";
-                $products         = Product::where('district_id', $locationid)->get();
-                $categories_id    = array_unique($products->pluck('category_id')->toArray());
-                $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
-                $brands_id        = array_unique($products->pluck('brand_id')->toArray());
-
-                $categories    = Category::whereIn('id', $categories_id)->get();
-                $subcategories = SubCategory::whereIn('id', $subcategories_id)->get();
-                $brands        = Brand::whereIn('id', $brands_id)->get();
-
-                $products         = Product::where('district_id', $locationid)->paginate($count ?? 20);
-
-                if($filter_categories_id && $filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->whereIn('category_id', $filter_categories_id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                    return 'cat and brand';
-                }
-                if($filter_categories_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->whereIn('category_id', $filter_categories_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('district_id', $locationid)->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-
-                return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-            }
-        }
-
-        //***************** Without location ***************************//
-        if (!$location) {
-            if (!empty($_GET['search'])) {
-                $products         = Product::where('title', 'like', '%' . $_GET['search'] . '%')->get();
-                $categories_id    = array_unique($products->pluck('category_id')->toArray());
-                $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
-                $brands_id        = array_unique($products->pluck('brand_id')->toArray());
-
-                $categories    = Category::whereIn('id', $categories_id)->get();
-                $subcategories = SubCategory::whereIn('id', $subcategories_id)->get();
-                $brands        = Brand::whereIn('id', $brands_id)->get();
-
-                $products         = Product::where('title', 'like', '%' . $_GET['search'] . '%')->paginate($count ?? 20);
-
-                if($filter_categories_id && $filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('category_id', $filter_categories_id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_categories_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('category_id', $filter_categories_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $_GET['search'] . '%')->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-
-                return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-            }
-            if(empty($_GET['search'])){
-
-                $products         = Product::get();
-                $categories_id    = array_unique($products->pluck('category_id')->toArray());
-                $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
-                $brands_id        = array_unique($products->pluck('brand_id')->toArray());
-
-                $categories    = Category::whereIn('id', $categories_id)->get();
-                $subcategories = SubCategory::whereIn('id', $subcategories_id)->get();
-                $brands        = Brand::whereIn('id', $brands_id)->get();
-
-                $products         = Product::paginate($count ?? 20);
-
-                if($filter_categories_id && $filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->whereIn('category_id', $filter_categories_id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                    return 'cat and brand';
-                }
-                if($filter_categories_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->whereIn('category_id', $filter_categories_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-                if($filter_brands_id && $orderby){
-                    $products = Product::with('category', 'subcategory')->whereIn('brand_id', $filter_brands_id)->orderBy('price', $orderby =='lowtohigh' ? 'asc' : 'desc')->paginate($count ?? 20);
-
-                    return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
-                }
-
-                return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
+            if($_GET['orderby'] == 'hightolow'){
+                $orderby = 'desc';
             }
 
-
         }
 
 
+        $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $keyword . '%')
+        ->when($filter_category, function ($query, $filter_category) {
+            return $query->whereIn('category_id', $filter_category);
+        })
+        ->when($filter_brand, function ($query, $filter_brand) {
+            return $query->whereIn('brand_id', $filter_brand);
+        })
+        ->when($orderby, function ($query, $orderby) {
+            return $query->orderBy('price', $orderby);
+        })
+        ->latest()->get();
 
+        $categories_id    = array_unique($products->pluck('category_id')->toArray());
+        $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
+        $brands_id        = array_unique($products->pluck('brand_id')->toArray());
 
-        // try {
-        //     $cat = Category::firstWhere('slug', $slug);
-        //     $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray() );
+        $categories    = Category::whereIn('id', $categories_id)->orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::whereIn('id', $subcategories_id)->orderBy('name', 'asc')->get();
+        $brands        = Brand::whereIn('id', $brands_id)->orderBy('name', 'asc')->get();
 
-        //     $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
-        //     $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(12);
-        //     $brands = Brand::whereIn('id', $brands_id)->get();
+        // return $orderby;
 
-        //     return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-        // } catch (\Exception $e) {
-        //     // return $e->getMessage();
-        //     return abort(404);
-        // }
+        return view('frontend.product-filter.search-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
+
 
 
 

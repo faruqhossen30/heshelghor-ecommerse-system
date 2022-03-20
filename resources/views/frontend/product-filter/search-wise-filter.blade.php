@@ -13,20 +13,6 @@
                         <li>Shop</li>
                     </ul> --}}
                     <!-- End Breadcrumb -->
-                    {{-- @php
-                        $location = '';
-                        if (isset($_GET['location'])) {
-                            $location = $_GET['location'];
-                        }
-                    @endphp --}}
-                    @if (request()->session()->get('location'))
-                        <input type="hidden" name="location" value="{{ request()->session()->get('location') }}">
-
-                    @endif
-                    @if (request()->session()->get('search'))
-                        <input type="hidden" name="search" value="{{ request()->session()->get('search') }}">
-
-                    @endif
 
                     <div class="row main-content-wrap gutter-lg">
                         <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
@@ -41,28 +27,26 @@
                                     <div class="widget">
                                         <h3 class="widget-title ">
                                             <i class="d-icon-map p-1"></i>
-                                            @if (request()->query('location'))
-                                                {{ request()->query('location') == 'all' ? 'All Location' : request()->query('location') }}
-                                            @endif
+                                            Location
                                         </h3>
                                     </div>
 
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title">Category</h3>
                                         @php
-                                            $filter_categories = [];
-                                            if (isset($_GET['filter_categories'])) {
-                                                $filter_categories = $_GET['filter_categories'];
+                                            $filter_category = [];
+                                            if (isset($_GET['category'])) {
+                                                $filter_category = $_GET['category'];
                                             }
                                         @endphp
                                         <ul class="widget-body filter-items">
                                             @foreach ($categories as $category)
                                                 <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
-                                                    <input type="checkbox" name="filter_categories[]"
-                                                        value="{{ $category->slug }}" class="custom-checkbox"
-                                                        id="{{ $category->id }}" name="account" @if (!empty($filter_categories) && in_array($category->slug, $filter_categories)) checked @endif
+                                                    <input type="checkbox" name="category[]"
+                                                        value="{{ $category->id }}" class="custom-checkbox"
+                                                        id="category_{{ $category->id }}" @if (!empty($filter_category) && in_array($category->id, $filter_category)) checked @endif
                                                         onchange="this.form.submit();" >
-                                                    <label class="form-control-label" for="{{ $category->id }}">
+                                                    <label class="form-control-label" for="category_{{ $category->id }}">
                                                         {{ $category->name }}</label>
                                                 </div>
                                             @endforeach
@@ -91,18 +75,18 @@
                                         <h3 class="widget-title">Brand</h3>
                                         <ul class="widget-body filter-items">
                                             @php
-                                                $filter_brands = [];
-                                                if (isset($_GET['filter_brands'])) {
-                                                    $filter_brands = $_GET['filter_brands'];
+                                                $filter_brand = [];
+                                                if (isset($_GET['brand'])) {
+                                                    $filter_brand = $_GET['brand'];
                                                 }
                                             @endphp
                                             @foreach ($brands as $brand)
                                                 <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
-                                                    <input type="checkbox" name="filter_brands[]"
-                                                        value="{{ $brand->slug }}" class="custom-checkbox"
-                                                        id="{{ $brand->id }}" name="account" @if (!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif
+                                                    <input type="checkbox" name="brand[]"
+                                                        value="{{ $brand->id }}" class="custom-checkbox"
+                                                        id="brand_{{ $brand->id }}" @if (!empty($filter_brand) && in_array($brand->id, $filter_brand)) checked @endif
                                                         onchange="this.form.submit();">
-                                                    <label class="form-control-label" for="{{ $brand->id }}">
+                                                    <label class="form-control-label" for="brand_{{ $brand->id }}">
                                                         {{ $brand->name }}</label>
                                                 </div>
                                             @endforeach
@@ -222,7 +206,7 @@
 
 
                             </div>
-                            {{ $products->appends($_GET)->links() ?? '' }}
+                            {{-- {{ $products->appends($_GET)->links() ?? '' }} --}}
                             {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">

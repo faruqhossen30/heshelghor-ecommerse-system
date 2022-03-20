@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product\Brand;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
+use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 
 class CategoryWiseFilterController extends Controller
@@ -13,62 +14,57 @@ class CategoryWiseFilterController extends Controller
     public function productWithCategory(Request $request, $slug)
     {
         $cat = Category::firstWhere('slug', $slug);
-        $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
-        $brands_id = array_unique(Product::where('category_id', $cat->id)->pluck('brand_id')->toArray());
-        $brands = Brand::whereIn('id', $brands_id)->get();
 
-        // if (empty($_GET)) {
+        $filter_location = [];
+        $filter_category = [];
+        $filter_brand = [];
+        $orderby = '';
 
-            // $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
-            // return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-        // }
 
-        if (!empty($_GET['filter_brands']) && !empty($_GET['orderby']) && !empty($_GET['count'])) {
-            // Brand Filter
-            $filter_brands = $_GET['filter_brands'];
-            $filter_brands_id = array_unique(Brand::whereIn('slug', $filter_brands)->pluck('id')->toArray() );
-
-            // OrderBy Filter
-            $orderBy = $_GET['orderby'];
-            // Count Filter
-            $count = $_GET['count'];
-
-            if($_GET['orderby'] == 'latest'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->whereIn('brand_id', $filter_brands_id)->orderBy('id', 'asc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-            }
-            if($_GET['orderby'] == 'lowtohigh'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', 'asc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-            }
-            if($_GET['orderby'] == 'hightolow'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->whereIn('brand_id', $filter_brands_id)->orderBy('price', 'desc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-            }
-
-            $brands = Brand::whereIn('id', $brands_id)->get();
-            // return '$filter_brands && $orderby && $count';
+        if (isset($_GET['location'])) {
+            $filter_location = $_GET['location'];
         }
-        if (!empty($_GET['orderby']) && !empty($_GET['count']) && empty($_GET['filter_brands'])) {
-            // Count Filter
-            $count = $_GET['count'];
 
-            if($_GET['orderby'] == 'latest'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->orderBy('id', 'asc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
-            }
+        if (isset($_GET['category'])) {
+            $filter_category = $_GET['category'];
+        }
+
+        if (isset($_GET['brand'])) {
+            $filter_brand = $_GET['brand'];
+        }
+
+        if (isset($_GET['orderby'])) {
+
             if($_GET['orderby'] == 'lowtohigh'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->orderBy('price', 'asc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
+                $orderby = 'asc';
             }
             if($_GET['orderby'] == 'hightolow'){
-                $products = Product::with('brand', 'category', 'subcategory')->where('category_id', $cat->id)->orderBy('price', 'desc')->paginate($count);
-                return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
+                $orderby = 'desc';
             }
 
         }
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $cat->id)->latest('id')->paginate(20);
-        return view('frontend.product-filter.category-wise-filter', compact('categories', 'products', 'brands'));
+
+
+        $products = Product::with('category', 'subcategory')->where('category_id', $cat->id)
+        ->when($filter_brand, function ($query, $filter_brand) {
+            return $query->whereIn('brand_id', $filter_brand);
+        })
+        ->when($orderby, function ($query, $orderby) {
+            return $query->orderBy('price', $orderby);
+        })
+        ->latest()->get();
+
+        $categories_id    = array_unique($products->pluck('category_id')->toArray());
+        $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
+        $brands_id        = array_unique($products->pluck('brand_id')->toArray());
+
+        $categories    = Category::whereIn('id', $categories_id)->orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::whereIn('id', $subcategories_id)->orderBy('name', 'asc')->get();
+        $brands        = Brand::whereIn('id', $brands_id)->orderBy('name', 'asc')->get();
+
+        // return $orderby;
+
+        return view('frontend.product-filter.category-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
 
 
 
