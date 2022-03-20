@@ -3,7 +3,8 @@
 $totalitem = Cart::count();
 $totalprice = Cart::priceTotal();
 @endphp
-<div class="header-middle sticky-header fix-top sticky-content">
+<x-searchshopmodal />
+<div class="header-middle sticky-header fix-top sticky-content" id="stickySearchbar">
     <div class="container">
         <div class="header-left">
             <a href="#" class="mobile-menu-toggle">
@@ -19,7 +20,11 @@ $totalprice = Cart::priceTotal();
                     id="searchFrom">
                     {{-- @csrf --}}
                     <div class="select-box">
-                        <select id="category" name="location">
+                        <button class="btn btn-rounded btn-icon-left" type="button" data-bs-toggle="modal" data-bs-target="#searchShopModal">
+                            <i class="d-icon-shoppingbag"></i>
+                            Find Shop
+                        </button>
+                        {{-- <select id="category" name="location">
                             <option value="all">All Location</option>
                             @foreach ($divissions as $divission)
                                 <option value="" style="font-weight: bolder">
@@ -29,10 +34,10 @@ $totalprice = Cart::priceTotal();
                                 @endforeach
 
                             @endforeach
-                        </select>
+                        </select> --}}
                     </div>
                     <input type="text" class="form-control" name="search" autocomplete="off"
-                        placeholder="Search..." id="searchInpur" />
+                        placeholder="Search product ..." id="searchInpur" />
                     <button class="btn btn-search" type="submit">
                         <i class="d-icon-search"></i>
                     </button>

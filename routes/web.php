@@ -37,6 +37,9 @@ use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
 use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
 // Test Controller
 use App\Http\Controllers\TestController;
+// Modal Ajax
+use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
+
 
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
@@ -159,6 +162,12 @@ Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
+// Modal Ajax
+
+Route::get('/ajax/search/trendingmarketlist', [SearchShopAjaxController::class, 'trendingMarketList'])->name('search.ajax.trendingmarketlist');
+Route::get('/ajax/search/marketlist/{name}', [SearchShopAjaxController::class, 'marketlist'])->name('search.ajax.marketlist');
+
+
 // For Testing
 use App\Http\Controllers\FolderCreateControler;
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
