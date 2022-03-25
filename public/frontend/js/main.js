@@ -497,31 +497,31 @@ window.Riode = {};
 	 * @param {string} selector
 	 * @param {object} option
 	 */
-    Riode.priceSlider = function ( selector, option ) {
-        if ( typeof noUiSlider === 'object' ) {
-            Riode.$( selector ).each( function () {
-                var self = this;
+    // Riode.priceSlider = function ( selector, option ) {
+    //     if ( typeof noUiSlider === 'object' ) {
+    //         Riode.$( selector ).each( function () {
+    //             var self = this;
 
-                noUiSlider.create( self, $.extend( true, {
-                    start: [ 18, 35 ],
-                    connect: true,
-                    step: 1,
-                    range: {
-                        min: 18,
-                        max: 35
-                    }
-                }, option ) );
+    //             noUiSlider.create( self, $.extend( true, {
+    //                 start: [ 18, 35 ],
+    //                 connect: true,
+    //                 step: 1,
+    //                 range: {
+    //                     min: 18,
+    //                     max: 35
+    //                 }
+    //             }, option ) );
 
-                // Update Price Range
-                self.noUiSlider.on( 'update', function ( values, handle ) {
-                    var values = values.map( function ( value ) {
-                        return '$' + parseInt( value );
-                    } )
-                    $( self ).parent().find( '.filter-price-range' ).text( values.join( ' - ' ) );
-                } );
-            } );
-        }
-    }
+    //             // Update Price Range
+    //             self.noUiSlider.on( 'update', function ( values, handle ) {
+    //                 var values = values.map( function ( value ) {
+    //                     return '$' + parseInt( value );
+    //                 } )
+    //                 $( self ).parent().find( '.filter-price-range' ).text( values.join( ' - ' ) );
+    //             } );
+    //         } );
+    //     }
+    // }
 
     Riode.lazyload = function ( selector, force ) {
         function load () {

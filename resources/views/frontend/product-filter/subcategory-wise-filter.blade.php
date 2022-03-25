@@ -20,29 +20,7 @@
                             <div class="sidebar-content">
                                 <div class="sticky-sidebar">
 
-                                    <div class="widget widget-collapsible">
-                                        <h3 class="widget-title">All Categories</h3>
-                                        <ul class="widget-body filter-items search-ul">
 
-                                            @foreach ($categories as $category)
-                                                <li>
-                                                    <a
-                                                        href="{{ route('product.with.category', $category->slug) }}">{{ $category->name }}</a>
-                                                    <ul>
-                                                        @foreach ($category->subcategories as $subcategory)
-                                                            <li>
-                                                                <a
-                                                                    href="{{ route('product.with.subcategory', ['category' => $category->slug, 'slug' => $subcategory->slug]) }}">{{ $subcategory->name }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @endforeach
-
-
-
-                                        </ul>
-                                    </div>
                                     {{-- <div class="widget widget-collapsible">
                                     <h3 class="widget-title">Price</h3>
                                     <div class="widget-body mt-3">
@@ -61,31 +39,28 @@
                                 </div> --}}
 
 
-                                    <div class="widget widget-collapsible">
-                                        <h3 class="widget-title">Brand</h3>
-                                        <ul class="widget-body filter-items">
-                                            @php
-                                                $filter_brands = [];
-                                                if (isset($_GET['filter_brands'])) {
-                                                    $filter_brands = $_GET['filter_brands'];
-                                                }
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">Brand</h3>
+                                    <ul class="widget-body filter-items">
+                                        @php
+                                            $filter_brand = [];
+                                            if (isset($_GET['brand'])) {
+                                                $filter_brand = $_GET['brand'];
+                                            }
+                                        @endphp
+                                        @foreach ($brands as $brand)
+                                            <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
+                                                <input type="checkbox" name="brand[]"
+                                                    value="{{ $brand->id }}" class="custom-checkbox"
+                                                    id="brand_{{ $brand->id }}" @if (!empty($filter_brand) && in_array($brand->id, $filter_brand)) checked @endif
+                                                    onchange="this.form.submit();">
+                                                <label class="form-control-label" for="brand_{{ $brand->id }}">
+                                                    {{ $brand->name }}</label>
+                                            </div>
+                                        @endforeach
 
-                                                // echo print_r($filter_brands);
-
-                                            @endphp
-                                            @foreach ($brands as $brand)
-                                                <div class="form-checkbox my-4 pb-2" style="border-bottom: 1px solid #eee">
-                                                    <input type="checkbox" name="filter_brands[]"
-                                                        value="{{ $brand->slug }}" class="custom-checkbox"
-                                                        id="{{ $brand->id }}" name="account" @if (!empty($filter_brands) && in_array($brand->slug, $filter_brands)) checked @endif
-                                                        onchange="this.form.submit();">
-                                                    <label class="form-control-label" for="{{ $brand->id }}">
-                                                        {{ $brand->name }}</label>
-                                                </div>
-                                            @endforeach
-
-                                        </ul>
-                                    </div>
+                                    </ul>
+                                </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-filter">Filter</button>
 
 
@@ -107,7 +82,7 @@
                                         <select name="orderby" class="form-control" onchange="this.form.submit();">
                                             <option value="latest" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
                                             <option value="lowtohigh" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'lowtohigh') selected @endif>Low To High</option>
-                                            <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>Hith To Low</option>
+                                            <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>High To Low</option>
                                         </select>
                                     </div>
                                 </div>
@@ -192,7 +167,7 @@
                                 @endforeach
 
                             </div>
-                            {{ $products->appends($_GET)->links() }}
+                            {{-- {{ $products->appends($_GET)->links() }} --}}
                             {{-- <nav class="toolbox toolbox-pagination">
                         <p class="show-info">Showing <span>12 of 56</span> Products</p>
                         <ul class="pagination">

@@ -10,8 +10,8 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-4">
-                            <img src="{{ asset('frontend/images/blog/2col/1.jpg') }}"
-                                style="width: 150px" class="img-fluid rounded-start mt-1" alt="...">
+                            <img src="{{ asset('frontend/images/shop2.png') }}"
+                                style="width: 75px" class="img-fluid rounded-start mt-1" alt="...">
                         </div>
                         <div class="col-8">
                             <div class="card-body">

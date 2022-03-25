@@ -48,12 +48,18 @@ Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->nam
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
+
+// Search Ok
 Route::match(['GET', 'POST'],'/search/', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
-Route::get('/searchs/{data}', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest2');
+
+// Route::get('/searchs/{data}', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest2');
 // Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
+
+
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
 // Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 
+// This is subcategory
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('singleproduct');

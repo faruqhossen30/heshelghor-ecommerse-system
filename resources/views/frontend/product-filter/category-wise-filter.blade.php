@@ -5,7 +5,7 @@
 
 @section('content')
     <main class="main">
-        <form action="{{ route('searchtest') }}" method="GET">
+        <form action="" method="GET">
             <div class="page-content mb-10 pb-2">
                 <div class="container">
                     {{-- <ul class="breadcrumb">
