@@ -8,15 +8,31 @@ use Illuminate\Http\Request;
 
 class SearchShopAjaxController extends Controller
 {
-    public function trendingMarketList()
+    public function trendingMarketList(Request $request)
     {
-        $shops = Shop::get()->take(8);
+        $locationid = $request->locationid;
+
+        $shops = Shop::
+        when($locationid, function ($query, $locationid) {
+            return $query->where('district_id', $locationid);
+        })->
+        get()->take(8);
+
         return $data =  view('frontend.partials.modal.searchshoptrendingMarketList', compact('shops'))->render();
     }
     public function marketlist(Request $request, $name)
     {
-        $shops = Shop::where('name', 'like', '%' . $name . '%')->get();
+        if ($request->ajax()) {
+            $locationid = $request->locationid;
 
-        return $data =  view('frontend.partials.modal.searchshoptrendingMarketList', compact('shops'))->render();
+            $shops = Shop::where('name', 'like', '%' . $name . '%')
+            ->when($locationid, function ($query, $locationid) {
+                return $query->where('district_id', $locationid);
+            })
+            ->get();
+
+            return $data =  view('frontend.partials.modal.searchshoptrendingMarketList', compact('shops'))->render();
+            // return $locationid;
+        }
     }
 }

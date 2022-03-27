@@ -128,7 +128,7 @@
                                         <select name="orderby" class="form-control" onchange="this.form.submit();">
                                             <option value="latest" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'latest') selected @endif>Latest</option>
                                             <option value="lowtohigh" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'lowtohigh') selected @endif>Low To High</option>
-                                            <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>Hith To Low</option>
+                                            <option value="hightolow" @if (!empty($_GET['orderby']) && $_GET['orderby'] == 'hightolow') selected @endif>High To Low</option>
                                         </select>
                                     </div>
                                 </div>

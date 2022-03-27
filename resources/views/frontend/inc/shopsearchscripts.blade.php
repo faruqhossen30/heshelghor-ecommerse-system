@@ -2,6 +2,8 @@
     $(document).ready(function() {
         // modalShopSearchResultDiv
 
+        var location = $('select[name="location"]');
+
         $('#searchShopModal').on('shown.bs.modal', function() {
             // $('#modalShopSearchResultDiv').empty();
             var stickySearchbar = $('#stickySearchbar').hasClass('fixed');
@@ -25,7 +27,30 @@
 
         function searchShop() {
             let shopkeyword = $('input[name="shopSearchKeyword"]').val().trim();
-            if (shopkeyword.length > 0) {
+            let locationid = location.val();
+
+            if (shopkeyword.length > 0 && locationid) {
+                $.ajax({
+                    url: `/ajax/search/marketlist/${shopkeyword}`,
+                    method: 'GET',
+                    beforeSend: function() {
+                        $("#searchShopPreloader").css('display', 'block');
+                    },
+                    data: {
+                        locationid
+                    },
+                    success(data) {
+                        console.log(data)
+                        $("#searchShopPreloader").css('display', 'none');
+                        $('#modalShopSearchResultDiv').empty();
+                        $('#modalShopSearchResultDiv').append(data)
+                    },
+                    error() {
+                        console.log('Upload error');
+                        $('#modalShopSearchResultDiv').empty();
+                    },
+                });
+            } else if (shopkeyword.length > 0) {
                 $.ajax({
                     url: `/ajax/search/marketlist/${shopkeyword}`,
                     method: 'GET',
@@ -47,23 +72,49 @@
         } // End searchShop()
 
         function latestShop() {
-            $.ajax({
-                url: '{{ route('search.ajax.trendingmarketlist') }}',
-                method: 'GET',
-                beforeSend: function() {
-                    $("#searchShopPreloader").css('display', 'block');
-                },
-                success(data) {
-                    console.log("data")
-                    $("#searchShopPreloader").css('display', 'none');
-                    $('#modalShopSearchResultDiv').empty();
-                    $('#modalShopSearchResultDiv').append(data).hide().show('slow');
-                },
-                error() {
-                    console.log('Upload error');
-                    $('#modalShopSearchResultDiv').empty();
-                },
-            });
+            let locationid = location.val();
+            if (locationid) {
+                // alert(locationid)
+                $.ajax({
+                    url: '{{ route('search.ajax.trendingmarketlist') }}',
+                    method: 'GET',
+                    beforeSend: function() {
+                        $("#searchShopPreloader").css('display', 'block');
+                    },
+                    data: {
+                        locationid
+                    },
+                    success(data) {
+                        console.log("data")
+                        $("#searchShopPreloader").css('display', 'none');
+                        $('#modalShopSearchResultDiv').empty();
+                        $('#modalShopSearchResultDiv').append(data).hide().show('slow');
+                    },
+                    error() {
+                        console.log('Upload error');
+                        $('#modalShopSearchResultDiv').empty();
+                    },
+                });
+            } else {
+                $.ajax({
+                    url: '{{ route('search.ajax.trendingmarketlist') }}',
+                    method: 'GET',
+                    beforeSend: function() {
+                        $("#searchShopPreloader").css('display', 'block');
+                    },
+                    success(data) {
+                        console.log("data")
+                        $("#searchShopPreloader").css('display', 'none');
+                        $('#modalShopSearchResultDiv').empty();
+                        $('#modalShopSearchResultDiv').append(data).hide().show('slow');
+                    },
+                    error() {
+                        console.log('Upload error');
+                        $('#modalShopSearchResultDiv').empty();
+                    },
+                });
+            }
+
         }
 
         var loadinghtml = `<div class="d-flex justify-content-center my-4" style="height:vh100%">

@@ -1,3 +1,9 @@
+@php
+
+$divissions = App\Models\Admin\Location\Division::with('districts')
+    ->orderBy('name', 'asc')
+    ->get();
+@endphp
 <!-- Modal -->
 <div class="modal" id="searchShopModal" tabindex="-1" aria-labelledby="searchShopModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -8,11 +14,30 @@
             </div>
             <div class="modal-body">
                 <div class="header-search hs-simple d-flex justify-content-center"
-                    style="max-width: 100%; margin-right:0">
-                    <form class="input-wrapper w-100"
-                        style="position: relative" id="searchFrom">
+                    style="max-width: 100%;">
+                    <form class="input-wrapper w-100 my-2" style="position: relative" id="searchFrom">
                         {{-- @csrf --}}
                         {{-- <label class="form-label" for="shopSearchInpur" style="padding: 5px 5px; font-weight:bold; margin-top:5px">Search e: </label> --}}
+
+                        <button class="border" type="button">
+                            <i class="d-icon-map"></i>
+                        </button>
+                        <div class="select-box">
+                            <select id="category" name="location">
+                                <option value="">All Location</option>
+                                @foreach ($divissions as $divission)
+                                    <option value="" disabled style="font-weight: bolder">
+                                        <strong>{{ $divission->name }}</strong>
+                                    </option>
+                                    @foreach ($divission->districts as $district)
+                                        <option value="{{ $district->id }}"
+                                            @if (request()->query('location') == $district->slug) selected @endif>- {{ $district->name }}
+                                        </option>
+                                    @endforeach
+                                @endforeach
+                            </select>
+                        </div>
+
                         <input type="text" class="form-control" name="shopSearchKeyword" autocomplete="off"
                             placeholder="Search you shop ..." id="shopSearchInpur" />
                         <button class="btn btn-search" type="submit">
@@ -97,10 +122,11 @@
                         </div>
                     </div> --}}
 
-                    <div class="d-flex justify-content-center my-4" style="display:none !important" id="searchShopPreloader">
+                    <div class="d-flex justify-content-center my-4" style="display:none !important"
+                        id="searchShopPreloader">
                         <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status">
                             <span class="sr-only">Loading...</span>
-                          </div>
+                        </div>
                     </div>
 
                 </div>

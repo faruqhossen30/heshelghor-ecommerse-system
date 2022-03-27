@@ -56,8 +56,9 @@ Route::match(['GET', 'POST'],'/search/', [SearchWiseFilterController::class, 'pr
 // Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
 
 
+// Filter area start
+
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
-// Route::get('category/{slug}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 
 // This is subcategory
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
@@ -71,10 +72,12 @@ Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quick
 // Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
 Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
-Route::get('shop-product/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
+Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
+
+
 // For Shoping Cart
 Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
