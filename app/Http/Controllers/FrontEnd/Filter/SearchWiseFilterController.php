@@ -30,6 +30,7 @@ class SearchWiseFilterController extends Controller
         $filter_category = [];
         $filter_brand = [];
         $orderby = '';
+        $count = null;
 
 
 
@@ -47,6 +48,9 @@ class SearchWiseFilterController extends Controller
 
         if (isset($_GET['brand'])) {
             $filter_brand = $_GET['brand'];
+        }
+        if (isset($_GET['count'])) {
+            $count = $_GET['count'];
         }
 
         if (isset($_GET['orderby'])) {

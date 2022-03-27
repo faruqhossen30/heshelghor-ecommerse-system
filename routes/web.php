@@ -52,20 +52,12 @@ Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->na
 // Search Ok
 Route::match(['GET', 'POST'],'/search/', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
 
-// Route::get('/searchs/{data}', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest2');
-// Route::get('query/', [SearchWiseFilterController::class, 'productWithSearch'])->name('product.with.search');
-
-
 // Filter area start
-
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
-
 // This is subcategory
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('singleproduct');
-// For Quick View
-Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name('showproduct');
 
 Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quickView'])->name('quickview');
 
@@ -171,7 +163,10 @@ Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
+
 // Modal Ajax
+// For Quick View
+Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name('showproduct');
 
 Route::get('/ajax/search/trendingmarketlist', [SearchShopAjaxController::class, 'trendingMarketList'])->name('search.ajax.trendingmarketlist');
 Route::get('/ajax/search/marketlist/{name}', [SearchShopAjaxController::class, 'marketlist'])->name('search.ajax.marketlist');

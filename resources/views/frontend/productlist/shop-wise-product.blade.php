@@ -8,10 +8,7 @@
         <form action="" method="GET">
             <div class="page-content mb-10 pb-2">
                 <div class="container">
-                    <ul class="breadcrumb">
-                        <li><a href="demo3.html"><i class="d-icon-home"></i></a></li>
-                        <li>Shop</li>
-                    </ul>
+
                     <!-- End Breadcrumb -->
                     <div class="row main-content-wrap gutter-lg">
                         <aside class="col-lg-3 sidebar sidebar-fixed shop-sidebar sticky-sidebar-wrapper">
@@ -31,7 +28,7 @@
                                                 class="card-img-top img-thumbnail" style="width: 150px; height:150px"
                                                 alt="{{ $shop->name }}">
                                         @else
-                                            <img src="{{asset('frontend/images/shop.png')}}"
+                                            <img src="{{ asset('frontend/images/shop.png') }}"
                                                 class="card-img-top img-thumbnail" style="width: 150px; height:150px"
                                                 alt="{{ $shop->name }}">
                                         @endif
@@ -47,12 +44,15 @@
                                                 {{ $shop->address }}
 
                                             </p>
-                                            <a href="#">
-                                                <p class="card-text mb-2"><small class="text-muted">
-                                                        <i class="far fa-building my-2"></i>
-                                                        Basun Dara shoping complex
-                                                    </small></p>
-                                            </a>
+                                            @if (optional($shop->market)->name)
+                                                <a href="#">
+                                                    <p class="card-text mb-2"><small class="text-muted">
+                                                            <i class="far fa-building my-2"></i>
+                                                            {{ $shop->market->name ?? 'N/A' }}
+                                                        </small></p>
+                                                </a>
+                                            @endif
+
                                             <a href="{{ route('pruductspage') }}" class="btn btn-primary btn-sm">Product
                                                 Gallary</a>
                                         </div>
@@ -81,10 +81,10 @@
                                     <div class="toolbox-right">
                                         <div class="toolbox-item toolbox-show select-box">
                                             <label>Show :</label>
-                                            <select name="count" class="form-control">
-                                                <option value="12">10</option>
-                                                <option value="24">20</option>
-                                                <option value="36">30</option>
+                                            <select name="count" class="form-control" onchange="this.form.submit();">
+                                                <option value="20" @if (request()->query('count') == '20') selected @endif>20</option>
+                                                <option value="40" @if (request()->query('count') == '40') selected @endif>40</option>
+                                                <option value="60" @if (request()->query('count') == '60') selected @endif>60</option>
                                             </select>
                                         </div>
                                         <div class="toolbox-item toolbox-layout">
@@ -161,27 +161,7 @@
 
                                 </div>
                                 <nav class="toolbox toolbox-pagination">
-                                    {{$products->links()}}
-                                    <p class="show-info">Showing <span>12 of 56</span> Products</p>
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                                aria-disabled="true">
-                                                <i class="d-icon-arrow-left"></i>Prev
-                                            </a>
-                                        </li>
-                                        <li class="page-item active" aria-current="page"><a class="page-link"
-                                                href="#">1</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item page-item-dots"><a class="page-link" href="#">6</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link page-link-next" href="#" aria-label="Next">
-                                                Next<i class="d-icon-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    {{ $products->appends($_GET)->links('pagination::custompagination') }}
                                 </nav>
                             @elseif(count($products) == 0)
                                 <div class="card">

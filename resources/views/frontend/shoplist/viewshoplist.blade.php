@@ -81,7 +81,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                                             <img src="{{ asset('/uploads/shop/' . $shop->image) }}"
                                                 class="card-img-top img-thumbnail" style="max-height: 200px" alt="...">
                                         @else
-                                            <img src="https://picsum.photos/seed/picsum/200/300"
+                                            <img src="{{ asset('frontend/images/shop.png') }}"
                                                 class="card-img-top img-thumbnail" style="max-height: 200px" alt="...">
                                         @endif
 
@@ -95,7 +95,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                                             @if ($shop->market)
                                                 <a href="#">
                                                     <p class="text-muted mb-0" style="font-size: 1.3rem">
-                                                        <i class="far fa-building mr-2"></i>Basun Dara shopin complex
+                                                        <i class="far fa-building mr-2"></i>{{$shop->market->name ?? 'N/A'}}
                                                     </p>
                                                 </a>
                                             @endif
