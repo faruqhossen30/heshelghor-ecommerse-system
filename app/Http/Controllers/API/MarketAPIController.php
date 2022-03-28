@@ -15,7 +15,7 @@ class MarketAPIController extends Controller
 
             $district = District::where('slug', $slug)->orWhere('slug2', $slug)->first();
 
-            $markets = Market::where('district_id', $district)->orderBy('name', 'asc')->paginate(20);
+            $markets = Market::where('district_id', $district->id)->orderBy('name', 'asc')->paginate(20);
 
             return response()->json([
                 'success' => true,
