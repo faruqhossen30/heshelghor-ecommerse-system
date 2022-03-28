@@ -52,9 +52,6 @@
                                                         </small></p>
                                                 </a>
                                             @endif
-
-                                            <a href="{{ route('pruductspage') }}" class="btn btn-primary btn-sm">Product
-                                                Gallary</a>
                                         </div>
                                     </div>
                                 </div>

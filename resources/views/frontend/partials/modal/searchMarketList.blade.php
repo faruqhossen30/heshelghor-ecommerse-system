@@ -7,7 +7,7 @@
     <div class="row">
         @foreach ($markets as $market)
         <div class="col-6">
-            <a href="#">
+            <a href="{{route('market.wise.shoplist', $market->id)}}">
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-4">

@@ -56,7 +56,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                 <div class="row" id="merketListDiv">
                     @foreach ($markets as $market)
                         <div class="col-md-4 col-sm-6">
-                            <a href="#">
+                            <a href="{{route('market.wise.shoplist', $market->id)}}">
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-4">

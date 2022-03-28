@@ -70,6 +70,8 @@ Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct
 
 // Market List
 Route::get('/markets', [MarketListPageController::class, 'marketList'])->name('market.list');
+Route::get('/market/{id}', [MarketListPageController::class, 'marketWiseShopList'])->name('market.wise.shoplist');
+
 Route::get('/ajaxmarketlist', [MarketListPageController::class, 'ajaxmarketlist'])->name('ajaxmarketlist');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
