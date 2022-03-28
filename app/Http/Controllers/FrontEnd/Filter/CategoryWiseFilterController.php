@@ -19,6 +19,7 @@ class CategoryWiseFilterController extends Controller
         $filter_category = [];
         $filter_brand = [];
         $orderby = '';
+        $count = null;
 
 
         if (isset($_GET['location'])) {

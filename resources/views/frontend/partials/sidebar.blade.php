@@ -18,7 +18,7 @@
             </ul>
             <div class="banner banner-fixed overlay-zoom overlay-dark">
                 <figure>
-                    <img src="{{ asset('frontend') }}/images/heshelghorqrcode.png" width="280" height="312"
+                    <img src="{{ asset('frontend') }}/images/appqrcode.png" width="280" height="312"
                         alt="banner" style="background-color: #26303c;" />
                 </figure>
                 {{-- <div class="banner-price-info font-weight-bold text-white text-uppercase">

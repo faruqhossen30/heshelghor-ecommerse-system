@@ -65,7 +65,7 @@ class ShopWiseProductListController extends Controller
             ->when($orderby, function ($query, $orderby) {
                 return $query->orderBy('price', $orderby);
             })
-            ->paginate($count ?? 10);
+            ->paginate($count ?? 20);
 
         // return $products;
 

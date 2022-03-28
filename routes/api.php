@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ProductAPIController;
 use App\Http\Controllers\API\AllListAPIController;
 use App\Http\Controllers\API\ShopAPIController;
 use App\Http\Controllers\API\BrandAPIController;
+use App\Http\Controllers\API\MarketAPIController;
 // User API
 use App\Http\Controllers\API\User\UserAPIController;
 use App\Http\Controllers\API\User\UserOrderAPIController;
@@ -75,7 +76,7 @@ Route::get('sizes', [AllListAPIController::class, 'allSize']); // Shop List by p
 Route::get('getshopwithlocation/{id}', [AllListAPIController::class, 'getShopWithLocation']);
 
 Route::get('district-wise-shop/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
-// Route::get('district-wise-shop2/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
+Route::get('district-wise-market/{id}', [MarketAPIController::class, 'districtWiseMarkets']);
 
 
 

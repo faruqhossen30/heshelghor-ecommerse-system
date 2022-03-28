@@ -65,6 +65,11 @@ Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quick
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
 Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
 Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
+
+// Market List
+Route::get('/markets', [ShopListPageController::class, 'allshop'])->name('shoplist');
+Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
+Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
