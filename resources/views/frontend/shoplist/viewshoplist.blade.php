@@ -59,11 +59,6 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 
             </div>
             <div class="container">
-
-                {{-- <ul class="breadcrumb">
-                    <li><a href="{{ route('homepage') }}"><i class="d-icon-home"></i></a></li>
-                    <li><a href="{{ route('shoplist') }}">Shops</a></li>
-                </ul> --}}
                 <!-- End Breadcrumb -->
                 <div class="row main-content-wrap gutter-lg">
 

@@ -28,6 +28,7 @@ use App\Http\Controllers\FrontEnd\SingleProductController;
 use App\Http\Controllers\FrontEnd\SearchPageController;
 use App\Http\Controllers\FrontEnd\ShopListPageController;
 use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
+use App\Http\Controllers\FrontEnd\MarketListPageController;
 use App\Http\Controllers\FrontEnd\ProductQuickViewController;
 use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 
@@ -67,9 +68,8 @@ Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->na
 Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 
 // Market List
-Route::get('/markets', [ShopListPageController::class, 'allshop'])->name('shoplist');
-Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
-Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
+Route::get('/markets', [MarketListPageController::class, 'marketList'])->name('market.list');
+Route::get('/ajaxmarketlist', [MarketListPageController::class, 'ajaxmarketlist'])->name('ajaxmarketlist');
 // search
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');

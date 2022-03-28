@@ -76,7 +76,7 @@ Route::get('sizes', [AllListAPIController::class, 'allSize']); // Shop List by p
 Route::get('getshopwithlocation/{id}', [AllListAPIController::class, 'getShopWithLocation']);
 
 Route::get('district-wise-shop/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
-Route::get('district-wise-market/{id}', [MarketAPIController::class, 'districtWiseMarkets']);
+Route::get('district-wise-market/{slug}', [MarketAPIController::class, 'districtWiseMarkets']);
 
 
 
