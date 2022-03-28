@@ -1,3 +1,4 @@
+{{-- This is for web page --}}
 @if (count($markets) > 0)
     @foreach ($markets as $market)
         <div class="col-md-4 col-sm-6">

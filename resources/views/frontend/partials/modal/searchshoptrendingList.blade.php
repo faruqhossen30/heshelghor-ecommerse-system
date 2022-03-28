@@ -1,3 +1,4 @@
+{{-- This is for append in modal search page --}}
 {{-- @php
     $shops = App\Models\Merchant\Shop::get()->take(8);
     // dd(markets);
@@ -29,6 +30,5 @@
             </a>
         </div>
         @endforeach
-
     </div>
 </div>

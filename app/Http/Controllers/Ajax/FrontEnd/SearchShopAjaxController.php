@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SearchShopAjaxController extends Controller
 {
-    public function trendingMarketList(Request $request)
+    public function trendingShopList(Request $request)
     {
         $locationid = $request->locationid;
 
@@ -18,9 +18,9 @@ class SearchShopAjaxController extends Controller
         })->
         get()->take(8);
 
-        return $data =  view('frontend.partials.modal.searchshoptrendingMarketList', compact('shops'))->render();
+        return $data =  view('frontend.partials.modal.searchshoptrendingList', compact('shops'))->render();
     }
-    public function marketlist(Request $request, $name)
+    public function shopList(Request $request, $name)
     {
         if ($request->ajax()) {
             $locationid = $request->locationid;
@@ -31,7 +31,7 @@ class SearchShopAjaxController extends Controller
             })
             ->get();
 
-            return $data =  view('frontend.partials.modal.searchshoptrendingMarketList', compact('shops'))->render();
+            return $data =  view('frontend.partials.modal.searchshoptrendingList', compact('shops'))->render();
             // return $locationid;
         }
     }

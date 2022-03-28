@@ -1,3 +1,4 @@
+{{-- This is for web --}}
 <ul class="breadcrumb mt-3">
     <li><a href="#"><i class="d-icon-home"></i></a></li>
     <li><a href="#">Shop</a></li>

@@ -40,6 +40,7 @@ use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
 use App\Http\Controllers\TestController;
 // Modal Ajax
 use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
+use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
 
 
 
@@ -173,8 +174,11 @@ Route::get('setting/setting-payment-system', [APIController::class, 'settingPaym
 // For Quick View
 Route::get('showproduct', [SingleProductController::class, 'showProduct'])->name('showproduct');
 
-Route::get('/ajax/search/trendingmarketlist', [SearchShopAjaxController::class, 'trendingMarketList'])->name('search.ajax.trendingmarketlist');
-Route::get('/ajax/search/marketlist/{name}', [SearchShopAjaxController::class, 'marketlist'])->name('search.ajax.marketlist');
+Route::get('/ajax/search/trendingshoplist', [SearchShopAjaxController::class, 'trendingShopList'])->name('search.ajax.trendingshoplist');
+Route::get('/ajax/search/shoplist/{name}', [SearchShopAjaxController::class, 'shopList'])->name('search.ajax.shoplist');
+
+Route::get('/ajax/search/marketlist/{name}', [SearchMarketAjaxController::class, 'marketList'])->name('search.ajax.marketlist');
+Route::get('/ajax/search/latestmarketlist', [SearchMarketAjaxController::class, 'latestMarket'])->name('search.ajax.latestMarketlist');
 
 
 // For Testing
