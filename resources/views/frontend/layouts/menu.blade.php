@@ -33,11 +33,8 @@
                             <a href="{{ route('pruductspage') }}">Products</a>
 
                         </li>
-
-
-
                         <li>
-                            <a href="#">About Us</a>
+                            <a href="{{route('aboutus')}}">About Us</a>
                         </li>
                         <li>
                             <a href="{{ route('shoplist') }}">Shops</a>

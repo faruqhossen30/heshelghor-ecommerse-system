@@ -37,7 +37,7 @@ class HomepageController extends Controller
         $brands = Brand::get()->random(10);
 
 
-        $products = Product::latest('id')->paginate(8);
+        $products = Product::take(8)->orderBy('id', 'desc')->get();
         // return $brands;
 
 

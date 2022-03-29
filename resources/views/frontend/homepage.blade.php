@@ -198,9 +198,9 @@
                                                             @endif
                                                         </div>
                                                         <div class="product-action-vertical">
-                                                            <a href="#" class="btn-product-icon btn-cart"
+                                                            {{-- <a href="#" class="btn-product-icon btn-cart"
                                                                 data-toggle="modal" data-target="#addCartModal"
-                                                                title="Add to cart"><i class="d-icon-bag"></i></a>
+                                                                title="Add to cart"><i class="d-icon-bag"></i></a> --}}
                                                             <a href="#" class="btn-product-icon btn-wishlist"
                                                                 title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                         </div>
@@ -251,7 +251,7 @@
 
                         @endforeach
 
-                        <section class="mb-3">
+                        {{-- <section class="mb-3">
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 mb-4">
                                     <div class="widget widget-products appear-animate" data-animation-options="{
@@ -496,7 +496,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> --}}
 
                         @include('frontend.partials.brand')
                     </div>

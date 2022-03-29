@@ -69,7 +69,7 @@ $totalitem = Cart::count();
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="submit" class="btn btn-sm btn-light">Update</button>
+                                                <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are want to update cart ?');">Update</button>
                                             </td>
                                         </form>
                                         {{-- Update start --}}
@@ -78,7 +78,7 @@ $totalitem = Cart::count();
                                         </td>
                                         <td class="product-close">
                                             <a href="{{ route('cart.removeItem', $item->rowId) }}" class="product-remove"
-                                                title="Remove this product">
+                                                title="Remove this product" onclick="return confirm('Are want to remove this product from cart ?');">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                         </td>
@@ -90,7 +90,7 @@ $totalitem = Cart::count();
                         </table>
                         <div class="text-end" style="text-align: right">
                             @if (count($items) > 0)
-                                <a href="{{ route('cart.removeallItem') }}">Clear All</a>
+                                <a href="{{ route('cart.removeallItem') }}" onclick="return confirm('Are want to empty you shoping cart ?');">Clear All</a>
                             @endif
                         </div>
                         <div class="cart-actions mb-6 pt-4">

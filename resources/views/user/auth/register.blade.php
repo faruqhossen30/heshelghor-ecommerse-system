@@ -42,7 +42,7 @@
                                     <div class="auth-logo">
                                         <a href="#" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="http://127.0.0.1:8000/backend/assets/images/logo.jpg"
+                                                <img src="{{ asset('backend') }}/backend/assets/images/logo.jpg"
                                                     alt="Heshel Ghor" height="50" width="200">
                                             </span>
                                         </a>

@@ -120,9 +120,9 @@
                                                     @endif
                                                 </div>
                                                 <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                                    {{-- <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
                                                         data-target="#addCartModal" title="Add to cart"><i
-                                                            class="d-icon-bag"></i></a>
+                                                            class="d-icon-bag"></i></a> --}}
                                                     <a href="#" class="btn-product-icon btn-wishlist"
                                                         title="Add to wishlist"><i class="d-icon-heart"></i></a>
                                                 </div>
