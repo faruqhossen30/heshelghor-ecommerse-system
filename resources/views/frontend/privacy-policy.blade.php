@@ -7,9 +7,9 @@
     <main class="main mt-6 single-product">
         <div class="container">
             <strong>Privacy Policy</strong> <p>
-                Heselghor Ltd built the Heshelghor app as
+                Heselghor.com built the Heshelghor app as
                 a Free app. This SERVICE is provided by
-                Heselghor Ltd at no cost and is intended for use as
+                Heselghor.com at no cost and is intended for use as
                 is.
               </p> <p>
                 This page is used to inform visitors regarding our

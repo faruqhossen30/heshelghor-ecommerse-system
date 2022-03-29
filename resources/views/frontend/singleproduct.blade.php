@@ -6,7 +6,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 
 @extends('frontend.layouts.app')
 @section('title')
-    {{$product->title}}
+    {{ $product->title }}
 @endsection
 
 @section('content')
@@ -18,15 +18,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                         <div class="product-gallery">
                             <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
                                 <figure class="product-image">
-                                    <img src="{{ $product->img_full }}"
-                                        data-zoom-image="{{ $product->img_full }}"
+                                    <img src="{{ $product->img_full }}" data-zoom-image="{{ $product->img_full }}"
                                         alt="Blue Pinafore Denim Dress" width="800" height="900"
                                         style="background-color: #f5f5f5;" />
                                 </figure>
                                 @foreach ($product->images as $image)
                                     <figure class="product-image">
-                                        <img src="{{$image->url }}"
-                                            data-zoom-image="{{ $image->url }}"
+                                        <img src="{{ $image->url }}" data-zoom-image="{{ $image->url }}"
                                             alt="Blue Pinafore Denim Dress" width="800" height="900"
                                             style="background-color: #f5f5f5;" />
                                     </figure>
@@ -36,14 +34,12 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             <div class="product-thumbs-wrap">
                                 <div class="product-thumbs">
                                     <div class="product-thumb active">
-                                        <img src="{{ $product->img_full }}"
-                                            alt="product thumbnail" width="137" height="154"
-                                            style="background-color: #f5f5f5;" />
+                                        <img src="{{ $product->img_full }}" alt="product thumbnail" width="137"
+                                            height="154" style="background-color: #f5f5f5;" />
                                     </div>
                                     @foreach ($product->images as $image)
                                         <div class="product-thumb ">
-                                            <img src="{{$image->url }}"
-                                                alt="product thumbnail" width="137" height="154"
+                                            <img src="{{ $image->url }}" alt="product thumbnail" width="137" height="154"
                                                 style="background-color: #f5f5f5;" />
                                         </div>
                                     @endforeach
@@ -104,17 +100,17 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
                                 CATEGORIES: <a href="{{ route('product.with.category', $product->category->id) }}"><span
                                         class="product-brand mr-0">{{ $product->category->name }}</span></a>
-                                        @if (optional($product->subcategory)->name)
-                                        <a href="{{ route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug]) }}"><span
-                                                class="product-brand">| {{ $product->subcategory->name }}</span></a>
-
-                                        @endif
+                                @if (optional($product->subcategory)->name)
+                                    <a
+                                        href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}"><span
+                                            class="product-brand">| {{ $product->subcategory->name }}</span></a>
+                                @endif
                             </div>
                             <div class="product-meta">
                                 Brand:
                                 @if ($product->brand)
                                     <a href="{{ route('product.with.brand', $product->brand->id) }}"><span
-                                    class="product-brand mr-0">{{ $product->brand->name }}</span></a>
+                                            class="product-brand mr-0">{{ $product->brand->name }}</span></a>
                                 @else
                                     N/A
                                 @endif
@@ -123,34 +119,39 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             {{-- For Add To Cart --}}
                             <form action="{{ route('cart.add', $product->id) }}" method="post">
                                 @csrf
-                                <div class="mb-3 row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label"
-                                        style="font-size: 1.7rem">Color:</label>
-                                    <div class="col-sm-4">
-                                        <select name="color" class="form-select form-select-lg" id="staticEmail"
-                                            aria-label="Default select example" style="font-size: 1.5rem">
-                                            <option selected>Select Color </option>
-                                            @foreach ($product->colors as $color)
-                                                <option value="{{ $color->color->name }}">{{ $color->color->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                @if (count($product->colors) > 0)
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label"
+                                            style="font-size: 1.7rem">Color:</label>
+                                        <div class="col-sm-4">
+                                            <select name="color" class="form-select form-select-lg" id="staticEmail"
+                                                aria-label="Default select example" style="font-size: 1.5rem">
+                                                <option selected>Select Color </option>
+                                                @foreach ($product->colors as $color)
+                                                    <option value="{{ $color->color->name }}">
+                                                        {{ $color->color->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label"
-                                        style="font-size: 1.7rem">Color:</label>
-                                    <div class="col-sm-4">
-                                        <select name="size" class="form-select form-select-lg" id="staticEmail"
-                                            aria-label="Default select example" style="font-size: 1.5rem">
-                                            <option selected>Select Size </option>
-                                            @foreach ($product->sizes as $size)
-                                                <option value="{{ $size->size->name }}">{{ $size->size->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                @endif
+                                @if (count($product->sizes) > 0)
+                                    <div class="mb-3 row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label"
+                                            style="font-size: 1.7rem">Size:</label>
+                                        <div class="col-sm-4">
+                                            <select name="size" class="form-select form-select-lg" id="staticEmail"
+                                                aria-label="Default select example" style="font-size: 1.5rem">
+                                                <option selected>Select Size </option>
+                                                @foreach ($product->sizes as $size)
+                                                    <option value="{{ $size->size->name }}">{{ $size->size->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
                                         <div class="input-group mr-2">
@@ -218,7 +219,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                     <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Features</h5>
                                     {!! html_entity_decode($product->description) !!}
                                 </div>
-                                <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
+                                {{-- <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
                                     <h5 class="description-title font-weight-semi-bold ls-m mb-5">Video Description
                                     </h5>
                                     <figure class="p-relative d-inline-block mb-2">
@@ -229,30 +230,30 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                             <i class="d-icon-play-solid"></i>
                                         </a>
                                     </figure>
-                                    {{-- <div class="icon-box-wrap d-flex flex-wrap">
-                                    <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
-                                        <div class="icon-box-icon">
-                                            <i class="d-icon-lock"></i>
+                                    <div class="icon-box-wrap d-flex flex-wrap">
+                                        <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
+                                            <div class="icon-box-icon">
+                                                <i class="d-icon-lock"></i>
+                                            </div>
+                                            <div class="icon-box-content">
+                                                <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">2 year
+                                                    warranty</h4>
+                                                <p>Guarantee with no doubt</p>
+                                            </div>
                                         </div>
-                                        <div class="icon-box-content">
-                                            <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">2 year
-                                                warranty</h4>
-                                            <p>Guarantee with no doubt</p>
-                                        </div>
-                                    </div>
-                                    <div class="divider d-xl-show mr-10"></div>
-                                    <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
-                                        <div class="icon-box-icon">
-                                            <i class="d-icon-truck"></i>
-                                        </div>
-                                        <div class="icon-box-content">
-                                            <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
-                                            </h4>
-                                            <p>On orders over $50.00</p>
+                                        <div class="divider d-xl-show mr-10"></div>
+                                        <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
+                                            <div class="icon-box-icon">
+                                                <i class="d-icon-truck"></i>
+                                            </div>
+                                            <div class="icon-box-content">
+                                                <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
+                                                </h4>
+                                                <p>On orders over $50.00</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> --}}
-                                </div>
                             </div>
                         </div>
                         {{-- Comment --}}
@@ -293,7 +294,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                     class="text-primary">Returns information</a></p>
                         </div>
                         <div class="tab-pane " id="product-tab-reviews">
-                            <div class="comments pb-10 pt-2 border-no">
+                            {{-- <div class="comments pb-10 pt-2 border-no">
                                 <ul>
                                     <li>
                                         <div class="comment">
@@ -325,9 +326,9 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <!-- End Comments -->
-                            <div class="reply">
+                            {{-- <div class="reply">
                                 <div class="title-wrapper text-left">
                                     <h3 class="title title-simple text-left text-normal">Add a Review</h3>
                                     <p>Your email address will not be published. Required fields are marked *</p>
@@ -353,8 +354,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                     </select>
                                 </div>
                                 <form action="#">
-                                    <textarea id="reply-message" cols="30" rows="6" class="form-control mb-4"
-                                        placeholder="Comment *" required></textarea>
+                                    <textarea id="reply-message" cols="30" rows="6" class="form-control mb-4" placeholder="Comment *" required></textarea>
                                     <div class="row">
                                         <div class="col-md-6 mb-5">
                                             <input type="text" class="form-control" id="reply-name" name="reply-name"
@@ -376,8 +376,14 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                     <button type="submit" class="btn btn-primary btn-rounded">Submit<i
                                             class="d-icon-arrow-right"></i></button>
                                 </form>
-                            </div>
+                            </div> --}}
                             <!-- End Reply -->
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="text-center">No Review Found !</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -386,31 +392,30 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                            'items': 5,
-                            'nav': false,
-                            'loop': false,
-                            'dots': true,
-                            'margin': 20,
-                            'responsive': {
-                                '0': {
-                                    'items': 2
-                                },
-                                '768': {
-                                    'items': 3
-                                },
-                                '992': {
                                     'items': 5,
-                                    'dots': false,
-                                    'nav': true
-                                }
-                            }
-                        }">
+                                    'nav': false,
+                                    'loop': false,
+                                    'dots': true,
+                                    'margin': 20,
+                                    'responsive': {
+                                        '0': {
+                                            'items': 2
+                                        },
+                                        '768': {
+                                            'items': 3
+                                        },
+                                        '992': {
+                                            'items': 5,
+                                            'dots': false,
+                                            'nav': true
+                                        }
+                                    }
+                                }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
                                     <a href="{{ route('singleproduct', $product->slug) }}">
-                                        <img src="{{ $product->img_small }}" alt="product"
-                                            width="280" height="315">
+                                        <img src="{{ $product->img_small }}" alt="product" width="280" height="315">
                                     </a>
 
                                     <div class="product-action">
@@ -425,18 +430,19 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 </figure>
                                 <div class="product-details">
                                     <div class="product-cat">
-                                        <a href="{{route('product.with.category', $product->category->slug)}}">{{ $product->category->name }}</a>
+                                        <a
+                                            href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                         @if (optional($product->subcategory)->name)
-                                        | <a href="{{route('product.with.subcategory', ['category'=>$product->category->slug, 'slug'=>$product->subcategory->slug])}}">{{ $product->subcategory->name }}</a>
-
+                                            | <a
+                                                href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">{{ $product->subcategory->name }}</a>
                                         @endif
                                     </div>
                                     <h3 class="product-name">
                                         <a href="demo3-product.html"><a
-                                                href="{{route('singleproduct', $product->slug)}}">{{ $product->title }}</a>
+                                                href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
                                     </h3>
                                     <div class="product-price">
-                                        <span class="price">৳{{$product->price}}</span>
+                                        <span class="price">৳{{ $product->price }}</span>
                                     </div>
                                     <div class="ratings-container">
                                         <div class="ratings-full">
@@ -458,9 +464,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 @endsection
 
 @push('styles')
-
 @endpush
 
 @push('scripts')
-
 @endpush

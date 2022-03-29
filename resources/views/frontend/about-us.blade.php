@@ -40,7 +40,7 @@
                             </div>
                             <blockquote>Agni-Kanya of South Bengal the Late Nurjahan Islam Nira , the late chairman of
                                 Jessore Sadar Upazila Parishad founded Henshelghar.com with the aim of creating employment
-                                and bringing services to the doorsteps of the people. We are committed to fulfilling his
+                                and bringing services to the doorsteps of the people. We are committed to fulfilling her
                                 dream.
                             </blockquote>
                         </div>

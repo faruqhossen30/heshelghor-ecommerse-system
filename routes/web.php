@@ -35,6 +35,8 @@ use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
 use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
 
+use App\Http\Controllers\FrontEnd\BuyNowController;
+
 use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
 // Test Controller
 use App\Http\Controllers\TestController;
@@ -85,6 +87,9 @@ Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
 Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->name('cart.ItemUpdate');
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
+Route::get('/buy-now', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
+
+
 
 Auth::routes();
 // For Authincate User
