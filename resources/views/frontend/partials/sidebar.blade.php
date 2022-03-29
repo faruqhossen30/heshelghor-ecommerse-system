@@ -45,19 +45,20 @@
                         'margin': 20
                     }">
                         <div class="products-col">
+                            @foreach ($products as $product)
                             <div class="product product-list-sm">
                                 <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
+                                    <a href="{{route('singleproduct', $product->slug)}}">
+                                        <img src="{{$product->img_small}}"
                                             alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
                                     <h3 class="product-name">
-                                        <a href="demo3-product.html">Hand Electric Cell</a>
+                                        <a href="{{route('singleproduct', $product->slug)}}">{{$product->title}}</a>
                                     </h3>
                                     <div class="product-price">
-                                        <span class="price">$26.00</span>
+                                        <span class="price">৳{{$product->price}}</span>
                                     </div>
                                     <div class="ratings-container">
                                         <div class="ratings-full">
@@ -67,64 +68,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="product product-list-sm">
-                                <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
-                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                                    </a>
-                                </figure>
-                                <div class="product-details">
-                                    <h3 class="product-name">
-                                        <a href="demo3-product.html">Men's Fashion Hood</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <span class="price">$39.00</span>
-                                    </div>
-                                    <div class="ratings-container">
-                                        <div class="ratings-full">
-                                            <span class="ratings" style="width:100%"></span>
-                                            <span class="tooltiptext tooltip-top"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product product-list-sm">
-                                <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
-                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                                    </a>
-                                </figure>
-                                <div class="product-details">
-                                    <h3 class="product-name">
-                                        <a href="demo3-product.html">Women's Fashion Jeans
-                                            Clothing</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <ins class="new-price">$199.00</ins><del
-                                            class="old-price">$210.00</del>
-                                    </div>
-                                    <div class="ratings-container">
-                                        <div class="ratings-full">
-                                            <span class="ratings" style="width:100%"></span>
-                                            <span class="tooltiptext tooltip-top"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                         <div class="products-col">
+                            @foreach ($products as $product)
                             <div class="product product-list-sm">
                                 <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg"
+                                    <a href="{{route('singleproduct', $product->slug)}}">
+                                        <img src="{{$product->img_small}}"
                                             alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
                                     </a>
                                 </figure>
                                 <div class="product-details">
                                     <h3 class="product-name">
-                                        <a href="demo3-product.html">Fashion Hiking Hat</a>
+                                        <a href="{{route('singleproduct', $product->slug)}}">Fashion Hiking Hat</a>
                                     </h3>
                                     <div class="product-price">
                                         <span class="price">$39.00</span>
@@ -137,52 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="product product-list-sm">
-                                <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg"
-                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                                    </a>
-                                </figure>
-                                <div class="product-details">
-                                    <h3 class="product-name">
-                                        <a href="demo3-product.html">Men's Fashion Hood</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <span class="price">$19.00</span>
-                                    </div>
-                                    <div class="ratings-container">
-                                        <div class="ratings-full">
-                                            <span class="ratings" style="width:100%"></span>
-                                            <span class="tooltiptext tooltip-top"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product product-list-sm">
-                                <figure class="product-media">
-                                    <a href="demo3-product.html">
-                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg"
-                                            alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                                    </a>
-                                </figure>
-                                <div class="product-details">
-                                    <h3 class="product-name">
-                                        <a href="demo3-product.html">Women's Fashion Jeans
-                                            Clothing</a>
-                                    </h3>
-                                    <div class="product-price">
-                                        <ins class="new-price">$199.00</ins><del
-                                            class="old-price">$210.00</del>
-                                    </div>
-                                    <div class="ratings-container">
-                                        <div class="ratings-full">
-                                            <span class="ratings" style="width:100%"></span>
-                                            <span class="tooltiptext tooltip-top"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

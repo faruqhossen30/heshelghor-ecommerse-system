@@ -38,6 +38,10 @@
                                 <a href="tel:#">{{$contact->phone ?? '01xxxxxxxxx'}}</a>
                             </li>
                             <li>
+                                <label>Mobile:</label>
+                                <a href="tel:#">{{$contact->mobile ?? '01xxxxxxxxx'}}</a>
+                            </li>
+                            <li>
                                 <label>Email:</label>
                                 <a href="mailto:mail@riode.com">{{$contact->email ?? 'example@domain.com'}}</a>
                             </li>
@@ -59,28 +63,22 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="widget ml-lg-4">
-                        <h4 class="widget-title">My Account</h4>
+                        <h4 class="widget-title">Quick Link</h4>
                         <ul class="widget-body">
                             <li>
-                                <a href="about-us.html">About Us</a>
+                                <a href="{{route('aboutus')}}">About Us</a>
                             </li>
                             <li>
-                                <a href="#">Order History</a>
+                                <a href="{{route('marchant.login')}}">Marchant Login</a>
                             </li>
                             <li>
-                                <a href="#">Returns</a>
-                            </li>
-                            <li>
-                                <a href="#">Custom Service</a>
-                            </li>
-                            <li>
-                                <a href="#">Terms &amp; Condition</a>
+                                <a href="{{route('cart.page')}}">View Cart</a>
                             </li>
                         </ul>
                     </div>
                     <!-- End Widget -->
                 </div>
-                <div class="col-lg-3 col-md-6">
+                {{-- <div class="col-lg-3 col-md-6">
                     <div class="widget ml-lg-4">
                         <h4 class="widget-title">Contact Info</h4>
                         <ul class="widget-body">
@@ -102,36 +100,11 @@
                         </ul>
                     </div>
                     <!-- End Widget -->
-                </div>
+                </div> --}}
                 <div class="col-lg-3 col-md-6">
                     <div class="widget widget-instagram">
-                        <h4 class="widget-title">Instagram</h4>
-                        <figure class="widget-body row">
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/01.jpg" alt="instagram 1" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/02.jpg" alt="instagram 2" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/03.jpg" alt="instagram 3" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/04.jpg" alt="instagram 4" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/05.jpg" alt="instagram 5" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/06.jpg" alt="instagram 6" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/07.jpg" alt="instagram 7" width="64" height="64" />
-                            </div>
-                            <div class="col-3">
-                                <img src="{{ asset('frontend') }}/images/instagram/08.jpg" alt="instagram 8" width="64" height="64" />
-                            </div>
-                        </figure>
+                        <h4 class="widget-title">HeshelGhor</h4>
+                        <p>Heshelghor.com is an E-commerce business  platform. Our main objective is to provide an opportunity for all Bangladeshi businessmen to work on an online-based E-commerce platform</p>
                     </div>
                     <!-- End Instagram -->
                 </div>
@@ -141,7 +114,7 @@
         <div class="footer-bottom">
             <div class="footer-left">
                 <figure class="payment">
-                    <img src="{{ asset('frontend') }}/images/payment.png" alt="payment" width="159" height="29" />
+                    <img src="{{ asset('frontend') }}/images/banking.png" alt="payment" width="300" height="29" />
                 </figure>
             </div>
             <div class="footer-center">
@@ -149,9 +122,18 @@
             </div>
             <div class="footer-right">
                 <div class="social-links">
-                    <a href="{{$socialmedia->facebook ?? '#'}}" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
-                    <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                    <a href="#" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                    @isset($socialmedia->facebook)
+                        <a href="{{$socialmedia->facebook ?? '#'}}" target="_blank" class="social-link social-facebook fab fa-facebook-f"></a>
+                    @endisset
+                    @isset($socialmedia->twitter)
+                        <a href="{{$socialmedia->twitter ?? '#'}}" class="social-link social-twitter fab fa-twitter"></a>
+                    @endisset
+                    @isset($socialmedia->linkedin)
+                        <a href="{{$socialmedia->linkedin ?? '#'}}" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                    @endisset
+                    @isset($socialmedia->youtube)
+                    <a href="{{$socialmedia->youtube ?? '#'}}" class="social-link social-youtube fab fa-youtube"></a>
+                    @endisset
                 </div>
             </div>
         </div>

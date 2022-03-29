@@ -26,4 +26,17 @@ class MarketAPIController extends Controller
             return abort(404);
         };
     }
+    public function marketSearch(Request $request, $keyword)
+    {
+        try {
+            $markets = Market::where('name', 'like', '%' . $keyword . '%')->paginate(20);
+            return response()->json([
+                'success' => true,
+                'code' => 200,
+                'data' => $markets
+            ]);
+        } catch (\Exception $e) {
+            return abort(404);
+        };
+    }
 }

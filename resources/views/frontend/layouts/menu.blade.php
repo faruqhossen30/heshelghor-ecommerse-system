@@ -47,7 +47,7 @@
             </div>
             <div class="header-right">
                 <a href="{{ route('privacypolicy') }}">Privacy Policy</a>
-                <a href="#" target="_blank" class="ml-6">Business with Us</a>
+                {{-- <a href="#" target="_blank" class="ml-6">Business with Us</a> --}}
             </div>
         </div>
     </div>

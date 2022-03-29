@@ -46,6 +46,7 @@ use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
+Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
 // Filter product
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');

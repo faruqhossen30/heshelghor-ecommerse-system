@@ -69,6 +69,7 @@ Route::get('merchants', [AllListAPIController::class, 'allMerchant']); // Mercha
 Route::get('allshop', [AllListAPIController::class, 'allShop']); // Shop List
 Route::get('shops', [ShopAPIController::class, 'shops']); // Shop List by pagination
 Route::get('shops/market/{id}', [ShopAPIController::class, 'marketWiseShopList']); // Shop List by pagination
+
 Route::get('markets', [AllListAPIController::class, 'allMarket']); // Shop List by pagination
 Route::get('deliverysystem', [AllListAPIController::class, 'deliverySystem']); // Shop List by pagination
 Route::get('colors', [AllListAPIController::class, 'allColor']); // Shop List by pagination
@@ -77,6 +78,8 @@ Route::get('getshopwithlocation/{id}', [AllListAPIController::class, 'getShopWit
 
 Route::get('district-wise-shop/{slug}', [ShopAPIController::class, 'districtWiseShopByName']);
 Route::get('district-wise-market/{slug}', [MarketAPIController::class, 'districtWiseMarkets']);
+
+Route::get('market-search/{keyword}', [MarketAPIController::class, 'marketSearch']);
 
 
 

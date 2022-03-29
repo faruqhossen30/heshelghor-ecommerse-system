@@ -63,4 +63,8 @@ class HomepageController extends Controller
     {
         return view('frontend.privacy-policy');
     }
+    public function aboutUs()
+    {
+        return view('frontend.about-us');
+    }
 }
