@@ -1,14 +1,15 @@
 @php
-    $header = App\Models\Setting\SettingHeader::first();
-    $contact = App\Models\Setting\SettingContact::first();
-    $socialmedia = App\Models\Setting\SettingSocialMedia::first();
-    $categories = App\Models\Product\Category::with('subcategories')->get();
-    $divissions = App\Models\Admin\Location\Division::with('districts')
-        ->orderBy('name', 'asc')
-        ->get();
+$header = App\Models\Setting\SettingHeader::first();
+$contact = App\Models\Setting\SettingContact::first();
+$socialmedia = App\Models\Setting\SettingSocialMedia::first();
+$categories = App\Models\Product\Category::with('subcategories')->get();
+$divissions = App\Models\Admin\Location\Division::with('districts')
+    ->orderBy('name', 'asc')
+    ->get();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -46,6 +47,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {{-- Sweet Alert --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css"
+        integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{-- For push --}}
     @stack('styles')
@@ -65,11 +70,15 @@
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, 0.06);
         }
+        #swal2-title{
+            font-size: 16px;
+        }
 
     </style>
 </head>
 
 <body class="home">
+
     <div class="page-wrapper">
         <h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
         <header class="header">
@@ -82,8 +91,7 @@
                 $totalitem = Cart::count();
                 $totalprice = Cart::priceTotal();
             @endphp
-            {{--
-            <div class="header-middle sticky-header fix-top sticky-content">
+            {{-- <div class="header-middle sticky-header fix-top sticky-content">
                 <div class="container">
                     <div class="header-left">
                         <a href="#" class="mobile-menu-toggle">
@@ -104,7 +112,7 @@
                                             <option value="" style="font-weight: bolder">
                                                 <strong>{{ $divission->name }}</strong></option>
                                             @foreach ($divission->districts as $district)
-                                                <option value="{{ $district->slug }}" @if(request()->query('location') == $district->slug) selected @endif >- {{ $district->name }}</option>
+                                                <option value="{{ $district->slug }}" @if (request()->query('location') == $district->slug) selected @endif >- {{ $district->name }}</option>
                                             @endforeach
 
                                         @endforeach
@@ -239,9 +247,7 @@
                         <!-- End of Header Search -->
                     </div>
                 </div>
-            </div>
-
-            --}}
+            </div> --}}
 
             {{-- Menu --}}
             @include('frontend.layouts.menu')
@@ -265,6 +271,9 @@
 
         <script src="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.js"></script>
         <script src="{{ asset('frontend') }}/vendor/sticky/sticky.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"
+                integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         {{-- For stack --}}
 
         <!-- Main JS File -->
@@ -315,7 +324,6 @@
                         })
                 };
             });
-
         </script>
         <script>
             // function showModal(){
@@ -348,7 +356,9 @@
 
             });
         </script>
-@include('frontend.inc.shopsearchscripts')
+
+        @include('frontend.inc.cartsweetalertscript')
+        @include('frontend.inc.shopsearchscripts')
 </body>
 
 </html>

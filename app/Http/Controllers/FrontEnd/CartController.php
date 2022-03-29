@@ -38,7 +38,7 @@ class CartController extends Controller
 
             // return $request->all();
 
-            return redirect()->back();
+            return redirect()->back()->with('add-to-cart', 'Product added to Cart !');
 
         }
     }
@@ -46,7 +46,7 @@ class CartController extends Controller
     public function cartItemUpdate(Request $request, $rowId)
     {
         Cart::update($rowId, $request->quantity);
-        return redirect()->route('cart.page');
+        return redirect()->route('cart.page')->with('cart-update', 'Shoping Cart updated !');
     }
 
     // Remove Cart Item
@@ -54,13 +54,13 @@ class CartController extends Controller
     public function removeCartItem($rowId)
     {
         Cart::remove($rowId);
-        return redirect()->route('cart.page');
+        return redirect()->route('cart.page')->with('cart-remove', 'Remove product from cart !');
     }
 
     public function removeAllItem()
     {
         Cart::destroy();
-        return redirect()->route('cart.page');
+        return redirect()->route('cart.page')->with('remove-allcart', 'All products remove from cart !');
     }
 
     // Cart Page
