@@ -66,6 +66,17 @@ class SearchWiseFilterController extends Controller
 
 
         $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $keyword . '%')
+        ->get();
+
+        $categories_id    = array_unique($products->pluck('category_id')->toArray());
+        $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
+        $brands_id        = array_unique($products->pluck('brand_id')->toArray());
+
+        $categories    = Category::whereIn('id', $categories_id)->orderBy('name', 'asc')->get();
+        $subcategories = SubCategory::whereIn('id', $subcategories_id)->orderBy('name', 'asc')->get();
+        $brands        = Brand::whereIn('id', $brands_id)->orderBy('name', 'asc')->get();
+
+        $products = Product::with('category', 'subcategory')->where('title', 'like', '%' . $keyword . '%')
         ->when($filter_category, function ($query, $filter_category) {
             return $query->whereIn('category_id', $filter_category);
         })
@@ -75,15 +86,7 @@ class SearchWiseFilterController extends Controller
         ->when($orderby, function ($query, $orderby) {
             return $query->orderBy('price', $orderby);
         })
-        ->latest()->get();
-
-        $categories_id    = array_unique($products->pluck('category_id')->toArray());
-        $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
-        $brands_id        = array_unique($products->pluck('brand_id')->toArray());
-
-        $categories    = Category::whereIn('id', $categories_id)->orderBy('name', 'asc')->get();
-        $subcategories = SubCategory::whereIn('id', $subcategories_id)->orderBy('name', 'asc')->get();
-        $brands        = Brand::whereIn('id', $brands_id)->orderBy('name', 'asc')->get();
+        ->paginate($count ?? 20);
 
         // return $orderby;
 

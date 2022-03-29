@@ -29,6 +29,7 @@ class SubCategoryWiseFilterController extends Controller
         $filter_category = [];
         $filter_brand = [];
         $orderby = '';
+        $count = null;
 
 
         if (isset($_GET['location'])) {
@@ -53,6 +54,9 @@ class SubCategoryWiseFilterController extends Controller
             }
 
         }
+        if (isset($_GET['count'])) {
+            $count = $_GET['count'];
+        }
 
         $products = Product::with('category', 'subcategory')->where('subcategory_id', $subcat->id)
         ->when($filter_brand, function ($query, $filter_brand) {
@@ -61,7 +65,7 @@ class SubCategoryWiseFilterController extends Controller
         ->when($orderby, function ($query, $orderby) {
             return $query->orderBy('price', $orderby);
         })
-        ->latest()->get();
+        ->paginate($count ?? 20);
 
         return view('frontend.product-filter.subcategory-wise-filter', compact('categories', 'products', 'brands'));
     }

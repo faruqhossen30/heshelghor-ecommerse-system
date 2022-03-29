@@ -46,14 +46,7 @@ class CategoryWiseFilterController extends Controller
         }
 
 
-        $products = Product::with('category', 'subcategory')->where('category_id', $cat->id)
-        ->when($filter_brand, function ($query, $filter_brand) {
-            return $query->whereIn('brand_id', $filter_brand);
-        })
-        ->when($orderby, function ($query, $orderby) {
-            return $query->orderBy('price', $orderby);
-        })
-        ->latest()->get();
+        $products = Product::with('category', 'subcategory')->where('category_id', $cat->id)->get();
 
         $categories_id    = array_unique($products->pluck('category_id')->toArray());
         $subcategories_id = array_unique($products->pluck('subcategory_id')->toArray());
@@ -63,7 +56,15 @@ class CategoryWiseFilterController extends Controller
         $subcategories = SubCategory::whereIn('id', $subcategories_id)->orderBy('name', 'asc')->get();
         $brands        = Brand::whereIn('id', $brands_id)->orderBy('name', 'asc')->get();
 
-        // return $orderby;
+
+        $products = Product::with('category', 'subcategory')->where('category_id', $cat->id)
+        ->when($filter_brand, function ($query, $filter_brand) {
+            return $query->whereIn('brand_id', $filter_brand);
+        })
+        ->when($orderby, function ($query, $orderby) {
+            return $query->orderBy('price', $orderby);
+        })
+        ->paginate($count ?? 20);
 
         return view('frontend.product-filter.category-wise-filter', compact('products', 'brands', 'categories', 'subcategories'));
 

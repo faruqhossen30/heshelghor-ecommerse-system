@@ -155,7 +155,7 @@
                                         <div class="product text-center">
                                             <figure class="product-media">
                                                 <a href="{{ route('singleproduct', $product->slug) }}">
-                                                    <img src="{{ asset('uploads/product/' . $product->photo) }}"
+                                                    <img src="{{ $product->img_small }}"
                                                         alt="product" width="280" height="315">
                                                 </a>
                                                 <div class="product-label-group">
@@ -197,37 +197,16 @@
                                                         <span class="ratings" style="width:60%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href="demo3-product.html" class="rating-reviews">( 16 reviews )</a>
+                                                    <a href="#" class="rating-reviews">( 16 reviews )</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-
-
                             </div>
-                            {{-- {{ $products->appends($_GET)->links() ?? '' }} --}}
-                            {{-- <nav class="toolbox toolbox-pagination">
-                        <p class="show-info">Showing <span>12 of 56</span> Products</p>
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                    aria-disabled="true">
-                                    <i class="d-icon-arrow-left"></i>Prev
-                                </a>
-                            </li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item page-item-dots"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item">
-                                <a class="page-link page-link-next" href="#" aria-label="Next">
-                                    Next<i class="d-icon-arrow-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav> --}}
+                            <nav class="toolbox toolbox-pagination">
+                                {{ $products->appends($_GET)->links('pagination::custompagination') }}
+                            </nav>
                         </div>
                     </div>
                 </div>
