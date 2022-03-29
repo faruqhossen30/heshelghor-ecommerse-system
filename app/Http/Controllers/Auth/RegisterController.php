@@ -80,9 +80,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'status' => true,
         ]);
-        if($user){
-            Mail::to($user->email)->send(new UserWelcome);
-        }
+        // if($user){
+        //     Mail::to($user->email)->send(new UserWelcome);
+        // }
 
         return $user;
     }
