@@ -15,30 +15,34 @@ use Cart;
 
 class BuyNowController extends Controller
 {
-    public function buyNow(Request $request)
+    public function buyNow(Request $request, $id)
     {
-        $product = Product::firstWhere('id', 91);
+        try {
+            $product = Product::findOrFail($id);
 
-        $divisions = Division::all();
-        $userId = Auth::user()->id;
-        $user = User::where('id', $userId)->first();
+            $divisions = Division::all();
+            $userId = Auth::user()->id;
+            $user = User::where('id', $userId)->first();
 
-        $upazilas = Upazila::all();
+            $upazilas = Upazila::all();
 
-        $cartItems = Cart::content();
-        $deliverysystems = DeliverySystem::all();
-        $pamymentmethods = PaymentMethod::all();
+            $cartItems = Cart::content();
+            $deliverysystems = DeliverySystem::all();
+            $pamymentmethods = PaymentMethod::all();
 
-        // return $cartItems;
-        return view('frontend.buy-now', compact(
-            'product',
-            'divisions',
-            'user',
-            'divisions',
-            'upazilas',
-            'cartItems',
-            'deliverysystems',
-            'pamymentmethods',
-        ));
+            // return $cartItems;
+            return view('frontend.buy-now', compact(
+                'product',
+                'divisions',
+                'user',
+                'divisions',
+                'upazilas',
+                'cartItems',
+                'deliverysystems',
+                'pamymentmethods',
+            ));
+        } catch (\Exception $e) {
+            abort(404);
+        }
     }
 }

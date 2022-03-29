@@ -87,7 +87,7 @@ Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
 Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->name('cart.ItemUpdate');
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
-Route::get('/buy-now', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
+Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
 
 
 

@@ -98,7 +98,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             </p>
                             <div class="product-meta">
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
-                                CATEGORIES: <a href="{{ route('product.with.category', $product->category->id) }}"><span
+                                CATEGORIES: <a href="#"><span
                                         class="product-brand mr-0">{{ $product->category->name }}</span></a>
                                 @if (optional($product->subcategory)->name)
                                     <a
@@ -161,9 +161,16 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                             <button type="button" class="quantity-plus d-icon-plus"></button>
                                         </div>
                                         <button type="submit" class="btn btn btn-dark btn-sm">
-                                            <i class="d-icon-bag mr-2"></i>Add to Cart</button>
+                                            <i class="d-icon-gift mr-2"></i>Add to Cart</button>
+                                            <a href="{{route('buynow', $product->id)}}" type="submit" class="btn btn-rounded btn-alert btn-sm">
+                                                <i class="d-icon-bag mr-2"></i>Buy Now !</a>
+
                                     </div>
                                 </div>
+                                {{-- <div class="product-form product-qty">
+                                    <button type="submit" class="btn btn btn-dark btn-sm">
+                                        <i class="d-icon-bag mr-2"></i>Buy Now !</button>
+                                </div> --}}
 
                             </form>
 

@@ -20,11 +20,11 @@
                 <form action="{{route('pay')}}" method="POST" class="form">
                     @csrf
 
-                    <input type="text" value="1" name="total_prodcut">
-                    <input type="text" value="1" name="total_item">
-                    <input type="text" value="0" name="delivery_cost">
-                    <input type="text" value="{{$product->price}}" name="product_price">
-                    <input type="text" value="0" name="total_price">
+                    <input type="hidden" value="1" name="total_prodcut">
+                    <input type="hidden" value="1" name="total_item">
+                    <input type="hidden" value="0" name="delivery_cost">
+                    <input type="hidden" value="{{$product->price}}" name="product_price">
+                    <input type="hidden" value="0" name="total_price">
 
 
                     <div class="row">
@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Delivery Address *</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" />
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" required />
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -122,7 +122,11 @@
                         <aside class="col-lg-5 sticky-sidebar-wrapper">
                             <div class="sticky-sidebar mt-1" data-sticky-options="{'bottom': 50}">
                                 <div class="summary pt-5">
-                                    <h3 class="title title-simple text-left text-uppercase">Your Order</h3>
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="title title-simple text-left text-uppercase">Your Order</h3>
+                                        <img src="{{$product->img_small}}" class="img-thumbnail" style="max-width: 100px; max-height:150px">
+
+                                    </div>
                                     <table class="table order-table">
 
                                         <tbody>
