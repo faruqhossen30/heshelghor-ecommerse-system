@@ -96,13 +96,13 @@
                                                             </div>
 
                                                             <div class="mb-2 row">
-                                                                <label class="col-md-2 col-form-label" for="image">Shop
+                                                                <label class="col-md-2 col-form-label" for="photo">Shop
                                                                     Image: </label>
                                                                 <div class="col-md-10">
-                                                                    <input name="image" type="file" id="image"
-                                                                        class="form-control @error('image') is-invalid @enderror ">
+                                                                    <input name="photo" type="file" id="photo"
+                                                                        class="form-control @error('photo') is-invalid @enderror ">
                                                                     <div class="text-danger">
-                                                                        @error('image')
+                                                                        @error('photo')
                                                                             <span>{{ $message }}</span>
                                                                         @enderror
                                                                     </div>

@@ -22,7 +22,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        if(is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('subcategory.view') || Auth::guard('admin')->user()->can('subcategory.edit') )){
+        if (is_null(Auth::guard('admin')->user()) || !(Auth::guard('admin')->user()->can('subcategory.view') || Auth::guard('admin')->user()->can('subcategory.edit'))) {
             abort(403, 'You have no access this page.');
         };
 
@@ -38,7 +38,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')){
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')) {
             abort(403, 'You have no access this page.');
         };
         $categories = Category::all();
@@ -53,38 +53,30 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')){
+
+        // return Auth::guard('admin')->user()->id;
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.create')) {
             abort(403, 'You have no access this page.');
         };
-        // return $request->all();
-        $image = $request->file('image');
-        if($image){
-        $validate = $request->validate([
-            'name'        => 'required | unique:sub_categories',
-            'category_id' => 'required',
-            'commission' => 'required',
-            'description' => 'required',
-            'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
-        ]);
 
-        $fileExtention = $image->getClientOriginalExtension();
-        $fileName = date('Ymdhis') . '.' . $fileExtention;
+        if ($request->hasFile('photo')) {
 
-        Image::make($image)->save(public_path('uploads/subcategory/') . $fileName);
+            $name = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('subcategory', $name, 'public');
 
-        $add = SubCategory::create([
-            'name'        => $request->name,
-            'category_id' => $request->category_id,
-            'commission'  => $request->commission,
-            'description' => $request->description,
-            'slug'        => SlugService::createSlug(SubCategory::class, 'slug', $request->name, ['unique' => true]),
-            'image'       => 'uploads/subcategory/' . $fileName,
-        ]);
+            $add = SubCategory::create([
+                'name'        => $request->name,
+                'category_id' => $request->category_id,
+                'commission'  => $request->commission,
+                'description' => $request->description,
+                'slug'        => SlugService::createSlug(SubCategory::class, 'slug', $request->name, ['unique' => true]),
+                'author_id' => Auth::guard('admin')->user()->id,
+                'photo' => $name,
+            ]);
 
-        Session::flash('create');
-        return redirect()->route('subcategory.index');
-
-        } else{
+            Session::flash('create');
+            return redirect()->route('subcategory.index');
+        } else {
             $validate = $request->validate([
                 'name'        => 'required | unique:sub_categories',
                 'category_id' => 'required',
@@ -97,12 +89,12 @@ class SubCategoryController extends Controller
                 'commission' => $request->commission,
                 'description' => $request->description,
                 'slug'        => SlugService::createSlug(SubCategory::class, 'slug', $request->name, ['unique' => true]),
+                'author_id ' => Auth::guard('admin')->user()->id,
             ]);
 
             Session::flash('create');
             return redirect()->route('subcategory.index');
         };
-
     }
 
     /**
@@ -113,7 +105,7 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.view')){
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.view')) {
             abort(403, 'You have no access this page.');
         };
         $subcategory = SubCategory::where('id', $id)->get()->first();
@@ -128,7 +120,7 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')){
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')) {
             abort(403, 'You have no access this page.');
         };
         $categories = Category::all();
@@ -147,43 +139,48 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')){
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.edit')) {
             abort(403, 'You have no access this page.');
         };
-        $image = $request->file('image');
-        if($image){
-        $validate = $request->validate([
-            'name'        => 'required',
-            'category_id' => 'required',
-            'commission' => 'required',
-            'description' => 'required',
-            'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
-        ]);
+        // $image = $request->file('image');
+        // if ($image) {
+        //     $validate = $request->validate([
+        //         'name'        => 'required',
+        //         'category_id' => 'required',
+        //         'commission' => 'required',
+        //         'description' => 'required',
+        //         'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
+        //     ]);
 
-        $old_image = $request->old_image;
+        //     $old_image = $request->old_image;
 
-        $fileExtention = $image->getClientOriginalExtension();
-        $fileName = date('Ymdhis') . '.' . $fileExtention;
+        //     $fileExtention = $image->getClientOriginalExtension();
+        //     $fileName = date('Ymdhis') . '.' . $fileExtention;
 
-        Image::make($image)->save(public_path('uploads/subcategory/') . $fileName);
+        //     Image::make($image)->save(public_path('uploads/subcategory/') . $fileName);
+        if ($request->hasFile('photo')) {
 
-        $data = [
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-            'commission' => $request->commission,
-            'description' => $request->description,
-            'image'       => 'uploads/subcategory/' . $fileName,
-        ];
+            $name = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('subcategory', $name, 'public');
 
-        if(isset($old_image)){
-            unlink($old_image);
-        }
+            $data = [
+                'name' => $request->name,
+                'category_id' => $request->category_id,
+                'commission' => $request->commission,
+                'description' => $request->description,
+                // 'image'       => 'uploads/subcategory/' . $fileName,
+                'update_author_id' => Auth::guard('admin')->user()->id,
+                'photo' => $name,
+            ];
 
-        $update = SubCategory::where('id', $id)->update($data);
-        Session::flash('update');
-        return redirect()->route('subcategory.index');
+            if (isset($old_image)) {
+                unlink($old_image);
+            }
 
-        } else{
+            $update = SubCategory::where('id', $id)->update($data);
+            Session::flash('update');
+            return redirect()->route('subcategory.index');
+        } else {
             $validate = $request->validate([
                 'name'        => 'required',
                 'category_id' => 'required',
@@ -196,13 +193,13 @@ class SubCategoryController extends Controller
                 'category_id' => $request->category_id,
                 'commission' => $request->commission,
                 'description' => $request->description,
+                'update_author_id' => Auth::guard('admin')->user()->id,
             ];
 
             $update = SubCategory::where('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('subcategory.index');
         };
-
     }
 
     /**
@@ -213,7 +210,7 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.delete')){
+        if (is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('subcategory.delete')) {
             abort(403, 'You have no access this page.');
         };
         $delete = SubCategory::where('id', $id)->delete();

@@ -68,6 +68,7 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$brand->name}}</a></h5>
                                         </td>
                                         <td>
+                                            
                                             <img src="{{asset($brand->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
                                         </td>
                                         <td>

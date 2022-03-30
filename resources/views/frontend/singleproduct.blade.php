@@ -212,67 +212,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                     <div class="tab-content">
                         {{-- Comment --}}
                         <div class="tab-pane active in mb-3" id="product-tab-comment">
-                            <div class="row mt-6">
 
-                                <div class="col-md-6">
-                                    {{-- Sho comment --}}
-                                    <div class="comments pb-10 pt-2 border-no">
-                                        <ul>
-                                            @foreach ($product->comments as $comment)
-                                                <li>
-                                                    <div class="comment">
-                                                        <figure class="comment-media">
-                                                            <a href="#">
-                                                                @if ($comment->user->photo)
-                                                                    <img src="{{ asset('uploads/user/profile/' . $comment->user->photo) }}"
-                                                                        alt="avatar" class="img-thumbnail">
-                                                                @else
-                                                                    <img src="{{ asset('uploads/user/profile/avatar.png') }}"
-                                                                        alt="avatar" class="img-thumbnail">
-                                                                @endif
-                                                            </a>
-                                                        </figure>
-                                                        <div class="comment-body">
-                                                            <div class="comment-user">
-                                                                <h4><a href="#">{{ $comment->user->name }}</a></h4>
-                                                                <span class="comment-date text-body">
-                                                                    {{ Carbon\Carbon::parse($comment->created_at)->format('d M Y') }}
-                                                                    &#128337;
-                                                                    {{ Carbon\Carbon::parse($comment->created_at)->format('h:i A') }}
-                                                                </span>
-                                                            </div>
+                            <div class="fb-comments" data-href="{{Request::url()}}" data-width="1000" data-numposts="10"></div>
 
-                                                            <div class="comment-content">
-                                                                <p>{{ $comment->comment }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
-                                    </div>
-                                    {{-- add comment form --}}
-                                    @guest
-                                    <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Login For Comment</h5>
-                                    <h5><a href="{{route('login')}}" class="btn btn-primary btn-sm">Login && Comment Now !</a></h5>
-                                    @endguest
-                                    @auth
-                                    <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Add Comment</h5>
-                                    <form action="{{ route('comment.store', $product->id) }}" method="POST">
-                                        @csrf
-                                        <textarea name="comment" id="reply-message" cols="30" rows="6"
-                                            class="form-control mb-4" placeholder="Comment *"></textarea>
-                                        @error('comment')
-                                            <p class="text-danger">No comment text </p>
-                                        @enderror
-                                        <button type="submit" class="btn btn-primary btn-rounded btn-sm">Submit<i
-                                                class="d-icon-arrow-right"></i></button>
-                                    </form>
-                                    @endauth
-
-                                </div>
-                            </div>
+                
                         </div>
                         {{-- Description --}}
                         <div class="tab-pane in mb-3" id="product-tab-description">
@@ -520,5 +463,6 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 @endpush
 
 @push('scripts')
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=1048590272558271&autoLogAppEvents=1" nonce="2uOjvO4m"></script>
 @endpush

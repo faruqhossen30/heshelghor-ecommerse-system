@@ -21,6 +21,10 @@ class CreateSubCategoriesTable extends Migration
             $table->double('commission');
             $table->string('slug', )->unique();
             $table->string('image', 1000)->nullable();
+            $table->string('photo', 1000)->nullable();
+            $table->unsignedBigInteger('author_id')->nullable();
+            $table->unsignedBigInteger('update_author_id')->nullable();
+
             $table->timestamps();
         });
     }

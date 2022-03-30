@@ -21,11 +21,14 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $brands = Brand::all();
         return view('admin.brand.brand', compact('brands'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +54,7 @@ class BrandsController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
+                'image'       => 'mimes:png,jpg,gif,bmp|max:1024',
             ]);
 
 
@@ -89,7 +92,6 @@ class BrandsController extends Controller
             return redirect()->route('brands.index');
 
         };
-
     }
 
     /**
@@ -130,7 +132,7 @@ class BrandsController extends Controller
             $validate = $request->validate([
                 'name'        => 'required',
                 'description' => 'required',
-                'image' => 'mimes:png,jpg,gif,bmp|max:10240',
+                'image' => 'mimes:png,jpg,gif,bmp|max:1024',
             ]);
 
             $old_image = $request->old_image;
@@ -168,7 +170,6 @@ class BrandsController extends Controller
             return redirect()->route('brands.index');
         }
 
-
     }
 
     /**
@@ -187,4 +188,5 @@ class BrandsController extends Controller
         Session::flash('delete');
         return redirect()->route('brands.index');
     }
+    
 }
