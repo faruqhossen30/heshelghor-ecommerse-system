@@ -28,7 +28,7 @@
 @else
        <div class="card">
            <div class="card-body">
-            <h1 class="display-4 text-center my-2">No ound.   Please search again.</h1>
+            <h1 class="display-4 text-center my-2">Not found.   Please search again.</h1>
            </div>
        </div>
 @endif

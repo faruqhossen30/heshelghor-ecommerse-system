@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Merchant\Shop;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
@@ -16,15 +17,14 @@ class SingleProductController extends Controller
 {
     public function index(Request $request, $slug)
     {
-        // $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        // $colors = ProductColor::with('color')->where('product_id', $id)->get();
-        // $sizes = ProductSize::with('size')->where('product_id', $id)->get();
-        // $comments = Comment::with('user')->where('product_id', $id)->orderBy('id', 'desc')->get();
-
-
         $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors', 'sizes')->where('slug', $slug)->get()->first();
-        // return $product;
-        return view('frontend.singleproduct', compact('product'));
+
+        $shop = Shop::firstWhere('id', 27);
+
+        // return $shop;
+        return view('frontend.singleproduct', compact('product', 'shop'));
+
+        // return view('frontend.singleproduct', compact('product'));
     }
 
 

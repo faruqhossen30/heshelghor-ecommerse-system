@@ -125,18 +125,17 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        @if (optional($product->subcategory)->slug)
+                                                        @isset ($subcategory->slug)
 
                                                             <a
-                                                                href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}">
-                                                        @endif
+                                                                href="{{ route('product.with.subcategory', ['category' => $subcategory->category->slug, 'slug' => $subcategory->slug]) }}">
+                                                        @endisset
                                                         <figure class="category-media">
                                                             <img src="{{ $subcategory->image }}" alt="Cateogry"
                                                                 width="280" height="280">
                                                         </figure>
                                                         <div class="category-content">
                                                             <h4 class="category-name">{{ $subcategory->name }}</h4>
-                                                            <span class="category-count">1 Products</span>
                                                         </div>
                                                         </a>
                                                     </div>
@@ -174,7 +173,7 @@
                                             $newporducts = \App\Models\Product\Product::with('category:id,name,slug', 'subcategory:id,name,slug')
                                                 ->latest('id')
                                                 ->where('category_id', $category->id)
-                                                ->paginate(4);
+                                                ->take(4)->get();
                                         @endphp
 
                                         @foreach ($newporducts as $product)

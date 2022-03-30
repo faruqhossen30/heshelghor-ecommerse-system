@@ -44,6 +44,9 @@ class CategoryWiseFilterController extends Controller
             }
 
         }
+        if (isset($_GET['count'])) {
+            $count = $_GET['count'];
+        }
 
 
         $products = Product::with('category', 'subcategory')->where('category_id', $cat->id)->get();

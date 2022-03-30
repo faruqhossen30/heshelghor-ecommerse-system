@@ -82,7 +82,8 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                 </li>
                             </ul> --}}
                             </div>
-
+                            {{-- For Ajax request --}}
+                            <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
                             <h1 class="product-name">{{ $product->title }}</h1>
                             <div class="ratings-container">
                                 <div class="ratings-full">
@@ -152,6 +153,9 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         </div>
                                     </div>
                                 @endif
+                                <div class="product-footer" id="productShopAndMarketInfoDiv">
+
+                                </div>
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
                                         <div class="input-group mr-2">
@@ -162,15 +166,12 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                         </div>
                                         <button type="submit" class="btn btn btn-dark btn-sm">
                                             <i class="d-icon-gift mr-2"></i>Add to Cart</button>
-                                            <a href="{{route('buynow', $product->id)}}" type="submit" class="btn btn-rounded btn-alert btn-sm">
-                                                <i class="d-icon-bag mr-2"></i>Buy Now !</a>
+                                        <a href="{{ route('buynow', $product->id) }}" type="submit"
+                                            class="btn btn-rounded btn-alert btn-sm">
+                                            <i class="d-icon-bag mr-2"></i>Buy Now !</a>
 
                                     </div>
                                 </div>
-                                {{-- <div class="product-form product-qty">
-                                    <button type="submit" class="btn btn btn-dark btn-sm">
-                                        <i class="d-icon-bag mr-2"></i>Buy Now !</button>
-                                </div> --}}
 
                             </form>
 
@@ -195,6 +196,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                                     to compare</a>
                             </div> --}}
                             </div>
+
+                            {{-- <div class="product-footer" id="productShopAndMarketInfoDiv">
+
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -399,25 +404,25 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                                    'items': 5,
-                                    'nav': false,
-                                    'loop': false,
-                                    'dots': true,
-                                    'margin': 20,
-                                    'responsive': {
-                                        '0': {
-                                            'items': 2
-                                        },
-                                        '768': {
-                                            'items': 3
-                                        },
-                                        '992': {
-                                            'items': 5,
-                                            'dots': false,
-                                            'nav': true
+                                        'items': 5,
+                                        'nav': false,
+                                        'loop': false,
+                                        'dots': true,
+                                        'margin': 20,
+                                        'responsive': {
+                                            '0': {
+                                                'items': 2
+                                            },
+                                            '768': {
+                                                'items': 3
+                                            },
+                                            '992': {
+                                                'items': 5,
+                                                'dots': false,
+                                                'nav': true
+                                            }
                                         }
-                                    }
-                                }">
+                                    }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
@@ -474,4 +479,28 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 @endpush
 
 @push('scripts')
+    <script>
+        $(window).on('load', function() {
+            let productShopAndMarketInfoDiv = $('#productShopAndMarketInfoDiv');
+            let shop_id = $('input[name="shop_id"').val();
+            console.log(shop_id);
+            $.ajax({
+                url: `/ajax/prodcut-shop-and-market`,
+                method: 'GET',
+                beforeSend: function() {
+                    // console.log('before send text');
+                },
+                data: {
+                    id: shop_id
+                },
+                success(data) {
+                    productShopAndMarketInfoDiv.html(data);
+                },
+                error() {
+                    console.log('request error');
+                },
+            });
+
+        });
+    </script>
 @endpush

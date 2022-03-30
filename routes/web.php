@@ -43,6 +43,7 @@ use App\Http\Controllers\TestController;
 // Modal Ajax
 use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
+use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
 
 
 
@@ -187,6 +188,8 @@ Route::get('/ajax/search/shoplist/{name}', [SearchShopAjaxController::class, 'sh
 
 Route::get('/ajax/search/marketlist/{name}', [SearchMarketAjaxController::class, 'marketList'])->name('search.ajax.marketlist');
 Route::get('/ajax/search/latestmarketlist', [SearchMarketAjaxController::class, 'latestMarket'])->name('search.ajax.latestMarketlist');
+Route::get('/ajax/prodcut-shop-and-market', [SingleproductShopAndMarketAjaxController::class, 'shopAndMarket'])->name('product.ajax.shop.and.market');
+
 
 
 // For Testing

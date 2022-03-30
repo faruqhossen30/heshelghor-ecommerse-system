@@ -33,12 +33,12 @@ class HomepageController extends Controller
 
 
         $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        $subcategories = SubCategory::get()->random(10);
+        $subcategories = SubCategory::with('category')->get()->random(10);
         $brands = Brand::get()->random(10);
 
 
         $products = Product::take(8)->orderBy('id', 'desc')->get();
-        // return $brands;
+        // return $subcategories;
 
 
         return view('frontend.homepage', compact(

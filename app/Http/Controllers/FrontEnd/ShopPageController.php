@@ -16,7 +16,53 @@ class ShopPageController extends Controller
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
         $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
 
-        // return $products;
+        $filter_location = [];
+        $filter_category = [];
+        $filter_brand = [];
+        $orderby = '';
+        $count = null;
+
+
+        if (isset($_GET['location'])) {
+            $filter_location = $_GET['location'];
+        }
+
+        if (isset($_GET['category'])) {
+            $filter_category = $_GET['category'];
+        }
+
+        if (isset($_GET['brand'])) {
+            $filter_brand = $_GET['brand'];
+        }
+
+        if (isset($_GET['orderby'])) {
+
+            if($_GET['orderby'] == 'lowtohigh'){
+                $orderby = 'asc';
+            }
+            if($_GET['orderby'] == 'hightolow'){
+                $orderby = 'desc';
+            }
+
+        }
+        if (isset($_GET['count'])) {
+            $count = $_GET['count'];
+        }
+
+
+
+        $products = Product::with('category', 'subcategory')
+        ->when($filter_category, function ($query, $filter_category) {
+            return $query->whereIn('category_id', $filter_category);
+        })
+        ->when($filter_brand, function ($query, $filter_brand) {
+            return $query->whereIn('brand_id', $filter_brand);
+        })
+        ->when($orderby, function ($query, $orderby) {
+            return $query->orderBy('price', $orderby);
+        })
+        ->paginate($count ?? 20);
+
 
         return view('frontend.shoppage', compact('categories', 'products', 'brands'));
     }
