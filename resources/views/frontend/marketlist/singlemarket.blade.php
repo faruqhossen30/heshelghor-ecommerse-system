@@ -23,8 +23,13 @@
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-md-3">
-                                        @if ($market->image)
-                                            <img src="{{ asset('uploads/market/' . $market->image) }}"
+
+                                        @if (isset($market->photo))
+                                            <img src="{{ asset('storage/market/' . $market->photo) }}"
+                                                class="card-img-top img-thumbnail" style="width: 150px; height:150px"
+                                                alt="{{ $market->name }}">
+                                        @elseif (isset($market->image))
+                                            <img src="{{ asset('/uploads/market/' . $market->image) }}"
                                                 class="card-img-top img-thumbnail" style="width: 150px; height:150px"
                                                 alt="{{ $market->name }}">
                                         @else
@@ -32,6 +37,7 @@
                                                 class="card-img-top img-thumbnail" style="width: 150px; height:150px"
                                                 alt="{{ $market->name }}">
                                         @endif
+
                                     </div>
                                     <div class="col-md-9">
                                         <div class="card-body">
@@ -66,23 +72,30 @@
                     <div class="row">
 
                         @if (count($shops) > 0)
-                        <div class="col-12 mb-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="display-4 text-center">
-                                        Shop List Of {{ $market->name }}
+                            <div class="col-12 mb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="display-4 text-center">
+                                            Shop List Of {{ $market->name }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                             @foreach ($shops as $shop)
                                 <div class="col-md-4 col-sm-6">
-                                    <a href="{{route('product.with.shop', $shop->id)}}">
+                                    <a href="{{ route('product.with.shop', $shop->id) }}">
                                         <div class="card mb-3">
                                             <div class="row g-0">
                                                 <div class="col-4">
-                                                    <img src="{{ asset('frontend/images/shop.png') }}"
-                                                        style="width: 75px" class="img-fluid rounded-start mt-1" alt="...">
+                                                    @if (isset($shop->image))
+                                                        <img src="{{ asset('/uploads/shop/'.$shop->image) }}"
+                                                            style="width: 75px" class="img-fluid rounded-start mt-1"
+                                                            alt="{{ $shop->name }}">
+                                                    @else
+                                                        <img src="{{ asset('frontend/images/shop.png') }}"
+                                                            style="width: 75px" class="img-fluid rounded-start mt-1"
+                                                            alt="{{ $shop->name }}">
+                                                    @endif
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="card-body">
@@ -90,9 +103,6 @@
                                                         <p class="text-muted text-truncate mb-0" style="font-size: 1.2rem">
                                                             <i class="d-icon-map mr-2"></i>{{ $shop->address }}
                                                         </p>
-                                                        {{-- <p class="text-muted mb-0" style="font-size: 1.3rem">
-                            <i class="far fa-building mr-2"></i>58 Karbala Road , Jessore
-                        </p> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,13 +111,13 @@
                                 </div>
                             @endforeach
                         @else
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="display-3 text-center">
-                                    There is no shop  in {{ $market->name }}.
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="display-3 text-center">
+                                        There is no shop in {{ $market->name }}.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                     </div>
                 </div>

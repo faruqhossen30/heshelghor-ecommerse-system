@@ -1,7 +1,7 @@
 {{-- This is for web page --}}
 @if (count($markets) > 0)
     @foreach ($markets as $market)
-        <div class="col-md-4 col-sm-6">
+        <div class="col-sm-6">
             <a href="{{ route('market.wise.shoplist', $market->id) }}">
                 <div class="card mb-3">
                     <div class="row g-0">

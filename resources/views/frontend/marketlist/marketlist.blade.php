@@ -55,7 +55,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                 </ul>
                 <div class="row" id="merketListDiv">
                     @foreach ($markets as $market)
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-sm-6">
                             <a href="{{ route('market.wise.shoplist', $market->id) }}">
                                 <div class="card mb-3">
                                     <div class="row g-0">
@@ -94,6 +94,10 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                         </div>
                     @endforeach
                 </div>
+                <nav class="toolbox toolbox-pagination">
+                    {{ $markets->links('pagination::custompagination') }}
+                </nav>
+
             </div>
         </div>
     </main>
