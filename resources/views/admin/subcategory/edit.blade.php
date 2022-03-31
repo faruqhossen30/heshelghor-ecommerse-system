@@ -56,7 +56,7 @@
 
                                                                 <select name="category_id" class="form-control" id="subcatagory-category">
                                                                     @foreach ($categories as $category)
-                                                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                        <option value="{{$category->id}}" @if ($category->id == $subcatagory->category_id) selected @endif>{{$category->name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 <div class="text-danger">
@@ -110,14 +110,15 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">SubCatagory Image</label>
                                                             <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="mb-2 form-control @error('image') is-invalid @enderror"
+                                                                <input name="photo" type="file" id="simpleinput" class="mb-2 form-control @error('photo') is-invalid @enderror"
                                                                     value="Some text value...">
                                                                     <div class="text-danger">
-                                                                        @error('image')
+                                                                        @error('photo')
                                                                         <span>{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
-                                                                    <img src="{{asset($subcatagory->image)}}" style="width: 100px; height:100px" alt="">
+                                                                    {{-- <img src="{{asset($subcatagory->image)}}" style="width: 100px; height:100px" alt=""> --}}
+                                                                    <img src="{{ asset('storage/subcategory/' . $subcatagory->photo) }}" width="50px" title="contact-img" class="rounded me-3"height="50px" alt="{{ $subcatagory->photo }}">
                                                             </div>
                                                         </div>
 

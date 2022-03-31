@@ -10,7 +10,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class SubCategory extends Model
 {
     use HasFactory, Sluggable;
-    protected $fillable = ['name', 'category_id', 'description', 'slug', 'commission', 'image'];
+    protected $fillable = ['name', 'category_id', 'description', 'slug', 'commission', 'image', 'photo', 'author_id', 'update_author_id'];
 
     /**
      * Return the sluggable configuration array for this model.

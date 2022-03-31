@@ -85,7 +85,7 @@
                                                 <td>6</td>
                                                 <td>Photo</td>
                                                 <td>
-                                                    <img src="{{asset($subcategory->image)}}" alt="" style="width: 100px; height:100px">
+                                                    <img src="{{asset($subcategory->photo)}}" alt="" style="width: 100px; height:100px">
                                                 </td>
                                             </tr>
                                         </tbody>

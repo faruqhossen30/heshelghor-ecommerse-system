@@ -79,14 +79,14 @@
                                                             <label class="col-md-2 col-form-label"
                                                                 for="simpleinput">Category Image</label>
                                                             <div class="col-md-10">
-                                                                <input name="image" type="file" id="simpleinput" class="mb-2 form-control @error('image') is-invalid @enderror"
+                                                                <input name="photo" type="file" id="simpleinput" class="mb-2 form-control @error('photo') is-invalid @enderror"
                                                                     value="Some text value...">
                                                                     <div class="text-danger">
-                                                                        @error('image')
+                                                                        @error('photo')
                                                                         <span>{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
-                                                                    <img src="{{asset($category->image)}}" style="width: 100px; height:100px" alt="">
+                                                                    <img src="{{ asset('storage/category/' . $category->photo) }}" width="50px" title="contact-img" class="rounded me-3"height="50px" alt="{{ $category->photo }}">
                                                             </div>
                                                         </div>
 

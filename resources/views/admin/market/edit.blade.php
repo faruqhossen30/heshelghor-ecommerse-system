@@ -1,195 +1,228 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="content">
+    <div class="content">
 
-    <!-- Start Content-->
-    <div class="container-fluid">
+        <!-- Start Content-->
+        <div class="container-fluid">
 
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Create Shop</h4>
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Add Market</li>
-                        </ol>
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box page-title-box-alt">
+                        <h4 class="page-title">Create Shop</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                <li class="breadcrumb-item active">Add Market</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end page title -->
+            <!-- end page title -->
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <a href="{{route('shop.index')}}" class="btn btn-primary mb-2"><i
-                                        class="mdi mdi-format-list-bulleted me-1"></i> Market List</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <a href="{{ route('shop.index') }}" class="btn btn-primary mb-2"><i
+                                            class="mdi mdi-format-list-bulleted me-1"></i> Market List</a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end row -->
+                            <!-- end row -->
 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="p-2">
-                                                    <form method="POST" action="{{route('market.update', $market->id)}}" enctype="multipart/form-data" class="form-horizontal" role="form" >
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Market Name: </label>
-                                                            <div class="col-md-10">
-                                                                <input name="name" type="text" id="simpleinput" class="form-control @error('name') is-invalid @enderror " placeholder="Name" value="{{$market->name}}">
-                                                                <div class="text-danger">
-                                                                    @error('name')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="p-2">
+                                                        <form method="POST"
+                                                            action="{{ route('market.update', $market->id) }}"
+                                                            enctype="multipart/form-data" class="form-horizontal"
+                                                            role="form">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="simpleinput">Market Name: </label>
+                                                                <div class="col-md-10">
+                                                                    <input name="name" type="text" id="simpleinput"
+                                                                        class="form-control @error('name') is-invalid @enderror "
+                                                                        placeholder="Name" value="{{ $market->name }}">
+                                                                    <div class="text-danger">
+                                                                        @error('name')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="addressID">Address: </label>
-                                                            <div class="col-md-10">
-                                                                <input name="address" type="text" id="addressID" class="form-control @error('address') is-invalid @enderror " placeholder="address" value="{{$market->address}}">
-                                                                <div class="text-danger">
-                                                                    @error('address')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="addressID">Address: </label>
+                                                                <div class="col-md-10">
+                                                                    <input name="address" type="text" id="addressID"
+                                                                        class="form-control @error('address') is-invalid @enderror "
+                                                                        placeholder="address"
+                                                                        value="{{ $market->address }}">
+                                                                    <div class="text-danger">
+                                                                        @error('address')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="example-textarea">Description:</label>
-                                                            <div class="col-md-10">
-                                                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
-                                                                    rows="5" placeholder="Optional">{{$market->description}}</textarea>
-                                                                <div class="text-danger">
-                                                                    @error('description')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="example-textarea">Description:</label>
+                                                                <div class="col-md-10">
+                                                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
+                                                                        rows="5"
+                                                                        placeholder="Optional">{{ $market->description }}</textarea>
+                                                                    <div class="text-danger">
+                                                                        @error('description')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label" for="image">Shop Image: </label>
-                                                            <div class="col-md-10">
-                                                                <input name="image" type="file" id="image" class="form-control @error('image') is-invalid @enderror ">
-                                                                <div class="text-danger">
-                                                                    @error('image')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label" for="photo">Market
+                                                                    Image: </label>
+                                                                <div class="col-md-10">
+                                                                    <input name="photo" type="file" id="photo"
+                                                                        class="form-control @error('photo') is-invalid @enderror ">
+                                                                    <div class="text-danger">
+                                                                        @error('photo')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                    <img src="{{ asset('storage/market/' . $market->photo) }}"
+                                                                        width="60px" title="contact-img"
+                                                                        class="rounded me-3" height="60px"
+                                                                        alt="{{ $market->photo }}">
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Division: </label>
-                                                            <div class="col-md-10" style="position: relative">
-                                                                <select id="division" class="form-select @error('division_id') is-invalid @enderror" name="division_id">
-                                                                    <option selected value="">Select</option>
-                                                                    @foreach ($divisions as $division)
-                                                                        <option value="{{$division->id}}" @if( $division->id == $market->division_id ) selected @endif> {{$division->name}}</option>
-                                                                    @endforeach
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="simpleinput">Division: </label>
+                                                                <div class="col-md-10" style="position: relative">
+                                                                    <select id="division"
+                                                                        class="form-select @error('division_id') is-invalid @enderror"
+                                                                        name="division_id">
+                                                                        <option selected value="">Select</option>
+                                                                        @foreach ($divisions as $division)
+                                                                            <option value="{{ $division->id }}"
+                                                                                @if ($division->id == $market->division_id) selected @endif>
+                                                                                {{ $division->name }}</option>
+                                                                        @endforeach
 
-                                                                </select>
-                                                                <div class="text-danger">
-                                                                    @error('division_id')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                                    </select>
+                                                                    <div class="text-danger">
+                                                                        @error('division_id')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="simpleinput">Select District : </label>
-                                                            <div class="col-md-10" style="position: relative">
-                                                                <select readonly id="district" class="form-select @error('district_id') is-invalid @enderror" name="district_id">
-                                                                    @foreach ($districts as $district)
-                                                                        <option value="{{$district->id}}" @if( $district->id == $market->district_id ) selected @endif> {{$district->name}}</option>
-                                                                    @endforeach
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label"
+                                                                    for="simpleinput">Select District : </label>
+                                                                <div class="col-md-10" style="position: relative">
+                                                                    <select readonly id="district"
+                                                                        class="form-select @error('district_id') is-invalid @enderror"
+                                                                        name="district_id">
+                                                                        @foreach ($districts as $district)
+                                                                            <option value="{{ $district->id }}"
+                                                                                @if ($district->id == $market->district_id) selected @endif>
+                                                                                {{ $district->name }}</option>
+                                                                        @endforeach
 
-                                                                </select>
-                                                                <img id="district_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
-                                                                <div class="text-danger">
-                                                                    @error('district_id')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                                    </select>
+                                                                    <img id="district_loader"
+                                                                        src="{{ asset('loading.gif') }}" alt=""
+                                                                        style="width:20px; position:absolute; top:10px;left:30px">
+                                                                    <div class="text-danger">
+                                                                        @error('district_id')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="mb-2 row">
-                                                            <label class="col-md-2 col-form-label"
-                                                                for="upazila">Select Upazila : </label>
-                                                            <div class="col-md-10" style="position: relative">
-                                                                <select readonly id="upazila" class="form-select @error('upazila_id') is-invalid @enderror" name="upazila_id">
-                                                                    @foreach ($upazilas as $upazila)
-                                                                        <option value="{{$upazila->id}}" @if( $upazila->id == $market->upazila_id ) selected @endif> {{$upazila->name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                <img id="upazila_loader" src="{{asset('loading.gif')}}" alt="" style="width:20px; position:absolute; top:10px;left:30px">
-                                                                <div class="text-danger">
-                                                                    @error('upazila_id')
-                                                                    <span>{{ $message }}</span>
-                                                                    @enderror
+                                                            <div class="mb-2 row">
+                                                                <label class="col-md-2 col-form-label" for="upazila">Select
+                                                                    Upazila : </label>
+                                                                <div class="col-md-10" style="position: relative">
+                                                                    <select readonly id="upazila"
+                                                                        class="form-select @error('upazila_id') is-invalid @enderror"
+                                                                        name="upazila_id">
+                                                                        @foreach ($upazilas as $upazila)
+                                                                            <option value="{{ $upazila->id }}"
+                                                                                @if ($upazila->id == $market->upazila_id) selected @endif>
+                                                                                {{ $upazila->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <img id="upazila_loader"
+                                                                        src="{{ asset('loading.gif') }}" alt=""
+                                                                        style="width:20px; position:absolute; top:10px;left:30px">
+                                                                    <div class="text-danger">
+                                                                        @error('upazila_id')
+                                                                            <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <button type="submit" class="btn btn-primary"> <i class="mdi mdi-content-save me-1"></i> Create Market </button>
+                                                            <button type="submit" class="btn btn-primary"> <i
+                                                                    class="mdi mdi-content-save me-1"></i> Update Market
+                                                            </button>
 
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
+
                                             </div>
-
+                                            <!-- end row -->
                                         </div>
-                                        <!-- end row -->
-                                    </div>
-                                </div> <!-- end card -->
-                            </div><!-- end col -->
-                        </div>
-                        <!-- end row -->
+                                    </div> <!-- end card -->
+                                </div><!-- end col -->
+                            </div>
+                            <!-- end row -->
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end row -->
+            <!-- end row -->
 
 
-    </div> <!-- container -->
+        </div> <!-- container -->
 
-</div> <!-- content -->
+    </div> <!-- content -->
 @endsection
 
 @push('css')
-<!-- third party css -->
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-    type="text/css" />
-<link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
-    rel="stylesheet" type="text/css" />
+    <!-- third party css -->
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+        rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
     <script>
-        $(function(){
+        $(function() {
             var division = $('select[name=division_id]');
             var district = $('select[name=district_id]');
             var upazila = $('select[name=upazila_id]');
@@ -200,17 +233,19 @@
             upazila_loader.hide();
 
             // For District
-            division.change(function(){
+            division.change(function() {
                 district.removeAttr('disabled');
                 district_loader.show();
                 var divisionID = $(this).val();
-                if(divisionID){
-                    $.get(`{{url('/getdistrict/${divisionID}')}}`, function(data, status){
+                if (divisionID) {
+                    $.get(`{{ url('/getdistrict/${divisionID}') }}`, function(data, status) {
                         district.empty();
-                        if(data){
+                        if (data) {
                             district_loader.hide();
-                            data.forEach(function(row){
-                                district.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            data.forEach(function(row) {
+                                district.append(
+                                    `<option selected value="${row.id}">${row.name}</option>`
+                                    );
                             });
                         }
                     });
@@ -219,16 +254,18 @@
             });
 
             // For Upazilla
-            district.change(function(){
+            district.change(function() {
                 upazila.removeAttr('disabled');
                 var districtID = $(this).val();
-                if(districtID){
-                    $.get(`{{url('/getupazila/${districtID}')}}`, function(data, status){
+                if (districtID) {
+                    $.get(`{{ url('/getupazila/${districtID}') }}`, function(data, status) {
                         upazila.empty();
-                        if(data){
+                        if (data) {
                             upazila_loader.hide();
-                            data.forEach(function(row){
-                                upazila.append(`<option selected value="${row.id}">${row.name}</option>`);
+                            data.forEach(function(row) {
+                                upazila.append(
+                                    `<option selected value="${row.id}">${row.name}</option>`
+                                    );
                             });
                         }
                     });

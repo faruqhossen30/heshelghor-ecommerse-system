@@ -12,6 +12,7 @@ class MarketListPageController extends Controller
     public function marketList()
     {
         $markets = Market::orderBy('name', 'asc')->get();
+        // return $markets;
         return view('frontend.marketlist.marketlist', compact('markets'));
     }
 

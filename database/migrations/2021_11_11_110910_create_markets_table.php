@@ -20,11 +20,13 @@ class CreateMarketsTable extends Migration
             $table->string('address', 1000);
             $table->string('slug')->unique();
             $table->string('image', 1000)->nullable();
+            $table->string('photo')->nullable();
             $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('upazila_id');
             $table->string('author');
             $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('update_author_id');
             $table->timestamps();
         });
     }

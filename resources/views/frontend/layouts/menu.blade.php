@@ -37,6 +37,9 @@
                             <a href="{{route('aboutus')}}">About Us</a>
                         </li>
                         <li>
+                            <a href="{{ route('market.list') }}">Markets</a>
+                        </li>
+                        <li>
                             <a href="{{ route('shoplist') }}">Shops</a>
                         </li>
                     </ul>

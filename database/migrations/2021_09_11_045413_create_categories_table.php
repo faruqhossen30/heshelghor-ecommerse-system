@@ -18,8 +18,11 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image', 1000)->nullable();
+            $table->string('photo')->nullable();
             $table->string('description', 1000)->nullable();
             $table->boolean('status')->default(true);
+            $table->unsignedBigInteger('author_id')->nullable();
+            $table->unsignedBigInteger('update_author_id')->nullable();
             $table->timestamps();
         });
     }

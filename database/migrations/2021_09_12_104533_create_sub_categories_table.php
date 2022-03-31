@@ -17,10 +17,13 @@ class CreateSubCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('author_id')->nullable();
+            $table->unsignedBigInteger('update_author_id')->nullable();
             $table->string('description', 1000)->nullable();
             $table->double('commission');
             $table->string('slug', )->unique();
             $table->string('image', 1000)->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

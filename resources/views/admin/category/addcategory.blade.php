@@ -76,10 +76,10 @@
                                                                 for="simpleinput">Category Image</label>
                                                             <div class="col-md-10">
                                                                 <small class="form-text">Image size mus be (280 X 280)px or (560 X 560)px</small>
-                                                                <input name="image" type="file" id="simpleinput" class="form-control @error('image') is-invalid @enderror"
+                                                                <input name="photo" type="file" id="simpleinput" class="form-control @error('photo') is-invalid @enderror"
                                                                     value="Some text value...">
                                                                     <div class="text-danger">
-                                                                        @error('image')
+                                                                        @error('photo')
                                                                         <span>{{ $message }}</span>
                                                                         @enderror
                                                                     </div>

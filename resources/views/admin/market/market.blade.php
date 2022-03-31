@@ -89,8 +89,7 @@ $admin = Auth::guard('admin')->user();
                                                             class="text-dark">{{ $market->name }}</a></h5>
                                                 </td>
                                                 <td>
-                                                    <img src="{{ asset('uploads/market/' . $market->image) }}"
-                                                        style="width:50px" alt="Photo">
+                                                    <img src="{{ asset('storage/market/' . $market->photo) }}" width="50px" title="contact-img" class="rounded me-3"height="50px" alt="{{ $market->photo }}">
                                                 </td>
                                                 <td>
                                                     {{ $market->address ?? 'No description found' }}

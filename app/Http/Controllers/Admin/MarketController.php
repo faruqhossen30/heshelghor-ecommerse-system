@@ -13,7 +13,8 @@ use Image;
 use Illuminate\Support\Str;
 use Session;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-
+use Illuminate\Contracts\Session\Session as SessionSession;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class MarketController extends Controller
 {
@@ -52,24 +53,17 @@ class MarketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
+        // return $request->all();
+
         if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.create')){
             abort(403, 'You have no access this page.');
         };
-        // return $request->all();
-        $image = $request->file('image');
-        if ($image) {
-            $validate = $request->validate([
-                'name'        => 'required | unique:markets',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
-            ]);
+            if ($request->hasFile('photo')) {
 
-
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            $photo = Image::make($image)->save(public_path('uploads/market/') . $fileName);
-            // dd($fileName);
+                $name = $request->photo->getClientOriginalName();
+                $request->photo->storeAs('market', $name, 'public');
 
             Market::create([
                 'name'          => $request->name,
@@ -79,7 +73,7 @@ class MarketController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => $fileName,
+                'photo'         => $name,
                 'author'        => 'admin',
                 'author_id'     => Auth::guard('admin')->user()->id,
             ]);
@@ -157,23 +151,14 @@ class MarketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
-        //     abort(403, 'You have no access this page.');
-        // };
         // return $request->all();
-        $image = $request->file('image');
-        if ($image) {
-            $validate = $request->validate([
-                'name'        => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
-            ]);
+        if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('market.edit')){
+            abort(403, 'You have no access this page.');
+        };
+        if ($request->hasFile('photo')) {
 
-
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            $photo = Image::make($image)->save(public_path('uploads/market/') . $fileName);
-            // dd($fileName);
+            $name = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('market', $name, 'public');
 
             $data = [
                 'name'          => $request->name,
@@ -182,7 +167,8 @@ class MarketController extends Controller
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
                 'upazila_id'    => $request->upazila_id,
-                'image'         => $fileName
+                'photo'         => $name,
+                'update_author_id' => Auth::guard('admin')->user()->id
             ];
 
             $update = Market::where('id', $id)->update($data);
@@ -204,7 +190,8 @@ class MarketController extends Controller
                 'description'   => $request->description,
                 'division_id'   => $request->division_id,
                 'district_id'   => $request->district_id,
-                'upazila_id'    => $request->upazila_id
+                'upazila_id'    => $request->upazila_id,
+                'update_author_id' => Auth::guard('admin')->user()->id
             ];
 
             $update = Market::where('id', $id)->update($data);

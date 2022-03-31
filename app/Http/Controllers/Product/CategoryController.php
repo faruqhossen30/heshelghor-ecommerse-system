@@ -51,26 +51,19 @@ class CategoryController extends Controller
         if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.create')){
             abort(403, 'You have no access this page.');
         };
-        $image = $request->file('image');
 
-        if($image){
-            $validate = $request->validate([
-                'name'        => 'required | unique:categories',
-                'description' => 'required',
-                'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
-            ]);
+            if ($request->hasFile('photo')) {
 
-
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+                $name = $request->photo->getClientOriginalName();
+                $request->photo->storeAs('category', $name, 'public');
 
             Category::create([
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => SlugService::createSlug(Category::class, 'slug', $request->name, ['unique' => true]),
-                'image'       => 'uploads/category/' . $fileName,
+                'photo' => $name,
+                'author_id' => Auth::guard('admin')->user()->id
+
             ]);
 
             Session::flash('create');
@@ -85,6 +78,7 @@ class CategoryController extends Controller
                 'name'        => $request->name,
                 'description' => $request->description,
                 'slug'        => SlugService::createSlug(Category::class, 'slug', $request->name, ['unique' => true]),
+                'author_id' => Auth::guard('admin')->user()->id
             ]);
 
             Session::flash('create');
@@ -135,29 +129,21 @@ class CategoryController extends Controller
         if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.edit')){
             abort(403, 'You have no access this page.');
         };
-        $image = $request->file('image');
-        if($image){
-            $validate = $request->validate([
-                'name'        => 'required',
-                'description' => 'required',
-                'image' => 'mimes:png,jpg,gif,bmp|max:10240',
-            ]);
 
-            $old_image = $request->old_image;
+        if ($request->hasFile('photo')) {
 
-            $fileExtention = $image->getClientOriginalExtension();
-            $fileName = date('Ymdhis') . '.' . $fileExtention;
-
-            Image::make($image)->save(public_path('uploads/category/') . $fileName);
+            $name = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('category', $name, 'public');
 
             $data = [
                 'name'        => $request->name,
                 'description' => $request->description,
-                'image'       => 'uploads/category/' . $fileName,
+                'photo' => $name,
+                'update_author_id' => Auth::guard('admin')->user()->id
             ];
-            // if(isset($old_image)){
-            //     unlink($old_image);
-            // }
+            if(isset($old_image)){
+                unlink($old_image);
+            }
             $update = Category::where('id', $id)->update($data);
             Session::flash('update');
             return redirect()->route('category.index');
@@ -172,6 +158,7 @@ class CategoryController extends Controller
             $data = [
                 'name'        => $request->name,
                 'description' => $request->description,
+                'update_author_id' => Auth::guard('admin')->user()->id
             ];
 
             $update = Category::where('id', $id)->update($data);
@@ -192,10 +179,7 @@ class CategoryController extends Controller
         if(is_null(Auth::guard('admin')->user()) || !Auth::guard('admin')->user()->can('category.delete')){
             abort(403, 'You have no access this page.');
         };
-        $category = Category::where('id', $id)->get()->first();
-        if(isset($category->image)){
-            unlink($category->image);
-        };
+
         $delete = Category::where('id', $id)->delete();
         Session::flash('delete');
         return redirect()->route('category.index');

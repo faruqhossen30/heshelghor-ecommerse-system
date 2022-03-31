@@ -125,7 +125,7 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        @isset ($subcategory->slug)
+                                                        @isset ($subcategory->category->slug)
 
                                                             <a
                                                                 href="{{ route('product.with.subcategory', ['category' => $subcategory->category->slug, 'slug' => $subcategory->slug]) }}">
