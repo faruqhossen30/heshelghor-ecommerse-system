@@ -37,7 +37,8 @@
                                                 <div class="product-label-group">
                                                     <label class="product-label label-new">new</label>
                                                     @if ($product->discount > 0)
-                                                        <label class="product-label label-sale">{{$product->discount}}% OFF</label>
+                                                        <label class="product-label label-sale">{{ $product->discount }}%
+                                                            OFF</label>
                                                     @endif
                                                 </div>
                                                 <div class="product-action-vertical">
@@ -60,7 +61,7 @@
                                                         href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                                     @if (optional($product->subcategory)->name)
                                                         <a
-                                                            href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}">
+                                                            href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">
                                                             | {{ optional($product->subcategory)->name }}</a>
                                                     @endif
 
@@ -97,26 +98,26 @@
                             <div class="container">
                                 <h2 class="title title-simple">Popular Categories</h2>
                                 <div class="owl-carousel owl-theme owl-loaded owl-drag" data-owl-options="{
-                                                        'nav': false,
-                                                        'dots': true,
-                                                        'autoplay': true,
-                                                        'margin': 20,
-                                                        'responsive': {
-                                                            '0': {
-                                                                'items': 1
-                                                            },
-                                                            '480': {
-                                                                'items': 2
-                                                            },
-                                                            '768': {
-                                                                'items': 3
-                                                            },
-                                                            '992': {
-                                                                'items': 4,
-                                                                'dots': false
-                                                            }
-                                                        }
-                                                    }">
+                                                                    'nav': false,
+                                                                    'dots': true,
+                                                                    'autoplay': true,
+                                                                    'margin': 20,
+                                                                    'responsive': {
+                                                                        '0': {
+                                                                            'items': 1
+                                                                        },
+                                                                        '480': {
+                                                                            'items': 2
+                                                                        },
+                                                                        '768': {
+                                                                            'items': 3
+                                                                        },
+                                                                        '992': {
+                                                                            'items': 4,
+                                                                            'dots': false
+                                                                        }
+                                                                    }
+                                                                }">
 
                                     <div class="owl-stage-outer">
                                         <div class="owl-stage"
@@ -125,18 +126,26 @@
                                             @foreach ($subcategories as $subcategory)
                                                 <div class="owl-item " style="width: 280px; margin-right: 20px;">
                                                     <div class="category category-absolute category-classic">
-                                                        @isset ($subcategory->category->slug)
-
+                                                        @isset($subcategory->category->slug)
                                                             <a
-                                                                href="{{ route('product.with.subcategory', ['category' => $subcategory->category->slug, 'slug' => $subcategory->slug]) }}">
-                                                        @endisset
-                                                        <figure class="category-media">
-                                                            <img src="{{ $subcategory->image }}" alt="Cateogry"
-                                                                width="280" height="280">
-                                                        </figure>
-                                                        <div class="category-content">
-                                                            <h4 class="category-name">{{ $subcategory->name }}</h4>
-                                                        </div>
+                                                                href="{{ route('product.with.subcategory', ['category' => $subcategory->category->slug,'slug' => $subcategory->slug]) }}">
+                                                            @endisset
+                                                            <figure class="category-media">
+                                                                @if ($subcategory->photo)
+                                                                    <img src="{{ asset('storage/market/' . $subcategory->photo) }}"
+                                                                        alt="Cateogry" width="280" height="280">
+                                                                @elseif ($subcategory->image)
+                                                                    <img src="{{ $subcategory->image }}" alt="Cateogry"
+                                                                        width="280" height="280">
+                                                                @else
+                                                                    <img src="{{ asset('frontend/images/category.jpg') }}" alt="Cateogry"
+                                                                        width="280" height="280">
+                                                                @endif
+
+                                                            </figure>
+                                                            <div class="category-content">
+                                                                <h4 class="category-name">{{ $subcategory->name }}</h4>
+                                                            </div>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -173,7 +182,8 @@
                                             $newporducts = \App\Models\Product\Product::with('category:id,name,slug', 'subcategory:id,name,slug')
                                                 ->latest('id')
                                                 ->where('category_id', $category->id)
-                                                ->take(4)->get();
+                                                ->take(4)
+                                                ->get();
                                         @endphp
 
                                         @foreach ($newporducts as $product)
@@ -193,7 +203,8 @@
                                                             <label class="product-label label-new">new</label>
                                                             @if ($product->discount > 0)
                                                                 <label
-                                                                    class="product-label label-sale">{{$product->discount}}% OFF</label>
+                                                                    class="product-label label-sale">{{ $product->discount }}%
+                                                                    OFF</label>
                                                             @endif
                                                         </div>
                                                         <div class="product-action-vertical">
@@ -215,9 +226,8 @@
                                                             <a
                                                                 href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                                             @if (optional($product->subcategory)->name)
-
                                                                 <a
-                                                                    href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}">|
+                                                                    href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">|
                                                                     {{ $product->subcategory->name }}</a>
                                                             @endif
                                                         </div>
@@ -228,7 +238,8 @@
                                                         <div class="product-price">
                                                             <ins class="new-price">৳{{ $product->price }}</ins>
                                                             @if ($product->discount > 0)
-                                                                <del class="old-price">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                                                <del
+                                                                    class="old-price">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
                                                             @endif
                                                         </div>
                                                         <div class="ratings-container">
@@ -247,7 +258,6 @@
                                     </div>
                                 </section>
                             @endif
-
                         @endforeach
 
                         {{-- <section class="mb-3">
