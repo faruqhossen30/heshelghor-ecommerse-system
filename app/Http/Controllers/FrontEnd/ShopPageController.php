@@ -61,6 +61,7 @@ class ShopPageController extends Controller
         ->when($orderby, function ($query, $orderby) {
             return $query->orderBy('price', $orderby);
         })
+        ->latest('id')
         ->paginate($count ?? 20);
 
 
