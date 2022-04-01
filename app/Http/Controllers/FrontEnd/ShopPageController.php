@@ -19,7 +19,7 @@ class ShopPageController extends Controller
         $filter_location = [];
         $filter_category = [];
         $filter_brand = [];
-        $orderby = '';
+        $orderby = null;
         $count = null;
 
 

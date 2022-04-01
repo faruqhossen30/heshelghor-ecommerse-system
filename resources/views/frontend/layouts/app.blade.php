@@ -73,6 +73,9 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
         #swal2-title{
             font-size: 16px;
         }
+        .product-media a img{
+            max-height: 220px;
+        }
 
     </style>
 </head>

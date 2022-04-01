@@ -48,7 +48,7 @@ class MarketListPageController extends Controller
                 ->when($keyword, function ($query, $keyword) {
                     return $query->where('name', 'like', '%' . $keyword . '%');
                 })
-                ->get();
+                ->paginate(20);
 
             $data = view('frontend.inc.ajaxmarketlist', compact('markets'))->render();
             return response()->json($data);

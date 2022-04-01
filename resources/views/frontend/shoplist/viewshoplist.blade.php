@@ -102,6 +102,9 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                                 </div>
                             @endforeach
 
+                            <nav class="toolbox toolbox-pagination">
+                                {{ $shops->links('pagination::custompagination') }}
+                            </nav>
                         </div>
                     </div>
                 </div>

@@ -33,6 +33,7 @@
             </a>
         </div>
     @endforeach
+    {{$markets->links()}}
 @else
     <div class="card">
         <div class="card-body">

@@ -16,12 +16,12 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 
                 <div class="tab tab-nav-start">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
+                        <li class="nav-item" id="shopSearchTab">
                             <a class="nav-link active px-2" href="#search-shop">
                                 <i class="fas fa-store"></i>
                                 Shop Search</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="marketSearchTab">
                             <a class="nav-link px-2" href="#search-market">
                                 <i class="far fa-building mr-2"></i>
                                 Market Search</a>

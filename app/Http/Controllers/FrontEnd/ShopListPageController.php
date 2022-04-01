@@ -18,7 +18,7 @@ class ShopListPageController extends Controller
         $products = Product::get();
         $categories = Category::get();
         // return $shops;
-        $shops = Shop::with('market')->latest()->get();
+        $shops = Shop::with('market')->latest()->paginate(20);
         if(!empty($_GET['shoploaction']) && !empty($_GET['shopsearchkeyword'])){
             $locationid = District::where('slug', $_GET['shoploaction'])->first()->id;
 

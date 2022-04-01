@@ -14,6 +14,7 @@
                 searchShop();
             });
 
+
         }) // Show Modal
 
         $('#searchShopModal').on('hidden.bs.modal', function() {
@@ -23,6 +24,9 @@
         $(document).on('focus', 'input[name="shopSearchKeyword"]', function() {
             latestShop();
         });
+        $(document).on('click', '#shopSearchTab', function() {
+            latestShop();
+        });
         // Search Market List
 
         $(document).on('keyup', 'input[name="modalMarketSearchKeyword"]', function() {
@@ -30,6 +34,9 @@
         });
 
         $(document).on('focus', 'input[name="modalMarketSearchKeyword"]', function() {
+            latestMarket();
+        });
+        $(document).on('click', '#marketSearchTab', function() {
             latestMarket();
         });
 

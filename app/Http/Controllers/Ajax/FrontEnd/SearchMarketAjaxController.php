@@ -33,7 +33,7 @@ class SearchMarketAjaxController extends Controller
             when($locationid, function ($query, $locationid) {
                 return $query->where('district_id', $locationid);
             })
-            ->latest()->get();
+            ->latest()->take(8)->get();
 
             return $data =  view('frontend.partials.modal.searchMarketList', compact('markets'))->render();
             // return "yes working on focus";
