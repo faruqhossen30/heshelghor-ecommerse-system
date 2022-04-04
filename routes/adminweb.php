@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\Location\DistrictController;
 use App\Http\Controllers\Admin\Location\DivisionController;
 use App\Http\Controllers\Admin\Order\PaymentMethodController;
 use App\Http\Controllers\Admin\Order\DeliverySystemController;
+use App\Http\Controllers\Admin\Courier\CourierController;
+use App\Http\Controllers\Admin\Courier\CourierDeliverPlace;
 
 
 use App\Http\Controllers\Admin\AdminController;
@@ -61,6 +63,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('size', SizeController::class);
         // For order section
         Route::resource('deliverysystem', DeliverySystemController::class);
+
+        Route::resource('courier', CourierController::class);
+
+        Route::get('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'addDeliveryPlace'])->name('courier.adddeliveryplace');
+        Route::post('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'updateDeliveryPlace'])->name('courier.updateDeliveryplace');
+
         Route::resource('paymentmethod', PaymentMethodController::class);
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
         Route::get('allorderitem/search', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');

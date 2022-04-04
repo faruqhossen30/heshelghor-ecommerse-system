@@ -23,13 +23,14 @@
                 </div>
             </div>
             <!-- end page title -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
-                                    <a href="{{ route('deliverysystem.index') }}" class="btn btn-success mb-2"><i
+                                    <a href="{{ route('courier.index') }}" class="btn btn-success mb-2"><i
                                             class="mdi mdi-format-list-bulleted me-1"></i>Delivery System List</a>
                                 </div>
                             </div>
@@ -44,7 +45,7 @@
                                                 <div class="col-12">
                                                     <div class="p-2">
                                                         <form method="POST"
-                                                            action="{{ route('deliverysystem.update', $deliverySystem->id) }}"
+                                                            action="{{ route('courier.update', $courier->id) }}"
                                                             class="form-horizontal" role="form">
                                                             @csrf
                                                             @method('PUT')
@@ -53,7 +54,7 @@
                                                                     for="simpleinput">Name <span
                                                                         class="text-danger">*</span></label>
                                                                 <div class="col-md-10">
-                                                                    <input name="name" value="{{ $deliverySystem->name }}"
+                                                                    <input name="name" value="{{ $courier->name }}"
                                                                         type="text" id="simpleinput"
                                                                         class="form-control @error('name') is-invalid @enderror "
                                                                         placeholder="Name">
@@ -71,7 +72,7 @@
                                                                 <div class="col-md-10">
                                                                     <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="example-textarea"
                                                                         rows="5"
-                                                                        placeholder="Brand description..."> {{ $deliverySystem->description }} </textarea>
+                                                                        placeholder="Brand description..."> {{ $courier->description }} </textarea>
                                                                     <div class="text-danger">
                                                                         @error('description')
                                                                             <span>{{ $message }}</span>
@@ -88,7 +89,7 @@
 
                                                                     <input name="price" type="number" id="simpleinput"
                                                                         class="form-control @error('price') is-invalid @enderror"
-                                                                        value="{{ $deliverySystem->price }}">
+                                                                        value="{{ $courier->price }}">
                                                                     <div class="text-danger">
                                                                         @error('price')
                                                                             <span>{{ $message }}</span>
@@ -129,8 +130,4 @@
 @endpush
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 @endpush

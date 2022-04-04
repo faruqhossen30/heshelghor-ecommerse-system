@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCourierHasDeliveriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('courier_has_deliveries', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('courier_id');
+            $table->unsignedBigInteger('distric_id');
+            $table->unsignedBigInteger('upazila_id');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('courier_has_deliveries');
+    }
+}

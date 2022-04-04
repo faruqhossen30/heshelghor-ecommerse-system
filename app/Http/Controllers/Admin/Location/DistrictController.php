@@ -23,7 +23,7 @@ class DistrictController extends Controller
             abort(403, 'You have no access this page.');
         };
 
-        $districts = District::all();
+        $districts = District::with('getDivision')->get();
         return view('admin.location.district.district', compact('districts'));
     }
 

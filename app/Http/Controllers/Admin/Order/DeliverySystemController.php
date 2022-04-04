@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\District;
+use App\Models\Admin\Location\Division;
 use Illuminate\Http\Request;
 use App\Models\Admin\Order\DeliverySystem;
 use Illuminate\Support\Facades\Auth;
@@ -93,8 +95,13 @@ class DeliverySystemController extends Controller
             abort(403, 'You have no access this page.');
         };
         $deliverySystem = DeliverySystem::where('id', $id)->first();
+        $divisions = Division::with('districts')->get();
 
-        return view('admin.delivery.edit', compact('deliverySystem'));
+        // $district = District::with('upazilas')->get();
+
+        // return $district;
+
+        return view('admin.delivery.edit', compact('deliverySystem', 'divisions'));
     }
 
     /**
