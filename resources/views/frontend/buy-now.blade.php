@@ -77,6 +77,7 @@ $totalItem = count(Cart::content());
 
                             <label>Email Address *</label>
                             <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
+                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver service</h2>
                             <div>
                                 <label>Select Divission *</label>
                                 <div class="select-box">
@@ -208,27 +209,6 @@ $totalItem = count(Cart::content());
                                             </tr>
                                         </tbody>
                                     </table>
-
-                                    {{-- <div class="shipping-address">
-                                        <label>Delivery System<strong></strong></label>
-                                        <div class="select-box">
-                                            <select name="delivery_system"
-                                                class="form-control @error('delivery_system') is-invalid @enderror"
-                                                required>
-                                                <option value="">Select one</option>
-                                                @foreach ($deliverysystems as $system)
-                                                    <option value="{{ $system->id }}">{{ $system->name }} -
-                                                        ৳{{ $system->price }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="text-danger">
-                                                @error('delivery_system')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                    </div> --}}
                                     <div>
                                         <input type="hidden" value="" name="delivery_system_name">
                                         <input type="hidden" value="" name="payment_method_name">

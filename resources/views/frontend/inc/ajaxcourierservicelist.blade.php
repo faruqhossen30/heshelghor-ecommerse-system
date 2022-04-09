@@ -16,9 +16,13 @@
 
 
                     >
-                    <label class="custom-control-label" for="deliverrat{{ $courier->id }}">{{ $courier->name }}
+                    <label class="custom-control-label" for="deliverrat{{ $courier->id }}"><strong>{{ $courier->name }}</strong>
                         <small>
-                            - Charge: ৳{{ $courier->price }}</small></label>
+                            - Charge: ৳{{ $courier->all_place_price }}</small>
+                            <br>
+                        <small>Estimate delivery time 2 to 3 days.</small>
+                        </label>
+
                 </div>
             </li>
         @endforeach

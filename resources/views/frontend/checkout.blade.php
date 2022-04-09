@@ -1,8 +1,8 @@
 @php
-    $serial = 1;
-    $subTotal = Cart::priceTotal();
-    $totalProduct = Cart::count();
-    $totalItem = count(Cart::content());
+$serial = 1;
+$subTotal = Cart::priceTotal();
+$totalProduct = Cart::count();
+$totalItem = count(Cart::content());
 @endphp
 
 @extends('frontend.layouts.app')
@@ -14,18 +14,18 @@
     <main class="main checkout">
         <div class="page-content pt-7 pb-10 mb-10">
             <div class="step-by pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="{{route('cart.page')}}">1. Shopping Cart</a></h3>
-                <h3 class="title title-simple title-step active"><a href="{{route('checkoutpage')}}">2. Checkout</a></h3>
+                <h3 class="title title-simple title-step"><a href="{{ route('cart.page') }}">1. Shopping Cart</a></h3>
+                <h3 class="title title-simple title-step active"><a href="{{ route('checkoutpage') }}">2. Checkout</a></h3>
                 <h3 class="title title-simple title-step"><a href="#">3. Order Complete</a></h3>
             </div>
             <div class="container mt-7">
-                <form action="{{route('pay')}}" method="POST" class="form">
+                <form action="{{ route('pay') }}" method="POST" class="form">
                     @csrf
 
-                    <input type="hidden" value="{{$totalProduct}}" name="total_prodcut">
-                    <input type="hidden" value="{{$totalItem}}" name="total_item">
+                    <input type="hidden" value="{{ $totalProduct }}" name="total_prodcut">
+                    <input type="hidden" value="{{ $totalItem }}" name="total_item">
                     <input type="hidden" value="0" name="delivery_cost">
-                    <input type="hidden" value="{{$subTotal}}" name="product_price">
+                    <input type="hidden" value="{{ $subTotal }}" name="product_price">
                     <input type="hidden" value="0" name="total_price">
 
 
@@ -35,7 +35,8 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Full Name *</label>
-                                    <input type="text" value="{{ $user->name }}" class="form-control @error('name') is-invalid @enderror" name="name" />
+                                    <input type="text" value="{{ $user->name }}"
+                                        class="form-control @error('name') is-invalid @enderror" name="name" />
                                     <div class="text-danger">
                                         @error('name')
                                             <span>{{ $message }}</span>
@@ -48,7 +49,8 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Delivery Address *</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" />
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                        name="address" />
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -64,8 +66,8 @@
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Mobile No *</label>
-                                    <input value="{{ $user->mobile }}" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
-                                         />
+                                    <input value="{{ $user->mobile }}" type="text"
+                                        class="form-control @error('mobile') is-invalid @enderror" name="mobile" />
                                     <div class="text-danger">
                                         @error('mobile')
                                             <span>{{ $message }}</span>
@@ -75,13 +77,14 @@
                             </div>
 
                             <label>Email Address *</label>
-                            <input type="text" value="{{ $user->email }}" class="form-control" name="email"
-                                 />
+                            <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
+                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver
+                                service</h2>
                             <div>
                                 <label>Select Divission *</label>
                                 <div class="select-box">
-                                    <select name="division_id" class="form-control" >
-                                        <option value="" >Select Divission</option>
+                                    <select name="division_id" class="form-control">
+                                        <option value="">Select Divission</option>
                                         @foreach ($divisions as $division)
                                             <option value="{{ $division->id }}">{{ $division->name }}</option>
                                         @endforeach
@@ -91,7 +94,8 @@
                             <div>
                                 <label>Select District *</label>
                                 <div class="select-box">
-                                    <select name="district_id" class="form-control @error('district_id') is-invalid @enderror" disabled required>
+                                    <select name="district_id"
+                                        class="form-control @error('district_id') is-invalid @enderror" disabled required>
                                         <option value="">select </option>
                                     </select>
                                     <div class="text-danger">
@@ -104,7 +108,8 @@
                             <div>
                                 <label>Select Upazila *</label>
                                 <div class="select-box">
-                                    <select name="upazila_id" class="form-control @error('upazila_id') is-invalid @enderror" disabled required>
+                                    <select name="upazila_id" class="form-control @error('upazila_id') is-invalid @enderror"
+                                        disabled required>
                                         <option value="" selected>Select</option>
 
                                     </select>
@@ -172,26 +177,13 @@
                                                     <h6>৳<span id="total_product_price">{{ $subTotal }}</span></h6>
                                                 </td>
                                             </tr>
+                                            <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
+
+                                            </tr>
                                         </tbody>
                                     </table>
 
-                                    <div class="shipping-address">
-                                        <label>Delivery System<strong></strong></label>
-                                        <div class="select-box">
-                                            <select name="delivery_system" class="form-control @error('delivery_system') is-invalid @enderror" required>
-                                                <option value="" >Select one</option>
-                                                @foreach ($deliverysystems as $system)
-                                                    <option value="{{ $system->id }}">{{ $system->name }} -
-                                                        ৳{{ $system->price }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="text-danger">
-                                                @error('delivery_system')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div>
                                         <input type="hidden" value="" name="delivery_system_name">
                                         <input type="hidden" value="" name="payment_method_name">
@@ -200,10 +192,13 @@
                                     <div class="">
                                         <label>Payment Method<strong></strong></label>
                                         <div class="select-box">
-                                            <select name="payment_method_id" class="form-control @error('payment_method_id') is-invalid @enderror" required>
-                                                <option value="" >Select one</option>
+                                            <select name="payment_method_id"
+                                                class="form-control @error('payment_method_id') is-invalid @enderror"
+                                                required>
+                                                <option value="">Select one</option>
                                                 @foreach ($pamymentmethods as $system)
-                                                    <option value="{{ $system->id }}" name="welcome" >{{ $system->name }}</option>
+                                                    <option value="{{ $system->id }}" name="welcome">
+                                                        {{ $system->name }}</option>
                                                 @endforeach
                                             </select>
                                             <div class="text-danger">
@@ -212,7 +207,7 @@
                                                 @enderror
                                             </div>
                                             <div id="payment_img">
-                                                <img src="{{asset('frontend/images/walletmix2.png')}}" alt="">
+                                                <img src="{{ asset('frontend/images/walletmix2.png') }}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +233,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/style.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 @endpush
 
 @push('scripts')
@@ -253,18 +247,23 @@
                 district.removeAttr('disabled');
                 var divisionID = $(this).val();
                 if (divisionID) {
-                    $.get(`{{ url('/getdistrict/${divisionID}') }}`, function(data, status) {
-                        district.empty();
-                        if (data) {
+                    // console.log(divisionID)
+                    $.ajax({
+                        url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`,
+                        method: 'GET',
+                        success(data) {
+                            // console.log(data);
                             data.forEach(function(row) {
                                 district.append(
                                     `<option selected value="${row.id}">${row.name}</option>`
                                 );
                             });
-                        }
+                        },
+                        error() {
+                            console.log('courier error');
+                        },
                     });
                 }
-
             });
 
             // For Upazilla
@@ -272,15 +271,44 @@
                 upazila.removeAttr('disabled');
                 var districtID = $(this).val();
                 if (districtID) {
-                    $.get(`{{ url('/getupazila/${districtID}') }}`, function(data, status) {
-                        upazila.empty();
-                        if (data) {
+
+                    $.ajax({
+                        url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`,
+                        method: 'GET',
+                        success(data) {
+                            console.log(data);
+                            upazila.empty()
                             data.forEach(function(row) {
                                 upazila.append(
                                     `<option selected value="${row.id}">${row.name}</option>`
                                 );
                             });
-                        }
+                        },
+                        error() {
+                            console.log('courier error');
+                        },
+                    });
+                }
+            });
+            // Show Courier server by upazila/thana
+            upazila.change(function() {
+                // upazila.removeAttr('disabled');
+                var upazilaid = $(this).val();
+                if (upazilaid) {
+                    console.log(upazilaid)
+
+                    $.ajax({
+                        url: `/checkupazilawisecourierupalizalist/${upazilaid}`,
+                        method: 'GET',
+                        success(data) {
+                            // console.log('for courier list',data);
+                            $('#couriertablerow').empty()
+                            $('#couriertablerow').append(data).hide().fadeIn(2000);
+
+                        },
+                        error() {
+                            console.log('courier error');
+                        },
                     });
                 }
             });
@@ -300,27 +328,39 @@
         var delivery_system_name = $('input[name="delivery_system_name"]');
 
 
-        $(document).on('change', 'select[name="delivery_system"]', function() {
-            var deliverySystemId = $('select[name="delivery_system"]').val();
-            if (deliverySystemId) {
-                $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
-                    if (data) {
-                        console.log(data);
-                        delivery_system_name.val(data.name);
-                        // console.log(delivery_system_name.val());
-                        // console.log(payment_system_name.val());
-                        delivery_cost.val(data.price *productNumber); // for hidden input
-                        delivery_charge.text(data.price * productNumber); // For Show calculate
-                        totalAmount();
-                    }
-                });
-            };
+        $(document).on('change select', 'input[name="delivery_system"]', function() {
+            let dhaka_to_dhaka_price = $(this).data('dhaka_to_dhaka_price');
+            let all_place_price = $(this).data('all_place_price');
+            let dhaka_to_dhaka_per_kg = $(this).data('dhaka_to_dhaka_per_kg');
+            let dhaka_to_outside_per_kg = $(this).data('dhaka_to_outside_per_kg');
+            // alert(dhaka_to_outside_per_kg)
+
+            delivery_cost.val(all_place_price * productNumber); // for hidden input
+            delivery_charge.text(all_place_price * productNumber); // For Show calculate
+
+            totalAmount();
+
+            // if (deliverySystemId) {
+            //     $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
+            //         if (data) {
+            //             console.log(data);
+            //             delivery_system_name.val(data.name);
+            //             // console.log(delivery_system_name.val());
+            //             // console.log(payment_system_name.val());
+            //             delivery_cost.val(data.price * productNumber); // for hidden input
+            //             delivery_charge.text(data.price * productNumber); // For Show calculate
+            //             totalAmount();
+            //         }
+            //     });
+            // };
 
         });
+
+
         // claculate
         function totalAmount() {
             var inTotal = parseFloat(sub_total.text()) + parseFloat(delivery_charge.text());
-            var sum  = inTotal.toFixed(2)
+            var sum = inTotal.toFixed(2)
             total_price.val(sum);
             total_product_price.html(sum);
         }
@@ -344,8 +384,8 @@
                 // Online payment
                 $.get(`setting/setting-payment-system`, function(data, status) {
                     if (data) {
-                        data.map(function(d){
-                            if(payment_method_id == d.payment_method_id){
+                        data.map(function(d) {
+                            if (payment_method_id == d.payment_method_id) {
                                 payment_img.show();
                             }
                         });
