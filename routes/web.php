@@ -44,6 +44,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
+use App\Http\Controllers\Ajax\FrontEnd\CourierAjaxController;
 
 
 
@@ -178,6 +179,15 @@ Route::get('deliverycost/{id}', [APIController::class, 'getDeliveryCost']);
 Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemName']);
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
+
+Route::get('checkdistrictwisecourierupalizalist', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+
+Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
+Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
+Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
+
+
 
 // Modal Ajax
 // For Quick View

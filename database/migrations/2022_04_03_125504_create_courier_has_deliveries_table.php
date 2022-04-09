@@ -15,8 +15,9 @@ class CreateCourierHasDeliveriesTable extends Migration
     {
         Schema::create('courier_has_deliveries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('courier_id');
-            $table->unsignedBigInteger('distric_id');
+            $table->foreignId('courier_id')->constrained('couriers')->onDelete('cascade');
+            $table->unsignedBigInteger('division_id');
+            $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('upazila_id');
             $table->timestamps();
         });

@@ -50,11 +50,15 @@ class CourierController extends Controller
             'price' => 'required'
         ]);
         Courier::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'slug'        => Str::of($request->name)->slug('-'),
-            'author_id'   => Auth::guard('admin')->user()->id,
+            'name'                    => $request->name,
+            'description'             => $request->description,
+            'price'                   => $request->price,
+            'slug'                    => Str::of($request->name)->slug('-'),
+            'author_id'               => Auth::guard('admin')->user()->id,
+            'dhaka_to_dhaka_price'    => $request->dhaka_to_dhaka_price,
+            'all_place_price'         => $request->all_place_price,
+            'dhaka_to_dhaka_per_kg'   => $request->dhaka_to_dhaka_per_kg,
+            'dhaka_to_outside_per_kg' => $request->dhaka_to_outside_per_kg,
         ]);
         return redirect()->route('courier.index');
     }

@@ -35,6 +35,8 @@ use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
+// Ajax
+use App\Http\Controllers\Ajax\Admin\CourierAjaxController;
 
 
 // Admin
@@ -87,3 +89,5 @@ Route::prefix('admin')->group(function () {
 
     });
 });
+
+

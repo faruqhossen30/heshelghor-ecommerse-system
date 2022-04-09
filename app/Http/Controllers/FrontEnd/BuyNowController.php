@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Courier\CourierHasDelivery;
+use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
 use App\Models\Admin\Location\Upazila;
 use App\Models\Admin\Order\DeliverySystem;
@@ -20,7 +22,10 @@ class BuyNowController extends Controller
         try {
             $product = Product::findOrFail($id);
 
-            $divisions = Division::all();
+            $divisionids = CourierHasDelivery::pluck('division_id')->unique();
+            $divisions = Division::whereIn('id', $divisionids)->get();
+
+            // $divisions = Division::all();
             $userId = Auth::user()->id;
             $user = User::where('id', $userId)->first();
 

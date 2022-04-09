@@ -34,7 +34,8 @@ class CourierDeliverPlace extends Controller
             foreach ($data as $upaliza) {
                 CourierHasDelivery::create([
                     'courier_id' => $id,
-                    'distric_id' => $this->getDistrictID($upaliza),
+                    'division_id' => $this->getDivisionID($upaliza),
+                    'district_id' => $this->getDistrictID($upaliza),
                     'upazila_id' => $upaliza
                 ]);
             }
@@ -48,6 +49,13 @@ class CourierDeliverPlace extends Controller
         $upazila = Upazila::get();
         $collection = collect($upazila);
         return  $collection->firstWhere('id', $id)->district_id;
+
+    }
+    public function getDivisionID($id)
+    {
+        $upazila = Upazila::get();
+        $collection = collect($upazila);
+        return  $collection->firstWhere('id', $id)->division_id;
 
     }
 }

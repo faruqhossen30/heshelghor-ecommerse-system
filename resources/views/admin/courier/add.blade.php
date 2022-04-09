@@ -74,9 +74,7 @@ HeshelGhor | Courier System
                                                         <div class="mb-2 row">
                                                             <label class="col-md-2 col-form-label"
                                                             for="simpleinput">Rate<span class="text-danger">*</span></label>
-
                                                             <div class="col-md-10">
-
                                                                 <input name="price" type="number" id="simpleinput" class="form-control @error('price') is-invalid @enderror"
                                                                     value="Some text value...">
                                                                     <div class="text-danger">
@@ -86,6 +84,61 @@ HeshelGhor | Courier System
                                                                     </div>
                                                             </div>
                                                         </div>
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label"
+                                                            for="simpleinput">Dhaka To Dhaka Price<span class="text-danger">*</span></label>
+                                                            <div class="col-md-10">
+                                                                <input name="dhaka_to_dhaka_price" type="number" id="simpleinput" class="form-control @error('dhaka_to_dhaka_price') is-invalid @enderror"
+                                                                    value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('dhaka_to_dhaka_price')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label"
+                                                            for="simpleinput">Any Place<span class="text-danger">*</span></label>
+                                                            <div class="col-md-10">
+                                                                <input name="all_place_price" type="number" id="simpleinput" class="form-control @error('all_place_price') is-invalid @enderror"
+                                                                    value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('all_place_price')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label"
+                                                            for="simpleinput">Inside Dhaka 1 KG Price:<span class="text-danger">*</span></label>
+                                                            <div class="col-md-10">
+                                                                <input name="dhaka_to_dhaka_per_kg" type="number" id="simpleinput" class="form-control @error('dhaka_to_dhaka_per_kg') is-invalid @enderror"
+                                                                    value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('dhaka_to_dhaka_per_kg')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-2 row">
+                                                            <label class="col-md-2 col-form-label"
+                                                            for="simpleinput">Outside Dhaka Per KG ( After 1 KG):<span class="text-danger">*</span></label>
+                                                            <div class="col-md-10">
+                                                                <input name="dhaka_to_outside_per_kg" type="number" id="simpleinput" class="form-control @error('dhaka_to_outside_per_kg') is-invalid @enderror"
+                                                                    value="Some text value...">
+                                                                    <div class="text-danger">
+                                                                        @error('dhaka_to_outside_per_kg')
+                                                                        <span>{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
 
                                                         <button type="submit" class="btn btn-success">Add Courier Serveice</button>
 

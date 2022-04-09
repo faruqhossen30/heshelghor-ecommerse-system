@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Courier\CourierHasDelivery;
+use App\Models\Admin\Location\District;
 use Illuminate\Http\Request;
 use Cart;
 use App\Models\Admin\Location\Division;
@@ -20,7 +22,9 @@ class CheckoutController extends Controller
     }
     public function index()
     {
-        $divisions = Division::all();
+        $divisionids = CourierHasDelivery::pluck('division_id')->unique();
+        $divisions = Division::whereIn('id', $divisionids)->get();
+
         $userId = Auth::user()->id;
         $user = User::where('id', $userId)->first();
 
