@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('title')
-    HeshelGhor | Delivery System
+    HeshelGhor | Courier Service
 @endsection
 @section('content')
     <div class="content">
@@ -11,12 +11,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box page-title-box-alt">
-                        <h4 class="page-title">Create Delivery System</h4>
+                        <h4 class="page-title">Update Courier Service</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                                <li class="breadcrumb-item active">Delivery System List</li>
+                                <li class="breadcrumb-item active">Courier Service List</li>
                             </ol>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                             <div class="row mb-2">
                                 <div class="col-sm-6">
                                     <a href="{{ route('courier.index') }}" class="btn btn-success mb-2"><i
-                                            class="mdi mdi-format-list-bulleted me-1"></i>Delivery System List</a>
+                                            class="mdi mdi-format-list-bulleted me-1"></i>Courier Service List</a>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -92,7 +92,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <!-- end row -->
-                                <button type="submit" class="btn btn-success"> Submit Now</button>
+                                <button type="submit" class="btn btn-success my-2">Update Courier Service Place/Location List</button>
                                 <table id="basic-datatable"
                                     class="table table-responsive dt-responsive w-100 table-bordered border-dark">
                                     @foreach ($divisions as $division)

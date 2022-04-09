@@ -323,6 +323,10 @@ $admin = Auth::guard('admin')->user();
                                                 class="mdi mdi-truck-delivery-outline"></i></span>Delivery System</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('courier.index') }}"><span><i
+                                                class="mdi mdi-truck-delivery-outline"></i></span>Courier Service</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('paymentmethod.index') }}"><span><i
                                                 class="mdi mdi-cash-usd"></i></span>Payment Methods</a>
                                 </li>

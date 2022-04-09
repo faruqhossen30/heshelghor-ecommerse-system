@@ -52,7 +52,7 @@
                                             <th class="all"> System Name</th>
                                             <th>Created at</th>
                                             <th>Status</th>
-                                            <th>Access</th>
+                                            <th>Location</th>
                                             <th style="width: 85px;">Action</th>
                                         </tr>
                                     </thead>
@@ -78,7 +78,7 @@
                                                 </td>
                                                 <td>
                                                     <a href="{{route('courier.adddeliveryplace', $courier->id)}}" type="button" class="btn btn-success mb-2 mb-sm-0"><i
-                                                        class="mdi mdi-cog"></i></a>
+                                                        class="mdi mdi-google-maps"></i></a>
                                                 </td>
                                                 <td>
                                                     <ul class="list-inline table-action m-0">

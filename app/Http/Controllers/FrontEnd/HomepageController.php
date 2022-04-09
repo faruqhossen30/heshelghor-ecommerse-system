@@ -67,4 +67,8 @@ class HomepageController extends Controller
     {
         return view('frontend.about-us');
     }
+    public function promotion()
+    {
+        return view('frontend.promotion');
+    }
 }
