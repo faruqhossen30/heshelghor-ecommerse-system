@@ -33,7 +33,7 @@
 
             <div class="row mb-4">
                 <p><strong>হেড অফিস:</strong> ৫৮, বোরহান শাহ রোড, যশোর সদর, যশোর।<br>
-                    <strong>ফোন:</strong> +৮৮ ০২ ৪৭৭৭৬৩৮৪৩, মোবাইল: ০১৭৮৮ ৯৫০৯০৫.
+                    <strong>ফোন:</strong> +৮৮ ০২ ৪৭৭৭৬৩৮৪৩, মোবাইল: +8801318-760087
                     <strong>কর্পোরেট অফিস:</strong> রোড-৪/এ, বাসা-৪৩ (দ্বিতীয় তলা), ধানমন্ডি, ঢাকা ১২০৫। ফোন: +৮৮ ০২ - ৪১০৬০৩৬৩ <br>
                     <strong>ইমেইল: merchant@heshelghor.com | info@heshelghor.com</strong>
                     </p>

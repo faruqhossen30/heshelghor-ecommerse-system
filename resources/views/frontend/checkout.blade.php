@@ -245,9 +245,14 @@ $totalItem = count(Cart::content());
             // For District
             division.change(function() {
                 district.removeAttr('disabled');
+                district.empty();
+                upazila.empty();
                 var divisionID = $(this).val();
                 if (divisionID) {
                     // console.log(divisionID)
+                    district.append(
+                                    `<option selected>Select</option>`
+                                );
                     $.ajax({
                         url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`,
                         method: 'GET',
@@ -255,7 +260,7 @@ $totalItem = count(Cart::content());
                             // console.log(data);
                             data.forEach(function(row) {
                                 district.append(
-                                    `<option selected value="${row.id}">${row.name}</option>`
+                                    `<option value="${row.id}">${row.name}</option>`
                                 );
                             });
                         },
@@ -269,18 +274,21 @@ $totalItem = count(Cart::content());
             // For Upazilla
             district.change(function() {
                 upazila.removeAttr('disabled');
+                upazila.empty();
                 var districtID = $(this).val();
                 if (districtID) {
+                    upazila.append(
+                                    `<option selected>Select</option>`
+                                );
 
                     $.ajax({
                         url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`,
                         method: 'GET',
                         success(data) {
                             console.log(data);
-                            upazila.empty()
                             data.forEach(function(row) {
                                 upazila.append(
-                                    `<option selected value="${row.id}">${row.name}</option>`
+                                    `<option value="${row.id}">${row.name}</option>`
                                 );
                             });
                         },
