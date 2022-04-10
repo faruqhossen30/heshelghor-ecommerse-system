@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API\Merchant;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+namespace App\Http\Controllers\API\Deliveryman;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryMan\Deliveryman;
 use Illuminate\Http\Request;
-use App\Models\Auth\Marchant;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class DeliverymanAuthAPIController extends Controller
 {
@@ -51,26 +50,26 @@ class DeliverymanAuthAPIController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'device_name' => 'required',
+            // 'device_name' => 'required',
         ]);
 
-        $merchant = Marchant::where('email', $request->email)->first();
+        $deliveryman = Deliveryman::where('email', $request->email)->first();
 
-        if (! $merchant || ! Hash::check($request->password, $merchant->password)) {
+        if (! $deliveryman || ! Hash::check($request->password, $deliveryman->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        // return $merchant->createToken($request->device_name)->plainTextToken;
-        $token = $merchant->createToken($request->device_name)->plainTextToken;
+        // return $deliveryman->createToken($request->device_name)->plainTextToken;
+        $token = $deliveryman->createToken(rand(2,20))->plainTextToken;
 
         return response()->json([
             'success' => true,
             'code'    => 200,
-            'message' => 'Merchant Successfully login !',
+            'message' => 'deliveryman Successfully login !',
             'token'   => $token,
-            'data'    => $merchant
+            'data'    => $deliveryman
         ]);
     }
     // Merchant Logout

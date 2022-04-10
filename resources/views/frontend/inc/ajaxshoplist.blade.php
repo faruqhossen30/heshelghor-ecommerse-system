@@ -29,7 +29,7 @@
                 @if ($shop->market)
                     <a href="#">
                         <p class="text-muted mb-0" style="font-size: 1.3rem">
-                            <i class="far fa-building mr-2"></i>Basun Dara shopin complex
+                            <i class="far fa-building mr-2"></i>{{ $shop->market->name ?? 'N/A' }}
                         </p>
                     </a>
                 @endif
