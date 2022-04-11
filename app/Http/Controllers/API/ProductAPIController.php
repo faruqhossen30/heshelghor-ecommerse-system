@@ -35,7 +35,7 @@ class ProductAPIController extends Controller
     // Category wise Product
     public function productByCategory(Request $request, $category_id)
     {
-        $products = Product::with('brand', 'category', 'subCategory', 'merchant','shop', 'images', 'colors', 'sizes')->where('category_id', $category_id)->get();
+        $products = Product::select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')->where('category_id', $category_id)->paginate(10);
         return $products;
     }
     // Sub-Category wise Product
