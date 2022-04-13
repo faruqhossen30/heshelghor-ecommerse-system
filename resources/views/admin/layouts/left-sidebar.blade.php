@@ -97,6 +97,12 @@ $admin = Auth::guard('admin')->user();
                         </ul>
                     </div> --}}
                 </li>
+                <li>
+                    <a href="{{ route('promotion.index') }}">
+                        <i class="mdi mdi-youtube-studio"></i>
+                        <span> Promotion </span>
+                    </a>
+                </li>
                 {{-- Admin start --}}
                 @if ($admin->can('admin.create') || $admin->can('admin.view') || $admin->can('admin.edit') || $admin->can('admin.delete') || $admin->can('admin.status'))
 

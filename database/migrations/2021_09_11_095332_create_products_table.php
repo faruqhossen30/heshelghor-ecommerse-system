@@ -27,6 +27,10 @@ class CreateProductsTable extends Migration
             $table->string('author');
             $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
+            // Location
+            $table->unsignedBigInteger('division_id')->after('shop_id');
+            $table->unsignedBigInteger('district_id')->after('shop_id');
+            $table->unsignedBigInteger('upazila_id')->after('shop_id');
             // price
             $table->integer('regular_price');
             $table->integer('discount')->nullable();

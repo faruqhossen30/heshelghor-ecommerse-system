@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 // Cart and Order Controller
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\Admin\Promotion\PromotionController;
 use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
 // Ajax
@@ -86,7 +87,8 @@ Route::prefix('admin')->group(function () {
         Route::post('setting/social-media', [SettingController::class, 'socialMediaLink'])->name('setting.socialmedia');
         Route::post('setting/header', [SettingController::class, 'header'])->name('setting.header');
         Route::post('setting/check-payment', [SettingController::class, 'checkForOnlinePayment'])->name('setting.checkpayment');
-
+        // Promotion
+        Route::get('promotion', [PromotionController::class, 'index'])->name('promotion.index');
     });
 });
 
