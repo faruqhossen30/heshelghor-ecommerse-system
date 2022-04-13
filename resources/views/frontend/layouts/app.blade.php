@@ -15,12 +15,13 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>@yield('title')</title>
 
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Riode - Ultimate eCommerce Template">
-    <meta name="author" content="D-THEMES">
+    <meta name="keywords" content="" />
+    <meta name="description" content="HeshelGhor - Store Of Needs.">
+    <meta name="author" content="HeshelGhor Tech Team">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/icons/favicon.png">
+    @stack('og_tag')
 
     <script>
         WebFontConfig = {

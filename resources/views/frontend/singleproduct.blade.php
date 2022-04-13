@@ -83,7 +83,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             </ul> --}}
                             </div>
                             {{-- For Ajax request --}}
-                            <input type="hidden" name="shop_id" value="{{$product->shop_id}}">
+                            <input type="hidden" name="shop_id" value="{{ $product->shop_id }}">
                             <h1 class="product-name">{{ $product->title }}</h1>
                             <div class="ratings-container">
                                 <div class="ratings-full">
@@ -183,9 +183,11 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 
                             <div class="product-footer">
                                 <div class="social-links mr-4">
-                                    <a href="#" class="social-link social-facebook fab fa-facebook-f"></a>
-                                    <a href="#" class="social-link social-twitter fab fa-twitter"></a>
-                                    <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                                    Share On:
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleproduct', $product->slug) }}"
+                                        class="social-link social-facebook fab fa-facebook-f"></a>
+                                    {{-- <a href="#" class="social-link social-twitter fab fa-twitter"></a> --}}
+                                    {{-- <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a> --}}
                                 </div>
                                 <hr class="divider d-lg-show">
                                 {{-- <div class="product-action">
@@ -404,25 +406,25 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                                        'items': 5,
-                                        'nav': false,
-                                        'loop': false,
-                                        'dots': true,
-                                        'margin': 20,
-                                        'responsive': {
-                                            '0': {
-                                                'items': 2
-                                            },
-                                            '768': {
-                                                'items': 3
-                                            },
-                                            '992': {
-                                                'items': 5,
-                                                'dots': false,
-                                                'nav': true
+                                            'items': 5,
+                                            'nav': false,
+                                            'loop': false,
+                                            'dots': true,
+                                            'margin': 20,
+                                            'responsive': {
+                                                '0': {
+                                                    'items': 2
+                                                },
+                                                '768': {
+                                                    'items': 3
+                                                },
+                                                '992': {
+                                                    'items': 5,
+                                                    'dots': false,
+                                                    'nav': true
+                                                }
                                             }
-                                        }
-                                    }">
+                                        }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
@@ -503,4 +505,11 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 
         });
     </script>
+@endpush
+@push('og_tag')
+    <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description" content="{{ $product->short_description }}" />
+    <meta property="og:image" content="{{ $product->img_large }}" />
 @endpush
