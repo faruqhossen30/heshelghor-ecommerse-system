@@ -8,6 +8,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
 @section('title')
     {{ $product->title }}
 @endsection
+@section('OG')
+    <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description" content="{{ $product->short_description }}" />
+    <meta property="og:image" content="{{ $product->img_large }}" />
+@endsection
 
 @section('content')
     <main class="main mt-6 single-product">
@@ -507,9 +514,5 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
     </script>
 @endpush
 @push('og_tag')
-    <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
-    <meta property="og:type" content="product" />
-    <meta property="og:title" content="{{ $product->title }}" />
-    <meta property="og:description" content="{{ $product->short_description }}" />
-    <meta property="og:image" content="{{ $product->img_large }}" />
+
 @endpush

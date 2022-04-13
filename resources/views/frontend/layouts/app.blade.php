@@ -14,6 +14,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>@yield('title')</title>
+    @yield('OG')
 
     <meta name="keywords" content="" />
     <meta name="description" content="HeshelGhor - Store Of Needs.">
@@ -21,7 +22,6 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/icons/favicon.png">
-    @stack('og_tag')
 
     <script>
         WebFontConfig = {
