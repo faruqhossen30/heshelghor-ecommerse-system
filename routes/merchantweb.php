@@ -42,6 +42,8 @@ Route::prefix('merchant')->group(function () {
         Route::get('shop/edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
         Route::post('shop/update/{id}', [ShopController::class, 'update'])->name('shop.update');
         Route::get('shop/delete/{id}', [ShopController::class, 'destroy'])->name('shop.delete');
+
+        Route::get('shop/vacation/{id}', [ShopController::class, 'shopVacation'])->name('shop.vacation');
         // Order
         Route::get('orders', [OrderController::class, 'index'])->name('marchant.order.index');
         Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');

@@ -53,7 +53,7 @@
                                         <th class="all">Shop Name</th>
                                         <th>Photo</th>
                                         <th>Address</th>
-                                        <th>Description</th>
+                                        <th>Status</th>
                                         <th>Created at</th>
                                         <th style="width: 85px;">Action</th>
                                     </tr>
@@ -83,7 +83,11 @@
                                             {{$shop->address ?? 'No description found'}}
                                         </td>
                                         <td>
-                                            {{$shop->description ?? 'No description found'}}
+                                            @if ($shop->vacation)
+                                                <a href="{{route('shop.vacation', $shop->id)}}" onclick="return confirm('Want to go vacation mood ?');" class="btn btn-danger btn-bordered btn-rounded waves-effect waves-light btn-sm">Vacation</a>
+                                            @else
+                                            <a href="{{route('shop.vacation', $shop->id)}}" onclick="return confirm('Want to go vacation mood ?');" class="btn btn-success btn-bordered btn-rounded waves-effect waves-light btn-sm">active</a>
+                                            @endif
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }}

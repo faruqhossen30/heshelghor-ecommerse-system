@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 // use App\Models\Admin\Shop\Shop;
 use App\Models\Merchant\Shop;
 use App\Models\Product\Category;
+use App\Models\Product\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
@@ -192,4 +193,23 @@ class ShopController extends Controller
             throw new Exception("You can't delete this!!!");
         }
     }
+
+    public function shopVacation(Request $request, $id)
+    {
+        $shop = Shop::findOrFail($id);
+        if($shop->vacation == 0){
+            Shop::where('id', $id)->update(['vacation'=> true]);
+            Product::where('shop_id', $id)->update(['status'=>false]);
+            return redirect()->back();
+        }
+        if($shop->vacation == 1){
+            Shop::where('id', $id)->update(['vacation'=> false]);
+            Product::where('shop_id', $id)->update(['status'=>true]);
+            return redirect()->back();
+        }
+
+
+    }
+
+
 }
