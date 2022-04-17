@@ -37,7 +37,7 @@ class HomepageController extends Controller
         $brands = Brand::get()->random(10);
 
 
-        $products = Product::take(8)->orderBy('id', 'desc')->get();
+        $products = Product::with('category', 'subcategory')->take(8)->orderBy('id', 'desc')->get();
         // return $subcategories;
 
 
