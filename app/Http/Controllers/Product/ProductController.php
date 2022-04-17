@@ -98,11 +98,13 @@ class ProductController extends Controller
         $sizes = $request->sizes;
         $fullsizeimages = $request->fullsizeimages;
 
+        $slug = strtolower($request->title);
+
         $product = Product::create([
             'title'             => $request->title,
             'description'       => $request->description,
             'short_description' => $request->short_description,
-            'slug'              => SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
+            'slug'              => SlugService::createSlug(Product::class, 'slug', $slug, ['unique' => true]),
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'brand_id'          => $request->brand_id,
@@ -249,12 +251,13 @@ class ProductController extends Controller
         $colors = $request->colors;
         $sizes = $request->sizes;
         $fullsizeimages = $request->fullsizeimages;
+        $slug = strtolower($request->title);
 
         $validate = $request->validate([
             'title'             => 'required | max:255',
             'description'       => 'required | max:5000',
             'short_description' => 'required | max:1000',
-            'slug'              => SlugService::createSlug(Product::class, 'slug', $request->title, ['unique' => true]),
+            'slug'              => SlugService::createSlug(Product::class, 'slug', $slug, ['unique' => true]),
             'category_id'       => 'required',
             'subcategory_id'    => 'required',
             'brand_id'          => 'required',
