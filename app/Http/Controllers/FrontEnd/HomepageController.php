@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Job;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
@@ -70,5 +71,17 @@ class HomepageController extends Controller
     public function promotion()
     {
         return view('frontend.promotion');
+    }
+    public function jobs()
+    {
+        $jobs = Job::get();
+        return view('frontend.job.jobs', compact('jobs'));
+    }
+    public function jobsShow(Request $request, $id)
+    {
+        $job = Job::firstWhere('id', $id);
+        $jobs = Job::get();
+        // return $job;
+        return view('frontend.job.show', compact('job', 'jobs'));
     }
 }

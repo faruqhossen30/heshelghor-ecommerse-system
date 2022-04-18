@@ -381,6 +381,14 @@ $admin = Auth::guard('admin')->user();
                     </li>
                 @endif
 
+                    <li>
+                        <a href="{{ route('job.index') }}">
+                            <i class="mdi mdi-youtube-studio"></i>
+                            <span> Jobs </span>
+                        </a>
+                    </li>
+
+
 
             </ul>
 

@@ -52,6 +52,8 @@ Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
 Route::get('/promotion', [HomepageController::class, 'promotion'])->name('promotion');
+Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
+Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
 // Filter product
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');

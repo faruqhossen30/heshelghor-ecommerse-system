@@ -74,6 +74,9 @@
                             <li>
                                 <a href="{{route('cart.page')}}">View Cart</a>
                             </li>
+                            <li>
+                                <a href="{{route('jobs')}}">Jobs</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- End Widget -->
@@ -235,6 +238,7 @@
         </li>
         @endauth
         <li><a href="{{route('marchant.login')}}">Merchant</a></li>
+        <li><a href="{{route('jobs')}}">Jobs</a></li>
     </ul>
     <!-- End of MobileMenu -->
 </div>

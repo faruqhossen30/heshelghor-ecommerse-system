@@ -14,10 +14,10 @@ class AddColumsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('unit')->nullable()->after('status');
-            $table->float('weight')->nullable()->after('status');
-            $table->string('discount_type')->nullable()->after('status');
-            $table->boolean('stock')->default(true)->after('status');
+            // $table->string('unit')->nullable()->after('status');
+            // $table->float('weight')->nullable()->after('status');
+            // $table->string('discount_type')->nullable()->after('status');
+            // $table->boolean('stock')->default(true)->after('status');
         });
     }
 
