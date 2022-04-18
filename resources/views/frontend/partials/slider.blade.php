@@ -5,37 +5,38 @@
         'dots': true,
         'nav': false,
         'loop': true,
-        'autoplay': true
+        'autoplay': false
     }">
         <div class="banner banner-fixed intro-slide1">
-            <a href="{{route('promotion')}}">
+            <a href="{{ route('promotion') }}">
                 <figure>
-                <img src="{{asset('frontend/images/slider/one.png')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
-            </figure>
+                    <img src="{{ asset('frontend/images/slider/new.jpeg') }}" alt="intro-banner" width="800"
+                        height="400" style="background-color: #ffc74e; min-height:0px" />
+                </figure>
             </a>
 
         </div>
         <div class="banner banner-fixed intro-slide1">
-            <a href="{{route('promotion')}}">
+            <a href="{{ route('promotion') }}">
                 <figure>
-                <img src="{{asset('frontend/images/slider/new.jpeg')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
-            </figure>
+                    <img src="{{ asset('frontend/images/slider/one.png') }}" alt="intro-banner" width="800" height="400"
+                        style="background-color: #ffc74e; min-height:0px" />
+                </figure>
             </a>
 
         </div>
+
         <div class="banner banner-fixed intro-slide1">
             <figure>
-                <img src="{{asset('frontend/images/slider/banner1.jpg')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
+                <img src="{{ asset('frontend/images/slider/banner1.jpg') }}" alt="intro-banner" width="800" height="400"
+                    style="background-color: #ffc74e; min-height:0px" />
             </figure>
 
         </div>
         <div class="banner banner-fixed intro-slide1">
             <figure>
-                <img src="{{asset('frontend/images/slider/banner2.jpg')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
+                <img src="{{ asset('frontend/images/slider/banner2.jpg') }}" alt="intro-banner" width="800" height="400"
+                    style="background-color: #ffc74e; min-height:0px" />
             </figure>
             {{-- <div class="banner-content y-50 pb-3">
                 <div class="slide-animate" data-animation-options="{
@@ -56,8 +57,8 @@
         </div>
         <div class="banner banner-fixed intro-slide1">
             <figure>
-                <img src="{{asset('frontend/images/slider/banner3.jpg')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
+                <img src="{{ asset('frontend/images/slider/banner3.jpg') }}" alt="intro-banner" width="800" height="400"
+                    style="background-color: #ffc74e; min-height:0px" />
             </figure>
             {{-- <div class="banner-content y-50 pb-3">
                 <div class="slide-animate" data-animation-options="{
@@ -78,8 +79,8 @@
         </div>
         <div class="banner banner-fixed intro-slide1">
             <figure>
-                <img src="{{asset('frontend/images/slider/banner4.jpg')}}" alt="intro-banner" width="800"
-                    height="400" style="background-color: #ffc74e; min-height:0px" />
+                <img src="{{ asset('frontend/images/slider/banner4.jpg') }}" alt="intro-banner" width="800" height="400"
+                    style="background-color: #ffc74e; min-height:0px" />
             </figure>
             {{-- <div class="banner-content y-50 pb-3">
                 <div class="slide-animate" data-animation-options="{
