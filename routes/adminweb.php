@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Order\PaymentMethodController;
 use App\Http\Controllers\Admin\Order\DeliverySystemController;
 use App\Http\Controllers\Admin\Courier\CourierController;
 use App\Http\Controllers\Admin\Courier\CourierDeliverPlace;
+use App\Http\Controllers\Admin\Courier\CourierPickupPlace;
 
 
 use App\Http\Controllers\Admin\AdminController;
@@ -68,10 +69,13 @@ Route::prefix('admin')->group(function () {
         // For order section
         Route::resource('deliverysystem', DeliverySystemController::class);
 
+        // Courier
         Route::resource('courier', CourierController::class);
-
         Route::get('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'addDeliveryPlace'])->name('courier.adddeliveryplace');
         Route::post('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'updateDeliveryPlace'])->name('courier.updateDeliveryplace');
+        // Pick Up
+        Route::get('courier/pickup-place/{id}', [CourierPickupPlace::class, 'addPickupPlace'])->name('courier.addpickupplace');
+        Route::post('courier/pickup-place/{id}', [CourierPickupPlace::class, 'updateDeliveryPlace'])->name('courier.updatepickplace');
 
         Route::resource('paymentmethod', PaymentMethodController::class);
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');

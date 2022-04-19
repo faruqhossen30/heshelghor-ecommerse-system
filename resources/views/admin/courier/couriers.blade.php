@@ -52,7 +52,8 @@
                                             <th class="all"> System Name</th>
                                             <th>Created at</th>
                                             <th>Status</th>
-                                            <th>Location</th>
+                                            <th>Pick Up</th>
+                                            <th>Deliver</th>
                                             <th style="width: 85px;">Action</th>
                                         </tr>
                                     </thead>
@@ -75,6 +76,10 @@
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-soft-success">Active</span>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('courier.addpickupplace', $courier->id)}}" type="button" class="btn btn-success mb-2 mb-sm-0"><i
+                                                        class="mdi mdi-google-maps"></i></a>
                                                 </td>
                                                 <td>
                                                     <a href="{{route('courier.adddeliveryplace', $courier->id)}}" type="button" class="btn btn-success mb-2 mb-sm-0"><i
