@@ -1,6 +1,7 @@
 @php
-$relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'brand')
+$relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     ->where('category_id', $product->category_id)
+    // ->limit(10)
     ->get();
 @endphp
 
@@ -436,7 +437,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory', 'b
                             <div class="product text-center">
                                 <figure class="product-media">
                                     <a href="{{ route('singleproduct', $product->slug) }}">
-                                        <img src="{{ $product->img_small }}" alt="product" width="280" height="315">
+                                        <img loading="lazy" src="{{ $product->img_small }}" alt="product" width="280" height="315">
                                     </a>
 
                                     <div class="product-action">
