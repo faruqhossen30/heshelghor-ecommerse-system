@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Courier\CourierHasDelivery;
+use App\Models\Admin\Courier\CourierHasPickup;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
 use App\Models\Admin\Location\Upazila;
@@ -22,7 +23,8 @@ class BuyNowController extends Controller
         try {
             $product = Product::findOrFail($id);
 
-            $divisionids = CourierHasDelivery::pluck('division_id')->unique();
+            // $divisionids = CourierHasDelivery::pluck('division_id')->unique();
+            $divisionids = CourierHasPickup::pluck('division_id')->unique();
             $divisions = Division::whereIn('id', $divisionids)->get();
 
             // $divisions = Division::all();

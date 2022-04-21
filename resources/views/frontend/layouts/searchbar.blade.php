@@ -88,66 +88,7 @@ $totalprice = Cart::priceTotal();
                 </a>
                 <div class="cart-overlay"></div>
                 <!-- End Cart Toggle -->
-                <div class="dropdown-box">
-                    <div class="cart-header">
-                        <h4 class="cart-title">Shopping Cart</h4>
-                        <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">close<i
-                                class="d-icon-arrow-right"></i><span class="sr-only">Cart</span></a>
-                    </div>
-                    <div class="products scrollable">
-                        <div class="product product-cart">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="{{ asset('frontend') }}/images/cart/product-1.jpg"
-                                        alt="product" width="80" height="88" />
-                                </a>
-                                <button class="btn btn-link btn-close">
-                                    <i class="fas fa-times"></i><span class="sr-only">Close</span>
-                                </button>
-                            </figure>
-                            <div class="product-detail">
-                                <a href="product.html" class="product-name">Riode White Trends</a>
-                                <div class="price-box">
-                                    <span class="product-quantity">1</span>
-                                    <span class="product-price">$21.00</span>
-                                </div>
-                            </div>
 
-                        </div>
-                        <!-- End of Cart Product -->
-                        <div class="product product-cart">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="{{ asset('frontend') }}/images/cart/product-2.jpg"
-                                        alt="product" width="80" height="88" />
-                                </a>
-                                <button class="btn btn-link btn-close">
-                                    <i class="fas fa-times"></i><span class="sr-only">Close</span>
-                                </button>
-                            </figure>
-                            <div class="product-detail">
-                                <a href="product.html" class="product-name">Dark Blue Women’s
-                                    Leomora Hat</a>
-                                <div class="price-box">
-                                    <span class="product-quantity">1</span>
-                                    <span class="product-price">$118.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Cart Product -->
-                    </div>
-                    <!-- End of Products  -->
-                    <div class="cart-total">
-                        <label>Subtotal:</label>
-                        <span class="price">{{ $totalprice }}</span>
-                    </div>
-                    <!-- End of Cart Total -->
-                    <div class="cart-action">
-                        <a href="{{ route('cart.page') }}" class="btn btn-dark btn-link">View Cart</a>
-                        <a href="checkout.html" class="btn btn-dark"><span>Go To Checkout</span></a>
-                    </div>
-                    <!-- End of Cart Action -->
-                </div>
                 <!-- End Dropdown Box -->
             </div>
             <div class="header-search hs-toggle mobile-search">
@@ -166,47 +107,3 @@ $totalprice = Cart::priceTotal();
         </div>
     </div>
 </div>
-
-
-
-{{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
-{{-- <script>
-    let search = document.getElementById('searchInpur');
-    let searchResultDiv = document.getElementById('searchResultDiv');
-    let searchProductList = document.getElementById('searchProductList');
-
-    // console.log(search)
-
-    search.addEventListener('keyup', function(event) {
-        let keyword = event.target.value.trim();
-        let url = `search/${keyword}`;
-        if(keyword.length == 0){
-            searchResultDiv.style.display = 'none'
-        };
-
-        if (keyword) {
-            axios.get(url)
-                .then(function(res) {
-                    if (res.data.length > 0) {
-                        searchResultDiv.style.display = 'block'
-                        console.log(res.data);
-                        li = res.data.map(function(post){
-                            return `<a href="product/${post.id}" class="list-group-item">${post.title}</a>`;
-                        });
-                        li = li.join(' ');
-                        searchProductList.innerHTML = li;
-
-
-                    };
-
-                })
-                .catch(function(err) {
-                    console.log(err);
-                })
-        };
-        console.log(event.target.value);
-    });
-</script> --}}
-
-
-

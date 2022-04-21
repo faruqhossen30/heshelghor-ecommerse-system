@@ -47,18 +47,14 @@ class CourierController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'price' => 'required'
+            'code' => 'required',
         ]);
         Courier::create([
-            'name'                    => $request->name,
-            'description'             => $request->description,
-            'price'                   => $request->price,
-            'slug'                    => Str::of($request->name)->slug('-'),
-            'author_id'               => Auth::guard('admin')->user()->id,
-            'dhaka_to_dhaka_price'    => $request->dhaka_to_dhaka_price,
-            'all_place_price'         => $request->all_place_price,
-            'dhaka_to_dhaka_per_kg'   => $request->dhaka_to_dhaka_per_kg,
-            'dhaka_to_outside_per_kg' => $request->dhaka_to_outside_per_kg,
+            'name'        => $request->name,
+            'code'        => $request->code,
+            'description' => $request->description,
+            'slug'        => Str::slug($request->name, '-'),
+            'author_id'   => Auth::guard('admin')->user()->id
         ]);
         return redirect()->route('courier.index');
     }
@@ -108,9 +104,10 @@ class CourierController extends Controller
         ]);
 
         Courier::where('id', $id)->update([
-            'name' => $request->name,
+            'name'        => $request->name,
+            'code'        => $request->code,
             'description' => $request->description,
-            'price' => $request->price
+            'slug'        => Str::slug($request->name, '-')
         ]);
 
 

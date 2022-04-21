@@ -12,20 +12,17 @@ $totalItem = count(Cart::content());
 
 @section('content')
     <main class="main checkout">
-        <div class="page-content pt-7 pb-10 mb-10">
+        <div class="page-content pb-10">
             <div class="step-by pr-4 pl-4">
                 <h3 class="title title-simple title-step"><a href="#">Buy Now</a></h3>
             </div>
-            <div class="container mt-7">
+            <div class="container">
                 <form action="{{ route('pay') }}" method="POST" class="form">
                     @csrf
-
-                    <input type="hidden" value="1" name="total_prodcut">
-                    <input type="hidden" value="1" name="total_item">
-                    <input type="hidden" value="0" name="delivery_cost">
-                    <input type="hidden" value="{{ $product->price }}" name="product_price">
-                    {{-- total_price is for ssl commerce --}}
                     <input type="hidden" value="0" name="total_price">
+                    <label for="">some</label>
+                    <input type="text" name="product" data-price="{{ $product->price }}"
+                        data-prdoduct_upazila_id="{{ $product->upazila_id }}">
 
 
                     <div class="row">
@@ -43,8 +40,6 @@ $totalItem = count(Cart::content());
                                     </div>
                                 </div>
                             </div>
-                            <label>Company Name (Optional)</label>
-                            <input type="text" class="form-control" name="company_name" />
                             <div class="row">
                                 <div class="col">
                                     <label>Delivery Address *</label>
@@ -60,8 +55,8 @@ $totalItem = count(Cart::content());
 
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <label>ZIP</label>
-                                    <input type="text" class="form-control" name="zip" />
+                                    <label>Email Address *</label>
+                                    <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Mobile No *</label>
@@ -75,34 +70,39 @@ $totalItem = count(Cart::content());
                                 </div>
                             </div>
 
-                            <label>Email Address *</label>
-                            <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
-                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver service</h2>
-                            <div>
-                                <label>Select Divission *</label>
-                                <div class="select-box">
-                                    <select name="division_id" class="form-control">
-                                        <option value="">Select Divission</option>
-                                        @foreach ($divisions as $division)
-                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                        @endforeach
-                                    </select>
+
+                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver
+                                service</h2>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Select Divission *</label>
+                                    <div class="select-box">
+                                        <select name="division_id" class="form-control">
+                                            <option value="">Select Divission</option>
+                                            @foreach ($divisions as $division)
+                                                <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <label>Select District *</label>
-                                <div class="select-box">
-                                    <select name="district_id"
-                                        class="form-control @error('district_id') is-invalid @enderror" disabled required>
-                                        <option value="">select </option>
-                                    </select>
-                                    <div class="text-danger">
-                                        @error('district_id')
-                                            <span>{{ $message }}</span>
-                                        @enderror
+                                <div class="col-xs-6">
+
+                                    <label>Select District *</label>
+                                    <div class="select-box">
+                                        <select name="district_id"
+                                            class="form-control @error('district_id') is-invalid @enderror" disabled
+                                            required>
+                                            <option value="">select </option>
+                                        </select>
+                                        <div class="text-danger">
+                                            @error('district_id')
+                                                <span>{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div>
                                 <label>Select Upazila *</label>
                                 <div class="select-box">
@@ -176,36 +176,7 @@ $totalItem = count(Cart::content());
                                                 </td>
                                             </tr>
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
-                                                {{-- <td colspan="2">
-                                                    <h4 class="summary-subtitle">Available Delivery System</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-radio">
-                                                                <input type="radio" id="flat_rate" name="shipping"
-                                                                    class="custom-control-input" checked="">
-                                                                <label class="custom-control-label" for="flat_rate">Flat
-                                                                    rate</label>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-radio">
-                                                                <input type="radio" id="free-shipping" name="shipping"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="free-shipping">Free
-                                                                    shipping</label>
-                                                            </div>
-                                                        </li>
 
-                                                        <li>
-                                                            <div class="custom-radio">
-                                                                <input type="radio" id="local_pickup" name="shipping"
-                                                                    class="custom-control-input">
-                                                                <label class="custom-control-label" for="local_pickup">Local
-                                                                    pickup</label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </td> --}}
                                             </tr>
                                         </tbody>
                                     </table>
@@ -213,28 +184,6 @@ $totalItem = count(Cart::content());
                                         <input type="hidden" value="" name="delivery_system_name">
                                         <input type="hidden" value="" name="payment_method_name">
 
-                                    </div>
-                                    <div class="">
-                                        <label>Payment Method<strong></strong></label>
-                                        <div class="select-box">
-                                            <select name="payment_method_id"
-                                                class="form-control @error('payment_method_id') is-invalid @enderror"
-                                                required>
-                                                <option value="">Select one</option>
-                                                @foreach ($pamymentmethods as $system)
-                                                    <option value="{{ $system->id }}" name="welcome">
-                                                        {{ $system->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="text-danger">
-                                                @error('payment_method_id')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div id="payment_img">
-                                                <img src="{{ asset('frontend/images/walletmix2.png') }}" alt="">
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="form-checkbox mt-4 mb-5">
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
@@ -267,6 +216,9 @@ $totalItem = count(Cart::content());
             var district = $('select[name=district_id]');
             var upazila = $('select[name=upazila_id]');
 
+            var product_price = $('input[name=product]').data('price');
+            var prdoduct_upazila_id = $('input[name=product]').data('prdoduct_upazila_id');
+
             // For District
             division.change(function() {
                 district.removeAttr('disabled');
@@ -276,8 +228,8 @@ $totalItem = count(Cart::content());
                 if (divisionID) {
                     // console.log(divisionID)
                     district.append(
-                                    `<option selected>Select</option>`
-                                );
+                        `<option selected>Select</option>`
+                    );
                     $.ajax({
                         url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`,
                         method: 'GET',
@@ -303,13 +255,13 @@ $totalItem = count(Cart::content());
                 var districtID = $(this).val();
                 if (districtID) {
                     upazila.append(
-                                    `<option selected>Select</option>`
-                                );
+                        `<option selected>Select</option>`
+                    );
                     $.ajax({
                         url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`,
                         method: 'GET',
                         success(data) {
-                            console.log(data);
+                            // console.log(data);
                             data.forEach(function(row) {
                                 upazila.append(
                                     `<option value="${row.id}">${row.name}</option>`
@@ -327,13 +279,18 @@ $totalItem = count(Cart::content());
                 // upazila.removeAttr('disabled');
                 var upazilaid = $(this).val();
                 if (upazilaid) {
-                    console.log(upazilaid)
+                    // console.log(upazilaid)
 
                     $.ajax({
                         url: `/checkupazilawisecourierupalizalist/${upazilaid}`,
                         method: 'GET',
+                        data: {
+                            prdoduct_upazila_id: prdoduct_upazila_id,
+                            product_delivery_upazila_id: upazilaid,
+                            product_weight: 1
+                        },
                         success(data) {
-                            // console.log('for courier list',data);
+                            console.log('for courier list', data);
                             $('#couriertablerow').empty()
                             $('#couriertablerow').append(data).hide().fadeIn(2000);
 
@@ -345,88 +302,23 @@ $totalItem = count(Cart::content());
                 }
             });
 
-        });
+            $(document).on('change select', 'input[name="delivery_system"]', function() {
+                let delivery_cost = $(this).val();
+                // alert(delivery_cost)
+                totalAmount(delivery_cost);
 
-        // For Price Calculation
-        var sub_total = $('#sub_total');
-        var product_quantity = $('#product_quantity');
-        var productNumber = parseInt(product_quantity.text())
-        var delivery_charge = $('#delivery_charge');
-        var total_product_price = $('#total_product_price');
+            });
 
-        // For Hidden input
-        var delivery_cost = $('input[name="delivery_cost"]');
-        var total_price = $('input[name="total_price"]');
-        var delivery_system_name = $('input[name="delivery_system_name"]');
+            // claculate
+            function totalAmount(delivery_cost) {
+                var inTotal = parseInt(product_price) + parseInt(delivery_cost);
+                // var sum = inTotal.toFixed(2)
+                $('input[name=total_price]').val(inTotal);
+                $('#total_product_price').html(inTotal);
 
+                console.log(inTotal);
 
-        $(document).on('change select', 'input[name="delivery_system"]', function() {
-            let dhaka_to_dhaka_price = $(this).data('dhaka_to_dhaka_price');
-            let all_place_price = $(this).data('all_place_price');
-            let dhaka_to_dhaka_per_kg = $(this).data('dhaka_to_dhaka_per_kg');
-            let dhaka_to_outside_per_kg = $(this).data('dhaka_to_outside_per_kg');
-            // alert(dhaka_to_outside_per_kg)
-
-            // delivery_system_name.val(data.name);
-            delivery_cost.val(all_place_price); // for hidden input
-            delivery_charge.text(all_place_price); // For Show calculate
-            totalAmount();
-
-            // var deliverySystemId = $('select[name="delivery_system"]').val();
-            // if (deliverySystemId) {
-            //     $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
-            //         if (data) {
-            //             console.log(data);
-            //             delivery_system_name.val(data.name);
-            //             // console.log(delivery_system_name.val());
-            //             // console.log(payment_system_name.val());
-            //             delivery_cost.val(data.price * productNumber); // for hidden input
-            //             delivery_charge.text(data.price * productNumber); // For Show calculate
-            //             totalAmount();
-            //         }
-            //     });
-            // };
-
-        });
-
-
-        // claculate
-        function totalAmount() {
-            var inTotal = parseFloat(sub_total.text()) + parseFloat(delivery_charge.text());
-            var sum = inTotal.toFixed(2)
-            total_price.val(sum);
-            total_product_price.html(sum);
-        }
-
-
-        var payment_method_name = $('input[name="payment_method_name"]');
-        var payment_img = $('#payment_img');
-        payment_img.hide()
-
-        $(document).on('change', 'select[name="payment_method_id"]', function() {
-            var payment_method_id = $('select[name="payment_method_id"]').val();
-            payment_img.hide()
-            if (payment_method_id) {
-                // console.log(payment_method_id);
-                $.get(`{{ url('paymentsystemname/${payment_method_id}') }}`, function(data, status) {
-                    if (data) {
-                        // console.log(data);
-                        payment_method_name.val(data.name)
-                    }
-                });
-                // Online payment
-                $.get(`setting/setting-payment-system`, function(data, status) {
-                    if (data) {
-                        data.map(function(d) {
-                            if (payment_method_id == d.payment_method_id) {
-                                payment_img.show();
-                            }
-                        });
-
-                    }
-                });
-            };
-
+            }
 
         });
     </script>
