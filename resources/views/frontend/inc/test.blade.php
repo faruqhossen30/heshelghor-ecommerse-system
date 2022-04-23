@@ -38,7 +38,7 @@ $dhaka = [207, 208, 209, 210, 211, 499, 500, 501, 502, 503, 504, 505, 506, 507, 
                                     <small>
                                         - Charge: ৳50</small>
                                     <br>
-                                    <small>For Dhaka</small>
+                                    <small>Estimate delivery time 48 hours</small>
                                 </label>
 
                             </div>
@@ -47,13 +47,13 @@ $dhaka = [207, 208, 209, 210, 211, 499, 500, 501, 502, 503, 504, 505, 506, 507, 
                         <li>
                             <div class="custom-radio">
                                 <input type="radio" id="deliverrat{{ $courier->id }}" name="delivery_system"
-                                    value="120">
+                                    value="110">
                                 <label class="custom-control-label"
                                     for="deliverrat{{ $courier->id }}"><strong>{{ $courier->name }}</strong>
                                     <small>
-                                        - Charge: ৳120</small>
+                                        - Charge: ৳110</small>
                                     <br>
-                                    <small>For Dhaka</small>
+                                    <small>Estimate delivery 3 to 7 days</small>
                                 </label>
 
                             </div>

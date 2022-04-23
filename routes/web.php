@@ -45,6 +45,7 @@ use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\CourierAjaxController;
+use App\Http\Controllers\Ajax\FrontEnd\CheckoutCourierAjaxController;
 
 
 
@@ -202,6 +203,9 @@ Route::get('/ajax/search/shoplist/{name}', [SearchShopAjaxController::class, 'sh
 Route::get('/ajax/search/marketlist/{name}', [SearchMarketAjaxController::class, 'marketList'])->name('search.ajax.marketlist');
 Route::get('/ajax/search/latestmarketlist', [SearchMarketAjaxController::class, 'latestMarket'])->name('search.ajax.latestMarketlist');
 Route::get('/ajax/prodcut-shop-and-market', [SingleproductShopAndMarketAjaxController::class, 'shopAndMarket'])->name('product.ajax.shop.and.market');
+Route::get('/ajax/check-courier-division', [CheckoutCourierAjaxController::class, 'getDivision']);
+
+
 
 
 

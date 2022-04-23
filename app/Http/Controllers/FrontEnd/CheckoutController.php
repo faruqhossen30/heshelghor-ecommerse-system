@@ -45,4 +45,44 @@ class CheckoutController extends Controller
             'pamymentmethods',
         ));
     }
+
+    public function indexNew()
+    {
+        $divisionids = CourierHasDelivery::pluck('division_id')->unique();
+        $divisions = Division::whereIn('id', $divisionids)->get();
+
+        $userId = Auth::user()->id;
+        $user = User::where('id', $userId)->first();
+
+        $upazilas = Upazila::all();
+
+        $cartItems = Cart::content();
+        $deliverysystems = DeliverySystem::all();
+        $pamymentmethods = PaymentMethod::all();
+
+        // Start Delivery System
+
+        $divisionids = CourierHasPickup::pluck('division_id')->unique();
+        $divisions = Division::whereIn('id', $divisionids)->get();
+
+        // return $cartItems;
+        return view('frontend.newcheckout', compact(
+            'divisions',
+            'user',
+            'divisions',
+            'upazilas',
+            'cartItems',
+            'deliverysystems',
+            'pamymentmethods',
+        ));
+        // return view('frontend.checkout', compact(
+        //     'divisions',
+        //     'user',
+        //     'divisions',
+        //     'upazilas',
+        //     'cartItems',
+        //     'deliverysystems',
+        //     'pamymentmethods',
+        // ));
+    }
 }

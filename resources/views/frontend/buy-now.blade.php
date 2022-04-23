@@ -185,9 +185,14 @@ $totalItem = count(Cart::content());
                                         <input type="hidden" value="" name="payment_method_name">
 
                                     </div>
+                                    <div>
+                                        @error('total_amount')
+                                            <span class="text-danger">Please select location and deliver system for complete order.</span>
+                                        @enderror
+                                    </div>
                                     <div class="form-checkbox mt-4 mb-5">
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
-                                            name="terms-condition" value="1" />
+                                            name="terms-condition" value="1" required/>
                                         <label class="form-control-label" for="terms-condition">
                                             I have read and agree to the website <a href="#">terms and conditions </a>*
                                         </label>

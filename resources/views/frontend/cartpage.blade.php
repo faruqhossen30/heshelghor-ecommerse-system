@@ -180,7 +180,7 @@ $totalitem = Cart::count();
 @endpush
 
 @push('scripts')
-    {{-- <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function() {
 
             // var deliveryCost = 0;
@@ -213,5 +213,5 @@ $totalitem = Cart::count();
 
         }); // Document ready
 
-    </script> --}}
+    </script>
 @endpush
