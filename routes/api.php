@@ -26,6 +26,9 @@ use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
 use App\Http\Controllers\API\MerChant\MerchantMediaAPIController;
 use App\Http\Controllers\API\Merchant\MerchantGalleryAPIController;
 use App\Http\Controllers\API\Merchant\MerchantProfileAPIController;
+// Courier
+use App\Http\Controllers\API\User\BuyNowAPIController;
+use App\Http\Controllers\API\User\BuyNowCourierAPIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -171,6 +174,13 @@ Route::prefix('user')->group(function () {
         Route::post('/createorder', [UserOrderAPIController::class, 'createOrder']);
         Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
         Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
+
+        // Courier
+        Route::get('/courier/divisions', [BuyNowCourierAPIController::class, 'divisionList']);
+        Route::get('/courier/districtlist/{id}', [BuyNowCourierAPIController::class, 'getdistrictbydivisionid']);
+        Route::get('/courier/upazilalist/{id}', [BuyNowCourierAPIController::class, 'getgetupazilabydistrictid']);
+        Route::post('/courier/allcourierservice', [BuyNowCourierAPIController::class, 'upazilaWiseCourierServiceList']);
+
 
     });
 
