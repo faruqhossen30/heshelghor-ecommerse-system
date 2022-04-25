@@ -48,6 +48,15 @@ $totalItem = count(Cart::content());
                                 $serial = 1;
                             @endphp
                             @foreach ($cartItems as $cartItem)
+                                @php
+                                    $product = App\Models\Product\Product::firstWhere('id', $cartItem->id);
+
+                                    // $pickup = App\Models\Admin\Courier\CourierHasPickup::where('division_id', $product->upazila_id)->pluck('division_id')->unique();
+                                    $delivery = App\Models\Admin\Courier\CourierHasDelivery::pluck('division_id')->unique();
+
+                                    $divisions = App\Models\Admin\Location\Division::whereIn('id', $delivery)->get();
+                                    $count = 0;
+                                @endphp
                                 <tr>
                                     <th scope="row">{{ $serial++ }}</th>
                                     <td>{{ $cartItem->name }}</td>
@@ -56,19 +65,34 @@ $totalItem = count(Cart::content());
                                     <td>৳{{ $cartItem->price }}</td>
                                     <td>৳{{ $cartItem->subtotal }}</td>
                                     {{-- Delivery --}}
-                                    <td id="division{{ $cartItem->id }}">
+                                    <td id="division">
 
-                                        <button onclick="loadDivision({{ $cartItem->id }});">Select</button>
-                                        {{-- <select class="form-select">
+                                        {{-- <button onclick="loadDivision({{ $cartItem->id }});">Select</button> --}}
+                                        <select class="form-select " name="division" data-id="{{ $cartItem->id }}">
                                             <option selected>Select </option>
                                             @foreach ($divisions as $division)
                                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
                                             @endforeach
-                                        </select> --}}
+                                        </select>
                                     </td>
-                                    <td>Jessore</td>
-                                    <td>Sadar</td>
-                                    <td>Heshel</td>
+                                    <td>
+                                        <select id="district{{ $cartItem->id }}" class="form-select" name="district">
+                                            <option selected>Select </option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="upazila{{ $cartItem->id }}" class="form-select" name="upazila">
+                                            <option selected>Select </option>
+
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="delivery{{ $cartItem->id }}" class="form-select" name="upazila">
+                                            <option selected>Select </option>
+
+                                        </select>
+                                    </td>
                                     <td>35</td>
                                 </tr>
                             @endforeach
@@ -98,34 +122,86 @@ $totalItem = count(Cart::content());
 
 @push('scripts')
     <script type="text/javascript">
-        function loadDivision(data) {
-            let division = $(`#division${data}`)
-
-            // get Division
-            $.ajax({
-                url: `/ajax/check-courier-division`,
-                method: 'GET',
-                data: {
-                    id:data
-                },
-                success(data) {
-                    division.empty()
-                    division.append(data)
-                    // console.log('checkout page = ', data);
-
-                },
-                error() {
-                    console.log('courier error');
-                },
-            });
-
-        }
-
-        function loadDistrict(){
-            console.log('district')
-        }
-
         $(document).ready(function() {
+
+            let division = $('select[name=division]');
+
+            $(document).on('change', 'select[name=division]', function() {
+                let divisionid = $(this).val();
+                var divisiondataid = $(this).data('id');
+
+                if (divisionid) {
+                    $.ajax({
+                        url: `/ajax/courier/getdistrictbydivisionid/${divisionid}`,
+                        method: 'GET',
+                        success(data) {
+                            $(`#district${divisiondataid}`).empty()
+                            $(`#district${divisiondataid}`).append(
+                                `<option selected>Select</option>`
+                            );
+                            // console.log(data);
+                            data.forEach(function(row) {
+                                $(`#district${divisiondataid}`).append(
+                                    `<option value="${row.id}">${row.name}</option>`
+                                );
+                            });
+                        },
+                        error() {
+                            console.log('courier error');
+                        },
+                    });
+                } // division ajax
+
+                $(document).on('change', `#district${divisiondataid}`, function() {
+                    let districtid = $(this).val();
+                    // console.log(districtid)
+                    if (districtid) {
+
+                        $.ajax({
+                            url: `/ajax/courier/getgetupazilabydistrictid/${districtid}`,
+                            method: 'GET',
+                            success(data) {
+                                console.log(data);
+                                $(`#upazila${divisiondataid}`).empty()
+                                $(`#upazila${divisiondataid}`).append(
+                                    `<option selected>Select</option>`
+                                );
+                                data.forEach(function(row) {
+                                    $(`#upazila${divisiondataid}`).append(
+                                        `<option value="${row.id}">${row.name}</option>`
+                                    );
+                                });
+                            },
+                            error() {
+                                console.log('courier error');
+                            },
+                        });
+                    }
+
+                })
+
+                $(document).on('change', `#upazila${divisiondataid}`, function() {
+                    let upazilaid = $(this).val();
+                    // console.log(districtid)
+                    if (districtid) {
+
+                        $.ajax({
+                            url: `/ajax/courier/getgetupazilabydistrictid/${districtid}`,
+                            method: 'GET',
+                            success(data) {
+                                console.log(data);
+                            },
+                            error() {
+                                console.log('courier error');
+                            },
+                        });
+                    }
+
+                })
+
+
+            }) // Division change event
+
 
 
 

@@ -48,6 +48,31 @@ class CourierAjaxController extends Controller
 
         }
     }
+    public function upazilaWiseCourierServiceListForCheckoutPage(Request $request, $upazila_id)
+    {
+        if ($request->ajax()) {
+            // Working
+
+            // return $request->all();
+
+            $prdoduct_upazila_id         = $request->prdoduct_upazila_id;
+            $product_delivery_upazila_id = $request->product_delivery_upazila_id;
+            $product_weight              = $request->product_weight;
+
+
+            $pickup = CourierHasPickup::where('upazila_id', $prdoduct_upazila_id)->pluck('courier_id')->unique()->toArray();
+            $delivery = CourierHasDelivery::where('upazila_id', $product_delivery_upazila_id)->pluck('courier_id')->unique()->toArray();
+
+            $courierids = array_intersect($pickup, $delivery);
+
+            $couriers = Courier::whereIn('id', $courierids)->get();
+
+            $data = view('frontend.inc.test', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
+
+            return $data;
+
+        }
+    }
 
     public function getdistrictbydivisionid(Request $request, $division_id)
     {

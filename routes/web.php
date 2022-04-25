@@ -100,7 +100,7 @@ Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')
 Auth::routes();
 // For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
+Route::get('checkout', [CheckoutController::class, 'indexNew'])->name('checkoutpage');
 Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
 Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 
@@ -190,6 +190,9 @@ Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierS
 Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
 Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
 Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
+
+// For Checkout page
+Route::get('checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
 
 
 
