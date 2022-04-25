@@ -84,4 +84,8 @@ class HomepageController extends Controller
         // return $job;
         return view('frontend.job.show', compact('job', 'jobs'));
     }
+    public function termsAndCondition()
+    {
+        return view('frontend.terms-and-condition');
+    }
 }

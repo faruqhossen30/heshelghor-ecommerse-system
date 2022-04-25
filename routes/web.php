@@ -55,6 +55,11 @@ Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus')
 Route::get('/promotion', [HomepageController::class, 'promotion'])->name('promotion');
 Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
 Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
+
+Route::get('/terms-and-condition', [HomepageController::class, 'termsAndCondition'])->name('termsandcondition');
+
+
+
 // Filter product
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
@@ -100,7 +105,7 @@ Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')
 Auth::routes();
 // For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('checkout', [CheckoutController::class, 'indexNew'])->name('checkoutpage');
+Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
 Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
 Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 

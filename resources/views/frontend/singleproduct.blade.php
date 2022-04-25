@@ -191,20 +191,15 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
 
                             <div class="product-footer">
                                 <div class="social-links mr-4">
-                                    Share On:
+                                   <span><i class="fas fa-share"></i> Share On: </span>
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleproduct', $product->slug) }}"
-                                        class="social-link social-facebook fab fa-facebook-f"></a>
+                                        class="social-link social-facebook fab fa-facebook-f ml-2"></a>
+                                        <a href="whatsapp://send?text={{ route('singleproduct', $product->slug) }}" class="social-link social-whatsapp fab fa-whatsapp"></a>
                                     {{-- <a href="#" class="social-link social-twitter fab fa-twitter"></a> --}}
                                     {{-- <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a> --}}
                                 </div>
                                 <hr class="divider d-lg-show">
-                                {{-- <div class="product-action">
-                                <a href="#" class="btn-product btn-wishlist mr-6"><i
-                                        class="d-icon-heart"></i>Add to wishlist</a>
 
-                                <a href="#" class="btn-product btn-compare"><i class="d-icon-compare"></i>Add
-                                    to compare</a>
-                            </div> --}}
                             </div>
 
                             {{-- <div class="product-footer" id="productShopAndMarketInfoDiv">
@@ -414,30 +409,31 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                                            'items': 5,
-                                            'nav': false,
-                                            'loop': false,
-                                            'dots': true,
-                                            'margin': 20,
-                                            'responsive': {
-                                                '0': {
-                                                    'items': 2
-                                                },
-                                                '768': {
-                                                    'items': 3
-                                                },
-                                                '992': {
-                                                    'items': 5,
-                                                    'dots': false,
-                                                    'nav': true
+                                                'items': 5,
+                                                'nav': false,
+                                                'loop': false,
+                                                'dots': true,
+                                                'margin': 20,
+                                                'responsive': {
+                                                    '0': {
+                                                        'items': 2
+                                                    },
+                                                    '768': {
+                                                        'items': 3
+                                                    },
+                                                    '992': {
+                                                        'items': 5,
+                                                        'dots': false,
+                                                        'nav': true
+                                                    }
                                                 }
-                                            }
-                                        }">
+                                            }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
                                     <a href="{{ route('singleproduct', $product->slug) }}">
-                                        <img loading="lazy" src="{{ $product->img_small }}" alt="product" width="280" height="315">
+                                        <img loading="lazy" src="{{ $product->img_small }}" alt="product" width="280"
+                                            height="315">
                                     </a>
 
                                     <div class="product-action">
@@ -486,6 +482,12 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
 @endsection
 
 @push('styles')
+    <style>
+        .product-single .social-link {
+            border: 2px solid #ccc !important;
+        }
+
+    </style>
 @endpush
 
 @push('scripts')
@@ -515,5 +517,4 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     </script>
 @endpush
 @push('og_tag')
-
 @endpush

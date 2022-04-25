@@ -69,6 +69,12 @@
                                 <a href="{{route('aboutus')}}">About Us</a>
                             </li>
                             <li>
+                                <a href="{{route('termsandcondition')}}">Terms and condition</a>
+                            </li>
+                            <li>
+                                <a href="">Return Policy</a>
+                            </li>
+                            <li>
                                 <a href="{{route('marchant.login')}}">Marchant Login</a>
                             </li>
                             <li>

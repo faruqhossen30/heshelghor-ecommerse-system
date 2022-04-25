@@ -194,7 +194,7 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                                             name="terms-condition" value="1" required/>
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="#">terms and conditions </a>*
+                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" target="_blank">terms and conditions </a>*
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
