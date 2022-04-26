@@ -8,6 +8,7 @@ use App\Models\Admin\Courier\CourierHasDelivery;
 use App\Models\Admin\Courier\CourierHasPickup;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Upazila;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
 class CourierAjaxController extends Controller
@@ -51,23 +52,22 @@ class CourierAjaxController extends Controller
     public function upazilaWiseCourierServiceListForCheckoutPage(Request $request, $upazila_id)
     {
         if ($request->ajax()) {
-            // Working
-
             // return $request->all();
+            $product = Product::firstWhere('id', $request->productid);
 
-            $prdoduct_upazila_id         = $request->prdoduct_upazila_id;
+            $productid                   = $request->productid;
             $product_delivery_upazila_id = $request->product_delivery_upazila_id;
-            $product_weight              = $request->product_weight;
+            $prdoduct_upazila_id         = $product->upazila_id;
+            $product_weight              = 1;
 
 
             $pickup = CourierHasPickup::where('upazila_id', $prdoduct_upazila_id)->pluck('courier_id')->unique()->toArray();
             $delivery = CourierHasDelivery::where('upazila_id', $product_delivery_upazila_id)->pluck('courier_id')->unique()->toArray();
 
             $courierids = array_intersect($pickup, $delivery);
-
             $couriers = Courier::whereIn('id', $courierids)->get();
 
-            $data = view('frontend.inc.test', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
+            $data = view('frontend.inc.checkouttest', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
 
             return $data;
 

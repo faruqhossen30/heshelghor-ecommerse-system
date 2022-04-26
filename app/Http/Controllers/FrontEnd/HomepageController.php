@@ -88,4 +88,8 @@ class HomepageController extends Controller
     {
         return view('frontend.terms-and-condition');
     }
+    public function returnPolicy()
+    {
+        return view('frontend.return-policy');
+    }
 }

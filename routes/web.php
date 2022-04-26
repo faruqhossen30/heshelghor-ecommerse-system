@@ -57,6 +57,7 @@ Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
 Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
 
 Route::get('/terms-and-condition', [HomepageController::class, 'termsAndCondition'])->name('termsandcondition');
+Route::get('/return-policy', [HomepageController::class, 'returnPolicy'])->name('returnpolicy');
 
 
 
@@ -197,7 +198,7 @@ Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxC
 Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
 
 // For Checkout page
-Route::get('checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
+Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
 
 
 

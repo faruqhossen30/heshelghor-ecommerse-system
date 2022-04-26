@@ -93,7 +93,9 @@ $totalItem = count(Cart::content());
 
                                         </select>
                                     </td>
-                                    <td>35</td>
+                                    <td id="price{{$cartItem->id}}" class="test">
+
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -128,20 +130,20 @@ $totalItem = count(Cart::content());
 
             $(document).on('change', 'select[name=division]', function() {
                 let divisionid = $(this).val();
-                var divisiondataid = $(this).data('id');
+                var productid = $(this).data('id');
 
                 if (divisionid) {
                     $.ajax({
                         url: `/ajax/courier/getdistrictbydivisionid/${divisionid}`,
                         method: 'GET',
                         success(data) {
-                            $(`#district${divisiondataid}`).empty()
-                            $(`#district${divisiondataid}`).append(
+                            $(`#district${productid}`).empty()
+                            $(`#district${productid}`).append(
                                 `<option selected>Select</option>`
                             );
                             // console.log(data);
                             data.forEach(function(row) {
-                                $(`#district${divisiondataid}`).append(
+                                $(`#district${productid}`).append(
                                     `<option value="${row.id}">${row.name}</option>`
                                 );
                             });
@@ -152,7 +154,7 @@ $totalItem = count(Cart::content());
                     });
                 } // division ajax
 
-                $(document).on('change', `#district${divisiondataid}`, function() {
+                $(document).on('change', `#district${productid}`, function() {
                     let districtid = $(this).val();
                     // console.log(districtid)
                     if (districtid) {
@@ -161,13 +163,13 @@ $totalItem = count(Cart::content());
                             url: `/ajax/courier/getgetupazilabydistrictid/${districtid}`,
                             method: 'GET',
                             success(data) {
-                                console.log(data);
-                                $(`#upazila${divisiondataid}`).empty()
-                                $(`#upazila${divisiondataid}`).append(
+                                // console.log(data);
+                                $(`#upazila${productid}`).empty()
+                                $(`#upazila${productid}`).append(
                                     `<option selected>Select</option>`
                                 );
                                 data.forEach(function(row) {
-                                    $(`#upazila${divisiondataid}`).append(
+                                    $(`#upazila${productid}`).append(
                                         `<option value="${row.id}">${row.name}</option>`
                                     );
                                 });
@@ -180,16 +182,23 @@ $totalItem = count(Cart::content());
 
                 })
 
-                $(document).on('change', `#upazila${divisiondataid}`, function() {
+                $(document).on('change', `#upazila${productid}`, function() {
                     let upazilaid = $(this).val();
                     // console.log(districtid)
-                    if (districtid) {
+                    if (upazilaid) {
 
                         $.ajax({
-                            url: `/ajax/courier/getgetupazilabydistrictid/${districtid}`,
+                            url: `/ajax/checkupazilawisecourierupalizalistforcheckoutpage/${upazilaid}`,
                             method: 'GET',
+                            data: {
+                                productid: productid,
+                                product_delivery_upazila_id: upazilaid
+                            },
                             success(data) {
-                                console.log(data);
+                                // console.log(data);
+                                $(`#delivery${productid}`).empty()
+                                $(`#delivery${productid}`).append(`<option selected>Select</option>`)
+                                $(`#delivery${productid}`).append(data)
                             },
                             error() {
                                 console.log('courier error');
@@ -198,6 +207,26 @@ $totalItem = count(Cart::content());
                     }
 
                 })
+                // For Price
+                $(document).on('change', `#delivery${productid}`, function() {
+                    let price = $(this).val();
+                    // console.log(districtid)
+                    if (price) {
+                        $(`#price${productid}`).empty();
+                        $(`#price${productid}`).append(`<span class="deliveryprice" data-price="${price}">৳${price}</span>`);
+
+                        // console.log(price)
+                        deliveryprice();
+
+
+                    }
+
+                })
+
+                function deliveryprice(){
+                    var s = $('.test').children('.deliveryprice').data('price');
+                    console.log(s)
+                }
 
 
             }) // Division change event
@@ -210,4 +239,6 @@ $totalItem = count(Cart::content());
 
         }); // Document ready
     </script>
+
+
 @endpush
