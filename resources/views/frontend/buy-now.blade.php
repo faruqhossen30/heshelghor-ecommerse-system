@@ -19,10 +19,10 @@ $totalItem = count(Cart::content());
             <div class="container">
                 <form action="{{ route('pay') }}" method="POST" class="form">
                     @csrf
-                    <input type="hidden" value="0" name="total_price">
-                    <label for="">some</label>
+                    <input type="hidden" value="0" name="total_amount">
                     <input type="text" name="product" data-price="{{ $product->price }}"
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
+                    <input type="hidden" name="buytype" value="buynow">
 
 
                     <div class="row">
@@ -194,7 +194,8 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                                             name="terms-condition" value="1" required/>
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" target="_blank">terms and conditions </a>*
+                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" target="_blank">terms and conditions </a> and
+                                            <a href="{{route('privacypolicy')}}" target="_blank">privacy policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
@@ -318,7 +319,7 @@ $totalItem = count(Cart::content());
             function totalAmount(delivery_cost) {
                 var inTotal = parseInt(product_price) + parseInt(delivery_cost);
                 // var sum = inTotal.toFixed(2)
-                $('input[name=total_price]').val(inTotal);
+                $('input[name=total_amount]').val(inTotal);
                 $('#total_product_price').html(inTotal);
 
                 console.log(inTotal);

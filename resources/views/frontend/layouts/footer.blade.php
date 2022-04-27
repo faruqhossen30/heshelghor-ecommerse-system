@@ -123,8 +123,13 @@
         <div class="footer-bottom">
             <div class="footer-left">
                 <figure class="payment">
-                    <img src="{{ asset('frontend') }}/images/banking.png" alt="payment" width="300" height="29" />
+                    <img src="{{ asset('frontend') }}/images/ssl.png" alt="SSL Commerce"  />
                 </figure>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-left">
+
             </div>
             <div class="footer-center">
                 <p class="copyright">HeshelGhor eCommerce &copy; 2021. All Rights Reserved</p>

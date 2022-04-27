@@ -93,7 +93,7 @@ $totalItem = count(Cart::content());
 
                                         </select>
                                     </td>
-                                    <td id="price{{$cartItem->id}}" class="test">
+                                    <td id="price{{ $cartItem->id }}" class="test">
 
                                     </td>
                                 </tr>
@@ -197,7 +197,8 @@ $totalItem = count(Cart::content());
                             success(data) {
                                 // console.log(data);
                                 $(`#delivery${productid}`).empty()
-                                $(`#delivery${productid}`).append(`<option selected>Select</option>`)
+                                $(`#delivery${productid}`).append(
+                                    `<option selected>Select</option>`)
                                 $(`#delivery${productid}`).append(data)
                             },
                             error() {
@@ -213,19 +214,24 @@ $totalItem = count(Cart::content());
                     // console.log(districtid)
                     if (price) {
                         $(`#price${productid}`).empty();
-                        $(`#price${productid}`).append(`<span class="deliveryprice" data-price="${price}">৳${price}</span>`);
-
+                        $(`#price${productid}`).append(
+                            `<span class="deliveryprice" data-price="${price}">৳${price}</span>`
+                        );
                         // console.log(price)
                         deliveryprice();
-
-
                     }
 
                 })
 
-                function deliveryprice(){
-                    var s = $('.test').children('.deliveryprice').data('price');
-                    console.log(s)
+                function deliveryprice() {
+                    var sum = 0;
+
+                    $('.test').children('.deliveryprice').
+                    each(function() {
+                        sum += Number($(this).data('price'));
+                    });
+
+                    console.log(sum)
                 }
 
 
@@ -239,6 +245,4 @@ $totalItem = count(Cart::content());
 
         }); // Document ready
     </script>
-
-
 @endpush

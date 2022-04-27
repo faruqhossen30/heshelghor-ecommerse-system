@@ -222,7 +222,7 @@ Route::get('/ajax/check-courier-division', [CheckoutCourierAjaxController::class
 use App\Http\Controllers\FolderCreateControler;
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
-Route::get('test', [TestController::class, 'test'])->name('test');
+Route::get('/test', [TestController::class, 'forinvoice'])->name('test');
 Route::get('ontest', [TestController::class, 'ontest'])->name('ontest');
 Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use Illuminate\Support\Facades\Auth;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -25,27 +26,34 @@ class SslCommerzPaymentController extends Controller
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
-        // return $request->all();
+        return $request->all();
         $request->validate([
-            'total_price' => 'required'
+            'total_amount' => 'required'
         ]);
 
         $post_data = array();
-        $post_data['total_amount'] = $request->total_price; # You cant not pay less than 10
+        $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
-        $post_data['cus_name'] = 'Customer Name';
-        $post_data['cus_email'] = 'customer@mail.com';
-        $post_data['cus_add1'] = 'Customer Address';
+        $post_data['cus_name'] = $request->name;
+        $post_data['cus_email'] = $request->email;
+        $post_data['cus_add1'] = $request->address;
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
         $post_data['cus_state'] = "";
         $post_data['cus_postcode'] = "";
         $post_data['cus_country'] = "Bangladesh";
-        $post_data['cus_phone'] = '8801XXXXXXXXX';
+        $post_data['cus_phone'] = $request->mobile;
         $post_data['cus_fax'] = "";
+
+        # Order Information
+        $post_data['total_prodcut'] = $request->mobile;
+        $post_data['total_item'] = $request->mobile;
+        $post_data['product_price'] = $request->product_price;
+        $post_data['delivery_cost'] = $request->delivery_cost;
+
 
         # SHIPMENT INFORMATION
         $post_data['ship_name'] = "Store Test";
@@ -81,18 +89,24 @@ class SslCommerzPaymentController extends Controller
         //         'transaction_id' => $post_data['tran_id'],
         //         'currency' => $post_data['currency']
         //     ]);
-        $update_product = DB::table('orders')
+
+
+        if($request->buytype == 'buynow'){
+            $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
-                'name' => $post_data['cus_name'],
-                'email' => $post_data['cus_email'],
-                'phone' => $post_data['cus_phone'],
-                'amount' => $request->total_price,
-                'status' => 'Pending',
-                'address' => $post_data['cus_add1'],
+                'user_id'        => Auth::user()->id,
+                'invoice_number' => invoiceGenerate(),
+                'name'           => $post_data['cus_name'],
+                'email'          => $post_data['cus_email'],
+                'phone'          => $post_data['cus_phone'],
+                'amount'         => $post_data['total_amount'],
+                'status'         => 'Pending',
+                'address'        => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency'       => $post_data['currency']
             ]);
+        }
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )

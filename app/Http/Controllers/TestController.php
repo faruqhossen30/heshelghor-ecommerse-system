@@ -17,6 +17,12 @@ use function PHPSTORM_META\type;
 
 class TestController extends Controller
 {
+    public function forinvoice()
+    {
+        return "invoiceGenerate";
+    }
+
+
     public function checkAarray()
     {
         return view('test');
@@ -25,8 +31,7 @@ class TestController extends Controller
     public function ontest()
     {
 
-        $list = Division::with('districts')->get();
-        return $list;
+        return invoiceGenerate();
     }
 
 

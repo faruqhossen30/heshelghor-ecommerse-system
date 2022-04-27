@@ -8,7 +8,37 @@
         <div class="container">
             <p
                 style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif; text-align: center;">
-                <strong><span style="font-size:21px;line-height:107%;">Return & Refund Policy</span></strong></p>
+                <strong><span style="font-size:27px;line-height:107%;">Return policy</span></strong></p>
+            <p
+                style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif; text-align: center;">
+                <strong><span style="font-size:21px;line-height:107%;">&nbsp;</span></strong></p>
+            <p style="margin: 12pt 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
+                    style='font-family:"Nirmala UI",sans-serif;'>হেঁশেল ঘর এর প্ল্যাটফর্ম হতে ক্রয় কৃত পণ্য গ্রহণের পর
+                    পণ্যের যেকোনো সমস্যা হলে সর্বোচ্চ <span
+                        style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">১২(বারো</span>
+                    ঘণ্টার মধ্যে আপনাকে আমাদের হেঁশেল ঘর এর ওয়েবসাইট/অ্যাপ এর কমপ্লেন অপশনে রেজিস্ট্রেশনের মাধ্যমে অভিযোগ
+                    জানাতে হবে। পণ্যের পরিবর্তন অথবা সম্পূর্ণ মূল্য ফেরত</span> <span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>পেতে
+                    সর্বোচ্চ</span><span
+                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>৭(সাত)</span><span
+                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>কার্যদিবস</span>
+                <span style='font-family:"Nirmala UI",sans-serif;'>এর</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>মধ্যে</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>পণ্যটি হেঁশেল</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>ঘর</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>ডট</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>কম</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>এর</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>প্রধান</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>কার্যালয়ে</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>নিজ</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>দায়িত্বে</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>ফেরত</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>পাঠাতে</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>হবে। পণ্যের যাচাই-বাছাই করণের মাধ্যমে সঠিক বলে বিবেচিত হলে
+                    ১০-১৫ (দশ-পনের) কার্যদিবসের মধ্যে পণ্যের পরিবর্তন অথবা সম্পূর্ণ মূল্য পরিশোধ করা হবে।</span></p>
             <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
                     style='font-family:"Nirmala UI",sans-serif;'>হেঁশেল</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ঘর</span> <span
@@ -41,7 +71,7 @@
                     style='font-family:"Nirmala UI",sans-serif;'>পণ্যের</span>&nbsp; <span
                     style='font-family:"Nirmala UI",sans-serif;'>পরিবর্তন &nbsp;অথবা &nbsp;সম্পূর্ণ</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>মূল্য</span> <span
-                    style='font-family:"Nirmala UI",sans-serif;'>নিচের</span> <strong><span
+                    style='font-family:"Nirmala UI",sans-serif;'>নিম্নের</span> <strong><span
                         style='font-family:"Nirmala UI",sans-serif;'>শর্তসাপেক্ষে</span></strong> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ফেরত</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>পেতে</span> <span
@@ -58,13 +88,12 @@
                     style='font-family:"Nirmala UI",sans-serif;'>পণ্য</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ডেলিভারি</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>গ্রহণের</span> <span
-                    style='font-family:"Nirmala UI",sans-serif;'>পর</span> <span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>পর</span><span
+                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
                     style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>সর্বোচ্চ</span><span
                     style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>৪৮(আটচল্লিশ</span><span
-                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">)</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>ঘন্টার</span>
-                <span style='font-family:"Nirmala UI",sans-serif;'>মধ্যে</span> <span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>১২(বারো)
+                    ঘন্টার</span> <span style='font-family:"Nirmala UI",sans-serif;'>মধ্যে</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>আপনাকে</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>আমাদের</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ওয়েবসাইট</span>/<span
@@ -147,11 +176,11 @@
                     রেজিস্ট্রেশন করতে হবে এবং</span> <span
                     style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>সর্বোচ্চ</span><span
                     style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>৬(ছয়)</span><span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>৭(সাত)</span><span
                     style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
                     style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>কার্যদিবস</span>
                 <span style='font-family:"Nirmala UI",sans-serif;'>এর</span> <span
-                    style='font-family:"Nirmala UI",sans-serif;'>ভিতর</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>মধ্যে</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>পণ্যটি হেঁশেল</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ঘর</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>ডট</span> <span
@@ -367,11 +396,8 @@
                     style='font-family:"Nirmala UI",sans-serif;'>আপনাকে</span> <span
                     style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>অতিসত্বর</span><span
                     style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>৪৮</span><span
-                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;(</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>আটচল্লিশ</span><span
-                    style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">)</span><span
-                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>ঘণ্টার</span><span
+                    style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>১২
+                    (বারো)ঘণ্টার</span><span
                     style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">&nbsp;</span><span
                     style='font-family: "Nirmala UI", sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;'>মধ্যে</span>&nbsp;
                 <span style='font-family:"Nirmala UI",sans-serif;'>আমাদের</span> <span
@@ -727,7 +753,13 @@
                     style='font-family:"Nirmala UI",sans-serif;'>করে</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>কমপ্লেন</span> <span
                     style='font-family:"Nirmala UI",sans-serif;'>অপশনে</span> <span
-                    style='font-family:"Nirmala UI",sans-serif;'>সমস্যাটি রিপোর্ট করতে হবে।</span></p>
+                    style='font-family:"Nirmala UI",sans-serif;'>অভিযোগটি</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>জানাতে</span> <span
+                    style='font-family:"Nirmala UI",sans-serif;'>হবে।</span></p>
+            <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
+                    style='font-family:"Nirmala UI",sans-serif;'>&nbsp;</span></p>
+            <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
+                    style='font-family:"Nirmala UI",sans-serif;'>&nbsp;</span></p>
             <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
                     style='font-family:"Nirmala UI",sans-serif;'>&nbsp;</span></p>
             <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
@@ -1426,6 +1458,11 @@
                     style='font-family:"Nirmala UI",sans-serif;'>&nbsp;</span></p>
             <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><span
                     style='font-family:"Nirmala UI",sans-serif;'>&nbsp;</span></p>
+            <div class="ddict_div" style="top: 144.438px; max-width: 150px; left: 599.367px;"><img
+                    src="chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/img/audio.png" class="ddict_audio">
+                <p style="line-height: 1.5;"><span class="ddict_translit">Kāryadibasēra</span></p>
+                <p class="ddict_sentence" style="line-height: 1.5;">কার্যদিবসের</p>
+            </div>
         </div>
 
 
