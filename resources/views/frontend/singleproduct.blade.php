@@ -66,39 +66,16 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                     <li><a href="{{ route('pruductspage') }}" class="active">Products</a></li>
                                     <li>Detail</li>
                                 </ul>
-
-                                {{-- <ul class="product-nav">
-                                <li class="product-nav-prev">
-                                    <a href="#">
-                                        <i class="d-icon-arrow-left"></i> Prev
-                                        <span class="product-nav-popup">
-                                            <img src="{{asset('frontend')}}/images/product/product-thumb-prev.jpg"
-                                                alt="product thumbnail" width="110" height="123">
-                                            <span class="product-name">Sed egtas Dnte Comfort</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="product-nav-next">
-                                    <a href="#">
-                                        Next <i class="d-icon-arrow-right"></i>
-                                        <span class="product-nav-popup">
-                                            <img src="{{asset('frontend')}}/images/product/product-thumb-next.jpg"
-                                                alt="product thumbnail" width="110" height="123">
-                                            <span class="product-name">Sed egtas Dnte Comfort</span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul> --}}
                             </div>
                             {{-- For Ajax request --}}
                             <input type="hidden" name="shop_id" value="{{ $product->shop_id }}">
                             <h1 class="product-name">{{ $product->title }}</h1>
                             <div class="ratings-container">
                                 <div class="ratings-full">
-                                    <span class="ratings" style="width:80%"></span>
+                                    <span class="ratings" style="width:0%"></span>
                                     <span class="tooltiptext tooltip-top"></span>
                                 </div>
-                                <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
+                                <a href="#product-tab-reviews" class="link-to-tab rating-reviews">( No review )</a>
                             </div>
                             <div class="product-price">৳{{ $product->price }}</div>
                             <p class="product-short-desc">
@@ -123,7 +100,25 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 @else
                                     N/A
                                 @endif
+                                <p>Stock Quantity: {{$product->quantity}}</p>
                             </div>
+                            <div class="product-meta">
+                                <h6>Additional Information:</h6>
+                                <p class="card-text mb-1">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    Cash on Delivery Available.
+                                </p>
+                                <p class="card-text mb-1">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Warranty not available
+                                </p>
+                                <p class="card-text mb-1">
+                                    <i class="fas fa-undo"></i>
+                                    7 Day Return
+                                </p>
+
+                            </div>
+
 
                             {{-- For Add To Cart --}}
                             <form action="{{ route('cart.add', $product->id) }}" method="post">
@@ -218,13 +213,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                             <a class="nav-link" href="#product-tab-comment">Comment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product-tab-additional">Additional information</a>
+                            <a class="nav-link" href="#product-tab-additional">Other information</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product-tab-shipping-returns">Shipping &amp; Returns</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#product-tab-reviews">Reviews (1)</a>
+                            <a class="nav-link" href="#product-tab-reviews">Reviews (0)</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -236,41 +228,6 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                     <h5 class="description-title mb-4 font-weight-semi-bold ls-m">Features</h5>
                                     {!! html_entity_decode($product->description) !!}
                                 </div>
-                                {{-- <div class="col-md-6 pl-md-6 pt-4 pt-md-0">
-                                    <h5 class="description-title font-weight-semi-bold ls-m mb-5">Video Description
-                                    </h5>
-                                    <figure class="p-relative d-inline-block mb-2">
-                                        <img src="{{ asset('frontend') }}/images/product/product.jpg" width="559"
-                                            height="370" alt="Product" class="w-100"
-                                            style="background-color: #f5f5f5;" />
-                                        <a class="btn-play btn-iframe" href="video/memory-of-a-woman.mp4">
-                                            <i class="d-icon-play-solid"></i>
-                                        </a>
-                                    </figure>
-                                    <div class="icon-box-wrap d-flex flex-wrap">
-                                        <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4 mr-10">
-                                            <div class="icon-box-icon">
-                                                <i class="d-icon-lock"></i>
-                                            </div>
-                                            <div class="icon-box-content">
-                                                <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">2 year
-                                                    warranty</h4>
-                                                <p>Guarantee with no doubt</p>
-                                            </div>
-                                        </div>
-                                        <div class="divider d-xl-show mr-10"></div>
-                                        <div class="icon-box icon-box-side icon-border pt-2 pb-2 mb-4">
-                                            <div class="icon-box-icon">
-                                                <i class="d-icon-truck"></i>
-                                            </div>
-                                            <div class="icon-box-content">
-                                                <h4 class="icon-box-title lh-1 pt-1 ls-s text-normal">Free shipping
-                                                </h4>
-                                                <p>On orders over $50.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                         {{-- Comment --}}
@@ -299,16 +256,6 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                     </p>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="tab-pane " id="product-tab-shipping-returns">
-                            <h6 class="mb-2">Free Shipping</h6>
-                            <p class="mb-0">We deliver to over 100 countries around the world. For full details
-                                of
-                                the delivery options we offer, please view our <a href="#" class="text-primary">Delivery
-                                    information</a> We hope you’ll love every
-                                purchase, but if you ever need to return an item you can do so within a month of
-                                receipt. For full details of how to make a return, please view our <a href="#"
-                                    class="text-primary">Returns information</a></p>
                         </div>
                         <div class="tab-pane " id="product-tab-reviews">
                             {{-- <div class="comments pb-10 pt-2 border-no">

@@ -104,12 +104,16 @@ $totalItem = count(Cart::content());
                                 <th scope="col" colspan="5" class="text-right">Product Price =</th>
                                 <th scope="col" colspan="1" class="text-left">{{ $subTotal }}</th>
                                 <th scope="col" colspan="4" class="text-right">Delivery Price =</th>
-                                <th scope="col" colspan="1">200TK</th>
+                                <input type="text" value="123">
+                                <th scope="col" colspan="1" id="deliveyPriciTable">৳0</th>
                             </tr>
-                            {{-- <tr>
-                                <th scope="col" colspan="10">Total Payable Price</th>
+                            <tr>
+                                <th scope="col" colspan="11"> </th>
+                            </tr>
+                            <tr>
+                                <th scope="col" colspan="10" class="text-right">Total Payable Price</th>
                                 <th scope="col" colspan="1">23423Tk</th>
-                            </tr> --}}
+                            </tr>
                         </thead>
                     </table>
                 </div>
@@ -230,6 +234,7 @@ $totalItem = count(Cart::content());
                     each(function() {
                         sum += Number($(this).data('price'));
                     });
+                    $('#deliveyPriciTable').html('৳'+sum)
 
                     console.log(sum)
                 }
@@ -239,9 +244,10 @@ $totalItem = count(Cart::content());
 
 
 
+            var testdata = <?php echo $subTotal ?>;
 
 
-
+            console.log('on test', )
 
         }); // Document ready
     </script>

@@ -72,6 +72,9 @@
                                 <a href="{{route('termsandcondition')}}">Terms and condition</a>
                             </li>
                             <li>
+                                <a href="{{route('privacypolicy')}}">Privacy Policy</a>
+                            </li>
+                            <li>
                                 <a href="{{route('returnpolicy')}}">Return Policy</a>
                             </li>
                             <li>

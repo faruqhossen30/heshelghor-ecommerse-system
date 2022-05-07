@@ -6,104 +6,38 @@
 @section('content')
     <main class="main mt-6 single-product">
         <div class="container">
-            <strong>Privacy Policy</strong> <p>
-                Heselghor.com built the Heshelghor app as
-                a Free app. This SERVICE is provided by
-                Heselghor.com at no cost and is intended for use as
-                is.
-              </p> <p>
-                This page is used to inform visitors regarding our
-                policies with the collection, use, and disclosure of Personal
-                Information if anyone decided to use our Service.
-              </p> <p>
-                If you choose to use our Service, then you agree to
-                the collection and use of information in relation to this
-                policy. The Personal Information that we collect is
-                used for providing and improving the Service. We will not use or share your information with
-                anyone except as described in this Privacy Policy.
-              </p> <p>
-                The terms used in this Privacy Policy have the same meanings
-                as in our Terms and Conditions, which are accessible at
-                Heshelghor unless otherwise defined in this Privacy Policy.
-              </p> <p><strong>Information Collection and Use</strong></p> <p>
-                For a better experience, while using our Service, we
-                may require you to provide us with certain personally
-                identifiable information, including but not limited to User Name,User Phone,User Email,User Password,Device Curent Location. The information that
-                we request will be retained by us and used as described in this privacy policy.
-              </p> <div><p>
-                  The app does use third-party services that may collect
-                  information used to identify you.
-                </p> <p>
-                  Link to the privacy policy of third-party service providers used
-                  by the app
-                </p> <ul><li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li><!----><li><a href="https://firebase.google.com/policies/analytics" target="_blank" rel="noopener noreferrer">Google Analytics for Firebase</a></li><li><a href="https://firebase.google.com/support/privacy/" target="_blank" rel="noopener noreferrer">Firebase Crashlytics</a></li><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----></ul></div> <p><strong>Log Data</strong></p> <p>
-                We want to inform you that whenever you
-                use our Service, in a case of an error in the app
-                we collect data and information (through third-party
-                products) on your phone called Log Data. This Log Data may
-                include information such as your device Internet Protocol
-                (“IP”) address, device name, operating system version, the
-                configuration of the app when utilizing our Service,
-                the time and date of your use of the Service, and other
-                statistics.
-              </p> <p><strong>Cookies</strong></p> <p>
-                Cookies are files with a small amount of data that are
-                commonly used as anonymous unique identifiers. These are sent
-                to your browser from the websites that you visit and are
-                stored on your device's internal memory.
-              </p> <p>
-                This Service does not use these “cookies” explicitly. However,
-                the app may use third-party code and libraries that use
-                “cookies” to collect information and improve their services.
-                You have the option to either accept or refuse these cookies
-                and know when a cookie is being sent to your device. If you
-                choose to refuse our cookies, you may not be able to use some
-                portions of this Service.
-              </p> <p><strong>Service Providers</strong></p> <p>
-                We may employ third-party companies and
-                individuals due to the following reasons:
-              </p> <ul><li>To facilitate our Service;</li> <li>To provide the Service on our behalf;</li> <li>To perform Service-related services; or</li> <li>To assist us in analyzing how our Service is used.</li></ul> <p>
-                We want to inform users of this Service
-                that these third parties have access to their Personal
-                Information. The reason is to perform the tasks assigned to
-                them on our behalf. However, they are obligated not to
-                disclose or use the information for any other purpose.
-              </p> <p><strong>Security</strong></p> <p>
-                We value your trust in providing us your
-                Personal Information, thus we are striving to use commercially
-                acceptable means of protecting it. But remember that no method
-                of transmission over the internet, or method of electronic
-                storage is 100% secure and reliable, and we cannot
-                guarantee its absolute security.
-              </p> <p><strong>Links to Other Sites</strong></p> <p>
-                This Service may contain links to other sites. If you click on
-                a third-party link, you will be directed to that site. Note
-                that these external sites are not operated by us.
-                Therefore, we strongly advise you to review the
-                Privacy Policy of these websites. We have
-                no control over and assume no responsibility for the content,
-                privacy policies, or practices of any third-party sites or
-                services.
-              </p> <p><strong>Children’s Privacy</strong></p> <div><p>
-                  These Services do not address anyone under the age of 13.
-                  We do not knowingly collect personally
-                  identifiable information from children under 13 years of age. In the case
-                  we discover that a child under 13 has provided
-                  us with personal information, we immediately
-                  delete this from our servers. If you are a parent or guardian
-                  and you are aware that your child has provided us with
-                  personal information, please contact us so that
-                  we will be able to do the necessary actions.
-                </p></div> <!----> <p><strong>Changes to This Privacy Policy</strong></p> <p>
-                We may update our Privacy Policy from
-                time to time. Thus, you are advised to review this page
-                periodically for any changes. We will
-                notify you of any changes by posting the new Privacy Policy on
-                this page.
-              </p> <p>This policy is effective as of 2021-12-05</p> <p><strong>Contact Us</strong></p> <p>
-                If you have any questions or suggestions about our
-                Privacy Policy, do not hesitate to contact us at support@heshelghor.com
-              </p>
+            <h6>Privacy policy</h6>
+            <p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Suggestion:</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">Welcome to Heshelghor.com, an e-commerce business platform. Heshelghor.com is committed to protecting your privacy and respect and protects your rights under &apos;The Digital Security Act 2016&apos;, &apos;Data Protection Act 2018&apos;, &apos;ICT Act 2006&apos; of the People&apos;s Republic of Bangladesh. By using this website or providing your personal information on the Heshelghor.com website, you agree to collect, use, retain, and disclose your personal information specified in this policy. We work in the interests of our customers and we are transparent about the processing of your personal information. We may revise this policy at any time by posting an updated version on our website.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">&nbsp;</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Types of information collected by Heshelghor.com:</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Cookies: -</strong> We use cookies to collect information about your use of our website. You may reject cookies, but if you do, you will not be able to fully access our online interactive features. We may collect additional information about customers, including purchase history, location and preferences, either directly or through our business partners. For more information about cookies and how to disable cookies, visit <span style="color:#0563C1;text-decoration:underline;"><a href="http://www.allaboutcookies.org">http://www.allaboutcookies.org</a></span>.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>&nbsp;</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Collecting personal information: -</strong> When you visit the site, we automatically collect some information about your device, including your web browser, IP address, time, region and some cookies information installed on your device. The information we collect about customers usually includes your name, home or work address, delivery address, phone number, payment, credit, billing information and E-mail. In some cases, we may collect your IDs, such as driving license, NID, passport, postcode, age, gender and shopping interests and preferences.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>&nbsp;</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Use of Personal Information: -</strong> We use order information which we usually collect to fulfil any orders placed through the site such as processing your payment information, arranging shipment and giving you shipment or order confirmation. If you agree with the preferences you have shared with us, we provide you with information or advertisements about our products or services.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">Finally, we may share your personal information in order to comply with applicable laws and regulations, respond to subpoenas, search warrants or other legal requests for information we receive, or otherwise protect our rights.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">&nbsp;</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Disclosure of personal information: -</strong> Heshelghor.com used or marketed products or service providers. Any person or entity to whom you have consented to disclose your personal information to Heshelghor.com and any person or entity that is required or permitted to disclose your personal information in accordance with the law.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>&nbsp;</strong><strong>Collection Gateway:</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">Heshelghor.com will collect personal information and all other necessary information in a legitimate and fairway and not an unreasonable way. If it is reasonable and practical to do so, Heshelghor.com will only collect personal information about you directly from you. Heshelghor.com may collect your personal information from reputable third-party leadership sources for marketing purposes only where you have agreed to disclose your information to Heshelghor.com and Heshelghor.com has sent you for marketing communication. Heshelghor.com will not collect personal information unless the information is reasonably necessary for our work and activities. Personal information may be collected by Heshelghor.com in a variety of situations when you search us via email or telephone; Website visit Investigation or submission of any product or service of Heshelghor.com; Application for Heshelghor.com job.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">If you apply for a product or service offered on Heshelghor.com, Heshelghor.com or our third party partners may collect personal credit information about you as a result of a third party credit check on your application.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">&nbsp;</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>The types of credit-related personal information that Heshelghor.com can collect:</strong></p>
+<ul style="list-style-type: disc;">
+    <li style="line-height: 1.5;">Information about your identity;</li>
+    <li style="line-height: 1.5;">Information about the consumer credit loan you are currently applying for;</li>
+    <li style="line-height: 1.5;">Payment history information;</li>
+    <li style="line-height: 1.5;">The type and amount of credit sought in each application;</li>
+    <li style="line-height: 1.5;">Default and payment information;</li>
+    <li style="line-height: 1.5;">Information about the activities of any court;</li>
+    <li style="line-height: 1.5;">Credit eligibility information, which is the credit reporting information provided by a credit reporting company, and any information we obtain from it.</li>
+</ul>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">If you use a pseudonym when working with us or you do not provide identifiable information, your requested service may not be able to provide Heshelghor.com. If you wish to use a pseudonym when using our website, do not sign in. Provide information that may identify you. Heshelghor.com demands accurate, up-to-date and complete personal information when collecting information from individuals.</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Heshelghor.com website:</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">When transmitting personal information from your device to the Heshelghor.com website through our third-party partners, you must remember that the exchange of information on the Internet is not always completely secure or flawless. Heshelghor.com shall not be liable in any way for security breaches or unintentional damages or disclosure of such information, except for liability which cannot be legally excluded. Heshelghor.com may use &quot;cookies&quot; to personalize your online experience and save you time, managed by the house-operated website and our third-party partners. You have the power to accept or reject cookies. If you wish to reject cookies, you will not be able to fully experience the interactive features of the Heshelghor.com website.&nbsp;</p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;"><strong>Miscellaneous:</strong></p>
+<p style="margin: 0in 0in 8pt; line-height: 1.5; font-size: 15px; font-family: Calibri, sans-serif;">Heshelghor.com reserves the right to amend this Privacy Policy in whole or in part without notice, and the revised Privacy Policy will take effect upon posting on the Heshelghor.com website.</p>
         </div>
     </main>
     <!-- End Main -->

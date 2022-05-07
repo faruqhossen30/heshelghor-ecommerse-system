@@ -10,7 +10,7 @@ $dhaka = [207, 208, 209, 210, 211, 499, 500, 501, 502, 503, 504, 505, 506, 507, 
                 @if ($courier->code == 'HESHEL')
                     <li>
                         <div class="custom-radio">
-                            <input type="radio" id="deliverrat{{ $courier->id }}" name="delivery_system" value="35">
+                            <input type="radio" id="deliverrat{{ $courier->id }}" name="delivery_system" value="35" required>
                             <label class="custom-control-label"
                                 for="deliverrat{{ $courier->id }}"><strong>{{ $courier->name }}</strong>
                                 <small>
@@ -47,7 +47,7 @@ $dhaka = [207, 208, 209, 210, 211, 499, 500, 501, 502, 503, 504, 505, 506, 507, 
                         <li>
                             <div class="custom-radio">
                                 <input type="radio" id="deliverrat{{ $courier->id }}" name="delivery_system"
-                                    value="110">
+                                    value="110" required>
                                 <label class="custom-control-label"
                                     for="deliverrat{{ $courier->id }}"><strong>{{ $courier->name }}</strong>
                                     <small>

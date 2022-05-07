@@ -8,7 +8,7 @@
         'autoplay': true
     }">
 
-        <div class="banner banner-fixed intro-slide1">
+        {{-- <div class="banner banner-fixed intro-slide1">
             <a href="{{ route('promotion') }}">
                 <figure>
                     <img src="{{ asset('frontend/images/slider/one.png') }}" alt="intro-banner" width="800" height="400"
@@ -16,7 +16,7 @@
                 </figure>
             </a>
 
-        </div>
+        </div> --}}
 
         <div class="banner banner-fixed intro-slide1">
             <figure>

@@ -194,8 +194,8 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                                             name="terms-condition" value="1" required/>
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" target="_blank">terms and conditions </a> and
-                                            <a href="{{route('privacypolicy')}}" target="_blank">privacy policy</a>
+                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" class="text-primary" target="_blank">terms and conditions </a> and
+                                            <a href="{{route('privacypolicy')}}" class="text-primary" target="_blank">privacy policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>

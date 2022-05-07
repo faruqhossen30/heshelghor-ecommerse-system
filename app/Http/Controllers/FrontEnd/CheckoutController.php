@@ -45,6 +45,15 @@ class CheckoutController extends Controller
             'deliverysystems',
             'pamymentmethods',
         ));
+        // return view('frontend.newcheckout', compact(
+        //     'divisions',
+        //     'user',
+        //     'divisions',
+        //     'upazilas',
+        //     'cartItems',
+        //     'deliverysystems',
+        //     'pamymentmethods',
+        // ));
     }
 
     public function indexNew()
