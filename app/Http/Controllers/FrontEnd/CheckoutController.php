@@ -36,16 +36,7 @@ class CheckoutController extends Controller
         $pamymentmethods = PaymentMethod::all();
 
         // return $cartItems;
-        return view('frontend.checkout', compact(
-            'divisions',
-            'user',
-            'divisions',
-            'upazilas',
-            'cartItems',
-            'deliverysystems',
-            'pamymentmethods',
-        ));
-        // return view('frontend.newcheckout', compact(
+        // return view('frontend.checkout', compact(
         //     'divisions',
         //     'user',
         //     'divisions',
@@ -54,6 +45,15 @@ class CheckoutController extends Controller
         //     'deliverysystems',
         //     'pamymentmethods',
         // ));
+        return view('frontend.newcheckout', compact(
+            'divisions',
+            'user',
+            'divisions',
+            'upazilas',
+            'cartItems',
+            'deliverysystems',
+            'pamymentmethods',
+        ));
     }
 
     public function indexNew()

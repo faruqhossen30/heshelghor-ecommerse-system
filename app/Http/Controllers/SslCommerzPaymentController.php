@@ -28,7 +28,8 @@ class SslCommerzPaymentController extends Controller
 
         // return $request->all();
         $request->validate([
-            'total_amount' => 'required'
+            'total_amount' => 'required',
+            'delivery_system' => 'required',
         ]);
 
         $post_data = array();

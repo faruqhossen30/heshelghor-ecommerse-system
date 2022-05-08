@@ -77,7 +77,7 @@ $totalItem = count(Cart::content());
                                 <div class="col-xs-6">
                                     <label>Select Divission *</label>
                                     <div class="select-box">
-                                        <select name="division_id" class="form-control">
+                                        <select name="division_id" class="form-control" required>
                                             <option value="">Select Divission</option>
                                             @foreach ($divisions as $division)
                                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
@@ -187,6 +187,11 @@ $totalItem = count(Cart::content());
                                     </div>
                                     <div>
                                         @error('total_amount')
+                                            <span class="text-danger">Please select location and deliver system for complete order.</span>
+                                        @enderror
+                                        @error('delivery_system')
+                                            <span class="text-danger">Delivery system not found.</span>
+                                            <br>
                                             <span class="text-danger">Please select location and deliver system for complete order.</span>
                                         @enderror
                                     </div>

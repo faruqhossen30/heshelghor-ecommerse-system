@@ -21,6 +21,9 @@ $totalItem = count(Cart::content());
             </div>
             <div class="container mb-2">
                 <div class="row">
+                    <p>Please Select deliver system for individual product.</p>
+                </div>
+                <div class="row">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="text-center">
@@ -104,18 +107,23 @@ $totalItem = count(Cart::content());
                                 <th scope="col" colspan="5" class="text-right">Product Price =</th>
                                 <th scope="col" colspan="1" class="text-left">{{ $subTotal }}</th>
                                 <th scope="col" colspan="4" class="text-right">Delivery Price =</th>
-                                <input type="text" value="123">
                                 <th scope="col" colspan="1" id="deliveyPriciTable">৳0</th>
                             </tr>
                             <tr>
                                 <th scope="col" colspan="11"> </th>
                             </tr>
-                            <tr>
-                                <th scope="col" colspan="10" class="text-right">Total Payable Price</th>
-                                <th scope="col" colspan="1">23423Tk</th>
-                            </tr>
                         </thead>
                     </table>
+                </div>
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="text-right mt-3">Total :	৳0</h6>
+                            <p class="text-right mt-0">Estimate delivey time 3 to 5 days.</p>
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
