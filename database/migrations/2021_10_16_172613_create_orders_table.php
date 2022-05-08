@@ -17,17 +17,25 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('invoice_number');
-            $table->integer('total_prodcut');
-            $table->integer('total_item');
             $table->integer('product_price');
+            $table->integer('total_prodcut');
+            $table->integer('total_product_price');
+            $table->integer('total_item');
             $table->integer('delivery_cost');
-            $table->integer('total_price');
-            $table->string('delivery_system_name');
-            $table->string('payment_method_name');
-            $table->unsignedBigInteger('delivery_system_id');
-            $table->unsignedBigInteger('payment_method_id');
-            $table->boolean('status')->default(false);
-            $table->boolean('payment')->default(false);
+            $table->integer('total_delivery_cost');
+            // SSL
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->integer('amount');
+            $table->string('status');
+            $table->string('address');
+            $table->string('transaction_id');
+            $table->string('currency');
+            $table->string('payment_type');
+            // Others
+            $table->unsignedBigInteger('courier_id');
+            $table->unsignedBigInteger('courier_name');
             $table->timestamps();
         });
     }

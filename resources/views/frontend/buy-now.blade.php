@@ -24,7 +24,9 @@ $totalItem = count(Cart::content());
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
                     <input type="hidden" name="buytype" value="buynow">
 
-                    <input type="hidden" name="buytype" value="buynow">
+                    <input type="hidden" name="total_prodcut" value="1">
+                    <input type="hidden" name="total_item" value="1">
+                    <input type="hidden" name="product_price" value="{{ $product->price }}">
 
 
                     <div class="row">
@@ -318,6 +320,7 @@ $totalItem = count(Cart::content());
             $(document).on('change select', 'input[name="delivery_system"]', function() {
                 let delivery_cost = $(this).val();
                 // alert(delivery_cost)
+                $('#delivery_charge').html(delivery_cost)
                 totalAmount(delivery_cost);
 
             });
