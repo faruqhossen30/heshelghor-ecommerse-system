@@ -114,7 +114,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 </p>
                                 <p class="card-text mb-1">
                                     <i class="fas fa-undo"></i>
-                                    10 - 15 Days Return. <a href="{{route('returnpolicy')}}" class="text-primary">Return Policy</a>
+                                    7 - 10 Working Days Return. <a href="{{route('returnpolicy')}}" class="text-primary">Return Policy</a>
                                 </p>
 
                             </div>
