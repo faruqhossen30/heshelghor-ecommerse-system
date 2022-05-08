@@ -58,11 +58,10 @@
                                 <span>59, Kajipara, Puraton Koshba, Jashore sadar, Jashore</span>
                             </li>
                             <li>
-                                <label>WORKING DAYS 7 Days in a week.</label>
+                                <label>WORKING DAYS: 7 Days in a week.</label>
                             </li>
                             <li>
                                 <a href="#">Sun - Sat/ 9:00 AM - 7:00 PM</a>
-                                <a href="#">{{$contact->working_time ?? ''}}</a>
                             </li>
                         </ul>
                     </div>
