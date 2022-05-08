@@ -24,6 +24,8 @@ $totalItem = count(Cart::content());
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
                     <input type="hidden" name="buytype" value="buynow">
 
+                    <input type="hidden" name="buytype" value="buynow">
+
 
                     <div class="row">
                         <div class="col-lg-7 mb-6 mb-lg-0 pr-lg-4">

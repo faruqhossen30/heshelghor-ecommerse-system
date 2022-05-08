@@ -46,15 +46,22 @@
                                 <a href="mailto:mail@riode.com">{{$contact->email ?? 'example@domain.com'}}</a>
                             </li>
                             <li>
-                                <label>Address:</label>
-                                <a href="#">{{$contact->address ?? '58, Karabala Jeshore'}}</a>
+                                <label>Address:( Head Office)</label> <br>
+                                <span>58, Borhan Shah Road, Karbala, Jashore-7400</span>
                             </li>
                             <li>
-                                {{-- <label>WORKING DAYS 7 / HOURS:8</label> --}}
-                                <label>{{$contact->working_day ?? ''}}</label>
+                                <label>Address:( Corporate Office)</label> <br>
+                                <span>House:43 (2nd Flore), Road:4/A, Dhanmodi, Dhaka-1205</span>
                             </li>
                             <li>
-                                {{-- <a href="#">Sar - T/ 9:00 AM - 6:00 PM</a> --}}
+                                <label>Address:(Trade Licence)</label> <br>
+                                <span>59, Kajipara, Puraton Koshba, Jashore sadar, Jashore</span>
+                            </li>
+                            <li>
+                                <label>WORKING DAYS 7 Days in a week.</label>
+                            </li>
+                            <li>
+                                <a href="#">Sun - Sat/ 9:00 AM - 7:00 PM</a>
                                 <a href="#">{{$contact->working_time ?? ''}}</a>
                             </li>
                         </ul>
