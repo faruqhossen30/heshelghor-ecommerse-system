@@ -26,7 +26,7 @@ class SslCommerzPaymentController extends Controller
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
-        return $request->all();
+        // return $request->all();
         $request->validate([
             'total_amount' => 'required',
             'delivery_system' => 'required',
@@ -108,6 +108,104 @@ class SslCommerzPaymentController extends Controller
                 'currency'       => $post_data['currency'],
                 // HeshelGhor table
                 'currency'       => $post_data['currency']
+
+            ]);
+        }
+
+        $sslc = new SslCommerzNotification();
+        # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
+        $payment_options = $sslc->makePayment($post_data, 'hosted');
+
+        if (!is_array($payment_options)) {
+            print_r($payment_options);
+            $payment_options = array();
+        }
+
+    }
+    public function index2(Request $request)
+    {
+        # Here you have to receive all the order data to initate the payment.
+        # Let's say, your oder transaction informations are saving in a table called "orders"
+        # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
+
+        // return $request->all();
+        $request->validate([
+            'total_amount' => 'required',
+            'delivery_system' => 'required',
+        ]);
+
+        $post_data = array();
+        $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
+        $post_data['currency'] = "BDT";
+        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+
+        # CUSTOMER INFORMATION
+        $post_data['cus_name'] = $request->name;
+        $post_data['cus_email'] = $request->email;
+        $post_data['cus_add1'] = $request->address;
+        $post_data['cus_add2'] = "";
+        $post_data['cus_city'] = "";
+        $post_data['cus_state'] = "";
+        $post_data['cus_postcode'] = "";
+        $post_data['cus_country'] = "Bangladesh";
+        $post_data['cus_phone'] = $request->mobile;
+        $post_data['cus_fax'] = "";
+
+        # Order Information
+        $post_data['total_prodcut'] = $request->mobile;
+        $post_data['total_item'] = $request->mobile;
+        $post_data['product_price'] = $request->product_price;
+        $post_data['delivery_cost'] = $request->delivery_cost;
+
+
+        # SHIPMENT INFORMATION
+        $post_data['ship_name'] = "Store Test";
+        $post_data['ship_add1'] = "Dhaka";
+        $post_data['ship_add2'] = "Dhaka";
+        $post_data['ship_city'] = "Dhaka";
+        $post_data['ship_state'] = "Dhaka";
+        $post_data['ship_postcode'] = "1000";
+        $post_data['ship_phone'] = "";
+        $post_data['ship_country'] = "Bangladesh";
+
+        $post_data['shipping_method'] = "NO";
+        $post_data['product_name'] = "Computer";
+        $post_data['product_category'] = "Goods";
+        $post_data['product_profile'] = "physical-goods";
+
+        # OPTIONAL PARAMETERS
+        $post_data['value_a'] = "ref001";
+        $post_data['value_b'] = "ref002";
+        $post_data['value_c'] = "ref003";
+        $post_data['value_d'] = "ref004";
+
+
+
+        if($request->buytype == 'buynow'){
+            $update_product = DB::table('orders')
+            ->where('transaction_id', $post_data['tran_id'])
+            ->updateOrInsert([
+                // For Heshelghor
+                'user_id'             => Auth::user()->id,
+                'invoice_number'      => invoiceGenerate(),
+                'product_price'       => $request->product_price,
+                'total_prodcut'       => $request->total_prodcut,
+                'total_product_price' => $request->total_product_price,
+                'total_item'          => $request->total_item,
+                'delivery_cost'       => $request->delivery_cost,
+                'total_delivery_cost' => $request->total_delivery_cost,
+                //For SSL Commerce
+                'name'                => $post_data['cus_name'],
+                'email'               => $post_data['cus_email'],
+                'phone'               => $post_data['cus_phone'],
+                'amount'              => $post_data['total_amount'],
+                'status'              => 'Pending',
+                'address'             => $post_data['cus_add1'],
+                'transaction_id'      => $post_data['tran_id'],
+                'currency'            => $post_data['currency'],
+                // Curier
+                'courier_id'            => $request->courier_id,
+                'courier_name'            => $request->courier_name
 
             ]);
         }

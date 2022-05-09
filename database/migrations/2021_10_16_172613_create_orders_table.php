@@ -33,7 +33,7 @@ class CreateOrdersTable extends Migration
             $table->string('transaction_id');
             $table->string('currency');
             $table->string('payment_type');
-            // Others
+            // Curier
             $table->unsignedBigInteger('courier_id');
             $table->unsignedBigInteger('courier_name');
             $table->timestamps();
