@@ -1,6 +1,6 @@
 @php
 $admin = Auth::guard('admin')->user();
-$allshop = App\Models\Merchant\shop::orderBy('name', 'desc')->get();
+$allshop = App\Models\Merchant\Shop::orderBy('name', 'desc')->get();
 
 $date_from = null;
 $date_to = null;
