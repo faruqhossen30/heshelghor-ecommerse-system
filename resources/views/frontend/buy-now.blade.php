@@ -265,9 +265,16 @@ $totalItem = count(Cart::content());
                                             name="terms-condition" value="1" required />
                                         <label class="form-control-label" for="terms-condition">
                                             I have read and agree to  <a href="{{ route('termsandcondition') }}"
-                                                class="text-primary" target="_blank">terms and conditions </a>,
+                                                class="text-primary" target="_blank">terms and conditions </a> and
                                             <a href="{{ route('privacypolicy') }}" class="text-primary"
-                                                target="_blank">privacy policy</a> and <a href="{{ route('returnpolicy') }}" class="text-primary"
+                                                target="_blank">privacy policy</a>
+                                        </label>
+                                    </div>
+                                    <div class="form-checkbox mt-4 mb-5">
+                                        <input type="checkbox" class="custom-checkbox" id="terms-condition2"
+                                            name="terms-condition2" value="1" required />
+                                        <label class="form-control-label" for="terms-condition2">
+                                            I have read and agree to  <a href="{{ route('returnpolicy') }}" class="text-primary"
                                                 target="_blank">Return & Refund Policy</a>
                                         </label>
                                     </div>
