@@ -268,7 +268,7 @@ $totalItem = count(Cart::content());
                                                 class="text-primary" target="_blank">terms and conditions </a>,
                                             <a href="{{ route('privacypolicy') }}" class="text-primary"
                                                 target="_blank">privacy policy</a> and <a href="{{ route('returnpolicy') }}" class="text-primary"
-                                                target="_blank">Refund & Policy</a>
+                                                target="_blank">Return & Refund Policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
