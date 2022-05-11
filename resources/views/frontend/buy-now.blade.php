@@ -3,6 +3,7 @@ $serial = 1;
 $subTotal = Cart::priceTotal();
 $totalProduct = Cart::count();
 $totalItem = count(Cart::content());
+
 @endphp
 
 @extends('frontend.layouts.app')
@@ -19,14 +20,23 @@ $totalItem = count(Cart::content());
             <div class="container">
                 <form action="{{ route('pay') }}" method="POST" class="form">
                     @csrf
-                    <input type="hidden" value="0" name="total_amount">
                     <input type="text" name="product" data-price="{{ $product->price }}"
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
                     <input type="hidden" name="buytype" value="buynow">
-
-                    <input type="hidden" name="total_prodcut" value="1">
-                    <input type="hidden" name="total_item" value="1">
+                    {{-- Heshelghor field --}}
                     <input type="hidden" name="product_price" value="{{ $product->price }}">
+                    <input type="hidden" name="total_prodcut" value="1">
+                    <input type="hidden" name="total_product_price" value="{{ $product->price }}">
+                    <input type="hidden" name="total_item" value="1">
+                    <input type="hidden" name="delivery_cost" value="0">
+                    <input type="hidden" name="total_delivery_cost" value="0">
+
+                    <input type="hidden" name="courier_id" value="1">
+                    <input type="hidden" name="courier_name" value="paperfly">
+                    {{-- SSL --}}
+                    <input type="hidden" value="0" name="total_amount">
+
+
 
 
                     <div class="row">
@@ -179,32 +189,85 @@ $totalItem = count(Cart::content());
                                                     <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="text-start" colspan="4">
+                                                    <h6 class="m-2 ">Color:</h6>
+                                                    <select name="varient[]" class="form-control">
+                                                        <option value="">Select Color</option>
+                                                        @foreach ($product->colors as $color)
+                                                            <option value="color-{{$color->color->name}}">{{ $color->color->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-start" colspan="4">
+                                                    <h6 class="m-2 ">Size:</h6>
+                                                    <select name="varient[]" class="form-control">
+                                                        <option value="">Select Size</option>
+                                                        @foreach ($product->sizes as $size)
+                                                            <option value="size-{{ $size->size->name }}">{{ $size->size->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="sumnary-shipping shipping-row-last">
+                                                <td colspan="2">
+                                                    <h4 class="summary-subtitle">Payment Method</h4>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="custom-radio">
+                                                                <input type="radio" id="flat_rate" name="payment_type"
+                                                                    value="cash" class="custom-control-input" checked>
+                                                                <label class="custom-control-label" for="flat_rate">Cash On
+                                                                    Delivery</label>
+                                                            </div>
+                                                        </li>
+
+                                                        <li>
+                                                            <div class="custom-radio">
+                                                                <input type="radio" id="free-shipping" name="payment_type"
+                                                                    value="online" class="custom-control-input">
+                                                                <label class="custom-control-label"
+                                                                    for="free-shipping">Payment Now </label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
                                             </tr>
                                         </tbody>
                                     </table>
+
                                     <div>
                                         <input type="hidden" value="" name="delivery_system_name">
                                         <input type="hidden" value="" name="payment_method_name">
 
                                     </div>
+
                                     <div>
                                         @error('total_amount')
-                                            <span class="text-danger">Please select location and deliver system for complete order.</span>
+                                            <span class="text-danger">Please select location and deliver system for complete
+                                                order.</span>
                                         @enderror
                                         @error('delivery_system')
                                             <span class="text-danger">Delivery system not found.</span>
                                             <br>
-                                            <span class="text-danger">Please select location and deliver system for complete order.</span>
+                                            <span class="text-danger">Please select location and deliver system for complete
+                                                order.</span>
                                         @enderror
                                     </div>
                                     <div class="form-checkbox mt-4 mb-5">
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
-                                            name="terms-condition" value="1" required/>
+                                            name="terms-condition" value="1" required />
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="{{route('termsandcondition')}}" class="text-primary" target="_blank">terms and conditions </a> and
-                                            <a href="{{route('privacypolicy')}}" class="text-primary" target="_blank">privacy policy</a>
+                                            I have read and agree to the website <a href="{{ route('termsandcondition') }}"
+                                                class="text-primary" target="_blank">terms and conditions </a> and
+                                            <a href="{{ route('privacypolicy') }}" class="text-primary"
+                                                target="_blank">privacy policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>

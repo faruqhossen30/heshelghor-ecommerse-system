@@ -23,6 +23,8 @@ class CreateOrdersTable extends Migration
             $table->integer('total_item');
             $table->integer('delivery_cost');
             $table->integer('total_delivery_cost');
+            $table->string('payment_type');
+            $table->string('varient')->nullable();
             // SSL
             $table->string('name');
             $table->string('email');
@@ -32,7 +34,6 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('transaction_id');
             $table->string('currency');
-            $table->string('payment_type');
             // Curier
             $table->unsignedBigInteger('courier_id');
             $table->unsignedBigInteger('courier_name');

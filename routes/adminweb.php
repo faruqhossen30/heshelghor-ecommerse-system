@@ -94,6 +94,7 @@ Route::prefix('admin')->group(function () {
         Route::post('setting/check-payment', [SettingController::class, 'checkForOnlinePayment'])->name('setting.checkpayment');
         // Promotion
         Route::get('promotion', [PromotionController::class, 'index'])->name('promotion.index');
+        Route::get('promotion/shop', [PromotionController::class, 'shop'])->name('promotion.shop');
         // Job
         Route::resource('job', JobController::class);
     });

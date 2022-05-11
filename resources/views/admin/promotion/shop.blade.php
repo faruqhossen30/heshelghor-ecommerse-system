@@ -12,7 +12,7 @@ $admin = Auth::guard('admin')->user();
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <p class="header-title fs-4 text-uppercase">Total Product: <strong>{{$products->total()}}</strong> </p>
+                            <p class="header-title fs-4 text-uppercase">Total Shop: {{count($allshop)}}</p>
                         </div>
                     </div>
                     <form action="" method="get">
@@ -25,7 +25,7 @@ $admin = Auth::guard('admin')->user();
                                             class="form-control @error('shop_id') is-invalid @enderror selectize-drop-header"
                                             id="select-code-language">
                                             <option value="">Select Shop</option>
-                                            @foreach ($shops as $shop)
+                                            @foreach ($allshop as $shop)
                                                 <option value="{{ $shop->id }}"
                                                     @if (!empty($_GET['shop_id']) && $_GET['shop_id'] == $shop->id) selected @endif>{{ $shop->name }}
                                                 </option>

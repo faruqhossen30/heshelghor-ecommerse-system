@@ -17,6 +17,14 @@ class CartController extends Controller
             $product = Product::where('id', $id)->first();
             $merchantPrice = $product->regular_price - (($product->regular_price * $product->discount) / 100);
             // return $merchantPrice;
+            $varient = [];
+            if($request->color){
+                $varient['color']= $request->color;
+            }
+            if($request->size){
+                $varient['size']= $request->size;
+            }
+
             Cart::add([
                 'id'       => $id,
                 'name'     => $product->title,
@@ -33,6 +41,7 @@ class CartController extends Controller
                     'color'                => $request->color,
                     'size'                 => $request->size,
                     'photo'                => $product->img_small,
+                    'varient'              => $varient,
                     ]
             ]);
 
