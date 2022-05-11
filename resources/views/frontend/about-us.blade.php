@@ -81,7 +81,7 @@
                               <tr>
                                 <th scope="row">Head Office</th>
                                 <td> : 58, Burhan Shah Road, Karbala, Jashore-7400
-                                    Phone: +88 02 4777 63843 | Mobile: +88 01788950905</td>
+                                    Phone: +88 02 4777 63843 | Mobile: +8801318-760087</td>
                               </tr>
                               <tr>
                                 <th scope="row">Corporate Office</th>

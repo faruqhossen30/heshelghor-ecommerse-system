@@ -189,7 +189,7 @@ $totalItem = count(Cart::content());
                                                     <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td class="text-start" colspan="4">
                                                     <h6 class="m-2 ">Color:</h6>
                                                     <select name="varient[]" class="form-control">
@@ -210,8 +210,8 @@ $totalItem = count(Cart::content());
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                            </tr>
-                                            <tr class="sumnary-shipping shipping-row-last">
+                                            </tr> --}}
+                                            {{-- <tr class="sumnary-shipping shipping-row-last">
                                                 <td colspan="2">
                                                     <h4 class="summary-subtitle">Payment Method</h4>
                                                     <ul>
@@ -234,7 +234,7 @@ $totalItem = count(Cart::content());
                                                         </li>
                                                     </ul>
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
 
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
@@ -264,10 +264,11 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                                             name="terms-condition" value="1" required />
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="{{ route('termsandcondition') }}"
-                                                class="text-primary" target="_blank">terms and conditions </a> and
+                                            I have read and agree to  <a href="{{ route('termsandcondition') }}"
+                                                class="text-primary" target="_blank">terms and conditions </a>,
                                             <a href="{{ route('privacypolicy') }}" class="text-primary"
-                                                target="_blank">privacy policy</a>
+                                                target="_blank">privacy policy</a> and <a href="{{ route('returnpolicy') }}" class="text-primary"
+                                                target="_blank">Refund & Policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>

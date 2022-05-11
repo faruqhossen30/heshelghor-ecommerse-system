@@ -81,7 +81,7 @@
                                 <a href="{{route('privacypolicy')}}">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="{{route('returnpolicy')}}">Return Policy</a>
+                                <a href="{{route('returnpolicy')}}">Return & Refund Policy</a>
                             </li>
                             <li>
                                 <a href="{{route('marchant.login')}}">Marchant Login</a>

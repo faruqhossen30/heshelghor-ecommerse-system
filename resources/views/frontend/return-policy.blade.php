@@ -6,7 +6,7 @@
 @section('content')
     <main class="main mt-6">
         <div class="container">
-            <h2 style="text-align: center;"><strong>Return policy</strong></h2>
+            <h2 style="text-align: center;"><strong>Return & Refund policy</strong></h2>
             <p>If there is any problem with the product after receiving the purchased product from the platform of
                 Heshelghor.com, within 12 (twelve) hours you have to complain by registering in the complaint form on the
                 Heshelghor.com website/App. Within a maximum of 7(seven) working days to receive a product change or a full
