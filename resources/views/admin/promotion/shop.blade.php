@@ -16,7 +16,7 @@ if (isset($_GET['shop_id'])) {
     $shop_id = $_GET['shop_id'];
 }
 
-$shops = App\Models\Merchant\shop::
+$shops = App\Models\Merchant\Shop::
 when($shop_id, function ($query, $shop_id) {
     return $query->where('id', $shop_id);
 })
