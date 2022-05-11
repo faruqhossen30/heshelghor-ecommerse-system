@@ -1,5 +1,28 @@
 @php
 $admin = Auth::guard('admin')->user();
+$allshop = App\Models\Merchant\shop::orderBy('name', 'desc')->get();
+
+$date_from = null;
+$date_to = null;
+$shop_id = null;
+
+if (isset($_GET['date_from'])) {
+    $date_from = $_GET['date_from'];
+}
+if (isset($_GET['date_to'])) {
+    $date_to = $_GET['date_to'];
+}
+if (isset($_GET['shop_id'])) {
+    $shop_id = $_GET['shop_id'];
+}
+
+$shops = App\Models\Merchant\shop::
+when($shop_id, function ($query, $shop_id) {
+    return $query->where('id', $shop_id);
+})
+->orderBy('name', 'asc')
+->paginate(50);
+
 @endphp
 
 @extends('admin.layouts.app')
@@ -12,7 +35,7 @@ $admin = Auth::guard('admin')->user();
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <p class="header-title fs-4 text-uppercase">Total Shop: {{count($allshop)}}</p>
+                            <p class="header-title fs-4">Shop name & Product Count</p>
                         </div>
                     </div>
                     <form action="" method="get">
@@ -63,35 +86,41 @@ $admin = Auth::guard('admin')->user();
                         <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Product Name</th>
-                                {{-- <th>Photo</th> --}}
                                 <th>Shop Name</th>
-                                <th>ID</th>
-                                <th>Upload Date</th>
+                                <th>Total Product</th>
                             </tr>
                         </thead>
 
 
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($shops as $shop)
+                                @php
+
+                                    if ($date_from && $date_to) {
+                                        $products = App\Models\Product\Product::
+                                            where('shop_id', $shop->id)
+                                            ->whereBetween('created_at', [$date_from, $date_to])
+                                            ->get();
+                                    }else {
+                                        # code...
+                                        $products = App\Models\Product\Product::where('shop_id', $shop->id)->get();
+                                    }
+                                @endphp
                                 <tr>
-                                    <td>{{ $products->firstItem() + $loop->index }}</td>
-                                    <td><a href="{{ route('singleproduct', $product->slug) }}"
-                                            target="_blank">{{ $product->title }}</a></td>
+                                    <td>{{ $shops->firstItem() + $loop->index }}</td>
+                                    <td>
+                                        <a href="{{route('product.with.shop', $shop->id)}}" target="_blank">{{ $shop->name }}</a>
+                                    </td>
 
                                     <td>
-                                        <a href="{{route('product.with.shop', $product->shop->id)}}" target="_blank">{{ $product->shop->name }}</a>
-                                    </td>
-                                    <td>{{ $product->id }}</td>
-                                    <td>
-                                        {{ $product->created_at->format('d M Y') }}
+                                        {{ count($products) }}
                                     </td>
 
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $products->appends($_GET)->links() }}
+                    {{ $shops->appends($_GET)->links() }}
 
                 </div> <!-- end card body-->
             </div> <!-- end card -->

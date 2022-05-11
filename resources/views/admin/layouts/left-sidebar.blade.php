@@ -77,8 +77,7 @@ $admin = Auth::guard('admin')->user();
                 </li>
 
                 <li>
-                    <a href="#sidebarDashboards" data-bs-toggle="collapse" aria-expanded="false"
-                        aria-controls="sidebarDashboards" class="waves-effect">
+                    <a href="{{route('admin.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="badge bg-success rounded-pill float-end">3</span>
                         <span> Dashboards </span>
@@ -97,12 +96,12 @@ $admin = Auth::guard('admin')->user();
                         </ul>
                     </div> --}}
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('promotion.index') }}">
                         <i class="mdi mdi-youtube-studio"></i>
                         <span> Promotion </span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- Admin start --}}
                 @if ($admin->can('admin.create') || $admin->can('admin.view') || $admin->can('admin.edit') || $admin->can('admin.delete') || $admin->can('admin.status'))
 
@@ -155,16 +154,16 @@ $admin = Auth::guard('admin')->user();
                     <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false"
                         aria-controls="sidebarTables">
                         <i class="mdi mdi-cart-outline"></i>
-                        <span> Products </span>
+                        <span> Products & Shops </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarTables">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">All Products</a>
+                                <a href="{{route('promotion.index')}}">All Products</a>
                             </li>
                             <li>
-                                <a href="#">Add Product</a>
+                                <a href="{{route('allshop.shop')}}">All Shops</a>
                             </li>
                         </ul>
                     </div>
