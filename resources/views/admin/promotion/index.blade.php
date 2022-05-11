@@ -1,5 +1,12 @@
 @php
 $admin = Auth::guard('admin')->user();
+$shop_id = null;
+$info = null;
+if (isset($_GET['shop_id'])) {
+    $shop_id = $_GET['shop_id'];
+    $info = App\Models\Merchant\Shop::firstWhere('id', $shop_id);
+}
+
 @endphp
 
 @extends('admin.layouts.app')
@@ -12,8 +19,19 @@ $admin = Auth::guard('admin')->user();
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-10">
-                            <p class="header-title fs-4 text-uppercase">Total Product: <strong>{{$products->total()}}</strong> </p>
+                            <p class="header-title fs-4 ">Total Product:
+                                <strong>{{ $products->total() }}</strong>
+                            </p>
+
                         </div>
+                        @isset($info)
+                            <div class="col-md-10">
+                                <p class="header-title fs-4 ">Shop Name:
+                                    {{ $info->name }}
+                                </p>
+
+                            </div>
+                        @endisset
                     </div>
                     <form action="" method="get">
                         <div class="row">
@@ -80,7 +98,8 @@ $admin = Auth::guard('admin')->user();
                                             target="_blank">{{ $product->title }}</a></td>
 
                                     <td>
-                                        <a href="{{route('product.with.shop', $product->shop->id)}}" target="_blank">{{ $product->shop->name }}</a>
+                                        <a href="{{ route('product.with.shop', $product->shop->id) }}"
+                                            target="_blank">{{ $product->shop->name }}</a>
                                     </td>
                                     <td>{{ $product->id }}</td>
                                     <td>
