@@ -46,8 +46,7 @@ use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\CourierAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\CheckoutCourierAjaxController;
-
-
+use App\Http\Controllers\User\UsercomplainController;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
@@ -112,7 +111,6 @@ Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->nam
 
 // Four User
 Route::prefix('user')->group(function () {
-
     Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
@@ -123,9 +121,18 @@ Route::prefix('user')->group(function () {
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
         Route::get('review', [UserProductReviewController::class, 'index'])->name('user.product.review.list');
         Route::get('review/product', [UserProductReviewController::class, 'reviewproduct'])->name('user.product.review.product');
+
+        Route::get('complain',[UsercomplainController::class, 'usercomplain'])->name('user.complain');
+
+
+
+
+
+
+
+
     });
 });
-
 use App\Http\Controllers\PointManager\PointManagerLoginController;
 use App\Http\Controllers\PointManager\PointManagerHomeController;
 use App\Http\Controllers\PointManager\PointManagerCollectProductController;
