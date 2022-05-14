@@ -35,13 +35,13 @@ class Usercomplain extends Model
         'defect_pic_5',
    ];
 
-   public function userName()
+   public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
-   public function orderid()
+    public function order()
     {
-        return $this->hasOne(Order::class, 'order_id', 'id');
+        return $this->hasOne(Order::class, 'id', 'order_id');
     }
 
 

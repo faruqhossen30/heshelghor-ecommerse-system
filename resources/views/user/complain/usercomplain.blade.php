@@ -32,6 +32,7 @@
                                         <th>User Name</th>
                                         <td>
                                             {{ Auth::user()->name }}
+
                                         </td>
 
                                     </tr>
@@ -66,7 +67,7 @@
                                     <tr>
                                         <th>Order id</th>
                                         <td>
-
+                                            {{-- {{$userComplain->order_id}} --}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -89,14 +90,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('user.complain')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="complain-name" class="form-label text-dark">delivery_date<span
                                                     class="text-danger">*</span></label>
-                                            <input required type="text" name="delivery_date" id="complain-name"
+                                            <input required type="date" name="delivery_date" id="complain-name"
                                                 class="form-control @error('delivery_date') is-invalid @enderror"
                                                 placeholder="Enter complain number" value="{{ old('delivery_date') }}">
                                             <div class="text-danger">
@@ -111,7 +112,7 @@
                                         <div class="mb-3">
                                             <label for="complain-name" class="form-label text-dark">delivery_time<span
                                                     class="text-danger">*</span></label>
-                                            <input required type="text" name="delivery_time" id="complain-name"
+                                            <input required type="time" name="delivery_time" id="complain-name"
                                                 class="form-control @error('delivery_time') is-invalid @enderror"
                                                 placeholder="Enter complain number" value="{{ old('delivery_time') }}">
                                             <div class="text-danger">
@@ -122,10 +123,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
 
                                 <div class="row">
 
@@ -225,51 +222,51 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 1 </label>
-                                            <input type="file" name="photo"
-                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                            <input type="file" name="defect_pic_1"
+                                                class="form-control dropify  @error('defect_pic_1') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
                                                 data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='photo' />
+                                            <x-error name='defect_pic_1' />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 2 </label>
-                                            <input type="file" name="photo"
-                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                            <input type="file" name="defect_pic_2"
+                                                class="form-control dropify  @error('defect_pic_2') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
                                                 data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='photo' />
+                                            <x-error name='defect_pic_2' />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 3 </label>
-                                            <input type="file" name="photo"
-                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                            <input type="file" name="defect_pic_3"
+                                                class="form-control dropify  @error('defect_pic_3') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
                                                 data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='photo' />
+                                            <x-error name='defect_pic_3' />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 4</label>
-                                            <input type="file" name="photo"
-                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                            <input type="file" name="defect_pic_4"
+                                                class="form-control dropify  @error('defect_pic_4') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
                                                 data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='photo' />
+                                            <x-error name='defect_pic_4' />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 5 </label>
-                                            <input type="file" name="photo"
-                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                            <input type="file" name="defect_pic_5"
+                                                class="form-control dropify  @error('defect_pic_5') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
                                                 data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='photo' />
+                                            <x-error name='defect_pic_5' />
                                         </div>
                                     </div>
                                 </div>
