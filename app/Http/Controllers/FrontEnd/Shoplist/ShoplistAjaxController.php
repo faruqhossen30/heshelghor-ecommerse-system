@@ -17,7 +17,7 @@ class ShoplistAjaxController extends Controller
         if($request->ajax()){
             $requestlocation = $request->location;
             if($request->keyword && $request->location == 'all'){
-               $shops = Shop::where('name', 'like', '%'.$request->keyword.'%')->get();
+               $shops = Shop::active()->where('name', 'like', '%'.$request->keyword.'%')->get();
 
                $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                return response()->json($data);
@@ -25,14 +25,14 @@ class ShoplistAjaxController extends Controller
             }
             if($request->keyword && $request->location && !($request->location == 'all') ){
                 $locationid = District::where('slug', $request->location)->first()->id;
-                $shops = Shop::where('district_id', $locationid)->where('name', 'like', '%'.$request->keyword.'%')->get();
+                $shops = Shop::active()->where('district_id', $locationid)->where('name', 'like', '%'.$request->keyword.'%')->get();
 
                 $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);
             };
             if($request->location == 'all' && !($request->keyword)){
                 // $locationid = District::where('slug', $request->location)->first()->id;
-                $shops = Shop::get();
+                $shops = Shop::active()->get();
 
                 $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);
@@ -40,7 +40,7 @@ class ShoplistAjaxController extends Controller
             };
             if($request->location && !($request->keyword)){
                 $locationid = District::where('slug', $request->location)->first()->id;
-                $shops = Shop::where('district_id', $locationid)->get();
+                $shops = Shop::active()->where('district_id', $locationid)->get();
 
                 $data = view('frontend.inc.ajaxshoplist', compact('shops', 'requestlocation'))->render();
                 return response()->json($data);

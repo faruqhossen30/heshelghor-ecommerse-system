@@ -26,6 +26,11 @@ class Product extends Model implements HasMedia
             ]
         ];
     }
+    // Local Scope
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 
     // Category
     public function category()

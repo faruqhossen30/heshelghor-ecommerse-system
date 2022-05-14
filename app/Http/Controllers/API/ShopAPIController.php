@@ -13,14 +13,14 @@ class ShopAPIController extends Controller
     // Shop list with pagination
     public function shops()
     {
-        $shops = Shop::latest()->paginate(15);
+        $shops = Shop::active()->latest()->paginate(15);
         return $shops;
     }
 
     public function marketWiseShopList(Request $request, $id)
     {
         try {
-            $shops = Shop::where('market_id', $id)->paginate(15);
+            $shops = Shop::active()->where('market_id', $id)->paginate(15);
 
             return response()->json([
                 'success' => true,
@@ -34,7 +34,7 @@ class ShopAPIController extends Controller
 
     public function districtWiseShop(Request $request, $id)
     {
-        $shops = Shop::with('division', 'district', 'upazila')->where('district_id', $id)->get();
+        $shops = Shop::active()->with('division', 'district', 'upazila')->where('district_id', $id)->get();
 
         return response()->json([
             'success' => true,
@@ -46,7 +46,7 @@ class ShopAPIController extends Controller
     {
         try {
             $district = District::where('slug', $slug)->first();
-            $shops = Shop::where('district_id', $district->id)->orderBy('name', 'asc')->paginate(20);
+            $shops = Shop::active()->where('district_id', $district->id)->orderBy('name', 'asc')->paginate(20);
 
             return response()->json([
                 'success' => true,

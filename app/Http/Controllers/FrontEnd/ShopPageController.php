@@ -14,7 +14,7 @@ class ShopPageController extends Controller
     {
         $brands = Brand::get();
         $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
+        $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
 
         $filter_location = [];
         $filter_category = [];
@@ -51,7 +51,7 @@ class ShopPageController extends Controller
 
 
 
-        $products = Product::with('category', 'subcategory')
+        $products = Product::active()->with('category', 'subcategory')
         ->when($filter_category, function ($query, $filter_category) {
             return $query->whereIn('category_id', $filter_category);
         })
@@ -70,7 +70,7 @@ class ShopPageController extends Controller
     public function productWithCategory(Request $request, $id)
     {
         $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
+        $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->where('category_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $brands;
 
@@ -82,7 +82,7 @@ class ShopPageController extends Controller
     public function productWithSubCategory(Request $request, $id)
     {
         $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
+        $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->where('subcategory_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $products;
 
@@ -91,7 +91,7 @@ class ShopPageController extends Controller
     public function productWithBrand(Request $request, $id)
     {
         $categories = Category::with('products', 'subcategories')->orderBy('name', 'asc')->get();
-        $products = Product::with('brand', 'category', 'subcategory', 'merchant')->where('brand_id', $id)->latest('id')->paginate(12);
+        $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->where('brand_id', $id)->latest('id')->paginate(12);
         $brands = Brand::get();
         // return $products;
 
@@ -104,7 +104,7 @@ class ShopPageController extends Controller
             $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('id', 'asc')->paginate($count);
+            $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->orderBy('id', 'asc')->paginate($count);
             // return $products;
             return view('frontend.shoppage', compact('products', 'categories', 'brands'));
         }
@@ -112,7 +112,7 @@ class ShopPageController extends Controller
             $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'asc')->paginate($count);
+            $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'asc')->paginate($count);
             // return $products;
             return view('frontend.shoppage', compact('products', 'categories', 'brands'));
         }
@@ -120,7 +120,7 @@ class ShopPageController extends Controller
             $count = intval($request->count);
             $brands = Brand::get();
             $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-            $products = Product::with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'desc')->paginate(5);
+            $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->orderBy('price', 'desc')->paginate(5);
             // return $products;
             return view('frontend.shoppage', compact('products', 'categories', 'brands'));
         }

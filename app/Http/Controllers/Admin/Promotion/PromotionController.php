@@ -63,6 +63,8 @@ class PromotionController extends Controller
     }
     public function shop(Request $request)
     {
+        $shops = Shop::with('merchant')->get();
+        // return $shops;
         return view('admin.promotion.shop');
     }
 }

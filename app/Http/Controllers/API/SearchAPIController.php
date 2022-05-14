@@ -49,7 +49,7 @@ class SearchAPIController extends Controller
         if ($keyword) {
             $trimkeyword = trim($keyword);
 
-            $result = Shop::where('name', 'like', "%$trimkeyword%")
+            $result = Shop::active()->where('name', 'like', "%$trimkeyword%")
                 ->paginate(25);
 
             return response()->json([

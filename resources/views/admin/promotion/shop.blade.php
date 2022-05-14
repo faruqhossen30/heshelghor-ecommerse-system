@@ -1,6 +1,6 @@
 @php
 $admin = Auth::guard('admin')->user();
-$allshop = App\Models\Merchant\Shop::orderBy('name', 'desc')->get();
+$allshop = App\Models\Merchant\Shop::with('merchant')->orderBy('name', 'desc')->get();
 
 $date_from = null;
 $date_to = null;
@@ -86,7 +86,10 @@ when($shop_id, function ($query, $shop_id) {
                         <thead>
                             <tr>
                                 <th>SL</th>
+                                <th>Marchant Name</th>
                                 <th>Shop Name</th>
+                                <th>Location</th>
+                                <th>Mobile</th>
                                 <th>Total Product</th>
                             </tr>
                         </thead>
@@ -109,9 +112,18 @@ when($shop_id, function ($query, $shop_id) {
                                 <tr>
                                     <td>{{ $shops->firstItem() + $loop->index }}</td>
                                     <td>
+                                        {{$shop->merchant->name}}
+                                    </td>
+                                    <td>
                                         <a href="{{route('product.with.shop', $shop->id)}}" target="_blank">{{ $shop->name }}</a>
                                     </td>
 
+                                    <td>
+                                        {{ $shop->address }}
+                                    </td>
+                                    <td>
+                                        {{ $shop->mobile ?? 'N/A' }}
+                                    </td>
                                     <td>
                                         {{ count($products) }}
                                     </td>

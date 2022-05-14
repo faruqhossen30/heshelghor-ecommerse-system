@@ -6,6 +6,7 @@ use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
 use App\Models\Admin\Location\Upazila;
 use App\Models\Admin\Market;
+use App\Models\Auth\Marchant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -24,9 +25,20 @@ class Shop extends Model
         ];
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
+
+
     public function market()
     {
         return $this->hasOne(Market::class, 'id', 'market_id');
+    }
+    public function merchant()
+    {
+        return $this->hasOne(Marchant::class, 'id', 'author_id');
     }
     public function division()
     {

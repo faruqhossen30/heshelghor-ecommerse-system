@@ -53,8 +53,7 @@ class HomepageController extends Controller
     public function search($keyword)
     {
 
-        $result = Product::where('title', 'like', "%$keyword%")
-            ->orWhere('description', 'like', "%$keyword%")
+        $result = Product::active()->where('title', 'like', "%$keyword%")
             ->get();
         return $result;
     }

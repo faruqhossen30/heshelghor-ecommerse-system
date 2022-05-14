@@ -32,6 +32,7 @@ class CreateShopsTable extends Migration
             $table->string('img_small')->nullable();
             $table->string('img_medium')->nullable();
             $table->string('img_large')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

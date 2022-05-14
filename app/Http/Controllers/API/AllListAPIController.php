@@ -50,7 +50,7 @@ class AllListAPIController extends Controller
     // All Shoplist
     public function allShop()
     {
-        $merchants = Shop::all();
+        $merchants = Shop::active()->all();
         return $merchants;
     }
     // allMarket
@@ -92,7 +92,7 @@ class AllListAPIController extends Controller
     public function getShopWithLocation(Request $request)
     {
         if($request->id){
-            $result = Shop::with('division', 'district', 'upazila')->where('id', $request->id)->first();
+            $result = Shop::active()->with('division', 'district', 'upazila')->where('id', $request->id)->first();
 
             return response()->json([
                 'success' => true,
