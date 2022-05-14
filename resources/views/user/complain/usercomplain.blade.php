@@ -1,0 +1,289 @@
+@extends('user.layouts.app')
+@section('content')
+    <div class="content">
+        <!-- Start Content-->
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box page-title-box-alt">
+                        <h4 class="page-title">User Complain Information</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                                <li class="breadcrumb-item active">Complain</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered" width="100%">
+                                <h1 class="text-center">Basic Complain Information :</h1>
+
+                                <tbody>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <td>
+                                            {{ Auth::user()->name }}
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Customer Email</th>
+                                        <td>
+                                            {{ Auth::user()->email }}
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>
+                                            {{ Auth::user()->mobile }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>
+                                            {{ Auth::user()->address }}
+                                        </td>
+                                    </tr>
+
+                                    {{-- <tr>
+                                        <th><strong> Payment date: </strong></th>
+                                        <td>
+                                            <input type="datetime-local" name="payment_date" id="" value="" style="border: none; font-weight:bolder">
+
+                                        </td>
+                                    </tr> --}}
+
+                                    <tr>
+                                        <th>Order id</th>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Product name</th>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Complain Number</th>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Order Numbe</th>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <form action="#" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="complain-name" class="form-label text-dark">delivery_date<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="delivery_date" id="complain-name"
+                                                class="form-control @error('delivery_date') is-invalid @enderror"
+                                                placeholder="Enter complain number" value="{{ old('delivery_date') }}">
+                                            <div class="text-danger">
+                                                @error('delivery_date')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="complain-name" class="form-label text-dark">delivery_time<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="delivery_time" id="complain-name"
+                                                class="form-control @error('delivery_time') is-invalid @enderror"
+                                                placeholder="Enter complain number" value="{{ old('delivery_time') }}">
+                                            <div class="text-danger">
+                                                @error('delivery_time')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="alt_customer_address"
+                                                class="form-label text-dark">alt_customer_address<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="alt_customer_address"
+                                                id="alt_customer_address"
+                                                class="form-control @error('alt_customer_address') is-invalid @enderror"
+                                                placeholder="Enter complain number"
+                                                value="{{ old('alt_customer_address') }}">
+                                            <div class="text-danger">
+                                                @error('alt_customer_address')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="alt_customer_name"
+                                                class="form-label text-dark">alt_customer_name<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="alt_customer_name" id="alt_customer_name"
+                                                class="form-control @error('alt_customer_name') is-invalid @enderror"
+                                                placeholder="Enter complain number"
+                                                value="{{ old('alt_customer_name') }}">
+                                            <div class="text-danger">
+                                                @error('alt_customer_name')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="alt_customer_phone"
+                                                class="form-label text-dark">alt_customer_phone<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="alt_customer_phone" id="alt_customer_phone"
+                                                class="form-control @error('alt_customer_phone') is-invalid @enderror"
+                                                placeholder="Enter complain number"
+                                                value="{{ old('alt_customer_phone') }}">
+                                            <div class="text-danger">
+                                                @error('alt_customer_phone')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="alt_customer_email"
+                                                class="form-label text-dark">alt_customer_email<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="alt_customer_email" id="alt_customer_email"
+                                                class="form-control @error('alt_customer_email') is-invalid @enderror"
+                                                placeholder="Enter complain number"
+                                                value="{{ old('alt_customer_email') }}">
+                                            <div class="text-danger">
+                                                @error('alt_customer_email')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="complain_message" class="form-label text-dark">Product
+                                                complain_message
+                                                <span class="text-danger">*</span></label>
+                                            <textarea name="complain_message" id="summernote" class="form-control @error('complain_message') is-invalid @enderror"
+                                                rows="3"
+                                                placeholder="Please enter comment">{{ old('complain_message') }}</textarea>
+                                            <div class="text-danger">
+                                                @error('complain_message')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label> Image 1 </label>
+                                            <input type="file" name="photo"
+                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                                data-show-errors="true" data-errors-position="outside"
+                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
+                                            <x-error name='photo' />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label> Image 2 </label>
+                                            <input type="file" name="photo"
+                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                                data-show-errors="true" data-errors-position="outside"
+                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
+                                            <x-error name='photo' />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label> Image 3 </label>
+                                            <input type="file" name="photo"
+                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                                data-show-errors="true" data-errors-position="outside"
+                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
+                                            <x-error name='photo' />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label> Image 4</label>
+                                            <input type="file" name="photo"
+                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                                data-show-errors="true" data-errors-position="outside"
+                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
+                                            <x-error name='photo' />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label> Image 5 </label>
+                                            <input type="file" name="photo"
+                                                class="form-control dropify  @error('photo') is-invalid @enderror"
+                                                data-show-errors="true" data-errors-position="outside"
+                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
+                                            <x-error name='photo' />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button type="submit" class="btn btn-primary mt-3">Submit Complain<i
+                                        class="mdi mdi-arrow-right ms-1"></i></button>
+                            </form>
+                        </div> {{-- card-body-end --}}
+
+                    </div>
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    @endsection
