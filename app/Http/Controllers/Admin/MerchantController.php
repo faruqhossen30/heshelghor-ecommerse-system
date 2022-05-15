@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auth\Marchant;
+use App\Models\Merchant\Shop;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
 class MerchantController extends Controller
@@ -13,6 +15,33 @@ class MerchantController extends Controller
         $merchants = Marchant::latest()->paginate(10);
         // return $merchants;
         return view('admin.merchant.allmerchant', compact('merchants'));
+    }
+    public function allshoplist()
+    {
+        $shops = Shop::orderBy('id', 'desc')->get();
+        // return $shops;
+        return view('admin.merchant.allshoplist', compact('shops'));
+    }
+    public function viewshop($id)
+    {
+        $shop = Shop::where('id', $id)->first();
+        // return $shop;
+        return view('admin.merchant.viewshop', compact('shop'));
+    }
+    public function activeshop($id)
+    {
+        $shops = Shop::where('id', $id)->update(['status'=> 1]);
+        // return $shops;
+        Product::where('shop_id', $id)->update(['status'=>1]);
+        return redirect()->route('shop.list.all');
+    }
+    public function deactive($id)
+    {
+        $shops = Shop::where('id', $id)->update(['status'=> 0]);
+
+        Product::where('shop_id', $id)->update(['status'=>0]);
+        // return $shops;
+        return redirect()->route('shop.list.all');
     }
 
     public function searchMerchant()

@@ -53,7 +53,7 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
         $subcategories = SubCategory::orderBy('name', 'asc')->get();
         $brands = Brand::orderBy('name', 'asc')->get();
-        $shops = Shop::where('author_id', $merchantId)->get();
+        $shops = Shop::active()->where('author_id', $merchantId)->get();
         $colors = Color::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
 

@@ -198,6 +198,9 @@ $admin = Auth::guard('admin')->user();
                             <li>
                                 <a href="{{ route('merchant.list.all') }}">Merchant List</a>
                             </li>
+                            <li>
+                                <a href="{{ route('shop.list.all') }}">Shop List</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

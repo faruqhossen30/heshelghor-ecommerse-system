@@ -1,4 +1,7 @@
-@extends('marchant.layouts.app')
+@php
+    $admin = Auth::guard('admin')->user();
+@endphp
+@extends('admin.layouts.app')
 @section('content')
 <div class="content">
 
@@ -9,12 +12,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">Shop List</h4>
+                    <h4 class="page-title">shop List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Shop List</li>
+                            <li class="breadcrumb-item active">Category List</li>
                         </ol>
                     </div>
                 </div>
@@ -26,19 +29,13 @@
             <div class="col-lg-12">
                 <div class="card">
 
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <a href="{{route('shop.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Create Shop</a>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="float-sm-end">
-                                    <button type="button" class="btn btn-success mb-2 mb-sm-0"><i class="mdi mdi-cog"></i></button>
-                                </div>
-                            </div><!-- end col-->
-                        </div>
-                        <!-- end row -->
+                <!-- sweetalert -->
+                {{-- <h6 class="alert alert-success ">{{ session('status') }}</h6> --}}
+                    {{-- @if (Session('status'))
+                        <button type="button" class="btn btn-info btn-xs" id="sa-basic">{{ session('status') }}</button>
+                    @endif --}}
 
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-centered w-100 dt-responsive nowrap" id="basic-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
@@ -50,12 +47,11 @@
                                             </div>
                                         </th>
                                         <th class="all">SN</th>
-                                        <th class="all">Shop Name</th>
-                                        <th>Photo</th>
-                                        <th>Address</th>
-                                        <th>Vacation</th>
-                                        <th>Status</th>
+                                        <th class="all">Category Name</th>
+                                        <th class="all">Mobile</th>
+                                        <th>Merchant</th>
                                         <th>Created at</th>
+                                        <th>Status</th>
                                         <th style="width: 85px;">Action</th>
                                     </tr>
                                 </thead>
@@ -78,17 +74,13 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$shop->name}}</a></h5>
                                         </td>
                                         <td>
-                                            <img src="{{$shop->img_full}}"  style="width:50px" alt="Photo">
+                                            {{$shop->mobile ?? 'N/A'}}
                                         </td>
                                         <td>
-                                            {{$shop->address ?? 'No description found'}}
+                                            Merchatn
                                         </td>
                                         <td>
-                                            @if ($shop->vacation)
-                                                <a href="{{route('shop.vacation', $shop->id)}}" onclick="return confirm('Want to go vacation mood ?');" class="btn btn-danger btn-bordered btn-rounded waves-effect waves-light btn-sm">Vacation</a>
-                                            @else
-                                            <a href="{{route('shop.vacation', $shop->id)}}" onclick="return confirm('Want to go vacation mood ?');" class="btn btn-success btn-bordered btn-rounded waves-effect waves-light btn-sm">Off</a>
-                                            @endif
+                                            {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
                                             @if ($shop->status == 1)
@@ -98,13 +90,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }}
+                                            <ul class="list-inline table-action m-0">
+                                                <a href="{{route('merchantshop.viewshop', $shop->id)}}" class="btn @if ($shop->status == 1) btn-success @else btn-danger @endif btn-sm">View</a>
+                                            </ul>
                                         </td>
-                                        <td>
-                                            <a href="{{route('shop.edit',$shop->id)}}" class="btn btn-primary btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('shop.delete',$shop->id)}}" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are your want to delete shop ?')"><i class="fa fa-trash"></i></a>
-                                        </td>
-
                                     </tr>
                                     @endforeach
 
@@ -168,7 +157,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Shop has been created Successfully!'
+                title: 'shop has been created Successfully!'
             })
         </script>
     @endif
@@ -189,7 +178,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'Shop has been updated Successfully!'
+                title: 'shop has been updated Successfully!'
             })
         </script>
     @endif
@@ -198,7 +187,7 @@
         <script>
             Swal.fire({
             icon: 'success',
-            title: 'Shop has been deleted Successfully!',
+            title: 'shop has been deleted Successfully!',
             })
         </script>
     @endif
