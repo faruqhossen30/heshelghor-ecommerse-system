@@ -15,11 +15,11 @@ class CreateUsercomplainsTable extends Migration
     {
         Schema::create('usercomplains', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('complain_number');
-            $table->integer('order_number');
+            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('complain_number')->nullable();
+            $table->integer('order_number')->nullable();
             $table->dateTime('delivery_date');
             $table->dateTime('delivery_time');
             $table->string('customer_name');

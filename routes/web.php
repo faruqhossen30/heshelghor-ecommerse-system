@@ -47,6 +47,7 @@ use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\CourierAjaxController;
 use App\Http\Controllers\Ajax\FrontEnd\CheckoutCourierAjaxController;
 use App\Http\Controllers\User\UsercomplainController;
+use App\Http\Controllers\User\UsercomplainControllerr;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
@@ -126,7 +127,7 @@ Route::prefix('user')->group(function () {
 
 
 
-
+        
 
 
 
