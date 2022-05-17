@@ -15,6 +15,8 @@ use App\Http\Controllers\API\SearchAPIController;
 use App\Http\Controllers\API\User\UserOrderListAPIController;
 use App\Http\Controllers\API\User\UserAuthAPIController;
 use App\Http\Controllers\API\User\UserProfileAPIController;
+use App\Http\Controllers\API\ProductsearchandfilterapiController;
+
 // Location API
 use App\Http\Controllers\API\Location\LocationAPIController;
 use App\Http\Controllers\API\Merchant\MerchantBrandAPIController;
@@ -46,6 +48,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Search API
 Route::get('search/{keyword}', [SearchAPIController::class, 'searchProduct']);
+Route::get('search-filter', [ProductsearchandfilterapiController::class, 'searchProduct']);
 Route::get('search/brand/{keyword}', [SearchAPIController::class, 'searchBrand']);
 Route::get('search/shop/{keyword}', [SearchAPIController::class, 'searchShop']);
 

@@ -112,4 +112,10 @@ class TestController extends Controller
             'data'    => $data
         ]);
     }
+
+
+    public function testserver()
+    {
+        return phpinfo();
+    }
 }
