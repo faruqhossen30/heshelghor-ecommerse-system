@@ -17,7 +17,11 @@ class CreateProductReviewsTable extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->integer('mark')->min(1)->max(5);
+            $table->integer('rating')->min(1)->max(5);
+            $table->string('body');
+            $table->boolean('recommend')->default(true);
+            $table->boolean('approved')->default(true);
+            $table->boolean('approved_by')->nullable();
             $table->timestamps();
         });
     }
