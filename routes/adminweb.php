@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\Promotion\PromotionController;
+use App\Http\Controllers\Admin\Promotion\SliderController;
 use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
 // Ajax
@@ -100,6 +101,7 @@ Route::prefix('admin')->group(function () {
         // Promotion
         Route::get('promotion', [PromotionController::class, 'index'])->name('promotion.index');
         Route::get('promotion/shop', [PromotionController::class, 'shop'])->name('allshop.shop');
+        Route::resource('slider', SliderController::class);
         // Job
         Route::resource('job', JobController::class);
     });
