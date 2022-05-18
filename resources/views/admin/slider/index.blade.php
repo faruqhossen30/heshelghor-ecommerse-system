@@ -64,8 +64,8 @@
                                         </th>
                                         <th class="all">SN</th>
 
-                                        <th>Link</th>
                                         <th>Photo</th>
+                                        <th>Link</th>
 
                                         <th style="width: 85px;">Action</th>
                                     </tr>

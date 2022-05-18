@@ -140,7 +140,8 @@ class SliderController extends Controller
 
         $slider = Slider::findOrFail($id);
 
-        Storage::delete('storage/slider' . $slider->image);
+        Storage::disk('public')->delete('slider/' . $slider->image);
+        // return 'storage/slider/' . $slider->image;
 
         $slider->delete();
         return redirect(route('slider.index'));
