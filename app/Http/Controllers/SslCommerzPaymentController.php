@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Merchant\Order;
 use Illuminate\Support\Facades\Auth;
 
 class SslCommerzPaymentController extends Controller
@@ -182,7 +183,7 @@ class SslCommerzPaymentController extends Controller
 
 
         if($request->buytype == 'buynow'){
-            $update_product = DB::table('orders')
+            $update_product = Order::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
                 // For Heshelghor

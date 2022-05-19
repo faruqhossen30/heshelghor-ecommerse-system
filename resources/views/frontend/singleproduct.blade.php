@@ -10,11 +10,20 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     {{ $product->title }}
 @endsection
 @section('OG')
+    <!-- Facebook Open Graph -->
     <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
     <meta property="og:type" content="product" />
     <meta property="og:title" content="{{ $product->title }}" />
     <meta property="og:description" content="{{ $product->short_description }}" />
     <meta property="og:image" content="{{ $product->img_large }}" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@heshelghor"/>
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description" content="{{ $product->short_description }}" />
+    <meta property="og:image" content="{{ $product->img_large }}" />
+
 @endsection
 
 @section('content')
@@ -190,8 +199,8 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleproduct', $product->slug) }}"
                                         class="social-link social-facebook fab fa-facebook-f ml-2"></a>
                                         <a href="whatsapp://send?text={{ route('singleproduct', $product->slug) }}" class="social-link social-whatsapp fab fa-whatsapp"></a>
-                                    {{-- <a href="#" class="social-link social-twitter fab fa-twitter"></a> --}}
-                                    {{-- <a href="#" class="social-link social-pinterest fab fa-pinterest-p"></a> --}}
+                                    <a href="https://twitter.com/intent/tweet?url={{ route('singleproduct', $product->slug) }}" class="social-link social-twitter fab fa-twitter"></a>
+                                    <a href="//pinterest.com/pin/create/link/?url={{ route('singleproduct', $product->slug) }}" class="social-link social-pinterest fab fa-pinterest-p"></a>
                                 </div>
                                 <hr class="divider d-lg-show">
 
