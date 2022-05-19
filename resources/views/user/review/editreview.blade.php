@@ -82,10 +82,7 @@
                                     </div>
                                 </div>
                                 <form action="{{ route('user.product.review.store') }}" method="POST">
-
-
                                     @csrf
-
                                     <p>Rate and review purchased producrt</p>
                                     <div class="row">
                                         <div class=" rating form-group col-md-6 col-sm-12">
@@ -100,10 +97,12 @@
                                             <input id="star1" name="rating" type="radio" value="1">
                                             <label for="star1"></label>
                                         </div>
+
+
                                     </div>
 
 
-                                    <P class="mt-3">Is it recommanded?</P>
+                                    <P class="mt-2">Is it recommanded?</P>
                                     <input type="radio" id="html" name="recommend" value="0">
                                     <label for="html">No</label><br>
 
@@ -138,7 +137,7 @@
             position: absolute;
             top: 57%;
             margin: 0;
-            transform: translate(-66%, -50%) rotateY(180deg);
+            transform: translate(-77%, -50%) rotateY(180deg);
             display: flex;
         }
 
@@ -158,7 +157,7 @@
             font-family: fontAwesome;
             position: relative;
             display: block;
-            font-size: 30px;
+            font-size: 20px;
             color: #101010;
         }
 
@@ -167,7 +166,7 @@
             font-family: fontAwesome;
             position: absolute;
             display: block;
-            font-size: 30px;
+            font-size: 20px;
             color:#FACA51;
             top: 0;
             opacity: 0;

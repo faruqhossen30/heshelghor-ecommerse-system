@@ -122,6 +122,8 @@ Route::prefix('user')->group(function () {
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
         Route::get('review', [UserProductReviewController::class, 'index'])->name('user.product.review.list');
         Route::get('review/product', [UserProductReviewController::class, 'reviewproduct'])->name('user.product.review.product');
+        Route::post('review/', [UserProductReviewController::class, 'reviewproductstore'])->name('user.product.review.store');
+        Route::post('review/', [UserProductReviewController::class, 'reviewproductstore'])->name('user.product.review.store');
 
         Route::get('complain',[UsercomplainController::class, 'usercomplain'])->name('user.complain');
 

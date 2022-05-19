@@ -114,12 +114,12 @@
                         </ul>
                     </div>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{route('user.product.review.list')}}"aria-expanded="false" aria-controls="sidebarDashboards" class="waves-effect">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span>My Reviews </span>
                     </a>
-                </li>
+                </li> --}}
 
 
             </ul>
