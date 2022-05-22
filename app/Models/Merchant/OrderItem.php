@@ -13,7 +13,7 @@ class OrderItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'merchant_id', 'order_id', 'shop_id', 'order_number', 'product_id', 'regular_price', 'discount', 'price', 'quantity', 'merchant_price', 'merchant_price_total', 'delivery_cost', 'total_delivery_cost', 'color', 'size', 'order_no', 'delivery_system_id', 'payment_method_id', 'order_status', 'merchant_status', 'colect_pointmanager_status', 'colect_deliveryman_status', 'vehicle_status', 'delivery_pointmanager_status', 'deliveryman_status', 'user_accept_status', 'order_pin_no'
+        'order_id', 'user_id', 'product_id', 'merchant_id', 'shop_id', 'order_number', 'quantity', 'price', 'discount_type', 'discount', 'varient', 'courier_id', 'courier_packege_desc', 'delivery_cost', 'total_delivery_cost', 'order_status', 'cancel_status', 'order_pin_no'
     ];
 
     public function product()

@@ -24,12 +24,15 @@ $totalItem = count(Cart::content());
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
                     <input type="hidden" name="buytype" value="buynow">
                     {{-- Heshelghor field --}}
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="product_price" value="{{ $product->price }}">
                     <input type="hidden" name="total_prodcut" value="1">
                     <input type="hidden" name="total_product_price" value="{{ $product->price }}">
                     <input type="hidden" name="total_item" value="1">
                     <input type="hidden" name="delivery_cost" value="0">
                     <input type="hidden" name="total_delivery_cost" value="0">
+                    {{-- Order Item --}}
+                    <input type="hidden" name="quantity" value="1">
 
                     <input type="hidden" name="courier_id" value="1">
                     <input type="hidden" name="courier_name" value="paperfly">
@@ -134,8 +137,8 @@ $totalItem = count(Cart::content());
                             </div>
 
                             <h2 class="title title-simple text-uppercase text-left">Additional Information</h2>
-                            <label>Order Message (Optional)</label>
-                            <textarea name="message" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
+                            <label>Order Note/Message (Optional)</label>
+                            <textarea name="note" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
                                 placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                         </div>
                         <aside class="col-lg-5 sticky-sidebar-wrapper">
@@ -391,6 +394,7 @@ $totalItem = count(Cart::content());
             $(document).on('change select', 'input[name="delivery_system"]', function() {
                 let delivery_cost = $(this).val();
                 // alert(delivery_cost)
+                $('input[name="total_delivery_cost"]').val(delivery_cost)
                 $('#delivery_charge').html(delivery_cost)
                 totalAmount(delivery_cost);
 

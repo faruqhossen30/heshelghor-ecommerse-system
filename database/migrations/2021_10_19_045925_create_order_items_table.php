@@ -15,34 +15,26 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('merchant_id');
             $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('merchant_id');
             $table->unsignedBigInteger('shop_id');
             $table->string('order_number');
-            $table->double('regular_price');
-            $table->double('discount');
-            $table->double('price');
+            //Price
             $table->integer('quantity');
-            $table->double('merchant_price');
-            $table->double('merchant_price_total');
-            $table->double('delivery_cost');
-            $table->double('total_delivery_cost');
-            $table->string('color');
-            $table->string('size');
-            $table->string('delivery_system_name');
-            $table->string('payment_method_name');
-            $table->unsignedBigInteger('delivery_system_id');
-            $table->unsignedBigInteger('payment_method_id');
+            $table->integer('price');
+            $table->string('discount_type');
+            $table->integer('discount');
+            $table->string('varient')->nullable();
+            // Delivery
+            $table->unsignedBigInteger('courier_id');
+            $table->string('courier_packege_desc');
+            $table->integer('delivery_cost');
+            $table->integer('total_delivery_cost');
+            // Status
             $table->boolean('order_status')->default(false);
             $table->boolean('cancel_status')->default(false);
-            $table->boolean('colect_pointmanager_status')->default(false);
-            $table->boolean('colect_deliveryman_status')->default(false);
-            $table->boolean('vehicle_status')->default(false);
-            $table->boolean('delivery_pointmanager_status')->default(false);
-            $table->boolean('deliveryman_status')->default(false);
-            $table->boolean('user_accept_status')->default(false);
             $table->string('order_pin_no');
             $table->timestamps();
         });

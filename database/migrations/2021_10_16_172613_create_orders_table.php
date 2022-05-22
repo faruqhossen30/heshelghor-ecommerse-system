@@ -17,14 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('invoice_number');
-            $table->integer('product_price');
+            $table->integer('total_item');
             $table->integer('total_prodcut');
             $table->integer('total_product_price');
-            $table->integer('total_item');
-            $table->integer('delivery_cost');
             $table->integer('total_delivery_cost');
             $table->string('payment_type');
-            $table->string('varient')->nullable();
             // SSL
             $table->string('name');
             $table->string('email');
@@ -33,10 +30,11 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->string('address');
             $table->string('transaction_id');
-            $table->string('currency');
-            // Curier
-            $table->unsignedBigInteger('courier_id');
-            $table->unsignedBigInteger('courier_name');
+            $table->string('currency')->default('BDT');
+            $table->string('note',1000)->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->unsignedBigInteger('upazila_id')->nullable();
             $table->timestamps();
         });
     }
