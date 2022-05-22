@@ -104,7 +104,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                ৳{{$order->total_price}}
+                                                ৳{{$order->amount}}
                                             </td>
                                             {{-- <td>
                                                 <div>

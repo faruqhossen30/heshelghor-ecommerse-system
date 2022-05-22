@@ -132,7 +132,7 @@ class SslCommerzPaymentController extends Controller
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
-        // return $request->all();
+        return $request->all();
         $request->validate([
             'total_amount' => 'required',
             'delivery_system' => 'required',
@@ -192,10 +192,10 @@ class SslCommerzPaymentController extends Controller
                 'user_id'             => Auth::user()->id,
                 'invoice_number'      => invoiceGenerate(),
                 'total_item'          => $request->total_item,
-                'total_prodcut'       => $request->total_prodcut,
+                'total_prodcut'       => $request->quantity,
                 'total_product_price' => $request->total_product_price,
                 'total_delivery_cost' => $request->total_delivery_cost,
-                'payment_type'        => 'online',
+                'payment_type'        => $request->payment_type,
                 //For SSL Commerce
                 'name'                => $post_data['cus_name'],
                 'email'               => $post_data['cus_email'],

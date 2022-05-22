@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use App\Models\Auth\Marchant;
+use Faker\Provider\Uuid;
 
 use function PHPSTORM_META\type;
 
@@ -30,8 +31,8 @@ class TestController extends Controller
 
     public function ontest()
     {
-
-        return invoiceGenerate();
+return Uuid::uuid();
+        // return invoiceGenerate();
     }
 
 

@@ -32,7 +32,6 @@ $totalItem = count(Cart::content());
                     <input type="hidden" name="delivery_cost" value="0">
                     <input type="hidden" name="total_delivery_cost" value="0">
                     {{-- Order Item --}}
-                    <input type="hidden" name="quantity" value="1">
 
                     <input type="hidden" name="courier_id" value="1">
                     <input type="hidden" name="courier_name" value="paperfly">
@@ -192,13 +191,27 @@ $totalItem = count(Cart::content());
                                                     <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
                                                 </td>
                                             </tr>
-                                            {{-- <tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h6 class="mt-3">Total Quantity</h6>
+                                                </td>
+                                                <td colspan="2">
+                                                    <div class="d-flex mt-2">
+                                                        <button type="button" class="quantity-minus d-icon-minus" style="height: 4rem;padding: 10px;border: gray 1px solid;"></button>
+                                                        <input name="quantity" value="" class="quantity form-control text-center" type="number"
+                                                            min="1" max="{{$product->quantity}}" >
+                                                        <button type="button" class="quantity-plus d-icon-plus" style="height: 4rem;padding: 10px;border: gray 1px solid;"></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td class="text-start" colspan="4">
                                                     <h6 class="m-2 ">Color:</h6>
                                                     <select name="varient[]" class="form-control">
                                                         <option value="">Select Color</option>
                                                         @foreach ($product->colors as $color)
-                                                            <option value="color-{{$color->color->name}}">{{ $color->color->name }}</option>
+                                                            <option value="color-{{ $color->color->name }}">
+                                                                {{ $color->color->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
@@ -209,12 +222,13 @@ $totalItem = count(Cart::content());
                                                     <select name="varient[]" class="form-control">
                                                         <option value="">Select Size</option>
                                                         @foreach ($product->sizes as $size)
-                                                            <option value="size-{{ $size->size->name }}">{{ $size->size->name }}</option>
+                                                            <option value="size-{{ $size->size->name }}">
+                                                                {{ $size->size->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                            </tr> --}}
-                                            {{-- <tr class="sumnary-shipping shipping-row-last">
+                                            </tr>
+                                            <tr class="sumnary-shipping shipping-row-last">
                                                 <td colspan="2">
                                                     <h4 class="summary-subtitle">Payment Method</h4>
                                                     <ul>
@@ -237,7 +251,7 @@ $totalItem = count(Cart::content());
                                                         </li>
                                                     </ul>
                                                 </td>
-                                            </tr> --}}
+                                            </tr>
 
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
@@ -267,7 +281,7 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                                             name="terms-condition" value="1" required />
                                         <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to  <a href="{{ route('termsandcondition') }}"
+                                            I have read and agree to <a href="{{ route('termsandcondition') }}"
                                                 class="text-primary" target="_blank">terms and conditions </a> and
                                             <a href="{{ route('privacypolicy') }}" class="text-primary"
                                                 target="_blank">privacy policy</a>
@@ -277,8 +291,8 @@ $totalItem = count(Cart::content());
                                         <input type="checkbox" class="custom-checkbox" id="terms-condition2"
                                             name="terms-condition2" value="1" required />
                                         <label class="form-control-label" for="terms-condition2">
-                                            I have read and agree to  <a href="{{ route('returnpolicy') }}" class="text-primary"
-                                                target="_blank">Return & Refund Policy</a>
+                                            I have read and agree to <a href="{{ route('returnpolicy') }}"
+                                                class="text-primary" target="_blank">Return & Refund Policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
@@ -397,6 +411,12 @@ $totalItem = count(Cart::content());
                 $('input[name="total_delivery_cost"]').val(delivery_cost)
                 $('#delivery_charge').html(delivery_cost)
                 totalAmount(delivery_cost);
+            });
+
+            $(document).on('change keyup click', 'input[name="quantity"], .quantity-minus, .quantity-plus', function() {
+                let qty = $('input[name="quantity"]').val();
+                $('input[name="total_prodcut"]').val(qty);
+                $('#product_quantity').html(qty)
 
             });
 

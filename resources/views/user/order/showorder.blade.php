@@ -52,7 +52,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                {{$order->deliveryaddress->name}}
+                                                {{$order->address}}
                                             </h5>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="me-3">
-                                                                        <img src="{{asset('uploads/product/'.$item->product->photo)}}" alt="product-img" height="40">
+                                                                        <img src="{{$item->product->img_small}}" alt="product_imgsmall" height="40">
                                                                     </div>
                                                                     <div class="flex-1">
                                                                         <h5 class="m-0">{{$item->product->title}}</h5>
@@ -156,11 +156,11 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Sub Total :</th>
-                                                        <td>৳{{$order->product_price}}</td>
+                                                        <td>৳{{$order->price}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Shipping Charge :</th>
-                                                        <td>৳{{$order->delivery_cost}}</td>
+                                                        <td>৳{{$order->total_delivery_cost}}</td>
                                                     </tr>
                                                     {{-- <tr>
                                                         <th scope="row">Estimated Tax :</th>
@@ -193,15 +193,16 @@
 
                                     <tbody>
                                         <tr>
-                                            <th colspan="2"><h5 class="font-15 m-0">{{$order->deliveryaddress->name}}</h5></th>
+                                            <th scope="row">Name :</th>
+                                            <td>{{$order->name}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Address:</th>
-                                            <td>{{$order->deliveryaddress->address}}</td>
+                                            <td>{{$order->address}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Mobile :</th>
-                                            <td>{{$order->deliveryaddress->mobile}}</td>
+                                            <td>{{$order->mobile}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

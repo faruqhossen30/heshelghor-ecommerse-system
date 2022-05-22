@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Order\DeliveryAddress;
 use Carbon\Carbon;
+use Faker\Provider\Uuid;
 use Illuminate\Support\Facades\Validator;
 
 class UserOrderAPIController extends Controller
@@ -45,7 +46,7 @@ class UserOrderAPIController extends Controller
                 'amount'              => $request->amount,
                 'status'              => 'Pending',
                 'address'             => $request->address,
-                'transaction_id'      => $request->transaction_id,
+                'transaction_id'      =>  Uuid::uuid(),
                 'currency'            => $request->currency,
                 'note'                => $request->note,
                 'division_id'         => $request->division_id,
