@@ -63,7 +63,7 @@
                                             {{$item->product->title}}
                                         </td>
                                         <td>
-                                            {{$item->deliveryaddress->address}}
+                                            {{$item->address}}
                                         </td>
 
                                         <td>

@@ -60,7 +60,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Billing Name</p>
                                                 <h5 class="mt-0">
-                                                    {{$orderItem->deliveryaddress->name}}
+                                                    {{$orderItem->address}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -178,15 +178,15 @@
 
                                         <tbody>
                                             <tr>
-                                                <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->deliveryaddress->name}}</h5></th>
+                                                <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->name}}</h5></th>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address:</th>
-                                                <td>{{$orderItem->deliveryaddress->address}}</td>
+                                                <td>{{$orderItem->address}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Phone :</th>
-                                                <td>{{$orderItem->deliveryaddress->mobile}}</td>
+                                                <td>{{$orderItem->mobile}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Mobile :</th>

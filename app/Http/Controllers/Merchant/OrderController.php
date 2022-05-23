@@ -22,14 +22,14 @@ class OrderController extends Controller
     {
         $merchantId = Auth::guard('marchant')->user()->id;
         $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::with('product', 'order', 'deliveryaddress')->where('merchant_id', $merchantId)->get();
+        $orderItems = OrderItem::with('product', 'order')->where('merchant_id', $merchantId)->get();
         // return $orderItems;
         return view('marchant.order.orders', compact('orderItems'));
     }
 
     public function orderItem($id)
     {
-        $orderItem = OrderItem::with('product', 'deliveryaddress')->where('id', $id)->first();
+        $orderItem = OrderItem::with('product')->where('id', $id)->first();
         // return $orderItem;
         return view('marchant.order.orderitem', compact('orderItem'));
     }

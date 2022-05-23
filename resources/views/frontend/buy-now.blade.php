@@ -60,7 +60,7 @@ $totalItem = count(Cart::content());
                                 <div class="col">
                                     <label>Delivery Address *</label>
                                     <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                        name="address" required />
+                                        name="address" />
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -197,10 +197,10 @@ $totalItem = count(Cart::content());
                                                 </td>
                                                 <td colspan="2">
                                                     <div class="d-flex mt-2">
-                                                        <button type="button" class="quantity-minus d-icon-minus" style="height: 4rem;padding: 10px;border: gray 1px solid;"></button>
+                                                        <button type="button" class="quantity-minus d-icon-minus border" style="height: 4rem;padding: 10px;"></button>
                                                         <input name="quantity" value="" class="quantity form-control text-center" type="number"
-                                                            min="1" max="{{$product->quantity}}" >
-                                                        <button type="button" class="quantity-plus d-icon-plus" style="height: 4rem;padding: 10px;border: gray 1px solid;"></button>
+                                                            min="1" max="{{$product->quantity}}" readonly >
+                                                        <button type="button" class="quantity-plus d-icon-plus border" style="height: 4rem;padding: 10px;"></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -228,6 +228,9 @@ $totalItem = count(Cart::content());
                                                     </select>
                                                 </td>
                                             </tr>
+                                            <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
+
+                                            </tr>
                                             <tr class="sumnary-shipping shipping-row-last">
                                                 <td colspan="2">
                                                     <h4 class="summary-subtitle">Payment Method</h4>
@@ -253,9 +256,7 @@ $totalItem = count(Cart::content());
                                                 </td>
                                             </tr>
 
-                                            <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
-                                            </tr>
                                         </tbody>
                                     </table>
 
@@ -313,124 +314,5 @@ $totalItem = count(Cart::content());
 @endpush
 
 @push('scripts')
-    <script>
-        $(function() {
-            var division = $('select[name=division_id]');
-            var district = $('select[name=district_id]');
-            var upazila = $('select[name=upazila_id]');
-
-            var product_price = $('input[name=product]').data('price');
-            var prdoduct_upazila_id = $('input[name=product]').data('prdoduct_upazila_id');
-
-            // For District
-            division.change(function() {
-                district.removeAttr('disabled');
-                district.empty();
-                upazila.empty();
-                var divisionID = $(this).val();
-                if (divisionID) {
-                    // console.log(divisionID)
-                    district.append(
-                        `<option selected>Select</option>`
-                    );
-                    $.ajax({
-                        url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`,
-                        method: 'GET',
-                        success(data) {
-                            // console.log(data);
-                            data.forEach(function(row) {
-                                district.append(
-                                    `<option value="${row.id}">${row.name}</option>`
-                                );
-                            });
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-
-            // For Upazilla
-            district.change(function() {
-                upazila.removeAttr('disabled');
-                upazila.empty();
-                var districtID = $(this).val();
-                if (districtID) {
-                    upazila.append(
-                        `<option selected>Select</option>`
-                    );
-                    $.ajax({
-                        url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`,
-                        method: 'GET',
-                        success(data) {
-                            // console.log(data);
-                            data.forEach(function(row) {
-                                upazila.append(
-                                    `<option value="${row.id}">${row.name}</option>`
-                                );
-                            });
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-            // Show Courier server by upazila/thana
-            upazila.change(function() {
-                // upazila.removeAttr('disabled');
-                var upazilaid = $(this).val();
-                if (upazilaid) {
-                    // console.log(upazilaid)
-
-                    $.ajax({
-                        url: `/checkupazilawisecourierupalizalist/${upazilaid}`,
-                        method: 'GET',
-                        data: {
-                            prdoduct_upazila_id: prdoduct_upazila_id,
-                            product_delivery_upazila_id: upazilaid,
-                            product_weight: 1
-                        },
-                        success(data) {
-                            console.log('for courier list', data);
-                            $('#couriertablerow').empty()
-                            $('#couriertablerow').append(data).hide().fadeIn(2000);
-
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-
-            $(document).on('change select', 'input[name="delivery_system"]', function() {
-                let delivery_cost = $(this).val();
-                // alert(delivery_cost)
-                $('input[name="total_delivery_cost"]').val(delivery_cost)
-                $('#delivery_charge').html(delivery_cost)
-                totalAmount(delivery_cost);
-            });
-
-            $(document).on('change keyup click', 'input[name="quantity"], .quantity-minus, .quantity-plus', function() {
-                let qty = $('input[name="quantity"]').val();
-                $('input[name="total_prodcut"]').val(qty);
-                $('#product_quantity').html(qty)
-
-            });
-
-            // claculate
-            function totalAmount(delivery_cost) {
-                var inTotal = parseInt(product_price) + parseInt(delivery_cost);
-                // var sum = inTotal.toFixed(2)
-                $('input[name=total_amount]').val(inTotal);
-                $('#total_product_price').html(inTotal);
-
-                console.log(inTotal);
-
-            }
-
-        });
-    </script>
+@include('frontend.inc.buynowscript')
 @endpush
