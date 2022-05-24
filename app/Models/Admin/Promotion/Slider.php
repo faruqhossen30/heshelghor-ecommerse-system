@@ -13,5 +13,6 @@ class Slider extends Model
         'link',
         'image',
         'author_id'
+
     ];
 }
