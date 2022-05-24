@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\Promotion\PromotionController;
+use App\Http\Controllers\Admin\Promotion\SliderajaxController;
 use App\Http\Controllers\Admin\Promotion\SliderController;
 use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
@@ -108,3 +109,5 @@ Route::prefix('admin')->group(function () {
 });
 
 
+//--------------------------------category dependency-----------------
+Route::get('/category-to-subcategory/{id}', [SliderajaxController::class, 'CategorytoSubcategory'])->name('categorytosubcategory');
