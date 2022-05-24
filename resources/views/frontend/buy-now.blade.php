@@ -199,7 +199,7 @@ $totalItem = count(Cart::content());
                                                     <div class="d-flex mt-2">
                                                         <button type="button" class="quantity-minus d-icon-minus border" style="height: 4rem;padding: 10px;"></button>
                                                         <input name="quantity" value="" class="quantity form-control text-center" type="number"
-                                                            min="1" max="{{$product->quantity}}" readonly >
+                                                            min="1" max="{{$product->quantity}}" >
                                                         <button type="button" class="quantity-plus d-icon-plus border" style="height: 4rem;padding: 10px;"></button>
                                                     </div>
                                                 </td>

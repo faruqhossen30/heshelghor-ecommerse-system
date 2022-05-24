@@ -100,7 +100,7 @@
             totalAmount(delivery_cost);
         });
 
-        $(document).on('change keyup click', 'input[name="quantity"], .quantity-minus, .quantity-plus', function() {
+        $(document).on('change keyup', 'input[name="quantity"]', function() {
             let qty = $('input[name="quantity"]').val(); // input qty update
             $('input[name="total_prodcut"]').val(qty); // input total product qty update
             // $('input[name="total_product_price"]').val( ); // input total product_price update
