@@ -90,15 +90,22 @@
                                     <ul>
                                         <li>
                                             <div class="custom-radio">
+                                                <input type="radio" id="none" name="payment_type" value=""
+                                                    class="custom-control-input" checked="" required>
+                                                <label class="custom-control-label" for="none">None</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-radio">
                                                 <input type="radio" id="flat_rate" name="payment_type" value="cash"
-                                                    class="custom-control-input" checked="">
+                                                    class="custom-control-input" required>
                                                 <label class="custom-control-label" for="flat_rate">Cash On Delivery</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="custom-radio">
                                                 <input type="radio" id="free-shipping" name="payment_type" value="online"
-                                                    class="custom-control-input">
+                                                    class="custom-control-input" required>
                                                 <label class="custom-control-label" for="free-shipping">Payment Now</label>
                                             </div>
                                         </li>
