@@ -18,7 +18,7 @@ $totalItem = count(Cart::content());
                 <h3 class="title title-simple title-step"><a href="#">Buy Now</a></h3>
             </div>
             <div class="container">
-                <form action="{{ route('buynow') }}" method="POST" class="form">
+                <form action="{{ route('buynowpay') }}" method="POST" class="form">
                     @csrf
                     <input type="text" name="product" data-price="{{ $product->price }}"
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
