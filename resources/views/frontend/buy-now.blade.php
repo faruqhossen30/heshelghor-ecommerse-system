@@ -18,7 +18,7 @@ $totalItem = count(Cart::content());
                 <h3 class="title title-simple title-step"><a href="#">Buy Now</a></h3>
             </div>
             <div class="container">
-                <form action="{{ route('pay') }}" method="POST" class="form">
+                <form action="{{ route('buynow') }}" method="POST" class="form">
                     @csrf
                     <input type="text" name="product" data-price="{{ $product->price }}"
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
@@ -26,15 +26,14 @@ $totalItem = count(Cart::content());
                     {{-- Heshelghor field --}}
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="product_price" value="{{ $product->price }}">
-                    <input type="hidden" name="total_prodcut" value="1">
                     <input type="hidden" name="total_product_price" value="{{ $product->price }}">
                     <input type="hidden" name="total_item" value="1">
                     <input type="hidden" name="delivery_cost" value="0">
-                    <input type="hidden" name="total_delivery_cost" value="0">
+                    <input type="hidden" name="total_delivery_cost" value="">
                     {{-- Order Item --}}
 
                     <input type="hidden" name="courier_id" value="1">
-                    <input type="hidden" name="courier_name" value="paperfly">
+                    <input type="hidden" name="courier_packege_desc" value="paperfly">
                     {{-- SSL --}}
                     <input type="hidden" value="0" name="total_amount">
 
@@ -60,7 +59,7 @@ $totalItem = count(Cart::content());
                                 <div class="col">
                                     <label>Delivery Address *</label>
                                     <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                        name="address" />
+                                        name="address" required />
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -155,32 +154,27 @@ $totalItem = count(Cart::content());
                                             <tr>
                                                 <th>1</th>
                                                 <td>{{ $product->title }}</td>
-                                                <td>1 x ৳{{ $product->price }}</td>
-                                                <td>৳{{ $product->price }}</td>
+                                                <td class="text-bold"> <span id="pqty">1</span> x ৳{{ $product->price }}</td>
+                                                {{-- <td>৳{{ $product->price }}</td> --}}
                                             </tr>
                                             <hr>
                                             <tr>
                                                 <td class="text-start" colspan="2">
-                                                    <h6>Sub total:</h6>
+                                                    <h6>Product Price:</h6>
                                                 </td>
                                                 <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="sub_total">{{ $product->price }}</span></h6>
+                                                    <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Total Item: </h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6><span id="product_quantity">1</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
+                                                <td class="text-start" colspan="1">
                                                     <h6>Delivery Cost:</h6>
                                                 </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="delivery_charge">0</span></h6>
+                                                {{-- <td class="text-start" colspan="1">
+                                                    <h6>2x100</h6>
+                                                </td> --}}
+                                                <td class="text-end"  colspan="2">
+                                                    <h6>৳<span id="totalDeliverCost">0</span></h6>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -188,7 +182,7 @@ $totalItem = count(Cart::content());
                                                     <h6>Total:</h6>
                                                 </td>
                                                 <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
+                                                    <h6>৳<span id="intotal">{{ $product->price }}</span></h6>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -197,10 +191,10 @@ $totalItem = count(Cart::content());
                                                 </td>
                                                 <td colspan="2">
                                                     <div class="d-flex mt-2">
-                                                        <button type="button" class="quantity-minus d-icon-minus border" style="height: 4rem;padding: 10px;"></button>
-                                                        <input name="quantity" value="" class="quantity form-control text-center" type="number"
+                                                        <button type="button" style="" class="border" id="qtyminusbtn">-</button>
+                                                        <input name="total_prodcut" value="1" class="" type="number" style="text-align: center"
                                                             min="1" max="{{$product->quantity}}" >
-                                                        <button type="button" class="quantity-plus d-icon-plus border" style="height: 4rem;padding: 10px;"></button>
+                                                        <button type="button" style="" class="border" id="qtyplusbtn">+</button>
                                                     </div>
                                                 </td>
                                             </tr>

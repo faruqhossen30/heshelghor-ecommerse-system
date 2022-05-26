@@ -110,23 +110,6 @@
 
         totalAmount();
 
-        // if (deliverySystemId) {
-        //     $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
-        //         if (data) {
-        //             console.log(data);
-        //             delivery_system_name.val(data.name);
-        //             // console.log(delivery_system_name.val());
-        //             // console.log(payment_system_name.val());
-        //             delivery_cost.val(data.price * productNumber); // for hidden input
-        //             delivery_charge.text(data.price * productNumber); // For Show calculate
-        //             totalAmount();
-        //         }
-        //     });
-        // };
-
-    });
-
-
     // claculate
     function totalAmount() {
         var inTotal = parseFloat(sub_total.text()) + parseFloat(delivery_charge.text());

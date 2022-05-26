@@ -12,7 +12,7 @@ $totalItem = count(Cart::content());
 
 @section('content')
     <main class="main checkout">
-        <div class="page-content pt-7 pb-10 mb-10">
+        <div class="page-content pb-10 mb-10">
             <div class="step-by pr-4 pl-4">
                 <h3 class="title title-simple title-step"><a href="{{ route('cart.page') }}">1. Shopping Cart</a></h3>
                 <h3 class="title title-simple title-step active"><a href="{{ route('checkoutpage') }}">2. Checkout</a></h3>
@@ -21,6 +21,16 @@ $totalItem = count(Cart::content());
 
             <form action="{{ route('pay') }}" method="POST">
                 @csrf
+                <input type="hidden" name="buytype" value="checkout">
+                <input type="hidden" name="total_item" value="{{ Cart::content()->count() }}">
+                <input type="hidden" name="total_prodcut" value="{{ Cart::count() }}">
+                <input type="hidden" name="total_product_price" value="{{ Cart::subtotal() }}">
+                {{-- Delivery --}}
+                <input type="hidden" name="total_delivery_cost" value="">
+                <input type="hidden" name="total_amount" value="">
+
+
+
                 <section>
                     <div class="container">
                         <div class="row">
@@ -28,18 +38,20 @@ $totalItem = count(Cart::content());
                                 <div class="tab tab-nav-boxed tab-nav-solid">
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#tab3-1">Billing & Deliver Address</a>
+                                            <a class="nav-link active" id="billingtabbutton" href="#tab3-1">Billing &
+                                                Deliver Address</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#tab3-2">Second header</a>
+                                            <a class="nav-link" id="checkouttabbutton" href="#tab3-2">Checkout</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab3-1">
                                             <div class="col-md-12 mb-6 mb-lg-0 pr-lg-4">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <h3 class="title title-simple text-left text-uppercase">Billing Details
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <h3 class="title title-simple text-left text-uppercase">Billing
+                                                            Details
                                                         </h3>
                                                         <div class="row">
                                                             <div class="col">
@@ -89,11 +101,12 @@ $totalItem = count(Cart::content());
                                                         </div>
 
                                                         <label>Email Address *</label>
-                                                        <input type="text" value="{{ $user->email }}" class="form-control"
-                                                            name="email" />
+                                                        <input type="text" value="{{ $user->email }}"
+                                                            class="form-control" name="email" />
                                                     </div>
-                                                    <div class="col-6">
-                                                        <h2 class="title title-simple text-uppercase text-left">Please Select
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <h2 class="title title-simple text-uppercase text-left">Please
+                                                            Select
                                                             Location For deliver
                                                             service</h2>
                                                         <div>
@@ -143,23 +156,17 @@ $totalItem = count(Cart::content());
                                                         <h2 class="title title-simple text-uppercase text-left">Additional
                                                             Information</h2>
                                                         <label>Order Message (Optional)</label>
-                                                        <textarea name="message" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
+                                                        <textarea name="note" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
                                                             placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                                        <button class="btn btn-primary" id="nextchebtn" type="button">Next &
+                                                            Checkout</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ul class="nav nav-tabs" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#tab3-2">Second header</a>
-                                                </li>
-                                            </ul>
                                         </div>
                                         <div class="tab-pane" id="tab3-2">
-                                            <p class="mb-0">Phasellus hendrerit. Pellentesque aliquet nibh nec
-                                                urna. In
-                                                nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium,
-                                                ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget
-                                                blandit nunc tortor eu nibh. Nullam mollis. Ut justo.</p>
+                                            @include('frontend.inc.checkoutproductanddelivery')
+
                                         </div>
                                     </div>
                                 </div>
@@ -168,17 +175,27 @@ $totalItem = count(Cart::content());
                     </div>
                 </section>
 
+
             </form>
         </div>
     </main>
     <!-- End Main -->
 @endsection
 @push('styles')
+    <style>
+        .shop-table td {
+            padding: 0 !important;
+            border-top: 1px solid #e1e1e1;
+            font-size: 1.4rem;
+        }
+
+    </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/style.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 @endpush
 
 @push('scripts')
-    @include('frontend.inc.checkoutscript')
+    @include('frontend.inc.cartcheckoutscript')
+
 @endpush

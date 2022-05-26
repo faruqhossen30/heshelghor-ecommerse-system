@@ -49,6 +49,34 @@ class CourierAjaxController extends Controller
 
         }
     }
+    // For Cart Checkout page
+    public function courierlistforcartchekoutpage(Request $request, $upazila_id)
+    {
+        if ($request->ajax()) {
+            // Working
+
+            $product = Product::firstWhere('id', $request->product_id);
+
+            // return $request->all();
+
+            $prdoduct_upazila_id         = $product->upazila_id;
+            $product_delivery_upazila_id = $request->product_delivery_upazila_id;
+            $product_weight              = $request->product_weight;
+
+
+            $pickup = CourierHasPickup::where('upazila_id', $prdoduct_upazila_id)->pluck('courier_id')->unique()->toArray();
+            $delivery = CourierHasDelivery::where('upazila_id', $product_delivery_upazila_id)->pluck('courier_id')->unique()->toArray();
+
+            $courierids = array_intersect($pickup, $delivery);
+
+            $couriers = Courier::whereIn('id', $courierids)->get();
+
+            $data = view('frontend.inc.checkoutcourierlistoption', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
+
+            return $data;
+
+        }
+    }
     public function upazilaWiseCourierServiceListForCheckoutPage(Request $request, $upazila_id)
     {
         if ($request->ajax()) {
