@@ -81,7 +81,7 @@
                                     <h4 class="summary-subtitle">Total </h4>
                                 </td>
                                 <td>
-                                    <p class="summary-subtotal-price" id="totalAmount">৳426.99</p>
+                                    <p class="summary-subtotal-price" id="totalAmount">৳{{Cart::subtotal()}}</p>
                                 </td>
                             </tr>
                             <tr class="sumnary-shipping shipping-row-last">

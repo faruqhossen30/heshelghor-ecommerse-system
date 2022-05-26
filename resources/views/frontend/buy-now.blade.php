@@ -198,6 +198,7 @@ $totalItem = count(Cart::content());
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @if (count($product->colors)>0)
                                             <tr>
                                                 <td class="text-start" colspan="4">
                                                     <h6 class="m-2 ">Color:</h6>
@@ -210,6 +211,8 @@ $totalItem = count(Cart::content());
                                                     </select>
                                                 </td>
                                             </tr>
+                                            @endif
+                                            @if (count($product->sizes)>0)
                                             <tr>
                                                 <td class="text-start" colspan="4">
                                                     <h6 class="m-2 ">Size:</h6>
@@ -222,6 +225,7 @@ $totalItem = count(Cart::content());
                                                     </select>
                                                 </td>
                                             </tr>
+                                            @endif
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
                                             </tr>
