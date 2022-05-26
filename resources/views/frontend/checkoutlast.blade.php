@@ -24,7 +24,7 @@ $totalItem = count(Cart::content());
                 <input type="hidden" name="buytype" value="checkout">
                 <input type="hidden" name="total_item" value="{{ Cart::content()->count() }}">
                 <input type="hidden" name="total_prodcut" value="{{ Cart::count() }}">
-                <input type="hidden" name="total_product_price" value="{{ Cart::subtotal() }}">
+                <input type="text" name="total_product_price" value="{{ Cart::priceTotal() }}">
                 {{-- Delivery --}}
                 <input type="hidden" name="total_delivery_cost" value="">
                 <input type="hidden" name="total_amount" value="">
