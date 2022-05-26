@@ -86,7 +86,7 @@
                             </tr>
                             <tr class="sumnary-shipping shipping-row-last">
                                 <td colspan="2">
-                                    <h4 class="summary-subtitle">Calculate Shipping</h4>
+                                    <h4 class="summary-subtitle">Payment Method</h4>
                                     <ul>
                                         <li>
                                             <div class="custom-radio">
@@ -107,6 +107,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <hr class="border border-secondary">
                     <div class="form-checkbox" style="margin-bottom:0 !important">
                         <input type="checkbox" class="custom-checkbox" id="terms-condition"
                             name="terms-condition" value="1" required />
@@ -125,7 +126,7 @@
                                 class="text-primary" target="_blank">Return & Refund Policy</a>
                         </label>
                     </div>
-                    <button class="btn btn-dark btn-rounded btn-checkout" type="submit">Proceed to checkout</button>
+                    <button class="btn btn-dark btn-rounded btn-checkout" type="submit">Proceed to Order</button>
                 </div>
             </div>
         </div>

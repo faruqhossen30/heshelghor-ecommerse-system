@@ -66,8 +66,6 @@ $totalItem = count(Cart::content());
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <label>Company Name (Optional)</label>
-                                                        <input type="text" class="form-control" name="company_name" />
                                                         <div class="row">
                                                             <div class="col">
                                                                 <label>Delivery Address *</label>

@@ -170,15 +170,5 @@
         }
 
 
-
-        // function productdetails(){
-        //     let quantity = $('input[name="total_prodcut"]').val();
-        //     let product_price = $('input[name="product_price"]').val()
-        //     let totalprice = parseInt(product_price) * parseInt(quantity);
-        //     $('input[name="total_product_price"]').val(totalprice)
-        //     let totalproductprice = $('input[name="total_product_price"]').val()
-
-        // }
-
     });
 </script>
