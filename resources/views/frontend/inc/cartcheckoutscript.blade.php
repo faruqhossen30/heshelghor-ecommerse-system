@@ -139,10 +139,14 @@
             $('input[name="total_delivery_cost"]').val(sum)
 
             let tpp = $('input[name="total_product_price"]').val();
-            let total = Number(tpp) + Number(sum);
+            let total = parseInt(tpp) + Number(sum);
 
             $('input[name="total_amount"]').val(total);
             $('#totalAmount').html(`৳ ${total}`);
+
+            console.log('tpp', tpp)
+            console.log('total', total)
+            console.log('sum', sum)
         }
     });
 </script>
