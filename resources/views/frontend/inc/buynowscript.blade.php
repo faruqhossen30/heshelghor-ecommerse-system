@@ -93,12 +93,7 @@
         });
 
         $(document).on('change select', 'input[name="delivery_system"]', function() {
-            let delivery_cost = $(this).val();
-            // alert(delivery_cost)
-            // $('input[name="total_delivery_cost"]').val(delivery_cost)
-            // $('#delivery_charge').html(delivery_cost)
-            console.log(delivery_cost);
-            deliverCost(delivery_cost)
+            totalAmount()
         });
 
         $(document).on('click', '#qtyplusbtn', function() {
@@ -125,48 +120,42 @@
             }
         })
 
-        function deliverCost(cost){
-            let quantity = $('input[name="total_prodcut"]').val();
-            let dcost = parseInt(cost) * parseInt(quantity);
-            let pprice = $('input[name="total_product_price"]').val();
-            let inTotal = parseInt(pprice) + parseInt(dcost)
-
-
-
-
-            $('input[name="delivery_cost"]').val(cost);
-            $('input[name="total_delivery_cost"]').val(dcost);
-            $('input[name="total_amount"]').val(inTotal);
-
-            $('#totalDeliverCost').html(dcost);
-            $('#intotal').html(inTotal);
-
-            console.log(dcost)
-        }
-
 
         // claculate
 
-        function totalAmount(delivery_cost) {
+        function totalAmount() {
             let product_price = $('input[name="product_price"]').val()
             let quantity = $('input[name="total_prodcut"]').val();
             let totalprice = parseInt(product_price) * parseInt(quantity)
 
             $('input[name="total_product_price"]').val(totalprice)
-            // let check = $('input[name="total_product_price"]').val()
 
-            // console.log(quantity)
-            // console.log(product_price)
-            // console.log(check)
+            let dcost = $('input[name="delivery_system"]:checked').val();
+            if(dcost){
+                let tdcost = parseInt(dcost) * parseInt(quantity);
+                $('input[name="delivery_cost"]').val(dcost);
+                $('input[name="total_delivery_cost"]').val(tdcost);
 
-            // let totaldeliverycost = parseInt(delivery_cost) * quantity;
-            // $('input[name=total_amount]').val(inTotal);
-            // $('input[name="delivery_cost"]').val(delivery_cost)
-            // $('input[name="total_delivery_cost"]').val(totaldeliverycost)
-            $('#pqty').html(quantity);
-            $('#total_product_price').html(totalprice);
-            $('#total_product_price').html(totalprice);
-            $('#intotal').html(totalprice);
+                let totalAmount = parseInt(tdcost) + parseInt(totalprice)
+                $('input[name="total_amount"]').val(totalAmount);
+
+                $('#totalDeliverCost').html(tdcost);
+                $('#pqty').html(quantity);
+                $('#total_product_price').html(totalprice);
+                $('#intotal').html(totalAmount);
+
+
+                // console.log('courier ase')
+                // console.log('dcost', dcost)
+                // console.log('tdcost', tdcost)
+                // console.log('totalAmount', totalAmount)
+            }else{
+                $('#pqty').html(quantity);
+                $('#total_product_price').html(totalprice);
+                $('#total_product_price').html(totalprice);
+                $('#intotal').html(totalprice);
+            }
+
         }
 
 
