@@ -18,7 +18,7 @@ $totalItem = count(Cart::content());
                 <h3 class="title title-simple title-step"><a href="#">Buy Now</a></h3>
             </div>
             <div class="container">
-                <form action="{{ route('buynowpay') }}" method="POST" class="form">
+                <form action="{{ route('buynowpay') }}" method="POST" class="form" id="buynowForm">
                     @csrf
                     <input type="text" name="product" data-price="{{ $product->price }}"
                         data-prdoduct_upazila_id="{{ $product->upazila_id }}">
@@ -47,19 +47,25 @@ $totalItem = count(Cart::content());
                                 <div class="col">
                                     <label>Full Name *</label>
                                     <input type="text" value="{{ $user->name }}"
-                                        class="form-control @error('name') is-invalid @enderror" name="name" />
+                                        class="form-control mb-2 @error('name') is-invalid @enderror" name="name" required/>
                                     <div class="text-danger">
                                         @error('name')
                                             <span>{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Please, Enter your name.
+                                      </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <label>Delivery Address *</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                    <input type="text" class="form-control mb-2 @error('address') is-invalid @enderror"
                                         name="address" required />
+                                        <div class="invalid-feedback">
+                                            Please Enter product deliver address.
+                                          </div>
                                     <div class="text-danger">
                                         @error('address')
                                             <span>{{ $message }}</span>
@@ -71,17 +77,23 @@ $totalItem = count(Cart::content());
                             <div class="row">
                                 <div class="col-xs-6">
                                     <label>Email Address *</label>
-                                    <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
+                                    <input type="text" value="{{ $user->email }}" class="form-control mb-2" name="email" required/>
+                                    <div class="invalid-feedback">
+                                        Please valid email address.
+                                      </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Mobile No *</label>
                                     <input value="{{ $user->mobile }}" type="text"
-                                        class="form-control @error('mobile') is-invalid @enderror" name="mobile" />
+                                        class="form-control mb-2 @error('mobile') is-invalid @enderror" name="mobile" required/>
                                     <div class="text-danger">
                                         @error('mobile')
                                             <span>{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Please , enter valid mobile number.
+                                      </div>
                                 </div>
                             </div>
 
@@ -92,12 +104,15 @@ $totalItem = count(Cart::content());
                                 <div class="col-xs-6">
                                     <label>Select Divission *</label>
                                     <div class="select-box">
-                                        <select name="division_id" class="form-control" required>
+                                        <select name="division_id" class="form-control mb-2" required>
                                             <option value="">Select Divission</option>
                                             @foreach ($divisions as $division)
                                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
                                             @endforeach
                                         </select>
+                                        <div class="invalid-feedback">
+                                            Select your division.
+                                          </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
@@ -105,7 +120,7 @@ $totalItem = count(Cart::content());
                                     <label>Select District *</label>
                                     <div class="select-box">
                                         <select name="district_id"
-                                            class="form-control @error('district_id') is-invalid @enderror" disabled
+                                            class="form-control mb-2 @error('district_id') is-invalid @enderror" disabled
                                             required>
                                             <option value="">select </option>
                                         </select>
@@ -114,6 +129,9 @@ $totalItem = count(Cart::content());
                                                 <span>{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="invalid-feedback">
+                                            Select your district.
+                                          </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +139,7 @@ $totalItem = count(Cart::content());
                             <div>
                                 <label>Select Upazila *</label>
                                 <div class="select-box">
-                                    <select name="upazila_id" class="form-control @error('upazila_id') is-invalid @enderror"
+                                    <select name="upazila_id" class="form-control mb-2 @error('upazila_id') is-invalid @enderror"
                                         disabled required>
                                         <option value="" selected>Select</option>
 
@@ -131,12 +149,16 @@ $totalItem = count(Cart::content());
                                             <span>{{ $message }}</span>
                                         @enderror
                                     </div>
+
+                                    <div class="invalid-feedback">
+                                        Select your upazila/Thanak.
+                                      </div>
                                 </div>
                             </div>
 
                             <h2 class="title title-simple text-uppercase text-left">Additional Information</h2>
                             <label>Order Note/Message (Optional)</label>
-                            <textarea name="note" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
+                            <textarea name="note" class="form-control mb-2 pb-2 pt-2 mb-0" cols="30" rows="5"
                                 placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
                         </div>
                         <aside class="col-lg-5 sticky-sidebar-wrapper">
@@ -154,7 +176,8 @@ $totalItem = count(Cart::content());
                                             <tr>
                                                 <th>1</th>
                                                 <td>{{ $product->title }}</td>
-                                                <td class="text-bold"> <span id="pqty">1</span> x ৳{{ $product->price }}</td>
+                                                <td class="text-bold"> <span id="pqty">1</span> x
+                                                    ৳{{ $product->price }}</td>
                                                 {{-- <td>৳{{ $product->price }}</td> --}}
                                             </tr>
                                             <hr>
@@ -173,7 +196,7 @@ $totalItem = count(Cart::content());
                                                 {{-- <td class="text-start" colspan="1">
                                                     <h6>2x100</h6>
                                                 </td> --}}
-                                                <td class="text-end"  colspan="2">
+                                                <td class="text-end" colspan="2">
                                                     <h6>৳<span id="totalDeliverCost">0</span></h6>
                                                 </td>
                                             </tr>
@@ -191,40 +214,43 @@ $totalItem = count(Cart::content());
                                                 </td>
                                                 <td colspan="2">
                                                     <div class="d-flex mt-2">
-                                                        <button type="button" style="" class="border" id="qtyminusbtn">-</button>
-                                                        <input name="total_prodcut" value="1" class="" type="number" style="text-align: center"
-                                                            min="1" max="{{$product->quantity}}" >
-                                                        <button type="button" style="" class="border" id="qtyplusbtn">+</button>
+                                                        <button type="button" style="" class="border"
+                                                            id="qtyminusbtn">-</button>
+                                                        <input name="total_prodcut" value="1" class=""
+                                                            type="number" style="text-align: center" min="1"
+                                                            max="{{ $product->quantity }}">
+                                                        <button type="button" style="" class="border"
+                                                            id="qtyplusbtn">+</button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @if (count($product->colors)>0)
-                                            <tr>
-                                                <td class="text-start" colspan="4">
-                                                    <h6 class="m-2 ">Color:</h6>
-                                                    <select name="varient[]" class="form-control">
-                                                        <option value="">Select Color</option>
-                                                        @foreach ($product->colors as $color)
-                                                            <option value="color-{{ $color->color->name }}">
-                                                                {{ $color->color->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                            @if (count($product->colors) > 0)
+                                                <tr>
+                                                    <td class="text-start" colspan="4">
+                                                        <h6 class="m-2 ">Color:</h6>
+                                                        <select name="varient[]" class="form-control mb-2">
+                                                            <option value="">Select Color</option>
+                                                            @foreach ($product->colors as $color)
+                                                                <option value="color-{{ $color->color->name }}">
+                                                                    {{ $color->color->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                </tr>
                                             @endif
-                                            @if (count($product->sizes)>0)
-                                            <tr>
-                                                <td class="text-start" colspan="4">
-                                                    <h6 class="m-2 ">Size:</h6>
-                                                    <select name="varient[]" class="form-control">
-                                                        <option value="">Select Size</option>
-                                                        @foreach ($product->sizes as $size)
-                                                            <option value="size-{{ $size->size->name }}">
-                                                                {{ $size->size->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                            @if (count($product->sizes) > 0)
+                                                <tr>
+                                                    <td class="text-start" colspan="4">
+                                                        <h6 class="m-2 ">Size:</h6>
+                                                        <select name="varient[]" class="form-control mb-2">
+                                                            <option value="">Select Size</option>
+                                                            @foreach ($product->sizes as $size)
+                                                                <option value="size-{{ $size->size->name }}">
+                                                                    {{ $size->size->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                </tr>
                                             @endif
                                             <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
 
@@ -236,16 +262,20 @@ $totalItem = count(Cart::content());
                                                         <li>
                                                             <div class="custom-radio">
                                                                 <input type="radio" id="flat_rate" name="payment_type"
-                                                                    value="cash" class="custom-control-input">
+                                                                    value="cash" class="custom-control-input" required>
                                                                 <label class="custom-control-label" for="flat_rate">Cash On
                                                                     Delivery</label>
+
+                                                                    <div class="invalid-feedback">
+                                                                        Please, Select any payment method.
+                                                                      </div>
                                                             </div>
                                                         </li>
 
                                                         <li>
                                                             <div class="custom-radio">
                                                                 <input type="radio" id="free-shipping" name="payment_type"
-                                                                    value="online" class="custom-control-input">
+                                                                    value="online" class="custom-control-input" required>
                                                                 <label class="custom-control-label"
                                                                     for="free-shipping">Payment Now </label>
                                                             </div>
@@ -312,5 +342,38 @@ $totalItem = count(Cart::content());
 @endpush
 
 @push('scripts')
-@include('frontend.inc.buynowscript')
+    @include('frontend.inc.buynowscript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#buynowForm').validate({
+                rules: {
+                    address: 'required',
+                    division_id:'required',
+                    payment_type:'required'
+
+                },
+                messages: {
+                    address:'Enter address',
+                    payment_type:'required'
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+
+
+
+        });// Document ready
+    </script>
 @endpush
