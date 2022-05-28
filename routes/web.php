@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Promotion\SliderajaxController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -257,3 +258,4 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+

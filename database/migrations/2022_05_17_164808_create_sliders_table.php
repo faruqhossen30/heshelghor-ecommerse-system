@@ -17,6 +17,8 @@ class CreateSlidersTable extends Migration
             $table->id();
             $table->string('image');
             $table->string('link');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->unsignedBigInteger('author_id')->nullable();
             $table->timestamps();
         });

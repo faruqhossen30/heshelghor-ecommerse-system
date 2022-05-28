@@ -12,7 +12,8 @@ class Slider extends Model
     protected $fillable = [
         'link',
         'image',
-        'author_id'
-
+        'category_id',
+        'sub_category_id',
+        'author_id',
     ];
 }

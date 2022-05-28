@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Promotion;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Promotion\Slider;
+use App\Models\Product\Category;
+use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +30,12 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('admin.slider.create');
+        $categories = Category::all();
+        // return  $categories ;
+        $subcategory = SubCategory::all();
+        // return  $subcategories ;
+
+        return view('admin.slider.create',compact('categories','subcategory'));
     }
 
     /**
@@ -39,6 +46,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
 
         $request->validate([
             'link' => 'required',
@@ -54,17 +62,21 @@ class SliderController extends Controller
             $request->image->storeAs('slider', $name, 'public');
 
             Slider::Create([
-                'link' => $request->link,
-                'image' => $name,
-                'author_id' => Auth::guard('admin')->user()->id,
+                'link'            => $request->link,
+                'image'           => $name,
+                'category_id'     => $request->category_id,
+                'sub_category_id' => $request->sub_category_id,
+                'author_id'       => Auth::guard('admin')->user()->id,
             ]);
 
 
             return redirect()->route('slider.index')->with('success', 'successfully data added');
         } else {
             Slider::Create([
-                'link' => $request->link,
-                'author_id' =>  Auth::guard('admin')->user()->id,
+                'link'            => $request->link,
+                'category_id'     => $request->category_id,
+                'sub_category_id' => $request->sub_category_id,
+                'author_id'       => Auth::guard('admin')->user()->id,
             ]);
             return redirect()->route('slider.index')->with('success', 'successfully data added');
         };
@@ -88,10 +100,14 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
+        // return  $categories ;
+        $subcategories = SubCategory::all();
+        // return  $subcategory ;
         $slider = Slider::where('id', $id)->get()->first();
 
 
-        return view('admin.slider.edit', compact('slider'));
+        return view('admin.slider.edit', compact('slider','categories','subcategories'));
     }
 
     /**
@@ -103,27 +119,31 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request->all();
 
         $old_image = $request->old_image;
         if ($request->hasFile('image')) {
             $name = $request->image->getClientOriginalName();
             $request->image->storeAs('slider', $name, 'public');
             Slider::findOrFail($id)->update([
-                'link'      => $request->link,
-                'image'     => $name,
-                'author_id' => Auth::guard('admin')->user()->id,
+                'link'            => $request->link,
+                'image'           => $name,
+                'category_id'     => $request->category_id,
+                'sub_category_id' => $request->sub_category_id,
+                'author_id'       => Auth::guard('admin')->user()->id,
             ]);
 
-            if(isset($old_image)){
+            if (isset($old_image)) {
                 unlink($old_image);
             }
             return redirect()->route('slider.index')->with('success', 'successfully data added');
         } else {
 
             Slider::findOrFail($id)->update([
-                'link'      => $request->link,
-                'author_id' => Auth::guard('admin')->user()->id,
-
+                'link'            => $request->link,
+                'category_id'     => $request->category_id,
+                'sub_category_id' => $request->sub_category_id,
+                'author_id'       => Auth::guard('admin')->user()->id,
             ]);
             return redirect()->route('slider.index')->with('success', 'successfully data added');
         }
