@@ -34,100 +34,37 @@
             </div>
 
 
-            {{-- <div class="order-results">
+            <div class="order-results">
                 <div class="overview-item">
                     <span>Order number:</span>
-                    <strong>4935</strong>
+                    <strong>{{$update_product->invoice_number}}</strong>
                 </div>
                 <div class="overview-item">
                     <span>Status:</span>
-                    <strong>Processing</strong>
+                    <strong>{{$update_product->status}}</strong>
                 </div>
                 <div class="overview-item">
                     <span>Date:</span>
-                    <strong>November 20, 2020</strong>
+                    <strong>{{$update_product->created_at->format('d M Y')}}</strong>
                 </div>
                 <div class="overview-item">
-                    <span>Email:</span>
-                    <strong>12345@gmail.com</strong>
+                    <span>Mobile:</span>
+                    <strong>{{$update_product->phone}}</strong>
                 </div>
                 <div class="overview-item">
                     <span>Total:</span>
-                    <strong>$312.00</strong>
+                    <strong>৳{{$update_product->amount}}</strong>
                 </div>
                 <div class="overview-item">
                     <span>Payment method:</span>
-                    <strong>Cash on delivery</strong>
+                    @if ($update_product->payment_type == 'cash')
+                        <strong>Cash on delivery</strong>
+                    @endif
+                    @if ($update_product->payment_type == 'online')
+                        <strong>Online "Paid !" </strong>
+                    @endif
                 </div>
             </div>
-
-            <h2 class="title title-simple text-left pt-4 font-weight-bold text-uppercase">Order Details</h2>
-            <div class="order-details">
-                <table class="order-details-table">
-                    <thead>
-                        <tr class="summary-subtotal">
-                            <td>
-                                <h3 class="summary-subtitle">Product</h3>
-                            </td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="product-name">Beige knitted shoes <span> <i class="fas fa-times"></i>
-                                    1</span></td>
-                            <td class="product-price">$84.00</td>
-                        </tr>
-                        <tr>
-                            <td class="product-name">Best dark blue pedestrian <span><i
-                                        class="fas fa-times"></i> 1</span></td>
-                            <td class="product-price">$76.00</td>
-                        </tr>
-                        <tr>
-                            <td class="product-name">Women's fashion handing <span><i class="fas fa-times"></i>
-                                    2</span></td>
-                            <td class="product-price">$152.00</td>
-                        </tr>
-                        <tr class="summary-subtotal">
-                            <td>
-                                <h4 class="summary-subtitle">Subtotal:</h4>
-                            </td>
-                            <td class="summary-subtotal-price">$312.00</td>
-                        </tr>
-                        <tr class="summary-subtotal">
-                            <td>
-                                <h4 class="summary-subtitle">Shipping:</h4>
-                            </td>
-                            <td class="summary-subtotal-price">Free shipping</td>
-                        </tr>
-                        <tr class="summary-subtotal">
-                            <td>
-                                <h4 class="summary-subtitle">Payment method:</h4>
-                            </td>
-                            <td class="summary-subtotal-price">Cash on delivery</td>
-                        </tr>
-                        <tr class="summary-subtotal">
-                            <td>
-                                <h4 class="summary-subtitle">Total:</h4>
-                            </td>
-                            <td>
-                                <p class="summary-total-price">$312.00</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <h2 class="title title-simple text-left pt-10 mb-2">Billing Address</h2>
-            <div class="address-info pb-8 mb-6">
-                <p class="address-detail pb-2">
-                    John Doe<br>
-                    Riode Company<br>
-                    Steven street<br>
-                    El Carjon, CA 92020<br>
-                    123456789
-                </p>
-                <p class="email">mail@riode.com</p>
-            </div> --}}
 
             <a href="{{route('pruductspage')}}" class="btn btn-icon-left btn-dark btn-back btn-rounded btn-md mb-4"><i class="d-icon-arrow-left"></i> Shop Again</a>
         </div>

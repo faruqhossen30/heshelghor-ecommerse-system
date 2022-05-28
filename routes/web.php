@@ -101,6 +101,7 @@ Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
 Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
+Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercomplete'])->name('buynowordercomplete');
 
 
 
@@ -207,6 +208,7 @@ Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierS
 Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
 Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
 Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
+Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierAjaxController::class, 'courierlistforcartchekoutpage']);
 
 // For Checkout page
 Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
@@ -247,6 +249,7 @@ Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheck
 // Route::post('/pay', [SslCommerzPaymentController::class, 'index'])->name('pay');
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index2'])->name('pay');
+Route::post('/buy-now-page', [SslCommerzPaymentController::class, 'buynow'])->name('buynowpay');
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);

@@ -2,7 +2,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo logo-dark text-center">
+        <a href="{{route('user.dashboard')}}" class="logo logo-dark text-center">
             <span class="logo-sm">
                 <img src="{{ asset('backend') }}/assets/images/logo-sm-dark.png" alt="" height="24">
                 <!-- <span class="logo-lg-text-light">Minton</span> -->
@@ -13,12 +13,12 @@
             </span>
         </a>
 
-        <a href="index.html" class="logo logo-light text-center">
+        <a href="{{route('user.dashboard')}}" class="logo logo-light text-center">
             <span class="logo-sm">
-                <img src="{{ asset('backend') }}/assets/images/small-logo.png" alt="" height="24">
+                <img src="{{ asset('backend/assets/images/heshelghor-dashboard-logo1.png') }}" alt="" height="24">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('backend') }}/assets/images/logo-light.png" alt="" height="20">
+                <img src="{{ asset('backend/assets/images/heshelghor-dashboard-logo1.png') }}" alt="" height="20">
             </span>
         </a>
     </div>

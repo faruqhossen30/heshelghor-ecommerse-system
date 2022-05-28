@@ -170,14 +170,14 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 </div>
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
-                                        {{-- <div class="input-group mr-2">
+                                        <div class="input-group mr-2">
                                             <button type="button" class="quantity-minus d-icon-minus"></button>
                                             <input name="quantity" class="quantity form-control" type="number" min="1"
                                                 max="1000000">
                                             <button type="button" class="quantity-plus d-icon-plus"></button>
                                         </div>
                                         <button type="submit" class="btn btn btn-dark btn-sm">
-                                            <i class="d-icon-gift mr-2"></i>Add to Cart</button> --}}
+                                            <i class="d-icon-gift mr-2"></i>Add to Cart</button>
                                         <a href="{{ route('buynow', $product->id) }}" type="submit"
                                             class="btn btn-rounded btn-alert btn-sm">
                                             <i class="d-icon-bag mr-2"></i>Buy Now !</a>

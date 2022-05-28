@@ -116,7 +116,7 @@ $categories = App\Models\Product\Category::with('subcategories')->get();
         <script src="{{ asset('frontend') }}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
         <script src="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.js"></script>
-        <script src="{{ asset('frontend') }}/vendor/sticky/sticky.min.js"></script>
+        {{-- <script src="{{ asset('frontend') }}/vendor/sticky/sticky.min.js"></script> --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"
                 integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
