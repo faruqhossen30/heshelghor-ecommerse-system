@@ -100,6 +100,7 @@ Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
 Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
+Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercomplete'])->name('buynowordercomplete');
 
 
 

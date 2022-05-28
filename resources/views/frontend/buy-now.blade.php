@@ -236,7 +236,7 @@ $totalItem = count(Cart::content());
                                                         <li>
                                                             <div class="custom-radio">
                                                                 <input type="radio" id="flat_rate" name="payment_type"
-                                                                    value="cash" class="custom-control-input" checked>
+                                                                    value="cash" class="custom-control-input">
                                                                 <label class="custom-control-label" for="flat_rate">Cash On
                                                                     Delivery</label>
                                                             </div>

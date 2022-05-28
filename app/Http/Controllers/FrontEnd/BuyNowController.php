@@ -52,4 +52,14 @@ class BuyNowController extends Controller
             abort(404);
         }
     }
+
+
+    public function buynowOrdercomplete(Request $request)
+    {
+        return view('frontend.ordercomplete');
+        // return "order complete";
+    }
+
+
+
 }

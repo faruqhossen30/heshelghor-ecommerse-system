@@ -261,6 +261,7 @@ class SslCommerzPaymentController extends Controller
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
         // return $request->all();
+
         $cartItems = Cart::content();
         $payment_type = $request->payment_type;
 
@@ -366,7 +367,8 @@ class SslCommerzPaymentController extends Controller
                 'order_pin_no'         => rand(0, 4)
             ]);
             if($payment_type == 'cash'){
-                return 'cash on delivery';
+                // return $update_product;
+                return view('frontend.ordercomplete', compact('update_product'));
             }
         } // if close end
 
@@ -494,7 +496,9 @@ class SslCommerzPaymentController extends Controller
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
+            // echo "Transaction is successfully Completed";
+            $update_product = Order::firstWhere('transaction_id', $order_detials->transaction_id);
+            return view('frontend.ordercomplete', compact('update_product'));
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
