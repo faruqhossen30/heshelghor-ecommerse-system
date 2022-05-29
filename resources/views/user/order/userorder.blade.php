@@ -71,7 +71,7 @@
                                             <th>S.N</th>
                                             <th>Invoice ID</th>
                                             <th>Billing Name</th>
-                                            <th>Date</th>
+                                            <th>OrderDate</th>
                                             <th>Payment</th>
                                             <th>Total</th>
                                             {{-- <th>Status</th> --}}

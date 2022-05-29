@@ -21,15 +21,14 @@ class OrderController extends Controller
     public function index()
     {
         $merchantId = Auth::guard('marchant')->user()->id;
-        $orders = Order::with('itemProducts')->get();
-        $orderItems = OrderItem::with('product', 'order')->where('merchant_id', $merchantId)->get();
-        // return $orderItems;
-        return view('marchant.order.orders', compact('orderItems'));
+        $orderitems = OrderItem::with('product', 'order')->where('merchant_id', $merchantId)->latest()->get();
+        // return $orderitems;
+        return view('marchant.order.orders', compact('orderitems'));
     }
 
     public function orderItem($id)
     {
-        $orderItem = OrderItem::with('product')->where('id', $id)->first();
+        $orderItem = OrderItem::with('product', 'order', 'courier')->where('id', $id)->first();
         // return $orderItem;
         return view('marchant.order.orderitem', compact('orderItem'));
     }
@@ -39,25 +38,26 @@ class OrderController extends Controller
     {
         $orderItem = OrderItem::with('user')->where('id', $id)->first();
         $update = OrderItem::where('id', $id)->update([
-            'order_status' => true
+            'order_status' => true,
+            'accepted_at' => Carbon::now()
         ]);
-        if($update){
-            $commission = ($orderItem->delivery_cost * 10)/100;
-            $total_commision = $commission * $orderItem->quantity;
-            $pt = PointManagerCollectProduct::create([
-                'product_id'             => $orderItem->product_id,
-                'invoice_id'             => $orderItem->order_id,
-                'orderitem_id'           => $orderItem->id,
-                'shop_id'                => $orderItem->shop_id,
-                'commission'             => $commission,
-                'total_commission'       => $total_commision,
-                'accept_statuss'         => false,
-                'accept_time'            => null,
-                'product_receive_status' => false,
-                'product_receive_time'   => null,
-            ]);
-            // return $pt;
-        }
+        // if($update){
+        //     $commission = ($orderItem->delivery_cost * 10)/100;
+        //     $total_commision = $commission * $orderItem->quantity;
+        //     $pt = PointManagerCollectProduct::create([
+        //         'product_id'             => $orderItem->product_id,
+        //         'invoice_id'             => $orderItem->order_id,
+        //         'orderitem_id'           => $orderItem->id,
+        //         'shop_id'                => $orderItem->shop_id,
+        //         'commission'             => $commission,
+        //         'total_commission'       => $total_commision,
+        //         'accept_statuss'         => false,
+        //         'accept_time'            => null,
+        //         'product_receive_status' => false,
+        //         'product_receive_time'   => null,
+        //     ]);
+        //     // return $pt;
+        // }
 
         // $android_token = $orderItem->user->android_token;
         $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";

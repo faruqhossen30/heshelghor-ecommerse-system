@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Merchant\Order;
+use App\Models\Merchant\OrderItem;
 use Illuminate\Support\Facades\Auth;
 
 function invoiceGenerate()
@@ -14,4 +15,13 @@ function invoiceGenerate()
     return $invoice;
 }
 
-// ------------------------------
+
+function orderNumber()
+{
+    $today = date("ymd");
+    $number = intval($today . '000');
+    $count = OrderItem::where('order_number', 'LIKE', $number . '%')->count();
+    $suffix = $count ? $count + 1 : $count + 1;
+    $number .= $suffix;
+    return $number;
+}

@@ -36,6 +36,8 @@ class CreateOrderItemsTable extends Migration
             $table->boolean('order_status')->default(false);
             $table->boolean('cancel_status')->default(false);
             $table->string('order_pin_no');
+            $table->dateTime('accepted_at')->nullable();
+            $table->dateTime('canceled_at')->nullable();
             $table->timestamps();
         });
     }

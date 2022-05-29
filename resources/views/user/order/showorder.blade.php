@@ -52,7 +52,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                {{$order->address}}
+                                                {{$order->name}}
                                             </h5>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                             <i class="ri-calendar-event-line h2 m-0 text-muted"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <p class="mb-1">Date</p>
+                                            <p class="mb-1">Order Date</p>
                                             <h5 class="mt-0">
                                                 {{ Carbon\Carbon::parse($order->created_at)->format('d F') }}
                                                 <small class="text-muted">{{ Carbon\Carbon::parse($order->created_at)->format('h:m A') }}</small>
@@ -72,8 +72,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-sm-6">
-
+                                {{-- <div class="col-lg-3 col-sm-6">
                                     <div class="d-flex mb-2">
                                         <div class="me-2 align-self-center">
                                             <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
@@ -85,7 +84,7 @@
                                             </h5>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -107,7 +106,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($orderItems as $item)
+                                                    @foreach ($orderitems as $item)
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
@@ -155,8 +154,8 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row">Sub Total :</th>
-                                                        <td>৳{{$order->price}}</td>
+                                                        <th scope="row">Products price :</th>
+                                                        <td>৳{{$order->total_product_price}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Shipping Charge :</th>
@@ -168,7 +167,7 @@
                                                     </tr> --}}
                                                     <tr>
                                                         <th scope="row">Total :</th>
-                                                        <td>৳{{$order->total_price}}</td>
+                                                        <td>৳{{$order->amount}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -185,9 +184,13 @@
                 <div class="row mb-3">
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Shipping Information</h4>
+                            <h4 class="font-15 mb-2">Delivery Information</h4>
+
 
                             <div class="card p-2 mb-lg-0">
+                                <div class="my-2">
+                                    <i class="mdi mdi-truck-fast h1 text-muted"></i>
+                                </div>
 
                                 <table class="table table-borderless table-sm mb-0">
 
@@ -202,14 +205,14 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Mobile :</th>
-                                            <td>{{$order->mobile}}</td>
+                                            <td>{{$order->phone}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div>
                             <h4 class="font-15 mb-2">Billing  Information</h4>
 
@@ -237,9 +240,9 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div>
                             <h4 class="font-15 mb-2">Delivery Info</h4>
 
@@ -256,7 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

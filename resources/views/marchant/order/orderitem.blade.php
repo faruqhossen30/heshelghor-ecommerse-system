@@ -25,13 +25,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header border-bottom bg-transparent">
-                            <h5 class="header-title mb-0">Order Detaild: {{$orderItem->order_no}}</h5>
+                        <div class="card-header border-bottom bg-transparent d-flex justify-content-between">
+                            <h5 class="">Order Detaild: {{$orderItem->order_no}}</h5>
                             @if ($orderItem->order_status == 1)
                                 <span><button type="button" class="btn btn-success btn-sm float-end">Approved !</button></span>
                             @endif
                             @if ($orderItem->order_status == 0)
-                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end" onclick="return confirm('Suer ? Accept Order ?');">Accept</a></span>
+                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end" onclick="return confirm('Suer ? Accept Order ?');">Accept Order !</a></span>
                             @endif
 
                         </div>
@@ -60,7 +60,7 @@
                                             <div class="flex-1">
                                                 <p class="mb-1">Billing Name</p>
                                                 <h5 class="mt-0">
-                                                    {{$orderItem->address}}
+                                                    {{$orderItem->order->name}}
                                                 </h5>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                                 <i class="ri-calendar-event-line h2 m-0 text-muted"></i>
                                             </div>
                                             <div class="flex-1">
-                                                <p class="mb-1">Date</p>
+                                                <p class="mb-1">Order Date</p>
                                                 <h5 class="mt-0">
                                                     {{Carbon\Carbon::parse($orderItem->created_at)->format('d M')}}
                                                     <small class="text-muted">
@@ -82,8 +82,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-sm-6">
-
+                                    {{-- <div class="col-lg-3 col-sm-6">
                                         <div class="d-flex mb-2">
                                             <div class="me-2 align-self-center">
                                                 <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
@@ -95,7 +94,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
@@ -120,18 +119,18 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="me-3">
-                                                                        <img src="{{asset('uploads/product/'.$orderItem->product->photo)}}" alt="product-img" height="40">
+                                                                        <img src="{{$orderItem->product->img_small}}" alt="product-img" height="40">
                                                                     </div>
                                                                     <div class="flex-1">
                                                                         <h5 class="m-0">{{$orderItem->product->title}}</h5>
-                                                                        <p class="mb-0">Size : Large</p>
+                                                                        <p class="mb-0">{{$orderItem->varient}}</p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>{{$orderItem->quantity}}</td>
                                                             <td>{{$orderItem->discount}}%</td>
-                                                            <td>৳{{$orderItem->merchant_price}}</td>
-                                                            <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                            <td>৳{{$orderItem->price}}</td>
+                                                            <td>৳{{$orderItem->price * $orderItem->quantity}}</td>
                                                         </tr>
 
                                                     </tbody>
@@ -153,7 +152,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">Total :</th>
-                                                            <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                            <td>৳{{$orderItem->price * $orderItem->quantity}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -170,7 +169,7 @@
                     <div class="row mb-3">
                         <div class="col-lg-4">
                             <div>
-                                <h4 class="font-15 mb-2">Shipping Information</h4>
+                                <h4 class="font-15 mb-2">Delivery Information</h4>
 
                                 <div class="card p-2 mb-lg-0">
 
@@ -178,20 +177,14 @@
 
                                         <tbody>
                                             <tr>
-                                                <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->name}}</h5></th>
+                                                <th scope="row">Name:</th>
+                                                <td>{{$orderItem->order->name}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address:</th>
-                                                <td>{{$orderItem->address}}</td>
+                                                <td>{{$orderItem->order->address}}</td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">Phone :</th>
-                                                <td>{{$orderItem->mobile}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Mobile :</th>
-                                                <td>(+01) 12345 67890</td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -207,19 +200,15 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Payment Type:</th>
-                                                <td>Credit Card</td>
+                                                <td>{{$orderItem->order->payment_type}}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Provider :</th>
-                                                <td>Visa ending in 2851</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Valid Date :</th>
-                                                <td>02/2021</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">CVV :</th>
-                                                <td>xxx</td>
+                                                <th scope="row">Status :</th>
+                                                @if ($orderItem->order->payment_type == 'online')
+                                                <td><span class="badge badge-soft-success">Paid !</span></td>
+                                                @else
+                                                    <td>Cash On Delivery</td>
+                                                @endif
                                             </tr>
                                         </tbody>
                                     </table>
@@ -238,8 +227,8 @@
                                         </div>
                                         <h5><b>UPS Delivery</b></h5>
                                         <div class="mt-2 pt-1">
-                                            <p class="mb-1"><span class="fw-semibold">Order ID :</span> xxxx048</p>
-                                            <p class="mb-0"><span class="fw-semibold">Payment Mode :</span> COD</p>
+                                            <p class="mb-1"><span class="fw-semibold">Courier :</span> {{$orderItem->courier->name}}</p>
+                                            <p class="mb-0"><span class="fw-semibold">Service :</span> {{$orderItem->courier_packege_desc}}</p>
                                         </div>
                                     </div>
                                 </div>

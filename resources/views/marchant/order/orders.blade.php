@@ -48,7 +48,7 @@
                                     @php
                                         $serial = 1;
                                     @endphp
-                                    @foreach ($orderItems as $item)
+                                    @foreach ($orderitems as $item)
                                     <tr>
                                         <td>
                                             <div class="form-check mb-0 font-16">
@@ -63,7 +63,7 @@
                                             {{$item->product->title}}
                                         </td>
                                         <td>
-                                            {{$item->address}}
+                                            {{$item->order->address}}
                                         </td>
 
                                         <td>

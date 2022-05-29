@@ -31,8 +31,7 @@ class TestController extends Controller
 
     public function ontest()
     {
-return Uuid::uuid();
-        // return invoiceGenerate();
+        return orderNumber();
     }
 
 

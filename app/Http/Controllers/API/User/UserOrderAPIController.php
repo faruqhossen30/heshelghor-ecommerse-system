@@ -74,23 +74,7 @@ class UserOrderAPIController extends Controller
 
     public function createOrderitem(Request $request)
     {
-
-
         $userId = $request->user()->id;
-        // ------------------------------
-        $today = date("ymd");
-        $number = intval($today.'000');
-        function numGenerate($number){
-            $count = OrderItem::where('order_number', 'LIKE', $number.'%')->count();
-            // $suffix = $count ? $count+1:'';
-            // $number .=$suffix;
-            $suffix = $count ? $count+1 : $count+1;
-            $number .= $suffix;
-            return $number;
-        }
-        $orderNumber = numGenerate($number);
-        // ------------------------------
-
 
         $orderItem = OrderItem::create([
             'order_id'             => $request->order_id,
@@ -98,7 +82,7 @@ class UserOrderAPIController extends Controller
             'product_id'           => $request->product_id,
             'merchant_id'          => $request->merchant_id,
             'shop_id'              => $request->shop_id,
-            'order_number'         => '123',
+            'order_number'         => orderNumber(),
             'quantity'             => $request->quantity,
             'price'                => $request->price,
             'discount_type'        => 'percent',
@@ -128,53 +112,4 @@ class UserOrderAPIController extends Controller
 
     }
 
-    public function deliveryAddress(Request $request)
-    {
-        // $data = $request->all();
-        // $rules = [
-        //     'name'        => 'required',
-        //     'user_id'     => 'required',
-        //     'order_id'    => 'required',
-        //     'email'       => 'required|email',
-        //     'address'     => 'required',
-        //     'mobile'      => 'required',
-        //     'division_id' => 'required',
-        //     'district_id' => 'required',
-        //     'upazila_id'  => 'required'
-        // ];
-
-        // $errorMessage = [
-        //     'user_id.required' => 'Please input your User id '
-        // ];
-
-        // $validator = Validator::make($data, $rules, $errorMessage);
-        // if ($validator->fails()) {
-        //     return response()->json($validator->errors());
-        // }
-        $userId = $request->user()->id;
-        $deliveryAddress = DeliveryAddress::create([
-            'name'                => $request->name,
-            'user_id'             => $userId,
-            'order_id'            => $request->order_id,
-            'email'               => $request->email,
-            'company'             => $request->company,
-            'address'             => $request->address,
-            'message'             => $request->message,
-            'zip_code'            => $request->zip_code,
-            'mobile'              => $request->mobile,
-            'division_id'         => $request->division_id,
-            'district_id'         => $request->district_id,
-            'payment_method_name' => $request->payment_method_name,
-            'upazila_id'          => $request->upazila_id
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'code'    => 201,
-            'message' => 'Delivery address create successfully',
-            'data'    => $deliveryAddress
-        ]);
-
-
-    }
 }

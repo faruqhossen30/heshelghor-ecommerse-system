@@ -2,6 +2,7 @@
 
 namespace App\Models\Merchant;
 
+use App\Models\Admin\Courier\Courier;
 use App\Models\Admin\Order\DeliveryAddress;
 use App\Models\Auth\Marchant;
 use App\Models\Product\Product;
@@ -13,8 +14,10 @@ class OrderItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id', 'user_id', 'product_id', 'merchant_id', 'shop_id', 'order_number', 'quantity', 'price', 'discount_type', 'discount', 'varient', 'courier_id', 'courier_packege_desc', 'delivery_cost', 'total_delivery_cost', 'order_status', 'cancel_status', 'order_pin_no'
+        'order_id', 'user_id', 'product_id', 'merchant_id', 'shop_id', 'order_number', 'quantity', 'price', 'discount_type', 'discount', 'varient', 'courier_id', 'courier_packege_desc', 'delivery_cost', 'total_delivery_cost', 'order_status', 'cancel_status', 'order_pin_no', 'accepted_at','canceled_at'
     ];
+
+    protected $dates = ['accepted_at', 'canceled_at'];
 
     public function product()
     {
@@ -36,6 +39,10 @@ class OrderItem extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id' , 'user_id' );
+    }
+    public function courier()
+    {
+        return $this->hasOne(Courier::class, 'id' , 'courier_id' );
     }
 
 }

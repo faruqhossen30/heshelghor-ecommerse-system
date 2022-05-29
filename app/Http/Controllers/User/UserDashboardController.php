@@ -29,7 +29,7 @@ class UserDashboardController extends Controller
     public function orders()
     {
         $userId = Auth::user()->id;
-        $orders = Order::with('user')->where('user_id', $userId)->get();
+        $orders = Order::with('user')->where('user_id', $userId)->latest()->get();
 
         // return $orders;
         return view('user.order.userorder', compact('orders'));
@@ -38,9 +38,9 @@ class UserDashboardController extends Controller
     {
         $userId = Auth::user()->id;
         $order = Order::with('itemProducts')->where('user_id', $userId)->where('id', $id)->first();
-        $orderItems = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
-        // return $orderItems;
-        return view('user.order.showorder', compact('order', 'orderItems'));
+        $orderitems = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
+        // return $order;
+        return view('user.order.showorder', compact('order', 'orderitems'));
     }
 
     public function trackOrder()
