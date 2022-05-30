@@ -38,26 +38,50 @@ class OrderController extends Controller
     {
         $orderItem = OrderItem::with('user')->where('id', $id)->first();
         $update = OrderItem::where('id', $id)->update([
-            'order_status' => true,
+            'accept_status' => true,
             'accepted_at' => Carbon::now()
         ]);
-        // if($update){
-        //     $commission = ($orderItem->delivery_cost * 10)/100;
-        //     $total_commision = $commission * $orderItem->quantity;
-        //     $pt = PointManagerCollectProduct::create([
-        //         'product_id'             => $orderItem->product_id,
-        //         'invoice_id'             => $orderItem->order_id,
-        //         'orderitem_id'           => $orderItem->id,
-        //         'shop_id'                => $orderItem->shop_id,
-        //         'commission'             => $commission,
-        //         'total_commission'       => $total_commision,
-        //         'accept_statuss'         => false,
-        //         'accept_time'            => null,
-        //         'product_receive_status' => false,
-        //         'product_receive_time'   => null,
-        //     ]);
-        //     // return $pt;
+
+
+        // $android_token = $orderItem->user->android_token;
+        $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
+
+        $ruhul = "fCTRPVu2RcmsRP_HKbaLUU:APA91bFGV_7APnKg-YnCATAfy3c1GMmwtwPfihtFqFGfJx32CYElaH6a4wczYltUibuSt1FCNux1GC5vlhmME4IIsHISHPin5gJ3YHw3eUSu0mmV7O5GyDzatPaorCnq7HJYYr8gq80C";
+
+        // $registration_ids = array('Device ID 1', 'Device ID 2');
+
+            $data = array(
+                'title' => 'Your Order accept !',
+                'body' => 'HeshelGhor | Store of Needs'
+            );
+            // sendNotificateion($data, $ruhul);
+
+        // if($android_token){
+        //     $data = array(
+        //         'title' => 'Your Order accept !',
+        //         'body' => 'HeshelGhor | Store of Needs'
+        //     );
+        //     sendNotificateion($data, $ruhul);
         // }
+
+        // $array = [
+        //     $android_token
+        // ];
+
+        // sendNotificateions($data, $array);
+
+
+        return redirect()->back();
+    }
+    // Order Cancel
+    public function orderCancel($id)
+    {
+        $orderItem = OrderItem::with('user')->where('id', $id)->first();
+        $update = OrderItem::where('id', $id)->update([
+            'cancel_status' => true,
+            'canceled_at' => Carbon::now()
+        ]);
+
 
         // $android_token = $orderItem->user->android_token;
         $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";

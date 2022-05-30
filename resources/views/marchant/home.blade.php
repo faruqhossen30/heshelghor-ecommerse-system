@@ -1,7 +1,7 @@
 @php
 $userID = Auth::guard('marchant')->user()->id;
 $totalordercount = App\Models\Merchant\OrderItem::where('merchant_id', $userID)->count();
-$totalorderpending = App\Models\Merchant\OrderItem::where('merchant_id', $userID)->where('order_status', 0)->count();
+$totalorderpending = App\Models\Merchant\OrderItem::where('merchant_id', $userID)->where('accept_status', 0)->count();
 
 // dd($totalorderpending);
 @endphp

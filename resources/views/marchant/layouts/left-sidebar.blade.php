@@ -1,7 +1,7 @@
 @php
     $merchantId = Auth::guard('marchant')->user()->id;
     $profile = App\Models\Merchant\MerchantProfile::where('merchant_id', $merchantId)->first();
-    $countorder = App\Models\Merchant\OrderItem::where('order_status', false)->count();
+    $countorder = App\Models\Merchant\OrderItem::where('accept_status', false)->count();
 
 @endphp
 <div class="left-side-menu">

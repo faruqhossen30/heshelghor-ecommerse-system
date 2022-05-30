@@ -33,7 +33,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('delivery_cost');
             $table->integer('total_delivery_cost');
             // Status
-            $table->boolean('order_status')->default(false);
+            $table->boolean('accept_status')->default(false);
             $table->boolean('cancel_status')->default(false);
             $table->string('order_pin_no');
             $table->dateTime('accepted_at')->nullable();

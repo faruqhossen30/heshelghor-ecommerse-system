@@ -71,7 +71,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">Processing </h5>
-                        <h3 class="my-2 py-1"><span data-plugin="counterup">3</span></h3>
+                        <h3 class="my-2 py-1"><span data-plugin="counterup">0</span></h3>
                         <p class="mb-0 text-muted">
                             <span class="text-warning me-2"><span class="mdi mdi-arrow-up-bold"></span> 8.58%</span>
                             <span class="text-nowrap">Since last month</span>

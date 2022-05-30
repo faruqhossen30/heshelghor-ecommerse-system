@@ -27,11 +27,23 @@
                     <div class="card">
                         <div class="card-header border-bottom bg-transparent d-flex justify-content-between">
                             <h5 class="">Order Detaild: {{$orderItem->order_no}}</h5>
-                            @if ($orderItem->order_status == 1)
-                                <span><button type="button" class="btn btn-success btn-sm float-end">Approved !</button></span>
+                            @if ($orderItem->accept_status == 1)
+                                <span><button type="button" class="btn btn-success btn-sm float-end">Accepted !</button></span>
                             @endif
-                            @if ($orderItem->order_status == 0)
-                                <span><a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-warning btn-sm float-end" onclick="return confirm('Suer ? Accept Order ?');">Accept Order !</a></span>
+                            @if ($orderItem->cancel_status == 1)
+                                <span><button type="button" class="btn btn-danger btn-sm float-end">Canceled !</button></span>
+                            @endif
+                            @if ($orderItem->accept_status == 0 && $orderItem->cancel_status == 0)
+                                <div>
+                                    <a href="{{route('marchant.order.cancel', $orderItem->id)}}" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Suer ? Cancel Order ?');">
+                                        <span class="btn-label"><i class="mdi mdi-close-circle-outline"></i></span>
+                                        Cancel Order !
+                                    </a>
+                                    <a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-success btn-sm ml-2" onclick="return confirm('Suer ? Accept Order ?');">
+                                        <span class="btn-label"><i class="mdi mdi-check-all"></i></span>
+                                        Accept Order !
+                                    </a>
+                                </div>
                             @endif
 
                         </div>

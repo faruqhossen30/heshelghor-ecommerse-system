@@ -48,6 +48,7 @@ Route::prefix('merchant')->group(function () {
         Route::get('orders', [OrderController::class, 'index'])->name('marchant.order.index');
         Route::get('order/{id}', [OrderController::class, 'orderItem'])->name('marchant.order.show');
         Route::get('order/acceptstatus/{id}', [OrderController::class, 'orderAccept'])->name('marchant.order.accept');
+        Route::get('order/canceltatus/{id}', [OrderController::class, 'orderCancel'])->name('marchant.order.cancel');
         // Profile
         Route::get('profile', [MerchantProfileController::class, 'index'])->name('merchant.profile');
         Route::post('profile/update/{id}', [MerchantProfileController::class, 'update'])->name('merchant.profile.update');

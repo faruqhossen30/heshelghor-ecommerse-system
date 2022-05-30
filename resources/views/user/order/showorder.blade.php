@@ -72,19 +72,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-lg-3 col-sm-6">
+                                <div class="col-lg-3 col-sm-6">
                                     <div class="d-flex mb-2">
                                         <div class="me-2 align-self-center">
-                                            <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
+                                            <i class="ri-money-dollar-box-line h2 m-0 text-muted"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <p class="mb-1">Tracking ID</p>
+                                            <p class="mb-1">Payment Type</p>
                                             <h5 class="mt-0">
-                                                123456789
+                                                @if ($order->payment_type == 'cash')
+                                                Cash On Delivery
+
+                                                @endif
+                                                @if ($order->payment_type == 'online')
+                                                <span class="badge badge-soft-success">Paid !</span>
+                                                @endif
                                             </h5>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
 
@@ -123,10 +129,14 @@
                                                             <td>৳{{$item->price}}</td>
                                                             <td>৳{{$item->quantity * $item->price}}</td>
                                                             <td>
-                                                                @if ($item->order_status == 0)
+                                                                @if ($item->accept_status == 0 && $item->cancel_status == 0)
                                                                 <span class="badge bg-danger">Pending</span></div>
-                                                                @else
-                                                                    <span class="badge badge-soft-success">Aproved</span></div>
+                                                                @endif
+                                                                @if ($item->accept_status == 1)
+                                                                <span class="badge bg-success">Accepted !</span></div>
+                                                                @endif
+                                                                @if($item->cancel_status == 1 && $item->accept_status == 0)
+                                                                    <span class="badge badge-soft-danger">Canceled !</span></div>
                                                                 @endif
                                                             </td>
                                                             <td>

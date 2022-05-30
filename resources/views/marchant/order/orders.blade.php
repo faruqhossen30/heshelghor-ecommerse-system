@@ -73,10 +73,14 @@
                                             ৳{{$item->price}}
                                         </td>
                                         <td>
-                                            @if ($item->order_status == 0)
+                                            @if ($item->accept_status == 0 && $item->cancel_status == 0)
                                                 <span class="badge bg-danger">Pending</span></div>
-                                            @else
+                                            @endif
+                                            @if($item->accept_status == 1)
                                                 <span class="badge badge-soft-success">Aproved</span></div>
+                                            @endif
+                                            @if($item->cancel_status == 1)
+                                                <span class="badge badge-soft-danger">Canceled</span></div>
                                             @endif
                                         </td>
 

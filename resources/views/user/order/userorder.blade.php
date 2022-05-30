@@ -72,7 +72,7 @@
                                             <th>Invoice ID</th>
                                             <th>Billing Name</th>
                                             <th>OrderDate</th>
-                                            <th>Payment</th>
+                                            <th>Status</th>
                                             <th>Total</th>
                                             {{-- <th>Status</th> --}}
                                             <th style="width: 125px;">Action</th>
@@ -100,7 +100,7 @@
                                             </td>
                                             <td>
                                                 <div>
-                                                    <span class="badge badge-soft-success">Paid</span>
+                                                    <span class="badge badge-soft-success">Poocessing</span>
                                                 </div>
                                             </td>
                                             <td>

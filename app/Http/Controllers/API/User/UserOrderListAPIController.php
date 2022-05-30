@@ -42,4 +42,46 @@ class UserOrderListAPIController extends Controller
             ]);
         }
     }
+    // Processing
+    public function processingOrders(Request $request)
+    {
+        $userId = $request->user()->id;
+        $orders = Order::where('user_id', $userId)->where('status', 'Processing')->get();
+
+        if(count($orders) == 0){
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => 'No order found',
+            ]);
+        }
+        if(!empty($orders)){
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $orders
+            ]);
+        }
+    }
+    // Pending
+    public function pendingOrders(Request $request)
+    {
+        $userId = $request->user()->id;
+        $orders = Order::where('user_id', $userId)->where('status', 'Pending')->get();
+
+        if(count($orders) == 0){
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => 'No order found',
+            ]);
+        }
+        if(!empty($orders)){
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $orders
+            ]);
+        }
+    }
 }

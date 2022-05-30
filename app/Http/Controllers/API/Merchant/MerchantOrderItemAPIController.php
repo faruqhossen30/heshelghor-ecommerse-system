@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MerchantOrderItemAPIController extends Controller
@@ -38,8 +39,9 @@ class MerchantOrderItemAPIController extends Controller
         $merchantId = $request->user()->id;
         $orderItem = OrderItem::where('merchant_id', $merchantId)->where('id', $orderItemId)->first();
         // return $orderItem;
-        if($orderItem->order_status == 0 && $orderItem->cancel_status == 0){
-            $orderItem->order_status = true;
+        if($orderItem->accept_status == 0 && $orderItem->cancel_status == 0){
+            $orderItem->accept_status = true;
+            $orderItem->accepted_at = Carbon::now();
             $orderItem->save();
             return response()->json([
                 'success' => true,
@@ -61,7 +63,8 @@ class MerchantOrderItemAPIController extends Controller
         $orderItem = OrderItem::where('merchant_id', $merchantId)->where('id', $orderItemId)->first();
         // return $orderItem;
         if($orderItem->order_status == 0 && $orderItem->cancel_status == 0){
-            $orderItem->cancel_status = true;
+            $orderItem->accept_status = true;
+            $orderItem->canceled_at = Carbon::now();
             $orderItem->save();
             return response()->json([
                 'success' => true,
