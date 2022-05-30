@@ -39,6 +39,13 @@ $totalItem = count(Cart::content());
 
 
 
+                    @if($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li class="text-danger">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
 
                     <div class="row">
                         <div class="col-lg-7 mb-6 mb-lg-0 pr-lg-4">
@@ -351,7 +358,8 @@ $totalItem = count(Cart::content());
                 rules: {
                     address: 'required',
                     division_id:'required',
-                    payment_type:'required'
+                    payment_type:'required',
+                    total_delivery_cost:'required',
 
                 },
                 messages: {

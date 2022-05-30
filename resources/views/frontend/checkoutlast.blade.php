@@ -50,7 +50,14 @@ $totalItem = count(Cart::content());
                                             <div class="col-md-12 mb-6 mb-lg-0 pr-lg-4">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-sm-6">
-                                                        <h3 class="title title-simple text-left text-uppercase">Billing
+                                                        @if($errors->any())
+                                                            <ul>
+                                                                @foreach ($errors->all() as $error)
+                                                                <li class="text-danger">{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                            @endif
+                                                                <h3 class="title title-simple text-left text-uppercase">Billing
                                                             Details
                                                         </h3>
                                                         <div class="row">

@@ -8,6 +8,7 @@ use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use App\Models\Product\Product;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Cart;
@@ -134,11 +135,18 @@ class SslCommerzPaymentController extends Controller
 
         // return $request->all();
         $cartItems = Cart::content();
+        $payment_type = $request->payment_type; // For redirect order complete page
 
-        $request->validate([
-            'total_amount' => 'required',
-            // 'delivery_system' => 'required',
-        ]);
+        $request->validate(
+            [
+                // 'total_amount' => 'required',
+                'total_delivery_cost' => 'required',
+                // 'delivery_system' => 'required',
+            ],
+            [
+                'total_delivery_cost.required' => 'Please select Division, district, upazila/thana and select a delivery system.'
+            ]
+        );
 
         $post_data = array();
         $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
@@ -241,13 +249,29 @@ class SslCommerzPaymentController extends Controller
             } // foreach end
 
 
+            if ($payment_type == 'cash') {
+                // return $update_product;
+                // Notification start
+                $android_token = Auth::user()->android_token;
+                if ($android_token) {
+                    $data = array(
+                        'title' => 'Thaks for your order.',
+                        'body' => 'Check your account for order status.'
+                    );
+                    sendNotificateion($data, $android_token);
+                }
+                // Notification End
+                Cart::destroy();
 
+                return view('frontend.ordercomplete', compact('update_product'));
+            }
         } // if close end
 
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
+
 
         if (!is_array($payment_options)) {
             print_r($payment_options);
@@ -265,10 +289,16 @@ class SslCommerzPaymentController extends Controller
         $cartItems = Cart::content();
         $payment_type = $request->payment_type;
 
-        $request->validate([
-            'total_amount' => 'required',
-            // 'delivery_system' => 'required',
-        ]);
+        $request->validate(
+            [
+                'total_amount' => 'required',
+                'total_delivery_cost' => 'required',
+                // 'delivery_system' => 'required',
+            ],
+            [
+                'total_delivery_cost.required' => 'Please select Division, district, upazila/thana and select a delivery system.'
+            ]
+        );
 
         $post_data = array();
         $post_data['total_amount'] = $request->total_amount; # You cant not pay less than 10
@@ -366,8 +396,20 @@ class SslCommerzPaymentController extends Controller
                 'total_delivery_cost'  => $request->total_delivery_cost,
                 'order_pin_no'         => rand(0, 4)
             ]);
-            if($payment_type == 'cash'){
+            if ($payment_type == 'cash') {
                 // return $update_product;
+
+                // Notification start
+                $android_token = Auth::user()->android_token;
+                if ($android_token) {
+                    $data = array(
+                        'title' => 'Thaks for your order.',
+                        'body' => 'Check your account for order status.'
+                    );
+                    sendNotificateion($data, $android_token);
+                }
+                // Notification End
+
                 return view('frontend.ordercomplete', compact('update_product'));
             }
         } // if close end
@@ -381,6 +423,16 @@ class SslCommerzPaymentController extends Controller
             print_r($payment_options);
             $payment_options = array();
         }
+        // Notification start
+        $android_token = Auth::user()->android_token;
+        if ($android_token) {
+            $data = array(
+                'title' => 'Thaks for your order.',
+                'body' => 'Check your account for order status.'
+            );
+            sendNotificateion($data, $android_token);
+        }
+        // Notification End
     }
 
     public function payViaAjax(Request $request)
@@ -481,6 +533,25 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
+                // Notification start
+                $android_token = null;
+                $getorder = DB::table('orders')->where('transaction_id', $tran_id)->first();
+
+                if($getorder){
+                    $user = DB::table('users')->where('id', $getorder->user_id)->first();
+                    $android_token = $user->android_token;
+                };
+
+                Cart::destroy();
+                if ($android_token) {
+                    $data = array(
+                        'title' => 'Thaks for your order.',
+                        'body' => 'Check your account for order status.'
+                    );
+                    sendNotificateion($data, $android_token);
+                }
+                // Notification End
+
                 echo "<br >Transaction is successfully Completed";
             } else {
                 /*
@@ -498,6 +569,8 @@ class SslCommerzPaymentController extends Controller
              */
             // echo "Transaction is successfully Completed";
             $update_product = Order::firstWhere('transaction_id', $order_detials->transaction_id);
+
+
             return view('frontend.ordercomplete', compact('update_product'));
         } else {
             #That means something wrong happened. You can redirect customer to your product page.

@@ -38,6 +38,9 @@ class BuyNowController extends Controller
             $pamymentmethods = PaymentMethod::all();
 
             // return $cartItems;
+
+            // return Auth::user()->android_token;
+
             return view('frontend.buy-now', compact(
                 'product',
                 'divisions',

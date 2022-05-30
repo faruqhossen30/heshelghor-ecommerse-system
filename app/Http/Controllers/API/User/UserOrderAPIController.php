@@ -104,6 +104,7 @@ class UserOrderAPIController extends Controller
     public function success(Request $request)
     {
         $userId = $request->user()->id;
+        $android_token = $request->user()->android_token;
         // echo "Transaction is Successful";
         $request->validate([
             'tran_id'  => 'required',
@@ -147,6 +148,22 @@ class UserOrderAPIController extends Controller
                     ->update(['status' => 'Processing']);
 
                 // echo "<br >Transaction is successfully Completed";
+
+                // Notification start
+
+                if ($android_token) {
+                    $data = array(
+                        'title' => 'Thaks for your order.',
+                        'body' => 'Check your account for order status.'
+                    );
+                    sendNotificateion($data, $android_token);
+                }
+                // Notification End
+
+
+
+
+
                 $res[] = "Transaction is successfully Completed";
             } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
                 /*
