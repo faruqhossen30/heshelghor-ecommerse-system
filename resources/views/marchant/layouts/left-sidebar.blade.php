@@ -1,6 +1,8 @@
 @php
     $merchantId = Auth::guard('marchant')->user()->id;
     $profile = App\Models\Merchant\MerchantProfile::where('merchant_id', $merchantId)->first();
+    $countorder = App\Models\Merchant\OrderItem::where('order_status', false)->count();
+
 @endphp
 <div class="left-side-menu">
     <!-- LOGO -->
@@ -73,16 +75,16 @@
                 <li class="menu-title">Marchant Dashboard</li>
 
                 <li>
-                    <a href="{{route('homepage')}}" >
+                    <a href="{{route('homepage')}}" target="_blank">
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span> Home </span>
+                        <span> Visit Site </span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('marchant.home')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span class="badge bg-success rounded-pill float-end">3</span>
-                        <span> Dashboards </span>
+                        {{-- <span class="badge bg-success rounded-pill float-end">3</span> --}}
+                        <span> Dashboard </span>
                     </a>
                 </li>
                 <li>
@@ -153,6 +155,7 @@
                     <a href="#sidebarOrders" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarOrders">
                         <i class="mdi mdi-text-box-multiple-outline"></i>
                         <span> Orders </span>
+                        <span class="badge bg-danger rounded-pill">{{$countorder}}</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarOrders">

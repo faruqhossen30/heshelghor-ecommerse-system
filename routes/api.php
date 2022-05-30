@@ -177,6 +177,7 @@ Route::prefix('user')->group(function () {
         Route::get('/orders', [UserOrderListAPIController::class, 'order']);
         Route::get('/order/{id}', [UserOrderListAPIController::class, 'orderItem']);
         Route::post('/createorder', [UserOrderAPIController::class, 'createOrder']);
+        Route::post('/order/success', [UserOrderAPIController::class, 'success']);
         Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
         Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
 

@@ -23,10 +23,69 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-header border-bottom bg-transparent">
+                            <h5 class="header-title mb-0">Invoice: #34234</h5>
+                        </div>
                         <div class="card-body">
-                            <table class="table table-bordered" width="100%">
-                                <h1 class="text-center">Basic Complain Information :</h1>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="me-2 align-self-center">
+                                            <i class="ri-hashtag h2 m-0 text-muted"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="mb-1">Invoice No</p>
+                                            <h5 class="mt-0">
+                                                234234
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
 
+                                    <div class="d-flex mb-2">
+                                        <div class="me-2 align-self-center">
+                                            <i class="ri-user-2-line h2 m-0 text-muted"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="mb-1">Billing Name</p>
+                                            <h5 class="mt-0">
+                                                jamal
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6">
+
+                                    <div class="d-flex mb-2">
+                                        <div class="me-2 align-self-center">
+                                            <i class="ri-calendar-event-line h2 m-0 text-muted"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="mb-1">Order Date</p>
+                                            <h5 class="mt-0">
+                                                {{-- {{ Carbon\Carbon::parse($order->created_at)->format('d F') }}
+                                                <small class="text-muted">{{ Carbon\Carbon::parse($order->created_at)->format('h:m A') }}</small> --}}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-lg-3 col-sm-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="me-2 align-self-center">
+                                            <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="mb-1">Tracking ID</p>
+                                            <h5 class="mt-0">
+                                                123456789
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            </div>
+
+                            <table class="table table-bordered" width="100%">
                                 <tbody>
                                     <tr>
                                         <th>User Name</th>
