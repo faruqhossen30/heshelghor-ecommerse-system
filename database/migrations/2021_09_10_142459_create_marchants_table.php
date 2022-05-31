@@ -22,6 +22,7 @@ class CreateMarchantsTable extends Migration
             $table->string('phone_number');
             $table->string('address');
             $table->rememberToken();
+            $table->string('android_token')->nullable();
             $table->string('photo')->nullable();
             $table->string('nid_no')->nullable();
             $table->string('tradelicense_no')->nullable();

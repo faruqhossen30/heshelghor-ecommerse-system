@@ -10,7 +10,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     {{ $product->title }}
 @endsection
 @section('OG')
-    <!-- Facebook Open Graph -->
+    <!-- Facebook & Linkedit Open Graph -->
     <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
     <meta property="og:type" content="product" />
     <meta property="og:title" content="{{ $product->title }}" />
@@ -23,7 +23,6 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     <meta property="og:title" content="{{ $product->title }}" />
     <meta property="og:description" content="{{ $product->short_description }}" />
     <meta property="og:image" content="{{ $product->img_large }}" />
-
 @endsection
 
 @section('content')

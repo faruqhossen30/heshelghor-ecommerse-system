@@ -49,9 +49,9 @@ class MerchantAuthAPIController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'device_name' => 'required',
+            'email'         => 'required|email',
+            'password'      => 'required',
+            'android_token' => 'required'
         ]);
 
         $merchant = Marchant::where('email', $request->email)->first();
@@ -63,7 +63,11 @@ class MerchantAuthAPIController extends Controller
         }
 
         // return $merchant->createToken($request->device_name)->plainTextToken;
-        $token = $merchant->createToken($request->device_name)->plainTextToken;
+        $token = $merchant->createToken(uniqid())->plainTextToken;
+        if($request->android_token){
+            $merchant->android_token = $request->android_token;
+            $merchant->save();
+        }
 
         return response()->json([
             'success' => true,
