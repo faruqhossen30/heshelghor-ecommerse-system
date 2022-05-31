@@ -22,15 +22,26 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header border-bottom bg-transparent">
-                        <h5 class="header-title mb-0">Order Detaild: {{$orderItem->order_no}}
-                        @if ($orderItem->order_status == 1)
-                        <span class="btn btn-success btn-sm">Accepted</span>
+                    <div class="card-header border-bottom bg-transparent d-flex justify-content-between">
+                        <h5 class="">Order Detaild: {{$orderItem->order_no}}</h5>
+                        @if ($orderItem->accept_status == 1)
+                            <span><button type="button" class="btn btn-success btn-sm float-end">Accepted !</button></span>
                         @endif
-                        @if ($orderItem->order_status == 0)
-                            <span class="btn btn-danger btn-sm">Pending</span>
+                        @if ($orderItem->cancel_status == 1)
+                            <span><button type="button" class="btn btn-danger btn-sm float-end">Canceled !</button></span>
                         @endif
-                    </h5>
+                        @if ($orderItem->accept_status == 0 && $orderItem->cancel_status == 0)
+                            <div>
+                                <a href="{{route('marchant.order.cancel', $orderItem->id)}}" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Suer ? Cancel Order ?');">
+                                    <span class="btn-label"><i class="mdi mdi-close-circle-outline"></i></span>
+                                    Cancel Order !
+                                </a>
+                                <a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-success btn-sm ml-2" onclick="return confirm('Suer ? Accept Order ?');">
+                                    <span class="btn-label"><i class="mdi mdi-check-all"></i></span>
+                                    Accept Order !
+                                </a>
+                            </div>
+                        @endif
 
                     </div>
                     <div class="card-body">
@@ -58,7 +69,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                {{$orderItem->deliveryaddress->name}}
+                                                {{$orderItem->order->name}}
                                             </h5>
                                         </div>
                                     </div>
@@ -81,15 +92,20 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-6">
-
                                     <div class="d-flex mb-2">
                                         <div class="me-2 align-self-center">
-                                            <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
+                                            <i class="ri-money-dollar-box-line h2 m-0 text-muted"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <p class="mb-1">Tracking ID</p>
+                                            <p class="mb-1">Payment Type</p>
                                             <h5 class="mt-0">
-                                                123456789
+                                                @if ($orderItem->order->payment_type == 'cash')
+                                                Cash On Delivery
+
+                                                @endif
+                                                @if ($orderItem->order->payment_type == 'online')
+                                                <span class="badge badge-soft-success">Paid !</span>
+                                                @endif
                                             </h5>
                                         </div>
                                     </div>
@@ -98,7 +114,7 @@
                         </div>
 
                         <div class="mt-2">
-                            <h4 class="header-title mb-3">Items from Order {{$orderItem->order_no}}</h4>
+                            {{-- <h4 class="header-title mb-3">Items from Order {{$orderItem->order_no}}</h4> --}}
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div>
@@ -128,7 +144,7 @@
                                                         </td>
                                                         <td>{{$orderItem->quantity}}</td>
                                                         <td>{{$orderItem->discount}}%</td>
-                                                        <td>৳{{$orderItem->merchant_price}}</td>
+                                                        <td>৳{{$orderItem->price}}</td>
                                                         <td>৳{{$orderItem->merchant_price_total}}</td>
                                                     </tr>
 
@@ -151,7 +167,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Merchant :</th>
-                                                        <td>{{$orderItem->quantity}}x{{$orderItem->merchant_price}}</td>
+                                                        <td>{{$orderItem->quantity}}x{{$orderItem->price}}</td>
                                                         <td>৳{{$orderItem->merchant_price_total}}</td>
                                                     </tr>
                                                     <tr>
@@ -186,15 +202,15 @@
 
                                     <tbody>
                                         <tr>
-                                            <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->deliveryaddress->name}}</h5></th>
+                                            <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->order->name}}</h5></th>
                                         </tr>
                                         <tr>
                                             <th scope="row">Address:</th>
-                                            <td>{{$orderItem->deliveryaddress->address}}</td>
+                                            <td>{{$orderItem->order->address}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Phone :</th>
-                                            <td>{{$orderItem->deliveryaddress->mobile}}</td>
+                                            <td>{{$orderItem->order->mobile}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Mobile :</th>

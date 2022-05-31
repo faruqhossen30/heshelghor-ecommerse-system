@@ -255,7 +255,7 @@ class SslCommerzPaymentController extends Controller
                 $android_token = Auth::user()->android_token;
                 if ($android_token) {
                     $data = array(
-                        'title' => 'Thaks for your order.',
+                        'title' => 'Thank you for your order.',
                         'body' => 'Check your account for order status.'
                     );
                     sendNotificateion($data, $android_token);
@@ -403,7 +403,7 @@ class SslCommerzPaymentController extends Controller
                 $android_token = Auth::user()->android_token;
                 if ($android_token) {
                     $data = array(
-                        'title' => 'Thaks for your order.',
+                        'title' => 'Thank you for your order.',
                         'body' => 'Check your account for order status.'
                     );
                     sendNotificateion($data, $android_token);
@@ -427,7 +427,7 @@ class SslCommerzPaymentController extends Controller
         $android_token = Auth::user()->android_token;
         if ($android_token) {
             $data = array(
-                'title' => 'Thaks for your order.',
+                'title' => 'Thank you for your order.',
                 'body' => 'Check your account for order status.'
             );
             sendNotificateion($data, $android_token);
@@ -545,7 +545,7 @@ class SslCommerzPaymentController extends Controller
                 Cart::destroy();
                 if ($android_token) {
                     $data = array(
-                        'title' => 'Thaks for your order.',
+                        'title' => 'Thank you for your order.',
                         'body' => 'Check your account for order status.'
                     );
                     sendNotificateion($data, $android_token);

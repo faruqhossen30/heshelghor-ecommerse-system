@@ -21,7 +21,7 @@ class AdminOrderItemListController extends Controller
 
     public function singeOrderItem($id)
     {
-        $orderItem = OrderItem::with('product', 'merchant', 'deliveryaddress')->where('id', $id)->first();
+        $orderItem = OrderItem::with('order','product', 'merchant')->where('id', $id)->first();
         // return $orderItem;
         return view('admin.order.singleorderitem', compact('orderItem'));
     }

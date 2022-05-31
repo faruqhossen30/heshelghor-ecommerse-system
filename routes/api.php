@@ -111,9 +111,13 @@ Route::prefix('merchant')->group(function () {
         Route::post('/logout', [MerchantAuthAPIController::class, 'logout']);
         // Order
         Route::get('/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
-        Route::get('/order/{orderItemId}', [MerchantOrderItemAPIController::class, 'singleOrder']);
-        Route::get('/order/accept/{orderItemId}', [MerchantOrderItemAPIController::class, 'acceptOrder']);
-        Route::get('/order/cancel/{orderItemId}', [MerchantOrderItemAPIController::class, 'cancelOrder']);
+        Route::get('/order/{id}', [MerchantOrderItemAPIController::class, 'singleOrder'])->where('id', '[0-9]+');
+        Route::get('/order/accept/{id}', [MerchantOrderItemAPIController::class, 'acceptOrder'])->where('id', '[0-9]+');
+        Route::get('/order/cancel/{id}', [MerchantOrderItemAPIController::class, 'cancelOrder'])->where('id', '[0-9]+');
+
+        Route::get('/order/pending', [MerchantOrderItemAPIController::class, 'pendingOrders'])->where('name', '[A-Za-z]+');;
+        Route::get('/order/processing', [MerchantOrderItemAPIController::class, 'processingOrders'])->where('name', '[A-Za-z]+');;
+        Route::get('/order/canceled', [MerchantOrderItemAPIController::class, 'cancelOrders'])->where('name', '[A-Za-z]+');;
         // Product
         Route::get('products', [MerchantProductAPIController::class, 'index']);
         Route::get('product/{id}', [MerchantProductAPIController::class, 'show']);

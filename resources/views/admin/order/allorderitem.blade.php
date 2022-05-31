@@ -52,7 +52,7 @@
                                             <td>{{ $item->product->title }}</td>
                                             <td>{{ $item->merchant->name }}</td>
                                             <td>{{ $item->quantity }}</td>
-                                            <td>৳{{ $item->regular_price }}</td>
+                                            <td>৳{{ $item->price }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"
                                                     href="{{ route('admin.order.single', $item->id) }}" title="Edit"><span
@@ -78,11 +78,16 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
+    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
     <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
