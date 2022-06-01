@@ -1,5 +1,21 @@
 @php
 $admin = Auth::guard('admin')->user();
+
+$orderitems = App\Models\Merchant\OrderItem::get();
+
+$allorder = collect($orderitems);
+$countpending = $allorder->where('accept_status', false)
+            ->where('cancel_status', false)
+            ->count();
+$countcourier = $allorder
+            ->where('accept_status', 1)
+            ->where('courier_status', false)
+            ->count();
+
+
+
+
+
 @endphp
 <div class="left-side-menu">
 
@@ -180,6 +196,24 @@ $admin = Auth::guard('admin')->user();
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('admin.order.all') }}">All Order</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.allorder.pending')}}">Pending
+                                    @if($countpending > 0)
+                                    <span class="badge bg-danger rounded-pill float-end">{{$countpending}}</span>
+                                    @endif
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="{{route('admin.allorder.courier')}}">Courier
+                                    @if($countcourier > 0)
+                                    <span class="badge bg-danger rounded-pill float-end">{{$countcourier}}</span>
+                                    @endif
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.allorder.complete')}}">Completed</a>
                             </li>
                         </ul>
                     </div>

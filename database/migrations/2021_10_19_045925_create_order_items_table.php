@@ -35,12 +35,18 @@ class CreateOrderItemsTable extends Migration
             // Status
             $table->boolean('accept_status')->default(false);
             $table->boolean('cancel_status')->default(false);
+            $table->boolean('courier_status')->default(false);
+            $table->boolean('complete_status')->default(false);
             $table->string('author')->default('merchant');
             $table->unsignedBigInteger('admin_id')->nullable()->default(null);
+            $table->unsignedBigInteger('courier_authorid')->nullable()->default(null);
+            $table->unsignedBigInteger('complete_authorid')->nullable()->default(null);
 
             $table->string('order_pin_no');
-            $table->dateTime('accepted_at')->nullable();
-            $table->dateTime('canceled_at')->nullable();
+            $table->dateTime('accepted_at')->nullable()->default(null);
+            $table->dateTime('canceled_at')->nullable()->default(null);
+            $table->dateTime('couriered_at')->nullable()->default(null);
+            $table->dateTime('completed_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

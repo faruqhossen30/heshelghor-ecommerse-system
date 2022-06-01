@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use Carbon\Carbon;
+use Facade\FlareClient\Flare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,9 +21,35 @@ class AdminOrderItemListController extends Controller
         return view('admin.order.allorderitem', compact('orderItems'));
     }
 
+    public function pendingOrders()
+    {
+        $orderItems = OrderItem::with('order', 'product', 'shop')
+            ->where('accept_status', false)
+            ->where('cancel_status', false)
+            ->latest()->get();
+        return view('admin.order.pendingorders', compact('orderItems'));
+    }
+    public function courierOrders()
+    {
+        $orderItems = OrderItem::with('order', 'product', 'shop')
+            ->where('accept_status', 1)
+            ->where('courier_status', false)
+            ->latest()->get();
+        return view('admin.order.courierorders', compact('orderItems'));
+    }
+    public function completeOrders()
+    {
+        $orderItems = OrderItem::with('order', 'product', 'shop')
+            ->where('accept_status', 1)
+            ->where('courier_status', 1)
+            ->where('complete_status', 1)
+            ->latest()->get();
+        return view('admin.order.completeorders', compact('orderItems'));
+    }
+
     public function singeOrderItem($id)
     {
-        $orderItem = OrderItem::with('order','product', 'shop', 'courier')->where('id', $id)->first();
+        $orderItem = OrderItem::with('order', 'product', 'shop', 'courier')->where('id', $id)->first();
         // return $orderItem;
         return view('admin.order.singleorderitem', compact('orderItem'));
     }
@@ -64,10 +91,33 @@ class AdminOrderItemListController extends Controller
         ]);
         return redirect()->back();
     }
+    public function orderCourier($id)
+    {
 
+        // return "order coureri added";
 
+        $update = OrderItem::where('id', $id)->update([
+            'courier_status' => true,
+            'couriered_at' => Carbon::now(),
+            'courier_authorid' => Auth::guard('admin')->user()->id,
+        ]);
+        return redirect()->back();
+    }
+    public function orderComplete($id)
+    {
 
+        // return "Complete Order";
+        $orderitem = OrderItem::firstWhere('id', $id);
 
+        if ($orderitem && $orderitem->complete_status == 0) {
+            $update = OrderItem::where('id', $id)->update([
+                'complete_status' => true,
+                'completed_at' => Carbon::now(),
+                'complete_authorid' => Auth::guard('admin')->user()->id,
+            ]);
+            return redirect()->back();
+        }
 
-
+        return "Opps ! Something went wrong !";
+    }
 }

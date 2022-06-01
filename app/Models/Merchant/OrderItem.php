@@ -14,10 +14,10 @@ class OrderItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id', 'user_id', 'product_id', 'merchant_id', 'shop_id', 'order_number', 'quantity', 'price', 'discount_type', 'discount', 'varient', 'courier_id', 'courier_packege_desc', 'delivery_cost', 'total_delivery_cost', 'order_status', 'cancel_status', 'order_pin_no', 'accepted_at','canceled_at'
+        'order_id', 'user_id', 'product_id', 'merchant_id', 'shop_id', 'order_number', 'quantity', 'price', 'discount_type', 'discount', 'varient', 'courier_id', 'courier_packege_desc', 'delivery_cost', 'total_delivery_cost', 'accept_status', 'cancel_status', 'courier_status', 'complete_status', 'order_pin_no', 'accepted_at', 'canceled_at', 'author', 'admin_id', 'courier_authorid', 'complete_authorid', 'couriered_at', 'completed_at'
     ];
 
-    protected $dates = ['accepted_at', 'canceled_at'];
+    protected $dates = ['accepted_at', 'canceled_at', 'completed_at', 'couriered_at'];
 
     public function product()
     {

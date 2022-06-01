@@ -57,7 +57,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle">{{$item->order_number}}</h5>
+                                            <h5 class="m-0 d-inline-block align-middle">#{{$item->order_number}}</h5>
                                         </td>
                                         <td>
                                             {{$item->product->title}}

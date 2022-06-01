@@ -82,9 +82,15 @@ Route::prefix('admin')->group(function () {
 
         // Order
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
+        Route::get('allorder/pending', [AdminOrderItemListController::class, 'pendingOrders'])->name('admin.allorder.pending');
+        Route::get('allorder/courier', [AdminOrderItemListController::class, 'courierOrders'])->name('admin.allorder.courier');
+        Route::get('allorder/complete', [AdminOrderItemListController::class, 'completeOrders'])->name('admin.allorder.complete');
+
         Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single')->where('id', '[0-9]+');;
-        Route::get('order/acceptstatus/{id}', [AdminOrderItemListController::class, 'orderAccept'])->name('admin.acceptorder')->where('id', '[0-9]+');;
-        Route::get('order/canceltatus/{id}', [AdminOrderItemListController::class, 'orderCancel'])->name('admin.cancelorder')->where('id', '[0-9]+');;
+        Route::get('order/acceptstatus/{id}', [AdminOrderItemListController::class, 'orderAccept'])->name('admin.acceptorder')->where('id', '[0-9]+');
+        Route::get('order/canceltatus/{id}', [AdminOrderItemListController::class, 'orderCancel'])->name('admin.cancelorder')->where('id', '[0-9]+');
+        Route::get('order/courierstatus/{id}', [AdminOrderItemListController::class, 'orderCourier'])->name('admin.courierorder')->where('id', '[0-9]+');
+        Route::get('order/completestatus/{id}', [AdminOrderItemListController::class, 'orderComplete'])->name('admin.completeorder')->where('id', '[0-9]+');
 
         Route::get('allorderitem/search', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
         // Merchant Section
