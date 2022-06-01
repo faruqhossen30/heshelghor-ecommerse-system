@@ -55,7 +55,7 @@ Route::prefix('admin')->group(function () {
         Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
         Route::resource('roles', RolesController::class);
         Route::resource('admin', AdminController::class);
-        // For Product
+        //Product
         Route::resource('category', CategoryController::class);
         Route::resource('subcategory', SubCategoryController::class);
         // Brand for Admin
@@ -71,18 +71,22 @@ Route::prefix('admin')->group(function () {
         // For order section
         Route::resource('deliverysystem', DeliverySystemController::class);
 
-        // Courier
+        // Courier Start
         Route::resource('courier', CourierController::class);
         Route::get('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'addDeliveryPlace'])->name('courier.adddeliveryplace');
         Route::post('courier/delivery-place/{id}', [CourierDeliverPlace::class, 'updateDeliveryPlace'])->name('courier.updateDeliveryplace');
         // Pick Up
         Route::get('courier/pickup-place/{id}', [CourierPickupPlace::class, 'addPickupPlace'])->name('courier.addpickupplace');
         Route::post('courier/pickup-place/{id}', [CourierPickupPlace::class, 'updateDeliveryPlace'])->name('courier.updatepickplace');
-
         Route::resource('paymentmethod', PaymentMethodController::class);
+
+        // Order
         Route::get('allorderitem', [AdminOrderItemListController::class, 'allOrderItem'])->name('admin.order.all');
+        Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single')->where('id', '[0-9]+');;
+        Route::get('order/acceptstatus/{id}', [AdminOrderItemListController::class, 'orderAccept'])->name('admin.acceptorder')->where('id', '[0-9]+');;
+        Route::get('order/canceltatus/{id}', [AdminOrderItemListController::class, 'orderCancel'])->name('admin.cancelorder')->where('id', '[0-9]+');;
+
         Route::get('allorderitem/search', [AdminOrderItemListController::class, 'searchOrderItem'])->name('admin.order.search');
-        Route::get('order/{id}', [AdminOrderItemListController::class, 'singeOrderItem'])->name('admin.order.single');
         // Merchant Section
         Route::get('/merchants', [MerchantController::class, 'allMerchant'])->name('merchant.list.all');
         Route::get('/shops', [MerchantController::class, 'allshoplist'])->name('shop.list.all');

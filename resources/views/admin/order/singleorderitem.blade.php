@@ -24,19 +24,30 @@
                 <div class="card">
                     <div class="card-header border-bottom bg-transparent d-flex justify-content-between">
                         <h5 class="">Order Detaild: {{$orderItem->order_no}}</h5>
-                        @if ($orderItem->accept_status == 1)
-                            <span><button type="button" class="btn btn-success btn-sm float-end">Accepted !</button></span>
+                        @if ($orderItem->accept_status == 1 && $orderItem->cancel_status == 0)
+                            <div>
+                                <button type="button" class="btn btn-success btn-sm">Accepted !</button>
+                                <small class="text-muted mr-3">
+                                    {{$orderItem->accepted_at->format('d M - H:m A')}}
+                                </small>
+
+                            </div>
                         @endif
-                        @if ($orderItem->cancel_status == 1)
-                            <span><button type="button" class="btn btn-danger btn-sm float-end">Canceled !</button></span>
+                        @if ($orderItem->cancel_status == 1 && $orderItem->accept_status == 0)
+                        <div>
+                            <button type="button" class="btn btn-danger btn-sm">Canceled !</button>
+                            <small class="text-danger mr-3">
+                                {{$orderItem->canceled_at->format('d M - H:m A')}}
+                            </small>
+                        </div>
                         @endif
                         @if ($orderItem->accept_status == 0 && $orderItem->cancel_status == 0)
                             <div>
-                                <a href="{{route('marchant.order.cancel', $orderItem->id)}}" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Suer ? Cancel Order ?');">
+                                <a href="{{route('admin.cancelorder', $orderItem->id)}}" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Suer ? Cancel Order ?');">
                                     <span class="btn-label"><i class="mdi mdi-close-circle-outline"></i></span>
                                     Cancel Order !
                                 </a>
-                                <a href="{{route('marchant.order.accept', $orderItem->id)}}" class="btn btn-success btn-sm ml-2" onclick="return confirm('Suer ? Accept Order ?');">
+                                <a href="{{route('admin.acceptorder', $orderItem->id)}}" class="btn btn-success btn-sm ml-2" onclick="return confirm('Suer ? Accept Order ?');">
                                     <span class="btn-label"><i class="mdi mdi-check-all"></i></span>
                                     Accept Order !
                                 </a>
@@ -134,7 +145,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="me-3">
-                                                                    <img src="{{asset('uploads/product/'.$orderItem->product->photo)}}" alt="product-img" height="40">
+                                                                    <img src="{{$orderItem->product->img_small}}" alt="product-img" height="40">
                                                                 </div>
                                                                 <div class="flex-1">
                                                                     <h5 class="m-0">{{$orderItem->product->title}}</h5>
@@ -145,7 +156,7 @@
                                                         <td>{{$orderItem->quantity}}</td>
                                                         <td>{{$orderItem->discount}}%</td>
                                                         <td>৳{{$orderItem->price}}</td>
-                                                        <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                        <td>৳{{$orderItem->price * $orderItem->quantity}}</td>
                                                     </tr>
 
                                                 </tbody>
@@ -166,9 +177,9 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row">Merchant :</th>
+                                                        <th scope="row">Price :</th>
                                                         <td>{{$orderItem->quantity}}x{{$orderItem->price}}</td>
-                                                        <td>৳{{$orderItem->merchant_price_total}}</td>
+                                                        <td>৳{{$orderItem->price * $orderItem->quantity}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Delivery :</th>
@@ -177,7 +188,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th colspan="2">Toral: </th>
-                                                        <th>৳110</th>
+                                                        <th>৳{{$orderItem->price * $orderItem->quantity + $orderItem->total_delivery_cost}}</th>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -194,27 +205,23 @@
                 <div class="row mb-3">
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Shipping Information</h4>
+                            <h4 class="font-15 mb-2">Shop Information</h4>
 
                             <div class="card p-2 mb-lg-0">
-
                                 <table class="table table-borderless table-sm mb-0">
 
                                     <tbody>
                                         <tr>
-                                            <th colspan="2"><h5 class="font-15 m-0">{{$orderItem->order->name}}</h5></th>
+                                            <th scope="row">Name</th>
+                                            <td>:{{$orderItem->shop->name}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Address:</th>
-                                            <td>{{$orderItem->order->address}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Phone :</th>
-                                            <td>{{$orderItem->order->mobile}}</td>
+                                            <th scope="row">Address :</th>
+                                            <td>:{{$orderItem->shop->address}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Mobile :</th>
-                                            <td>(+01) 12345 67890</td>
+                                            <td>:{{$orderItem->shop->mobile}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -223,27 +230,27 @@
                     </div>
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Billing  Information</h4>
+                            <h4 class="font-15 mb-2">Delivery Information</h4>
 
                             <div class="card p-2 mb-lg-0">
+                                <div class="my-2 text-center">
+                                    <i class="mdi mdi-bike h1 text-muted"></i>
+                                </div>
+
                                 <table class="table table-borderless table-sm mb-0">
 
                                     <tbody>
                                         <tr>
-                                            <th scope="row">Payment Type:</th>
-                                            <td>Credit Card</td>
+                                            <th scope="row">Name</th>
+                                            <td>:{{$orderItem->order->name}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Provider :</th>
-                                            <td>Visa ending in 2851</td>
+                                            <th scope="row">Email :</th>
+                                            <td>:{{$orderItem->order->email}}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Valid Date :</th>
-                                            <td>02/2021</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">CVV :</th>
-                                            <td>xxx</td>
+                                            <th scope="row">Mobile :</th>
+                                            <td>:{{$orderItem->order->phone}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -253,17 +260,17 @@
 
                     <div class="col-lg-4">
                         <div>
-                            <h4 class="font-15 mb-2">Delivery Info</h4>
+                            <h4 class="font-15 mb-2">Courier Service</h4>
 
                             <div class="card p-2 mb-lg-0">
                                 <div class="text-center">
                                     <div class="my-2">
                                         <i class="mdi mdi-truck-fast h1 text-muted"></i>
                                     </div>
-                                    <h5><b>UPS Delivery</b></h5>
+                                    <h5><b>{{$orderItem->courier_packege_desc}}</b></h5>
                                     <div class="mt-2 pt-1">
-                                        <p class="mb-1"><span class="fw-semibold">Order ID :</span> xxxx048</p>
-                                        <p class="mb-0"><span class="fw-semibold">Payment Mode :</span> COD</p>
+                                        <p class="mb-1"><span class="fw-semibold">Courier Service :</span> {{$orderItem->courier->name}}</p>
+                                        {{-- <p class="mb-0"><span class="fw-semibold">Payment Mode :</span> COD</p> --}}
                                     </div>
                                 </div>
                             </div>

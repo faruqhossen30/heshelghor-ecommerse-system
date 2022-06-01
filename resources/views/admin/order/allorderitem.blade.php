@@ -26,10 +26,11 @@
                             <table class="table table-bordered mb-2" id="example">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>S.N</th>
+                                        <th>S</th>
                                         <th>Order No</th>
                                         <th>Product</th>
                                         <th>Shop Name</th>
+                                        <th>Address</th>
                                         <th>Q.T</th>
                                         <th>Price</th>
                                         <th>Action</th>
@@ -43,22 +44,28 @@
                                         <tr>
                                             <th scope="row">{{ $serial++ }}</th>
                                             <td>#{{ $item->order_number }}
-                                                @if ($item->order_status == 0)
-                                                    <i class="mdi mdi-alert text-danger"></i>
-                                                @else
+                                                @if ($item->accept_status == 0 && $item->cancel_status == 0)
+                                                    <i class="mdi mdi-alert text-warning"></i>
+                                                @endif
+                                                @if($item->accept_status == 1 && $item->cancel_status == 0)
                                                     <i class="mdi mdi-check-circle text-success"></i>
+                                                @endif
+                                                @if($item->accept_status == 0 && $item->cancel_status == 1)
+                                                    <i class="mdi mdi-close-circle text-danger"></i>
                                                 @endif
                                             </td>
                                             <td>{{ $item->product->title }}</td>
-                                            <td>{{ $item->merchant->name }}</td>
+                                            <td>{{ $item->shop->name }}</td>
+                                            <td>{{ $item->shop->address }}</td>
+                                            {{-- <td>58, Borhansha road , Karbal Jessore sadar, Jessore</td> --}}
                                             <td>{{ $item->quantity }}</td>
-                                            <td>৳{{ $item->price }}</td>
+                                            <td>৳{{ $item->price * $item->quantity }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white"
-                                                    href="{{ route('admin.order.single', $item->id) }}" title="Edit"><span
-                                                        class="mdi mdi mdi-eye"></span></a>
-                                                <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
-                                                        class="mdi mdi-square-edit-outline"></span></a>
+                                                    href="{{ route('admin.order.single', $item->id) }}" title="View"><span
+                                                        class="mdi mdi mdi-eye"> View</span></a>
+                                                {{-- <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
+                                                        class="mdi mdi-square-edit-outline"></span></a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -87,6 +94,7 @@
 @push('scripts')
     <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+
 
     <script>
         $(document).ready(function() {

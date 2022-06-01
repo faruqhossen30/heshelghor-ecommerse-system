@@ -28,9 +28,9 @@ class OrderItem extends Model
     {
         return $this->hasOne(Order::class, 'id', 'order_id');
     }
-    public function deliveryaddress()
+    public function shop()
     {
-        return $this->hasOne(DeliveryAddress::class, 'order_id', 'order_id');
+        return $this->hasOne(Shop::class, 'id', 'shop_id');
     }
     public function merchant()
     {
