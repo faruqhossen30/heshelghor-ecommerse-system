@@ -72,13 +72,15 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$serial++}}</a></h5>
                                         </td>
                                         <td>
-                                            <img src="{{$product->img_small}}" alt="contact-img" title="contact-img" class="avatar-sm">
+                                            <img src="{{$product->product->img_small}}" alt="contact-img" title="contact-img" class="avatar-sm">
+                                            {{-- <img src="{{ asset('storage/images/' . $product->img_small) }}" height="50px"
+                                            width="50px" alt="{{ $product->img_small }}"> --}}
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$product->title}}</a></h5>
+                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$product->product->title}}</a></h5>
                                         </td>
                                         <td>
-                                            <span class="badge bg-success"><i class="mdi mdi-star"></i> 4.9</span>
+                                            {{-- <span class="badge bg-success"><i class="mdi mdi-star"></i>{{$product->review->rating}}</span> --}}
                                         </td>
 
                                         <td>
@@ -88,13 +90,14 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{route('user.product.review.product')}}" class="btn btn-warning btn-sm">Review </a>
+                                            <a href="{{ route('user.product.review.product', $product->id) }}" class="btn btn-warning btn-sm">Review </a>
                                         </td>
                                     </tr>
                                     @endforeach
 
                                 </tbody>
                             </table>
+                            {{ $products->links() }}
                         </div>
                     </div>
                 </div>
