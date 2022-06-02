@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Auth\Marchant;
 use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use App\Models\Product\Product;
@@ -400,11 +401,22 @@ class SslCommerzPaymentController extends Controller
                 // return $update_product;
 
                 // Notification start
+                $merchantinfo = Marchant::firstWhere('id', $product->author_id);
+                $merchant_token = $merchantinfo->android_token;
                 $android_token = Auth::user()->android_token;
+
                 if ($android_token) {
                     $data = array(
                         'title' => 'Thank you for your order.',
                         'body' => 'Check your account for order status.'
+                    );
+                    sendNotificateion($data, $android_token);
+                }
+
+                if ($merchant_token) {
+                    $data = array(
+                        'title' => 'Great News ! You have received an order',
+                        'body' => 'Please Cheack your order and prepare for the customer.'
                     );
                     sendNotificateion($data, $android_token);
                 }

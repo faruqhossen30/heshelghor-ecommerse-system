@@ -140,7 +140,12 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="badge badge-soft-danger">Trace Order </a>
+                                                                @if ($item->cancel_status == 0)
+                                                                 <a href="{{route('user.order.track', $item->id)}}" class="badge badge-soft-danger">Trace Order </a>
+                                                                @endif
+                                                                @if ($item->cancel_status == 1)
+                                                                <span class="badge badge-soft-danger">Not Available</span></div>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach

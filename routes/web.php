@@ -118,7 +118,7 @@ Route::prefix('user')->group(function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
-        Route::get('trackorder', [UserDashboardController::class, 'trackOrder'])->name('user.order.track');
+        Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
         Route::get('account/update', [UserDashboardController::class, 'editAccount'])->name('user.account.edit');
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');

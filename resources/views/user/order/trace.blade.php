@@ -31,15 +31,14 @@
                                     <i class="ri-hashtag h2 m-0 text-muted"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="mb-1">Invoice No</p>
+                                    <p class="mb-1">Order No</p>
                                     <h5 class="mt-0">
-                                        sdfsdf
+                                        #{{ $orderitem->order_number }}
                                     </h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-
+                        {{-- <div class="col-lg-3 col-sm-6">
                             <div class="d-flex mb-2">
                                 <div class="me-2 align-self-center">
                                     <i class="ri-user-2-line h2 m-0 text-muted"></i>
@@ -51,7 +50,7 @@
                                     </h5>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-3 col-sm-6">
 
                             <div class="d-flex mb-2">
@@ -59,76 +58,114 @@
                                     <i class="ri-calendar-event-line h2 m-0 text-muted"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="mb-1">Date</p>
+                                    <p class="mb-1">Order Date</p>
                                     <h5 class="mt-0">
-                                        22 decebmder
-                                        <small class="text-muted">sdfsdf</small>
+                                        {{ Carbon\Carbon::parse($orderitem->created_at)->format('d F') }}
+                                        <small
+                                            class="text-muted">{{ Carbon\Carbon::parse($orderitem->created_at)->format('h:m A') }}</small>
                                     </h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-
+                        {{-- <div class="col-lg-3 col-sm-6">
                             <div class="d-flex mb-2">
                                 <div class="me-2 align-self-center">
-                                    <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
+                                    <i class="ri-money-dollar-box-line h2 m-0 text-muted"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="mb-1">Tracking ID</p>
+                                    <p class="mb-1">Payment Type</p>
                                     <h5 class="mt-0">
-                                        123456789
+                                        @if ($orderitem->payment_type == 'cash')
+                                        Cash On Delivery
+
+                                        @endif
+                                        @if ($orderitem->payment_type == 'online')
+                                        <span class="badge badge-soft-success">Paid !</span>
+                                        @endif
                                     </h5>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body">
 
                         <div class="flexbox_container text-center" style="display: flex">
                             <div class="col p-2 m-1 border shadow-lg   text-success border-success">
                                 <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-success">Accept</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
+                                <h5 class="text-success">Pending</h5>
+                                <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->created_at)->format('d F Y') }}</p>
+                                <small class="text-success">{{ Carbon\Carbon::parse($orderitem->created_at)->format('h:m A') }}</small>
                             </div>
-                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-danger">Pending</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
-                            </div>
-                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-danger">Pending</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
-                            </div>
-                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-danger">Pending</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
-                            </div>
-                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-danger">Pending</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
-                            </div>
-                            <div class="col p-2 m-1 border shadow-lg text-danger border-danger">
-                                <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
-                                <h5 class="text-danger">Pending</h5>
-                                <p>25 Nov 21, 2:40 PM</p>
-                            </div>
+
+                            @if ($orderitem->accept_status == 0 && $orderitem->cancel_status == 0)
+                                <div class="col p-2 m-1 border shadow-lg   text-danger border-danger">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-danger">Accept</h5>
+                                    <p>Waiting for accept order.</p>
+                                </div>
+                            @endif
+                            @if ($orderitem->accept_status == 1 && $orderitem->cancel_status == 0)
+                                <div class="col p-2 m-1 border shadow-lg   text-success border-success">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-success">Accepted </h5>
+                                    <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->accepted_at)->format('d F Y') }}</p>
+                                    <small class="text-success">{{ Carbon\Carbon::parse($orderitem->accepted_at)->format('h:m A') }}</small>
+                                </div>
+                            @endif
+
+                            {{-- Courier Service --}}
+                            @if ($orderitem->accept_status == 1 && $orderitem->courier_status == 0)
+                                <div class="col p-2 m-1 border shadow-lg   text-danger border-danger">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-danger">Delivery Service</h5>
+                                    <p>Preparing for delivery service.</p>
+                                </div>
+                            @endif
+                            @if ($orderitem->accept_status == 1 && $orderitem->courier_status == 1)
+                                <div class="col p-2 m-1 border shadow-lg   text-success border-success">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-success">On Delivery Service </h5>
+                                    <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->couriered_at)->format('d F Y') }}</p>
+                                    <small class="text-success">{{ Carbon\Carbon::parse($orderitem->couriered_at)->format('h:m A') }}</small>
+                                </div>
+                            @endif
+
+                            {{-- Complete order--}}
+                            @if ($orderitem->accept_status == 1 && $orderitem->complete_status == 0)
+                                <div class="col p-2 m-1 border shadow-lg   text-danger border-danger">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-danger">Waiting for Complete</h5>
+                                    {{-- <p>Order is now devivery service.</p> --}}
+                                </div>
+                            @endif
+                            @if ($orderitem->accept_status == 1 && $orderitem->complete_status == 1)
+                                <div class="col p-2 m-1 border shadow-lg   text-success border-success">
+                                    <p><i class="mdi mdi-check-circle" style="font-size: 2rem;"></i></p>
+                                    <h5 class="text-success">Order Completed </h5>
+                                    <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->completed_at)->format('d F Y') }}</p>
+                                    <small class="text-success">{{ Carbon\Carbon::parse($orderitem->completed_at)->format('h:m A') }}</small>
+                                </div>
+                            @endif
+
+
                         </div> <!-- flexbox_container -->
 
 
                     </div>
 
                     <div class="card-body">
-                        <div class="accordion" id="accordionExample"> <!-- Accroding -->
+                        <div class="accordion" id="accordionExample">
+                            <!-- Accroding -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        <i class="mdi mdi-help-circle me-1 text-primary"></i>  Can I use this template for my client?
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="mdi mdi-help-circle me-1 text-primary"></i> Can I use this template for my
+                                        client?
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample" style="">
                                     <div class="accordion-body">
                                         <div class="tab-pane show active" id="about-me">
 
@@ -182,23 +219,23 @@
 @endsection
 
 @push('css')
-
     <!-- third party css -->
     <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
         rel="stylesheet" type="text/css" />
-        <style>
-            .flexbox_container{
-                justify-content: center;
-                flex-flow: wrap row;
-            }
-            .flexbox_container div{
-                min-width: 120px;
-                max-width: 150px;
-            }
+    <style>
+        .flexbox_container {
+            justify-content: center;
+            flex-flow: wrap row;
+        }
 
-        </style>
+        .flexbox_container div {
+            min-width: 120px;
+            max-width: 150px;
+        }
+
+    </style>
 @endpush
 
 @push('scripts')
@@ -208,8 +245,8 @@
     <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js">
     </script>
-    <script src="{{ asset('backend') }}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
+    <script src="{{ asset('backend') }}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js">
+    </script>
     <!-- third party js ends -->
     <script src="{{ asset('backend') }}/assets/js/pages/product-list.init.js"></script>
-
 @endpush

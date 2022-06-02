@@ -115,7 +115,7 @@ class MerchantOrderItemAPIController extends Controller
         $orderItem = OrderItem::where('merchant_id', $merchantId)->where('id', $id)->first();
         // return $orderItem;
         if ($orderItem->order_status == 0 && $orderItem->cancel_status == 0) {
-            $orderItem->accept_status = true;
+            $orderItem->cancel_status = true;
             $orderItem->canceled_at = Carbon::now();
             $orderItem->save();
             return response()->json([

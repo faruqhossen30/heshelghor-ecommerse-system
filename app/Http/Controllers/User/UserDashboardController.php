@@ -43,9 +43,11 @@ class UserDashboardController extends Controller
         return view('user.order.showorder', compact('order', 'orderitems'));
     }
 
-    public function trackOrder()
+    public function trackOrder($id)
     {
-        return view('user.order.trace');
+        $orderitem = OrderItem::firstWhere('id', $id);
+        // return $orderitem;
+        return view('user.order.trace', compact('orderitem'));
     }
 
 
