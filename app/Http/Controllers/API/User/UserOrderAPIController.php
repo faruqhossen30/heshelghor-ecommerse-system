@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Faker\Provider\Uuid;
 use Illuminate\Support\Facades\Validator;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Auth\Marchant;
 use DB;
 
 class UserOrderAPIController extends Controller
@@ -47,6 +48,16 @@ class UserOrderAPIController extends Controller
         ]);
 
         if ($order) {
+            // Notification start
+            $android_token = $request->user()->android_token;
+            if ($android_token) {
+                $data = array(
+                    'title' => 'Thank you for your order.',
+                    'body' => 'Check your account for order status.'
+                );
+                sendNotificateion($data, $android_token);
+            }
+            // Notification end
             return response()->json([
                 'success' => true,
                 'code'    => 201,
@@ -86,6 +97,19 @@ class UserOrderAPIController extends Controller
         ]);
 
         if ($orderItem) {
+            // Notification start
+            $merchantinfo = Marchant::firstWhere('id', $request->merchant_id);
+            $merchant_token = $merchantinfo->android_token;
+
+            if ($merchant_token) {
+                $data = array(
+                    'title' => 'Great News ! You have received an order',
+                    'body' => 'Please Cheack your order and prepare for the customer.'
+                );
+                sendNotificateion($data, $merchant_token);
+            }
+            // Notification End
+
             return response()->json([
                 'success' => true,
                 'code'    => 201,

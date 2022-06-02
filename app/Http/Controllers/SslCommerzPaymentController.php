@@ -247,11 +247,31 @@ class SslCommerzPaymentController extends Controller
                     'total_delivery_cost'  => intval($request->delivery_cost[$item->id]) * intval($item->qty),
                     'order_pin_no'         => rand(0, 4)
                 ]);
+
+
+
+                // Notification start
+                $merchantinfo = Marchant::firstWhere('id', $product->author_id);
+                $merchant_token = $merchantinfo->android_token;
+
+                if ($merchant_token) {
+                    $data = array(
+                        'title' => 'Great News ! You have received an order',
+                        'body' => 'Please Cheack your order and prepare for the customer.'
+                    );
+                    sendNotificateion($data, $merchant_token);
+                }
+                // Notification End
+
+
+
+
             } // foreach end
 
 
             if ($payment_type == 'cash') {
                 // return $update_product;
+
                 // Notification start
                 $android_token = Auth::user()->android_token;
                 if ($android_token) {
@@ -418,7 +438,7 @@ class SslCommerzPaymentController extends Controller
                         'title' => 'Great News ! You have received an order',
                         'body' => 'Please Cheack your order and prepare for the customer.'
                     );
-                    sendNotificateion($data, $android_token);
+                    sendNotificateion($data, $merchant_token);
                 }
                 // Notification End
 
@@ -436,11 +456,21 @@ class SslCommerzPaymentController extends Controller
             $payment_options = array();
         }
         // Notification start
+        $merchantinfo = Marchant::firstWhere('id', $product->author_id);
+        $merchant_token = $merchantinfo->android_token;
+
         $android_token = Auth::user()->android_token;
         if ($android_token) {
             $data = array(
                 'title' => 'Thank you for your order.',
                 'body' => 'Check your account for order status.'
+            );
+            sendNotificateion($data, $android_token);
+        }
+        if ($merchant_token) {
+            $data = array(
+                'title' => 'Great News ! You have received an order',
+                'body' => 'Please Cheack your order and prepare for the customer.'
             );
             sendNotificateion($data, $android_token);
         }
