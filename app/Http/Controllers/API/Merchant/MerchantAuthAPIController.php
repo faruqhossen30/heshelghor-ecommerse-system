@@ -51,7 +51,7 @@ class MerchantAuthAPIController extends Controller
         $request->validate([
             'email'         => 'required|email',
             'password'      => 'required',
-            'android_token' => 'required'
+            // 'android_token' => 'required'
         ]);
 
         $merchant = Marchant::where('email', $request->email)->first();

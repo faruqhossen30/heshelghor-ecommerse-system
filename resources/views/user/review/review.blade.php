@@ -29,7 +29,7 @@
                                     <a href="{{ route('user.product.review.list') }}" class="btn btn-danger mb-2"><i
                                             class="mdi mdi-plus-circle me-1"></i> Review
                                         Products</a>
-                                    <a href="{{ route('user.product.review.edit', $product->id) }}"
+                                    <a href="{{ route('user.product.review.edit', $orderitem->id) }}"
                                         class="btn btn-primary mb-2"><i class="mdi mdi-plus-circle me-1"></i> Review
                                         Edit</a>
                                 </div>
@@ -51,21 +51,21 @@
                                     <div class="row g-0">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <img src="{{ $product->product->img_small }}" alt="Card image"
+                                                <img src="{{ $orderitem->product->img_small }}" alt="Card image"
                                                     class="img-fluid" style="width: 150px; height:100px">
 
                                             </div>
                                             <div class="col-md-9">
                                                 <h2>Product Review</h2>
-                                                <p class="mb-5">{{ $product->product->title }}</p>
+                                                <p class="mb-5">{{ $orderitem->product->title }}</p>
                                                 {{-- <p class="mt-4"><span>Color:red</span></p> --}}
                                                 {{-- <p class="mt-4"><span>Color:red</span></p> --}}
-                                                {{-- <p>Product Id: <span>{{ $product->product_id }}</span></p> --}}
+                                                {{-- <p>Product Id: <span>{{ $orderitem->product_id }}</span></p> --}}
                                                 {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins --}}
-                                                <form action="{{ route('user.product.review.store') }}" method="POST">
+                                                <form action="{{ route('user.product.review.store', $orderitem->id) }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="product_id"
-                                                        value="{{ $product->product_id }}">
+                                                    <input type="hidden" name="product_id" value="{{ $orderitem->product_id }}">
+                                                    <input type="hidden" name="orderitem_id" value="{{ $orderitem->id }}">
                                                     <div class="rating">
                                                         <input id="star5" name="rating" type="radio" value="5">
 
@@ -189,14 +189,14 @@
     <style>
         /* @media only screen and (max-width: 600px) {
 
-                    .rating {
-                        position: absolute;
-                        top: 67%;
-                        margin: 0;
-                        transform: translate(0%, -370%) rotateY(180deg);
-                        display: flex;
-                    }
-                } */
+                        .rating {
+                            position: absolute;
+                            top: 67%;
+                            margin: 0;
+                            transform: translate(0%, -370%) rotateY(180deg);
+                            display: flex;
+                        }
+                    } */
 
 
 

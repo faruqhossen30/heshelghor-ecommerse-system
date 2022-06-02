@@ -23,12 +23,9 @@ class UserProductReviewController extends Controller
     public function reviewproduct($id)
     {
         $userid = Auth()->user()->id;
-        // $product = Product::first();
-        $product = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->latest()->first();
-        // return  $product;
-        // $productid= 'review/product/{id}';
-        // return  $id;
-        return view('user.review.review', compact('product'));
+        $orderitem = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->where('id', $id)->latest()->first();
+        // return $orderitem;
+        return view('user.review.review', compact('orderitem'));
     }
 
     public function reviewproductstore(Request $request)
@@ -40,18 +37,14 @@ class UserProductReviewController extends Controller
             'recommend' => 'required',
         ]);
 
-        ProductReview::updateOrInsert(
-            [
-                'id'        => Auth()->user()->id,
-            ],
-            [
-                'product_id' => $request->product_id,
-                'user_id'    => Auth()->user()->id,
-                'body'       => $request->body,
-                'rating'     => $request->rating,
-                'recommend'  => $request->recommend,
-            ]
-        );
+        ProductReview::create([
+            'product_id'   => $request->product_id,
+            'orderitem_id' => $request->orderitem_id,
+            'user_id'      => Auth()->user()->id,
+            'body'         => $request->body,
+            'rating'       => $request->rating,
+            'recommend'    => $request->recommend
+        ]);
 
         // ProductReview::create($data);
         return redirect()->back();

@@ -15,8 +15,9 @@ class CreateProductReviewsTable extends Migration
     {
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('orderitem_id');
             $table->integer('rating')->min(1)->max(5);
             $table->string('body');
             $table->boolean('recommend')->default(true);
