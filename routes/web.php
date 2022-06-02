@@ -122,10 +122,13 @@ Route::prefix('user')->group(function () {
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
         Route::get('account/update', [UserDashboardController::class, 'editAccount'])->name('user.account.edit');
         Route::post('account/update', [UserDashboardController::class, 'updateAccount'])->name('user.account.update');
+
         Route::get('review', [UserProductReviewController::class, 'index'])->name('user.product.review.list');
-        Route::get('review/product', [UserProductReviewController::class, 'reviewproduct'])->name('user.product.review.product');
         Route::post('review/', [UserProductReviewController::class, 'reviewproductstore'])->name('user.product.review.store');
-        Route::post('review/', [UserProductReviewController::class, 'reviewproductstore'])->name('user.product.review.store');
+
+        Route::get('review/product/{id}', [UserProductReviewController::class, 'reviewproduct'])->name('user.product.review.product');
+        Route::get('/review/edit/{id}', [UserProductReviewController::class, 'reviewproductedit'])->name('user.product.review.edit');
+        Route::post('review/{id}', [UserProductReviewController::class, 'reviewproductupadte'])->name('user.product.review.update');
 
         Route::get('complain',[UsercomplainController::class, 'usercomplain'])->name('user.complain');
 

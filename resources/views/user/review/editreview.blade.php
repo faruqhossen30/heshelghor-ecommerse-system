@@ -45,44 +45,18 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            {{-- <img src="{{ asset('backend') }}/assets/images/small/img-4.jpg"
-                                                alt="Card image" class="img-fluid"> --}}
+                                            <img src="{{ $product->product->img_small }}" alt="Card image"
+                                            class="img-fluid" style="width: 150px; height:100px">
 
-                                            <img class="img-fluid"
-                                                src="{{ asset('backend/assets/images/products' . $product->photo) }}"
-                                                alt="" style="width: 280px; height:220px">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ $product->title }}</h5>
-
-                                                {{-- <div class="rating">
-                                                    <input id="star5" name="rating" type="radio" value="5" >
-
-                                                    <label for="star5"></label>
-                                                    <input id="star4" name="rating" type="radio" value="4" >
-
-                                                    <label for="star4"></label>
-                                                    <input id="star3" name="rating" type="radio" value="3" >
-
-                                                    <label for="star3"></label>
-                                                    <input id="star2" name="rating" type="radio" value="2" >
-
-                                                    <label for="star2"></label>
-                                                    <input id="star1" name="rating" type="radio" value="1" >
-
-                                                    <label for="star1"></label>
-                                                </div> --}}
-                                                <p>Product Id: <span>65.01.269.22</span></p>
-                                                <p class="card-text"></p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                        ago</small></p>
-                                            </div>
+                                        <div class="col-md-9">
+                                            <h2>Product Review</h2>
+                                            <p class="mb-5">{{ $product->product->title }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <form action="{{ route('user.product.review.store') }}" method="POST">
+                                <form action="{{route('user.product.review.update',$product->product_id)}}" method="POST">
                                     @csrf
+                                    {{-- @method('PUT') --}}
                                     <p>Rate and review purchased producrt</p>
                                     <div class="row">
                                         <div class=" rating form-group col-md-6 col-sm-12">
@@ -97,25 +71,22 @@
                                             <input id="star1" name="rating" type="radio" value="1">
                                             <label for="star1"></label>
                                         </div>
-
-
                                     </div>
-
-
                                     <P class="mt-2">Is it recommanded?</P>
-                                    <input type="radio" id="html" name="recommend" value="0">
+                                    <input type="radio" id="html" name="recommend" @if (true) checked @endif value="0">
                                     <label for="html">No</label><br>
-
+                                    {{-- {{ $product_attribute->meterial == 'Aluminum' ? 'checked' : '' }} > --}}
                                     <input type="radio" id="html" name="recommend" value="1">
                                     <label for="html">Yes</label><br>
+
+
+
                                     <div class="mb-2">
 
                                         <label for="review" class="form-label">Review detail </label>
                                         <textarea class="form-control" name="body" placeholder="Leave a comment here" id="floatingTextarea"
-                                            style="height: 100px"></textarea>
-                                        {{-- <div id="emailHelp" class="form-text">Please share your feedback about the
-                                            product:
-                                            Was the product as described? What is the quality like?</div> --}}
+                                            style="height: 100px">{{$product->review->body}}</textarea>
+
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
@@ -125,6 +96,7 @@
                 </div>
             </div>
             <!-- end row -->
+
         </div> <!-- container -->
 
     </div> <!-- content -->

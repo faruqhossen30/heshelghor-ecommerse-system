@@ -6,6 +6,7 @@ use App\Models\Admin\Courier\Courier;
 use App\Models\Admin\Order\DeliveryAddress;
 use App\Models\Auth\Marchant;
 use App\Models\Product\Product;
+use App\Models\ProductReview;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +44,10 @@ class OrderItem extends Model
     public function courier()
     {
         return $this->hasOne(Courier::class, 'id' , 'courier_id' );
+    }
+    public function review()
+    {
+        return $this->hasOne(ProductReview::class, 'id' , 'product_id' );
     }
 
 }
