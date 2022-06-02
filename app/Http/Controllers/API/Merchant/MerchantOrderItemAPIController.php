@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Merchant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\OrderItem;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class MerchantOrderItemAPIController extends Controller
     public function pendingOrders(Request $request)
     {
         $merchantId = $request->user()->id;
-        $orderItems = OrderItem::with('order','product')
+        $orderItems = OrderItem::with('order', 'product')
             ->where('merchant_id', $merchantId)
             ->where('accept_status', false)
             ->where('cancel_status', false)
@@ -43,7 +44,7 @@ class MerchantOrderItemAPIController extends Controller
     {
         // return 'processing orders';
         $merchantId = $request->user()->id;
-        $orderItems = OrderItem::with('order','product')
+        $orderItems = OrderItem::with('order', 'product')
             ->where('merchant_id', $merchantId)
             ->where('accept_status', true)
             ->where('cancel_status', false)
@@ -60,7 +61,7 @@ class MerchantOrderItemAPIController extends Controller
     {
         // return 'cancel orders';
         $merchantId = $request->user()->id;
-        $orderItems = OrderItem::with('order','product')
+        $orderItems = OrderItem::with('order', 'product')
             ->where('merchant_id', $merchantId)
             ->where('accept_status', false)
             ->where('cancel_status', true)
@@ -96,6 +97,19 @@ class MerchantOrderItemAPIController extends Controller
             $orderItem->accept_status = true;
             $orderItem->accepted_at = Carbon::now();
             $orderItem->save();
+
+            // Notification start
+            $user = User::firstWhere('id', $orderItem->user_id);
+            $android_token = $user->android_token;
+            if ($android_token) {
+                $data = array(
+                    'title' => 'Your order has been accepted.',
+                    'body' => 'Check your account for order status.'
+                );
+                sendNotificateion($data, $android_token);
+            }
+            // Notification End
+
             return response()->json([
                 'success' => true,
                 'code'    => 200,
@@ -118,6 +132,18 @@ class MerchantOrderItemAPIController extends Controller
             $orderItem->cancel_status = true;
             $orderItem->canceled_at = Carbon::now();
             $orderItem->save();
+            // Notification start
+            $user = User::firstWhere('id', $orderItem->user_id);
+            $android_token = $user->android_token;
+            if ($android_token) {
+                $data = array(
+                    'title' => 'Sorry ! Your order has been canceled.',
+                    'body' => 'Check your account for order details.'
+                );
+                sendNotificateion($data, $android_token);
+            }
+            // Notification End
+
             return response()->json([
                 'success' => true,
                 'code'    => 200,

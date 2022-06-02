@@ -9,15 +9,16 @@ use App\Models\Merchant\Order;
 use App\Models\Merchant\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PointManager\PointManagerCollectProduct;
+use App\Models\User;
 use Carbon\Carbon;
 
 class OrderController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $merchantId = Auth::guard('marchant')->user()->id;
@@ -42,33 +43,19 @@ class OrderController extends Controller
             'accepted_at' => Carbon::now()
         ]);
 
-
-        // $android_token = $orderItem->user->android_token;
-        $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
-
-        $ruhul = "fCTRPVu2RcmsRP_HKbaLUU:APA91bFGV_7APnKg-YnCATAfy3c1GMmwtwPfihtFqFGfJx32CYElaH6a4wczYltUibuSt1FCNux1GC5vlhmME4IIsHISHPin5gJ3YHw3eUSu0mmV7O5GyDzatPaorCnq7HJYYr8gq80C";
-
-        // $registration_ids = array('Device ID 1', 'Device ID 2');
-
-            $data = array(
-                'title' => 'Your Order accept !',
-                'body' => 'HeshelGhor | Store of Needs'
-            );
-            // sendNotificateion($data, $ruhul);
-
-        // if($android_token){
-        //     $data = array(
-        //         'title' => 'Your Order accept !',
-        //         'body' => 'HeshelGhor | Store of Needs'
-        //     );
-        //     sendNotificateion($data, $ruhul);
-        // }
-
-        // $array = [
-        //     $android_token
-        // ];
-
-        // sendNotificateions($data, $array);
+        if ($update) {
+            // Notification start
+            $user = User::firstWhere('id', $orderItem->user_id);
+            $android_token = $user->android_token;
+            if ($android_token) {
+                $data = array(
+                    'title' => 'Your order has been accepted.',
+                    'body' => 'Check your account for order status.'
+                );
+                sendNotificateion($data, $android_token);
+            }
+            // Notification End
+        }
 
 
         return redirect()->back();
@@ -82,37 +69,24 @@ class OrderController extends Controller
             'canceled_at' => Carbon::now()
         ]);
 
+        if ($update) {
+            // Notification start
+            $user = User::firstWhere('id', $orderItem->user_id);
+            $android_token = $user->android_token;
+            if ($android_token) {
+                $data = array(
+                    'title' => 'Sorry ! Your order has been canceled.',
+                    'body' => 'Check your account for order details.'
+                );
+                sendNotificateion($data, $android_token);
+            }
+            // Notification End
+        }
 
-        // $android_token = $orderItem->user->android_token;
-        $aminul = "ekw7SmALQtyL0DFeT6a_YQ:APA91bHVZZBRVt-ShqimorUzxkSv6gfusb70nJI5Ma475K7LFvhrqfdZcbFEVPWyWCuu8tC-Waj8RJCGUxH28VnCer906djgoRy2M1QFBXNrmBG6OMBD79JQERDRmfbJekb8MsSFHhaW";
 
-        $ruhul = "fCTRPVu2RcmsRP_HKbaLUU:APA91bFGV_7APnKg-YnCATAfy3c1GMmwtwPfihtFqFGfJx32CYElaH6a4wczYltUibuSt1FCNux1GC5vlhmME4IIsHISHPin5gJ3YHw3eUSu0mmV7O5GyDzatPaorCnq7HJYYr8gq80C";
 
-        // $registration_ids = array('Device ID 1', 'Device ID 2');
-
-            $data = array(
-                'title' => 'Your Order accept !',
-                'body' => 'HeshelGhor | Store of Needs'
-            );
-            // sendNotificateion($data, $ruhul);
-
-        // if($android_token){
-        //     $data = array(
-        //         'title' => 'Your Order accept !',
-        //         'body' => 'HeshelGhor | Store of Needs'
-        //     );
-        //     sendNotificateion($data, $ruhul);
-        // }
-
-        // $array = [
-        //     $android_token
-        // ];
-
-        // sendNotificateions($data, $array);
 
 
         return redirect()->back();
     }
-
-
 }
