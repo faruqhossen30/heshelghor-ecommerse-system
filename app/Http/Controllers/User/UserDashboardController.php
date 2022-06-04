@@ -37,7 +37,7 @@ class UserDashboardController extends Controller
     public function showOrder($id)
     {
         $userId = Auth::user()->id;
-        $order = Order::with('itemProducts')->where('user_id', $userId)->where('id', $id)->first();
+        $order = Order::with('orderitems')->where('user_id', $userId)->where('id', $id)->first();
         $orderitems = OrderItem::with('product')->where('user_id', $userId)->where('order_id', $id)->get();
         // return $order;
         return view('user.order.showorder', compact('order', 'orderitems'));

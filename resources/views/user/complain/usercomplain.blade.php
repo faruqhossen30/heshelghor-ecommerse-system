@@ -149,7 +149,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <form action="{{route('user.complain')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('user.order.complain')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">

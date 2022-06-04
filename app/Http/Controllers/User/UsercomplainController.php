@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsercomplainController extends Controller
 {
-    public function usercomplain(){
+    public function usercomplain($id){
 
         // $userComplain = Usercomplain::with('user','order')->latest()->get();
         $userComplain = Usercomplain::get();

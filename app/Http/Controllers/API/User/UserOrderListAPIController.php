@@ -12,7 +12,7 @@ class UserOrderListAPIController extends Controller
     public function order(Request $request)
     {
         $userId = $request->user()->id;
-        $order = Order::with('orderitems')->where('user_id', $userId)->get();
+        $order = Order::with('orderitems.product')->where('user_id', $userId)->get();
 
         if (count($order) == 0) {
             return response()->json([
@@ -33,7 +33,7 @@ class UserOrderListAPIController extends Controller
     {
         $userId = $request->user()->id;
         // return $userId;
-        $order = Order::with('orderitems')->where('user_id', $userId)->where('id', $id)->get();
+        $order = Order::with('orderitems.product')->where('user_id', $userId)->where('id', $id)->get();
         if (!empty($order)) {
             return response()->json([
                 'success' => true,

@@ -130,7 +130,8 @@ Route::prefix('user')->group(function () {
         Route::get('/review/edit/{id}', [UserProductReviewController::class, 'reviewproductedit'])->name('user.product.review.edit');
         Route::post('review/{id}', [UserProductReviewController::class, 'reviewproductupadte'])->name('user.product.review.update');
 
-        Route::get('complain',[UsercomplainController::class, 'usercomplain'])->name('user.complain');
+        Route::get('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
+        // Route::post('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
 
     });
 });

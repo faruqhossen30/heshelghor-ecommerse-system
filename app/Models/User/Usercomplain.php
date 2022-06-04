@@ -35,6 +35,8 @@ class Usercomplain extends Model
         'defect_pic_5',
    ];
 
+   protected $dates = ['delivery_date', 'delivery_time'];
+
    public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
