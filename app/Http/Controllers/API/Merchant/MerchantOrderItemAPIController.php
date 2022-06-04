@@ -31,7 +31,9 @@ class MerchantOrderItemAPIController extends Controller
             ->where('merchant_id', $merchantId)
             ->where('accept_status', false)
             ->where('cancel_status', false)
-            ->get();
+            ->whereHas('order', function($q){
+                $q->where('column_name', 'value');
+             })->get();
 
         return response()->json([
             'success' => true,
