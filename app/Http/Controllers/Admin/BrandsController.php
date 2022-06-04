@@ -24,7 +24,15 @@ class BrandsController extends Controller
     public function index()
     {
         $brands = Brand::all();
+
         return view('admin.brand.brand', compact('brands'));
+    }
+
+    public function trashbrand(){
+
+        $trashbrands = Brand::onlyTrashed()->latest()->get();
+
+        return view('admin.brand.trashbrand', compact('trashbrands'));
     }
 
     /**
@@ -185,6 +193,31 @@ class BrandsController extends Controller
         };
         $delete = Brand::where('id', $id)->delete();
         Session::flash('delete');
-        return redirect()->route('brands.index');
+        return redirect()->back();
     }
+
+
+    public function trashbrandrestor($id){
+
+        $brand = Brand::where('id', $id)->get()->first();
+        if(isset($brand->image)){
+            unlink($brand->image);
+        };
+        $delete = Brand::withTrashed()->where('id', $id)->restore();
+        Session::flash('delete');
+        return redirect()->back();
+    }
+
+    public function permanentBrandDelete($id)
+    {
+        $brand = Brand::where('id', $id)->get()->first();
+        if(isset($brand->image)){
+            unlink($brand->image);
+        };
+        $delete = Brand::onlyTrashed()->
+        where('id', $id)->forceDelete();
+        Session::flash('delete');
+        return redirect()->back();
+    }
+
 }

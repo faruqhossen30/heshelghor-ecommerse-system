@@ -1,4 +1,4 @@
-@extends('marchant.layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="content">
@@ -13,7 +13,7 @@
                     <h4 class="page-title">Brand List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{route('homepage')}}">HesheGHor</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
                             <li class="breadcrumb-item active">Product List</li>
                         </ol>
@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <a href="{{route('brand.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Brand</a>
+                                <a href="#" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Trash List</a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-end">
@@ -40,15 +40,9 @@
                         <!-- end row -->
 
                         <div class="table-responsive">
-                            <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table class="table table-centered w-100 dt-responsive nowrap" id="basic-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="all" style="width: 20px;">
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck">
-                                                <label class="form-check-label" for="productlistCheck">&nbsp;</label>
-                                            </div>
-                                        </th>
                                         <th>
                                             Serial
                                         </th>
@@ -65,14 +59,8 @@
                                         $serial = 1;
                                         $serial2 = 1;
                                     @endphp
-                                    @foreach ($brands as $brand)
+                                    @foreach ($trashbrands as $brand)
                                     <tr>
-                                        <td>
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck1">
-                                                <label class="form-check-label" for="productlistCheck1">&nbsp;</label>
-                                            </div>
-                                        </td>
                                         <td>
                                             {{$serial ++}}
                                         </td>
@@ -80,10 +68,10 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$brand->name}}</a></h5>
                                         </td>
                                         <td>
-                                            <img src="{{asset($brand->image)}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
+                                            <img src="{{$brand->img_small}}" alt="No Photo" title="contact-img" class="rounded me-3" height="48" />
                                         </td>
                                         <td>
-                                            <td>{{substr($brand->description,0,45)}} ...</td>
+                                            {{$brand->description}}
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}
@@ -93,8 +81,19 @@
                                         </td>
                                         <td>
                                             <ul class="list-inline table-action m-0">
+                                                {{-- <li class="list-inline-item">
+                                                    <a href="{{route('brands.show', $brand->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                </li> --}}
                                                 <li class="list-inline-item">
-                                                    <a href="{{route('brand.show', $brand->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                    <a href="{{route('tansh.bland.restor', $brand->id)}}" class="action-icon"> <i class="mdi mdi-delete-restore"></i>Restor</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                                    <form action="{{route('permanent.bland.delete', $brand->id)}}" method="PUT" >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </td>
@@ -112,10 +111,6 @@
 
 
 
-      
-
-
-
 
     </div> <!-- container -->
 
@@ -124,19 +119,30 @@
 
 @push('css')
 <!-- third party css -->
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('backend') }}/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
 <!-- third party js -->
-<script src="{{ asset('backend')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('backend')}}/assets/libs/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="{{ asset('backend') }}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
+<script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
 
 <!-- sweetalert js -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
