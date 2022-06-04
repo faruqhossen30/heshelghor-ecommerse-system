@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header border-bottom bg-transparent">
-                            <h5 class="header-title mb-0">Invoice: #34234</h5>
+                            <h5 class="header-title mb-0">Invoice: {{$orderitem->order->invoice_number}}</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -34,9 +34,9 @@
                                             <i class="ri-hashtag h2 m-0 text-muted"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <p class="mb-1">Invoice No</p>
+                                            <p class="mb-1">Order No</p>
                                             <h5 class="mt-0">
-                                                234234
+                                                #{{$orderitem->order_number}}
                                             </h5>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                jamal
+                                                {{$orderitem->order->name}}
                                             </h5>
                                         </div>
                                     </div>
@@ -64,8 +64,8 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Order Date</p>
                                             <h5 class="mt-0">
-                                                {{-- {{ Carbon\Carbon::parse($order->created_at)->format('d F') }}
-                                                <small class="text-muted">{{ Carbon\Carbon::parse($order->created_at)->format('h:m A') }}</small> --}}
+                                                <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->created_at)->format('d F Y') }}</p>
+                                                <small class="">{{ Carbon\Carbon::parse($orderitem->created_at)->format('h:m A') }}</small>
                                             </h5>
                                         </div>
                                     </div>
@@ -88,51 +88,33 @@
                             <table class="table table-bordered" width="100%">
                                 <tbody>
                                     <tr>
-                                        <th>User Name</th>
+                                        <th>Name</th>
                                         <td>
-                                            {{ Auth::user()->name }}
-
+                                            {{ $orderitem->order->name }}
                                         </td>
-
                                     </tr>
                                     <tr>
-                                        <th>Customer Email</th>
+                                        <th>Email</th>
                                         <td>
-                                            {{ Auth::user()->email }}
-
+                                            <strong>{{ $orderitem->order->email }}</strong>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Phone</th>
                                         <td>
-                                            {{ Auth::user()->mobile }}
+                                            {{ $orderitem->order->phone }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Address</th>
                                         <td>
-                                            {{ Auth::user()->address }}
-                                        </td>
-                                    </tr>
-
-                                    {{-- <tr>
-                                        <th><strong> Payment date: </strong></th>
-                                        <td>
-                                            <input type="datetime-local" name="payment_date" id="" value="" style="border: none; font-weight:bolder">
-
-                                        </td>
-                                    </tr> --}}
-
-                                    <tr>
-                                        <th>Order id</th>
-                                        <td>
-                                            {{-- {{$userComplain->order_id}} --}}
+                                            {{ $orderitem->order->address }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Product name</th>
                                         <td>
-
+                                            <strong>{{ $orderitem->product->title }}</strong>
                                         </td>
                                     </tr>
                                     <tr>
@@ -149,12 +131,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <form action="{{route('user.order.complain')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('user.order.complain', $orderitem->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="complain-name" class="form-label text-dark">delivery_date<span
+                                            <label for="complain-name" class="form-label text-dark">Delivery Date<span
                                                     class="text-danger">*</span></label>
                                             <input required type="date" name="delivery_date" id="complain-name"
                                                 class="form-control @error('delivery_date') is-invalid @enderror"
@@ -169,7 +151,7 @@
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="complain-name" class="form-label text-dark">delivery_time<span
+                                            <label for="complain-name" class="form-label text-dark">Delivery Time<span
                                                     class="text-danger">*</span></label>
                                             <input required type="time" name="delivery_time" id="complain-name"
                                                 class="form-control @error('delivery_time') is-invalid @enderror"
@@ -184,50 +166,10 @@
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="alt_customer_address"
-                                                class="form-label text-dark">alt_customer_address<span
-                                                    class="text-danger">*</span></label>
-                                            <input required type="text" name="alt_customer_address"
-                                                id="alt_customer_address"
-                                                class="form-control @error('alt_customer_address') is-invalid @enderror"
-                                                placeholder="Enter complain number"
-                                                value="{{ old('alt_customer_address') }}">
-                                            <div class="text-danger">
-                                                @error('alt_customer_address')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="alt_customer_name"
-                                                class="form-label text-dark">alt_customer_name<span
-                                                    class="text-danger">*</span></label>
-                                            <input required type="text" name="alt_customer_name" id="alt_customer_name"
-                                                class="form-control @error('alt_customer_name') is-invalid @enderror"
-                                                placeholder="Enter complain number"
-                                                value="{{ old('alt_customer_name') }}">
-                                            <div class="text-danger">
-                                                @error('alt_customer_name')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                </div>
-                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="alt_customer_phone"
-                                                class="form-label text-dark">alt_customer_phone<span
+                                                class="form-label text-dark">Alternative Mobile<span
                                                     class="text-danger">*</span></label>
                                             <input required type="text" name="alt_customer_phone" id="alt_customer_phone"
                                                 class="form-control @error('alt_customer_phone') is-invalid @enderror"
@@ -263,7 +205,7 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="complain_message" class="form-label text-dark">Product
-                                                complain_message
+                                                Complain Message
                                                 <span class="text-danger">*</span></label>
                                             <textarea name="complain_message" id="summernote" class="form-control @error('complain_message') is-invalid @enderror"
                                                 rows="3"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Merchant\OrderItem;
 use App\Models\User\Usercomplain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,13 +12,11 @@ class UsercomplainController extends Controller
 {
     public function usercomplain($id){
 
-        // $userComplain = Usercomplain::with('user','order')->latest()->get();
-        $userComplain = Usercomplain::get();
+        $orderitem = OrderItem::where('user_id', Auth::user()->id)->where('id', $id)->first();
 
+        // return $orderitem;
 
-        // dd($user);
-        // return $userComplain;
-        return view('user.complain.usercomplain',compact('userComplain'));
+        return view('user.complain.usercomplain',compact('orderitem'));
     }
 
     // public function usercomplainstore(Request $request)

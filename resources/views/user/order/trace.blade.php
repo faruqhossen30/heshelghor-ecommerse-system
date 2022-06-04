@@ -67,25 +67,24 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-lg-3 col-sm-6">
+                        @if ($orderitem->accept_status == 1 && $orderitem->complete_status == 0)
+                        <div class="col-lg-3 col-sm-6">
                             <div class="d-flex mb-2">
                                 <div class="me-2 align-self-center">
-                                    <i class="ri-money-dollar-box-line h2 m-0 text-muted"></i>
+                                    <i class="ri-arrow-go-back-fill h2 m-0 text-muted"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="mb-1">Payment Type</p>
+                                    <p class="mb-1">Complain Order</p>
                                     <h5 class="mt-0">
-                                        @if ($orderitem->payment_type == 'cash')
-                                        Cash On Delivery
-
-                                        @endif
-                                        @if ($orderitem->payment_type == 'online')
-                                        <span class="badge badge-soft-success">Paid !</span>
-                                        @endif
+                                        <a href="{{route('user.order.complain', $orderitem->id)}}" type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="return confirm('Are you want to complain about this order ?');">
+                                            <span class="btn-label"><i class="mdi mdi-close-circle-outline"></i></span>
+                                            Complain This Order
+                                        </a>
                                     </h5>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
+                        @endif
                     </div>
                     <div class="card-body">
 
