@@ -42,7 +42,7 @@ use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
 // Ajax
 use App\Http\Controllers\Ajax\Admin\CourierAjaxController;
-
+use App\Http\Controllers\Product\BrandController;
 
 // Admin
 Route::prefix('admin')->group(function () {
@@ -60,6 +60,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('subcategory', SubCategoryController::class);
         // Brand for Admin
         Route::resource('brands', BrandsController::class);
+        // Route::get('trashbrand', [BrandController::class, 'trashbrand'])->name('brand.trashlist');
+        Route::get('trashbrand',[BrandsController::class,'trashbrand'])->name('tansh.bland.list');
+        Route::get('brand-restor/{id}',[BrandsController::class,'trashbrandrestor'])->name('tansh.bland.restor');
+        Route::get('permanent-brand-delete/{id}',[BrandsController::class,'permanentBrandDelete'])->name('permanent.bland.delete');
         // Market
         Route::resource('market', MarketController::class);
         // For location

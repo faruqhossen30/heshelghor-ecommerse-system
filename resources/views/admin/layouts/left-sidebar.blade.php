@@ -424,6 +424,24 @@ $countcourier = $allorder
                         </a>
                     </li>
 
+                    <li>
+                        <a href="#sidebarrechyclebin" data-bs-toggle="collapse" aria-expanded="false"
+                            aria-controls="sidebarrechyclebin">
+                            <i class="mdi mdi-delete"></i>
+                            <span> Recycle Bin </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarrechyclebin">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('tansh.bland.list') }}">Deleted brand</a>
+                                </li>
+                                <li>
+                                    {{-- <a href="{{ route('rechyclebins.create') }}">Add rechyclebin</a> --}}
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
 
             </ul>
