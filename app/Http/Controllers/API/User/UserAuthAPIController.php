@@ -57,7 +57,7 @@ class UserAuthAPIController extends Controller
         }
 
         // return $user->createToken($request->device_name)->plainTextToken;
-        $token = $user->createToken($request->device_name)->plainTextToken;
+        $token = $user->createToken(uniqid())->plainTextToken;
         if($request->android_token){
             $user->android_token = $request->android_token;
             $user->save();

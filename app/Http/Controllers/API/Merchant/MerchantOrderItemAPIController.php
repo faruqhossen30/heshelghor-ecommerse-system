@@ -29,11 +29,12 @@ class MerchantOrderItemAPIController extends Controller
         $merchantId = $request->user()->id;
         $orderItems = OrderItem::with('order', 'product')
             ->where('merchant_id', $merchantId)
+            ->whereHas('order', function ($q) {
+                $q->where('payment_type', 'cash')->orWhere('status', 'Processing');
+            })
             ->where('accept_status', false)
             ->where('cancel_status', false)
-            ->whereHas('order', function($q){
-                $q->where('column_name', 'value');
-             })->get();
+            ->get();
 
         return response()->json([
             'success' => true,

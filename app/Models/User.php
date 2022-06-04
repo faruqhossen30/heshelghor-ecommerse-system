@@ -12,7 +12,7 @@ use Laravelista\Comments\Commenter;
 // Mail Varification
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable implements
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Commenter;
 

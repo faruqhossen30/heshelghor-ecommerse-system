@@ -179,8 +179,8 @@ Route::prefix('user')->group(function () {
         Route::post('/profile/update', [UserProfileAPIController::class, 'profileUpdate']);
         // Order
         Route::get('/orders', [UserOrderListAPIController::class, 'order']);
-        Route::get('/order/processing', [UserOrderListAPIController::class, 'processingOrders']);
-        Route::get('/order/pending', [UserOrderListAPIController::class, 'pendingOrders']);
+        // Route::get('/order/processing', [UserOrderListAPIController::class, 'processingOrders']);
+        // Route::get('/order/pending', [UserOrderListAPIController::class, 'pendingOrders']);
         Route::get('/order/{id}', [UserOrderListAPIController::class, 'orderItem']);
         Route::post('/createorder', [UserOrderAPIController::class, 'createOrder']);
         Route::post('/order/success', [UserOrderAPIController::class, 'success']);
