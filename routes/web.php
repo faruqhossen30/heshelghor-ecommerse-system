@@ -105,7 +105,7 @@ Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercompl
 
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 // For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
@@ -114,7 +114,7 @@ Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->nam
 
 // Four User
 Route::prefix('user')->group(function () {
-    Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::group(['middleware' => ['auth']], function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
