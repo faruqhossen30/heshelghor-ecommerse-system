@@ -68,7 +68,7 @@
                             @csrf
                             <div class="gal-box">
                                 <a href="{{ $gallery->getUrl() }}" class="image-popup" title="Screenshot-1">
-                                    <img src="{{ $gallery->getUrl('small') }}" class="img-fluid img-thumbnail"
+                                    <img src="{{ $gallery->getUrl() }}" class="img-fluid img-thumbnail"
                                         alt="work-thumbnail">
                                 </a>
                                 <div class="gall-info py-1" style="display: flex; justify-content:space-between">

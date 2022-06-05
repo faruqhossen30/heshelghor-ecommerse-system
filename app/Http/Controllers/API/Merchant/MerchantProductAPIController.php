@@ -22,21 +22,14 @@ class MerchantProductAPIController extends Controller
     public function index(Request $request)
     {
         $merchantId = $request->user()->id;
-        $products = Product::with('brand', 'shop', 'category', 'subCategory', 'images', 'colors.color', 'sizes.size')->where('author_id', $merchantId)->get();
-        if (count($products) == 0) {
-            return response()->json([
-                'success' => true,
-                'code'    => 200,
-                'message' => 'No products found'
-            ]);
-        }
-        if (!empty($products)) {
+        $products = Product::with('brand', 'shop', 'category', 'subCategory', 'images', 'colors.color', 'sizes.size')->where('author_id', $merchantId)->paginate(20);
+
             return response()->json([
                 'success' => true,
                 'code'    => 200,
                 'data'    => $products
             ]);
-        }
+
     }
 
     /**

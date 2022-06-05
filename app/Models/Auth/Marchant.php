@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
 
-class Marchant extends Authenticatable implements HasMedia
+class Marchant extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
@@ -55,6 +55,8 @@ class Marchant extends Authenticatable implements HasMedia
         'tradelicense_photo',
         'tin_photo'
     ];
+
+    protected $guard = 'marchant';
 
     /**
      * The attributes that should be hidden for serialization.

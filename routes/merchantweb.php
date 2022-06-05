@@ -28,7 +28,7 @@ Route::prefix('merchant')->group(function () {
     Route::post('register', [MarchantRegisterController::class, 'register'])->name('marchant.register');
 
 
-    Route::group(['middleware' => 'isMarchent'], function () {
+    Route::group(['middleware' => ['isMarchent']], function () {
         Route::get('home', [MarchantHomeController::class, 'index'])->name('marchant.home');
         // Product
         Route::resource('product', ProductController::class);
