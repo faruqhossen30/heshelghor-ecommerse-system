@@ -12,7 +12,11 @@ class UserOrderListAPIController extends Controller
     public function order(Request $request)
     {
         $userId = $request->user()->id;
-        $order = Order::with('orderitems.product')->where('user_id', $userId)->get();
+        $order = Order::with('orderitems.product')
+            ->where('user_id', $userId)
+            ->where('payment_type', 'cash')
+            ->orWhere('status', 'Processing')
+            ->get();
 
         if (count($order) == 0) {
             return response()->json([

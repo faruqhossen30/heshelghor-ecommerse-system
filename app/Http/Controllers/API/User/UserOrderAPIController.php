@@ -29,7 +29,7 @@ class UserOrderAPIController extends Controller
             'total_prodcut'       => $request->total_prodcut,
             'total_product_price' => $request->total_product_price,
             'total_delivery_cost' => $request->total_delivery_cost,
-            'payment_type'        => 'online',
+            'payment_type'        => $request->payment_type,
             //For SSL Commerce
             'name'                => $request->name,
             'email'               => $request->email,
