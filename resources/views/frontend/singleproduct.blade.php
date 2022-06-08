@@ -19,13 +19,62 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@heshelghor"/>
+    <meta name="twitter:site" content="@heshelghor" />
     <meta property="og:title" content="{{ $product->title }}" />
     <meta property="og:description" content="{{ $product->short_description }}" />
     <meta property="og:image" content="{{ $product->img_large }}" />
 @endsection
 
 @section('content')
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        style="z-index: 999999999">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add To Wish List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form method="POST" action="{{route('addwishlist.store')}}">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ''}}">
+                            <input type="hidden" name="mobile" value="">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div id="my_camera"></div>
+                                    <br />
+                                    <button type=button class="btn btn-dark btn-sm mb-4" onClick="take_snapshot()">
+                                        <i class="d-icon-camera1 mr-2"></i> Taka Photo
+                                    </button>
+                                    <input type="hidden" name="image" class="image-tag">
+                                    <div id="results">Your captured image will appear here...</div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <br />
+                                    <button type=submit class="btn btn-dark btn-sm mb-4" onClick="take_snapshot()">
+                                        <i class="d-icon-heart mr-2"></i> Add To Wishlistt
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    {{-- End Modal --}}
+
+
     <main class="main mt-6 single-product">
         <div class="page-content mb-10 pb-9">
             <div class="container">
@@ -96,7 +145,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                         class="product-brand mr-0">{{ $product->category->name }}</span></a>
                                 @if (optional($product->subcategory)->name)
                                     <a
-                                        href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}"><span
+                                        href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}"><span
                                             class="product-brand">| {{ $product->subcategory->name }}</span></a>
                                 @endif
                             </div>
@@ -108,13 +157,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 @else
                                     N/A
                                 @endif
-                                <p>Stock Quantity: {{$product->quantity}}</p>
+                                <p>Stock Quantity: {{ $product->quantity }}</p>
                             </div>
                             <div class="product-meta">
                                 <h6>Additional Information:</h6>
                                 <p class="card-text mb-1">
                                     <i class="fas fa-hand-holding-usd"></i>
-                                    Cash on delivery  not available.
+                                    Cash on delivery not available.
                                 </p>
                                 <p class="card-text mb-1">
                                     <i class="fas fa-exclamation-triangle"></i>
@@ -122,7 +171,8 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 </p>
                                 <p class="card-text mb-1">
                                     <i class="fas fa-undo"></i>
-                                    7 - 10 Working Days Return. <a href="{{route('returnpolicy')}}" class="text-primary">Return Policy</a>
+                                    7 - 10 Working Days Return. <a href="{{ route('returnpolicy') }}"
+                                        class="text-primary">Return Policy</a>
                                 </p>
 
                             </div>
@@ -181,6 +231,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                             class="btn btn-rounded btn-alert btn-sm">
                                             <i class="d-icon-bag mr-2"></i>Buy Now !</a>
 
+                                        {{-- <button type="button" class="btn btn btn-dark btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                            <i class="d-icon-heart"></i></button> --}}
+
                                     </div>
                                 </div>
 
@@ -194,12 +248,15 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
 
                             <div class="product-footer">
                                 <div class="social-links mr-4">
-                                   <span><i class="fas fa-share"></i> Share On: </span>
+                                    <span><i class="fas fa-share"></i> Share On: </span>
                                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleproduct', $product->slug) }}"
                                         class="social-link social-facebook fab fa-facebook-f ml-2"></a>
-                                        <a href="whatsapp://send?text={{ route('singleproduct', $product->slug) }}" class="social-link social-whatsapp fab fa-whatsapp"></a>
-                                    <a href="https://twitter.com/intent/tweet?url={{ route('singleproduct', $product->slug) }}" class="social-link social-twitter fab fa-twitter"></a>
-                                    <a href="//pinterest.com/pin/create/link/?url={{ route('singleproduct', $product->slug) }}" class="social-link social-pinterest fab fa-pinterest-p"></a>
+                                    <a href="whatsapp://send?text={{ route('singleproduct', $product->slug) }}"
+                                        class="social-link social-whatsapp fab fa-whatsapp"></a>
+                                    <a href="https://twitter.com/intent/tweet?url={{ route('singleproduct', $product->slug) }}"
+                                        class="social-link social-twitter fab fa-twitter"></a>
+                                    <a href="//pinterest.com/pin/create/link/?url={{ route('singleproduct', $product->slug) }}"
+                                        class="social-link social-pinterest fab fa-pinterest-p"></a>
                                 </div>
                                 <hr class="divider d-lg-show">
 
@@ -364,25 +421,25 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                                                'items': 5,
-                                                'nav': false,
-                                                'loop': false,
-                                                'dots': true,
-                                                'margin': 20,
-                                                'responsive': {
-                                                    '0': {
-                                                        'items': 2
-                                                    },
-                                                    '768': {
-                                                        'items': 3
-                                                    },
-                                                    '992': {
                                                         'items': 5,
-                                                        'dots': false,
-                                                        'nav': true
-                                                    }
-                                                }
-                                            }">
+                                                        'nav': false,
+                                                        'loop': false,
+                                                        'dots': true,
+                                                        'margin': 20,
+                                                        'responsive': {
+                                                            '0': {
+                                                                'items': 2
+                                                            },
+                                                            '768': {
+                                                                'items': 3
+                                                            },
+                                                            '992': {
+                                                                'items': 5,
+                                                                'dots': false,
+                                                                'nav': true
+                                                            }
+                                                        }
+                                                    }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
@@ -407,7 +464,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                             href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
                                         @if (optional($product->subcategory)->name)
                                             | <a
-                                                href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">{{ $product->subcategory->name }}</a>
+                                                href="{{ route('product.with.subcategory', ['category' => $product->category->slug, 'slug' => $product->subcategory->slug]) }}">{{ $product->subcategory->name }}</a>
                                         @endif
                                     </div>
                                     <h3 class="product-name">
@@ -441,8 +498,11 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
         .product-single .social-link {
             border: 2px solid #ccc !important;
         }
-
+        #my_camera{
+            margin: 0 auto;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 @endpush
 
 @push('scripts')
@@ -469,6 +529,34 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
             });
 
         });
+    </script>
+
+    <script language="JavaScript">
+        $('#exampleModal').on('shown.bs.modal', function(){
+            Webcam.attach('#my_camera');
+        });
+        $('#exampleModal').on('hidden.bs.modal', function(){
+            Webcam.reset()
+            $('#results').empty()
+
+        });
+
+
+        Webcam.set({
+            width: 600,
+            height: 450,
+            image_format: 'jpeg',
+            jpeg_quality: 100
+        });
+
+        // Webcam.attach('#my_camera');
+
+        function take_snapshot() {
+            Webcam.snap(function(data_uri) {
+                $(".image-tag").val(data_uri);
+                document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+            });
+        }
     </script>
 @endpush
 @push('og_tag')

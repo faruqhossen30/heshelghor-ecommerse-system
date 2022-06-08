@@ -23,7 +23,7 @@ class MerchantGalleryController extends Controller
 
         // return $alluser->getMediaCollection();
 
-        return $galleries;
+        // return $galleries;
 
         return view('marchant.gallery.gallery', compact('galleries'));
     }

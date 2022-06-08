@@ -27,7 +27,7 @@
             <!-- End DropDown Menu -->
             <span class="divider"></span>
             <a href="{{ route('marchant.login') }}" class="contact d-lg-show"><i class="d-icon-percent"></i>Merchant</a>
-            <a href="#" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
+            <a href="mailto:info@heshelghor.com" class="contact d-lg-show"><i class="d-icon-map"></i>Contact</a>
             <a href="#" class="help d-lg-show"><i class="d-icon-info"></i> Need Help</a>
             @guest
                 <a class="contact d-lg-show" href="{{ route('login') }}" data-toggle="login-modal"><i

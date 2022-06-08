@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Location Controller
 use App\Http\Controllers\FrontEnd\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 use App\Http\Controllers\APIController;
 // ====================== Admin User Order Start =========================
@@ -102,6 +103,9 @@ Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart
 Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
 Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
 Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercomplete'])->name('buynowordercomplete');
+// Wishlist
+Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name('addwishlist.store');
+
 
 
 
