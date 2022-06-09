@@ -45,37 +45,37 @@
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="{{ $product->product->img_small }}" alt="Card image"
-                                            class="img-fluid" style="width: 150px; height:100px">
+                                            {{-- <img src="{{$product->img_small }}" alt="Card image"
+                                            class="img-fluid" style="width: 150px; height:100px"> --}}
 
                                         <div class="col-md-9">
                                             <h2>Product Review</h2>
-                                            <p class="mb-5">{{ $product->product->title }}</p>
+                                            {{-- <p class="mb-5">{{ $product->title }}</p> --}}
                                         </div>
                                     </div>
                                 </div>
-                                <form action="{{route('user.product.review.update',$product->product_id)}}" method="POST">
+                                <form action="{{route('user.product.review.update',$review->product_id)}}" method="POST">
                                     @csrf
                                     {{-- @method('PUT') --}}
                                     <p>Rate and review purchased producrt</p>
                                     <div class="row">
                                         <div class=" rating form-group col-md-6 col-sm-12">
-                                            <input id="star5" name="rating" type="radio" value="5">
+                                            <input id="star5" name="rating"  @if ($review->rating == 5) checked @endif type="radio" value="5">
                                             <label for="star5"></label>
-                                            <input id="star4" name="rating" type="radio" value="4">
+                                            <input id="star4" name="rating"  @if ($review->rating == 4) checked @endif type="radio" value="4">
                                             <label for="star4"></label>
-                                            <input id="star3" name="rating" type="radio" value="3">
+                                            <input id="star3" name="rating"  @if ($review->rating == 3) checked @endif type="radio" value="3">
                                             <label for="star3"></label>
-                                            <input id="star2" name="rating" type="radio" value="2">
+                                            <input id="star2" name="rating"  @if ($review->rating == 2) checked @endif type="radio" value="2">
                                             <label for="star2"></label>
-                                            <input id="star1" name="rating" type="radio" value="1">
+                                            <input id="star1" name="rating"  @if ($review->rating == 1) checked @endif type="radio" value="1">
                                             <label for="star1"></label>
                                         </div>
                                     </div>
                                     <P class="mt-2">Is it recommanded?</P>
                                     <input type="radio" id="html" name="recommend" @if (true) checked @endif value="0">
                                     <label for="html">No</label><br>
-                                    {{-- {{ $product_attribute->meterial == 'Aluminum' ? 'checked' : '' }} > --}}
+
                                     <input type="radio" id="html" name="recommend" value="1">
                                     <label for="html">Yes</label><br>
 
@@ -85,10 +85,10 @@
 
                                         <label for="review" class="form-label">Review detail </label>
                                         <textarea class="form-control" name="body" placeholder="Leave a comment here" id="floatingTextarea"
-                                            style="height: 100px">{{$product->review->body}}</textarea>
+                                            style="height: 100px">{{$review->body}}</textarea>
 
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Update review</button>
                                 </form>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
             position: absolute;
             top: 57%;
             margin: 0;
-            transform: translate(-77%, -50%) rotateY(180deg);
+            transform: translate(-75%, -450%) rotateY(180deg);
             display: flex;
         }
 
@@ -161,3 +161,4 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
+

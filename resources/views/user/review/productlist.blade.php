@@ -60,7 +60,7 @@
                                     @php
                                         $serial = 1;
                                     @endphp
-                                    @foreach ($products as $product)
+                                    @foreach ($orderitems as $orderitem)
                                     <tr>
                                         <td>
                                             <div class="form-check mb-0 font-16">
@@ -72,32 +72,31 @@
                                             <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$serial++}}</a></h5>
                                         </td>
                                         <td>
-                                            <img src="{{$product->product->img_small}}" alt="contact-img" title="contact-img" class="avatar-sm">
-                                            {{-- <img src="{{ asset('storage/images/' . $product->img_small) }}" height="50px"
-                                            width="50px" alt="{{ $product->img_small }}"> --}}
+                                            <img src="{{$orderitem->product->img_small}}" alt="contact-img" title="contact-img" class="avatar-sm">
+
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$product->product->title}}</a></h5>
+                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$orderitem->product->title}}</a></h5>
                                         </td>
                                         <td>
-                                            {{-- <span class="badge bg-success"><i class="mdi mdi-star"></i>{{$product->review->rating}}</span> --}}
+                                            <span class="badge bg-success"><i class="mdi mdi-star"></i>{{$orderitem->review->rating ?? ''}}</span>
                                         </td>
 
                                         <td>
                                             <div>
-                                                ৳{{$product->price}}
+                                                ৳{{$orderitem->product->price}}
                                             </div>
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('user.product.review.product', $product->id) }}" class="btn btn-warning btn-sm">Review </a>
+                                            <a href="{{ route('user.product.review.product', $orderitem->id) }}" class="btn btn-warning btn-sm">Review </a>
                                         </td>
                                     </tr>
                                     @endforeach
 
                                 </tbody>
                             </table>
-                            {{ $products->links() }}
+                            {{ $orderitems->links() }}
                         </div>
                     </div>
                 </div>

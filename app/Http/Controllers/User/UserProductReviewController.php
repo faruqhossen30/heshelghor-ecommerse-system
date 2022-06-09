@@ -15,22 +15,34 @@ class UserProductReviewController extends Controller
     public function index()
     {
         $userid = Auth()->user()->id;
-        $products = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->latest()->paginate(10);
-        // return  $products ;
-        return view('user.review.productlist', compact('products'));
+        $orderitems = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->latest()->paginate(10);
+        // return  $orderitems ;
+
+        return view('user.review.productlist', compact('orderitems'));
     }
 
     public function reviewproduct($id)
     {
         $userid = Auth()->user()->id;
         $orderitem = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->where('id', $id)->latest()->first();
-        // return $orderitem;
-        return view('user.review.review', compact('orderitem'));
+
+        $review = ProductReview::firstWhere('orderitem_id', $id);
+
+        // return $review;
+        if($review){
+
+            return view('user.review.productshow', compact('review','orderitem'));
+        }
+        if(!$review){
+
+            return view('user.review.review', compact('orderitem'));
+        }
     }
 
     public function reviewproductstore(Request $request)
     {
         // return $request->all();
+
         $request->validate([
             'body'      => 'required',
             'rating'    => 'required',
@@ -47,15 +59,26 @@ class UserProductReviewController extends Controller
         ]);
 
         // ProductReview::create($data);
-        return redirect()->back();
+        return redirect()->route('user.product.review.list');
     }
 
     public function reviewproductedit($id)
     {
-        // $productid = $request->product_id;
-        // return $productid;
-        $product = ProductReview::with('product')->Where('product_id', $id)->latest()->get();
-        // return $product;
-        return view('user.review.editreview', compact('product'));
+        $review = ProductReview::where('product_id', $id)->get()->first();
+
+            return view('user.review.editreview',compact('review'));
     }
+
+    public function reviewproductupadte(Request $request,$id){
+
+        // return $request->all();
+        ProductReview::where('product_id', $id)->update([
+
+            'body'         => $request->body,
+            'rating'       => $request->rating,
+            'recommend'    => $request->recommend
+        ]);
+        return redirect()->route('user.product.review.list');
+    }
+
 }
