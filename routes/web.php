@@ -104,7 +104,10 @@ Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->n
 Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
 Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercomplete'])->name('buynowordercomplete');
 // Wishlist
-Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name('addwishlist.store');
+Route::get('wishlist', [WishlistController::class, 'wishlistPage'])->name('wishlist')->middleware('auth');
+Route::get('wishlist/{id}', [WishlistController::class, 'removeProduct'])->name('wishlistremove')->middleware('auth');
+// Route::get('wishlist/removeall', [WishlistController::class, 'removeAll'])->name('addwishlistremoveall')->middleware('auth')->where('name', '[A-Za-z]+');
+Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name('addwishlist.store')->middleware('auth');
 
 
 

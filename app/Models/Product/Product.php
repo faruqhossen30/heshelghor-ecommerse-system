@@ -15,7 +15,7 @@ class Product extends Model implements HasMedia
 {
     use HasFactory, Sluggable, InteractsWithMedia, Commentable;
 
-    protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'division_id', 'district_id', 'upazila_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status', 'img_full', 'img_small', 'img_medium', 'img_large'];
+    protected $fillable = ['title', 'description', 'short_description', 'slug', 'category_id', 'subcategory_id', 'subsub_category_id', 'brand_id', 'author', 'author_id', 'shop_id', 'division_id', 'district_id', 'upazila_id', 'regular_price', 'discount', 'price', 'quantity', 'quantity_alert', 'review', 'puk_code', 'photo', 'status', 'img_full', 'img_small', 'img_medium', 'img_large', 'youtube_link'];
 
     // Unique Slug generate
     public function sluggable(): array

@@ -124,7 +124,8 @@ class ProductController extends Controller
             'img_full'          => $request->img_full,
             'img_small'         => $request->img_small,
             'img_medium'        => $request->img_medium,
-            'img_large'         => $request->img_large
+            'img_large'         => $request->img_large,
+            'youtube_link'      => $request->youtube_link
         ]);
 
 
@@ -294,7 +295,8 @@ class ProductController extends Controller
                 'img_full'          => $request->img_full,
                 'img_small'         => $request->img_small,
                 'img_medium'        => $request->img_medium,
-                'img_large'         => $request->img_large
+                'img_large'         => $request->img_large,
+                'youtube_link'      => $request->youtube_link
             ];
 
             // return $request->all();

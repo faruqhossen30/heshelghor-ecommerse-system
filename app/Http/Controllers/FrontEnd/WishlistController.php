@@ -7,6 +7,8 @@ use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use function PHPUnit\Framework\returnSelf;
+
 class WishlistController extends Controller
 {
     public function wishlistStore(Request $request)
@@ -35,8 +37,29 @@ class WishlistController extends Controller
             'mobile'     => $request->mobile
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('add-to-wishlist', 'Product added to your wish list !');
 
 
+    }
+
+
+
+    public function wishlistPage()
+    {
+        $products = Wishlist::with('product')->get();
+
+        // return $products;
+        return view('frontend.wishlistpage', compact('products'));
+    }
+    public function removeProduct($id)
+    {
+        Wishlist::where('id', $id)->delete();
+        return redirect()->route('wishlist');
+    }
+    public function removeAll()
+    {
+        Wishlist::get()->delete();
+
+        return redirect()->route('wishlist');
     }
 }

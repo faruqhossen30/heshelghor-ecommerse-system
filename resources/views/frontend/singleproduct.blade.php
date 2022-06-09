@@ -3,6 +3,15 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
     ->where('category_id', $product->category_id)
     // ->limit(10)
     ->get();
+$user = Auth::user();
+$wishlist = null;
+
+if ($user) {
+    $wishlist = App\Models\Wishlist::where('product_id', $product->id)
+        ->where('user_id', $user->id)
+        ->first();
+}
+
 @endphp
 
 @extends('frontend.layouts.app')
@@ -40,10 +49,10 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form method="POST" action="{{route('addwishlist.store')}}">
+                        <form method="POST" action="{{ route('addwishlist.store') }}">
                             @csrf
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ''}}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id ?? '' }}">
                             <input type="hidden" name="mobile" value="">
                             <div class="row">
                                 <div class="col-md-12 text-center">
@@ -161,19 +170,55 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                             </div>
                             <div class="product-meta">
                                 <h6>Additional Information:</h6>
-                                <p class="card-text mb-1">
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                    Cash on delivery not available.
-                                </p>
-                                <p class="card-text mb-1">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    Warranty not available
-                                </p>
-                                <p class="card-text mb-1">
-                                    <i class="fas fa-undo"></i>
-                                    7 - 10 Working Days Return. <a href="{{ route('returnpolicy') }}"
-                                        class="text-primary">Return Policy</a>
-                                </p>
+                                @isset($product->youtube_link)
+                                    <a href="{{ $product->youtube_link }}" class="popup btn btn-primary btn-sm">Video</a>
+                                @endisset
+                                @if ($product->category_id == 38)
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                        Cash on delivery available.
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Warranty not available
+                                    </p>
+                                    <p class="card-text mb-1 border-bottom">
+                                        <i class="fas fa-address-card"></i>
+                                        For details or buy, Please Contact
+                                    </p>
+
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-headset"></i>
+                                        Heshelghor: +88 02477763843
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-headset"></i>
+                                        Arifuzzaman: +88 01715-127719
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-headset"></i>
+                                        Tusher Rahman: +88 01859348860
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-headset"></i>
+                                        Tasrik Hasan: +88 01789438144
+                                    </p>
+                                @else
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                        Cash on delivery not available.
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Warranty not available
+                                    </p>
+                                    <p class="card-text mb-1">
+                                        <i class="fas fa-undo"></i>
+                                        7 - 10 Working Days Return. <a href="{{ route('returnpolicy') }}"
+                                            class="text-primary">Return Policy</a>
+                                    </p>
+                                @endif
+
 
                             </div>
 
@@ -217,6 +262,7 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                 <div class="product-footer" id="productShopAndMarketInfoDiv">
 
                                 </div>
+                                @if ($product->category_id !== 38)
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
                                         <div class="input-group mr-2">
@@ -231,12 +277,22 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                                             class="btn btn-rounded btn-alert btn-sm">
                                             <i class="d-icon-bag mr-2"></i>Buy Now !</a>
 
-                                        {{-- <button type="button" class="btn btn btn-dark btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            <i class="d-icon-heart"></i></button> --}}
+                                        @if ($wishlist)
+                                            <a href="{{ route('wishlist') }}" class="btn btn btn-dark btn-sm">
+                                                <i class="d-icon-heart"></i>
+                                                Go To Wishlist
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn btn-dark btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                <i class="d-icon-heart"></i>
+                                                Add To Wishlist
+                                            </button>
+                                        @endif
 
                                     </div>
                                 </div>
+                                @endif
 
                             </form>
 
@@ -421,25 +477,25 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
                     <h2 class="title title-center mb-1 ls-normal">Related Products</h2>
 
                     <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-                                                        'items': 5,
-                                                        'nav': false,
-                                                        'loop': false,
-                                                        'dots': true,
-                                                        'margin': 20,
-                                                        'responsive': {
-                                                            '0': {
-                                                                'items': 2
-                                                            },
-                                                            '768': {
-                                                                'items': 3
-                                                            },
-                                                            '992': {
                                                                 'items': 5,
-                                                                'dots': false,
-                                                                'nav': true
-                                                            }
-                                                        }
-                                                    }">
+                                                                'nav': false,
+                                                                'loop': false,
+                                                                'dots': true,
+                                                                'margin': 20,
+                                                                'responsive': {
+                                                                    '0': {
+                                                                        'items': 2
+                                                                    },
+                                                                    '768': {
+                                                                        'items': 3
+                                                                    },
+                                                                    '992': {
+                                                                        'items': 5,
+                                                                        'dots': false,
+                                                                        'nav': true
+                                                                    }
+                                                                }
+                                                            }">
                         @foreach ($relatedProduct as $product)
                             <div class="product text-center">
                                 <figure class="product-media">
@@ -498,8 +554,13 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
         .product-single .social-link {
             border: 2px solid #ccc !important;
         }
-        #my_camera{
+
+        #my_camera {
             margin: 0 auto;
+        }
+
+        .mfp-close {
+            display: none !important;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
@@ -529,13 +590,32 @@ $relatedProduct = App\Models\Product\Product::with('category', 'subcategory')
             });
 
         });
+
+        $('.popup').magnificPopup({
+            type: 'iframe',
+            iframe: {
+                markup: '<div class="mfp-iframe-scaler">' +
+                    '<div class="mfp-close"></div>' +
+                    '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>' +
+                    '</div>',
+
+                patterns: {
+                    youtube: {
+                        index: 'youtube.com/',
+                        id: 'v=',
+                        src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                    }
+                },
+                srcAction: 'iframe_src',
+            }
+        });
     </script>
 
     <script language="JavaScript">
-        $('#exampleModal').on('shown.bs.modal', function(){
+        $('#exampleModal').on('shown.bs.modal', function() {
             Webcam.attach('#my_camera');
         });
-        $('#exampleModal').on('hidden.bs.modal', function(){
+        $('#exampleModal').on('hidden.bs.modal', function() {
             Webcam.reset()
             $('#results').empty()
 

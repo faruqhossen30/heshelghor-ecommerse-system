@@ -290,6 +290,14 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="product-summary" class="form-label text-dark">YouTube Video Link<span class="text-danger">*</span></label>
+                                    <input name="youtube_link" type="text" class="form-control">
+                                        @error('youtube_link')
+                                            <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 {{-- Color and Size --}}
                                 <div class="row">
