@@ -12,7 +12,7 @@ class Usercomplain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
+        'orderitem_id',
         'product_id',
         'user_id',
         'complain_number',

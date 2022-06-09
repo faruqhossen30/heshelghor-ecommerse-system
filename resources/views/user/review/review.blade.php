@@ -29,9 +29,9 @@
                                     <a href="{{ route('user.product.review.list') }}" class="btn btn-danger mb-2"><i
                                             class="mdi mdi-plus-circle me-1"></i> Review
                                         Products</a>
-                                    <a href="{{ route('user.product.review.edit', $orderitem->id) }}"
+                                    {{-- <a href="{{ route('user.product.review.edit', $orderitem->id) }}"
                                         class="btn btn-primary mb-2"><i class="mdi mdi-plus-circle me-1"></i> Review
-                                        Edit</a>
+                                        Edit</a> --}}
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="float-sm-end">

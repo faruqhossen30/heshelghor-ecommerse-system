@@ -8,6 +8,7 @@ use App\Models\Auth\Marchant;
 use App\Models\Product\Product;
 use App\Models\ProductReview;
 use App\Models\User;
+use App\Models\User\Usercomplain;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,7 +48,10 @@ class OrderItem extends Model
     }
     public function review()
     {
-        return $this->hasOne(ProductReview::class, 'id' , 'product_id' );
+        return $this->hasOne(ProductReview::class, 'orderitem_id' );
     }
+
+
+
 
 }

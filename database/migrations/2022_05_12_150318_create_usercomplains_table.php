@@ -15,7 +15,7 @@ class CreateUsercomplainsTable extends Migration
     {
         Schema::create('usercomplains', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedBigInteger('orderitem_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('complain_number')->nullable();
@@ -33,9 +33,9 @@ class CreateUsercomplainsTable extends Migration
             $table->string('complain_message');
             $table->string('defect_pic_1');
             $table->string('defect_pic_2');
-            $table->string('defect_pic_3');
-            $table->string('defect_pic_4');
-            $table->string('defect_pic_5');
+            $table->string('defect_pic_3')->nullable();
+            $table->string('defect_pic_4')->nullable();
+            $table->string('defect_pic_5')->nullable();
             $table->timestamps();
         });
     }
