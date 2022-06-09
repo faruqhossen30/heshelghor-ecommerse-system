@@ -131,7 +131,7 @@ Route::prefix('user')->group(function () {
         Route::post('review/{id}', [UserProductReviewController::class, 'reviewproductupadte'])->name('user.product.review.update');
 
         Route::get('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
-        // Route::post('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
+        Route::post('complainstore',[UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
 
     });
 });

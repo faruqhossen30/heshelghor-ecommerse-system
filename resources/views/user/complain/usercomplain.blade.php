@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header border-bottom bg-transparent">
-                            <h5 class="header-title mb-0">Invoice: {{$orderitem->order->invoice_number}}</h5>
+                            <h5 class="header-title mb-0">Invoice: {{ $orderitem->order->invoice_number }}</h5>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -36,7 +36,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Order No</p>
                                             <h5 class="mt-0">
-                                                #{{$orderitem->order_number}}
+                                                #{{ $orderitem->order_number }}
                                             </h5>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Billing Name</p>
                                             <h5 class="mt-0">
-                                                {{$orderitem->order->name}}
+                                                {{ $orderitem->order->name }}
                                             </h5>
                                         </div>
                                     </div>
@@ -64,25 +64,16 @@
                                         <div class="flex-1">
                                             <p class="mb-1">Order Date</p>
                                             <h5 class="mt-0">
-                                                <p class="mb-0">{{ Carbon\Carbon::parse($orderitem->created_at)->format('d F Y') }}</p>
-                                                <small class="">{{ Carbon\Carbon::parse($orderitem->created_at)->format('h:m A') }}</small>
+                                                <p class="mb-0">
+                                                    {{ Carbon\Carbon::parse($orderitem->created_at)->format('d F Y') }}
+                                                </p>
+                                                <small
+                                                    class="">{{ Carbon\Carbon::parse($orderitem->created_at)->format('h:m A') }}</small>
                                             </h5>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-lg-3 col-sm-6">
-                                    <div class="d-flex mb-2">
-                                        <div class="me-2 align-self-center">
-                                            <i class="ri-map-pin-time-line h2 m-0 text-muted"></i>
-                                        </div>
-                                        <div class="flex-1">
-                                            <p class="mb-1">Tracking ID</p>
-                                            <h5 class="mt-0">
-                                                123456789
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                          
                             </div>
 
                             <table class="table table-bordered" width="100%">
@@ -117,22 +108,24 @@
                                             <strong>{{ $orderitem->product->title }}</strong>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th>Complain Number</th>
-                                        <td>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Order Numbe</th>
-                                        <td>
 
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                            <form action="{{route('user.order.complain', $orderitem->id)}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('user.order.complain.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+
+
+                                <input type = "hidden" name="orderitem_id" value="{{ $orderitem->id }}">
+                                <input type = "hidden" name="product_id" value="{{ $orderitem->product_id }}">
+                                <input type = "hidden" name="user_id" value="{{ $orderitem->user_id }}">
+                                <input type = "hidden" name="order_number" value="{{ $orderitem->order_number }}">
+                                <input type = "hidden" name="customer_name" value="{{ $orderitem->order->name }}">
+                                <input type = "hidden" name="customer_email" value="{{ $orderitem->order->email }}">
+                                <input type = "hidden" name="customer_mobile" value="{{ $orderitem->order->phone }}">
+                                <input type = "hidden" name="customer_address" value="{{ $orderitem->order->address}}">
+
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
@@ -168,9 +161,8 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label for="alt_customer_phone"
-                                                class="form-label text-dark">Alternative Mobile<span
-                                                    class="text-danger">*</span></label>
+                                            <label for="alt_customer_phone" class="form-label text-dark">Alternative
+                                                Mobile<span class="text-danger">*</span></label>
                                             <input required type="text" name="alt_customer_phone" id="alt_customer_phone"
                                                 class="form-control @error('alt_customer_phone') is-invalid @enderror"
                                                 placeholder="Enter complain number"
@@ -199,8 +191,42 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="alt_customer_name"
+                                                class="form-label text-dark">alt_customer_name<span
+                                                    class="text-danger">*</span></label>
+                                            <input required type="text" name="alt_customer_name" id="alt_customer_name"
+                                                class="form-control @error('alt_customer_name') is-invalid @enderror"
+                                                placeholder="Enter complain number"
+                                                value="{{ old('alt_customer_name') }}">
+                                            <div class="text-danger">
+                                                @error('alt_customer_name')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="complain_message" class="form-label text-dark">Product
+                                                Customer Address
+                                                <span class="text-danger">*</span></label>
+                                            <textarea name="alt_customer_address" id="summernote"
+                                                class="form-control @error('alt_customer_address') is-invalid @enderror"
+                                                rows="3"
+                                                placeholder="Please enter comment">{{ old('alt_customer_address') }}</textarea>
+                                            <div class="text-danger">
+                                                @error('alt_customer_address')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
@@ -220,14 +246,21 @@
                                 </div>
 
                                 <div class="row">
+                                    <label for="twophoto"><strong><span>Minimum two photos Uplodaded</span></strong></label>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label> Image 1 </label>
-                                            <input type="file" name="defect_pic_1"
+                                            <input type="file" name="defect_pic_1" id="twophoto"
                                                 class="form-control dropify  @error('defect_pic_1') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
-                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='defect_pic_1' />
+                                                data-allowed-file-extensions="jpg jpeg png bmp"
+                                                data-max-file-size-preview="6M">
+
+                                            <div class="text-danger">
+                                                @error('defect_pic_1')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -236,8 +269,13 @@
                                             <input type="file" name="defect_pic_2"
                                                 class="form-control dropify  @error('defect_pic_2') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
-                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='defect_pic_2' />
+                                                data-allowed-file-extensions="jpg jpeg png bmp"
+                                                data-max-file-size-preview="6M">
+                                            <div class="text-danger">
+                                                @error('defect_pic_2')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -246,8 +284,13 @@
                                             <input type="file" name="defect_pic_3"
                                                 class="form-control dropify  @error('defect_pic_3') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
-                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='defect_pic_3' />
+                                                data-allowed-file-extensions="jpg jpeg png bmp"
+                                                data-max-file-size-preview="6M">
+                                            <div class="text-danger">
+                                                @error('defect_pic_3')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -256,8 +299,13 @@
                                             <input type="file" name="defect_pic_4"
                                                 class="form-control dropify  @error('defect_pic_4') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
-                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='defect_pic_4' />
+                                                data-allowed-file-extensions="jpg jpeg png bmp"
+                                                data-max-file-size-preview="6M">
+                                            <div class="text-danger">
+                                                @error('defect_pic_4')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -266,8 +314,13 @@
                                             <input type="file" name="defect_pic_5"
                                                 class="form-control dropify  @error('defect_pic_5') is-invalid @enderror"
                                                 data-show-errors="true" data-errors-position="outside"
-                                                data-allowed-file-extensions="jpg jpeg png bmp" data-max-file-size-preview="6M">
-                                            <x-error name='defect_pic_5' />
+                                                data-allowed-file-extensions="jpg jpeg png bmp"
+                                                data-max-file-size-preview="6M">
+                                            <div class="text-danger">
+                                                @error('defect_pic_5')
+                                                    <span>{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
