@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Ajax\FrontEnd;
+namespace App\Http\Controllers\Ajax\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\Shop;

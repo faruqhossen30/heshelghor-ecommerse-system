@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FrontEnd\Shoplist;
+namespace App\Http\Controllers\Frontend\Shoplist;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\District;

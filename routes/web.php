@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Location Controller
-use App\Http\Controllers\FrontEnd\CartController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\WishlistController;
 
 use App\Http\Controllers\APIController;
@@ -17,37 +17,37 @@ use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProductReviewController;
 
 // Product Controller
-use App\Http\Controllers\FrontEnd\UserOrderController;
+use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Product\SubCategoryController;
 
 
 // Front-End Controller
-use App\Http\Controllers\FrontEnd\CheckoutController;
-use App\Http\Controllers\FrontEnd\HomepageController;
-use App\Http\Controllers\FrontEnd\ShopPageController;
-use App\Http\Controllers\FrontEnd\SingleProductController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\HomepageController;
+use App\Http\Controllers\Frontend\ShopPageController;
+use App\Http\Controllers\Frontend\SingleProductController;
 
-use App\Http\Controllers\FrontEnd\SearchPageController;
-use App\Http\Controllers\FrontEnd\ShopListPageController;
-use App\Http\Controllers\FrontEnd\ShopWiseProductListController;
-use App\Http\Controllers\FrontEnd\MarketListPageController;
-use App\Http\Controllers\FrontEnd\ProductQuickViewController;
-use App\Http\Controllers\FrontEnd\Filter\SearchWiseFilterController;
+use App\Http\Controllers\Frontend\SearchPageController;
+use App\Http\Controllers\Frontend\ShopListPageController;
+use App\Http\Controllers\Frontend\ShopWiseProductListController;
+use App\Http\Controllers\Frontend\MarketListPageController;
+use App\Http\Controllers\Frontend\ProductQuickViewController;
+use App\Http\Controllers\Frontend\Filter\SearchWiseFilterController;
 
-use App\Http\Controllers\FrontEnd\Filter\CategoryWiseFilterController;
-use App\Http\Controllers\FrontEnd\Filter\SubCategoryWiseFilterController;
+use App\Http\Controllers\Frontend\Filter\CategoryWiseFilterController;
+use App\Http\Controllers\Frontend\Filter\SubCategoryWiseFilterController;
 
-use App\Http\Controllers\FrontEnd\BuyNowController;
+use App\Http\Controllers\Frontend\BuyNowController;
 
-use App\Http\Controllers\FrontEnd\Shoplist\ShoplistAjaxController;
+use App\Http\Controllers\Frontend\Shoplist\ShoplistAjaxController;
 // Test Controller
 use App\Http\Controllers\TestController;
 // Modal Ajax
-use App\Http\Controllers\Ajax\FrontEnd\SearchShopAjaxController;
-use App\Http\Controllers\Ajax\FrontEnd\SearchMarketAjaxController;
-use App\Http\Controllers\Ajax\FrontEnd\SingleproductShopAndMarketAjaxController;
-use App\Http\Controllers\Ajax\FrontEnd\CourierAjaxController;
-use App\Http\Controllers\Ajax\FrontEnd\CheckoutCourierAjaxController;
+use App\Http\Controllers\Ajax\Frontend\SearchShopAjaxController;
+use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
+use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
+use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
+use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\FrontEnd\Filter;
+namespace App\Http\Controllers\Frontend\Filter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product\Brand;
