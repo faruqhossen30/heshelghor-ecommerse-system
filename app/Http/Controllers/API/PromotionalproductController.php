@@ -10,7 +10,7 @@ class PromotionalproductController extends Controller
 {
     public function subcategoryProducts()
     {
-        $products = Product::where('category_id', 38)->get();
+        $products = Product::where('category_id', 38)->paginate(15);
 
         return response()->json([
             'success' => true,
