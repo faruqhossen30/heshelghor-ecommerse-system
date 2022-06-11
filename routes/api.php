@@ -28,6 +28,7 @@ use App\Http\Controllers\API\Merchant\MerchantProductAPIController;
 use App\Http\Controllers\API\MerChant\MerchantMediaAPIController;
 use App\Http\Controllers\API\Merchant\MerchantGalleryAPIController;
 use App\Http\Controllers\API\Merchant\MerchantProfileAPIController;
+use App\Http\Controllers\API\PromotionalproductController;
 use App\Http\Controllers\API\SliderapiController;
 // Courier
 use App\Http\Controllers\API\User\BuyNowAPIController;
@@ -87,7 +88,9 @@ Route::get('district-wise-shop/{slug}', [ShopAPIController::class, 'districtWise
 Route::get('district-wise-market/{slug}', [MarketAPIController::class, 'districtWiseMarkets']);
 
 Route::get('market-search/{keyword}', [MarketAPIController::class, 'marketSearch']);
+// Promotion
 Route::get('sliders', [SliderapiController::class, 'index']);
+Route::get('promotion/subcategory/products', [PromotionalproductController::class, 'subcategoryProducts']);
 
 
 

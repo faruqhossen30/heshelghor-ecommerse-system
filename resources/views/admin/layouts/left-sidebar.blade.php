@@ -185,6 +185,26 @@ $countcourier = $allorder
                     </div>
                 </li>
                 {{-- Product End --}}
+                {{-- Product Start --}}
+                <li>
+                    <a href="#sidebarPromotion" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="sidebarPromotion">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Promotion </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarPromotion">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="">Sub-category Promotion</a>
+                            </li>
+                            {{-- <li>
+                                <a href="{{route('allshop.shop')}}">All Shops</a>
+                            </li> --}}
+                        </ul>
+                    </div>
+                </li>
+                {{-- Product End --}}
                 {{-- Order Start --}}
                 <li>
                     <a href="#orderTable" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebarTables">
