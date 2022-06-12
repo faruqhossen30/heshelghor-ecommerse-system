@@ -261,7 +261,7 @@ class ProductController extends Controller
             'slug'              => SlugService::createSlug(Product::class, 'slug', $slug, ['unique' => true]),
             'category_id'       => 'required',
             'subcategory_id'    => 'required',
-            'brand_id'          => 'required',
+            // 'brand_id'          => 'required',
             'shop_id'           => 'required',
             'upazila_id'        => 'required',
             'district_id'       => 'required',

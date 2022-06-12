@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
             $table->unsignedBigInteger('subsub_category_id')->nullable();
-            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->string('author');
             $table->unsignedBigInteger('author_id');
             $table->integer('shop_id');
