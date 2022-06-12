@@ -91,6 +91,7 @@ Route::get('market-search/{keyword}', [MarketAPIController::class, 'marketSearch
 // Promotion
 Route::get('sliders', [SliderapiController::class, 'index']);
 Route::get('promotion/subcategory/products', [PromotionalproductController::class, 'subcategoryProducts']);
+Route::get('promotion/products', [PromotionalproductController::class, 'promotionalProduct']);
 
 
 

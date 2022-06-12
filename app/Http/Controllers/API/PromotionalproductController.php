@@ -20,4 +20,9 @@ class PromotionalproductController extends Controller
 
         return $products;
     }
+    public function promotionalProduct()
+    {
+        $products = Product::take(50)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
+        return $products;
+    }
 }
