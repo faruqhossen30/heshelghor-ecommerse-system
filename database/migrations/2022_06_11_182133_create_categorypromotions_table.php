@@ -15,7 +15,8 @@ class CreateCategorypromotionsTable extends Migration
     {
         Schema::create('categorypromotions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('sub_category_id');
+            $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });
     }

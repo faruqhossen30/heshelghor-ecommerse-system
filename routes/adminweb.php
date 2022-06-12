@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\Admin\Promotion\CategorypromotionController;
 use App\Http\Controllers\Admin\Promotion\PromotionController;
 use App\Http\Controllers\Admin\Promotion\SliderajaxController;
 use App\Http\Controllers\Admin\Promotion\SliderController;
@@ -117,6 +118,8 @@ Route::prefix('admin')->group(function () {
         Route::get('promotion', [PromotionController::class, 'index'])->name('promotion.index');
         Route::get('promotion/shop', [PromotionController::class, 'shop'])->name('allshop.shop');
         Route::resource('slider', SliderController::class);
+        Route::get('categorypromotion',[CategorypromotionController::class,'catpomotion'])->name('categorypromotion');
+        
         // Job
         Route::resource('job', JobController::class);
     });
