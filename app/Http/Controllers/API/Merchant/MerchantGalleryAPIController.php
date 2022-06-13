@@ -28,12 +28,14 @@ class MerchantGalleryAPIController extends Controller
             ];
         }
 
+        $collection = collect($data)->reverse();
+
 
 
         return response()->json([
             'success' => true,
             'code'    => 200,
-            'data'    => $data
+            'data'    => $collection
         ]);
     }
 

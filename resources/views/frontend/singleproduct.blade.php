@@ -146,7 +146,7 @@ if ($user) {
                             <div class="product-price">৳{{ $product->price }}</div>
                             <p class="product-short-desc">
                                 {{ Str::substr($product->short_description, 0, 200) }}
-                                <a href="#product-tab-description" class="link-to-tab rating-reviews"> <br> <b>View more</b></a>
+                                <a href="#product-tab-description" class="link-to-tab rating-reviews"><b> ....View more</b></a>
                             </p>
                             <div class="product-meta">
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
