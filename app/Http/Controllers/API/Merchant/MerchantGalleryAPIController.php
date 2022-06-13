@@ -28,7 +28,7 @@ class MerchantGalleryAPIController extends Controller
             ];
         }
 
-        $collection = collect($data)->reverse();
+        $collection = collect($data)->reverse()->values();
 
 
 
