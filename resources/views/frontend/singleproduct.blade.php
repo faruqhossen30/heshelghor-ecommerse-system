@@ -262,7 +262,7 @@ if ($user) {
                                 <div class="product-footer" id="productShopAndMarketInfoDiv">
 
                                 </div>
-                                @if ($product->category_id !== 38)
+                                @if ($product->category_id != 38)
                                 <div class="product-form product-qty">
                                     <div class="product-form-group">
                                         <div class="input-group mr-2">

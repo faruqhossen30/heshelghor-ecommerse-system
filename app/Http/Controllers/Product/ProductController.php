@@ -256,7 +256,7 @@ class ProductController extends Controller
 
         $validate = $request->validate([
             'title'             => 'required | max:255',
-            'description'       => 'required | max:5000',
+            'description'       => 'required | max:15000',
             'short_description' => 'required | max:1000',
             'slug'              => SlugService::createSlug(Product::class, 'slug', $slug, ['unique' => true]),
             'category_id'       => 'required',
