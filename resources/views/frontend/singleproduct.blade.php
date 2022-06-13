@@ -146,7 +146,7 @@ if ($user) {
                             <div class="product-price">৳{{ $product->price }}</div>
                             <p class="product-short-desc">
                                 {{ Str::substr($product->short_description, 0, 200) }}
-                                <a href="#product-tab-description" class="link-to-tab rating-reviews">View more</a>
+                                <a href="#product-tab-description" class="link-to-tab rating-reviews"> <br> <b>View more</b></a>
                             </p>
                             <div class="product-meta">
                                 {{-- SKU:<span class="product-sku">123456701</span> --}}
@@ -182,9 +182,9 @@ if ($user) {
                                         <i class="fas fa-exclamation-triangle"></i>
                                         Warranty not available
                                     </p>
-                                    <p class="card-text mb-1 border-bottom">
+                                    <p class="card-text mb-1  border-top">
                                         <i class="fas fa-address-card"></i>
-                                        For details or buy, Please Contact
+                                        Please Contact,  for <b>Details</b> or <b>Buy</b>
                                     </p>
 
                                     <p class="card-text mb-1">
@@ -192,17 +192,17 @@ if ($user) {
                                         Heshelghor: +88 02477763843
                                     </p>
                                     <p class="card-text mb-1">
+                                        <i class="fas fa-phone"></i>
+                                        Mobile: +88 01318-760087, +88 01859-348860 , +88 01715-127719
+                                    </p>
+                                    {{-- <p class="card-text mb-1">
                                         <i class="fas fa-headset"></i>
-                                        Arifuzzaman: +88 01715-127719
+                                         +88 01859348860
                                     </p>
                                     <p class="card-text mb-1">
                                         <i class="fas fa-headset"></i>
-                                        Tusher Rahman: +88 01859348860
-                                    </p>
-                                    <p class="card-text mb-1">
-                                        <i class="fas fa-headset"></i>
-                                        Tasrik Hasan: +88 01789438144
-                                    </p>
+                                       +88 01789438144
+                                    </p> --}}
                                 @else
                                     <p class="card-text mb-1">
                                         <i class="fas fa-hand-holding-usd"></i>

@@ -139,7 +139,7 @@ class ProductController extends Controller
                         'product_id' => $product->id,
                     ]);
                 }
-            };
+            }; 
 
 
             // Add Color
