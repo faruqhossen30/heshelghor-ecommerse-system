@@ -10,7 +10,7 @@ class PromotionalproductController extends Controller
 {
     public function subcategoryProducts()
     {
-        $products = Product::where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->paginate(15);
+        $products = Product::where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
 
         // return response()->json([
         //     'success' => true,

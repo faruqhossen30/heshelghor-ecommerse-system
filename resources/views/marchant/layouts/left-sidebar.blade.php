@@ -93,7 +93,7 @@
                 <li>
                     <a href="{{route('merchant.veiw.gallery')}}" >
                         <i class="mdi mdi-view-dashboard"></i>
-                        <span> Galary </span>
+                        <span> Gallery </span>
                     </a>
                 </li>
                 {{-- Product Start --}}
