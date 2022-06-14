@@ -8,7 +8,9 @@
                     <h5 class="header-title mb-0">Category Promotion</h5>
                 </div>
                 <div class="card-body">
-                    <form action="" method="get">
+                    <form action="{{route('category.promotion.store')}}" method="POST">
+                        @csrf
+                        {{-- @method('PUT') --}}
                         <div class="mb-3 row">
                             <label class=" col-form-label " style="align-item: center" for="simpleinput"><h5><b>Sub
                                 Category
