@@ -18,8 +18,8 @@ class CategorypromotionController extends Controller
     public function catpomotionstore(Request $request){
 
         $subcatid = $request->sub_category_id;
-        
-        return $subcatid;
+
+        // return $subcatid;
 
         Categorypromotion::Create([
 

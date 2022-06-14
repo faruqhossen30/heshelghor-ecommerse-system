@@ -19,7 +19,7 @@ class AllListAPIController extends Controller
     // All Category
     public function allCategory()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::inRandomOrder()->paginate(5);
         return $categories;
     }
     // All Sub-Category
