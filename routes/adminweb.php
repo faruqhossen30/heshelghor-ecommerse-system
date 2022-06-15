@@ -119,7 +119,7 @@ Route::prefix('admin')->group(function () {
         Route::get('promotion/shop', [PromotionController::class, 'shop'])->name('allshop.shop');
         Route::resource('slider', SliderController::class);
         Route::get('categorypromotion',[CategorypromotionController::class,'catpomotion'])->name('category.promotion');
-        Route::get('categorypromotionstore',[CategorypromotionController::class,'catpomotionstore'])->name('category.promotion.store');
+        Route::post('categorypromotionstore',[CategorypromotionController::class,'catpomotionstore'])->name('category.promotion.store');
 
         // Job
         Route::resource('job', JobController::class);

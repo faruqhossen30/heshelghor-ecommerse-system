@@ -10,24 +10,31 @@ use Illuminate\Support\Facades\Auth;
 
 class CategorypromotionController extends Controller
 {
-    public function catpomotion(Request $request )
+    public function catpomotion()
     {
-        return view('admin.promotion.categorypromotion');
+
+        $categories = Category::with('subcategories')->latest()->get();
+        // return $categories;
+        return view('admin.promotion.categorypromotion', compact('categories'));
     }
 
-    public function catpomotionstore(Request $request){
+    public function catpomotionstore(Request $request)
+    {
 
-        $subcatid = $request->sub_category_id;
+        // $subcatid = $request->sub_category_id;
 
-        // return $subcatid;
+        $subcategoryid = $request->sub_category_id;
 
-        Categorypromotion::Create([
+        if (!empty($subcategoryid)) {
 
-            'sub_category_id' => $request->sub_category_id,
-            'author_id'       => Auth::guard('admin')->user()->id,
-        ]);
-
+            foreach ($subcategoryid as $subcategory) {
+                // echo $subcategory;
+                Categorypromotion::Create([
+                    'sub_category_id' =>  $subcategory,
+                    'author_id'       => Auth::guard('admin')->user()->id,
+                ]);
+            }
+            return redirect()->back();
+        }
     }
 }
-
-

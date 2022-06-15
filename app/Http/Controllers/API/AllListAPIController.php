@@ -22,6 +22,11 @@ class AllListAPIController extends Controller
         $categories = Category::inRandomOrder()->paginate(5);
         return $categories;
     }
+    public function marchentCategorylist()
+    {
+        $categories = Category::orderBy('name', 'asc')->get();
+        return $categories;
+    }
     // All Sub-Category
     public function allSubCategory()
     {

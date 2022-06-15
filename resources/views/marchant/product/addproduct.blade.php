@@ -268,7 +268,7 @@
                                     <label for="product-description" class="form-label text-dark">Product Description <span
                                             class="text-danger">*</span></label>
                                     <textarea name="description" id="summernote"
-                                        class="form-control @error('description') is-invalid @enderror" rows="3"
+                                        class="form-control @error('description') is-invalid @enderror" rows="5"
                                         placeholder="Please enter comment">{{ old('description') }}</textarea>
                                     <div class="text-danger">
                                         @error('description')

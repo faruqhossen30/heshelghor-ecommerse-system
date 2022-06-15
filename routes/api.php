@@ -67,6 +67,7 @@ Route::get('product/shop/{id}', [ProductAPIController::class, 'productByShop']);
 
 // All List
 Route::get('categories', [AllListAPIController::class, 'allCategory']); // Category List
+Route::get('merchent/categorylist', [AllListAPIController::class, 'marchentCategorylist']); // Category List
 Route::get('subcategories', [AllListAPIController::class, 'allSubCategory']); // Sub-Category List
 Route::get('subcategory/category/{id}', [AllListAPIController::class, 'subCategoryByCategory']); // Sub-Category List
 // Brand List
@@ -161,6 +162,7 @@ Route::prefix('merchant')->group(function () {
         // Profile
         Route::get('profile', [MerchantProfileAPIController::class, 'viewProfile']);
         Route::post('profile/update', [MerchantProfileAPIController::class, 'profileUpdate']);
+
 
     });
 
