@@ -159,7 +159,7 @@
                                                         <span class="ratings" style="width:60%"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href="demo3-product.html" class="rating-reviews">( 16 reviews )</a>
+                                                    <a href="demo3-product.html" class="rating-reviews">( 0 reviews )</a>
                                                 </div>
                                             </div>
                                         </div>
