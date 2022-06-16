@@ -54,9 +54,9 @@
                                                     <i class="mdi mdi-close-circle text-danger"></i>
                                                 @endif
                                             </td>
-                                            <td>{{ $item->product->title }}</td>
-                                            <td>{{ $item->shop->name }}</td>
-                                            <td>{{ $item->shop->address }}</td>
+                                            <td>{{ $item->product->title ?? 'n/a'}}</td>
+                                            <td>{{ $item->shop->name ?? 'n/a'}}</td>
+                                            <td>{{ $item->shop->address ?? 'n/a'}}</td>
                                             {{-- <td>58, Borhansha road , Karbal Jessore sadar, Jessore</td> --}}
                                             <td>{{ $item->quantity }}</td>
                                             <td>৳{{ $item->price * $item->quantity }}</td>
