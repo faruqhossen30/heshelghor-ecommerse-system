@@ -180,6 +180,7 @@
                                         {{-- single product --}}
                                         @php
                                             $newporducts = \App\Models\Product\Product::with('category:id,name,slug', 'subcategory:id,name,slug')
+                                                ->active()
                                                 ->latest('id')
                                                 ->where('category_id', $category->id)
                                                 ->take(4)

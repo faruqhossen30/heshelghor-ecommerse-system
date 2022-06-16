@@ -38,8 +38,8 @@ class HomepageController extends Controller
         $brands = Brand::get()->random(10);
 
 
-        $products = Product::active()->with('category', 'subcategory')->take(8)->orderBy('id', 'desc')->get();
-        // return $subcategories;
+        $products = Product::active()->with('category', 'subcategory')->where('category_id', 38)->inRandomOrder()->take(8)->get();
+        // return $products;
 
 
         return view('frontend.homepage', compact(

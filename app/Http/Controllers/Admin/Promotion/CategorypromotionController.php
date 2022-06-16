@@ -14,8 +14,10 @@ class CategorypromotionController extends Controller
     {
 
         $categories = Category::with('subcategories')->latest()->get();
-        // return $categories;
-        return view('admin.promotion.categorypromotion', compact('categories'));
+        $promotionnalsubcategoryid = Categorypromotion::get()->pluck('sub_category_id')->toArray();
+
+        // return $promotionnalsubcategoryid;
+        return view('admin.promotion.categorypromotion', compact('categories', 'promotionnalsubcategoryid'));
     }
 
     public function catpomotionstore(Request $request)
