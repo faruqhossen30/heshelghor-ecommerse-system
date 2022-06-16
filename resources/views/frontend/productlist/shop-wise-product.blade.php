@@ -158,7 +158,7 @@
 
                                 </div>
                                 <nav class="toolbox toolbox-pagination">
-                                    {{ $products->appends($_GET)->links('pagination::custompagination') }}
+                                    {{ $products->appends($_GET)->links() }}
                                 </nav>
                             @elseif(count($products) == 0)
                                 <div class="card">

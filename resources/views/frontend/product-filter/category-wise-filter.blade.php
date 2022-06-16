@@ -211,7 +211,7 @@
                                 @endforeach
                             </div>
                             <nav class="toolbox toolbox-pagination">
-                                {{ $products->appends($_GET)->links('pagination::custompagination') }}
+                                {{ $products->appends($_GET)->links() }}
                             </nav>
                         </div>
                     </div>
