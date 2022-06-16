@@ -511,7 +511,6 @@ if ($user) {
                                     </div>
                                     <div class="product-label-group">
                                         <label class="product-label label-new">new</label>
-                                        <label class="product-label label-new">new</label>
                                                     @if ($product->discount > 0)
                                                         <label class="product-label label-sale">{{ $product->discount }}%
                                                             OFF</label>
