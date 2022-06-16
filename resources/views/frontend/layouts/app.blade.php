@@ -2,7 +2,7 @@
 $header = App\Models\Setting\SettingHeader::first();
 $contact = App\Models\Setting\SettingContact::first();
 $socialmedia = App\Models\Setting\SettingSocialMedia::first();
-$categories = App\Models\Product\Category::with('subcategories')->get();
+$categories = App\Models\Product\Category::with('subcategories')->orderBy('name', 'asc')->get();
 // $divissions = App\Models\Admin\Location\Division::with('districts')
 //     ->orderBy('name', 'asc')
 //     ->get();
