@@ -103,7 +103,7 @@ $divissions = App\Models\Admin\Location\Division::with('districts')
                             @endforeach
 
                             <nav class="toolbox toolbox-pagination">
-                                {{ $shops->links('pagination::custompagination') }}
+                                {{ $shops->links() }}
                             </nav>
                         </div>
                     </div>
