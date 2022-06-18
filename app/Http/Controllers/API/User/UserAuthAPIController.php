@@ -37,14 +37,13 @@ class UserAuthAPIController extends Controller
             'message' => 'User Successfully Registered !',
             'data' => $user
         ]);
-
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email'         => 'required|email',
+            'password'      => 'required',
             'android_token' => 'required'
         ]);
 
@@ -58,7 +57,7 @@ class UserAuthAPIController extends Controller
 
         // return $user->createToken($request->device_name)->plainTextToken;
         $token = $user->createToken(uniqid())->plainTextToken;
-        if($request->android_token){
+        if ($request->android_token) {
             $user->android_token = $request->android_token;
             $user->save();
         }

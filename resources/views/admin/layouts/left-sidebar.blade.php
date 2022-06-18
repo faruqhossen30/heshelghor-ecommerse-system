@@ -196,11 +196,14 @@ $countcourier = $allorder
                     <div class="collapse" id="sidebarPromotion">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="">Sub-category Promotion</a>
+                                <a href="{{route('category.promotion')}}">Sub-category Promotion</a>
                             </li>
-                            {{-- <li>
-                                <a href="{{route('allshop.shop')}}">All Shops</a>
-                            </li> --}}
+                            <li>
+                                <a href="{{route('slider.index')}}">Slider Promotion</a>
+                            </li>
+                            <li>
+                                <a href="">Product Promotion</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
