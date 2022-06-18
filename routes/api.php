@@ -33,6 +33,8 @@ use App\Http\Controllers\API\SliderapiController;
 // Courier
 use App\Http\Controllers\API\User\BuyNowAPIController;
 use App\Http\Controllers\API\User\BuyNowCourierAPIController;
+use App\Http\Controllers\API\User\WishlistapiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -112,7 +114,7 @@ Route::prefix('merchant')->group(function () {
     Route::post('/login', [MerchantAuthAPIController::class, 'login']);
     Route::post('/register', [MerchantAuthAPIController::class, 'register']);
 
-    Route::middleware('auth:sanctum')->group(function(){
+    Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [MerchantAuthAPIController::class, 'logout']);
         // Order
         Route::get('/orders', [MerchantOrderItemAPIController::class, 'allOrder']);
@@ -163,11 +165,7 @@ Route::prefix('merchant')->group(function () {
         // Profile
         Route::get('profile', [MerchantProfileAPIController::class, 'viewProfile']);
         Route::post('profile/update', [MerchantProfileAPIController::class, 'profileUpdate']);
-
-
     });
-
-
 });
 
 // User API
@@ -178,7 +176,7 @@ Route::prefix('user')->group(function () {
     Route::post('/login', [UserAuthAPIController::class, 'login']);
     Route::post('/register', [UserAuthAPIController::class, 'register']);
 
-    Route::middleware('auth:sanctum')->group(function(){
+    Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [UserAuthAPIController::class, 'logout']);
         // Profile
         Route::get('/profile', [UserProfileAPIController::class, 'profile']);
@@ -199,8 +197,8 @@ Route::prefix('user')->group(function () {
         Route::get('/courier/upazilalist/{id}', [BuyNowCourierAPIController::class, 'getgetupazilabydistrictid']);
         Route::post('/courier/allcourierservice', [BuyNowCourierAPIController::class, 'upazilaWiseCourierServiceList']);
 
-
+        Route::get('wishlist', [WishlistapiController::class, 'index']);
+        Route::post('wishlist/store/', [WishlistapiController::class, 'store']);
+        Route::post('wishlist/delete/{id}', [WishlistapiController::class, 'delete']);
     });
-
 });
-

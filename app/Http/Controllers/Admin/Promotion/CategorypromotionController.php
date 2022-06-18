@@ -29,9 +29,12 @@ class CategorypromotionController extends Controller
 
         if (!empty($subcategoryid)) {
 
+            Categorypromotion::truncate();
+
             foreach ($subcategoryid as $subcategory) {
                 // echo $subcategory;
                 Categorypromotion::Create([
+                    
                     'sub_category_id' =>  $subcategory,
                     'author_id'       => Auth::guard('admin')->user()->id,
                 ]);
