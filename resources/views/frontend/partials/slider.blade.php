@@ -8,16 +8,23 @@
         'autoplay': true
     }">
 
-        {{-- <div class="banner banner-fixed intro-slide1">
-            <a href="{{ route('promotion') }}">
+        <div class="banner banner-fixed intro-slide1">
+            <a href="https://heshelghor.com/category/Cattle-Market">
                 <figure>
-                    <img src="{{ asset('frontend/images/slider/one.png') }}" alt="intro-banner" width="800" height="400"
+                    <img src="{{ asset('frontend/images/slider/cow.jpg') }}" alt="intro-banner" width="800" height="400"
                         style="background-color: #ffc74e; min-height:0px" />
                 </figure>
             </a>
 
-        </div> --}}
+        </div>
 
+        {{-- <div class="banner banner-fixed intro-slide1">
+            <figure>
+                <img src="{{ asset('frontend/images/slider/cow.jpg') }}" alt="intro-banner" width="800" height="400"
+                    style="background-color: #ffc74e; min-height:0px" />
+            </figure>
+
+        </div> --}}
         <div class="banner banner-fixed intro-slide1">
             <figure>
                 <img src="{{ asset('frontend/images/slider/banner1.jpg') }}" alt="intro-banner" width="800" height="400"

@@ -93,4 +93,28 @@ class UserOrderListAPIController extends Controller
             ]);
         }
     }
+    // Pending
+    public function completedOrders(Request $request)
+    {
+        $userId = $request->user()->id;
+        $orders = Order::where('user_id', $userId)
+            ->where('accept_status', false)
+            ->where('cancel_status', false)
+            ->get();
+
+        if (count($orders) == 0) {
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'message'    => 'No order found',
+            ]);
+        }
+        if (!empty($orders)) {
+            return response()->json([
+                'success' => true,
+                'code'    => 200,
+                'data'    => $orders
+            ]);
+        }
+    }
 }
