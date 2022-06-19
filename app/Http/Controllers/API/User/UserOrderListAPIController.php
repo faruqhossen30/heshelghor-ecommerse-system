@@ -14,8 +14,10 @@ class UserOrderListAPIController extends Controller
         $userId = $request->user()->id;
         $order = Order::with('orderitems.product')
             ->where('user_id', $userId)
-            ->where('payment_type', 'cash')
-            ->orWhere('status', 'Processing')
+            ->where(function ($query) {
+                $query->where('payment_type', 'cash')
+                    ->orWhere('status', 'Processing');
+            })
             ->get();
 
         if (count($order) == 0) {
