@@ -17,7 +17,7 @@
                         <h4 class="page-title">Create Product</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{route('homepage')}}">HeshelGhor</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('homepage') }}">HeshelGhor</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
                                 <li class="breadcrumb-item active">Create Product</li>
                             </ol>
@@ -100,7 +100,8 @@
                                             <label for="brand_id" class="form-label text-dark">Brand <span
                                                     class="text-danger">*</span></label>
                                             <select name="brand_id"
-                                                class="form-control @error('brand_id') is-invalid @enderror selectize-drop-header" id="select-code-language" >
+                                                class="form-control @error('brand_id') is-invalid @enderror selectize-drop-header"
+                                                id="select-code-language">
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                 @endforeach
@@ -208,7 +209,8 @@
                                         <div class="mb-3">
                                             <label for="sellPriceID" class="form-label text-dark">Discount (%) <span
                                                     class="text-danger">*</span></label>
-                                            <input name="discount" type="number" value="0" min="0" max="100"
+                                            <input name="discount" type="number" value="0" min="0"
+                                                max="100"
                                                 class="form-control @error('discount') is-invalid @enderror"
                                                 id="sellPriceID" placeholder="Enter Discount">
                                             <div class="text-danger">
@@ -234,8 +236,9 @@
                                             <label for="quantity" class="form-label text-dark">Quantity<span
                                                     class="text-danger">*</span></label>
                                             <input name="quantity" type="number"
-                                                class="form-control @error('quantity') is-invalid @enderror" id="quantity"
-                                                placeholder="Enter Quantity" value="{{ old('quantity') }}">
+                                                class="form-control @error('quantity') is-invalid @enderror"
+                                                id="quantity" placeholder="Enter Quantity"
+                                                value="{{ old('quantity') }}">
 
                                             <div class="text-danger">
                                                 @error('quantity')
@@ -265,11 +268,10 @@
 
                                 {{-- Description --}}
                                 <div class="mb-3">
-                                    <label for="product-description" class="form-label text-dark">Product Description <span
-                                            class="text-danger">*</span></label>
-                                    <textarea name="description" id="summernote"
-                                        class="form-control @error('description') is-invalid @enderror" rows="5"
-                                        placeholder="Please enter comment">{{ old('description') }}</textarea>
+                                    <label for="product-description" class="form-label text-dark">Product Description
+                                        <span class="text-danger">*</span></label>
+                                    <textarea name="description" id="summernote" class="form-control @error('description') is-invalid @enderror"
+                                        rows="5" placeholder="Please enter comment">{{ old('description') }}</textarea>
                                     <div class="text-danger">
                                         @error('description')
                                             <span>{{ $message }}</span>
@@ -279,11 +281,10 @@
 
                                 {{-- Short Description --}}
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label text-dark">Product Summary<span class="text-danger">*</span></label>
-                                    <textarea name="short_description"
-                                        class="form-control @error('short_description') is-invalid @enderror"
-                                        id="product-summary" rows="5"
-                                        placeholder="Promotion short description ">{{ old('short_description') }}</textarea>
+                                    <label for="product-summary" class="form-label text-dark">Product Summary<span
+                                            class="text-danger">*</span></label>
+                                    <textarea name="short_description" class="form-control @error('short_description') is-invalid @enderror"
+                                        id="product-summary" rows="5" placeholder="Promotion short description ">{{ old('short_description') }}</textarea>
                                     <div class="text-danger">
                                         @error('short_description')
                                             <span>{{ $message }}</span>
@@ -291,121 +292,120 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="product-summary" class="form-label text-dark">YouTube Video Link<span class="text-danger">*</span></label>
+                                    <label for="product-summary" class="form-label text-dark">YouTube Video Link</label>
                                     <input name="youtube_link" type="text" class="form-control">
-                                        @error('youtube_link')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    @error('youtube_link')
+                                        <span>{{ $message }}</span>
+                                    @enderror
                                 </div>
+                        </div>
 
-                                {{-- Color and Size --}}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card-body">
-                                            <h5 class="font-14 mb-2">Select Color
-                                            </h5>
-                                            <div style="display: flex; flex-wrap: wrap; ">
-                                            @foreach ($colors as $color)
-                                                <div class="form-check" style="margin-right: 5px">
-                                                    <input name="colors[]"
-                                                        class=" form-check-input @error('colors') is-invalid @enderror"
-                                                        type="checkbox" value="{{ $color->id }}"
-                                                        id="flexCheckDefault{{ $color->id }}">
-                                                    <label class="form-check-label"
-                                                        for="flexCheckDefault{{ $color->id }}">
-                                                        {{ $color->name }}
-                                                    </label>
+                        {{-- Color and Size --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="font-14 mb-2">Select Color
+                                    </h5>
+                                    <div style="display: flex; flex-wrap: wrap; ">
+                                        @foreach ($colors as $color)
+                                            <div class="form-check" style="margin-right: 5px">
+                                                <input name="colors[]"
+                                                    class=" form-check-input @error('colors') is-invalid @enderror"
+                                                    type="checkbox" value="{{ $color->id }}"
+                                                    id="flexCheckDefault{{ $color->id }}">
+                                                <label class="form-check-label"
+                                                    for="flexCheckDefault{{ $color->id }}">
+                                                    {{ $color->name }}
+                                                </label>
 
-                                                </div>
-                                            @endforeach
                                             </div>
-                                            <div class="text-danger">
-                                                @error('colors')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card-body">
-                                            <h5 class="font-14 mb-2">Select Size
-                                            </h5>
-                                            <div style="display: flex; flex-wrap: wrap; ">
-                                                @foreach ($sizes as $size)
-                                                    <div class="form-check" style="margin-right: 5px">
-                                                        <input name="sizes[]"
-                                                            class="form-check-input @error('sizes') is-invalid @enderror"
-                                                            type="checkbox" value="{{ $size->id }}"
-                                                            id="flexCheckDefault{{ $size->id }}">
-                                                        <label class="form-check-label"
-                                                            for="flexCheckDefault{{ $size->id }}">
-                                                            {{ $size->name }}
-                                                        </label>
-
-                                                    </div>
-                                                @endforeach
-                                            </div>
-
-
-                                            <div class="text-danger">
-                                                @error('sizes')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-
-                                {{-- Image Section --}}
-                                <div class="mb-3">
-                                    <h4 class="header-title">Product Photo<span class="text-danger">*</span></h4>
-                                    <div id="productImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2 @error('img_full') is-invalid @enderror">
-
-                                        <i class="mdi mdi-image h1 text-secondary"></i>
-                                        <p>Select Photos</p>
+                                        @endforeach
                                     </div>
                                     <div class="text-danger">
-                                        @error('img_full')
+                                        @error('colors')
                                             <span>{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
-                                <div id="productImageMediaArea">
-                                </div>
 
-                                <div class="mb-3">
-                                    <h4 class="header-title mt-2">Product Slider Photos</h4>
-                                    <div id="productSliderImage" style="width: 100%; border:1px dashed gray"
-                                        class="text-center my-2">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="font-14 mb-2">Select Size
+                                    </h5>
+                                    <div style="display: flex; flex-wrap: wrap; ">
+                                        @foreach ($sizes as $size)
+                                            <div class="form-check" style="margin-right: 5px">
+                                                <input name="sizes[]"
+                                                    class="form-check-input @error('sizes') is-invalid @enderror"
+                                                    type="checkbox" value="{{ $size->id }}"
+                                                    id="flexCheckDefault{{ $size->id }}">
+                                                <label class="form-check-label"
+                                                    for="flexCheckDefault{{ $size->id }}">
+                                                    {{ $size->name }}
+                                                </label>
 
-                                        {{-- <i class="mdi mdi-image h1 text-secondary"></i> --}}
-                                        <i class="fa fa-file-image-o"></i>
-                                        <p>Prduct Gallery Photos</p>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div id="productSliderMediaArea" class="col-12"
-                                        style="display: flex; flex-wrap: wrap;">
 
+
+                                    <div class="text-danger">
+                                        @error('sizes')
+                                            <span>{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                 </div>
-
-                                <button type="submit" class="btn btn-primary">Upload Product <i
-                                    class="mdi mdi-arrow-right ms-1"></i></button>
-
+                            </div>
+                            <hr>
                         </div>
-                        </form>
-                    </div> {{-- card-body-end --}}
 
-                </div>
+                        {{-- Image Section --}}
+                        <div class="mb-3">
+                            <h4 class="header-title">Product Photo<span class="text-danger">*</span></h4>
+                            <div id="productImage" style="width: 100%; border:1px dashed gray"
+                                class="text-center my-2 @error('img_full') is-invalid @enderror">
+
+                                <i class="mdi mdi-image h1 text-secondary"></i>
+                                <p>Select Photos</p>
+                            </div>
+                            <div class="text-danger">
+                                @error('img_full')
+                                    <span>{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div id="productImageMediaArea">
+                        </div>
+
+                        <div class="mb-3">
+                            <h4 class="header-title mt-2">Product Slider Photos</h4>
+                            <div id="productSliderImage" style="width: 100%; border:1px dashed gray"
+                                class="text-center my-2">
+
+                                {{-- <i class="mdi mdi-image h1 text-secondary"></i> --}}
+                                <i class="fa fa-file-image-o"></i>
+                                <p>Prduct Gallery Photos</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="productSliderMediaArea" class="col-12" style="display: flex; flex-wrap: wrap;">
+
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Upload Product <i
+                                class="mdi mdi-arrow-right ms-1"></i></button>
+
+                    </div>
+                    </form>
+                </div> {{-- card-body-end --}}
+
             </div>
         </div>
-        <!-- end row -->
+    </div>
+    <!-- end row -->
 
 
     </div> <!-- container -->
@@ -414,7 +414,7 @@
 @endsection
 
 @push('css')
-<link href="{{ asset('backend') }}/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet"
+    <link href="{{ asset('backend') }}/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('backend') }}/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -444,7 +444,6 @@
     </script>
 @endpush
 @push('scripts')
-
     <!-- third party js -->
     <script src="{{ asset('backend') }}/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
 

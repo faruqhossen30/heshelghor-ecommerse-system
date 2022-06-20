@@ -44,12 +44,6 @@
 
                                         <p class="text-muted me-3 font-16">
                                             <span class="badge bg-success"><i class="mdi mdi-star"></i>{{$review->rating}}</span>
-                                            <span class="mdi mdi-star text-warning"></span>
-                                            <span class="mdi mdi-star text-warning"></span>
-                                            <span class="mdi mdi-star text-warning"></span>
-                                            <span class="mdi mdi-star text-warning"></span>
-                                            <span class="mdi mdi-star text-warning"></span>
-
                                         </p>
                                         <h2>Review content</h2>
                                         <hr/>
@@ -70,6 +64,7 @@
 
     </div> <!-- content -->
 @endsection
+
 
 
 

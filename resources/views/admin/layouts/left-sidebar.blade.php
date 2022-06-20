@@ -202,7 +202,7 @@ $countcourier = $allorder
                                 <a href="{{route('slider.index')}}">Slider Promotion</a>
                             </li>
                             <li>
-                                <a href="">Product Promotion</a>
+                                <a href="#">Product Promotion</a>
                             </li>
                         </ul>
                     </div>
