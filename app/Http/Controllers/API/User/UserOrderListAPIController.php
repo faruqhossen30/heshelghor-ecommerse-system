@@ -16,6 +16,7 @@ class UserOrderListAPIController extends Controller
         $order = Order::with('orderitems.product')
             ->where('user_id', $userId)
             ->where('user_cancel_status', false)
+            ->where('complete_status', false)
             ->where(function ($query) {
                 $query->where('payment_type', 'cash')
                     ->orWhere('status', 'Processing');

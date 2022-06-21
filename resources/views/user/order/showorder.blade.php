@@ -49,6 +49,7 @@
                         @endif
                     </div>
                 </div>
+
                 <div class="card-body">
                     <div>
                         <div class="row">
@@ -216,6 +217,9 @@
                 </div>
             </div>
         </div>
+        <div class="card-footer my-2">
+           <strong>Customer Support: PHONE: +88 02477763843, MOBILE: +8801318-760087</strong>
+        </div>
     </div>
 
 </div>
@@ -275,18 +279,18 @@
     $(document).ready(function() {
         var expiretime = $('.countdown').data('expire');
         // $('#clock').countdown('2022/06/19 24:00:00')
-        if(expiretime){
+        if (expiretime) {
             $('#clock').countdown(expiretime)
-            .on('update.countdown', function(event) {
-                var format = '%H:%M:%S';
-                if (event.offset.totalDays > 0) {
-                    format = '%-d day%!d ' + format;
-                }
-                if (event.offset.weeks > 0) {
-                    format = '%-w week%!w ' + format;
-                }
-                $(this).html(event.strftime(format));
-            })
+                .on('update.countdown', function(event) {
+                    var format = '%H:%M:%S';
+                    if (event.offset.totalDays > 0) {
+                        format = '%-d day%!d ' + format;
+                    }
+                    if (event.offset.weeks > 0) {
+                        format = '%-w week%!w ' + format;
+                    }
+                    $(this).html(event.strftime(format));
+                })
             // .on('finish.countdown', function(event) {
             //     $(this).html('This offer has expired!')
             //         .parent().addClass('disabled');
