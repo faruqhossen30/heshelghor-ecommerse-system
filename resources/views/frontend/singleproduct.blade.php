@@ -614,6 +614,7 @@ $wishlist = App\Models\Wishlist::where('product_id', $product->id)
     function take_snapshot() {
         Webcam.snap(function(data_uri) {
             $(".image-tag").val(data_uri);
+            console.log(data_uri)
             document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
         });
     }

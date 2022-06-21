@@ -43,6 +43,7 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedBigInteger('complete_authorid')->nullable()->default(null);
 
             $table->string('order_pin_no');
+            $table->boolean('status')->default(true);
             $table->dateTime('accepted_at')->nullable()->default(null);
             $table->dateTime('canceled_at')->nullable()->default(null);
             $table->dateTime('couriered_at')->nullable()->default(null);

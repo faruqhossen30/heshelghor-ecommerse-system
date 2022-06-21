@@ -29,7 +29,7 @@ class UserDashboardController extends Controller
     public function orders()
     {
         $userId = Auth::user()->id;
-        $orders = Order::with('user')->where('user_id', $userId)->latest()->get();
+        $orders = Order::with('user')->where('user_cancel_status', false)->where('user_id', $userId)->latest()->get();
 
         // return $orders;
         return view('user.order.userorder', compact('orders'));

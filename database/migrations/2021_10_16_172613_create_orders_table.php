@@ -28,6 +28,8 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->integer('amount');
             $table->string('status');
+            $table->boolean('user_cancel_status')->default(false);
+            $table->boolean('complete_status')->default(false);
             $table->string('address');
             $table->string('transaction_id');
             $table->string('currency')->default('BDT');
@@ -35,6 +37,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('division_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('upazila_id')->nullable();
+            $table->dateTime('user_canceled_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

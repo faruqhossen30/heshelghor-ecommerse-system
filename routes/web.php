@@ -13,11 +13,11 @@ use App\Http\Controllers\APIController;
 use App\Http\Controllers\Merchant\ProfileController;
 // ======================  User Order Start =========================
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\UserorderController;
 // ======================  User Order End ===========================
 use App\Http\Controllers\User\UserProductReviewController;
 
 // Product Controller
-use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Product\SubCategoryController;
 
 
@@ -115,9 +115,6 @@ Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name
 Auth::routes();
 // For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
-Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
-Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 
 // Four User
 Route::prefix('user')->group(function () {
@@ -125,6 +122,8 @@ Route::prefix('user')->group(function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
+        Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');;
+
         Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
         Route::get('account/update', [UserDashboardController::class, 'editAccount'])->name('user.account.edit');
@@ -244,7 +243,7 @@ Route::get('/test-server', [TestController::class, 'testserver'])->name('test');
 Route::get('ontest', [TestController::class, 'ontest'])->name('ontest');
 Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
 
-Route::post('callback', [UserOrderController::class, 'callback'])->name('callback');
+
 // SSLCOMMERZ Start
 use App\Http\Controllers\SslCommerzPaymentController;
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
