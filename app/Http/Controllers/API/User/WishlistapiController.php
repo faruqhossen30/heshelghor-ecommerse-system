@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\User;
 use App\Http\Controllers\Controller;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WishlistapiController extends Controller
 {
@@ -23,8 +24,20 @@ class WishlistapiController extends Controller
     {
         $userid = $request->user()->id;
 
-        $fileName = $request->photo->getClientOriginalName();
-        $request->photo->storeAs('wishlist', $fileName, 'public');
+        $img = $request->image;
+        $folderPath = "wishlist/";
+
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = uniqid() . '.jpg';
+
+        $file = $folderPath . $fileName;
+        Storage::put($file, $image_base64);
+
+        // return $fileName;
 
         $wishlist = Wishlist::create([
             'product_id' => $request->product_id,
