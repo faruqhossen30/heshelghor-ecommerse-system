@@ -58,10 +58,7 @@
                                             <div class="col-md-9">
                                                 <h2>Product Review</h2>
                                                 <p class="mb-5">{{ $orderitem->product->title }}</p>
-                                                {{-- <p class="mt-4"><span>Color:red</span></p> --}}
-                                                {{-- <p class="mt-4"><span>Color:red</span></p> --}}
-                                                {{-- <p>Product Id: <span>{{ $orderitem->product_id }}</span></p> --}}
-                                                {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins --}}
+                                             
                                                 <form action="{{ route('user.product.review.store', $orderitem->id) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="product_id" value="{{ $orderitem->product_id }}">
