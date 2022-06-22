@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 </div>
-                          
+
                             </div>
 
                             <table class="table table-bordered" width="100%">
@@ -159,7 +159,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="alt_customer_phone" class="form-label text-dark">Alternative
                                                 Mobile<span class="text-danger">*</span></label>
@@ -175,38 +175,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="alt_customer_email"
-                                                class="form-label text-dark">alt_customer_email<span
-                                                    class="text-danger">*</span></label>
-                                            <input required type="text" name="alt_customer_email" id="alt_customer_email"
-                                                class="form-control @error('alt_customer_email') is-invalid @enderror"
-                                                placeholder="Enter complain number"
-                                                value="{{ old('alt_customer_email') }}">
-                                            <div class="text-danger">
-                                                @error('alt_customer_email')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="alt_customer_name"
-                                                class="form-label text-dark">alt_customer_name<span
-                                                    class="text-danger">*</span></label>
-                                            <input required type="text" name="alt_customer_name" id="alt_customer_name"
-                                                class="form-control @error('alt_customer_name') is-invalid @enderror"
-                                                placeholder="Enter complain number"
-                                                value="{{ old('alt_customer_name') }}">
-                                            <div class="text-danger">
-                                                @error('alt_customer_name')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+
+
                                 </div>
 
                                 <div class="row">

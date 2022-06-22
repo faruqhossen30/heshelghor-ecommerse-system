@@ -90,6 +90,9 @@
                             <li>
                                 <a href="{{route('user.order')}}">My Orders</a>
                             </li>
+                            <li>
+                                <a href="{{route('user.order.complain.all')}}">All Complain </a>
+                            </li>
 
                         </ul>
                     </div>

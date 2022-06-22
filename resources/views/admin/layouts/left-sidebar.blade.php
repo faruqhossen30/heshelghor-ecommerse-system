@@ -221,6 +221,10 @@ $countcourier = $allorder
                                 <a href="{{ route('admin.order.all') }}">All Order</a>
                             </li>
                             <li>
+                                <a href="{{route('admin.order.complain.all')}}">All Complain</a>
+                                <span class="badge bg-danger rounded-pill float-end"></span>
+                            </li>
+                            <li>
                                 <a href="{{route('admin.allorder.pending')}}">Pending
                                     @if($countpending > 0)
                                     <span class="badge bg-danger rounded-pill float-end">{{$countpending}}</span>

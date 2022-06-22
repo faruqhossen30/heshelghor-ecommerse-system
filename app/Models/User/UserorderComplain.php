@@ -2,15 +2,12 @@
 
 namespace App\Models\User;
 
-use App\Models\Merchant\Order;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usercomplain extends Model
+class UserorderComplain extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'orderitem_id',
         'product_id',
@@ -45,6 +42,4 @@ class Usercomplain extends Model
     {
         return $this->hasOne(Order::class, 'id', 'order_id');
     }
-
-
 }

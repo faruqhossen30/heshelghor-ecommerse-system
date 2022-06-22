@@ -140,6 +140,8 @@ Route::prefix('user')->group(function () {
         Route::get('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
         Route::post('complainstore',[UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
 
+        Route::get('complain',[UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
+
     });
 });
 use App\Http\Controllers\PointManager\PointManagerLoginController;

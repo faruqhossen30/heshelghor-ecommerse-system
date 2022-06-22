@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsercomplainsTable extends Migration
+class CreateUserorderComplainsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,14 @@ class CreateUsercomplainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('usercomplains', function (Blueprint $table) {
+        Schema::create('userorder_complains', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('orderitem_id')->nullable();
-            $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('complain_number')->nullable();
-            $table->integer('order_number')->nullable();
             $table->dateTime('delivery_date');
             $table->dateTime('delivery_time');
-            $table->string('customer_name');
-            $table->string('customer_email');
-            $table->integer('customer_mobile');
-            $table->string('customer_address');
-            $table->string('alt_customer_name');
-            $table->integer('alt_customer_phone');
-            $table->string('alt_customer_email');
+            $table->string('alt_customer_phone');
             $table->string('alt_customer_address');
             $table->string('complain_message');
             $table->string('defect_pic_1');
@@ -47,6 +39,6 @@ class CreateUsercomplainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usercomplains');
+        Schema::dropIfExists('userorder_complains');
     }
 }

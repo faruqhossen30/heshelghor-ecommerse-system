@@ -33,7 +33,9 @@ use App\Http\Controllers\API\SliderapiController;
 // Courier
 use App\Http\Controllers\API\User\BuyNowAPIController;
 use App\Http\Controllers\API\User\BuyNowCourierAPIController;
+use App\Http\Controllers\API\User\OrdercomplainAPIController;
 use App\Http\Controllers\API\User\WishlistapiController;
+use App\Http\Controllers\User\UsercomplainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,6 +193,11 @@ Route::prefix('user')->group(function () {
         Route::post('createitem', [UserOrderAPIController::class, 'createOrderitem']);
         Route::post('deliveryaddress', [UserOrderAPIController::class, 'deliveryAddress']);
 
+        // user complain
+
+        Route::get('order/complain/list',[OrdercomplainAPIController::class, 'userorderComplainList'])->where('name', '[A-Za-z]+');
+        Route::get('order/complain/{id}',[OrdercomplainAPIController::class, 'userorderComplainsindetails']);
+        Route::post('order/complain/store',[OrdercomplainAPIController::class, 'usercomplainstore']);
         // Courier
         Route::get('/courier/divisions', [BuyNowCourierAPIController::class, 'divisionList']);
         Route::get('/courier/districtlist/{id}', [BuyNowCourierAPIController::class, 'getdistrictbydivisionid']);
