@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Job;
+use App\Models\Admin\Market;
+use App\Models\Admin\Promotion\Slider;
+use App\Models\Merchant\Shop;
 use App\Models\Product\Product;
 use App\Models\Product\Category;
 use App\Models\Product\SubCategory;
@@ -17,37 +20,17 @@ class HomepageController extends Controller
     public function homePage()
     {
 
-        // $categories = Cache::rememberForever('categories', function () {
-        //     return Category::with('products')->orderBy('name', 'asc')->get();
-        // });
+        $categories = Category::inRandomOrder()->take(12)->get();
+        $shops = Shop::inRandomOrder()->take(12)->get();
+        $markets = Market::inRandomOrder()->take(12)->get();
+        $sliders = Slider::get();
+        $featursproducts = Product::where('category_id', 38)->select('id', 'title', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
-        // $subcategories = Cache::rememberForever('subcategories', function () {
-        //     return SubCategory::inRandomOrder()->get();
-        // });
-        // $brands = Cache::rememberForever('brands', function () {
-        //     return Brand::latest('id')->get();
-        // });
-        // $products = Cache::rememberForever('products', function () {
-        //     return Product::latest('id')->paginate(8);
-        // });
+        $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
+        // return $featursproducts;
 
-
-        $categories = Category::with('products')->orderBy('name', 'asc')->get();
-        $subcategories = SubCategory::with('category')->get()->random(10);
-        $brands = Brand::get()->random(10);
-
-
-        $products = Product::active()->with('category', 'subcategory')->where('category_id', 38)->inRandomOrder()->take(8)->get();
-        // return $products;
-
-
-        return view('frontend.homepage', compact(
-            'categories',
-            'subcategories',
-            'brands',
-            'products'
-        ));
+        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct'));
     }
     // Search
     public function search($keyword)
@@ -90,5 +73,15 @@ class HomepageController extends Controller
     public function returnPolicy()
     {
         return view('frontend.return-policy');
+    }
+
+    public function ajaxOffcanvascategory()
+    {
+        // return "welcome";
+        $categories = Category::with('subcategories')->get();
+        // return $categories;
+        $data = view('frontend.ajax.offcanvascategories', compact('categories'));
+
+        return $data;
     }
 }

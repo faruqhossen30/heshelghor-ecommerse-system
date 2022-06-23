@@ -4,405 +4,206 @@ $subTotal = Cart::priceTotal();
 $totalProduct = Cart::count();
 $totalItem = count(Cart::content());
 @endphp
-
 @extends('frontend.layouts.app')
-@section('title')
-    HeshelGhor | Checkoutpage
-@endsection
 
 @section('content')
-    <main class="main checkout">
-        <div class="page-content pt-7 pb-10 mb-10">
-            <div class="step-by pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="{{ route('cart.page') }}">1. Shopping Cart</a></h3>
-                <h3 class="title title-simple title-step active"><a href="{{ route('checkoutpage') }}">2. Checkout</a></h3>
-                <h3 class="title title-simple title-step"><a href="#">3. Order Complete</a></h3>
-            </div>
-            <div class="container mt-7">
-                <form action="{{ route('pay') }}" method="POST" class="form">
-                    @csrf
+<div class="checkout-area pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Billing & Deliver Address</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Checkout</button>
+                </li>
+            </ul>
+            <form action="{{ route('pay') }}" method="POST">
+                @csrf
+                <input type="hidden" name="buytype" value="checkout">
+                <input type="hidden" name="total_item" value="{{ Cart::content()->count() }}">
+                <input type="hidden" name="total_prodcut" value="{{ Cart::count() }}">
+                <input type="hidden" name="total_product_price" value="{{ Cart::priceTotal() }}">
+                {{-- Delivery --}}
+                <input type="hidden" name="total_delivery_cost" value="">
+                <input type="hidden" name="total_amount" value="">
 
-                    <input type="hidden" value="{{ $totalProduct }}" name="total_prodcut">
-                    <input type="hidden" value="{{ $totalItem }}" name="total_item">
-                    <input type="hidden" value="0" name="delivery_cost">
-                    <input type="hidden" value="{{ $subTotal }}" name="product_price">
-                    <input type="hidden" value="0" name="total_price">
 
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                    <div class="row">
-                        <div class="col-lg-7 mb-6 mb-lg-0 pr-lg-4">
-                            <h3 class="title title-simple text-left text-uppercase">Billing Details</h3>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Full Name *</label>
-                                    <input type="text" value="{{ $user->name }}"
-                                        class="form-control @error('name') is-invalid @enderror" name="name" />
-                                    <div class="text-danger">
-                                        @error('name')
-                                            <span>{{ $message }}</span>
-                                        @enderror
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <div class="billing-details">
+                                    <h4>Billing Details </h4>
+
+                                    <div class="form-group">
+                                        <label for="">Full Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Enter Full Name" value="{{$user->name}}">
                                     </div>
-                                </div>
-                            </div>
-                            <label>Company Name (Optional)</label>
-                            <input type="text" class="form-control" name="company_name" />
-                            <div class="row">
-                                <div class="col">
-                                    <label>Delivery Address *</label>
-                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                        name="address" />
-                                    <div class="text-danger">
-                                        @error('address')
-                                            <span>{{ $message }}</span>
-                                        @enderror
+                                    <div class="form-group">
+                                        <label for="">Email Address</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Enter Email Address" value="{{$user->email}}">
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label>ZIP</label>
-                                    <input type="text" class="form-control" name="zip" />
-                                </div>
-                                <div class="col-xs-6">
-                                    <label>Mobile No *</label>
-                                    <input value="{{ $user->mobile }}" type="text"
-                                        class="form-control @error('mobile') is-invalid @enderror" name="mobile" />
-                                    <div class="text-danger">
-                                        @error('mobile')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <label>Email Address *</label>
-                            <input type="text" value="{{ $user->email }}" class="form-control" name="email" />
-                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver
-                                service</h2>
-                            <div>
-                                <label>Select Divission *</label>
-                                <div class="select-box">
-                                    <select name="division_id" class="form-control">
-                                        <option value="">Select Divission</option>
-                                        @foreach ($divisions as $division)
-                                            <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div>
-                                <label>Select District *</label>
-                                <div class="select-box">
-                                    <select name="district_id"
-                                        class="form-control @error('district_id') is-invalid @enderror" disabled required>
-                                        <option value="">select </option>
-                                    </select>
-                                    <div class="text-danger">
-                                        @error('district_id')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <label>Select Upazila *</label>
-                                <div class="select-box">
-                                    <select name="upazila_id" class="form-control @error('upazila_id') is-invalid @enderror"
-                                        disabled required>
-                                        <option value="" selected>Select</option>
-
-                                    </select>
-                                    <div class="text-danger">
-                                        @error('upazila_id')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="title title-simple text-uppercase text-left">Additional Information</h2>
-                            <label>Order Message (Optional)</label>
-                            <textarea name="message" class="form-control pb-2 pt-2 mb-0" cols="30" rows="5"
-                                placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
-                        </div>
-                        <aside class="col-lg-5 sticky-sidebar-wrapper">
-                            <div class="sticky-sidebar mt-1" data-sticky-options="{'bottom': 50}">
-                                <div class="summary pt-5">
-                                    <h3 class="title title-simple text-left text-uppercase">Your Order</h3>
-                                    <table class="table order-table">
-
-                                        <tbody>
-                                            @php
-                                                $serial = 1;
-                                            @endphp
-                                            @foreach ($cartItems as $cartItem)
-                                                <tr>
-                                                    <th>{{ $serial++ }}</th>
-                                                    <td>{{ $cartItem->name }}</td>
-                                                    <td>{{ $cartItem->qty }} x ৳{{ $cartItem->price }}</td>
-                                                    <td>৳{{ $cartItem->subtotal }}</td>
-                                                </tr>
-                                            @endforeach
-                                            <hr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Sub total:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="sub_total">{{ $subTotal }}</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Total Item:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6><span id="product_quantity">{{ $totalProduct }}</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Delivery Cost:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="delivery_charge">0</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Total:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="total_product_price">{{ $subTotal }}</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-
-                                    <div>
-                                        <input type="hidden" value="" name="delivery_system_name">
-                                        <input type="hidden" value="" name="payment_method_name">
-
-                                    </div>
-                                    <div class="">
-                                        <label>Payment Method<strong></strong></label>
-                                        <div class="select-box">
-                                            <select name="payment_method_id"
-                                                class="form-control @error('payment_method_id') is-invalid @enderror"
-                                                required>
-                                                <option value="">Select one</option>
-                                                @foreach ($pamymentmethods as $system)
-                                                    <option value="{{ $system->id }}" name="welcome">
-                                                        {{ $system->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="text-danger">
-                                                @error('payment_method_id')
-                                                    <span>{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div id="payment_img">
-                                                <img src="{{ asset('frontend/images/walletmix2.png') }}" alt="">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Mobile No.</label>
+                                                <input type="text" class="form-control" name="mobile" placeholder="Enter Your Mobile Number" value="{{$user->mobile}}">
                                             </div>
                                         </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Zip code</label>
+                                                <input type="text" class="form-control" name="zip" placeholder="Enter Your Zip Code">
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="form-checkbox mt-4 mb-5">
-                                        <input type="checkbox" class="custom-checkbox" id="terms-condition"
-                                            name="terms-condition" value="1" />
-                                        <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to the website <a href="#">terms and conditions </a>*
-                                        </label>
+                                    <div class="form-group">
+                                        <label for="">Delivery Address</label>
+                                        <input type="text" class="form-control" name="address" placeholder="Enter Your Address" value="{{$user->address}}">
                                     </div>
-                                    <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
+
+                                    <div class="form-group">
+                                        <label for="">Order Message (Optional) </label>
+                                        <textarea name="note" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                    </div>
+
                                 </div>
                             </div>
-                        </aside>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="location-details billing-details">
+                                    <h4>Please Select Location For deliver service</h4>
+
+                                    <div class="form-group">
+                                        <label for="">Select Division</label>
+                                        <select name="division_id" class="form-select form-control">
+                                            @foreach ($divisions as $division)
+                                            <option value="{{$division->id}}">{{$division->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Select District </label>
+                                        <select name="district_id" class="form-select">
+                                            <option value="">Dhaka</option>
+                                            <option value="">Dhaka</option>
+                                            <option value="">Dhaka</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Select Upazila </label>
+                                        <select name="upazila_id" class="form-select">
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="location-details">
+                                    <button type="button" class="btn btn-secondary mt-4">Next</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </form>
-            </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                        <div class="row">
+                            <div class="col-xl-8  col-lg-8 ">
+                                <div class="cart-list">
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">S.N</th>
+                                                <th scope="col">PRODUCT</th>
+                                                <th scope="col">PHOTO</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">TOTAL</th>
+                                                <th scope="col">Delivery</th>
+                                                <th scope="col">Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($cartItems as $item)
+                                            <input type="hidden" name="courier_id[{{$item->id}}]" value="">
+                                            <input type="hidden" name="courier_packege_desc[{{$item->id}}]" value="">
+                                            <input type="hidden" name="delivery_cost[{{$item->id}}]" value="">
+                                            <tr>
+                                                <td>{{$serial++}}</td>
+                                                <td>{{$item->name}}</td>
+                                                <td><img src="{{$item->options->photo}}" style="width:auto;height:50px" alt="">
+                                                </td>
+                                                <td>{{ $item->qty }} x ৳{{ $item->price }}</td>
+                                                <td><strong>৳{{$item->subtotal}}</strong></td>
+                                                <td>
+                                                    <select name="deliver_system[]" class="form-select" id="delivery{{$item->id}}" data-id={{$item->id}} data-qty={{$item->qty}}>
+
+                                                    </select>
+                                                </td>
+                                                <td id="dcost{{$item->id}}">৳0</td>
+                                            </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xl-4  col-lg-4 ">
+                                <div class="card order-summery">
+                                    <ul class="list-group list-group-flush">
+                                        <h4>Summery</h4>
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <h6>Total Product Price: </h6>
+                                            <span>৳{{$subTotal}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <h6>Total Delivery Cost: </h6>
+                                            <span id="totaldelivercost">৳0</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <h6>Total</h6>
+                                            <span id="totalAmount">৳{{$subTotal}}</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <h6>Payment Method</h6>
+
+
+                                            <div class="form-group">
+                                                <span><input type="radio" name="payment_type" value=""> None</span>
+                                                <span><input type="radio" name="payment_type" value="cash"> Cash On Delivery</span>
+                                                <span><input type="radio" name="payment_type" value="online"> Payment Now</span>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group">
+                                                <span>
+                                                    <input type="checkbox" name="terms-condition" value="1"> I have read and agree to <a href="#">terms and conditions</a> and <a href="#">privacy
+                                                        policy</a>
+                                                </span>
+                                                <span>
+                                                    <input type="checkbox" name="terms-condition2" value="1"> I have read and agree to <a href="#">Return & Refund Policy</a>
+                                                </span>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-secondary">Order</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
         </div>
-    </main>
-    <!-- End Main -->
+    </div>
+    <!-- checkout end -->
+</div>
 @endsection
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/style.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-@endpush
 
-@push('scripts')
-    <script>
-        $(function() {
-            var division = $('select[name=division_id]');
-            var district = $('select[name=district_id]');
-            var upazila = $('select[name=upazila_id]');
-
-            // For District
-            division.change(function() {
-                district.removeAttr('disabled');
-                district.empty();
-                upazila.empty();
-                var divisionID = $(this).val();
-                if (divisionID) {
-                    // console.log(divisionID)
-                    district.append(
-                                    `<option selected>Select</option>`
-                                );
-                    $.ajax({
-                        url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`,
-                        method: 'GET',
-                        success(data) {
-                            // console.log(data);
-                            data.forEach(function(row) {
-                                district.append(
-                                    `<option value="${row.id}">${row.name}</option>`
-                                );
-                            });
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-
-            // For Upazilla
-            district.change(function() {
-                upazila.removeAttr('disabled');
-                upazila.empty();
-                var districtID = $(this).val();
-                if (districtID) {
-                    upazila.append(
-                                    `<option selected>Select</option>`
-                                );
-
-                    $.ajax({
-                        url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`,
-                        method: 'GET',
-                        success(data) {
-                            console.log(data);
-                            data.forEach(function(row) {
-                                upazila.append(
-                                    `<option value="${row.id}">${row.name}</option>`
-                                );
-                            });
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-            // Show Courier server by upazila/thana
-            upazila.change(function() {
-                // upazila.removeAttr('disabled');
-                var upazilaid = $(this).val();
-                if (upazilaid) {
-                    console.log(upazilaid)
-
-                    $.ajax({
-                        url: `/checkupazilawisecourierupalizalist/${upazilaid}`,
-                        method: 'GET',
-                        success(data) {
-                            // console.log('for courier list',data);
-                            $('#couriertablerow').empty()
-                            $('#couriertablerow').append(data).hide().fadeIn(2000);
-
-                        },
-                        error() {
-                            console.log('courier error');
-                        },
-                    });
-                }
-            });
-
-        });
-
-        // For Price Calculation
-        var sub_total = $('#sub_total');
-        var product_quantity = $('#product_quantity');
-        var productNumber = parseInt(product_quantity.text())
-        var delivery_charge = $('#delivery_charge');
-        var total_product_price = $('#total_product_price');
-
-        // For Hidden input
-        var delivery_cost = $('input[name="delivery_cost"]');
-        var total_price = $('input[name="total_price"]');
-        var delivery_system_name = $('input[name="delivery_system_name"]');
-
-
-        $(document).on('change select', 'input[name="delivery_system"]', function() {
-            let dhaka_to_dhaka_price = $(this).data('dhaka_to_dhaka_price');
-            let all_place_price = $(this).data('all_place_price');
-            let dhaka_to_dhaka_per_kg = $(this).data('dhaka_to_dhaka_per_kg');
-            let dhaka_to_outside_per_kg = $(this).data('dhaka_to_outside_per_kg');
-            // alert(dhaka_to_outside_per_kg)
-
-            delivery_cost.val(all_place_price * productNumber); // for hidden input
-            delivery_charge.text(all_place_price * productNumber); // For Show calculate
-
-            totalAmount();
-
-            // if (deliverySystemId) {
-            //     $.get(`{{ url('deliverycost/${deliverySystemId}') }}`, function(data, status) {
-            //         if (data) {
-            //             console.log(data);
-            //             delivery_system_name.val(data.name);
-            //             // console.log(delivery_system_name.val());
-            //             // console.log(payment_system_name.val());
-            //             delivery_cost.val(data.price * productNumber); // for hidden input
-            //             delivery_charge.text(data.price * productNumber); // For Show calculate
-            //             totalAmount();
-            //         }
-            //     });
-            // };
-
-        });
-
-
-        // claculate
-        function totalAmount() {
-            var inTotal = parseFloat(sub_total.text()) + parseFloat(delivery_charge.text());
-            var sum = inTotal.toFixed(2)
-            total_price.val(sum);
-            total_product_price.html(sum);
-        }
-
-
-        var payment_method_name = $('input[name="payment_method_name"]');
-        var payment_img = $('#payment_img');
-        payment_img.hide()
-
-        $(document).on('change', 'select[name="payment_method_id"]', function() {
-            var payment_method_id = $('select[name="payment_method_id"]').val();
-            payment_img.hide()
-            if (payment_method_id) {
-                // console.log(payment_method_id);
-                $.get(`{{ url('paymentsystemname/${payment_method_id}') }}`, function(data, status) {
-                    if (data) {
-                        // console.log(data);
-                        payment_method_name.val(data.name)
-                    }
-                });
-                // Online payment
-                $.get(`setting/setting-payment-system`, function(data, status) {
-                    if (data) {
-                        data.map(function(d) {
-                            if (payment_method_id == d.payment_method_id) {
-                                payment_img.show();
-                            }
-                        });
-
-                    }
-                });
-            };
-
-
-        });
-    </script>
+@push('script')
+@include('frontend.script.checkoutpagescript')
 @endpush

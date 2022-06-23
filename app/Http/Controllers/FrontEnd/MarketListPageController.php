@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\Division;
 use App\Models\Admin\Market;
 use App\Models\Merchant\Shop;
 use Illuminate\Http\Request;
@@ -11,9 +12,31 @@ class MarketListPageController extends Controller
 {
     public function marketList()
     {
-        $markets = Market::orderBy('name', 'asc')->paginate(20);
+        $divisions = Division::with('districts')
+            ->orderBy('name', 'asc')
+            ->get();
+
+        $district_id = null;
+        if (isset($_GET['district_id'])) {
+            $district_id = $_GET['district_id'];
+        }
+
+        $keyword = null;
+        if (isset($_GET['keyword'])) {
+            $keyword = $_GET['keyword'];
+        }
+
+        $markets = Market::
+            when($district_id, function ($query, $district_id) {
+                $query->where('district_id', $district_id);
+            })
+            ->when($keyword, function ($query, $keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            })
+            ->select('id', 'name', 'slug', 'address', 'image',)
+            ->paginate(30);
         // return $markets;
-        return view('frontend.marketlist.marketlist', compact('markets'));
+        return view('frontend.marketpage', compact('markets', 'divisions'));
     }
 
     public function marketWiseShopList(Request $request, $id)

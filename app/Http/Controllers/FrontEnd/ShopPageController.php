@@ -12,60 +12,65 @@ class ShopPageController extends Controller
 {
     public function index(Request $request)
     {
-        $brands = Brand::get();
-        $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
+        // $brands = Brand::get();
+        // $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
+        // $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
 
-        $filter_location = [];
-        $filter_category = [];
-        $filter_brand = [];
-        $orderby = null;
-        $count = null;
-
-
-        if (isset($_GET['location'])) {
-            $filter_location = $_GET['location'];
-        }
-
-        if (isset($_GET['category'])) {
-            $filter_category = $_GET['category'];
-        }
-
-        if (isset($_GET['brand'])) {
-            $filter_brand = $_GET['brand'];
-        }
-
-        if (isset($_GET['orderby'])) {
-
-            if($_GET['orderby'] == 'lowtohigh'){
-                $orderby = 'asc';
-            }
-            if($_GET['orderby'] == 'hightolow'){
-                $orderby = 'desc';
-            }
-
-        }
-        if (isset($_GET['count'])) {
-            $count = $_GET['count'];
-        }
+        // $filter_location = [];
+        // $filter_category = [];
+        // $filter_brand = [];
+        // $orderby = null;
+        // $count = null;
 
 
+        // if (isset($_GET['location'])) {
+        //     $filter_location = $_GET['location'];
+        // }
 
-        $products = Product::active()->with('category', 'subcategory')
-        ->when($filter_category, function ($query, $filter_category) {
-            return $query->whereIn('category_id', $filter_category);
-        })
-        ->when($filter_brand, function ($query, $filter_brand) {
-            return $query->whereIn('brand_id', $filter_brand);
-        })
-        ->when($orderby, function ($query, $orderby) {
-            return $query->orderBy('price', $orderby);
-        })
-        ->latest('id')
-        ->paginate($count ?? 20);
+        // if (isset($_GET['category'])) {
+        //     $filter_category = $_GET['category'];
+        // }
+
+        // if (isset($_GET['brand'])) {
+        //     $filter_brand = $_GET['brand'];
+        // }
+
+        // if (isset($_GET['orderby'])) {
+
+        //     if($_GET['orderby'] == 'lowtohigh'){
+        //         $orderby = 'asc';
+        //     }
+        //     if($_GET['orderby'] == 'hightolow'){
+        //         $orderby = 'desc';
+        //     }
+
+        // }
+        // if (isset($_GET['count'])) {
+        //     $count = $_GET['count'];
+        // }
 
 
-        return view('frontend.shoppage', compact('categories', 'products', 'brands'));
+
+        // $products = Product::active()->with('category', 'subcategory')
+        // ->when($filter_category, function ($query, $filter_category) {
+        //     return $query->whereIn('category_id', $filter_category);
+        // })
+        // ->when($filter_brand, function ($query, $filter_brand) {
+        //     return $query->whereIn('brand_id', $filter_brand);
+        // })
+        // ->when($orderby, function ($query, $orderby) {
+        //     return $query->orderBy('price', $orderby);
+        // })
+        // ->latest('id')
+        // ->paginate($count ?? 20);
+
+
+        // return view('frontend.shoppage', compact('categories', 'products', 'brands'));
+
+        $products = Product::active()->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')->latest()->paginate(20);
+        $categories = Category::select('id', 'name', 'slug', 'image')->orderBy('name', 'asc')->get();
+        // return $categories;
+        return view('frontend.productspage', compact('products', 'categories'));
     }
     public function productWithCategory(Request $request, $id)
     {

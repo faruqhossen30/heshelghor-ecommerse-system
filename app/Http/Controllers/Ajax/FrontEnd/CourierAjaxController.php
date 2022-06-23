@@ -71,7 +71,7 @@ class CourierAjaxController extends Controller
 
             $couriers = Courier::whereIn('id', $courierids)->get();
 
-            $data = view('frontend.inc.checkoutcourierlistoption', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
+            $data = view('frontend.ajax.checkoutcourierlistoption', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
 
             return $data;
 

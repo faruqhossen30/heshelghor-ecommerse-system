@@ -52,6 +52,7 @@ use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
+Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcanvascategory']);
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
 Route::get('/promotion', [HomepageController::class, 'promotion'])->name('promotion');
@@ -100,7 +101,8 @@ Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('cart.add'
 Route::get('/cart', [CartController::class, 'cartPage'])->name('cart.page');
 Route::post('/cart/update/{rowId}', [CartController::class, 'cartItemUpdate'])->name('cart.ItemUpdate');
 Route::get('/cart/remove', [CartController::class, 'removeAllItem'])->name('cart.removeallItem');
-Route::get('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
+Route::post('/cart/remove/{rowId}', [CartController::class, 'removeCartItem'])->name('cart.removeItem');
+Route::post('ajax/cart-item/list', [CartController::class, 'ajaxCartItemList'])->name('cart.items.list');
 Route::get('/buy-now/{id}', [BuyNowController::class, 'buyNow'])->name('buynow')->middleware('auth');
 Route::get('/buynow/complete-order', [BuyNowController::class, 'buynowOrdercomplete'])->name('buynowordercomplete');
 // Wishlist
@@ -115,6 +117,9 @@ Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name
 Auth::routes();
 // For Authincate User
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('checkout', [CheckoutController::class, 'index'])->name('checkoutpage');
+Route::post('ordernow', [UserOrderController::class, 'orderNow'])->name('ordernow');
+Route::get('order/complete', [UserOrderController::class, 'orderComplete'])->name('ordercomplete');
 
 // Four User
 Route::prefix('user')->group(function () {

@@ -1,210 +1,184 @@
-@php
-$header = App\Models\Setting\SettingHeader::first();
-$contact = App\Models\Setting\SettingContact::first();
-$socialmedia = App\Models\Setting\SettingSocialMedia::first();
-$categories = App\Models\Product\Category::with('subcategories')->orderBy('name', 'asc')->get();
-// $divissions = App\Models\Admin\Location\Division::with('districts')
-//     ->orderBy('name', 'asc')
-//     ->get();
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>@yield('title')</title>
-    @yield('OG')
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="keywords" content="" />
-    <meta name="description" content="HeshelGhor - Store Of Needs.">
-    <meta name="author" content="HeshelGhor Tech Team">
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/re-responsive.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png">
-
-    <script>
-        WebFontConfig = {
-            google: {
-                families: ['Poppins:400,500,600,700,800,900']
-            }
-        };
-        (function(d) {
-            var wf = d.createElement('script'),
-                s = d.scripts[0];
-            wf.src = '{{ asset('frontend') }}/js/webfont.js';
-            wf.async = true;
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-    </script>
-
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/vendor/animate/animate.min.css">
-
-    <!-- Plugins CSS File -->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('frontend') }}/vendor/magnific-popup/magnific-popup.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {{-- Sweet Alert --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css"
-        integrity="sha512-hwwdtOTYkQwW2sedIsbuP1h0mWeJe/hFOfsvNKpRB3CkRxq8EW7QMheec1Sgd8prYxGm1OM9OZcGW7/GUud5Fw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    {{-- For push --}}
-    @stack('styles')
-    <!-- Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/demo3.min.css">
-    <style>
-        .header-middle {
-            padding-top: .7rem;
-            padding-bottom: .7rem;
-            color: #222;
-            background: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        a .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, 0.06);
-        }
-        #swal2-title{
-            font-size: 16px;
-        }
-        .product-media a img{
-            max-height: 220px;
-        }
-
-    </style>
+    <title>Heshelghor | Store of needs</title>
 </head>
 
-<body class="home">
+<body>
+    @include('frontend.inc.quickview')
+    <!-- header start -->
+    @include('frontend.layouts.header')
+    <!-- header end -->
 
-    <div class="page-wrapper">
-        <h1 class="d-none">Riode - Responsive eCommerce HTML Template</h1>
-        <header class="header">
-            {{-- Topbar --}}
-            @include('frontend.layouts.topbar', compact('header'))
-            {{-- Headeer --}}
-            @include('frontend.layouts.searchbar')
-            @php
-                // cart count
-                $totalitem = Cart::count();
-                $totalprice = Cart::priceTotal();
-            @endphp
-            {{-- Menu --}}
-            @include('frontend.layouts.menu')
-        </header>
-        <!-- End Header -->
-        @include('frontend.partials.modal');
-        <!-- Start of Main/content -->
-        @yield('content')
-        <!-- End of Main/content -->
+    <!-- navigation start -->
+    @include('frontend.layouts.nav')
+    <!-- navigation end -->
 
-        @include('frontend.layouts.footer', compact('contact', 'socialmedia'))
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-        </script>
-        <!-- Plugins JS File -->
-        <script src="{{ asset('frontend') }}/vendor/jquery/jquery.min.js"></script>
-        <script src="{{ asset('frontend') }}/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="{{ asset('frontend') }}/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
-        <script src="{{ asset('frontend') }}/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-        <script src="{{ asset('frontend') }}/vendor/owl-carousel/owl.carousel.min.js"></script>
-        {{-- <script src="{{ asset('frontend') }}/vendor/sticky/sticky.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"
-                integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        {{-- For stack --}}
-
-        <!-- Main JS File -->
-        <script src="{{ asset('frontend') }}/js/main.min.js"></script>
-
-        @stack('scripts')
+    @yield('content')
 
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script>
-            let search = document.getElementById('searchInpur');
-            let searchResultDiv = document.getElementById('searchResultDiv');
-            let searchProductList = document.getElementById('searchProductList');
+    <!-- footer start -->
+    @include('frontend.layouts.footer')
+    <!-- footer end -->
 
-            // console.log(search)
+    <!-- mobile bottom nav start -->
+    <div class="mobile-bottom-nav text-center d-lg-none">
+        <div class="row">
+            <div class="col"><a href="{{route('homepage')}}"><i class="fa fa-home"></i>Home</a></div>
+            <div class="col" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i class="fa-solid fa-list-check"></i>Categories</div>
+            <div class="col mobile-nav-active"><a href="product.html"><i class="fa-solid fa-cart-plus"></i>Products</a></div>
+            <div class="col"><a href="#"><i class="fa-solid fa-bell"></i>Notifications</a></div>
+            <div class="col"><a href="#"><i class="fa fa-user"></i>Account</a></div>
+        </div>
+    </div>
+    <!-- mobile bottom nav end -->
 
-            search.addEventListener('keyup', function(event) {
-                let keyword = event.target.value.trim();
-                let url = `${window.location.origin}/search/${keyword}`;
-                if (keyword.length == 0) {
-                    searchResultDiv.style.display = 'none'
-                };
-                if (keyword) {
-                    axios.get(url)
-                        .then(function(res) {
-                            if (res.data.length > 0) {
-                                searchResultDiv.style.display = 'block'
-                                // console.log(res);
-                                li = res.data.map(function(post) {
-                                    // return `<a href="product/${post.id}" class="list-group-item">${post.title}</a>`;
-                                    return `<a href="${window.location.origin}/product/${post.slug}" class="list-group-item d-flex justify-content-between align-items-center">
-                                       <div>
-                                           <img src="${post.img_small}" alt="${post.title}" class="img-thumbnail" style="width: 40px; height:40px">
-                                            <span>${post.title}</span>
-                                       </div>
-                                       <div>
-                                            <span>৳${post.price}</span>
-                                        </div>
-                                    </a>`;
-                                });
-                                li = li.join(' ');
-                                searchProductList.innerHTML = li;
-                            };
 
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                        })
-                };
+    <script src="{{ asset('frontend') }}/js/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/popper.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.exzoom.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.scrollUp.js"></script>
+    <script src="{{ asset('frontend') }}/js/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script type="text/javascript">
+        // scrollToTop
+        $.scrollUp({
+            scrollName: 'scrollUp', // Element ID
+            topDistance: '300', // Distance from top before showing element (px)
+            topSpeed: 300, // Speed back to top (ms)
+            animation: 'fade', // Fade, slide, none
+            animationInSpeed: 200, // Animation in speed (ms)
+            animationOutSpeed: 200, // Animation out speed (ms)
+            scrollText: '<i class="fa fa-long-arrow-up"></i>', // Text for element
+            activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+        });
+
+        const observer = lozad();
+        observer.observe();
+
+    </script>
+    @stack('script')
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
-        </script>
-        <script>
-            // function showModal(){
-            //     // alert('form modal function');
-            //     $('#viewDataModal').modal('show')
-            // }
-            var modalLoading = $('#modalLoading');
-            $(document).on('click', '.view-data', function() {
-                let id = $(this).data('id');
+            $('#offcanvasExample').on('shown.bs.offcanvas', function() {
+                $.ajax({
+                    // xhr: function(some){
+                    //     var xhr = new window.XMLHttpRequest();
+                    //     console.log(xhr);
+                    // },
+                    url: 'http://127.0.0.1:8000/ajax/offcanvascategories'
+                    , type: 'POST'
+                    , beforeSend: function() {
+                        console.log('beforesend')
+                        $('#categoriyOffcanvas').append(
+                            `
+                            <div class="snippet" data-title=".dot-flashing" style="padding: 10px 0;">
+                                        <div class="stage d-flex justify-content-center">
+                                            <div class="dot-flashing"></div>
+                                        </div>
+                                    </div>
+                            `
+                        )
+                    }
+                    , success: function(data) {
+                        console.log('success')
+                        $('#categoriyOffcanvas').empty()
+                        $('#categoriyOffcanvas').append(data)
+                    }
+                    , error: function(error) {
+                        console.log(error)
+                    }
+                })
 
-                if (id) {
-                    $('#viewDataModal').modal('show')
-                    modalLoading.show();
-                    $('#viewDataModal #modalBody').html('');
-                    $.ajax({
+            });
+
+            // Quick View
+
+            $('.quickviewbutton').on('click', function() {
+                let productid = $(this).data('productid');
+                // console.log('without modal', productid)
+                $('#quickViewProduct').modal('show');
+
+                    if(productid){
+                        $.ajax({
                         url: '{{ route('showproduct') }}',
                         type: 'GET',
                         data: {
-                            id: id
+                            id: productid
+                        },
+                        beforeSend:function(){
+                            $('#queicViewModalBody').html(`
+                            <div class="animationLoading">
+                    <div id="container">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="quick-view-product-photo"></div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="quick-view-product-content"></div>
+                                <div class="quick-view-product-content"></div>
+                                <div class="quick-view-product-content"></div>
+                                <div class="quick-view-product-content"></div>
+                                <div class="quick-view-product-content"></div>
+                                <div class="quick-view-product-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            `)
                         },
                         dataType: 'JSON',
                         success: function(data) {
-                            modalLoading.hide();
-                            $('#viewDataModal #modalBody').html(data);
-                            // console.log(data);
+                            // modalLoading.hide();
+                            // $('#viewDataModal #modalBody').html(data);
+                            console.log(data);
+                            $('#queicViewModalBody').html(data)
+                        },
+                        error: function(){
+                            console.log('error')
                         }
                     });
-                };
+                    }
 
 
-            });
-        </script>
+            })
 
-        @include('frontend.inc.cartsweetalertscript')
-        @include('frontend.inc.shopsearchscripts')
+            $('#quickViewProduct').on('hidden.bs.modal', function() {
+                    // console.log('after modal show', productid)
+                    // $('#queicViewModalBody').html('')
+                    $('#quickViewProduct').html()
+
+                });
+
+        });
+
+    </script>
 </body>
 
 </html>

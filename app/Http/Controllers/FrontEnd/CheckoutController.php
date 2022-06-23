@@ -26,8 +26,8 @@ class CheckoutController extends Controller
         $divisionids = CourierHasDelivery::pluck('division_id')->unique();
         $divisions = Division::whereIn('id', $divisionids)->get();
 
-        $userId = Auth::user()->id;
-        $user = User::where('id', $userId)->first();
+        // $userId = Auth::user()->id;
+        $user = Auth::user();
 
         $upazilas = Upazila::all();
 
@@ -36,6 +36,9 @@ class CheckoutController extends Controller
         $pamymentmethods = PaymentMethod::all();
 
         // return $cartItems;
+
+        return view('frontend.checkout', compact('cartItems', 'divisions', 'user'));
+
         return view('frontend.checkoutlast', compact(
             'divisions',
             'user',
@@ -45,24 +48,7 @@ class CheckoutController extends Controller
             'deliverysystems',
             'pamymentmethods',
         ));
-        // return view('frontend.checkout', compact(
-        //     'divisions',
-        //     'user',
-        //     'divisions',
-        //     'upazilas',
-        //     'cartItems',
-        //     'deliverysystems',
-        //     'pamymentmethods',
-        // ));
-        // return view('frontend.newcheckout', compact(
-        //     'divisions',
-        //     'user',
-        //     'divisions',
-        //     'upazilas',
-        //     'cartItems',
-        //     'deliverysystems',
-        //     'pamymentmethods',
-        // ));
+
     }
 
     public function indexNew()

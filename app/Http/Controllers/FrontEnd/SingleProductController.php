@@ -17,12 +17,13 @@ class SingleProductController extends Controller
 {
     public function index(Request $request, $slug)
     {
-        $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors', 'sizes')->where('slug', $slug)->get()->first();
+        $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors.color', 'sizes')->where('slug', $slug)->get()->first();
 
+        // return $product;
         $shop = Shop::firstWhere('id', 27);
+        return view('frontend.single-product' ,compact('product'));
 
-        // return $shop;
-        return view('frontend.singleproduct', compact('product', 'shop'));
+        // return view('frontend.singleproduct', compact('product', 'shop'));
 
         // return view('frontend.singleproduct', compact('product'));
     }
@@ -42,7 +43,7 @@ class SingleProductController extends Controller
 
             $images = ProductImage::where('product_id', $request->id)->get();
 
-            $data = view('frontend.quickview', compact('product', 'images', 'colors', 'sizes'))->render();
+            $data = view('frontend.inc.queickviewmodalbody', compact('product', 'images', 'colors', 'sizes'))->render();
 
             return response()->json($data);
         }

@@ -1,480 +1,265 @@
 @extends('frontend.layouts.app')
-@section('title')
-HeshelGhor | Store of needs
-@endsection
 
 @section('content')
-<main class="main mt-lg-1">
-    <div class="page-content">
-        <div class="container">
-            <div class="row">
-                {{-- This is sidebar --}}
-                @include('frontend.partials.sidebar')
-                <div class="col-xl-9 col-lg-8">
-                    {{-- Slider --}}
-                    @include('frontend.partials.slider')
-                    {{-- Featured product --}}
-                    <section class="product-wrapper mb-8">
-                        <h2 class="title title-line title-underline with-link appear-animate" data-animation-options="{'delay': '.3s'}">Featured Product
-                            <a href="{{ route('pruductspage') }}" class="font-weight-semi-bold"><strong>View more</strong><i class="d-icon-arrow-right"></i></a>
-                        </h2>
-                        <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                            {{-- single product --}}
-                            @foreach ($products as $product)
-                            <div class="col-md-3 col-6 mb-4">
-                                <div class="product text-center">
-                                    <figure class="product-media">
-
-                                        <a href="{{ route('singleproduct', $product->slug) }}">
-                                            <img src="{{ $product->img_small }}" alt="product" width="280" height="315" style="background-color: #f5f5f5;" />
-                                        </a>
+<!-- slider start -->
+@include('frontend.inc.homepage.slider')
+<!-- slider end -->
 
 
-
-                                        <div class="product-label-group">
-                                            <label class="product-label label-new">new</label>
-                                            @if ($product->discount > 0)
-                                            <label class="product-label label-sale">{{ $product->discount }}%
-                                                OFF</label>
-                                            @endif
-                                        </div>
-                                        <div class="product-action-vertical">
-                                            {{-- <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                                        data-target="#addCartModal" title="Add to cart"><i
-                                                            class="d-icon-bag"></i></a> --}}
-                                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i class="d-icon-heart"></i></a>
-                                        </div>
-                                        <div class="product-action">
-                                            <a class="btn-product view-data" title="Quick View" data-id="{{ $product->id }}" type="button" class="btn btn-primary">Quick View
-                                            </a>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="product-cat">
-                                            <a href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
-                                            @if (optional($product->subcategory)->name)
-                                            <a href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">
-                                                | {{ optional($product->subcategory)->name }}</a>
-                                            @endif
-
-                                        </div>
-                                        <h3 class="product-name">
-                                            <a href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
-                                        </h3>
-                                        <div class="product-price">
-                                            <ins class="new-price">৳{{ $product->price }}</ins>
-                                            @if ($product->discount > 0)
-                                            <del class="old-price">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
-                                            @endif
-                                            <br>
-                                            @if($product->category_id == 38)
-                                                <span class="" title="আলোচনা সাপেক্ষে" style="font-size: 1.3rem;color: #777676;font-weight: normal;">(আলোচনা সাপেক্ষে)</span>
-                                            @endif
-                                        </div>
-                                        <div class="ratings-container">
-                                            <div class="ratings-full">
-                                                <span class="ratings" style="width:80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-
-
-
-                        </div>
-                    </section>
-
-                    {{-- Show Category --}}
-                    <section class="pt-6 mt-10">
-                        <div class="container">
-                            <h2 class="title title-simple">Popular Categories</h2>
-                            <div class="owl-carousel owl-theme owl-loaded owl-drag" data-owl-options="{
-                                                                    'nav': false,
-                                                                    'dots': true,
-                                                                    'autoplay': true,
-                                                                    'margin': 20,
-                                                                    'responsive': {
-                                                                        '0': {
-                                                                            'items': 1
-                                                                        },
-                                                                        '480': {
-                                                                            'items': 2
-                                                                        },
-                                                                        '768': {
-                                                                            'items': 3
-                                                                        },
-                                                                        '992': {
-                                                                            'items': 4,
-                                                                            'dots': false
-                                                                        }
-                                                                    }
-                                                                }">
-
-                                <div class="owl-stage-outer">
-                                    <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1200px;">
-
-                                        @foreach ($subcategories as $subcategory)
-                                        <div class="owl-item " style="width: 280px; margin-right: 20px;">
-                                            <div class="category category-absolute category-classic">
-                                                @isset($subcategory->category->slug)
-                                                <a href="{{ route('product.with.subcategory', ['category' => $subcategory->category->slug,'slug' => $subcategory->slug]) }}">
-                                                    @endisset
-                                                    <figure class="category-media">
-                                                        @if ($subcategory->photo)
-                                                        <img src="{{ asset('storage/market/' . $subcategory->photo) }}" alt="Cateogry" width="280" height="280">
-                                                        @elseif ($subcategory->image)
-                                                        <img src="{{ $subcategory->image }}" alt="Cateogry" width="280" height="280">
-                                                        @else
-                                                        <img src="{{ asset('frontend/images/category.jpg') }}" alt="Cateogry" width="280" height="280">
-                                                        @endif
-
-                                                    </figure>
-                                                    <div class="category-content">
-                                                        <h4 class="category-name">{{ $subcategory->name }}</h4>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        @endforeach
-
-
-
-
-
-
-                                    </div>
-                                </div>
-                                <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><i class="d-icon-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="d-icon-angle-right"></i></button></div>
-                                <div class="owl-dots disabled"></div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {{-- Category wirse product --}}
-                    @foreach ($categories as $category)
-                    @if (count($category->products) > 0)
-                    <section class="product-wrapper mb-8">
-                        <h2 class="title title-line title-underline with-link appear-animate" data-animation-options="{'delay': '.3s'}">{{ $category->name }}
-                            <a href="{{ route('product.with.category', $category->slug) }}" class="font-weight-semi-bold">View more<i class="d-icon-arrow-right"></i></a>
-                        </h2>
-                        <div class="row gutter-xs appear-animate" data-animation-options="{'delay': '.3s'}">
-                            {{-- single product --}}
-                            @php
-                            $newporducts = \App\Models\Product\Product::with('category:id,name,slug', 'subcategory:id,name,slug')
-                            ->active()
-                            ->latest('id')
-                            ->where('category_id', $category->id)
-                            ->take(4)
-                            ->get();
-                            @endphp
-
-                            @foreach ($newporducts as $product)
-                            <div class="col-md-3 col-6 mb-4">
-                                <div class="product text-center">
-                                    <figure class="product-media">
-
-                                        <a href="{{ route('singleproduct', $product->slug) }}">
-                                            <img src="{{ $product->img_small }}" alt="product" width="280" height="315" style="background-color: #f5f5f5;" />
-                                        </a>
-
-
-
-                                        <div class="product-label-group">
-                                            <label class="product-label label-new">new</label>
-                                            @if ($product->discount > 0)
-                                            <label class="product-label label-sale">{{ $product->discount }}%
-                                                OFF</label>
-                                            @endif
-                                        </div>
-                                        <div class="product-action-vertical">
-                                            {{-- <a href="#" class="btn-product-icon btn-cart"
-                                                                data-toggle="modal" data-target="#addCartModal"
-                                                                title="Add to cart"><i class="d-icon-bag"></i></a> --}}
-                                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><i class="d-icon-heart"></i></a>
-                                        </div>
-                                        <div class="product-action">
-                                            <a class="btn-product view-data" title="Quick View" data-id="{{ $product->id }}" type="button" class="btn btn-primary">Quick View
-                                            </a>
-                                        </div>
-                                    </figure>
-                                    <div class="product-details">
-                                        <div class="product-cat">
-                                            <a href="{{ route('product.with.category', $product->category->slug) }}">{{ $product->category->name }}</a>
-                                            @if (optional($product->subcategory)->name)
-                                            <a href="{{ route('product.with.subcategory', ['category' => $product->category->slug,'slug' => $product->subcategory->slug]) }}">|
-                                                {{ $product->subcategory->name }}</a>
-                                            @endif
-                                        </div>
-                                        <h3 class="product-name">
-                                            <a href="{{ route('singleproduct', $product->slug) }}">{{ $product->title }}</a>
-                                        </h3>
-                                        <div class="product-price">
-                                            <ins class="new-price">৳{{ $product->price }}</ins>
-                                            @if ($product->discount > 0)
-                                            <del class="old-price">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
-                                            @endif
-
-                                            @if($product->category_id == 38)
-                                            <br>
-                                                <span class="" title="আলোচনা সাপেক্ষে" style="font-size: 1.3rem;color: #777676;font-weight: normal;">(আলোচনা সাপেক্ষে)</span>
-                                            @endif
-
-                                        </div>
-                                        <div class="ratings-container">
-                                            <div class="ratings-full">
-                                                <span class="ratings" style="width:80%"></span>
-                                                <span class="tooltiptext tooltip-top"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-
-
-
-                        </div>
-                    </section>
-                    @endif
-                    @endforeach
-
-                    {{-- <section class="mb-3">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6 mb-4">
-                                    <div class="widget widget-products appear-animate" data-animation-options="{
-                                                            'name': 'fadeInLeftShorter',
-                                                            'delay': '.5s'
-                                                        }">
-                                        <h4 class="widget-title font-weight-bold">Sale Products</h4>
-                                        <div class="products-col">
-                                            <div class="product product-list-sm">
-                                                <figure class="product-media">
-                                                    <a href="demo3-product.html">
-                                                        <img src="{{ asset('frontend') }}/images/demos/demo3/products/9.jpg"
-                    alt="product" width="100" height="100"
-                    style="background-color: #f5f5f5;" />
-                    </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Women’s Beautiful
-                                Headgear</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$78.24</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:40%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
+<!-- shop start -->
+<div class="shop-area section-padding" style="background-color: #FCE6DF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Featured Shop</h4>
+                    <span>Get Your Product from Shop</span>
                 </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/10.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Hand Electric Cell</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$26.00</span>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($shops as $shop)
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6">
+                <a href="single-shop.html" class="shop_links market-links ">
+                    <div class="single-shop single-market d-flex ">
+                        <div class="shop-photo market-photo">
+                            <img class="lozad" data-src="{{$shop->img_small}}" alt="shop" style="height: 75px; width:auto">
                         </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:100%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
+                        <div class="shop-content market-content">
+                            <h5>{{$shop->name}}</h5>
+                            <span> <i class="fa fa-map-marker"></i> {{$shop->address}}</span>
+                            <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
                         </div>
                     </div>
-                </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/11.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Women Hempen Hood
-                                a Mourner</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$30.00</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:20%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
+                </a>
+            </div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="section-button text-center">
+                    <a href="#"><button type="button" class="btn btn-secondary">See All Shop</button></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-sm-6 mb-4 ">
-        <div class="widget widget-products appear-animate" data-animation-options="{
-                                                            'name': 'fadeIn',
-                                                            'delay': '.3s'
-                                                        }">
-            <h4 class="widget-title font-weight-bold">Latest Products</h4>
-            <div class="products-col">
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/12.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Fashionable Orginal
-                                Trucker</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$78.64</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:40%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/13.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Men Summer Sneaker</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$79.45</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:60%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/14.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Season Sports Cap</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$64.27</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:20%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-6 mb-4">
-        <div class="widget widget-products appear-animate" data-animation-options="{
-                                                            'name': 'fadeInRightShorter',
-                                                            'delay': '.5s'
-                                                        }">
-            <h4 class="widget-title font-weight-bold">Best of the Week</h4>
-            <div class="products-col">
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/15.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Blue Sports Shoes</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$36.00</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:20%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/16.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Fashion Handbag</a>
-                        </h3>
-                        <div class="product-price">
-                            <ins class="new-price">$53.99</ins><del class="old-price">$67.99</del>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:100%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product product-list-sm">
-                    <figure class="product-media">
-                        <a href="demo3-product.html">
-                            <img src="{{ asset('frontend') }}/images/demos/demo3/products/17.jpg" alt="product" width="100" height="100" style="background-color: #f5f5f5;" />
-                        </a>
-                    </figure>
-                    <div class="product-details">
-                        <h3 class="product-name">
-                            <a href="demo3-product.html">Women’s Beautiful
-                                Headgear</a>
-                        </h3>
-                        <div class="product-price">
-                            <span class="price">$82.23</span>
-                        </div>
-                        <div class="ratings-container">
-                            <div class="ratings-full">
-                                <span class="ratings" style="width:60%"></span>
-                                <span class="tooltiptext tooltip-top"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    </section> --}}
+</div>
+<!-- shop end -->
 
-    @include('frontend.partials.brand')
+<!-- product start -->
+<div class="product-area section-padding" style="background-color: #d9bcb3;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Featured Products</h4>
+                    <span>Get Your Product from Shop</span>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2">
+            @foreach ($featursproducts as $product)
+            <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
+                <div class="single-product ">
+                    <div class="product-photo position-relative">
+                        <img data-src="{{$product->img_small}}" data-background-image="{{asset('frontend')}}/images/no-phpto.jpg" alt="product_img" class="product_img lozad">
+                        <div class="product-offers">
+                            @if($product->discount > 0)
+                            <span>{{$product->discount}}% off</span>
+                            @endif
+                            <span class="new_product">new</span>
+                        </div>
+                        <div class="product-icon">
+                            <i class="fa fa-heart"></i>
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="product-btn">
+                            <button class="quickviewbutton" data-productid="{{$product->id}}">quick view</button>
+                        </div>
+                    </div>
+                    <div class="product-content text-center">
+                        <a href="single_product.html" class="product_title">
+                            <h5>{{$product->title}}</h5>
+                        </a>
+                        <div class="product-price">
+                            <span class="text-dark">৳{{$product->price}}
+                                @if($product->discount > 0)
+                                <del class="text-secondary">${{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                @endif
+                            </span>
+                        </div>
+                        <div class="product-ratting ">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span class="text-secondary fs-6">(0)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="section-button text-center">
+                    <a href="#"><button type="button" class="btn btn-secondary">See All Products</button></a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<!-- product end -->
+
+<!-- Ladies product start -->
+<div class="product-area section-padding" style="background-color: #FCE6DF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Ladies Corner</h4>
+                    <span>Get Your Product</span>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2">
+            @foreach ($ladiesproduct as $product)
+            <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
+                <div class="single-product ">
+                    <div class="product-photo position-relative">
+                        <img data-src="{{$product->img_small}}" data-background-image="{{asset('frontend')}}/images/no-phpto.jpg" alt="product_img" class="product_img lozad">
+                        <div class="product-offers">
+                            @if($product->discount > 0)
+                            <span>{{$product->discount}}% off</span>
+                            @endif
+                            <span class="new_product">new</span>
+                        </div>
+                        <div class="product-icon">
+                            <i class="fa fa-heart"></i>
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="product-btn">
+                            <button class="quickviewbutton" data-productid="{{$product->id}}">quick view</button>
+                        </div>
+                    </div>
+                    <div class="product-content text-center">
+                        <a href="single_product.html" class="product_title">
+                            <h5>{{$product->title}}</h5>
+                        </a>
+                        <div class="product-price">
+                            <span class="text-dark">৳{{$product->price}}
+                                @if($product->discount > 0)
+                                <del class="text-secondary" style="font-size: .9rem">${{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                @endif
+                            </span>
+                        </div>
+                        <div class="product-ratting ">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span class="text-secondary fs-6">(0)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="section-button text-center">
+                    <a href="{{route('pruductspage')}}"><button type="button" class="btn btn-secondary">See All Products</button></a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<!-- product end -->
+
+<!-- category start -->
+<div class="category-area section-padding" style="background-color: #d9bcb3;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Category</h4>
+                    <span>Get Your Product from Shop</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($categories as $category)
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6">
+                <a href="#" class="category_links  ">
+                    <div class="single-category bg-white mb-4">
+                        <div class="category-photo">
+                            <img class="lozad" data-src="{{asset('frontend')}}/images/shop/shop.png" alt="category">
+                        </div>
+                        <span>{{$category->name}}</span>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="section-button text-center">
+                    <a href="sub-category.html"><button type="button" class="btn btn-secondary">Show
+                            All</button></a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<!-- category end -->
+
+<!-- market start -->
+<div class="market-area section-padding" style="background-color: #FCE6DF;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Market</h4>
+                    <span>Get Your Product from Market</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($markets as $market)
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6">
+                <a href="#" class="market-links">
+                    <div class="single-market  d-flex ">
+                        <div class="market-photo">
+                            <img class="lozad" data-src="{{asset('frontend')}}/images/slide1.jpg" alt="market">
+                        </div>
+                        <div class="market-content">
+                            <h5>{{$market->name}}</h5>
+                            <span> <i class="fa fa-map-marker"></i> Panthapath,Dhaka</span>
+                            <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="section-button text-center">
+                    <a href="{{route('market.list')}}"><button type="button" class="btn btn-secondary">See All
+                            Market</button></a>
+                </div>
+            </div>
+        </div>
     </div>
-</main>
+</div>
+<!-- market end -->
 @endsection

@@ -1,387 +1,346 @@
-@php
-$serial = 1;
-$subTotal = Cart::priceTotal();
-$totalProduct = Cart::count();
-$totalItem = count(Cart::content());
-
-@endphp
-
 @extends('frontend.layouts.app')
-@section('title')
-    HeshelGhor | Checkoutpage
-@endsection
 
 @section('content')
-    <main class="main checkout">
-        <div class="page-content pb-10">
-            <div class="step-by pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="#">Buy Now</a></h3>
+<!-- breadcrumb start -->
+<div class="breadcrumb-area no-padding">
+    <div class="container">
+        <class class="row">
+            <div class="col-xl-6 offset-xl-3 offset-lg-3 col-lg-6">
+                <div class="breadcrumb-search-bar text-center">
+                    <h2 class="text-white">Buy Now</h2>
+                </div>
             </div>
-            <div class="container">
-                <form action="{{ route('buynowpay') }}" method="POST" class="form" id="buynowForm">
-                    @csrf
-                    <input type="text" name="product" data-price="{{ $product->price }}"
-                        data-prdoduct_upazila_id="{{ $product->upazila_id }}">
-                    <input type="hidden" name="buytype" value="buynow">
-                    {{-- Heshelghor field --}}
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="hidden" name="product_price" value="{{ $product->price }}">
-                    <input type="hidden" name="total_product_price" value="{{ $product->price }}">
-                    <input type="hidden" name="total_item" value="1">
-                    <input type="hidden" name="delivery_cost" value="0">
-                    <input type="hidden" name="total_delivery_cost" value="">
-                    {{-- Order Item --}}
+        </class>
+    </div>
+</div>
+<!-- breadcrumb end -->
 
-                    <input type="hidden" name="courier_id" value="1">
-                    <input type="hidden" name="courier_packege_desc" value="paperfly">
-                    {{-- SSL --}}
-                    <input type="hidden" value="0" name="total_amount">
+<!-- cart start -->
+<div class="cart-area pt-5 pb-5">
+    <div class="container">
+        <form action="{{route('buynowpay')}}" method="post">
+            @csrf
+            <input type="hidden" name="buytype" value="buynow">
+            {{-- Heshelghor field --}}
+            <input type="hidden" name="total_item" value="1">
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <input type="hidden" name="product_price" value="{{ $product->price }}" data-prdoduct_upazila_id="{{ $product->upazila_id }}">
+            <input type="hidden" name="total_product_price" value="{{ $product->price }}">
+            <input type="hidden" name="delivery_cost" value="0">
+            <input type="hidden" name="total_delivery_cost" value="">
+            {{-- Order Item --}}
 
-
-
-                    @if($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li class="text-danger">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
-
-                    <div class="row">
-                        <div class="col-lg-7 mb-6 mb-lg-0 pr-lg-4">
-                            <h3 class="title title-simple text-left text-uppercase">Billing Details</h3>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Full Name *</label>
-                                    <input type="text" value="{{ $user->name }}"
-                                        class="form-control mb-2 @error('name') is-invalid @enderror" name="name" required/>
-                                    <div class="text-danger">
-                                        @error('name')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please, Enter your name.
-                                      </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Delivery Address *</label>
-                                    <input type="text" class="form-control mb-2 @error('address') is-invalid @enderror"
-                                        name="address" required />
-                                        <div class="invalid-feedback">
-                                            Please Enter product deliver address.
-                                          </div>
-                                    <div class="text-danger">
-                                        @error('address')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label>Email Address *</label>
-                                    <input type="text" value="{{ $user->email }}" class="form-control mb-2" name="email" required/>
-                                    <div class="invalid-feedback">
-                                        Please valid email address.
-                                      </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label>Mobile No *</label>
-                                    <input value="{{ $user->mobile }}" type="text"
-                                        class="form-control mb-2 @error('mobile') is-invalid @enderror" name="mobile" required/>
-                                    <div class="text-danger">
-                                        @error('mobile')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Please , enter valid mobile number.
-                                      </div>
-                                </div>
-                            </div>
+            <input type="hidden" name="courier_id" value="1">
+            <input type="hidden" name="courier_packege_desc" value="none">
+            {{-- SSL --}}
+            <input type="hidden" value="0" name="total_amount">
 
 
-                            <h2 class="title title-simple text-uppercase text-left">Please Select Location For deliver
-                                service</h2>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label>Select Divission *</label>
-                                    <div class="select-box">
-                                        <select name="division_id" class="form-control mb-2" required>
-                                            <option value="">Select Divission</option>
-                                            @foreach ($divisions as $division)
-                                                <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Select your division.
-                                          </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-
-                                    <label>Select District *</label>
-                                    <div class="select-box">
-                                        <select name="district_id"
-                                            class="form-control mb-2 @error('district_id') is-invalid @enderror" disabled
-                                            required>
-                                            <option value="">select </option>
-                                        </select>
-                                        <div class="text-danger">
-                                            @error('district_id')
-                                                <span>{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Select your district.
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>Select Upazila *</label>
-                                <div class="select-box">
-                                    <select name="upazila_id" class="form-control mb-2 @error('upazila_id') is-invalid @enderror"
-                                        disabled required>
-                                        <option value="" selected>Select</option>
-
-                                    </select>
-                                    <div class="text-danger">
-                                        @error('upazila_id')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="invalid-feedback">
-                                        Select your upazila/Thanak.
-                                      </div>
-                                </div>
-                            </div>
-
-                            <h2 class="title title-simple text-uppercase text-left">Additional Information</h2>
-                            <label>Order Note/Message (Optional)</label>
-                            <textarea name="note" class="form-control mb-2 pb-2 pt-2 mb-0" cols="30" rows="5"
-                                placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+            <div class="row">
+                <div class="col-xl-7 col-md-7">
+                    <div class="billing-details">
+                        <h4>Billing Details </h4>
+                        <div class="form-group">
+                            <label for="" class="d-flex"><strong>Full Name</strong><span class="text-danger">*</span></label>
+                            <input value="{{$user->name}}" type="text" class="form-control" name="name" placeholder="Enter Full Name">
                         </div>
-                        <aside class="col-lg-5 sticky-sidebar-wrapper">
-                            <div class="sticky-sidebar mt-1" data-sticky-options="{'bottom': 50}">
-                                <div class="summary pt-5">
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="title title-simple text-left text-uppercase">Your Order</h3>
-                                        <img src="{{ $product->img_small }}" class="img-thumbnail"
-                                            style="max-width: 100px; max-height:150px">
-
-                                    </div>
-                                    <table class="table order-table">
-
-                                        <tbody>
-                                            <tr>
-                                                <th>1</th>
-                                                <td>{{ $product->title }}</td>
-                                                <td class="text-bold"> <span id="pqty">1</span> x
-                                                    ৳{{ $product->price }}</td>
-                                                {{-- <td>৳{{ $product->price }}</td> --}}
-                                            </tr>
-                                            <hr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Product Price:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="total_product_price">{{ $product->price }}</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="1">
-                                                    <h6>Delivery Cost:</h6>
-                                                </td>
-                                                {{-- <td class="text-start" colspan="1">
-                                                    <h6>2x100</h6>
-                                                </td> --}}
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="totalDeliverCost">0</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-start" colspan="2">
-                                                    <h6>Total:</h6>
-                                                </td>
-                                                <td class="text-end" colspan="2">
-                                                    <h6>৳<span id="intotal">{{ $product->price }}</span></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <h6 class="mt-3">Total Quantity</h6>
-                                                </td>
-                                                <td colspan="2">
-                                                    <div class="d-flex mt-2">
-                                                        <button type="button" style="" class="border"
-                                                            id="qtyminusbtn">-</button>
-                                                        <input name="total_prodcut" value="1" class=""
-                                                            type="number" style="text-align: center" min="1"
-                                                            max="{{ $product->quantity }}">
-                                                        <button type="button" style="" class="border"
-                                                            id="qtyplusbtn">+</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @if (count($product->colors) > 0)
-                                                <tr>
-                                                    <td class="text-start" colspan="4">
-                                                        <h6 class="m-2 ">Color:</h6>
-                                                        <select name="varient[]" class="form-control mb-2">
-                                                            <option value="">Select Color</option>
-                                                            @foreach ($product->colors as $color)
-                                                                <option value="color-{{ $color->color->name }}">
-                                                                    {{ $color->color->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            @if (count($product->sizes) > 0)
-                                                <tr>
-                                                    <td class="text-start" colspan="4">
-                                                        <h6 class="m-2 ">Size:</h6>
-                                                        <select name="varient[]" class="form-control mb-2">
-                                                            <option value="">Select Size</option>
-                                                            @foreach ($product->sizes as $size)
-                                                                <option value="size-{{ $size->size->name }}">
-                                                                    {{ $size->size->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                            <tr class="sumnary-shipping shipping-row-last" id="couriertablerow">
-
-                                            </tr>
-                                            <tr class="sumnary-shipping shipping-row-last">
-                                                <td colspan="2">
-                                                    <h4 class="summary-subtitle">Payment Method</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-radio">
-                                                                <input type="radio" id="flat_rate" name="payment_type"
-                                                                    value="cash" class="custom-control-input" required>
-                                                                <label class="custom-control-label" for="flat_rate">Cash On
-                                                                    Delivery</label>
-
-                                                                    <div class="invalid-feedback">
-                                                                        Please, Select any payment method.
-                                                                      </div>
-                                                            </div>
-                                                        </li>
-
-                                                        <li>
-                                                            <div class="custom-radio">
-                                                                <input type="radio" id="free-shipping" name="payment_type"
-                                                                    value="online" class="custom-control-input" required>
-                                                                <label class="custom-control-label"
-                                                                    for="free-shipping">Payment Now </label>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-
-
-                                        </tbody>
-                                    </table>
-
-                                    <div>
-                                        <input type="hidden" value="" name="delivery_system_name">
-                                        <input type="hidden" value="" name="payment_method_name">
-
-                                    </div>
-
-                                    <div>
-                                        @error('total_amount')
-                                            <span class="text-danger">Please select location and deliver system for complete
-                                                order.</span>
-                                        @enderror
-                                        @error('delivery_system')
-                                            <span class="text-danger">Delivery system not found.</span>
-                                            <br>
-                                            <span class="text-danger">Please select location and deliver system for complete
-                                                order.</span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-checkbox mt-4 mb-5">
-                                        <input type="checkbox" class="custom-checkbox" id="terms-condition"
-                                            name="terms-condition" value="1" required />
-                                        <label class="form-control-label" for="terms-condition">
-                                            I have read and agree to <a href="{{ route('termsandcondition') }}"
-                                                class="text-primary" target="_blank">terms and conditions </a> and
-                                            <a href="{{ route('privacypolicy') }}" class="text-primary"
-                                                target="_blank">privacy policy</a>
-                                        </label>
-                                    </div>
-                                    <div class="form-checkbox mt-4 mb-5">
-                                        <input type="checkbox" class="custom-checkbox" id="terms-condition2"
-                                            name="terms-condition2" value="1" required />
-                                        <label class="form-control-label" for="terms-condition2">
-                                            I have read and agree to <a href="{{ route('returnpolicy') }}"
-                                                class="text-primary" target="_blank">Return & Refund Policy</a>
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-dark btn-rounded btn-order">Place Order</button>
+                        <div class="form-group">
+                            <label for=""><strong>Email Address</strong><span class="text-danger">*</span></label>
+                            <input value="{{$user->email}}" type="email" class="form-control" name="email" placeholder="Enter Email Address">
+                        </div>
+                        <div class="form-group">
+                            <label for=""><strong>Delivery Address</strong><span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="address" placeholder="Enter Your Address">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for=""><strong>Mobile No</strong><span class="text-danger">*</span></label>
+                                    <input value="{{$user->mobile}}" type="text" class="form-control" name="mobile" placeholder="Enter Your Mobile Number">
                                 </div>
                             </div>
-                        </aside>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for=""><strong>Zip code</strong></label>
+                                    <input type="text" class="form-control" name="zip" placeholder="Enter Your Zip Code">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                    <div class="location-details billing-details">
+                        <h4>Please Select Location For deliver service</h4>
+                        <div class="form-group">
+                            <label for=""><strong>Select Division</strong><span class="text-danger">*</span></label>
+                            <select name="division_id" class="form-select form-control">
+                                <option value="" selected>Select</option>
+                                @foreach ($divisions as $division)
+                                <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for=""><strong>Select District</strong><span class="text-danger">*</span></label>
+                            <select name="district_id" class="form-select" disabled>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for=""><strong>Select Upazila</strong><span class="text-danger">*</span></label>
+                            <select name="upazila_id" class="form-select">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="location-details">
+                        <h4>Additional Information</h4>
+                        <div class="form-group">
+                            <label for=""><strong>Order Message (Optional)</strong></label>
+                            <textarea name="note" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-md-5">
+                    <div class="card order-summery">
+                        <ul class="list-group list-group-flush">
+                            <h4>Your Order</h4>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <h6>{{$product->title}}</h6>
+                                <span><img data-src="{{$product->img_small}}" class="lozad" alt="" style="height:60px; width: auto;"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span style="width: 50%;font-weight: 400;">{{$product->title}}</span>
+                                <span style="width: 25%;"><span id="pqty">1</span> x ৳{{$product->price}}</span>
+                                <span style="width: 25%;text-align: right;" > ৳<span id="total_product_price">{{$product->price}}</span></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <h6>Delivery Cost: </h6>
+                                {{-- <span>1x৳0</span> --}}
+                                <p>৳<span id="totalDeliverCost">0</span></p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <h6>total</h6>
+                                <p>৳<span id="intotal">{{$product->price}}</span></p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <h6>Total Quantity</h6>
+                                <div class="quantity product_quantity">
+                                    <button type="button" class="btn btn-light" id="qtyminusbtn"><span><i class="fa-solid fa-minus"></i></span></button>
+                                    <input name="total_prodcut" max="5" min="1" type="text" class="quantity__input" value="1">
+                                    <button type="button" class="btn btn-light" id="qtyplusbtn"><span><i class="fa-solid fa-plus"></i></span></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h6>color</h6>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    @foreach ($product->colors as $color)
+                                    <input value="{{ $color->color->name }}" type="radio" class="btn-check" name="varient[]" id="color1{{$color->id}}" autocomplete="off">
+                                    <label class="btn btn-outline-secondary" for="color1{{$color->id}}">{{ $color->color->name }}</label>
+                                    @endforeach
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h6>Size</h6>
+                                <div class="btn-group " style="align-items:center" role="group" aria-label="Basic radio toggle button group2">
+                                    @foreach ($product->sizes as $size)
+                                    {{-- <option value="size-{{ $size->size->name }}">
+                                    {{ $size->size->name }}</option> --}}
+                                    <input value="{{ $size->size->name }}" type="radio" class="btn-check" name="varient[]" id="size{{$size->id}}" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="size{{$size->id}}">{{ $size->size->name }}</label>
+                                    @endforeach
+                                </div>
+                            </li>
+                            <li class="" id="courierserviceshow">
+
+                            </li>
+                            <li class="list-group-item">
+                                <h6>Payment Method</h6>
+                                <div class="form-group">
+                                    <span><input type="radio" name="payment_type" value="cash" id=""> Cash On Delivery</span>
+                                    <span><input type="radio" name="payment_type" value="online" id=""> Payment Now </span>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <span> <input type="checkbox" name="" id=""> I have read and agree to <a href="#">terms and conditions</a> and <a href="#">privacy
+                                            policy</a></span>
+                                    <span><input type="checkbox" name="" id=""> I have read and agree to <a href="#">Return &amp; Refund Policy</a></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-secondary">processed to order</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
-    <!-- End Main -->
+        </form>
+    </div>
+</div>
+<!-- cart end -->
+
 @endsection
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/style.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-@endpush
 
-@push('scripts')
-    @include('frontend.inc.buynowscript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+@push('script')
+<script>
+    $(document).ready(function() {
+        var division = $('select[name=division_id]');
+        var district = $('select[name=district_id]');
+        var upazila = $('select[name=upazila_id]');
+        let prdoduct_upazila_id = $('input[name="product_price"]').data('prdoduct_upazila_id')
 
-    <script>
-        $(document).ready(function() {
-            $('#buynowForm').validate({
-                rules: {
-                    address: 'required',
-                    division_id:'required',
-                    payment_type:'required',
-                    total_delivery_cost:'required',
+        // In Division
+        $(document).on('change', 'select[name=division_id]', function() {
+            district.removeAttr('disabled');
+            district.empty();
+            upazila.empty();
+            var divisionID = $(this).val();
 
-                },
-                messages: {
-                    address:'Enter address',
-                    payment_type:'required'
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
+            if (divisionID) {
+                // console.log(divisionID)
+                district.append(
+                    `<option selected>Select</option>`
+                );
+                $.ajax({
+                    url: `/ajax/courier/getdistrictbydivisionid/${divisionID}`
+                    , method: 'GET'
+                    , success(data) {
+                        // console.log(data);
+                        data.forEach(function(row) {
+                            district.append(
+                                `<option value="${row.id}">${row.name}</option>`
+                            );
+                        });
+                    }
+                    , error() {
+                        console.log('courier error');
+                    }
+                , });
+            }
+        }); // Division id change event
+
+        // In District
+        $(document).on('change', 'select[name=district_id]', function() {
+            upazila.removeAttr('disabled');
+            upazila.empty();
+            var districtID = $(this).val();
+            if (districtID) {
+                upazila.append(
+                    `<option selected>Select</option>`
+                );
+                $.ajax({
+                    url: `/ajax/courier/getgetupazilabydistrictid/${districtID}`
+                    , method: 'GET'
+                    , success(data) {
+                        // console.log(data);
+                        data.forEach(function(row) {
+                            upazila.append(
+                                `<option value="${row.id}">${row.name}</option>`
+                            );
+                        });
+                    }
+                    , error() {
+                        console.log('courier error');
+                    }
+                });
+            }
+        }); // District id change event
+
+        // In Upazila
+        $(document).on('change', 'select[name=upazila_id]', function() {
+            // upazila.removeAttr('disabled');
+            var upazilaid = $(this).val();
+            if (upazilaid) {
+                // console.log(upazilaid)
+
+                $.ajax({
+                    url: `/checkupazilawisecourierupalizalist/${upazilaid}`
+                    , method: 'GET'
+                    , data: {
+                        prdoduct_upazila_id: prdoduct_upazila_id
+                        , product_delivery_upazila_id: upazilaid
+                        , product_weight: 1
+                    }
+                    , success(data) {
+                        console.log('for courier list', data);
+                        $('#courierserviceshow').empty()
+                        $('#courierserviceshow').append(data).hide().fadeIn(1000);
+
+                    }
+                    , error() {
+                        console.log('courier error');
+                    }
+                });
+            }
+
+        }); // Upazila id change event
+
+
+
+        $(document).on('click', '#qtyplusbtn', function() {
+            let maxval = $('input[name="total_prodcut"]').prop('max')
+            let cval = $('input[name="total_prodcut"]').val()
+            if (parseInt(maxval) > parseInt(cval)) {
+                $('input[name="total_prodcut"]').val(function(i, oldval) {
+                    return ++oldval;
+                });
+                totalAmount()
+            }
+        })
+        $(document).on('click', '#qtyminusbtn', function() {
+            let minval = $('input[name="total_prodcut"]').prop('min')
+            let cval = $('input[name="total_prodcut"]').val()
+            if (parseInt(minval) < parseInt(cval)) {
+                $('input[name="total_prodcut"]').val(function(i, oldval) {
+                    return --oldval;
+                });
+                totalAmount()
+            }
+        })
+
+        $(document).on('change select', 'input[name="delivery_system"]', function() {
+            totalAmount()
+        });
+
+
+        // claculate
+
+        function totalAmount() {
+            let product_price = $('input[name="product_price"]').val()
+            let quantity = $('input[name="total_prodcut"]').val();
+            let totalprice = parseInt(product_price) * parseInt(quantity)
+
+            $('input[name="total_product_price"]').val(totalprice)
+
+            let dcost = $('input[name="delivery_system"]:checked').val();
+            if (dcost) {
+                let tdcost = parseInt(dcost) * parseInt(quantity);
+                $('input[name="delivery_cost"]').val(dcost);
+                $('input[name="total_delivery_cost"]').val(tdcost);
+
+                let totalAmount = parseInt(tdcost) + parseInt(totalprice)
+                $('input[name="total_amount"]').val(totalAmount);
+
+                $('#totalDeliverCost').html(tdcost);
+                $('#pqty').html(quantity);
+                $('#total_product_price').html(totalprice);
+                $('#intotal').html(totalAmount);
+
+
+                // console.log('courier ase')
+                // console.log('dcost', dcost)
+                // console.log('tdcost', tdcost)
+                // console.log('totalAmount', totalAmount)
+            } else {
+                $('#pqty').html(quantity);
+                $('#total_product_price').html(totalprice);
+                $('#intotal').html(totalprice);
+            }
+
+        }
 
 
 
 
-        });// Document ready
-    </script>
+
+
+    }); // Document Ready
+
+</Script>
 @endpush
