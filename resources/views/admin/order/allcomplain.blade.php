@@ -27,12 +27,12 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>S</th>
-                                    <th>Product ID</th>
+                                    <th>orderitem_id</th>
+                                    <th>user_id</th>
                                     <th>Complain_number</th>
-                                    <th>order_number</th>
-                                    <th>customer_name</th>
-                                    <th>customer_mobile</th>
-                                    <th>customer_email</th>
+                                    <th>delivery_date</th>
+                                    <th>alt_customer_phone</th>
+                                    <th>alt_customer_address</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,12 +43,12 @@
                                 @foreach( $allcomplain as $complain )
                                     <tr>
                                         <th scope="row">{{ $serial++ }}</th>
-                                        <td>{{$complain->product_id}}</td>
+                                        <td>{{$complain->orderitem_id}}</td>
+                                        <td>{{$complain->user_id}}</td>
                                         <td>{{$complain->complain_number}}</td>
-                                        <td>{{$complain->order_number}}</td>
-                                        <td>{{$complain->customer_name}}</td>
-                                        <td>{{$complain->customer_mobile}}</td>
-                                        <td>{{$complain->customer_email}}</td>
+                                        <td>{{$complain->delivery_date}}</td>
+                                        <td>{{$complain->alt_customer_phone}}</td>
+                                        <td>{{$complain->alt_customer_address}}</td>
                                         <td>
                                             <a class="btn btn-success btn-sm text-white"
                                                 href="#" title="View"><span

@@ -469,8 +469,6 @@ $countcourier = $allorder
                             </ul>
                         </div>
                     </li>
-
-
             </ul>
 
         </div>

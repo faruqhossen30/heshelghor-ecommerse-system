@@ -10,6 +10,20 @@ class PromotionalproductController extends Controller
 {
     public function subcategoryProducts()
     {
+        $products = Product::active()->where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->latest()->paginate(15);
+
+        // return response()->json([
+        //     'success' => true,
+        //     'code'=>200,
+        //     'data' => $products
+        // ]);
+
+        return $products;
+    }
+
+
+    public function subcategoryProductsrandom()
+    {
         $products = Product::active()->where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
 
         // return response()->json([
@@ -20,6 +34,7 @@ class PromotionalproductController extends Controller
 
         return $products;
     }
+
     public function promotionalProduct()
     {
         $products = Product::take(50)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
