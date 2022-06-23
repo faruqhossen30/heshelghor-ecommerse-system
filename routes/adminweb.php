@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\Attribute\SizeController;
 use App\Http\Controllers\Admin\Attribute\ColorController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\Admin\Order\OrdercomplainController;
 use App\Http\Controllers\Admin\Promotion\CategorypromotionController;
 use App\Http\Controllers\Admin\Promotion\PromotionController;
 use App\Http\Controllers\Admin\Promotion\SliderajaxController;
@@ -44,6 +45,7 @@ use App\Http\Controllers\Product\SubCategoryController;
 // Ajax
 use App\Http\Controllers\Ajax\Admin\CourierAjaxController;
 use App\Http\Controllers\Product\BrandController;
+use App\Http\Controllers\User\UsercomplainController;
 
 // Admin
 Route::prefix('admin')->group(function () {
@@ -123,6 +125,8 @@ Route::prefix('admin')->group(function () {
 
         // Job
         Route::resource('job', JobController::class);
+
+        Route::get('ordercomplain',[OrdercomplainController::class, 'allcomplain'])->name('admin.order.complain.all');
     });
 });
 

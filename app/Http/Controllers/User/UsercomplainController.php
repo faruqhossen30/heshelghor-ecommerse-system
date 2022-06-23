@@ -4,19 +4,25 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\OrderItem;
-use App\Models\User\Usercomplain;
+
+use App\Models\User\UserorderComplain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UsercomplainController extends Controller
 {
+    public function allcomplain(){
+        $allcomplain = UserorderComplain::all();
+        // return  $allcomplain;
+        return view('user.complain.complainlist',compact('allcomplain'));
+    }
     public function usercomplain($id)
     {
 
         $orderitem = OrderItem::where('user_id', Auth::user()->id)->where('id', $id)->first();
         // return $orderitem ;
-        $complain = Usercomplain::firstWhere('orderitem_id', $id);
-
+        $complain = UserorderComplain::firstWhere('orderitem_id', $id);
+        // return $complain ;
         if ($complain) {
             return "complain already exit";
         }
@@ -32,9 +38,7 @@ class UsercomplainController extends Controller
         $request->validate([
             'delivery_date'        => 'required',
             'delivery_time'        => 'required',
-            'alt_customer_name'    => 'required',
             'alt_customer_phone'   => 'required',
-            'alt_customer_email'   => 'required',
             'alt_customer_address' => 'required',
             'complain_message'     => 'required',
             'defect_pic_1'         => 'required',
@@ -44,7 +48,6 @@ class UsercomplainController extends Controller
             'delivery_time.required'        => 'Please input your delivery_time ',
             'alt_customer_name.required'    => 'Please input your alt_customer_name ',
             'alt_customer_phone.required'   => 'Please input your alt_customer_phone ',
-            'alt_customer_email.required'   => 'Please input your alt_customer_email ',
             'alt_customer_address.required' => 'Please input your alt_customer_address ',
             'complain_message.required'     => 'Please input your complain_message ',
         ]);
@@ -75,21 +78,13 @@ class UsercomplainController extends Controller
             $request->defect_pic_5->storeAs('images/defectphoto/5', $photo5, 'public');
         }
 
-        Usercomplain::Create([
+        UserorderComplain::Create([
             'orderitem_id'         => $request->orderitem_id,
-            'product_id'           => $request->product_id,
             'user_id'              => Auth()->user()->id,
             'complain_number'      => rand(0001, 9999),
-            'order_number'         => $request->order_number,
-            'customer_name'        => $request->customer_name,
-            'customer_email'       => $request->customer_email,
-            'customer_address'     => $request->customer_address,
-            'customer_mobile'      => $request->customer_mobile,
             'delivery_date'        => $request->delivery_date,
             'delivery_time'        => $request->delivery_time,
-            'alt_customer_name'    => $request->alt_customer_name,
             'alt_customer_phone'   => $request->alt_customer_phone,
-            'alt_customer_email'   => $request->alt_customer_email,
             'alt_customer_address' => $request->alt_customer_address,
             'complain_message'     => $request->complain_message,
             'defect_pic_1'         => $photo1,
