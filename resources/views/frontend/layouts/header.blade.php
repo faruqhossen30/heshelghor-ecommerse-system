@@ -16,11 +16,11 @@ $totalprice = Cart::priceTotal();
                 </div>
                 <div class="col-xl-6 col-lg-6 d-none d-lg-block">
                     <div class="search-bar">
-                        <form action="#" class="d-flex">
+                        <form action="{{route('searchpage')}}" class="d-flex">
                             <div class="search-btn" data-bs-toggle="modal" data-bs-target="#mobile_search_button">
                                 Search
                             </div>
-                            <input type="search" placeholder="i'm shopping" />
+                            <input name="keyword" type="search" placeholder="I'm shopping" />
                             <div class="header-search-icon">
                                 <i class="fa fa-search"></i>
                             </div>

@@ -93,9 +93,8 @@ Route::get('/market/{id}', [MarketListPageController::class, 'marketWiseShopList
 
 Route::get('/ajaxmarketlist', [MarketListPageController::class, 'ajaxmarketlist'])->name('ajaxmarketlist');
 // search
-Route::get('/search', [FrontendSearchpageController::class, 'index'])->name('searchpage');
+Route::get('/search', [SearchpageController::class, 'index'])->name('searchpage');
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
-Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
 
 
 // For Shoping Cart
