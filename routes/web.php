@@ -48,6 +48,7 @@ use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
+use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 
@@ -92,6 +93,7 @@ Route::get('/market/{id}', [MarketListPageController::class, 'marketWiseShopList
 
 Route::get('/ajaxmarketlist', [MarketListPageController::class, 'ajaxmarketlist'])->name('ajaxmarketlist');
 // search
+Route::get('/search', [FrontendSearchpageController::class, 'index'])->name('searchpage');
 Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 Route::get('/searchs/', [SearchPageController::class, 'index'])->name('searchpage');
 
