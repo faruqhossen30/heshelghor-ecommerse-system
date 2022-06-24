@@ -460,8 +460,8 @@ $totalprice = Cart::priceTotal();
                             </button>
                             @guest
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
-                                <li><a class="dropdown-item" href="#">Register</a></li>
+                                <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+                                <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
                             </ul>
                             @endguest
                             @auth

@@ -60,7 +60,7 @@ Log In User | Heshelghor
 
 
                 <div class="d-grid mb-0 text-center">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" style="background-color: #eb5525; border:none">
                         {{ __('Login') }}
                     </button>
 

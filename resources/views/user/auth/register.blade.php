@@ -119,7 +119,7 @@
                                     </div>
 
                                     <div class="form-group row mb-0">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success" style="background-color: #eb5525; border:none">
                                             {{ __('Register Now') }}
                                         </button>
                                     </div>

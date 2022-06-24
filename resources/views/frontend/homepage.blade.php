@@ -63,7 +63,7 @@
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
                 <div class="single-product ">
                     <div class="product-photo position-relative">
-                        <img data-src="{{$product->img_small}}" data-background-image="{{asset('frontend')}}/images/no-phpto.jpg" alt="product_img" class="product_img lozad">
+                        <img data-src="{{$product->img_small}}" data-placeholder-background="white" alt="product_img" class="product_img lozad">
                         <div class="product-offers">
                             @if($product->discount > 0)
                             <span>{{$product->discount}}% off</span>
@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-button text-center">
-                    <a href="#"><button type="button" class="btn btn-secondary">See All Products</button></a>
+                    <a href="{{route('pruductspage')}}"><button type="button" class="btn btn-secondary">See All Products</button></a>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
                 <div class="single-product ">
                     <div class="product-photo position-relative">
-                        <img data-src="{{$product->img_small}}" data-background-image="{{asset('frontend')}}/images/no-phpto.jpg" alt="product_img" class="product_img lozad">
+                        <img data-src="{{$product->img_small}}" data-placeholder-background="white" alt="product_img" class="product_img lozad">
                         <div class="product-offers">
                             @if($product->discount > 0)
                             <span>{{$product->discount}}% off</span>
@@ -212,7 +212,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-button text-center">
-                    <a href="sub-category.html"><button type="button" class="btn btn-secondary">Show
+                    <a href="{{route('categorylistpage')}}"><button type="button" class="btn btn-secondary">Show
                             All</button></a>
                 </div>
             </div>

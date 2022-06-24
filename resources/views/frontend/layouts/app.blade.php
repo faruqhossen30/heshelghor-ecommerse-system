@@ -92,7 +92,7 @@
                     //     var xhr = new window.XMLHttpRequest();
                     //     console.log(xhr);
                     // },
-                    url: 'http://127.0.0.1:8000/ajax/offcanvascategories'
+                    url: '/ajax/offcanvascategories'
                     , type: 'POST'
                     , beforeSend: function() {
                         console.log('beforesend')

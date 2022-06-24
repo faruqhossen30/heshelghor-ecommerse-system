@@ -48,6 +48,7 @@ use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
+use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
@@ -70,12 +71,11 @@ Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspag
 Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
 
 
-// Search Ok
-Route::match(['GET', 'POST'],'/search/', [SearchWiseFilterController::class, 'productWithSearch'])->name('searchtest');
-
 // Filter area start
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
 // This is subcategory
+
+Route::get('/categories', [CategorylistpageController::class, 'index'])->name('categorylistpage');
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
 Route::get('/product/brand/{id}', [ShopPageController::class, 'productWithBrand'])->name('product.with.brand');
 Route::get('/product/{slug}', [SingleProductController::class, 'index'])->name('singleproduct');
