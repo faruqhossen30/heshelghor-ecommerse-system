@@ -188,7 +188,7 @@
 
 
 
-                        <a href="single-shop.html" class="shop_links market-links ">
+                        {{-- <a href="single-shop.html" class="shop_links market-links ">
                             <div class="single-shop single-market d-flex ">
                                 <div class="shop-photo market-photo">
                                     <img src="http://127.0.0.1:8000/frontend/images/slide3.jpg" alt="shop">
@@ -199,7 +199,7 @@
                                     <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
                                 </div>
                             </div>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
