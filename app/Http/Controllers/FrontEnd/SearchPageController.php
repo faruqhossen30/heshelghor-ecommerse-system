@@ -39,6 +39,7 @@ class SearchpageController extends Controller
         when($price, function ($query, $price) {
             return $query->orderBy('price', $price);
         })
+        ->latest()
         ->paginate($count ?? 30);
         // return $products;
         return view('frontend.searchpage',compact('products'));

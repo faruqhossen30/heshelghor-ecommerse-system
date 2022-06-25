@@ -21,6 +21,7 @@
 <!-- product start -->
 <div class="product-area">
     <div class="container">
+        <form action="" method="get">
         <div class="row">
             <div class="col-xl-3 d-none d-xl-block">
                 <div class="card">
@@ -33,12 +34,14 @@
                                     @if ($category->photo)
                                     <img src="{{asset('storage/category/'.$category->photo)}}" alt="">
                                     @else
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
-                                        <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
-                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eb5525" class="bi bi-card-list" viewBox="0 0 16 16">
+                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
                                       </svg>
+                                    </span>
                                     @endif
-                                    <span class="ml-2">{{$category->name}}</span>
+                                    <span style="margin-left: 5px">{{$category->name}}</span>
                                 </a>
                             </li>
                             @endforeach
@@ -51,24 +54,26 @@
                     <div class="product-sort-sytem d-flex justify-content-between mb-3">
                         <div class="product-sort-left">
                             <label for="" style="font-size: 12px;">SORT BY : </label>
-                            <select name="" id="">
+                            <select name="price" onchange="this.form.submit()">
                                 <option value="">Latest</option>
-                                <option value="">Low To High</option>
-                                <option value="">High To Low</option>
+                                <option  @if (isset($_GET['price']) && $_GET['price'] == 'desc') selected @endif value="desc">High To Low</option>
+                                <option  @if (isset($_GET['price']) && $_GET['price'] == 'asc') selected @endif value="asc">Low To High</option>
                             </select>
                         </div>
                         <div class="product-sort-right d-flex align-items-center">
                             <div class="product-show-count">
                                 <label for="" style="font-size: 12px;">SHOW : </label>
-                                <select name="" id="">
-                                    <option value="">10</option>
-                                    <option value="">20</option>
-                                    <option value="">30</option>
+                                <select name="count" onchange="this.form.submit()">
+                                    <option selected value="30">30</option>
+                                    <option @if (isset($_GET['count']) && $_GET['count'] == '40') selected @endif value="40">40</option>
+                                    <option @if (isset($_GET['count']) && $_GET['count'] == '50') selected @endif value="50">50</option>
                                 </select>
                             </div>
                             <div class="product-filter-grid">
-                                <a href="product.html"><span class="grid"> <i class="fa-solid fa-border-none"></i></span></a>
-                                <a href="product-grid.html"><span class="list"><i class="fas fa-list-ul"></i></span></a>
+                                <a href="product.html"><span class="grid"> <i
+                                            class="fa-solid fa-border-none"></i></span></a>
+                                <a href="product-grid.html"><span class="list"><i
+                                            class="fas fa-list-ul"></i></span></a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +94,7 @@
                                         <i class="fa fa-heart"></i>
                                     </div>
                                     <div class="product-btn">
-                                        <button data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">quick view</button>
+                                        <button type="button" class="quickviewbutton" data-productid="{{$product->id}}">quick view</button>
                                     </div>
                                 </div>
                                 <div class="product-content text-center">
@@ -199,6 +204,7 @@
                 </div>
             </div>
         </div>
+    </form>
     </div>
 </div>
 

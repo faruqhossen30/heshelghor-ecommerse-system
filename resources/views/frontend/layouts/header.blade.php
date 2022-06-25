@@ -22,7 +22,7 @@ $totalprice = Cart::priceTotal();
                             </div>
                             <input name="keyword" type="search" placeholder="I'm shopping" />
                             <div class="header-search-icon">
-                                <i class="fa fa-search"></i>
+                                <button type="submit" style="background: transparent; border:none; color:white"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
 

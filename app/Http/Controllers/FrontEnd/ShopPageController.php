@@ -12,44 +12,23 @@ class ShopPageController extends Controller
 {
     public function index(Request $request)
     {
-        // $brands = Brand::get();
-        // $categories = Category::orderBy('name', 'asc')->get(); // Send for menu
-        // $products = Product::active()->with('brand', 'category', 'subcategory', 'merchant')->latest('id')->paginate(20);
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = trim($_GET['price']);
+        }
+        $count = null;
+        if (isset($_GET['count'])) {
+            $count = trim($_GET['count']);
+        }
 
-        // $filter_location = [];
-        // $filter_category = [];
-        // $filter_brand = [];
-        // $orderby = null;
-        // $count = null;
-
-
-        // if (isset($_GET['location'])) {
-        //     $filter_location = $_GET['location'];
-        // }
-
-        // if (isset($_GET['category'])) {
-        //     $filter_category = $_GET['category'];
-        // }
-
-        // if (isset($_GET['brand'])) {
-        //     $filter_brand = $_GET['brand'];
-        // }
-
-        // if (isset($_GET['orderby'])) {
-
-        //     if($_GET['orderby'] == 'lowtohigh'){
-        //         $orderby = 'asc';
-        //     }
-        //     if($_GET['orderby'] == 'hightolow'){
-        //         $orderby = 'desc';
-        //     }
-
-        // }
-        // if (isset($_GET['count'])) {
-        //     $count = $_GET['count'];
-        // }
-
-
+        $category = null;
+        if (isset($_GET['category'])) {
+            $category = $_GET['category'];
+        }
+        $type = null;
+        if (isset($_GET['type'])) {
+            $type = $_GET['type'];
+        }
 
         // $products = Product::active()->with('category', 'subcategory')
         // ->when($filter_category, function ($query, $filter_category) {
@@ -67,7 +46,12 @@ class ShopPageController extends Controller
 
         // return view('frontend.shoppage', compact('categories', 'products', 'brands'));
 
-        $products = Product::active()->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')->latest()->paginate(20);
+        $products = Product::active()->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')
+            ->when($price, function ($query, $price) {
+                return $query->orderBy('price', $price);
+            })
+            ->latest()->paginate(20);
+
         $categories = Category::select('id', 'name', 'slug', 'image')->orderBy('name', 'asc')->get();
         // return $categories;
         return view('frontend.productspage', compact('products', 'categories'));
