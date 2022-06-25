@@ -23,7 +23,7 @@
                 <a href="single-shop.html" class="shop_links market-links ">
                     <div class="single-shop single-market d-flex ">
                         <div class="shop-photo market-photo">
-                            <img class="lozad" data-src="{{asset('uploads/shop/'.$shop->image)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';"  alt="{{$shop->name}}" style="height: 75px; width:auto">
+                            <img class="lozad" data-src="{{asset('uploads/shop/'.$shop->image)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';"  alt="{{$shop->name}}" style="height: 75px; max-width:75px">
 
                         </div>
                         <div class="shop-content market-content">
@@ -64,7 +64,7 @@
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
                 <div class="single-product ">
                     <div class="product-photo position-relative">
-                        <img data-src="{{$product->img_small}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="product_img" class="product_img lozad">
+                        <img data-src="{{$product->img_small}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="{{$product->title}}" class="product_img lozad">
                         <div class="product-offers">
                             @if($product->discount > 0)
                             <span>{{$product->discount}}% off</span>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="product-content text-center">
-                        <a href="single_product.html" class="product_title">
+                        <a href="{{route('singleproduct', $product->slug)}}" class="product_title">
                             <h5>{{$product->title}}</h5>
                         </a>
                         <div class="product-price">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="product-content text-center">
-                        <a href="single_product.html" class="product_title">
+                        <a href="{{route('singleproduct', $product->slug)}}" class="product_title">
                             <h5>{{$product->title}}</h5>
                         </a>
                         <div class="product-price">

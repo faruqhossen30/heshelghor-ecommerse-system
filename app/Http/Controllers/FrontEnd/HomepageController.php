@@ -23,12 +23,13 @@ class HomepageController extends Controller
         $categories = Category::inRandomOrder()->take(12)->get();
         $shops = Shop::inRandomOrder()->take(12)->get();
         $markets = Market::inRandomOrder()->take(12)->get();
-        $sliders = Slider::get();
-        $featursproducts = Product::where('category_id', 38)->select('id', 'title', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        $sliders = Slider::latest()->get();
+        $featursproducts = Product::where('category_id', 38)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
-        $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
         // return $featursproducts;
+        // homepage update
 
         return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct'));
     }

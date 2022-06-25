@@ -3,6 +3,7 @@
 
 
 @section('content')
+
 <input type="hidden" name="minprice" value="{{ $minPrice }}">
 <input type="hidden" name="maxprice" value={{ $maxPrice }}>
     <!-- breadcrumb start -->
@@ -21,12 +22,13 @@
             </div>
         </div>
     </div>
-    <!-- breadcrumb end -->
+</div>
+<!-- breadcrumb end -->
 
-    <!-- product start -->
-    <div class="product-area">
-        <div class="container">
-            <form action="" method="GET">
+<!-- product start -->
+<div class="product-area">
+    <div class="container">
+        <form action="" method="GET">
             <div class="row">
                 <div class="col-xl-3 d-none d-xl-block">
                     <div class="search-sidebar">
@@ -68,6 +70,7 @@
                                     id="min_price" class="price-range-field" /><strong>৳</strong>
                                 <input type="number" name="maxprice" value="0" min=0 max="10000" oninput="validity.valid||(value='10000');"
                                     id="max_price" class="price-range-field" onchange="this.form.submit()" />
+
                             </div>
                         </div>
                     </div>
@@ -79,8 +82,8 @@
                                 <label for="" style="font-size: 12px;">SORT BY : </label>
                                 <select name="price" onchange="this.form.submit()">
                                     <option value="">Latest</option>
-                                    <option  @if (isset($_GET['price']) && $_GET['price'] == 'desc') selected @endif value="desc">High To Low</option>
-                                    <option  @if (isset($_GET['price']) && $_GET['price'] == 'asc') selected @endif value="asc">Low To High</option>
+                                    <option @if (isset($_GET['price']) && $_GET['price']=='desc' ) selected @endif value="desc">High To Low</option>
+                                    <option @if (isset($_GET['price']) && $_GET['price']=='asc' ) selected @endif value="asc">Low To High</option>
                                 </select>
                             </div>
                             <div class="product-sort-right d-flex align-items-center">
@@ -88,58 +91,58 @@
                                     <label for="" style="font-size: 12px;">SHOW : </label>
                                     <select name="count" onchange="this.form.submit()">
                                         <option selected value="30">30</option>
-                                        <option @if (isset($_GET['count']) && $_GET['count'] == '40') selected @endif value="40">40</option>
-                                        <option @if (isset($_GET['count']) && $_GET['count'] == '50') selected @endif value="40">50</option>
+                                        <option @if (isset($_GET['count']) && $_GET['count']=='40' ) selected @endif value="40">40</option>
+                                        <option @if (isset($_GET['count']) && $_GET['count']=='50' ) selected @endif value="40">50</option>
                                     </select>
                                 </div>
                                 <div class="product-filter-grid">
-                                    <a href="product.html"><span class="grid"> <i
-                                                class="fa-solid fa-border-none"></i></span></a>
-                                    <a href="product-grid.html"><span class="list"><i
-                                                class="fas fa-list-ul"></i></span></a>
+                                    <a href="#"><span class="grid"> <i class="fa-solid fa-border-none"></i></span></a>
+                                    <a href="#"><span class="list"><i class="fas fa-list-ul"></i></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row g-2">
                             @foreach ($products as $product)
-                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
-                                    <div class="single-product ">
-                                        <div class="product-photo position-relative">
-                                            <img src="{{ $product->img_small }}" alt="product_img" class="product_img">
-                                            <div class="product-offers">
-                                                <span>20% off</span>
-                                                <span class="new_product">new</span>
-                                            </div>
-                                            <div class="product-icon">
-                                                <i class="fa fa-heart"></i>
-                                                <i class="fa fa-heart"></i>
-                                            </div>
-                                            <div class="product-btn">
-                                                <button type="button" class="quickviewbutton" data-productid="{{$product->id}}">quick view</button>
-                                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
+                                <div class="single-product ">
+                                    <div class="product-photo position-relative">
+                                        <img data-src="{{ $product->img_small }}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="product_img" class="product_img lozad">
+                                        <div class="product-offers">
+                                            @if($product->discount > 0)
+                                            <span>{{$product->discount}}% off</span>
+                                            @endif
+                                            <span class="new_product">new</span>
                                         </div>
-                                        <div class="product-content text-center">
-                                            <a href="single_product.html" class="product_title">
-                                                <h5 data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $product->title }}">{{ $product->title }}</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                <span class="text-dark">৳{{$product->price}}
-                                                    @if($product->discount > 0)
-                                                    <del class="text-secondary">${{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
-                                                    @endif
-                                                </span>
-                                            </div>
-                                            <div class="product-ratting ">
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <span class="text-secondary fs-6">(0)</span>
-                                            </div>
+                                        <div class="product-icon">
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="product-btn">
+                                            <button type="button" class="quickviewbutton" data-productid="{{$product->id}}">quick view</button>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <a href="{{route('singleproduct', $product->slug)}}" class="product_title">
+                                            <h5 data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $product->title }}">{{ $product->title }}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            <span class="text-dark">৳{{$product->price}}
+                                                @if($product->discount > 0)
+                                                <del class="text-secondary">${{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="product-ratting ">
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <i class="fa-regular fa-star"></i>
+                                            <span class="text-secondary fs-6">(0)</span>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
                             <div class="row my-3">
                                 {{ $products->appends($_GET)->links() }}
@@ -149,22 +152,22 @@
                 </div>
             </div>
         </form>
-        </div>
     </div>
+</div>
 
-    <!-- product end -->
+<!-- product end -->
 
 @endsection
 
 @push('style')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css"
-media="all" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" media="all" />
 @endpush
 
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
 </script>
+
     @include('frontend.script.pricerangescript')
 
     <script>
@@ -188,4 +191,7 @@ media="all" />
             }
         });
     </script>
+
+@include('frontend.script.pricerangescript')
+
 @endpush

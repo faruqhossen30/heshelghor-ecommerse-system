@@ -21,7 +21,9 @@ class SingleProductController extends Controller
 
         // return $product;
         $shop = Shop::firstWhere('id', 27);
-        return view('frontend.single-product' ,compact('product'));
+        $categoryproduct = Product::where('category_id', $product->category_id)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->get();
+
+        return view('frontend.single-product' ,compact('product', 'categoryproduct'));
 
         // return view('frontend.singleproduct', compact('product', 'shop'));
 

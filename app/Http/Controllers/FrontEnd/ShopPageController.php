@@ -30,23 +30,8 @@ class ShopPageController extends Controller
             $type = $_GET['type'];
         }
 
-        // $products = Product::active()->with('category', 'subcategory')
-        // ->when($filter_category, function ($query, $filter_category) {
-        //     return $query->whereIn('category_id', $filter_category);
-        // })
-        // ->when($filter_brand, function ($query, $filter_brand) {
-        //     return $query->whereIn('brand_id', $filter_brand);
-        // })
-        // ->when($orderby, function ($query, $orderby) {
-        //     return $query->orderBy('price', $orderby);
-        // })
-        // ->latest('id')
-        // ->paginate($count ?? 20);
 
-
-        // return view('frontend.shoppage', compact('categories', 'products', 'brands'));
-
-        $products = Product::active()->select('id', 'title', 'price', 'regular_price', 'discount', 'img_small')
+        $products = Product::active()->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')
             ->when($price, function ($query, $price) {
                 return $query->orderBy('price', $price);
             })
