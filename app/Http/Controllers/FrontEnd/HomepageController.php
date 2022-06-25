@@ -29,6 +29,7 @@ class HomepageController extends Controller
         $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
         // return $featursproducts;
+        // homepage update
 
         return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct'));
     }
