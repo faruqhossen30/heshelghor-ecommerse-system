@@ -1,5 +1,7 @@
 @extends('frontend.layouts.app')
 
+
+
 @section('content')
     <!-- breadcrumb start -->
     <div class="bradcrumb-area">
@@ -8,6 +10,10 @@
                 <div class="col-sm-12">
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
                         aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Product</li>
+                        </ol>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Product</li>
@@ -93,9 +99,9 @@
                                 <span class="text-secondary fs-6">Price</span>
                             </div>
                             <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-                            <div class="price-range">
+                            <div class="price-range"><strong>৳</strong>
                                 <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');"
-                                    id="min_price" class="price-range-field" />
+                                    id="min_price" class="price-range-field" /><strong>৳</strong>
                                 <input type="number" min=0 max="10000" oninput="validity.valid||(value='10000');"
                                     id="max_price" class="price-range-field" />
                             </div>
@@ -183,4 +189,17 @@
     </div>
 
     <!-- product end -->
+
 @endsection
+
+@push('style')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css"
+media="all" />
+@endpush
+
+@push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
+</script>
+    @include('frontend.script.pricerangescript')
+@endpush
