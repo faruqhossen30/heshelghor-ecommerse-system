@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="product-content text-center">
-                        <a href="single_product.html" class="product_title">
+                        <a href="{{route('singleproduct', $product->slug)}}" class="product_title">
                             <h5>{{$product->title}}</h5>
                         </a>
                         <div class="product-price">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     <div class="product-content text-center">
-                        <a href="single_product.html" class="product_title">
+                        <a href="{{route('singleproduct', $product->slug)}}" class="product_title">
                             <h5>{{$product->title}}</h5>
                         </a>
                         <div class="product-price">
