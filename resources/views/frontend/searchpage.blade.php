@@ -117,7 +117,7 @@
                                 <div class="product-show-count">
                                     <label for="" style="font-size: 12px;">SHOW : </label>
                                     <select name="count" onchange="this.form.submit()">
-                                        <option selected value="10">30</option>
+                                        <option selected value="30">30</option>
                                         <option @if (isset($_GET['count']) && $_GET['count'] == '40') selected @endif value="40">40</option>
                                         <option @if (isset($_GET['count']) && $_GET['count'] == '50') selected @endif value="40">50</option>
                                     </select>
