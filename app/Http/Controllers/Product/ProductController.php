@@ -71,8 +71,6 @@ class ProductController extends Controller
 
         // return $request->all();
 
-
-
         $validate = $request->validate([
             'title'             => 'required | max:255',
             'description'       => 'required | max:15000',
@@ -139,7 +137,7 @@ class ProductController extends Controller
                         'product_id' => $product->id,
                     ]);
                 }
-            }; 
+            };
 
 
             // Add Color

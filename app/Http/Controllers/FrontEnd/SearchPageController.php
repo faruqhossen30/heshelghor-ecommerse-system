@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Brand;
+use App\Models\Product\Category;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
@@ -41,8 +43,17 @@ class SearchpageController extends Controller
         })
         ->latest()
         ->paginate($count ?? 30);
+
+
+        // $maxPrice=count(Product::all());
+        $maxPrice=Product::max('price');
+        $minPrice=Product::min('price');
+
+        $categories =Category::all();
+        $brands =Brand::all();
+
         // return $products;
-        return view('frontend.searchpage',compact('products'));
+        return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
     }
 
 }
