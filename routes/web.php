@@ -54,26 +54,22 @@ use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
-Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcanvascategory']);
-Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
+Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
 Route::get('/promotion', [HomepageController::class, 'promotion'])->name('promotion');
-Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
-Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
-
 Route::get('/terms-and-condition', [HomepageController::class, 'termsAndCondition'])->name('termsandcondition');
 Route::get('/return-policy', [HomepageController::class, 'returnPolicy'])->name('returnpolicy');
 
+Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
+Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
+Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcanvascategory']);
 
 
-// Filter product
+// Products
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
-Route::get('/products/filter', [ShopPageController::class, 'productFilter'])->name('pruductspage-filter');
-
 
 // Filter area start
 Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
-// This is subcategory
 
 Route::get('/categories', [CategorylistpageController::class, 'index'])->name('categorylistpage');
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');

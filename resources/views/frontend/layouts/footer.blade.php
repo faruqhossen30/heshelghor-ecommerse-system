@@ -4,13 +4,14 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        <a href="index.html"> <img src="{{asset('frontend')}}/images/logo.jpg" class="img-fluid"
-                                style="height: 50px; margin-bottom: 20px;" alt="footer_logo"></a>
+                        <a href="{{route('homepage')}}">
+                            <img src="{{asset('frontend')}}/images/logo.jpg" class="img-fluid" style="height: 50px; margin-bottom: 20px;" alt="footer_logo">
+                        </a>
                         <p>Heshelghor.com is an E-commerce business platform. Our main objective is to provide an
                             opportunity for all Bangladeshi businessmen to work on an online-based E-commerce
                             platform</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/heshelghorbangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-youtube"></i></a>
                             <a href="#"><i class="fab fa-linkedin"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -21,12 +22,12 @@
                     <div class="footer-widget">
                         <h4>quick links</h4>
                         <ul class="footer-links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">terms & conditions</a></li>
-                            <li><a href="#">privacy & policy</a></li>
-                            <li><a href="#">Return & Refund Policy</a></li>
-                            <li><a href="#">Marchant Login</a></li>
-                            <li><a href="#">View Cart</a></li>
+                            <li><a href="{{route('aboutus')}}">About Us</a></li>
+                            <li><a href="{{route('termsandcondition')}}">terms & conditions</a></li>
+                            <li><a href="{{route('privacypolicy')}}">privacy & policy</a></li>
+                            <li><a href="{{route('returnpolicy')}}">Return & Refund Policy</a></li>
+                            <li><a href="{{route('marchant.login')}}">Marchant Login</a></li>
+                            <li><a href="{{route('cart.page')}}">View Cart</a></li>
                             <li><a href="#">Jobs</a></li>
                     </div>
                 </div>

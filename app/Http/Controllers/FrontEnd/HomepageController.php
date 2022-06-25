@@ -68,7 +68,7 @@ class HomepageController extends Controller
     }
     public function termsAndCondition()
     {
-        return view('frontend.terms-and-condition');
+        return view('frontend.termsand-condition');
     }
     public function returnPolicy()
     {
