@@ -10,7 +10,8 @@
     <!-- Bootstrap CSS -->
     <link href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.exzoom.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
@@ -54,6 +55,7 @@
     <script src="{{ asset('frontend') }}/js/popper.min.js"></script>
     <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js""></script>
     <script src="{{ asset('frontend') }}/js/jquery.exzoom.js"></script>
     <script src="{{ asset('frontend') }}/js/jquery.scrollUp.js"></script>
     <script src="{{ asset('frontend') }}/js/main.js"></script>

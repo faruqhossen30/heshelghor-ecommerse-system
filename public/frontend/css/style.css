@@ -783,7 +783,25 @@ span.itemReload {
 .quantity__minus {
     border-radius: 3px 0 0 3px;
 }
-
+.modal-header.quick_view_close {
+    position: absolute;
+    right: -40px;
+    /* background: #fff; */
+    top: -40px;
+    border: none;
+    width: 40px;
+    height: 40px;
+}
+.modal-header.quick_view_close i {
+    font-size: 25px;
+    color: #eb5525;
+}
+.quick_view_close button.btn-close {
+    position: absolute;
+    left: 5px;
+    opacity: 1;
+    background: none;
+}
 .quantity__input {
     width: 32px;
     height: 32px;
@@ -1097,7 +1115,17 @@ aside h5 {
     background: #f6a800 !important;
     border: 2px solid transparent;
 }
-
+.single-product_content .video-popup {
+    height: auto;
+        transition: all .5s ease-in-out;
+}
+.single-product_content .video-popup:hover {
+    height: auto;
+    color: #000 !important;
+}
+.quick-view-buynow {
+    line-height: 2;
+}
 #myTab li button {
     border: 2px solid #ddd;
     background: transparent;

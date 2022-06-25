@@ -66,14 +66,23 @@
                             ( 0 Review)
                         </span>
                     </div>
-                    @isset($product->youtube_link)
-                    <a href="{{ $product->youtube_link }}" class="popup btn btn-primary">video asa</a>
-                    @endisset
 
-                    {!! $product->short_description !!}
+
+                    {!! $product->short_description !!} <br>
+
                     <a href="#viewmore">
                         <strong>View More</strong>
                     </a>
+                    <br>
+
+                    @isset($product->youtube_link)
+                    <a href="{{ $product->youtube_link }}" type="button" class="popup btn video-popup btn-sm hg-iconbutton text-white" style="margin-left: 5px"><i class="fa-solid fa-video"></i> Video</a>
+
+                    {{-- <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart" type="button" style="margin-left: 5px"><i class="fas fa-shopping-cart icon-c"></i> Add to Cart</button> --}}
+
+                    @endisset
+
+
 
                     <form action="{{ route('cart.add', $product->id) }}" id="ajaxform" method="post">
                         @csrf
@@ -108,7 +117,7 @@
                         </div>
                         <div class="">
                             <button class="btn btn-primary btn-sm hg-iconbutton"><i class="fa-solid fa-heart"></i> Wishlist</button>
-                            <a href="{{route('buynow', $product->id)}}" class="btn btn-primary btn-sm hg-iconbutton"><i class="fa-solid fa-bag-shopping"></i> Buy Now !</a>
+                            <a href="{{route('buynow', $product->id)}}" class="btn btn-primary btn-sm hg-iconbutton quick-view-buynow "><i class="fa-solid fa-bag-shopping"></i> Buy Now !</a>
                         </div>
                     </form>
                 </div>
