@@ -15,26 +15,6 @@ class ShopListPageController extends Controller
 {
     public function allshop()
     {
-        // $brands = Brand::get();
-        // $products = Product::get();
-        // $categories = Category::get();
-        // // return $shops;
-        // $shops = Shop::active()->with('market')->latest()->paginate(20);
-        // // return $shops;
-        // if(!empty($_GET['shoploaction']) && !empty($_GET['shopsearchkeyword'])){
-        //     $locationid = District::where('slug', $_GET['shoploaction'])->first()->id;
-
-        //     $shops = Shop::active()->where('district_id', $locationid)->where('name', 'like', '%'.$_GET['shopsearchkeyword'].'%')->get();
-
-        //     return view('frontend.shoplist.viewshoplist', compact('shops','products', 'brands', 'categories'));
-        // }
-        // if(!empty($_GET['shoploaction'])){
-        //     $locationid = District::where('slug', $_GET['shoploaction'])->first()->id;
-        //     $shops = Shop::active()->where('district_id', $locationid)->get();
-        //     return view('frontend.shoplist.viewshoplist', compact('shops','products', 'brands', 'categories'));
-        // }
-
-        // return view('frontend.shoplist.viewshoplist', compact('shops','products', 'brands', 'categories'));
         $district_id = null;
         if (isset($_GET['district_id'])) {
             $district_id = $_GET['district_id'];

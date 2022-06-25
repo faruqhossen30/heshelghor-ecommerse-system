@@ -23,13 +23,8 @@
                 <a href="single-shop.html" class="shop_links market-links ">
                     <div class="single-shop single-market d-flex ">
                         <div class="shop-photo market-photo">
-                            @if ($shop->image)
-                            <img class="lozad" data-src="{{asset('uploads/shop/'.$shop->image)}}" alt="shop" style="height: 75px; width:auto">
-                            @else
-                            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-shop-window" viewBox="0 0 16 16">
-                                <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zm2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5z"/>
-                              </svg>
-                            @endif
+                            <img class="lozad" data-src="{{asset('uploads/shop/'.$shop->image)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';"  alt="{{$shop->name}}" style="height: 75px; width:auto">
+
                         </div>
                         <div class="shop-content market-content">
                             <h5>{{$shop->name}}</h5>
@@ -69,7 +64,7 @@
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
                 <div class="single-product ">
                     <div class="product-photo position-relative">
-                        <img data-src="{{$product->img_small}}" data-placeholder-background="white" alt="product_img" class="product_img lozad">
+                        <img data-src="{{$product->img_small}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="product_img" class="product_img lozad">
                         <div class="product-offers">
                             @if($product->discount > 0)
                             <span>{{$product->discount}}% off</span>
@@ -137,7 +132,7 @@
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6">
                 <div class="single-product ">
                     <div class="product-photo position-relative">
-                        <img data-src="{{$product->img_small}}" data-placeholder-background="white" alt="product_img" class="product_img lozad">
+                        <img data-src="{{$product->img_small}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="product_img" class="product_img lozad" style="background-size:100%">
                         <div class="product-offers">
                             @if($product->discount > 0)
                             <span>{{$product->discount}}% off</span>
@@ -206,14 +201,7 @@
                 <a href="#" class="category_links  ">
                     <div class="single-category bg-white mb-4">
                         <div class="category-photo">
-                            @if ($category->image)
-                            <img class="lozad" data-src="{{asset('/'.$category->image)}}" alt="category">
-
-                            @else
-                            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-view-list" viewBox="0 0 16 16">
-                                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                              </svg>
-                            @endif
+                            <img class="lozad" data-src="{{asset('/'.$category->image)}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="{{$category->name}}">
                         </div>
                         <span>{{$category->name}}</span>
                     </div>
@@ -251,7 +239,7 @@
                 <a href="#" class="market-links">
                     <div class="single-market  d-flex ">
                         <div class="market-photo">
-                            <img class="lozad" data-src="{{asset('frontend')}}/images/slide1.jpg" alt="market">
+                            <img class="lozad" data-src="{{asset('frontend')}}/images/slide1.jpg" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="{{$market->name}}">
                         </div>
                         <div class="market-content">
                             <h5>{{$market->name}}</h5>

@@ -82,7 +82,7 @@
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
                             <div class="single-product ">
                                 <div class="product-photo position-relative">
-                                    <img data-src="{{$product->img_small}}" alt="{{$product->title}}" class="product_img lozad">
+                                    <img data-src="{{$product->img_small}}"  onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="{{$product->title}}" class="product_img lozad">
                                     <div class="product-offers">
                                         @if($product->discount > 0)
                                         <span>{{$product->discount}}% off</span>
@@ -117,89 +117,11 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                <div class="modal-dialog modal-xl modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <!-- <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div> -->
-                                        <div class="modal-body">
-                                            <div class="quick_view d-flex">
-                                                <div class="quick_view_photo">
-                                                    <img src="images/slide1.jpg" alt="">
-                                                </div>
-                                                <div class="quick_view_content">
-                                                    <h3 class="quick_view_title">Converse Training Shoes</h3>
-                                                    <div class="product-meta">
-                                                        <span><strong>sku : </strong>5645452</span>
-                                                        <span><strong>brand : </strong>shoes</span>
-                                                    </div>
-                                                    <h4 class="quick_view_price">$123.00</h4>
-                                                    <div class="quick_view_ratting d-flex">
-                                                        <div class="quick_view_icon">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa-regular fa-star"></i>
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </div>
-                                                        <span class="quick_view_ratting_count">
-                                                            ( 11 Reviews)
-                                                        </span>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                                        Neque dicta
-                                                        veritatis corporis cupiditate obcaecati ea in asperiores
-                                                        amet culpa
-                                                        voluptatem?</p>
-                                                    <div class='color-options d-flex'>
-                                                        <span> Color : </span>
-                                                        <div class='color-picker'>
-                                                            <div class='color overlay' id='color-overlay'>
-                                                                <div class='check'></div>
-                                                            </div>
-                                                            <div class='color color-a' id='color-a'></div>
-                                                            <div class='color color-b' id='color-b'></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class='size-picker'>
-                                                        <span> Size : </span>
-                                                        <div class='range-picker ' id='range-picker'>
-                                                            <div>L</div>
-                                                            <div>46</div>
-                                                            <div>48</div>
-                                                            <div>46</div>
-                                                            <div>48</div>
-                                                            <div class='active'>50</div>
-                                                            <div>52</div>
-                                                            <div>54</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="quick_view_cart d-flex">
-                                                        <div class="quantity product_quantity">
-                                                            <a href="#" class="quantity__minus"><span><i class="fa-solid fa-minus"></i></span></a>
-                                                            <input name="quantity" type="text" class="quantity__input" value="1">
-                                                            <a href="#" class="quantity__plus"><span><i class="fa-solid fa-plus"></i></span></a>
-                                                        </div>
-                                                        <div class="quick_view_btn">
-                                                            <button type="button">add to cart</button>
-                                                            <a href="#"><button type="button">buy now</button></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                         @endforeach
                     </div>
                     <div class="row mb-4">
-                        {{$products->links()}}
+                        {{$products->appends($_GET)->links()}}
                     </div>
                 </div>
             </div>

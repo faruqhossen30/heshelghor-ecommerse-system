@@ -58,7 +58,7 @@
                         <a href="#" class="market-links">
                             <div class="single-market bg-white d-flex ">
                                 <div class="market-photo">
-                                    <img src="images/slide1.jpg" alt="market">
+                                    <img data-src="images/slide1.jpg" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" class="lozad" alt="market">
                                 </div>
                                 <div class="market-content">
                                     <h5>{{$market->name}}</h5>

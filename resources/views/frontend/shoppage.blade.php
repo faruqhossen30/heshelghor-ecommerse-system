@@ -58,12 +58,8 @@
                         <a href="#" class="shop_links market-links ">
                             <div class="single-shop single-market bg-white d-flex ">
                                 <div class="shop-photo market-photo">
+                                    <img data-src="{{asset('frontend')}}/images/slide3.jpg" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" class="lozad" alt="shop">
 
-                                    @if($shop->img_small)
-                                    <img data-src="{{$shop->img_small}}" class="lozad" alt="shop">
-                                    @else
-                                    <img data-src="{{asset('frontend')}}/images/slide3.jpg" class="lozad" alt="shop">
-                                    @endif
 
                                 </div>
                                 <div class="shop-content market-content">
