@@ -15,7 +15,11 @@ class UserProductReviewController extends Controller
     public function index()
     {
         $userid = Auth()->user()->id;
-        $orderitems = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->latest()->paginate(10);
+        $orderitems = OrderItem::with('product', 'user', 'review')
+            ->where('user_id', $userid)
+            ->where('complete_status', 1)
+            ->latest()
+            ->paginate(10);
         // return  $orderitems ;
 
         return view('user.review.productlist', compact('orderitems'));
@@ -24,16 +28,20 @@ class UserProductReviewController extends Controller
     public function reviewproduct($id)
     {
         $userid = Auth()->user()->id;
-        $orderitem = OrderItem::with('product', 'user', 'review')->where('user_id', $userid)->where('id', $id)->latest()->first();
+        $orderitem = OrderItem::with('product', 'user', 'review')
+            ->where('user_id', $userid)
+            ->where('id', $id)
+            ->latest()
+            ->first();
 
         $review = ProductReview::firstWhere('orderitem_id', $id);
 
         // return $review;
-        if($review){
+        if ($review) {
 
-            return view('user.review.productshow', compact('review','orderitem'));
+            return view('user.review.productshow', compact('review', 'orderitem'));
         }
-        if(!$review){
+        if (!$review) {
 
             return view('user.review.review', compact('orderitem'));
         }
@@ -66,10 +74,11 @@ class UserProductReviewController extends Controller
     {
         $review = ProductReview::where('product_id', $id)->get()->first();
 
-            return view('user.review.editreview',compact('review'));
+        return view('user.review.editreview', compact('review'));
     }
 
-    public function reviewproductupadte(Request $request,$id){
+    public function reviewproductupadte(Request $request, $id)
+    {
 
         // return $request->all();
         ProductReview::where('product_id', $id)->update([
@@ -80,5 +89,4 @@ class UserProductReviewController extends Controller
         ]);
         return redirect()->route('user.product.review.list');
     }
-
 }
