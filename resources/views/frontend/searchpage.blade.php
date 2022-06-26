@@ -3,21 +3,22 @@
 
 
 @section('content')
-<!-- breadcrumb start -->
-<div class="bradcrumb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Product</li>
-                    </ol>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Product</li>
-                    </ol>
-                </nav>
+
+<input type="hidden" name="minprice" value="{{ $minPrice }}">
+<input type="hidden" name="maxprice" value={{ $maxPrice }}>
+    <!-- breadcrumb start -->
+    <div class="bradcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+                        aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Product</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -36,30 +37,14 @@
                                 <span class="text-secondary fs-6">Categories</span>
                             </div>
                             <ul class="expandible">
+                                @foreach ($categories as $category)
                                 <li>
                                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                    <label for="vehicle1"> I have a bike</label><br>
+                                    <label for="vehicle1">{{ $category->name }}</label><br>
                                 </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Bike">
-                                    <label for="vehicle2"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Bike">
-                                    <label for="vehicle3"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle4" name="vehicle4" value="Bike">
-                                    <label for="vehicle4"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle5" name="vehicle5" value="Bike">
-                                    <label for="vehicle5"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle6" name="vehicle6" value="Bike">
-                                    <label for="vehicle6"> I have a bike</label><br>
-                                </li>
+                                @endforeach
+
+
                             </ul>
                         </div>
                         <div class="card mb-2">
@@ -67,30 +52,12 @@
                                 <span class="text-secondary fs-6">Brand</span>
                             </div>
                             <ul class="expandible">
+                                @foreach ($brands as $brand)
                                 <li>
                                     <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                    <label for="vehicle1"> I have a bike</label><br>
+                                    <label for="vehicle1"> {{ $brand->name }}</label><br>
                                 </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Bike">
-                                    <label for="vehicle2"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Bike">
-                                    <label for="vehicle3"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle4" name="vehicle4" value="Bike">
-                                    <label for="vehicle4"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle5" name="vehicle5" value="Bike">
-                                    <label for="vehicle5"> I have a bike</label><br>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="vehicle6" name="vehicle6" value="Bike">
-                                    <label for="vehicle6"> I have a bike</label><br>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="card mb-2">
@@ -99,8 +66,11 @@
                             </div>
                             <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
                             <div class="price-range"><strong>৳</strong>
-                                <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field" /><strong>৳</strong>
-                                <input type="number" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field" />
+                                <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');"
+                                    id="min_price" class="price-range-field" /><strong>৳</strong>
+                                <input type="number" name="maxprice" value="0" min=0 max="10000" oninput="validity.valid||(value='10000');"
+                                    id="max_price" class="price-range-field" onchange="this.form.submit()" />
+
                             </div>
                         </div>
                     </div>
@@ -197,5 +167,31 @@
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
 </script>
+
+    @include('frontend.script.pricerangescript')
+
+    <script>
+        $('ul.expandible').each(function () {
+            var $ul = $(this),
+                $lis = $ul.find('li:gt(9)'),
+                isExpanded = $ul.hasClass('expanded');
+            $lis[isExpanded ? 'show' : 'hide']();
+
+            if ($lis.length > 0) {
+                $ul
+                    .append($('<span class="showmore"><li class="expand">' + (isExpanded ? 'Show Less' :
+                            'Show More') + '</li></span>')
+                        .click(function (event) {
+                            var isExpanded = $ul.hasClass('expanded');
+                            event.preventDefault();
+                            $(this).html(isExpanded ? 'Show More' : 'Show Less');
+                            $ul.toggleClass('expanded');
+                            $lis.toggle();
+                        }));
+            }
+        });
+    </script>
+
 @include('frontend.script.pricerangescript')
+
 @endpush
