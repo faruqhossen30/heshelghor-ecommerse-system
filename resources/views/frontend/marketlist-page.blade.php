@@ -41,41 +41,41 @@
         </div>
         <!-- breadcrumb end -->
 
-        <!-- shop start -->
-        <div class="shop-area pt-5 pb-5" style="background-color: #FCE6DF;">
+        <!-- market start -->
+        <div class="market-area pt-5 pb-5" style="background-color: #d9bcb3;">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="section-heading text-center mb-5">
-                            <h4>Shop</h4>
-                            <span>Get Your Product from Shop</span>
+                            <h4>Market</h4>
+                            <span>Get Your Product from Market</span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($shops as $shop)
+                    @foreach ($markets as $market)
                     <div class="col-xl-4 col-lg-6 col-md-6">
-                        <a href="#" class="shop_links market-links ">
-                            <div class="single-shop single-market bg-white d-flex ">
-                                <div class="shop-photo market-photo">
-                                    <img data-src="{{asset('frontend')}}/images/slide3.jpg" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" class="lozad" alt="shop">
-
-
+                        <a href="#" class="market-links">
+                            <div class="single-market bg-white d-flex ">
+                                <div class="market-photo">
+                                    <img data-src="{{asset('storage/market/'.$market->photo)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" class="lozad" alt="market">
                                 </div>
-                                <div class="shop-content market-content">
-                                    <h5>{{$shop->name}}</h5>
-                                    <span> <i class="fa fa-map-marker"></i> {{$shop->address}}</span> <br>
+                                <div class="market-content">
+                                    {{-- <h5>{{$market->name}}</h5> --}}
+                                    <h5>{{$market->photo}}</h5>
+                                    <span> <i class="fa fa-map-marker"></i> {{$market->address}}</span> <br>
                                     {{-- <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span> --}}
                                 </div>
                             </div>
                         </a>
                     </div>
                     @endforeach
+
                 </div>
                 <div class="row">
-                    {{$shops->appends($_GET)->links()}}
+                    {{$markets->appends($_GET)->links()}}
                 </div>
             </div>
         </div>
-        <!-- shop end -->
+        <!-- market end -->
 @endsection

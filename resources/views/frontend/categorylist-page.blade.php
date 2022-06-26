@@ -28,7 +28,7 @@
                         <a href="#" class="category_links  ">
                             <div class="single-category bg-white mb-4">
                                 <div class="category-photo">
-                                    <img src="images/shop/shop.png" alt="category">
+                                    <img class="lozad" data-src="{{asset('/'.$category->image)}}" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" data-placeholder-background="white" alt="{{$category->name}}">
                                 </div>
                                 <span>{{$subcategory->name}}</span>
                             </div>

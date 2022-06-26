@@ -40,6 +40,6 @@ class ShopListPageController extends Controller
             ->orderBy('name', 'asc')
             ->get();
 
-        return view('frontend.shoppage', compact('shops', 'divisions'));
+        return view('frontend.shoplist-page', compact('shops', 'divisions'));
     }
 }

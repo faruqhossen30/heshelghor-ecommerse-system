@@ -33,10 +33,10 @@ class MarketListPageController extends Controller
             ->when($keyword, function ($query, $keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             })
-            ->select('id', 'name', 'slug', 'address', 'image',)
+            ->select('id', 'name', 'slug', 'address', 'image', 'photo')
             ->paginate(30);
         // return $markets;
-        return view('frontend.marketpage', compact('markets', 'divisions'));
+        return view('frontend.marketlist-page', compact('markets', 'divisions'));
     }
 
     public function marketWiseShopList(Request $request, $id)
