@@ -126,17 +126,9 @@
     </div>
     <!-- product end -->
 
-    <!-- Ladies product start -->
+    <!-- Tab product start -->
     <div class="product-area section-padding" style="background-color: #FCE6DF;">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-heading text-center mb-5">
-                        <h4>Ladies Corner</h4>
-                        <span>Get Your Product</span>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="">
@@ -153,7 +145,8 @@
                                 <button class="nav-link text-dark border-bottom-0" id="nav-tab4" data-bs-toggle="tab" data-bs-target="#tab4"
                                     type="button" role="tab" aria-controls="tab4"
                                     aria-selected="false">Health And Beauty</button>
-                            </div>
+                                </div>
+                                <a href="{{route('categorylistpage')}}" style="margin-top: -30px" class="float-end">See All</a>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel"
