@@ -33,14 +33,7 @@ class HomepageController extends Controller
 
         return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct'));
     }
-    // Search
-    public function search($keyword)
-    {
 
-        $result = Product::active()->where('title', 'like', "%$keyword%")
-            ->get();
-        return $result;
-    }
 
 
     public function privacyPolicy()
