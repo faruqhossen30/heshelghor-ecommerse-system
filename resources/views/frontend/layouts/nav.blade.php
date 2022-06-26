@@ -11,6 +11,7 @@
                             </span>
                         </div>
                         <ul id="menuMoreItems">
+                        {{-- <ul id=""> --}}
                             <div id="navClose">
                                 <i class="fa fa-close"></i>
                             </div>
@@ -23,7 +24,9 @@
                     </div>
                 </div>
             </div>
-            <div class="allItem  d-md-none" id="subMenuItemShow"><a href="#">More</a></div>
+            <div class="allItem  d-md-none" id="subMenuItemShow">
+                <button class="menuMoreItems">More</button>
+            </div>
         </div>
     </div>
 </nav>

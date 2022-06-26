@@ -20,7 +20,7 @@
 
 
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
-    <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
+    {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" /> --}}
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/re-responsive.css" />
 
     <title>Heshelghor | Store of needs</title>
@@ -48,11 +48,12 @@
         <div class="row">
             <div class="col"><a href="{{route('homepage')}}"><i class="fa fa-home"></i>Home</a></div>
             <div class="col" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"><i class="fa-solid fa-list-check"></i>Categories</div>
-            <div class="col mobile-nav-active"><a href="product.html"><i class="fa-solid fa-cart-plus"></i>Products</a></div>
-            <div class="col"><a href="#"><i class="fa-solid fa-bell"></i>Notifications</a></div>
-            <div class="col"><a href="#"><i class="fa fa-user"></i>Account</a></div>
+            <div class="col mobile-nav-active"><a href="{{ route('pruductspage') }}"><i class="fa-solid fa-bag-shopping"></i>Products</a></div>
+            <div class="col"><a href="{{ route('cart.page') }}"><i class="fa-solid fa-cart-plus"></i>Cart</a></div>
+            <div class="col"><a href="{{ route('login') }}"><i class="fa fa-user"></i>Account</a></div>
         </div>
     </div>
+
     <!-- mobile bottom nav end -->
 
 
@@ -64,8 +65,8 @@
     <script src="{{ asset('frontend') }}/js/jquery.exzoom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js""></script>
     <script src="{{ asset('frontend') }}/js/jquery.scrollUp.js"></script>
-    <script src="{{ asset('frontend') }}/js/main.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('frontend') }}/js/main.js"></script>
 
 
     <script type="text/javascript">

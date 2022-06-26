@@ -548,6 +548,18 @@ span.itemReload {
     text-align: center;
 }
 
+
+/* .ladis-tabs .nav-link.active {
+    color: #495057;
+    background-color: #fff !important;
+    border-color: #eb5525 ;
+    border-bottom: none;
+} */
+/* .ladis-tabs .nav-link.active {
+    background: #eb5525 !important;
+    border: 2px solid transparent;
+    color: #fff !important;
+} */
 .category-photo {
     text-align: center;
     margin-bottom: 20px;
@@ -660,7 +672,10 @@ span.itemReload {
     top: 0;
     padding: 15px;
 }
-
+.card-header .location {
+    display: block;
+    cursor: pointer;
+}
 .product-offers span {
     background: #F6A800;
     color: #fff;
