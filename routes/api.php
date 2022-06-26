@@ -34,6 +34,7 @@ use App\Http\Controllers\API\SliderapiController;
 use App\Http\Controllers\API\User\BuyNowAPIController;
 use App\Http\Controllers\API\User\BuyNowCourierAPIController;
 use App\Http\Controllers\API\User\OrdercomplainAPIController;
+use App\Http\Controllers\API\User\UserproductreviewapiController;
 use App\Http\Controllers\API\User\WishlistapiController;
 use App\Http\Controllers\User\UsercomplainController;
 
@@ -205,6 +206,11 @@ Route::prefix('user')->group(function () {
         Route::get('order/complain/list',[OrdercomplainAPIController::class, 'userorderComplainList'])->where('name', '[A-Za-z]+');
         Route::get('order/complain/{id}',[OrdercomplainAPIController::class, 'userorderComplainsindetails']);
         Route::post('order/complain/store',[OrdercomplainAPIController::class, 'usercomplainstore']);
+        // Product Review
+        Route::get('order/complete-orderitem/list',[UserproductreviewapiController::class, 'index'])->where('name', '[A-Za-z]+');
+        Route::get('order/review/{id}',[UserproductreviewapiController::class, 'singleReview'])->where('id', '[0-9]+');
+        Route::post('order/review',[UserproductreviewapiController::class, 'reviewproductStore'])->where('name', '[A-Za-z]+');
+        Route::post('order/review/update/{id}',[UserproductreviewapiController::class, 'reviewproductUpdate'])->where('id', '[0-9]+');
         // Courier
         Route::get('/courier/divisions', [BuyNowCourierAPIController::class, 'divisionList']);
         Route::get('/courier/districtlist/{id}', [BuyNowCourierAPIController::class, 'getdistrictbydivisionid']);

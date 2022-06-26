@@ -31,14 +31,18 @@ class SearchpageController extends Controller
         if (isset($_GET['category'])) {
             $category = $_GET['category'];
         }
+<<<<<<< HEAD
         $brand = null;
         if (isset($_GET['brand'])) {
             $brand = $_GET['brand'];
         }
+=======
+>>>>>>> a462c89f9a9f1727e5e5ff4cff72725a57a5e9d2
         $type = null;
         if (isset($_GET['type'])) {
             $type = $_GET['type'];
         }
+<<<<<<< HEAD
         $products = Product::when($keyword, function ($query, $keyword) {
             return $query->where('title', 'like', '%' . $keyword . '%');
         })
@@ -57,12 +61,31 @@ class SearchpageController extends Controller
         $productbrandids = array_unique($products->pluck('brand_id')->toArray());
         $brandids =  array_values($productbrandids);
 
+=======
+
+
+        $products = Product::
+        when($price, function ($query, $price) {
+            return $query->orderBy('price', $price);
+        })
+        ->latest()
+        ->paginate($count ?? 30);
+
+
+        // $maxPrice=count(Product::all());
+>>>>>>> a462c89f9a9f1727e5e5ff4cff72725a57a5e9d2
         $maxPrice=Product::max('price');
         $minPrice=Product::min('price');
 
         $categories =Category::all();
+<<<<<<< HEAD
         $brands =Brand::whereIn('id', $brandids)->orderBy('name','asc')->get();
 
+=======
+        $brands =Brand::all();
+
+        // return $products;
+>>>>>>> a462c89f9a9f1727e5e5ff4cff72725a57a5e9d2
         return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
     }
 

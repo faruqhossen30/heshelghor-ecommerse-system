@@ -49,6 +49,7 @@ use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
+use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
@@ -69,7 +70,7 @@ Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcan
 Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
 
 // Filter area start
-Route::get('category/{slug}', [CategoryWiseFilterController::class, 'productWithCategory'])->name('product.with.category');
+Route::get('category/{slug}', [CategorypageController::class, 'index'])->name('product.with.category');
 
 Route::get('/categories', [CategorylistpageController::class, 'index'])->name('categorylistpage');
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
@@ -88,9 +89,9 @@ Route::get('/markets', [MarketListPageController::class, 'marketList'])->name('m
 Route::get('/market/{id}', [MarketListPageController::class, 'marketWiseShopList'])->name('market.wise.shoplist');
 
 Route::get('/ajaxmarketlist', [MarketListPageController::class, 'ajaxmarketlist'])->name('ajaxmarketlist');
+
 // search
 Route::get('/search', [SearchpageController::class, 'index'])->name('searchpage');
-Route::get('/search/{keyword}', [HomepageController::class, 'search'])->name('search');
 
 
 // For Shoping Cart

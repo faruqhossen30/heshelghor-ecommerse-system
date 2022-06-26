@@ -28,6 +28,7 @@ class HomepageController extends Controller
 
         $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
+<<<<<<< HEAD
         $kids = Product::where('category_id',7)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
         $health = Product::where('category_id',5)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
         $topselling = Product::select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
@@ -44,6 +45,14 @@ class HomepageController extends Controller
             ->get();
         return $result;
     }
+=======
+        // return $featursproducts;
+        // homepage update
+
+        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct'));
+    }
+
+>>>>>>> a462c89f9a9f1727e5e5ff4cff72725a57a5e9d2
 
 
     public function privacyPolicy()
