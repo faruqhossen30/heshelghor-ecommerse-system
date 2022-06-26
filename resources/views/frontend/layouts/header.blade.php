@@ -7,7 +7,7 @@ $totalprice = Cart::priceTotal();
     <div class="header-area  position-relative header-sticky">
         <div class="container">
             <div class="row ">
-                <div class="col-xl-2 col-lg-2 col-md-9 col-sm-9 col-9">
+                <div class="col-xl-2 col-lg-2 col-md-9 col-sm-9 col-8">
                     <div class="logo">
                         <a href="{{route('homepage')}}">
                             <img src="{{asset('frontend')}}/images/logo.jpg" class="img-fluid" alt="logo" style="height: 50px" />
@@ -434,7 +434,7 @@ $totalprice = Cart::priceTotal();
                     </div>
 
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-3 col-sm-3 col-3">
+                <div class="col-xl-4 col-lg-4 col-md-3 col-sm-3 col-4">
                     <div class="header-right d-flex justify-content-between align-items-center">
                         <div class="d-lg-none col-md-7">
                             <div class="search-form-mobile" id="showForm">

@@ -38,18 +38,17 @@
             $(".mobile-search-form").removeClass("intro");
         });
 
-        // 1.3 sub menu item show
-        // $("#subMenuItemShow").click(function () {
-        //     $("#menuMoreItems").toggleClass(".najmul");
-        // });
 
 
         $("#subMenuItemShow").click(function () {
-            $("#menuMoreItems").addClass("show-menu");
+            $("#menuMoreItems").addClass("showmenu");
         });
         $("#navClose").click(function () {
-            $("#menuMoreItems").removeClass("show-menu");
+            $("#menuMoreItems").removeClass("showmenu");
         });
+        // $("#navClose").click(function () {
+        //     $("#menuMoreItems").removeClass("show-menu");
+        // });
 
     });
     // $(document).on('click', '.minusCount', function () {
