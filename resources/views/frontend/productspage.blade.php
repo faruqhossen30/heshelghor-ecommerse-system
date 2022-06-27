@@ -30,7 +30,7 @@
                         <ul class="category-list">
                             @foreach ($categories as $category)
                             <li>
-                                <a href="#">
+                                <a href="{{route('categorypage', $category->slug)}}">
                                     @if ($category->photo)
                                     <img src="{{asset('storage/category/'.$category->photo)}}" alt="">
                                     @else
