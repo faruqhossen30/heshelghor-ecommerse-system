@@ -73,7 +73,7 @@ Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcan
 Route::get('/products', [ProductpageController::class, 'index'])->name('pruductspage');
 Route::get('category/{slug}', [CategorypageController::class, 'index'])->name('product.with.category');
 Route::get('subcategory/{slug}', [SubcategorypageController::class, 'index'])->name('product.with.category');
-Route::get('shop/{slug}', [FrontendShoppageController::class, 'index']);
+Route::get('shop/{slug}', [ShoppageController::class, 'index']);
 
 Route::get('/categories', [CategorylistpageController::class, 'index'])->name('categorylistpage');
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
