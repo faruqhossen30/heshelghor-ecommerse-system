@@ -15,10 +15,11 @@ class SubcategorypageController extends Controller
     {
         try {
 
-            $category = Category::firstWhere('slug', $slug);
-            $subcategories = SubCategory::where('category_id', $category->id)->get();
+            // return "subcategory page";
 
-            // return $subcategories;
+            $subcategory = SubCategory::firstWhere('slug', $slug);
+
+            // return $subcategory;
 
             $price = null;
             if (isset($_GET['price'])) {
@@ -29,10 +30,10 @@ class SubcategorypageController extends Controller
                 $count = trim($_GET['count']);
             }
 
-            $subcategory = null;
-            if (isset($_GET['subcategory'])) {
-                $subcategory = $_GET['subcategory'];
-            }
+            // $subcategory = null;
+            // if (isset($_GET['subcategory'])) {
+            //     $subcategory = $_GET['subcategory'];
+            // }
 
             $brand = null;
             if (isset($_GET['brand'])) {
@@ -41,12 +42,9 @@ class SubcategorypageController extends Controller
 
             // return $subcategory;
 
-            $products = Product::where('category_id', $category->id)
+            $products = Product::where('subcategory_id', $subcategory->id)
                 ->when($price, function ($query, $price) {
                     return $query->orderBy('price', $price);
-                })
-                ->when($subcategory, function ($query, $subcategory) {
-                    return $query->whereIn('subcategory_id', $subcategory);
                 })
                 ->when($brand, function ($query, $brand) {
                     return $query->whereIn('brand_id', $brand);
@@ -64,7 +62,7 @@ class SubcategorypageController extends Controller
             $brands = Brand::whereIn('id', $brandids)->orderBy('name', 'asc')->get();
 
             // return $products;
-            return view('frontend.productlistpage.subcategory-products', compact('products', 'category', 'subcategories', 'maxPrice', 'minPrice', 'brands'));
+            return view('frontend.productlistpage.subcategory-products', compact('products', 'subcategory', 'maxPrice', 'minPrice', 'brands'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
