@@ -16,9 +16,9 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                             <li class="breadcrumb-item " aria-current="page">
-                                <a href="{{route('categorylistpage')}}">Category</a>
+                                <a href="{{route('categorylistpage')}}">Sub Category</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">{{$category->name}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$subcategory->name}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -37,22 +37,8 @@
                     <div class="search-sidebar">
                         <div class="card mb-2">
                             <div class="card-header">
-                                <span class="text-secondary fs-6">Category: {{$category->name}}</span>
+                                <span class="text-secondary fs-6">Sub Category: {{$subcategory->name}}</span>
                             </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-header">
-                                <span class="text-secondary fs-6">Sub Category</span>
-                            </div>
-                            <ul class="expandible">
-                                @foreach ($subcategories as $subcategory)
-                                <li>
-                                    <input type="checkbox" id="vehicle1" name="subcategory[]" value="{{$subcategory->id}}" onchange="this.form.submit()"
-                                    @if (isset($_GET['subcategory']) && in_array($subcategory->id, $_GET['subcategory'])) checked @endif >
-                                    <label for="vehicle1"> {{ $subcategory->name }}</label><br>
-                                </li>
-                                @endforeach
-                            </ul>
                         </div>
                         <div class="card mb-2">
                             <div class="card-header">
