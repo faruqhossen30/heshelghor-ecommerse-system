@@ -50,7 +50,7 @@
                         <span><strong>sku : </strong>{{ $product->id }}</span>
                         <span><strong>brand : </strong>{{ $product->brand->name }}</span>
                     </div>
-                    <h4 class="quick_view_price">${{ $product->regular_price }}</h4>
+                    <h4 class="quick_view_price">৳{{ $product->price }}</h4>
                     <div class="quick_view_ratting d-flex">
                         <div class="quick_view_icon">
                             {{-- <i class="fa fa-star"></i>
