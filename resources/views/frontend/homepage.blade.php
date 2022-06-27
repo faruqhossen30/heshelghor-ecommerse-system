@@ -20,7 +20,7 @@
             <div class="row">
                 @foreach ($shops as $shop)
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6">
-                        <a href="single-shop.html" class="shop_links market-links ">
+                        <a href="{{route('shoppage', $shop->slug)}}" class="shop_links market-links ">
                             <div class="single-shop single-market d-flex ">
                                 <div class="shop-photo market-photo">
                                     <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
@@ -204,6 +204,9 @@
                                     @endforeach
 
                                 </div>
+                                <div class="section-button text-center">
+                                    <a href="{{ route('pruductspage') }}"><button type="button" class="btn btn-secondary">See All</button></a>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="nab-tab2">
                                 <div class="row g-2">
@@ -257,7 +260,9 @@
 
                                         </div>
                                     @endforeach
-
+                                </div>
+                                <div class="section-button text-center">
+                                    <a href="{{ route('categorypage', 'womens-fashion') }}"><button type="button" class="btn btn-secondary">See All</button></a>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="nav-tab3">
@@ -312,7 +317,9 @@
 
                                         </div>
                                     @endforeach
-
+                                </div>
+                                <div class="section-button text-center">
+                                    <a href="{{ route('categorypage', 'kids-and-toys') }}"><button type="button" class="btn btn-secondary">See All</button></a>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="nav-tab4">
@@ -367,7 +374,9 @@
 
                                         </div>
                                     @endforeach
-
+                                </div>
+                                <div class="section-button text-center">
+                                    <a href="{{ route('categorypage', 'health-and-beauty') }}"><button type="button" class="btn btn-secondary">See All</button></a>
                                 </div>
                             </div>
                         </div>
@@ -375,14 +384,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-button text-center">
-                        <a href="{{ route('pruductspage') }}"><button type="button" class="btn btn-secondary">See All
-                                Products</button></a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- product end -->
@@ -401,7 +402,7 @@
             <div class="row">
                 @foreach ($categories as $category)
                     <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6">
-                        <a href="#" class="category_links  ">
+                        <a href="{{route('categorypage', $category->slug)}}" class="category_links  ">
                             <div class="single-category bg-white mb-4">
                                 <div class="category-photo">
                                     <img class="lozad" data-src="{{ asset('/' . $category->image) }}"
@@ -429,7 +430,7 @@
     <!-- category end -->
 
     <!-- market start -->
-    <div class="market-area section-padding" style="background-color: #FCE6DF;">
+    {{-- <div class="market-area section-padding" style="background-color: #FCE6DF;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -469,6 +470,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- market end -->
 @endsection
