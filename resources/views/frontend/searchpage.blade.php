@@ -90,7 +90,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="card mb-2">
+                            {{-- <div class="card mb-2">
                                 <div class="card-header mb-3">
                                     <span class="text-secondary fs-6">Price</span>
                                 </div>
@@ -103,7 +103,7 @@
                                         onchange="this.form.submit()" />
 
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-12 col-md-12">

@@ -9,7 +9,7 @@ use App\Models\Product\Product;
 use App\Models\Product\SubCategory;
 use Illuminate\Http\Request;
 
-class CategorypageController extends Controller
+class SubcategorypageController extends Controller
 {
     public function index(Request $request, $slug)
     {
@@ -64,7 +64,7 @@ class CategorypageController extends Controller
             $brands = Brand::whereIn('id', $brandids)->orderBy('name', 'asc')->get();
 
             // return $products;
-            return view('frontend.productlistpage.category-products', compact('products', 'category', 'subcategories', 'maxPrice', 'minPrice', 'brands'));
+            return view('frontend.productlistpage.subcategory-products', compact('products', 'category', 'subcategories', 'maxPrice', 'minPrice', 'brands'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }

@@ -50,7 +50,10 @@ use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
+use App\Http\Controllers\Frontend\ProductpageController;
 use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
+use App\Http\Controllers\Frontend\ShoppageController as FrontendShoppageController;
+use App\Http\Controllers\Frontend\SubcategorypageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 
@@ -66,11 +69,11 @@ Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
 Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcanvascategory']);
 
 
-// Products
-Route::get('/products', [ShopPageController::class, 'index'])->name('pruductspage');
-
-// Filter area start
+// Products Area
+Route::get('/products', [ProductpageController::class, 'index'])->name('pruductspage');
 Route::get('category/{slug}', [CategorypageController::class, 'index'])->name('product.with.category');
+Route::get('subcategory/{slug}', [SubcategorypageController::class, 'index'])->name('product.with.category');
+Route::get('shop/{slug}', [FrontendShoppageController::class, 'index']);
 
 Route::get('/categories', [CategorylistpageController::class, 'index'])->name('categorylistpage');
 Route::get('/category/{category}/{slug}', [SubCategoryWiseFilterController::class, 'productWithSubCategory'])->name('product.with.subcategory');
