@@ -10,8 +10,7 @@ class CategorylistpageController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('subcategories')->select('id', 'name', 'slug', 'photo')->get();
-
+        $categories = Category::with('subcategories')->select('id', 'name', 'slug', 'photo')->orderBy('name', 'asc')->get();
         // return $categories;
         return view('frontend.categorylist-page', compact('categories'));
     }
