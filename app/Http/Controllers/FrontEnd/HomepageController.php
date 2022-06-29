@@ -15,6 +15,8 @@ use App\Models\Product\SubCategory;
 use App\Models\Product\Brand;
 use Illuminate\Support\Facades\Cache;
 
+use function PHPUnit\Framework\returnSelf;
+
 class HomepageController extends Controller
 {
     public function homePage()
@@ -28,13 +30,13 @@ class HomepageController extends Controller
 
         $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
 
-        $kids = Product::where('category_id',7)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
-        $health = Product::where('category_id',5)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        $kids = Product::where('category_id', 7)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        $health = Product::where('category_id', 5)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
         $topselling = Product::select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
         // return $featursproducts;
         // homepage update
 
-        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct','kids','health','topselling'));
+        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct', 'kids', 'health', 'topselling'));
     }
 
     public function privacyPolicy()
@@ -73,10 +75,19 @@ class HomepageController extends Controller
     public function ajaxOffcanvascategory()
     {
         // return "welcome";
-        $categories = Category::with('subcategories')->orderBy('name','asc')->get();
+        $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
         // return $categories;
         $data = view('frontend.ajax.offcanvascategories', compact('categories'));
 
+        return $data;
+    }
+
+    public function ajaxSearch(Request $request)
+    {
+        // return $request->all();
+        $keyword = $request->keyword;
+        $products = Product::where('title', 'like', '%' . $request->keyword . '%')->take(4)->get();
+        $data = view('frontend.ajax.ajaxproductsearch', compact('products', 'keyword'));
         return $data;
     }
 }

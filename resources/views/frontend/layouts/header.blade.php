@@ -20,84 +20,24 @@ $totalprice = Cart::priceTotal();
                             <div class="search-btn" data-bs-toggle="modal" data-bs-target="#mobile_search_button">
                                 Search
                             </div>
-                            <input name="keyword" type="search" placeholder="I'm shopping" />
+                            <input name="keyword" type="search" placeholder="I am shopping" />
                             <div class="header-search-icon">
                                 <button type="submit" style="background: transparent; border:none; color:white"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
 
                         <!-- product search show area -->
-                        <div class="search-item-show d-none">
-                            <div class="noting-found text-center">
-                                <span>sorry,nothing found "product name"</span>
-                            </div>
-                            <div class="search-item-product-loader">
-                                <img class="lozad" data-src="{{asset('frontend')}}/images/loader.gif" alt="loader" style="width: 80px;">
-                            </div>
-                            <div class="search-item-show-product">
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/products/product.jpg" class="img-thumbnail lozad" alt="">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW Core i3 10th Gen 14" Full HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/shop/shop.png" alt="" class="img-thumbnail lozad">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/shop/shop.png" alt="" class="img-thumbnail lozad">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW Core i3 10th Gen 4 B10MW Core i3 10th Gen 14" Full
-                                            HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/shop/shop.png" alt="" class="img-thumbnail lozad">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW Core i3 10th Gen 14" Full HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/shop/shop.png" alt="" class="img-thumbnail lozad">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW Core i3 10th Gen 14" Full HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                                <a href="" class="d-flex align-items-center">
-                                    <div class="search-item-show-product-photo">
-                                        <img data-src="{{asset('frontend')}}/images/shop/shop.png" alt="" class="img-thumbnail lozad">
-                                    </div>
-                                    <div class="search-item-show-product-content">
-                                        <h6> MSI Modern 14 B10MW Core i3 10th Gen 14" Full HD Laptop</h6>
-                                        <span class="text-secondary">৳ 50000</span>
-                                    </div>
-                                </a>
-                            </div>
+
+
+                        <div class="search-item-show d-none" id="searchResultShowArea">
+
                         </div>
-                        <!-- product search show area -->
+                        {{-- <!-- product search show area --> --}}
 
                     </div>
                 </div>
                 <!-- search button area -->
-                <!-- Modal -->
+                <!-- Modal shop and market search start -->
                 <div class="modal fade" id="mobile_search_button" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -359,14 +299,16 @@ $totalprice = Cart::priceTotal();
                         </div>
                     </div>
                 </div>
+                <!-- Modal shop and market search end -->
 
-                <!-- mobile serach -->
+                <!-- mobile serach start -->
                 <div class="mobile-search-form d-flex align-items-center d-none">
                     <div class="mobile-search-bar-close">
                         <i class="fa fa-arrow-left"></i>
                     </div>
                     <div class="mobile-search">
-                        <input type="search" placeholder="search" />
+                        <input type="search" name="mkeyword" placeholder="search" />
+                        {{-- mobile search result start --}}
                         <div class="search-item-show" id="mobile-search-realtime">
                             <div class="noting-found text-center">
                                 <span>sorry,nothing found "product name"</span>
@@ -431,9 +373,11 @@ $totalprice = Cart::priceTotal();
                                 </a>
                             </div>
                         </div>
+                        {{-- mobile search result end --}}
                     </div>
 
                 </div>
+                <!-- mobile serach end -->
                 <div class="col-xl-4 col-lg-4 col-md-3 col-sm-3 col-4">
                     <div class="header-right d-flex justify-content-between align-items-center">
                         <div class="d-lg-none col-md-7">

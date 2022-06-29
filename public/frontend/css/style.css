@@ -357,8 +357,9 @@ span.itemReload {
     padding: 10px;
     border-radius: 8px;
     max-height: 400px;
-    min-height: 400px;
+    min-height: 300px;
     overflow-y: scroll;
+    width: 100% !important;
 }
 
 .search-item-show-product-content span {

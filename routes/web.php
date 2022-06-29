@@ -67,6 +67,7 @@ Route::get('/return-policy', [HomepageController::class, 'returnPolicy'])->name(
 Route::get('/jobs/{id}', [HomepageController::class, 'jobsShow'])->name('jobs.show');
 Route::get('/jobs', [HomepageController::class, 'jobs'])->name('jobs');
 Route::post('/ajax/offcanvascategories', [HomepageController::class, 'ajaxOffcanvascategory']);
+Route::post('ajax/live/search', [HomepageController::class, 'ajaxSearch']);
 
 
 // Products Area

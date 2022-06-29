@@ -11,8 +11,7 @@
     <link href="{{ asset('frontend') }}/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.exzoom.css" />
     <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 
@@ -64,7 +63,7 @@
 
     <script src="{{ asset('frontend') }}/js/jquery.exzoom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js""></script>
-    <script src="{{ asset('frontend') }}/js/jquery.scrollUp.js"></script>
+    <script src=" {{ asset('frontend') }}/js/jquery.scrollUp.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('frontend') }}/js/main.js"></script>
 
@@ -128,20 +127,19 @@
             });
 
             // Quick View
-
             $('.quickviewbutton').on('click', function() {
                 let productid = $(this).data('productid');
                 // console.log('without modal', productid)
                 $('#quickViewProduct').modal('show');
 
-                    if(productid){
-                        $.ajax({
-                        url: '{{ route('showproduct') }}',
-                        type: 'GET',
-                        data: {
+                if (productid) {
+                    $.ajax({
+                        url: '{{ route('showproduct') }}'
+                        , type: 'GET'
+                        , data: {
                             id: productid
-                        },
-                        beforeSend:function(){
+                        }
+                        , beforeSend: function() {
                             $('#queicViewModalBody').html(`
                             <div class="animationLoading">
                     <div id="container">
@@ -161,29 +159,74 @@
                     </div>
                 </div>
                             `)
-                        },
-                        dataType: 'JSON',
-                        success: function(data) {
+                        }
+                        , dataType: 'JSON'
+                        , success: function(data) {
                             // modalLoading.hide();
                             // $('#viewDataModal #modalBody').html(data);
                             console.log(data);
                             $('#queicViewModalBody').html(data)
-                        },
-                        error: function(){
+                        }
+                        , error: function() {
                             console.log('error')
                         }
                     });
-                    }
+                }
 
 
             })
 
             $('#quickViewProduct').on('hidden.bs.modal', function() {
-                    // console.log('after modal show', productid)
-                    // $('#queicViewModalBody').html('')
-                    $('#quickViewProduct').html()
+                $('#quickViewProduct').html()
+            });
 
-                });
+            $(document).on('keyup', 'input[name="keyword"], input[name="mkeyword"]', function() {
+                // $('#searchResultShowArea').removeClass('d-none')
+                    search();
+            });
+
+
+            function search(){
+                let keyword = $('input[name="keyword"]').val();
+                if(keyword.length > 0){
+                    $('#searchResultShowArea').removeClass('d-none')
+                    $.ajax({
+                    url: '/ajax/live/search'
+                    , type: 'POST'
+                    , data: {keyword:keyword}
+                    , beforeSend: function() {
+                        console.log('beforesend')
+                        $('#searchResultShowArea').empty()
+                        $('#searchResultShowArea').append(
+                            `
+                            <div class="noting-found text-center">
+                                <div class="snippet" data-title=".dot-flashing" style="padding: 10px 0; background:white">
+                                    <div class="stage d-flex justify-content-center">
+                                        <div class="dot-flashing"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            `
+                        )
+                    }
+                    , success: function(data) {
+                        console.log('success function')
+                        // console.log(data)
+
+                        // console.log(data)
+                        $('#searchResultShowArea').empty()
+                        $('#searchResultShowArea').append(data)
+                    }
+                    , error: function(error) {
+                        console.log(error)
+                    }
+                })
+                }else{
+                    $('#searchResultShowArea').addClass('d-none')
+                }
+            };
+
 
         });
 
