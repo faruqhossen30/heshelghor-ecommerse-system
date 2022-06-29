@@ -1,4 +1,3 @@
-
 @php
 $serial = 1;
 $totalPrice = Cart::priceTotal();
@@ -21,17 +20,17 @@ $totalitem = Cart::count();
                 </thead>
                 <tbody>
                     @php
-                    $serial = 1;
+                        $serial = 1;
                     @endphp
                     @foreach ($items as $key => $item)
-                    <tr class="align-middle">
-                        <th>{{ $serial++ }}</th>
-                        <td>{{ $item->name }}</td>
-                        <td>
-                            <img src="{{ $item->options->photo }}" style="width:auto;height:50px" alt="">
-                        </td>
-                        <td>৳{{ $item->price }}</td>
-                        {{-- <td class="quantity-width">
+                        <tr class="align-middle">
+                            <th>{{ $serial++ }}</th>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                <img src="{{ $item->options->photo }}" style="width:auto;height:50px" alt="">
+                            </td>
+                            <td>৳{{ $item->price }}</td>
+                            {{-- <td class="quantity-width">
                             <input type="hidden" name="product_id" value="id">
                             <div class="quantity product_quantity">
                                 <button  class="quantity__minus btn btn-light"><span><i class="fa-solid fa-minus"></i></span></button>
@@ -39,27 +38,30 @@ $totalitem = Cart::count();
                                 <button class="quantity__plus btn btn-light"><span><i class="fa-solid fa-plus"></i></span></button>
                             </div>
                         </td> --}}
-                        <td>
-                            <div class="input-group mb-3 " style="max-width: 110px">
-                                <button type="button" class="input-group-text qtyminusbtn" >-</button>
-                                <input name="quantity" type="text" value="{{$item->qty}}" data-rowid="{{$item->rowId}}" class="form-control text-center quantity" min="1" max="11">
-                                <button type="button" class="input-group-text qtyplusbtn" id="">+</button>
-                            </div>
-                        </td>
-                        <td>৳{{ $item->subtotal }}</td>
+                            <td>
+                                <div class="input-group mb-3 " style="max-width: 110px">
+                                    <button type="button" class="input-group-text qtyminusbtn">-</button>
+                                    <input name="quantity" type="text" value="{{ $item->qty }}"
+                                        data-rowid="{{ $item->rowId }}" class="form-control text-center quantity"
+                                        min="1" max="11">
+                                    <button type="button" class="input-group-text qtyplusbtn" id="">+</button>
+                                </div>
+                            </td>
+                            <td>৳{{ $item->subtotal }}</td>
 
-                        <td style="text-align: center">
-                            <span class="cartRemoveIcon" data-rowid="{{$item->rowId}}" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'" >
-                                <i class="fa fa-close"></i>
-                            </span>
-                        </td>
-                    </tr>
+                            <td style="text-align: center">
+                                <span class="cartRemoveIcon" data-rowid="{{ $item->rowId }}"
+                                    onMouseOver="this.style.color='red'" onMouseOut="this.style.color='black'">
+                                    <i class="fa fa-close"></i>
+                                </span>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
 
             <div class="continue_shopping">
-                <a href="{{route('pruductspage')}}"><button><i class="fa-solid fa-arrow-left-long"></i> CONTINUE
+                <a href="{{ route('pruductspage') }}"><button><i class="fa-solid fa-arrow-left-long"></i> CONTINUE
                         SHOPPING</button></a>
             </div>
 
@@ -91,7 +93,7 @@ $totalitem = Cart::count();
                 </li>
             </ul>
             <div class="card-footer">
-                <a href="{{route('checkoutpage')}}" class="btn btn-secondary">processed to checkout</a>
+                <a href="{{ route('checkoutpage') }}" class="btn btn-secondary">processed to checkout</a>
             </div>
         </div>
     </aside>

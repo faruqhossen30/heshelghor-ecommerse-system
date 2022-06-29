@@ -1,7 +1,7 @@
 /* no respons */
 @media (max-width: 767px) {
     #menuMoreItems {
-        background:#eb5525;
+        background: #eb5525;
         width: 0%;
         right: 0;
         position: fixed;
@@ -13,16 +13,19 @@
         transition: .5s ease-in-out;
         padding-top: 10%;
     }
+
     #menuMoreItems.showmenu li a {
         color: #fff;
         font-size: 18px;
     }
+
     #navClose {
         display: block;
         position: absolute;
         top: 15px;
         left: 15px;
     }
+
     #navClose i {
         border: 2px solid #fff;
         width: 40px;
@@ -33,17 +36,21 @@
         font-size: 20px;
         color: #fff;
     }
+
     #menuMoreItems.showmenu {
         width: 70%;
     }
+
     .mobile-search-form.intro {
         left: 0;
         width: 100% !important;
     }
+
     #subMenuItemShow button {
         background: transparent;
         border: none;
     }
+
     .mobile-bottom-nav {
         position: fixed;
         z-index: 99;
@@ -69,38 +76,113 @@
         margin-bottom: 10px;
     }
 
-.single-shop.single-market, .single-market {
-    display: block !important;
-  }
-  .shop-photo.market-photo, .market-photo {
-    width: 100%;
-  }
-  .shop-content.market-content, .market-content {
-    width: 100%;
-    margin: 0;
-  }
-  .market-content h5 {
-    font-size: .9rem;
-    margin-top: 10px;
-  }
-  .market-content span {
-    font-size: .7rem;
-  }
-  .mobile-bottom-nav .col {
-	font-size: 10px;
-	color: #998b8b;
-}
-span.itemReload {
-	right: 0;
-}
-.section-padding {
-	padding: 30px 0;
-}
+    .single-shop.single-market,
+    .single-market {
+        display: block !important;
+    }
+
+    .shop-photo.market-photo,
+    .market-photo {
+        width: 100%;
+    }
+
+    .shop-content.market-content,
+    .market-content {
+        width: 100%;
+        margin: 0;
+    }
+
+    .market-content h5 {
+        font-size: .9rem;
+        margin-top: 10px;
+    }
+
+    .market-content span {
+        font-size: .7rem;
+    }
+
+    .mobile-bottom-nav .col {
+        font-size: 10px;
+        color: #998b8b;
+    }
+
+    span.itemReload {
+        right: 0;
+    }
+
+    .section-padding {
+        padding: 30px 0;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+
+    .offcanva-menu-overlay {
+        position: fixed;
+        content: '';
+        background: #000;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        z-index: 2;
+        transition: .5s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        right: 0;
+    }
+
+    .offcanva-menu-overlay.info-open {
+        opacity: .5;
+        visibility: visible;
+        transition: all .5s ease-in-out;
+        left: 0;
+        cursor:pointer;
+    }
+    .footer-responsive, .footer-responsive p {
+        text-align: center;
+    }
+    .footer-widget.quick-resposive h4 {
+        text-align: center;
+    }
+    .quick-resposive.footer-widget{
+        margin-top: 15px;
+    }
+    .quick-resposive.footer-widget h4::after {
+        position: absolute;
+        right: 0;
+        margin: auto;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     .container {
         width: 450px
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+    .offcanva-menu-overlay {
+        position: fixed;
+        content: '';
+        background: #000;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        z-index: 2;
+        transition: .5s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        right: 0;
+    }
+
+    .offcanva-menu-overlay.info-open {
+        opacity: .5;
+        visibility: visible;
+        transition: all .5s ease-in-out;
+        left: 0;
+        cursor:pointer;
     }
 
     .product-filter.d-lg-block.d-none.card {
@@ -117,7 +199,17 @@ span.itemReload {
     .cart-list .table thead {
         display: none;
     }
-
+    .footer-responsive, .footer-responsive p {
+        text-align: center;
+    }
+    .footer-widget.quick-resposive h4 {
+        text-align: center;
+    }
+    .quick-resposive.footer-widget h4::after {
+        position: absolute;
+        right: 0;
+        margin: auto;
+    }
     .cart-list .table {
         border: 1px solid #ddd;
     }
@@ -164,9 +256,11 @@ span.itemReload {
         margin-top: 5px;
         font-size: .8rem;
     }
+
     span.itemReload {
         right: 0;
     }
+
     .section-padding {
         padding: 30px 0;
     }
@@ -209,7 +303,8 @@ span.itemReload {
     .ssl {
         margin-bottom: 30px;
     }
-/*
+
+    /*
     #menuMoreItems {
         background: red;
         width: 0%;

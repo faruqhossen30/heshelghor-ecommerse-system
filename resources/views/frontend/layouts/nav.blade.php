@@ -1,3 +1,4 @@
+<div class="offcanva-menu-overlay"></div>
 <nav>
     <div class="main-menu">
         <div class="container d-flex align-items-center justify-content-between">

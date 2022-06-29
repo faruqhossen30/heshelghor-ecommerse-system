@@ -42,9 +42,11 @@
 
         $("#subMenuItemShow").click(function () {
             $("#menuMoreItems").addClass("showmenu");
+            $('.offcanva-menu-overlay').addClass('info-open');
         });
-        $("#navClose").click(function () {
+        $("#navClose,.offcanva-menu-overlay").click(function () {
             $("#menuMoreItems").removeClass("showmenu");
+            $('.offcanva-menu-overlay').removeClass('info-open');
         });
         // $("#navClose").click(function () {
         //     $("#menuMoreItems").removeClass("show-menu");

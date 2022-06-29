@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="footer-widget">
+                    <div class="footer-widget footer-responsive">
                         <a href="{{route('homepage')}}">
                             <img src="{{asset('frontend')}}/images/logo.jpg" class="img-fluid" style="height: 50px; margin-bottom: 20px;" alt="footer_logo">
                         </a>
@@ -19,9 +19,9 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6">
-                    <div class="footer-widget">
+                    <div class="footer-widget quick-resposive">
                         <h4>quick links</h4>
-                        <ul class="footer-links">
+                        <ul class="footer-links ">
                             <li><a href="{{route('aboutus')}}">About Us</a></li>
                             <li><a href="{{route('termsandcondition')}}">terms & conditions</a></li>
                             <li><a href="{{route('privacypolicy')}}">privacy & policy</a></li>

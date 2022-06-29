@@ -73,7 +73,7 @@ class HomepageController extends Controller
     public function ajaxOffcanvascategory()
     {
         // return "welcome";
-        $categories = Category::with('subcategories')->get();
+        $categories = Category::with('subcategories')->orderBy('name','asc')->get();
         // return $categories;
         $data = view('frontend.ajax.offcanvascategories', compact('categories'));
 

@@ -140,7 +140,6 @@
 
                                 <div class="col-lg-4">
                                     <div>
-
                                         <div class="table-responsive">
                                             <table class="table table-centered border mb-0">
                                                 <thead class="bg-light">

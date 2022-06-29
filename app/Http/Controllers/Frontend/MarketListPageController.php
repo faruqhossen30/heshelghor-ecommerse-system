@@ -73,7 +73,13 @@ class MarketListPageController extends Controller
                 })
                 ->paginate(20);
 
-            $data = view('frontend.inc.ajaxmarketlist', compact('markets'))->render();
+
+                // $health = Product::where('category_id',5)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+
+
+            // $shoplist = Market::where('id',1)->select('id','name','description','address','slug ','image','photo')->get();
+
+            $data = view('frontend.inc.ajaxmarketlist', compact('markets','shoplist'))->render();
             return response()->json($data);
             // return $data;
         }

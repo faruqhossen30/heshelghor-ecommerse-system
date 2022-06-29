@@ -54,15 +54,15 @@
                 </div>
                 <div class="row">
                     @foreach ($markets as $market)
-                    <div class="col-xl-4 col-lg-6 col-md-6">
-                        <a href="#" class="market-links">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <a href="{{ route('allmarketshop',$market->slug) }}" class="market-links">
                             <div class="single-market bg-white d-flex ">
                                 <div class="market-photo">
                                     <img data-src="{{asset('storage/market/'.$market->photo)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';" class="lozad" alt="market">
                                 </div>
                                 <div class="market-content">
-                                    {{-- <h5>{{$market->name}}</h5> --}}
-                                    <h5>{{$market->photo}}</h5>
+                                    <h5>{{$market->name}}</h5>
+                                    {{-- <h5>{{$market->photo}}</h5> --}}
                                     <span> <i class="fa fa-map-marker"></i> {{$market->address}}</span> <br>
                                     {{-- <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span> --}}
                                 </div>
