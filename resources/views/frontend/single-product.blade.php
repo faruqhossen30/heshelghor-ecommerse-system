@@ -44,7 +44,10 @@
                         <!-- Images -->
                         <div class="exzoom_img_box">
                             <ul class='exzoom_img_ul'>
-                                <li><img src="{{ $product->img_large }}" /></li>
+                                {{-- <li><img src="{{ $product->img_large }}" /></li> --}}
+                                @foreach ($product->images as $image)
+                                <li><img src="{{ $image->url }}" /></li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="exzoom_nav"></div>
