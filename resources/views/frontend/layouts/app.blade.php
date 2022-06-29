@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.exzoom.css" />
     <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    @yield('OG')
 
     @stack('style')
 
