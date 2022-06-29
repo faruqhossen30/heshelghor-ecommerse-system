@@ -307,10 +307,10 @@ $totalprice = Cart::priceTotal();
                         <i class="fa fa-arrow-left"></i>
                     </div>
                     <div class="mobile-search">
-                        <input type="search" name="mkeyword" placeholder="search" />
+                        <input type="search" name="mkeyword" placeholder="Search" />
                         {{-- mobile search result start --}}
-                        <div class="search-item-show" id="mobile-search-realtime">
-                            <div class="noting-found text-center">
+                        <div class="search-item-show d-none" id="mobileSearchResultShowArea">
+                            {{-- <div class="noting-found text-center">
                                 <span>sorry,nothing found "product name"</span>
                             </div>
                             <div class="search-item-product-loader">
@@ -371,7 +371,7 @@ $totalprice = Cart::priceTotal();
                                         <span>50000 TK</span>
                                     </div>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- mobile search result end --}}
                     </div>

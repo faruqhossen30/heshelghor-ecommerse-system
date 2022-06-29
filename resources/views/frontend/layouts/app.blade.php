@@ -181,9 +181,13 @@
                 $('#quickViewProduct').html()
             });
 
-            $(document).on('keyup', 'input[name="keyword"], input[name="mkeyword"]', function() {
+            $(document).on('keyup', 'input[name="keyword"]', function() {
                 // $('#searchResultShowArea').removeClass('d-none')
                     search();
+            });
+            $(document).on('keyup', 'input[name="mkeyword"]', function() {
+                // $('#searchResultShowArea').removeClass('d-none')
+                mobileSearch();
             });
 
 
@@ -225,6 +229,46 @@
                 })
                 }else{
                     $('#searchResultShowArea').addClass('d-none')
+                }
+            };
+            function mobileSearch(){
+                let keyword = $('input[name="mkeyword"]').val();
+                if(keyword.length > 0){
+                    $('#mobileSearchResultShowArea').removeClass('d-none')
+                    $.ajax({
+                    url: '/ajax/live/search'
+                    , type: 'POST'
+                    , data: {keyword:keyword}
+                    , beforeSend: function() {
+                        console.log('beforesend')
+                        $('#mobileSearchResultShowArea').empty()
+                        $('#mobileSearchResultShowArea').append(
+                            `
+                            <div class="noting-found text-center">
+                                <div class="snippet" data-title=".dot-flashing" style="padding: 10px 0; background:white">
+                                    <div class="stage d-flex justify-content-center">
+                                        <div class="dot-flashing"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            `
+                        )
+                    }
+                    , success: function(data) {
+                        console.log('success function')
+                        // console.log(data)
+
+                        // console.log(data)
+                        $('#mobileSearchResultShowArea').empty()
+                        $('#mobileSearchResultShowArea').append(data)
+                    }
+                    , error: function(error) {
+                        console.log(error)
+                    }
+                })
+                }else{
+                    $('#mobileSearchResultShowArea').addClass('d-none')
                 }
             };
 
