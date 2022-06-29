@@ -18,7 +18,12 @@
         color: #fff;
         font-size: 18px;
     }
-
+    .modal-header.quick_view_close {
+        right: 0;
+        background: #fff;
+        top: 0px;
+        z-index: 9;
+    }
     #navClose {
         display: block;
         position: absolute;
@@ -159,7 +164,6 @@
     .container {
         width: 450px
     }
-
     .footer-links {
         text-align: center;
     }
@@ -397,7 +401,10 @@
     .ssl {
         margin-bottom: 30px;
     }
-
+    .mobile-bottom-nav .col {
+        font-size: 10px;
+        color: #998b8b;
+    }
     .product-filter {
         background: white;
         border-right: 2px solid #ddd;

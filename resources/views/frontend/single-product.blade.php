@@ -1,5 +1,21 @@
 @extends('frontend.layouts.app')
 
+@section('OG')
+    <!-- Facebook & Linkedit Open Graph -->
+    <meta property="og:url" content="{{ route('singleproduct', $product->slug) }}" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description" content="{{ strip_tags($product->description) }}" />
+    <meta property="og:image" content="{{ $product->img_large }}" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@heshelghor" />
+    <meta property="og:title" content="{{ $product->title }}" />
+    <meta property="og:description" content="{{ strip_tags($product->description) }} " />
+    <meta property="og:image" content="{{ $product->img_large }}" />
+@endsection
+
 @section('content')
     {{-- breadcrumb start --}}
     <div class="bradcrumb-area">
@@ -80,8 +96,6 @@
                             <a href="{{ $product->youtube_link }}" type="button"
                                 class="popup btn video-popup btn-sm hg-iconbutton text-white" style="margin-left: 5px"><i
                                     class="fa-solid fa-video"></i> Video</a>
-
-                            {{-- <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart" type="button" style="margin-left: 5px"><i class="fas fa-shopping-cart icon-c"></i> Add to Cart</button> --}}
                         @endisset
 
 
@@ -112,7 +126,6 @@
                                     @endforeach
                                 </div>
                             @endif
-
                             @if ($product->quantity > 0)
                                 @if ($product->category_id != 38)
                                     <div class="d-flex flex-row">
@@ -122,8 +135,9 @@
                                                 class="form-control text-center" min="1" max="7">
                                             <button type="button" class="input-group-text" id="qtyplusbtn">+</button>
                                         </div>
-                                        <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart" type="button"
-                                            style="margin-left: 5px"><i class="fas fa-shopping-cart icon-c"></i> Add to
+                                        <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart"
+                                            type="button" style="margin-left: 5px"><i
+                                                class="fas fa-shopping-cart icon-c"></i> Add to
                                             Cart</button>
                                     </div>
                                     <div class="">
@@ -135,11 +149,27 @@
                                                 class="fa-solid fa-bag-shopping"></i> Buy Now !</a>
                                     </div>
                                 @endif
+                                {{-- <button type="button" class="btn btn-primary btn-md mt-3">In Sotck</button> --}}
                             @else
-                                <button type="button" class="btn btn-danger btn-md"><i class="fa-solid fa-ban"></i> Out Of
+                                <button type="button" class="btn btn-danger btn-md mt-3"><i class="fa-solid fa-ban"></i>
+                                    Out Of
                                     Stock</button>
                             @endif
-
+                            <hr>
+                            <div class="product-social-share">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #1877f2" class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/intent/tweet?url={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #1da1f2" class="fa-brands fa-twitter"></i></a>
+                                <a href="//pinterest.com/pin/create/link/?url={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #bd081c" class="fa-brands fa-pinterest"></i></a>
+                                <a href="https://www.instagram.com/sharer.php?u={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #c32aa3" class="fa-brands fa-instagram"></i></a>
+                                <a href="whatsapp://send?text={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #25d366" class="fa-brands fa-whatsapp"></i></a>
+                                <a href="https://www.linkedin.com/shareArticle?mini={{ route('singleproduct', $product->slug) }}"
+                                    target="_blank"><i style="color: #0a66c2" class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
 
                         </form>
                     </div>
@@ -149,6 +179,16 @@
                         <span><strong>Additional Information</strong></span>
                         @if ($product->category_id != 38)
                             <ul>
+                                <li>
+                                    @if ($product->quantity > 0)
+                                        <i class="fa-solid fa-check"></i>
+                                        <strong style="color:green"> In Stock - {{ $product->quantity }}</strong>
+                                    @else
+                                        <button type="button" class="btn btn-danger btn-md mt-3"><i
+                                                class="fa-solid fa-ban"></i> Out Of
+                                            Stock</button>
+                                    @endif
+                                </li>
                                 <li class="d-flex justify-content-between align-items-center">
                                     <div class="delivery-location-left d-flex align-items-center">
                                         <span class="delivery-icon"><i class="fa-solid fa-home"></i></span>
@@ -181,6 +221,16 @@
                             </ul>
                         @else
                             <ul class="aditional-ifno">
+                                <li>
+                                    @if ($product->quantity > 0)
+                                        <i class="fa-solid fa-check"></i>
+                                        <strong style="color:green"> In Stock - {{ $product->quantity }}</strong>
+                                    @else
+                                        <button type="button" class="btn btn-danger btn-md mt-3"><i
+                                                class="fa-solid fa-ban"></i> Out Of
+                                            Stock</button>
+                                    @endif
+                                </li>
                                 <li><i class="fa-solid fa-user"></i> Please Contact, for <strong>Details</strong> or
                                     <strong>Buy</strong>
                                 </li>
@@ -301,10 +351,6 @@
                                             <span>{{ $product->discount }}% off</span>
                                         @endif
                                         <span class="new_product">new</span>
-                                    </div>
-                                    <div class="product-icon">
-                                        <i class="fa fa-heart"></i>
-                                        <i class="fa fa-heart"></i>
                                     </div>
                                     <div class="product-btn">
                                         <button class="quickviewbutton" data-productid="{{ $product->id }}">quick
