@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Division;
+use App\Models\Admin\Market;
 use App\Models\Merchant\Shop;
 use App\Models\Product\Brand;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
-class ShopListPageController extends Controller
+class   ShopListPageController extends Controller
 {
     public function allshop()
     {
@@ -42,4 +43,12 @@ class ShopListPageController extends Controller
 
         return view('frontend.shoplist-page', compact('shops', 'divisions'));
     }
+    public function allmarketshop($slug)
+    {
+        $market=Market::where('slug',$slug)->first();
+        $shops = Shop::where('market_id',$market->id)->get();
+        // return $market;
+        return view('frontend.shoplistby-market',compact('shops','market'));
+    }
+
 }

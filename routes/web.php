@@ -85,6 +85,7 @@ Route::get('/product/quickview/{id}', [ProductQuickViewController::class, 'quick
 
 // Shop List
 Route::get('/shops', [ShopListPageController::class, 'allshop'])->name('shoplist');
+Route::get('/market/{slug}', [ShopListPageController::class, 'allmarketshop'])->name('allmarketshop');
 Route::get('/ajaxshoplist', [ShoplistAjaxController::class, 'ajaxshoplist'])->name('ajaxshoplist');
 Route::get('/shop/{id}', [ShopWiseProductListController::class, 'shopWiseProduct'])->name('product.with.shop');
 

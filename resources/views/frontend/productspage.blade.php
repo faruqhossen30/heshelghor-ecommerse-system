@@ -104,7 +104,7 @@
                                     <div class="product-price">
                                         <span class="text-dark">৳{{$product->price}}
                                             @if($product->discount > 0)
-                                            <del class="text-secondary" style="font-size: .9rem">${{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                            <del class="text-secondary" style="font-size: .9rem">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
                                             @endif
                                         </span>
                                     </div>

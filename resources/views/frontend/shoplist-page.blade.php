@@ -54,16 +54,20 @@
                 </div>
                 <div class="row">
                     @foreach ($shops as $shop)
-                    <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6">
                         <a href="{{route('shoppage', $shop->slug)}}" class="shop_links market-links ">
-                            <div class="single-shop single-market bg-white d-flex ">
+                            <div class="single-shop single-market d-flex ">
                                 <div class="shop-photo market-photo">
-                                    <img class="lozad" data-src="{{asset('uploads/shop/'.$shop->image)}}" data-placeholder-background="white" onerror="this.onerror=null;this.src='{{asset('frontend/images/placeholder.jpg')}}';"  alt="{{$shop->name}}" style="height: 75px; max-width:75px">
+                                    <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
+                                        data-placeholder-background="white"
+                                        onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
+                                        alt="{{ $shop->name }}">
+
                                 </div>
                                 <div class="shop-content market-content">
-                                    <h5>{{$shop->name}}</h5>
-                                    <span> <i class="fa fa-map-marker"></i> {{$shop->address}}</span> <br>
-                                    {{-- <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span> --}}
+                                    <h5>{{ $shop->name }}</h5>
+                                    <span> <i class="fa fa-map-marker"></i> {{ $shop->address }}</span>
+                                    <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
                                 </div>
                             </div>
                         </a>
