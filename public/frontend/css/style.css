@@ -697,42 +697,6 @@ span.itemReload {
     display: inline-block !important;
 }
 
-.product-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 15px;
-    transition: .5s;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.product-ratting i {
-    color: #EB5525;
-}
-
-.single-product:hover .product-icon {
-    opacity: 1;
-    visibility: visible;
-}
-
-.product-icon i {
-    display: block;
-    background: #fff;
-    padding: 8px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    border-radius: 100%;
-    transition: .5s;
-    border: 1px solid #ddd;
-    cursor: pointer;
-}
-
-.product-icon i:hover {
-    background-color: red;
-    color: #fff;
-}
-
 .product-btn {
     position: absolute;
     bottom: -15%;
@@ -1938,4 +1902,16 @@ input::placeholder {
     margin-top: 10px;
 }
 
+#scrollUp {
+	z-index: 1 !important;
+}
+
+/* social share */
+.product-social-share a {
+    margin-left: 10px;
+}
+
+.product-social-share {
+    margin-top: 20px;
+}
 

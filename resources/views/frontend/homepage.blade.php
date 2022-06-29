@@ -78,10 +78,10 @@
                                     @endif
                                     <span class="new_product">new</span>
                                 </div>
-                                <div class="product-icon">
+                                {{-- <div class="product-icon">
                                     <i class="fa fa-heart"></i>
                                     <i class="fa fa-heart"></i>
-                                </div>
+                                </div> --}}
                                 <div class="product-btn">
                                     <button class="quickviewbutton" data-productid="{{ $product->id }}">quick
                                         view</button>
@@ -166,10 +166,6 @@
                                                         @endif
                                                         <span class="new_product">new</span>
                                                     </div>
-                                                    <div class="product-icon">
-                                                        <i class="fa fa-heart"></i>
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
                                                     <div class="product-btn">
                                                         <button class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick
@@ -225,10 +221,6 @@
                                                         @endif
                                                         <span class="new_product">new</span>
                                                     </div>
-                                                    <div class="product-icon">
-                                                        <i class="fa fa-heart"></i>
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
                                                     <div class="product-btn">
                                                         <button class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick
@@ -282,10 +274,6 @@
                                                         @endif
                                                         <span class="new_product">new</span>
                                                     </div>
-                                                    <div class="product-icon">
-                                                        <i class="fa fa-heart"></i>
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
                                                     <div class="product-btn">
                                                         <button class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick
@@ -338,10 +326,6 @@
                                                             <span>{{ $product->discount }}% off</span>
                                                         @endif
                                                         <span class="new_product">new</span>
-                                                    </div>
-                                                    <div class="product-icon">
-                                                        <i class="fa fa-heart"></i>
-                                                        <i class="fa fa-heart"></i>
                                                     </div>
                                                     <div class="product-btn">
                                                         <button class="quickviewbutton"

@@ -681,10 +681,7 @@
                                                     @endif
                                                     <span class="new_product">new</span>
                                                 </div>
-                                                <div class="product-icon">
-                                                    <i class="fa fa-heart"></i>
-                                                    <i class="fa fa-heart"></i>
-                                                </div>
+
                                                 <div class="product-btn">
                                                     <button type="button" class="quickviewbutton"
                                                         data-productid="{{ $product->id }}">quick view</button>

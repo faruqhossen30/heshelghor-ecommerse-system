@@ -23,11 +23,10 @@ class SingleProductController extends Controller
         $shop = Shop::firstWhere('id', 27);
         $categoryproduct = Product::where('category_id', $product->category_id)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->get();
 
+
+        // $productshare = Product::with('product','user')->firstWhere('slug',$slug);
+
         return view('frontend.single-product' ,compact('product', 'categoryproduct'));
-
-        // return view('frontend.singleproduct', compact('product', 'shop'));
-
-        // return view('frontend.singleproduct', compact('product'));
     }
 
 
