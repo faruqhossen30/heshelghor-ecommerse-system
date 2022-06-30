@@ -1897,6 +1897,7 @@ input::placeholder {
 	font-size: 14px;
 	padding: 8px 0;
 	border-top: 1px solid #222;
+    cursor: pointer;
 }
 
 .local-area {

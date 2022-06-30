@@ -30,14 +30,6 @@ $totalitem = Cart::count();
                                 <img src="{{ $item->options->photo }}" style="width:auto;height:50px" alt="">
                             </td>
                             <td>৳{{ $item->price }}</td>
-                            {{-- <td class="quantity-width">
-                            <input type="hidden" name="product_id" value="id">
-                            <div class="quantity product_quantity">
-                                <button  class="quantity__minus btn btn-light"><span><i class="fa-solid fa-minus"></i></span></button>
-                                    <input name="quantity" type="text" class="quantity__input" value="{{ $item->qty }}" autocomplete="off">
-                                <button class="quantity__plus btn btn-light"><span><i class="fa-solid fa-plus"></i></span></button>
-                            </div>
-                        </td> --}}
                             <td>
                                 <div class="input-group mb-3 " style="max-width: 110px">
                                     <button type="button" class="input-group-text qtyminusbtn">-</button>

@@ -83,8 +83,7 @@
                               </tr>
                               <tr>
                                 <th scope="row">Corporate Office</th>
-                                <td> : House# 43(2nd Floor), Road# 4/A, Dhanmondi, Dhaka-1205.
-                                    Phone: +88 02 410 60363</td>
+                                <td> :  House:539/A (Ground Floor), Lane: 11 (East Side), Baridhara DOHS, Dhaka-1206</td>
                               </tr>
                               <tr>
                                 <th scope="row">Facebook</th>
@@ -92,7 +91,7 @@
                               </tr>
                               <tr>
                                 <th scope="row">WhatsApp</th>
-                                <td> : +88 01788950905</td>
+                                <td> : +8801318-760087</td>
                               </tr>
                             </tbody>
                           </table>

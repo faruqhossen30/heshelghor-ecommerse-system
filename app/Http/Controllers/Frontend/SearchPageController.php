@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\District;
+use App\Models\Admin\Location\Division;
+use App\Models\Admin\Location\Upazila;
 use App\Models\Product\Brand;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
-
+use Psy\Readline\Hoa\Console;
 
 class SearchpageController extends Controller
 {
@@ -36,6 +39,10 @@ class SearchpageController extends Controller
         if (isset($_GET['brand'])) {
             $brand = $_GET['brand'];
         }
+        $district = null;
+        if (isset($_GET['district'])) {
+            $district = $_GET['district'];
+        }
 
 
         $products = Product::when($keyword, function ($query, $keyword) {
@@ -47,14 +54,14 @@ class SearchpageController extends Controller
         ->when($category, function ($query, $category) {
             return $query->whereIn('category_id', $category);
         })
+        ->when($district, function ($query, $district) {
+            return $query->whereIn('district_id', $district);
+        })
         ->when($brand, function ($query, $brand) {
             return $query->whereIn('brand_id', $brand);
         })
         ->latest()
         ->paginate($count ?? 30);
-
-
-
 
         // $maxPrice=count(Product::all());
         $categories =Category::all();
@@ -66,9 +73,14 @@ class SearchpageController extends Controller
         $brandids =  array_values($productbrandids);
         $brands =Brand::whereIn('id', $brandids)->orderBy('name','asc')->get();
 
-        // return $products;
 
-        return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
+        // $division_id = Division::where('id',$id)->first();
+        $divisions = Division::with('districts')->orderBy('name','asc')->get();
+        $districts = District::where('division_id',2)->get();
+        // return $division_list;
+
+        return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands','divisions','districts'));
     }
+
 
 }
