@@ -8,9 +8,29 @@ use Illuminate\Http\Request;
 
 class PromotionalproductController extends Controller
 {
-    public function subcategoryProducts()
+    public function subcategoryProducts(Request $request)
     {
-        $products = Product::active()->where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->latest()->paginate(15);
+
+
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
+        }
+
+        $location = null;
+        if (isset($_GET['location'])) {
+            $location = $_GET['location'];
+        }
+
+        $products = Product::active()->where('category_id', 38)
+        ->when($price, function($query, $price){
+            $query->orderBy('price', $price);
+        })
+        ->when($location, function ($query, $location) {
+            return $query->where('district_id', $location);
+        })
+        ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')
+        ->paginate(15);
 
         // return response()->json([
         //     'success' => true,
@@ -24,7 +44,25 @@ class PromotionalproductController extends Controller
 
     public function subcategoryProductsrandom()
     {
-        $products = Product::active()->where('category_id', 38)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
+        }
+
+        $location = null;
+        if (isset($_GET['location'])) {
+            $location = $_GET['location'];
+        }
+
+        $products = Product::active()
+        ->where('category_id', 38)
+        ->when($price, function($query, $price){
+            $query->orderBy('price', $price);
+        })
+        ->when($location, function ($query, $location) {
+            return $query->where('district_id', $location);
+        })
+        ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
 
         // return response()->json([
         //     'success' => true,

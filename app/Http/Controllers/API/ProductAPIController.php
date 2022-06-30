@@ -26,7 +26,7 @@ class ProductAPIController extends Controller
     public function productByPage()
     {
 
-        $products = Product::active()->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')->latest()->paginate(15);
+        $products = Product::active()->select('id', 'title', 'regular_price', 'discount', 'price', 'quantity', 'review', 'photo', 'img_small', 'img_small')->latest()->paginate(15);
 
         // $products = Product::active()->with('category.subcategories')->get();
         return $products;
@@ -35,7 +35,18 @@ class ProductAPIController extends Controller
     // Category wise Product
     public function productByCategory(Request $request, $category_id)
     {
-        $products = Product::active()->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')->where('category_id', $category_id)->paginate(10);
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
+        }
+
+        $products = Product::active()
+            ->when($price, function ($query, $price) {
+                $query->orderBy('price', $price);
+            })
+            ->where('category_id', $category_id)
+            ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')
+            ->paginate(10);
         return $products;
     }
     // Sub-Category wise Product
