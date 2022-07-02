@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-    @yield('OG')
 
     @stack('style')
+    @yield('OG')
 
 
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
@@ -64,6 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollup/2.4.1/jquery.scrollUp.min.js" integrity="sha512-gAHP1RIzRzolApS3+PI5UkCtoeBpdxBAtxEPsyqvsPN950Q7oD+UT2hafrcFoF04oshCGLqcSgR5dhUthCcjdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('script')
     <script src="{{ asset('frontend') }}/js/main.js"></script>
 
 
@@ -84,7 +85,7 @@
         observer.observe();
 
     </script>
-    @stack('script')
+
 
     <script>
         $(document).ready(function() {
