@@ -45,7 +45,7 @@ class ProductAPIController extends Controller
                 $query->orderBy('price', $price);
             })
             ->where('category_id', $category_id)
-            ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')
+            ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small', 'img_small')
             ->paginate(10);
         return $products;
     }

@@ -17,8 +17,7 @@ class ProductsearchandfilterapiController extends Controller
         $location = null;
         $category = [];
         $brand = [];
-        $orderby = null;
-        $sort = null;
+        $price = null;
         $count = null;
 
 
@@ -37,11 +36,8 @@ class ProductsearchandfilterapiController extends Controller
         if (isset($_GET['brand'])) {
             $brand = json_decode($_GET['brand']);
         }
-        if (isset($_GET['orderby'])) {
-            $orderby = $_GET['orderby'];
-        }
-        if (isset($_GET['sort'])) {
-            $sort = $_GET['sort'];
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
         }
 
         if (isset($_GET['count'])) {
@@ -75,14 +71,11 @@ class ProductsearchandfilterapiController extends Controller
             ->when($brand, function ($query, $brand) {
                 return $query->whereIn('brand_id', $brand);
             })
-            ->when($sort, function ($query, $sort) {
-                return $query->orderBy('id', $sort);
-            })
-            ->when($orderby, function ($query, $orderby) {
-                return $query->orderBy('price', $orderby);
+            ->when($price, function ($query, $price) {
+                return $query->orderBy('price', $price);
             })
 
-            ->paginate($count ?? 25);
+            ->paginate($count ?? 10);
 
         return response()->json([
             'success' => true,

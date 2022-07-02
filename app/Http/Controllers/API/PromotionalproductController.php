@@ -29,7 +29,7 @@ class PromotionalproductController extends Controller
         ->when($location, function ($query, $location) {
             return $query->where('district_id', $location);
         })
-        ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')
+        ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small')
         ->paginate(15);
 
         // return response()->json([
@@ -62,7 +62,7 @@ class PromotionalproductController extends Controller
         ->when($location, function ($query, $location) {
             return $query->where('district_id', $location);
         })
-        ->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
+        ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
 
         // return response()->json([
         //     'success' => true,
@@ -75,7 +75,25 @@ class PromotionalproductController extends Controller
 
     public function promotionalProduct()
     {
-        $products = Product::take(50)->select('id', 'title', 'regular_price', 'discount', 'price', 'review', 'photo', 'img_small')->inRandomOrder()->paginate(15);
+
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
+        }
+
+        $location = null;
+        if (isset($_GET['location'])) {
+            $location = $_GET['location'];
+        }
+
+        $products = Product::take(50)
+        ->when($price, function($query, $price){
+            $query->orderBy('price', $price);
+        })
+        ->when($location, function ($query, $location) {
+            return $query->where('district_id', $location);
+        })
+        ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small')->paginate(15);
         return $products;
     }
 }
