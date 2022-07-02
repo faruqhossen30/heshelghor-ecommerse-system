@@ -19,7 +19,10 @@ class SubcategorypageController extends Controller
 
             $subcategory = SubCategory::firstWhere('slug', $slug);
 
-            // return $subcategory;
+            $districtid = null;
+            if (isset($_GET['districtid'])) {
+                $districtid = $_GET['districtid'];
+            }
 
             $price = null;
             if (isset($_GET['price'])) {
@@ -43,6 +46,9 @@ class SubcategorypageController extends Controller
             // return $subcategory;
 
             $products = Product::where('subcategory_id', $subcategory->id)
+                ->when($districtid, function ($query, $districtid) {
+                    return $query->where('district_id', $districtid);
+                })
                 ->when($price, function ($query, $price) {
                     return $query->orderBy('price', $price);
                 })

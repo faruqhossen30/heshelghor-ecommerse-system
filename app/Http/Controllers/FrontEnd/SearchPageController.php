@@ -21,6 +21,12 @@ class SearchpageController extends Controller
         if (isset($_GET['keyword'])) {
             $keyword = trim($_GET['keyword']);
         }
+
+        $districtid = null;
+        if (isset($_GET['districtid'])) {
+            $districtid = $_GET['districtid'];
+        }
+
         $price = null;
         if (isset($_GET['price'])) {
             $price = trim($_GET['price']);
@@ -47,6 +53,9 @@ class SearchpageController extends Controller
 
         $products = Product::when($keyword, function ($query, $keyword) {
             return $query->where('title', 'like', '%' . $keyword . '%');
+        })
+        ->when($districtid, function ($query, $districtid) {
+            return $query->where('district_id', $districtid);
         })
         ->when($price, function ($query, $price) {
             return $query->orderBy('price', $price);
@@ -75,11 +84,11 @@ class SearchpageController extends Controller
 
 
         // $division_id = Division::where('id',$id)->first();
-        $divisions = Division::with('districts')->orderBy('name','asc')->get();
-        $districts = District::where('division_id',2)->get();
+
+
         // return $division_list;
 
-        return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands','divisions','districts'));
+        return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
     }
 
 

@@ -10,7 +10,7 @@ class SliderapiController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::get();
+        $sliders = Slider::latest()->get();
 
         return response()->json([
             'success' => true,

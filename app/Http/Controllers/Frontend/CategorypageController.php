@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Location\District;
 use App\Models\Product\Brand;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
@@ -19,6 +20,11 @@ class CategorypageController extends Controller
             $subcategories = SubCategory::where('category_id', $category->id)->get();
 
             // return $subcategories;
+
+            $districtid = null;
+            if (isset($_GET['districtid'])) {
+                $districtid = $_GET['districtid'];
+            }
 
             $price = null;
             if (isset($_GET['price'])) {
@@ -42,6 +48,9 @@ class CategorypageController extends Controller
             // return $subcategory;
 
             $products = Product::where('category_id', $category->id)
+                ->when($districtid, function ($query, $districtid) {
+                    return $query->where('district_id', $districtid);
+                })
                 ->when($price, function ($query, $price) {
                     return $query->orderBy('price', $price);
                 })
@@ -62,6 +71,7 @@ class CategorypageController extends Controller
             $productbrandids = array_unique($products->pluck('brand_id')->toArray());
             $brandids =  array_values($productbrandids);
             $brands = Brand::whereIn('id', $brandids)->orderBy('name', 'asc')->get();
+
 
             // return $products;
             return view('frontend.productlistpage.category-products', compact('products', 'category', 'subcategories', 'maxPrice', 'minPrice', 'brands'));
