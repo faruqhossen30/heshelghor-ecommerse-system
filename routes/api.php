@@ -102,6 +102,7 @@ Route::get('promotion/subcategory/products', [PromotionalproductController::clas
 Route::get('promotion/subcategory/products/random', [PromotionalproductController::class, 'subcategoryProductsrandom']);
 
 Route::get('promotion/products', [PromotionalproductController::class, 'promotionalProduct']);
+Route::get('promotion/products/random', [PromotionalproductController::class, 'promotionalProductRandom']);
 
 
 

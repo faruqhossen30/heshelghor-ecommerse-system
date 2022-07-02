@@ -96,4 +96,29 @@ class PromotionalproductController extends Controller
         ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small')->paginate(15);
         return $products;
     }
+    public function promotionalProductRandom()
+    {
+
+        $price = null;
+        if (isset($_GET['price'])) {
+            $price = $_GET['price'];
+        }
+
+        $location = null;
+        if (isset($_GET['location'])) {
+            $location = $_GET['location'];
+        }
+
+        $products = Product::take(50)
+        ->when($price, function($query, $price){
+            $query->orderBy('price', $price);
+        })
+        ->when($location, function ($query, $location) {
+            return $query->where('district_id', $location);
+        })
+        ->inRandomOrder()
+        ->select('id', 'title', 'regular_price', 'quantity', 'discount', 'price', 'review', 'photo', 'img_small')
+        ->paginate(15);
+        return $products;
+    }
 }

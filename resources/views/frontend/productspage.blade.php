@@ -117,7 +117,9 @@
                         @endforeach
                     </div>
                     <div class="row mb-4">
-                        {{$products->appends($_GET)->links()}}
+                        <div class="col">
+                            {{$products->onEachSide(1)->appends($_GET)->links('pagination::bootstrap-4')}}
+                        </div>
                     </div>
                 </div>
             </div>

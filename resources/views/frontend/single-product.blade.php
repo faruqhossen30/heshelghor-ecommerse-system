@@ -357,8 +357,12 @@
     <!-- related product end -->
 </div>
 @endsection
+@push('style')
+<link rel="stylesheet" href="{{ asset('frontend') }}/css/jquery.exzoom.css" />
+@endpush
 
 @push('script')
+<script src="{{ asset('frontend') }}/js/jquery.exzoom.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
