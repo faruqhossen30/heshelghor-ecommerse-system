@@ -16,6 +16,9 @@
                             <a href="#"><i class="fab fa-linkedin"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
                         </div>
+                        <a href="{{route('homepage')}}">
+                            <img src="{{asset('frontend')}}/images/Heshelghor-app-image.png" class="img-fluid" alt="footer_logo">
+                        </a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -37,12 +40,11 @@
                         <ul class="footer-contact">
                             <li><strong><i class="fa fa-phone"></i></strong><span>+88 02477763843</span></li>
                             <li><strong><i class="fa fa-phone"></i></strong><span> +8801318-760087</span></li>
-                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span>58, Borhan Shah Road,
-                                    Karbala, Jashore-7400 ( Head Office ) </span></li>
-                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span>House:43 (2nd Flore),
-                                    Road:4/A, Dhanmodi, Dhaka-1205 ( Corporate Office )</span></li>
+                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Head Office</strong> - 58, Borhan Shah Road,
+                                    Karbala, Jashore-7400 <br> </span></li>
+                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Corporate Office</strong> - House:539/A (Ground Floor), Lane: 11 (East Side), Baridhara DOHS, Dhaka-1206</span></li>
                             <li><strong><i class="fa-solid fa-location-dot"></i></strong><span>59, Kajipara, Puraton
-                                    Koshba, Jashore sadar, Jashore (Trade Licence )</span></li>
+                                    Koshba, Jashore sadar, Jashore  <br>(Trade Licence )</span></li>
                         </ul>
                     </div>
                 </div>

@@ -67,7 +67,7 @@
                     <h3 class="quick_view_title">{{ $product->title }}</h3>
                     <div class="product-meta">
                         <span><strong>sku : </strong>{{ $product->id }}</span>
-                        <span><strong>brand : </strong>{{ $product->brand->name }}</span>
+                        <span><strong>brand : </strong>{{ $product->brand->name ?? 'Not found' }}</span>
                     </div>
                     <h4 class="quick_view_price">৳{{ $product->price }}</h4>
                     <div class="quick_view_ratting d-flex">
