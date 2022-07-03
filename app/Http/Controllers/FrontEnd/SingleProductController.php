@@ -20,7 +20,6 @@ class SingleProductController extends Controller
         $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors.color', 'sizes')->where('slug', $slug)->get()->first();
 
         // return $product;
-        $shop = Shop::firstWhere('id', 27);
         $categoryproduct = Product::where('category_id', $product->category_id)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->get();
 
 

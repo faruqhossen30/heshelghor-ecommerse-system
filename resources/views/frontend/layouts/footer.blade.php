@@ -17,7 +17,7 @@
                             <a href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                         <a href="{{route('homepage')}}">
-                            <img src="{{asset('frontend')}}/images/Heshelghor-app-image.png" class="img-fluid" alt="footer_logo">
+                            <img data-src="{{asset('frontend')}}/images/Heshelghor-app-image.png" class="img-fluid lozad" alt="footer_logo">
                         </a>
                     </div>
                 </div>

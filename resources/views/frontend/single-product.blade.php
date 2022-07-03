@@ -223,18 +223,22 @@
 
 
 
-                    {{-- <a href="single-shop.html" class="shop_links market-links ">
-                            <div class="single-shop single-market d-flex ">
-                                <div class="shop-photo market-photo">
-                                    <img src="http://127.0.0.1:8000/frontend/images/slide3.jpg" alt="shop">
-                                </div>
-                                <div class="shop-content market-content single-product-shop-show">
-                                    <h5>bashundhara shopping</h5>
-                                    <span> <i class="fa fa-map-marker"></i> Panthapath,Dhaka</span>
-                                    <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
-                                </div>
+                    @if($product->shop)
+
+                    <a href="{{route('shoppage', $product->shop->slug)}}" class="shop_links market-links ">
+                        <div class="single-shop single-market d-flex border">
+                            <div class="shop-photo market-photo">
+                                <img data-src="{{ asset('uploads/shop/' . $product->shop->image) }}"  onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
+                                data-placeholder-background="white" alt="{{$product->shop->name}}" class="lozad">
                             </div>
-                        </a> --}}
+                            <div class="shop-content market-content single-product-shop-show">
+                                <h5>{{$product->shop->name}}</h5>
+                                <span> <i class="fa fa-map-marker"></i> {{$product->shop->address}}</span>
+                                {{-- <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span> --}}
+                            </div>
+                        </div>
+                    </a>
+                    @endif
                 </div>
             </div>
         </div>
