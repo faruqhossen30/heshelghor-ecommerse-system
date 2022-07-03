@@ -23,7 +23,8 @@
                                                 <input class="form-check-input" name="sub_category_id[]" type="checkbox"
                                                     value="{{ $subcategory->id }}"
                                                     id="flexSwitchCheckDefault{{ $subcategory->id }}"
-                                                    @if (in_array($subcategory->id, $promotionnalsubcategoryid)) checked @endif>
+                                                    @if (in_array($subcategory->id, $promotion_subcategoryies)) checked @endif
+                                                    >
                                                 <label class="form-check-label"
                                                     for="flexSwitchCheckDefault {{ $subcategory->id }}">{{ $subcategory->name }}</label>
                                             </div>

@@ -7,6 +7,7 @@ use App\Models\Admin\Promotion\Categorypromotion;
 use App\Models\Product\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Option;
 
 class CategorypromotionController extends Controller
 {
@@ -14,31 +15,18 @@ class CategorypromotionController extends Controller
     {
 
         $categories = Category::with('subcategories')->latest()->get();
-        $promotionnalsubcategoryid = Categorypromotion::get()->pluck('sub_category_id')->toArray();
+        $promotion_subcategoryies = option('promotion_subcategoryies');
 
-        // return $promotionnalsubcategoryid;
-        return view('admin.promotion.categorypromotion', compact('categories', 'promotionnalsubcategoryid'));
+        return view('admin.promotion.categorypromotion', compact('categories', 'promotion_subcategoryies'));
     }
 
     public function catpomotionstore(Request $request)
     {
-
-        // $subcatid = $request->sub_category_id;
-
         $subcategoryid = $request->sub_category_id;
 
         if (!empty($subcategoryid)) {
 
-            Categorypromotion::truncate();
-
-            foreach ($subcategoryid as $subcategory) {
-                // echo $subcategory;
-                Categorypromotion::Create([
-                    
-                    'sub_category_id' =>  $subcategory,
-                    'author_id'       => Auth::guard('admin')->user()->id,
-                ]);
-            }
+            option(['promotion_subcategoryies' => $request->sub_category_id]);
             return redirect()->back();
         }
     }

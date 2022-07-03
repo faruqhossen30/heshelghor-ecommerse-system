@@ -31,6 +31,9 @@
 <div class="product-area">
     <div class="container">
         <form action="" method="GET">
+            @if (isset($_GET['keyword']))
+             <input type="hidden" name="keyword" value="{{$_GET['keyword']}}">
+             @endif
             <div class="row">
                 <div class="col-xl-3 d-none d-xl-block">
                     <div class="search-sidebar">

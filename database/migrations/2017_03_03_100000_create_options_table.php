@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategorypromotionsTable extends Migration
+class CreateOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCategorypromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorypromotions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('sub_category_id');
-            $table->unsignedBigInteger('author_id');
-            $table->timestamps();
+        Schema::create('options', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('key')->unique();
+            $table->json('value');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateCategorypromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorypromotions');
+        Schema::dropIfExists('options');
     }
 }
