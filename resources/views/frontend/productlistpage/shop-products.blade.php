@@ -82,9 +82,9 @@
                     </div>
                     <div class="col-xl-9 col-lg-12 col-md-12">
                         <div class="product-page">
-                            <a href="#" class="single-shop shop_links market-links ">
-                                <div class="single-market hover-none bg-white d-flex ">
-                                    <div class="shop-photo market-photo">
+                            {{-- <a href="#" class="single-shop shop_links market-links "> --}}
+                                <div class="single-market hover-none bg-white d-flex  border">
+                                    <div class="shop-photo">
                                         <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
                                             data-placeholder-background="white"
                                             onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
@@ -96,7 +96,7 @@
                                         <span> <i class="fa-solid fa-location-arrow"></i>{{ $shop->address }}</span>
                                     </div>
                                 </div>
-                            </a>
+                            {{-- </a> --}}
                             @if (count($products) > 0)
                                 <div class="product-sort-sytem d-flex justify-content-between mb-3">
                                     <div class="product-sort-left">

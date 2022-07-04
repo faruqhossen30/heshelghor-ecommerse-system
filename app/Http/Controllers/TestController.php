@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use App\Models\Auth\Marchant;
+use App\Models\Product\Product;
 use Faker\Provider\Uuid;
 
 use function PHPSTORM_META\type;
@@ -31,7 +32,11 @@ class TestController extends Controller
 
     public function ontest()
     {
-        return orderNumber();
+        $products = Product::with(['shop' => function ($query) {
+            return $query->select(['id', 'name']);
+        }])->select('id', 'title', 'shop_id')->latest()->get();
+
+        return $products;
     }
 
 

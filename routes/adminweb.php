@@ -37,7 +37,9 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\Order\OrdercomplainController;
 use App\Http\Controllers\Admin\Promotion\CategorypromotionController;
+use App\Http\Controllers\Admin\Promotion\ProductpromotionController;
 use App\Http\Controllers\Admin\Promotion\PromotionController;
+use App\Http\Controllers\Admin\Promotion\ShoppromotionController;
 use App\Http\Controllers\Admin\Promotion\SliderajaxController;
 use App\Http\Controllers\Admin\Promotion\SliderController;
 use App\Http\Controllers\Setting\FooterSetting;
@@ -122,6 +124,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('slider', SliderController::class);
         Route::get('categorypromotion',[CategorypromotionController::class,'catpomotion'])->name('category.promotion');
         Route::post('categorypromotionstore',[CategorypromotionController::class,'catpomotionstore'])->name('category.promotion.store');
+        Route::get('productpromotion',[ProductpromotionController::class,'index'])->name('productpromotion');
+        Route::post('productpromotion',[ProductpromotionController::class,'store'])->name('productpromotion');
+        Route::get('shoppromotion',[ShoppromotionController::class,'index'])->name('shoppromotion');
+        Route::post('shoppromotion',[ShoppromotionController::class,'store'])->name('shoppromotion');
+
 
         // Job
         Route::resource('job', JobController::class);

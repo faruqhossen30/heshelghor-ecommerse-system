@@ -23,20 +23,30 @@ class HomepageController extends Controller
     {
 
         $categories = Category::inRandomOrder()->take(12)->get();
-        $shops = Shop::inRandomOrder()->take(12)->get();
         $markets = Market::inRandomOrder()->take(12)->get();
         $sliders = Slider::latest()->get();
-        $featursproducts = Product::where('category_id', 38)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        // Featured Shops
+        $promotion_products = option('promotion_shops');
+        $shops = null;
+        if($promotion_products){
+            $shops = Shop::whereIn('id',$promotion_products)->take(12)->get();
+        };
+        // Featurd products
+        $promotion_products = option('promotion_products');
+        $featursproducts = null;
+        if($promotion_products){
+            $featursproducts = Product::whereIn('id', $promotion_products)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        };
 
-        $ladiesproduct = Product::where('category_id', 3)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
+        // $promotion_subcategoryies = option('promotion_subcategoryies');
 
-        $kids = Product::where('category_id', 7)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
-        $health = Product::where('category_id', 5)->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
-        $topselling = Product::select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
-        // return $featursproducts;
-        // homepage update
 
-        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts', 'ladiesproduct', 'kids', 'health', 'topselling'));
+        // return $promotion_subcategoryies;
+
+
+
+
+        return view('frontend.homepage', compact('shops', 'categories', 'markets', 'sliders', 'featursproducts'));
     }
 
     public function privacyPolicy()

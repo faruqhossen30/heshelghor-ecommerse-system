@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\Auth\Marchant;
 use App\Models\Merchant\Shop;
+use App\Models\ProductReview;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -70,5 +71,10 @@ class Product extends Model implements HasMedia
     public function sizes()
     {
         return $this->hasMany(ProductSize::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReview::class, 'product_id', 'id');
     }
 }

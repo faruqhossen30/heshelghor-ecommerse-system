@@ -17,7 +17,7 @@ class SingleProductController extends Controller
 {
     public function index(Request $request, $slug)
     {
-        $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors.color', 'sizes')->where('slug', $slug)->get()->first();
+        $product = Product::with('category', 'subcategory', 'brand', 'shop', 'images', 'colors.color', 'sizes', 'reviews')->where('slug', $slug)->get()->first();
 
         // return $product;
         $categoryproduct = Product::where('category_id', $product->category_id)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->get();
