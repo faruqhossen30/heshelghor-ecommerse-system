@@ -110,7 +110,7 @@
         "autoPlay": true,
 
         // autoplay interval in milliseconds
-        "autoPlayTimeout": 2000
+        "autoPlayTimeout": 7000
 
     });
 

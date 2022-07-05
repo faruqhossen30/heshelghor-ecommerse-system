@@ -96,11 +96,8 @@ Route::get('district-wise-market/{slug}', [MarketAPIController::class, 'district
 Route::get('market-search/{keyword}', [MarketAPIController::class, 'marketSearch']);
 // Promotion
 Route::get('sliders', [SliderapiController::class, 'index']);
-
 Route::get('promotion/subcategory/products', [PromotionalproductController::class, 'subcategoryProducts']);
-
 Route::get('promotion/subcategory/products/random', [PromotionalproductController::class, 'subcategoryProductsrandom']);
-
 Route::get('promotion/products', [PromotionalproductController::class, 'promotionalProduct']);
 Route::get('promotion/products/random', [PromotionalproductController::class, 'promotionalProductRandom']);
 
