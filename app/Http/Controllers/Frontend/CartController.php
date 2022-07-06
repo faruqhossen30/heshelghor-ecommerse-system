@@ -40,6 +40,7 @@ class CartController extends Controller
                 'options'  => [
                     'regular_price'        => $product->regular_price,
                     'discount'             => $product->discount,
+                    'max_qty'              => $product->quantity,
                     'merchant_price'       => $merchantPrice,
                     'merchant_price_total' => $merchantPrice * $request->quantity,
                     'merchant_id'          => $product->author_id,

@@ -127,10 +127,10 @@
                         <div class="d-flex flex-row">
                             <div class="input-group mb-3 " style="width: 35%">
                                 <button type="button" class="input-group-text" id="qtyminusbtn">-</button>
-                                <input name="quantity" type="text" value="1" class="form-control text-center" min="1" max="7">
+                                <input name="quantity" type="text" value="1" class="form-control text-center" min="1" max="{{$product->quantity}}">
                                 <button type="button" class="input-group-text" id="qtyplusbtn">+</button>
                             </div>
-                            <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart" type="button" style="margin-left: 5px"><i class="fas fa-shopping-cart icon-c"></i> Add to
+                            <button class="btn btn-primary btn-sm hg-iconbutton" id="add-to-cart" data-id="{{$product->id}}" type="button" style="margin-left: 5px"><i class="fas fa-shopping-cart icon-c"></i> Add to
                                 Cart</button>
                         </div>
                         <div class="">
@@ -380,6 +380,7 @@
     $(document).ready(function() {
         $(document).on('click', '#add-to-cart', function(e) {
             e.preventDefault();
+            let id  = $(this).data('id');
 
 
 
@@ -389,7 +390,7 @@
             let _token = $('meta[name="csrf-token"]').attr('content');
 
             $.ajax({
-                url: "{{ route('cart.add', $product->id) }}"
+                url: `/cart/${id}`
                 , type: "post"
                 , data: {
                     name: name
@@ -399,13 +400,13 @@
                 , }
                 , success: function(response) {
                     if (response) {
-                        // $('.itemReload').empty();
+                        $('.itemReload').empty();
                         $('.itemReload').html(response.data);
-                        // console.log(response);
+                        console.log(response);
                     }
                 }
                 , error: function(error) {
-                    console.log('code wrong');
+                    console.log(error);
                 }
             });
         });
