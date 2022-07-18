@@ -24,7 +24,14 @@ class HomepageController extends Controller
 
         $categories = Category::inRandomOrder()->take(12)->get();
         $markets = Market::inRandomOrder()->take(12)->get();
-        $sliders = Slider::latest()->get();
+        // $sliders = Slider::latest()->get();
+
+        $sliders = Cache::rememberForever('sliders', function(){
+            return Slider::latest()->get();
+        });
+
+
+
         // Featured Shops
         $promotion_products = option('promotion_shops');
         $shops = null;
