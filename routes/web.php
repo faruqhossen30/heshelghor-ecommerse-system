@@ -51,6 +51,7 @@ use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\ProductpageController;
+use App\Http\Controllers\Frontend\ProductpagegridController;
 use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
 use App\Http\Controllers\Frontend\ShoppageController as FrontendShoppageController;
 use App\Http\Controllers\Frontend\SubcategorypageController;
@@ -72,6 +73,7 @@ Route::post('ajax/live/search', [HomepageController::class, 'ajaxSearch']);
 
 // Products Area
 Route::get('/products', [ProductpageController::class, 'index'])->name('pruductspage');
+Route::get('/product-grid',[ProductpagegridController::class,'index'])->name('productspagegrid');
 Route::get('shop/{slug}', [ShoppageController::class, 'index'])->name('shoppage');
 Route::get('category/{slug}', [CategorypageController::class, 'index'])->name('categorypage');
 Route::get('subcategory/{slug}', [SubcategorypageController::class, 'index'])->name('subcategorypage');
