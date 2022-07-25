@@ -70,9 +70,9 @@
                                 </select>
                             </div>
                             <div class="product-filter-grid">
-                                <a href="product.html"><span class="grid"> <i
+                                <a href="{{ route('pruductspage') }}"><span class="grid"> <i
                                             class="fa-solid fa-border-none"></i></span></a>
-                                <a href="product-grid.html"><span class="list"><i
+                                <a href="{{ route('productspagegrid') }}"><span class="list"><i
                                             class="fas fa-list-ul"></i></span></a>
                             </div>
                         </div>

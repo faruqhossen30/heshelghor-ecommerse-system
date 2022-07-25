@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
-use Illuminate\Http\Request;
 
-class ProductpageController extends Controller
+class ProductpagegridController extends Controller
 {
     public function index(Request $request)
     {
@@ -38,6 +38,6 @@ class ProductpageController extends Controller
 
         $categories = Category::select('id', 'name', 'slug', 'image')->orderBy('name', 'asc')->get();
         // return $request->all();
-        return view('frontend.productspage', compact('products', 'categories'));
-    }
+        return view('frontend.productspage-grid', compact('products', 'categories'));
+    } 
 }
