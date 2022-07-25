@@ -73,7 +73,7 @@ Route::post('ajax/live/search', [HomepageController::class, 'ajaxSearch']);
 
 // Products Area
 Route::get('/products', [ProductpageController::class, 'index'])->name('pruductspage');
-Route::get('/product-grid',[ProductpagegridController::class,'index'])->name('productspagegrid');
+// Route::get('/product-grid',[ProductpagegridController::class,'index'])->name('productspagegrid');
 Route::get('shop/{slug}', [ShoppageController::class, 'index'])->name('shoppage');
 Route::get('category/{slug}', [CategorypageController::class, 'index'])->name('categorypage');
 Route::get('subcategory/{slug}', [SubcategorypageController::class, 'index'])->name('subcategorypage');

@@ -665,6 +665,10 @@ span.itemReload {
     border: 1px solid #ddd;
 }
 
+.active-color{
+    color: #eb5525 !important;
+}
+
 .product_img {
     width: 100%;
     object-fit: cover;

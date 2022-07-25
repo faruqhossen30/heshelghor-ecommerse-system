@@ -20,24 +20,29 @@ class ProductpageController extends Controller
             $count = trim($_GET['count']);
         }
 
-        $category = null;
-        if (isset($_GET['category'])) {
-            $category = $_GET['category'];
-        }
-        $type = null;
-        if (isset($_GET['type'])) {
-            $type = $_GET['type'];
+        $view = null;
+        if (isset($_GET['view'])) {
+            $view = $_GET['view'];
         }
 
 
-        $products = Product::active()->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')
+        // return $view;
+
+
+        $products = Product::active()
             ->when($price, function ($query, $price) {
                 return $query->orderBy('price', $price);
             })
+            ->select('id', 'title', 'slug', 'price', 'regular_price', 'discount', 'img_small')
             ->latest()->paginate($count ?? 30);
 
         $categories = Category::select('id', 'name', 'slug', 'image')->orderBy('name', 'asc')->get();
-        // return $request->all();
+        // return $categories;
+
+        if($view && $view == 'list'){
+            return view('frontend.productspage-list', compact('products', 'categories'));
+        }
+
         return view('frontend.productspage', compact('products', 'categories'));
     }
 }
