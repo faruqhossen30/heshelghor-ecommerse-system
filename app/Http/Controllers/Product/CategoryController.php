@@ -180,7 +180,8 @@ class CategoryController extends Controller
             abort(403, 'You have no access this page.');
         };
 
-        $delete = Category::where('id', $id)->delete();
+        $delete = Category::where('id', $id)->first();
+        $delete->delete();
         Session::flash('delete');
         return redirect()->route('category.index');
     }

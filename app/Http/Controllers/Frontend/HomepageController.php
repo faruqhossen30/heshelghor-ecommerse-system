@@ -26,7 +26,7 @@ class HomepageController extends Controller
         $markets = Market::inRandomOrder()->take(12)->get();
         // $sliders = Slider::latest()->get();
 
-        $sliders = Cache::rememberForever('sliders', function(){
+        $sliders = Cache::rememberForever('sliders', function () {
             return Slider::latest()->get();
         });
 
@@ -35,13 +35,13 @@ class HomepageController extends Controller
         // Featured Shops
         $promotion_products = option('promotion_shops');
         $shops = null;
-        if($promotion_products){
-            $shops = Shop::whereIn('id',$promotion_products)->take(12)->get();
+        if ($promotion_products) {
+            $shops = Shop::whereIn('id', $promotion_products)->take(12)->get();
         };
         // Featurd products
         $promotion_products = option('promotion_products');
         $featursproducts = null;
-        if($promotion_products){
+        if ($promotion_products) {
             $featursproducts = Product::whereIn('id', $promotion_products)->select('id', 'title', 'slug', 'price', 'discount', 'img_small')->inRandomOrder()->take(12)->get();
         };
 
@@ -91,11 +91,13 @@ class HomepageController extends Controller
 
     public function ajaxOffcanvascategory()
     {
-        // return "welcome";
-        $categories = Category::with('subcategories')->orderBy('name', 'asc')->get();
-        // return $categories;
-        $data = view('frontend.ajax.offcanvascategories', compact('categories'));
+        $categories = Cache::rememberForever('categoriesWisthSubcategories', function () {
+            return Category::with(['subcategories' => function ($query) {
+                return $query->select(['id', 'category_id', 'name', 'slug', 'photo'])->orderBy('name', 'asc');
+            }])->select('id', 'name', 'slug', 'photo')->orderBy('name', 'asc')->get();
+        });
 
+        $data = view('frontend.ajax.offcanvascategories', compact('categories'));
         return $data;
     }
 

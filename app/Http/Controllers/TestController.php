@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use App\Models\Auth\Marchant;
+use App\Models\Product\Category;
 use App\Models\Product\Product;
 use Faker\Provider\Uuid;
 
@@ -32,11 +33,23 @@ class TestController extends Controller
 
     public function ontest()
     {
-        $products = Product::with(['shop' => function ($query) {
-            return $query->select(['id', 'name']);
-        }])->select('id', 'title', 'shop_id')->latest()->get();
+        // $products = Product::with(['shop' => function ($query) {
+        //     return $query->select(['id', 'name']);
+        // }])->select('id', 'title', 'shop_id')->latest()->get();
 
-        return $products;
+        // return $products;
+
+        //  $categories = Category::with(['subcategories' => function ($query) {
+        //         return $query->select(['id','category_id', 'name', 'slug', 'photo'])->orderBy('name', 'asc');
+        //     }])->select('id', 'name', 'slug', 'photo')->orderBy('name', 'asc')->get();
+
+
+        $divisions = Division::with('districts')
+        ->orderBy('name', 'asc')
+        ->get();
+
+        return $divisions;
+
     }
 
 
