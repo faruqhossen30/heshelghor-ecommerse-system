@@ -3,13 +3,13 @@
         <!-- breadcrumb start -->
         <div class="breadcrumb-area pt-5 pb-5">
             <div class="container">
-                <class class="row">
+                <div class="row">
                     <div class="col-xl-6 offset-xl-3 offset-lg-3 col-lg-6">
                         <div class="breadcrumb-search-bar text-center">
                             <h2 class="text-white">All Categories</h2>
                         </div>
                     </div>
-                </class>
+                </div>
             </div>
         </div>
         <!-- breadcrumb end -->

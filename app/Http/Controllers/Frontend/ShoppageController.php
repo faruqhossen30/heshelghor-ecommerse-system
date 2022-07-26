@@ -39,7 +39,10 @@ class ShoppageController extends Controller
         if (isset($_GET['brand'])) {
             $brand = $_GET['brand'];
         }
-
+        $view = null;
+        if (isset($_GET['view'])) {
+            $view = $_GET['view'];
+        }
 
         $products = Product::where('shop_id', $shop->id)
         ->when($keyword, function ($query, $keyword) {
@@ -57,9 +60,6 @@ class ShoppageController extends Controller
         ->latest()
         ->paginate($count ?? 30);
 
-
-
-
         // $maxPrice=count(Product::all());
         $categories =Category::all();
         $maxPrice=Product::max('price');
@@ -70,7 +70,13 @@ class ShoppageController extends Controller
         $brandids =  array_values($productbrandids);
         $brands =Brand::whereIn('id', $brandids)->orderBy('name','asc')->get();
 
-        // return $products;
+
+        if($view && $view == 'list'){
+            return view('frontend.productlistpage.shop-products-list', compact('products', 'shop', 'maxPrice','minPrice','categories','brands'));
+        }
         return view('frontend.productlistpage.shop-products',compact('products', 'shop', 'maxPrice','minPrice','categories','brands'));
+
+        // return $products;
+        // return view('frontend.productlistpage.shop-products',compact('products', 'shop', 'maxPrice','minPrice','categories','brands'));
     }
 }

@@ -22,7 +22,6 @@ class ShopWiseProductListController extends Controller
         $orderby = '';
         $count = null;
 
-
         if (isset($_GET['category'])) {
             $filter_category = $_GET['category'];
         }
@@ -65,7 +64,7 @@ class ShopWiseProductListController extends Controller
             ->when($orderby, function ($query, $orderby) {
                 return $query->orderBy('price', $orderby);
             })
-            ->paginate($count ?? 20);
+            ->paginate($count ?? 30);
 
         // return $products;
 

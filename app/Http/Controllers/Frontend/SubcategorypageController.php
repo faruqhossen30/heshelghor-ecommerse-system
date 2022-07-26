@@ -33,14 +33,14 @@ class SubcategorypageController extends Controller
                 $count = trim($_GET['count']);
             }
 
-            // $subcategory = null;
-            // if (isset($_GET['subcategory'])) {
-            //     $subcategory = $_GET['subcategory'];
-            // }
-
             $brand = null;
             if (isset($_GET['brand'])) {
                 $brand = $_GET['brand'];
+            }
+
+            $view = null;
+            if (isset($_GET['view'])) {
+                $view = $_GET['view'];
             }
 
             // return $subcategory;
@@ -68,7 +68,13 @@ class SubcategorypageController extends Controller
             $brands = Brand::whereIn('id', $brandids)->orderBy('name', 'asc')->get();
 
             // return $products;
+
+            if($view && $view == 'list'){
+                return view('frontend.productlistpage.subcategory-products-list', compact('products', 'subcategory', 'maxPrice', 'minPrice', 'brands'));
+            }
+    
             return view('frontend.productlistpage.subcategory-products', compact('products', 'subcategory', 'maxPrice', 'minPrice', 'brands'));
+            
         } catch (\Exception $e) {
             return $e->getMessage();
         }
