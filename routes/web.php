@@ -24,7 +24,6 @@ use App\Http\Controllers\Product\SubCategoryController;
 // Front-End Controller
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\HomepageController;
-use App\Http\Controllers\Frontend\ShopPageController;
 use App\Http\Controllers\Frontend\SingleProductController;
 
 use App\Http\Controllers\Frontend\SearchPageController;
@@ -52,7 +51,7 @@ use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\ProductpageController;
 use App\Http\Controllers\Frontend\SearchpageController as FrontendSearchpageController;
-use App\Http\Controllers\Frontend\ShoppageController as FrontendShoppageController;
+use App\Http\Controllers\Frontend\ShoppageController;
 use App\Http\Controllers\Frontend\SubcategorypageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
