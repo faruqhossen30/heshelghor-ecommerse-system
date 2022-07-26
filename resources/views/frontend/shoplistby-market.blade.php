@@ -45,7 +45,7 @@
                                 <div class="shop-content market-content">
                                     <h5>{{ $shop->name }}</h5>
                                     <span> <i class="fa fa-map-marker"></i> {{ $shop->address }}</span>
-                                    <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
+                                    {{-- <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span> --}}
                                 </div>
                             </div>
                         </a>
