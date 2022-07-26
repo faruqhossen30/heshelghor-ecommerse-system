@@ -1,7 +1,4 @@
 @extends('frontend.layouts.app')
-
-
-
 @section('content')
 <input type="hidden" name="minprice" value="{{ $minPrice }}">
 <input type="hidden" name="maxprice" value={{ $maxPrice }}>
@@ -55,52 +52,12 @@
                                 @endforeach
                             </ul>
                         </div>
-                        {{-- <div class="card mb-2">
-                            <div class="card-header mb-3">
-                                <span class="text-secondary fs-6">Price</span>
-                            </div>
-                            <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
-                            <div class="price-range"><strong>৳</strong>
-                                <input type="number" min=0 max="9900" oninput="validity.valid||(value='0');"
-                                    id="min_price" class="price-range-field" /><strong>৳</strong>
-                                <input type="number" name="maxprice" value="0" min=0 max="10000" oninput="validity.valid||(value='10000');"
-                                    id="max_price" class="price-range-field" onchange="this.form.submit()" />
-
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-12 col-md-12">
                     @if (count($products) > 0)
                     <div class="product-page">
-                        <div class="product-sort-sytem d-flex justify-content-between mb-3">
-                            <div class="product-sort-left">
-                                <label for="" style="font-size: 12px;">SORT BY : </label>
-                                <select name="price" onchange="this.form.submit()">
-                                    <option value="">Latest</option>
-                                    <option @if (isset($_GET['price']) && $_GET['price']=='desc' ) selected @endif value="desc">High To
-                                        Low</option>
-                                    <option @if (isset($_GET['price']) && $_GET['price']=='asc' ) selected @endif value="asc">Low To
-                                        High</option>
-                                </select>
-                            </div>
-                            <div class="product-sort-right d-flex align-items-center">
-                                <div class="product-show-count">
-                                    <label for="" style="font-size: 12px;">SHOW : </label>
-                                    <select name="count" onchange="this.form.submit()">
-                                        <option selected value="30">30</option>
-                                        <option @if (isset($_GET['count']) && $_GET['count']=='40' ) selected @endif value="40">40
-                                        </option>
-                                        <option @if (isset($_GET['count']) && $_GET['count']=='50' ) selected @endif value="40">50
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="product-filter-grid">
-                                    <a href="#"><span class="grid"> <i class="fa-solid fa-border-none"></i></span></a>
-                                    <a href="#"><span class="list"><i class="fas fa-list-ul"></i></span></a>
-                                </div>
-                            </div>
-                        </div>
+                        @include('frontend.inc.productpage.filterbar')
                         <div class="row g-2">
                             @foreach ($products as $product)
                             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
@@ -112,10 +69,6 @@
                                             <span>{{ $product->discount }}% off</span>
                                             @endif
                                             <span class="new_product">new</span>
-                                        </div>
-                                        <div class="product-icon">
-                                            <i class="fa fa-heart"></i>
-                                            <i class="fa fa-heart"></i>
                                         </div>
                                         <div class="product-btn">
                                             <button type="button" class="quickviewbutton" data-productid="{{ $product->id }}">quick view</button>

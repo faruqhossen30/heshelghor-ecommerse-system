@@ -1,6 +1,9 @@
 @extends('frontend.layouts.app')
 
+
+
 @section('content')
+
     <input type="hidden" name="minprice" value="{{ $minPrice }}">
     <input type="hidden" name="maxprice" value={{ $maxPrice }}>
     <!-- breadcrumb start -->
@@ -9,16 +12,13 @@
             <div class="row">
                 <div class="col-sm-12">
                     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-                        aria-label="breadcrumb" class="d-flex justify-content-between">
+                        aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('pruductspage') }}">Product</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Search</li>
-                        </ol>
-                        <ol class="breadcrumb">
-                            @if (isset($_GET['keyword']))
-                                <span>Searching your item <strong>{{ $_GET['keyword'] }}</strong></span>
-                            @endif
+                            <li class="breadcrumb-item " aria-current="page">
+                                <a href="{{ route('categorylistpage') }}">Shop</a>
+                            </li>
+                            {{-- <li class="breadcrumb-item active" aria-current="page">{{$category->name}}</li> --}}
                         </ol>
                     </nav>
                 </div>
@@ -32,30 +32,22 @@
     <div class="product-area">
         <div class="container">
             <form action="" method="GET">
-                @if (isset($_GET['keyword']))
-                    <input type="hidden" name="keyword" value="{{ $_GET['keyword'] }}">
-                @endif
                 <div class="row">
                     <div class="col-xl-3 d-none d-xl-block">
                         <div class="search-sidebar">
                             <div class="card mb-2">
-                                @include('frontend.inc.locationsidebar')
-                            </div>
-                            <div class="card mb-2">
                                 <div class="card-header">
-                                    <span class="text-secondary fs-6">Categories</span>
+                                    <span class="text-secondary fs-6">Category</span>
                                 </div>
                                 <ul class="expandible">
                                     @foreach ($categories as $category)
                                         <li>
-                                            <input type="checkbox" name="category[]" value="{{ $category->id }}"
-                                                onchange="this.form.submit()"
-                                                @if (isset($_GET['category']) && in_array($category->id, $_GET['category'])) checked @endif />
-                                            <label>{{ $category->name }}</label><br>
+                                            <input type="checkbox" id="vehicle1" name="category[]"
+                                                value="{{ $category->id }}" onchange="this.form.submit()"
+                                                @if (isset($_GET['category']) && in_array($category->id, $_GET['category'])) checked @endif>
+                                            <label for="vehicle1"> {{ $category->name }}</label><br>
                                         </li>
                                     @endforeach
-
-
                                 </ul>
                             </div>
                             <div class="card mb-2">
@@ -75,32 +67,46 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-9 col-lg-12 col-md-12 not-found">
-                        @if (count($products) > 0)
-                            <div class="product-page">
+                    <div class="col-xl-9 col-lg-12 col-md-12">
+                        <div class="product-page">
+                            {{-- <a href="#" class="single-shop shop_links market-links "> --}}
+                            <div class="single-market hover-none bg-white d-flex  border">
+                                <div class="shop-photo">
+                                    <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
+                                        data-placeholder-background="white"
+                                        onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
+                                        alt="{{ $shop->name }}" style="height: 100px; width:auto">
+                                </div>
+                                <div class="shop-content market-content">
+                                    <h5>{{ $shop->name }}</h5>
+                                    {{-- <span> <i class="fa fa-map-marker" aria-hidden="true"></i> Panthapath,Dhaka</span> --}}
+                                    <span> <i class="fa-solid fa-location-arrow"></i>{{ $shop->address }}</span>
+                                </div>
+                            </div>
+                            {{-- </a> --}}
+                            @if (count($products) > 0)
                                 @include('frontend.inc.productpage.filterbar')
                                 <div class="row g-2">
                                     @foreach ($products as $product)
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
-                                            <div class="single-product ">
+                                        <div class="single-product-grid-item">
+                                            <div class="single-product product-grid-view d-flex align-items-center">
                                                 <div class="product-photo position-relative">
                                                     <img data-src="{{ $product->img_small }}"
                                                         onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
                                                         data-placeholder-background="white" alt="product_img"
-                                                        class="product_img lozad">
+                                                        class="product_img lozad" style="width: auto; max-width:200px">
                                                     <div class="product-offers">
                                                         @if ($product->discount > 0)
                                                             <span>{{ $product->discount }}% off</span>
                                                         @endif
                                                         <span class="new_product">new</span>
                                                     </div>
-
                                                     <div class="product-btn">
                                                         <button type="button" class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick view</button>
                                                     </div>
                                                 </div>
-                                                <div class="product-content text-center">
+                                                <div class="product-content" style="margin-left: 20px;">
                                                     <a href="{{ route('singleproduct', $product->slug) }}"
                                                         class="product_title">
                                                         <h5 data-bs-toggle="tooltip" data-bs-placement="bottom"
@@ -130,34 +136,30 @@
                                         {{ $products->appends($_GET)->links() }}
                                     </div>
                                 </div>
-
-
-                            </div>
-                        @else
-                            <div class="not-found-product text-center d-flex justify-content-center align-items-center pb-5"
-                                style="height: 100%">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#6c757d"
-                                        class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                                    </svg>
-                                    <h3 class="text-secondary">No item found</h3>
-                                </span>
-                            </div>
-                        @endif
+                            @else
+                                <div class="not-found-product text-center d-flex justify-content-center align-items-center pt-5"
+                                    style="height: 100%">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#6c757d"
+                                            class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                        </svg>
+                                        <h3 class="text-secondary">No item found</h3>
+                                    </span>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-
-
-
-
                 </div>
             </form>
         </div>
     </div>
 
     <!-- product end -->
+
 @endsection
 
 @push('style')
@@ -193,7 +195,4 @@
     </script>
 
     @include('frontend.script.pricerangescript')
-
-
-    <script type="text/javascript"></script>
 @endpush

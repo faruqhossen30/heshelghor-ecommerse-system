@@ -1,7 +1,4 @@
 @extends('frontend.layouts.app')
-
-
-
 @section('content')
 <input type="hidden" name="minprice" value="{{ $minPrice }}">
 <input type="hidden" name="maxprice" value={{ $maxPrice }}>
@@ -14,14 +11,15 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item " aria-current="page">
-                            <a href="{{ route('categorylistpage') }}">Category</a>
+                            <a href="{{ route('categorylistpage') }}">Sub Category</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name }}</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- breadcrumb end -->
 
@@ -37,21 +35,8 @@
                         </div>
                         <div class="card mb-2">
                             <div class="card-header">
-                                <span class="text-secondary fs-6">Category: {{ $category->name }}</span>
+                                <span class="text-secondary fs-6">Sub Category: {{ $subcategory->name }}</span>
                             </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-header">
-                                <span class="text-secondary fs-6">Sub Category</span>
-                            </div>
-                            <ul class="expandible">
-                                @foreach ($subcategories as $subcategory)
-                                <li>
-                                    <input type="checkbox" id="vehicle1" name="subcategory[]" value="{{ $subcategory->id }}" onchange="this.form.submit()" @if (isset($_GET['subcategory']) && in_array($subcategory->id, $_GET['subcategory'])) checked @endif>
-                                    <label for="vehicle1"> {{ $subcategory->name }}</label><br>
-                                </li>
-                                @endforeach
-                            </ul>
                         </div>
                         <div class="card mb-2">
                             <div class="card-header">
@@ -74,49 +59,49 @@
                         @include('frontend.inc.productpage.filterbar')
                         <div class="row g-2">
                             @foreach ($products as $product)
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
-                                <div class="single-product ">
-                                    <div class="product-photo position-relative">
-                                        <img data-src="{{ $product->img_small }}" onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';" data-placeholder-background="white" alt="product_img" class="product_img lozad">
-                                        <div class="product-offers">
-                                            @if ($product->discount > 0)
-                                            <span>{{ $product->discount }}% off</span>
-                                            @endif
-                                            <span class="new_product">new</span>
-                                        </div>
-                                        <div class="product-btn">
-                                            <button type="button" class="quickviewbutton" data-productid="{{ $product->id }}">quick view</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <a href="{{ route('singleproduct', $product->slug) }}" class="product_title">
-                                            <h5 data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $product->title }}">{{ $product->title }}</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            <span class="text-dark">৳{{ $product->price }}
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="single-product-grid-item">
+                                    <div class="single-product product-grid-view d-flex align-items-center">
+                                        <div class="product-photo position-relative">
+                                            <img data-src="{{ $product->img_small }}" onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';" data-placeholder-background="white" alt="{{ $product->title }}" class="product_img lozad" style="width: auto; max-width:200px">
+                                            <div class="product-offers">
                                                 @if ($product->discount > 0)
-                                                <del class="text-secondary">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                                <span>{{ $product->discount }}% off</span>
                                                 @endif
-                                            </span>
+                                                <span class="new_product">new</span>
+                                            </div>
+                                            <div class="product-btn">
+                                                <button type="button" class="quickviewbutton" data-productid="{{ $product->id }}">quick view</button>
+                                            </div>
                                         </div>
-                                        <div class="product-ratting ">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <span class="text-secondary fs-6">(0)</span>
+                                        <div class="product-content" style="margin-left: 20px;">
+                                            {{-- <h6 style="text-transform:capitalize;">{{ $product->categories->name }}</h6> --}}
+                                            <a href="{{ route('singleproduct', $product->slug) }}" class="product_title">
+                                                <h5>{{ $product->title }}</h5>
+                                            </a>
+                                            {!! $product->description !!}
+                                            {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, numquam. --}}
+                                            <div class="product-price">
+                                                <span class="text-dark">৳{{ $product->price }}
+                                                    @if ($product->discount > 0)
+                                                    <del class="text-secondary" style="font-size: .9rem">৳{{ ($product->regular_price * $product->discount) / 100 + $product->regular_price }}</del>
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            <div class="product-ratting ">
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                            <div class="row my-3">
-                                {{ $products->appends($_GET)->links() }}
-                            </div>
                         </div>
                     </div>
-
                     @else
                     <div class="not-found-product text-center d-flex justify-content-center align-items-center pb-5" style="height: 100%">
                         <span>
@@ -129,10 +114,12 @@
                     </div>
                     @endif
                 </div>
+
             </div>
         </form>
     </div>
 </div>
+
 <!-- product end -->
 @endsection
 

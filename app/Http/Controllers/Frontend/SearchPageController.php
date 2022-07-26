@@ -49,7 +49,10 @@ class SearchpageController extends Controller
         if (isset($_GET['district'])) {
             $district = $_GET['district'];
         }
-
+        $view = null;
+        if (isset($_GET['view'])) {
+            $view = $_GET['view'];
+        }
 
         $products = Product::when($keyword, function ($query, $keyword) {
             return $query->where('title', 'like', '%' . $keyword . '%');
@@ -88,7 +91,13 @@ class SearchpageController extends Controller
 
         // return $division_list;
 
+        if($view && $view == 'list'){
+            return view('frontend.searchpage-list',compact('products','maxPrice','minPrice','categories','brands'));
+        }
+
         return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
+
+        // return view('frontend.searchpage',compact('products','maxPrice','minPrice','categories','brands'));
     }
 
 

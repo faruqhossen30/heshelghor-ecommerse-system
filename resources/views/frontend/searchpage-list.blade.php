@@ -81,26 +81,25 @@
                                 @include('frontend.inc.productpage.filterbar')
                                 <div class="row g-2">
                                     @foreach ($products as $product)
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
-                                            <div class="single-product ">
+                                        <div class="single-product-grid-item">
+                                            <div class="single-product product-grid-view d-flex align-items-center">
                                                 <div class="product-photo position-relative">
                                                     <img data-src="{{ $product->img_small }}"
                                                         onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
                                                         data-placeholder-background="white" alt="product_img"
-                                                        class="product_img lozad">
+                                                        class="product_img lozad" style="width: auto; max-width:200px">
                                                     <div class="product-offers">
                                                         @if ($product->discount > 0)
                                                             <span>{{ $product->discount }}% off</span>
                                                         @endif
                                                         <span class="new_product">new</span>
                                                     </div>
-
                                                     <div class="product-btn">
                                                         <button type="button" class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick view</button>
                                                     </div>
                                                 </div>
-                                                <div class="product-content text-center">
+                                                <div class="product-content" style="margin-left: 20px;">
                                                     <a href="{{ route('singleproduct', $product->slug) }}"
                                                         class="product_title">
                                                         <h5 data-bs-toggle="tooltip" data-bs-placement="bottom"

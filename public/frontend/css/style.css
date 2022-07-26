@@ -582,9 +582,9 @@ span.itemReload {
 /* category end */
 
 /* product grid start */
-.product-grid-image {
+/* .product-grid-image {
     width: 55%;
-}
+} */
 
 /* product grid end */
 
@@ -663,6 +663,10 @@ span.itemReload {
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+.active-color{
+    color: #eb5525 !important;
 }
 
 .product_img {

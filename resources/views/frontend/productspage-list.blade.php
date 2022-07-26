@@ -57,35 +57,7 @@
                     </div>
                     <div class="col-xl-9 col-lg-12 col-md-12">
                         <div class="product-page">
-                            <div class="product-sort-sytem d-flex justify-content-between mb-3">
-                                <div class="product-sort-left">
-                                    <label for="" style="font-size: 12px;">SORT BY : </label>
-                                    <select name="price" onchange="this.form.submit()">
-                                        <option value="">Latest</option>
-                                        <option @if (isset($_GET['price']) && $_GET['price'] == 'desc') selected @endif value="desc">High To Low
-                                        </option>
-                                        <option @if (isset($_GET['price']) && $_GET['price'] == 'asc') selected @endif value="asc">Low To High
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="product-sort-right d-flex align-items-center">
-                                    <div class="product-show-count">
-                                        <label for="" style="font-size: 12px;">SHOW : </label>
-                                        <select name="count" onchange="this.form.submit()">
-                                            <option selected value="30">30</option>
-                                            <option @if (isset($_GET['count']) && $_GET['count'] == '40') selected @endif value="40">40
-                                            </option>
-                                            <option @if (isset($_GET['count']) && $_GET['count'] == '50') selected @endif value="50">50
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="product-filter-grid">
-                                        <a href="{{ route('pruductspage') }}"><span class="grid"> <i
-                                                    class="fa-solid fa-border-none"></i></span></a>
-                                        <a href="#"><span class="list"><i class="fas fa-list-ul"></i></span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('frontend.inc.productpage.filterbar')
                             <div class="row g-2">
                                 @foreach ($products as $product)
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
