@@ -284,7 +284,11 @@ class SslCommerzPaymentController extends Controller
                 // Notification End
                 Cart::destroy();
 
-                return view('frontend.ordercomplete', compact('update_product'));
+                $order = Order::with('orderitems.product')->where('id', $update_product->id)->first();
+
+                // return $order;
+
+                return view('frontend.ordercomplete', compact('order'));
             }
         } // if close end
 

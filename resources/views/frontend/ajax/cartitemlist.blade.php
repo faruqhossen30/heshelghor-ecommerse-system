@@ -26,7 +26,7 @@ $totalitem = Cart::count();
                     @endphp
                     @foreach ($items as $key => $item)
                         <tr class="align-middle">
-                            <th>{{ $serial++ }}</th>
+                            <td>{{ $serial++ }}</td>
                             <td>{{ $item->name }}</td>
                             <td>
                                 <img src="{{ $item->options->photo }}" style="width:auto;height:50px" alt="">

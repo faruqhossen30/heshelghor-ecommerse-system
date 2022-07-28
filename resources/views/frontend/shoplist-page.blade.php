@@ -36,7 +36,7 @@
 
                         </div>
                     </div>
-                </class>
+                </div>
             </div>
         </div>
         <!-- breadcrumb end -->
