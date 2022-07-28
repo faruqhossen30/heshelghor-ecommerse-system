@@ -102,13 +102,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-content" style="margin-left: 20px;">
-                                                        {{-- <h6 style="text-transform:capitalize;">{{ $product->categories->name }}</h6> --}}
                                                         <a href="{{ route('singleproduct', $product->slug) }}"
                                                             class="product_title">
                                                             <h5>{{ $product->title }}</h5>
                                                         </a>
-                                                        {!! $product->description !!}
-                                                        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, numquam. --}}
                                                         <div class="product-price">
                                                             <span class="text-dark">৳{{ $product->price }}
                                                                 @if ($product->discount > 0)
@@ -117,7 +114,6 @@
                                                                 @endif
                                                             </span>
                                                         </div>
-                                                        {{-- <p>{{ $product->short_description }}</p> --}}
                                                         <div class="product-ratting ">
                                                             <i class="fa-regular fa-star"></i>
                                                             <i class="fa-regular fa-star"></i>

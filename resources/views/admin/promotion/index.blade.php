@@ -86,6 +86,7 @@ if (isset($_GET['shop_id'])) {
                                 <th>Shop Name</th>
                                 <th>ID</th>
                                 <th>Upload Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -105,7 +106,9 @@ if (isset($_GET['shop_id'])) {
                                     <td>
                                         {{ $product->created_at->format('d M Y') }}
                                     </td>
-
+                                    <td>
+                                        <a href="{{ route('admin.productedit',$product->id) }}" class="text-primary"><i class="fa fa-edit"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
