@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
 
 use App\Http\Controllers\Admin\AdminLoginController;
-
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // Merchant
 use App\Http\Controllers\Admin\MerchantController;
@@ -128,6 +128,8 @@ Route::prefix('admin')->group(function () {
         Route::post('productpromotion',[ProductpromotionController::class,'store'])->name('productpromotion');
         Route::get('shoppromotion',[ShoppromotionController::class,'index'])->name('shoppromotion');
         Route::post('shoppromotion',[ShoppromotionController::class,'store'])->name('shoppromotion');
+        Route::get('product/edit/{id}',[AdminProductController::class,'productEdit'])->name('admin.productedit');
+        Route::post('product/update/{id}',[AdminProductController::class,'productUpdate'])->name('admin.productUpdate');
 
 
         // Job
