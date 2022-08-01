@@ -136,6 +136,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('job', JobController::class);
 
         Route::get('ordercomplain',[OrdercomplainController::class, 'allcomplain'])->name('admin.order.complain.all');
+        Route::get('show/complain/{id}',[OrdercomplainController::class,'showComplain'])->name('admin.show.complain');
+        Route::post('customer/order/complain',[OrdercomplainController::class,'customerComplain'])->name('customer.complain');
     });
 });
 
