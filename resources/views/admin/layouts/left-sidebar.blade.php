@@ -167,6 +167,25 @@ $countcourier = $allorder
                 {{-- Roll and permission  End --}}
                 {{-- Product Start --}}
                 <li>
+                    <a href="#sidebarAttribute" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="sidebarAttribute">
+                        <i class="mdi mdi-cart-outline"></i>
+                        <span> Products </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAttribute">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('attribute.index')}}">Attribute</a>
+                            </li>
+                            <li>
+                                <a href="{{route('allshop.shop')}}">All Shops</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="#sidebarTables" data-bs-toggle="collapse" aria-expanded="false"
                         aria-controls="sidebarTables">
                         <i class="mdi mdi-cart-outline"></i>

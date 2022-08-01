@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\AdminHomeController;
 
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\Attribute\AttributeController;
+use App\Http\Controllers\Admin\Attribute\AttributevalueController;
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
 // Merchant
 use App\Http\Controllers\Admin\MerchantController;
@@ -60,6 +62,12 @@ Route::prefix('admin')->group(function () {
         Route::get('home', [AdminHomeController::class, 'index'])->name('admin.home');
         Route::resource('roles', RolesController::class);
         Route::resource('admin', AdminController::class);
+        Route::resource('attribute', AttributeController::class);
+        Route::get('attribute-value/{id}', [AttributevalueController::class, 'create'])->name('attributevalue.careate');
+        Route::post('attribute-value', [AttributevalueController::class, 'store'])->name('attributevalue.store');
+        Route::get('attribute-value/{id}/edit', [AttributevalueController::class, 'edit'])->name('attributevalue.edit');
+        Route::post('attribute-value/{id}/update', [AttributevalueController::class, 'update'])->name('attributevalue.update');
+        Route::post('attribute-value/{id}/destroy', [AttributevalueController::class, 'destroy'])->name('attributevalue.destroy');
         //Product
         Route::resource('category', CategoryController::class);
         Route::resource('subcategory', SubCategoryController::class);

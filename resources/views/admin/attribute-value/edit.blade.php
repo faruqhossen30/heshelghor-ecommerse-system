@@ -23,15 +23,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header border-bottom bg-transparent">
-                        <p>Update Attribute</p>
+                        <p>Update Attribute Value</p>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('attribute.update', $attribute->id)}}" method="post">
+                        <form action="{{route('attributevalue.update', $value->id)}}" method="post">
                             @csrf
-                            @method('PUT')
                             <div class="mb-2">
-                                <label for="exampleName" class="form-label">Name</label>
-                                <input type="text" name="name" value="{{$attribute->name}}" class="form-control" id="exampleName" aria-describedby="emailHelp" placeholder="Atrribute name">
+                                <label for="exampleName" class="form-label">Attribute Value</label>
+                                <input type="text" name="value" value="{{$value->value}}" class="form-control" id="exampleName" aria-describedby="emailHelp" placeholder="Atrribute name">
                             </div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-floppy me-1"></i> Update</button>
                         </form>
