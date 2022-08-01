@@ -35,6 +35,7 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Admin\Attribute\SizeController;
 // Cart and Order Controller
 use App\Http\Controllers\Admin\Attribute\ColorController;
+use App\Http\Controllers\Admin\Attribute\TagController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
@@ -64,6 +65,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('roles', RolesController::class);
         Route::resource('admin', AdminController::class);
         Route::resource('attribute', AttributeController::class);
+        Route::resource('tag', TagController::class);
         Route::get('attribute-value/{id}', [AttributevalueController::class, 'create'])->name('attributevalue.careate');
         Route::post('attribute-value', [AttributevalueController::class, 'store'])->name('attributevalue.store');
         Route::get('attribute-value/{id}/edit', [AttributevalueController::class, 'edit'])->name('attributevalue.edit');

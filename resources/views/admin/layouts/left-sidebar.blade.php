@@ -179,7 +179,10 @@ $countcourier = $allorder
                                 <a href="{{route('attribute.index')}}">Attribute</a>
                             </li>
                             <li>
-                                <a href="{{route('allshop.shop')}}">All Shops</a>
+                                <a href="{{route('tag.index')}}">Tags</a>
+                            </li>
+                            <li>
+                                <a href="{{route('faq.index')}}">FAQ</a>
                             </li>
                         </ul>
                     </div>
