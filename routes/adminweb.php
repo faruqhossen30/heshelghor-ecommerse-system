@@ -33,6 +33,7 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Admin\Attribute\SizeController;
 // Cart and Order Controller
 use App\Http\Controllers\Admin\Attribute\ColorController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
 use App\Http\Controllers\Admin\Order\OrdercomplainController;
@@ -79,6 +80,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('size', SizeController::class);
         // For order section
         Route::resource('deliverysystem', DeliverySystemController::class);
+
+        //admin faq
+        Route::resource('faq', FaqController::class);
 
         // Courier Start
         Route::resource('courier', CourierController::class);
