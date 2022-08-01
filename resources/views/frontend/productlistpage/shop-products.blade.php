@@ -70,22 +70,22 @@
                     <div class="col-xl-9 col-lg-12 col-md-12">
                         <div class="product-page">
                             {{-- <a href="#" class="single-shop shop_links market-links "> --}}
-                                <div class="single-market hover-none bg-white d-flex  border">
-                                    <div class="shop-photo">
-                                        <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
-                                            data-placeholder-background="white"
-                                            onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
-                                            alt="{{ $shop->name }}" style="height: 100px; width:auto">
-                                    </div>
-                                    <div class="shop-content market-content">
-                                        <h5>{{ $shop->name }}</h5>
-                                        {{-- <span> <i class="fa fa-map-marker" aria-hidden="true"></i> Panthapath,Dhaka</span> --}}
-                                        <span> <i class="fa-solid fa-location-arrow"></i>{{ $shop->address }}</span>
-                                    </div>
+                            <div class="single-market hover-none bg-white d-flex  border">
+                                <div class="shop-photo">
+                                    <img class="lozad" data-src="{{ asset('uploads/shop/' . $shop->image) }}"
+                                        data-placeholder-background="white"
+                                        onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
+                                        alt="{{ $shop->name }}" style="height: 100px; width:auto">
                                 </div>
+                                <div class="shop-content market-content">
+                                    <h5>{{ $shop->name }}</h5>
+                                    {{-- <span> <i class="fa fa-map-marker" aria-hidden="true"></i> Panthapath,Dhaka</span> --}}
+                                    <span> <i class="fa-solid fa-location-arrow"></i>{{ $shop->address }}</span>
+                                </div>
+                            </div>
                             {{-- </a> --}}
                             @if (count($products) > 0)
-                                   @include('frontend.inc.productpage.filterbar')
+                                @include('frontend.inc.productpage.filterbar')
                                 <div class="row g-2">
                                     @foreach ($products as $product)
                                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6">
@@ -95,11 +95,17 @@
                                                         onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
                                                         data-placeholder-background="white" alt="product_img"
                                                         class="product_img lozad">
-                                                    <div class="product-offers">
+                                                    {{-- <div class="product-offers">
                                                         @if ($product->discount > 0)
                                                             <span>{{ $product->discount }}% off</span>
                                                         @endif
                                                         <span class="new_product">new</span>
+                                                    </div> --}}
+                                                    <div class="product-offers d-flex align-items-center">
+                                                        @if ($product->discount > 0)
+                                                            <span>off</span>
+                                                            <span>{{ $product->discount }}%</span>
+                                                        @endif
                                                     </div>
                                                     <div class="product-btn">
                                                         <button type="button" class="quickviewbutton"
@@ -140,8 +146,8 @@
                                 <div class="not-found-product text-center d-flex justify-content-center align-items-center pt-5"
                                     style="height: 100%">
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                            fill="#6c757d" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#6c757d"
+                                            class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path
                                                 d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                             <path

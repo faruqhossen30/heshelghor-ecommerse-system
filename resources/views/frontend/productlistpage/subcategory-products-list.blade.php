@@ -64,11 +64,11 @@
                                     <div class="single-product product-grid-view d-flex align-items-center">
                                         <div class="product-photo position-relative">
                                             <img data-src="{{ $product->img_small }}" onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';" data-placeholder-background="white" alt="{{ $product->title }}" class="product_img lozad" style="width: auto; max-width:200px">
-                                            <div class="product-offers">
+                                            <div class="product-offers d-flex align-items-center">
                                                 @if ($product->discount > 0)
-                                                <span>{{ $product->discount }}% off</span>
+                                                    <span>off</span>
+                                                    <span>{{ $product->discount }}%</span>
                                                 @endif
-                                                <span class="new_product">new</span>
                                             </div>
                                             <div class="product-btn">
                                                 <button type="button" class="quickviewbutton" data-productid="{{ $product->id }}">quick view</button>

@@ -39,11 +39,11 @@ $subcategories = SubCategory::whereIn('id', $promotion_subcategoryies)->get();
                                     <div class="single-product ">
                                         <div class="product-photo position-relative">
                                             <img data-src="{{ $product->img_small }}" onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';" data-placeholder-background="white" alt="product_img" class="product_img lozad" style="background-size:100%">
-                                            <div class="product-offers">
+                                            <div class="product-offers d-flex align-items-center">
                                                 @if ($product->discount > 0)
-                                                <span>{{ $product->discount }}% off</span>
+                                                    <span>off</span>
+                                                    <span>{{ $product->discount }}%</span>
                                                 @endif
-                                                <span class="new_product">new</span>
                                             </div>
                                             <div class="product-btn">
                                                 <button class="quickviewbutton" data-productid="{{ $product->id }}">quick
