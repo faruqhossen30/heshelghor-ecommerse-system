@@ -26,7 +26,7 @@
                         <table class="table table-bordered mb-2" id="example">
                             <thead class="table-light">
                                 <tr>
-                                    <th>S</th>
+                                    <th>SL</th>
                                     <th>orderitem_id</th>
                                     <th>user_id</th>
                                     <th>Complain_number</th>
@@ -51,8 +51,8 @@
                                         <td>{{$complain->alt_customer_address}}</td>
                                         <td>
                                             <a class="btn btn-success btn-sm text-white"
-                                                href="#" title="View"><span
-                                                    class="mdi mdi mdi-eye"> View</span></a>
+                                                href="{{ route('admin.show.complain',$complain->id) }}" title="View"><span
+                                                    class="mdi mdi mdi-eye d-flex align-items-center" >View</span></a>
                                             {{-- <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
                                                     class="mdi mdi-square-edit-outline"></span></a> --}}
                                         </td>

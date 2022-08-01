@@ -2,6 +2,9 @@
 
 namespace App\Models\User;
 
+use App\Models\Merchant\Order;
+use App\Models\Merchant\OrderItem;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,5 +44,9 @@ class UserorderComplain extends Model
     public function order()
     {
         return $this->hasOne(Order::class, 'id', 'order_id');
+    }
+    public function orderitem()
+    {
+        return $this->hasOne(OrderItem::class, 'id', 'orderitem_id');
     }
 }
