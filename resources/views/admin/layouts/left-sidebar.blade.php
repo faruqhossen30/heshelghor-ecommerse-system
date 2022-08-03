@@ -378,6 +378,22 @@ $countcourier = $allorder
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="#sidebarSales" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="sidebarSales">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Sales </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarSales">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('sales.index') }}">All Sales</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 @if ($admin->can('market.create') || $admin->can('market.view') || $admin->can('market.edit') || $admin->can('market.delete') || $admin->can('market.status'))
                     <li>
                         <a href="#sidebarMarket" data-bs-toggle="collapse" aria-expanded="false"

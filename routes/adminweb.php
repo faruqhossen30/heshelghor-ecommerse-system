@@ -21,7 +21,9 @@ use App\Http\Controllers\Admin\AdminHomeController;
 // For Order
 
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminpdfController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminsalesController;
 use App\Http\Controllers\Admin\Attribute\AttributeController;
 use App\Http\Controllers\Admin\Attribute\AttributevalueController;
 use App\Http\Controllers\Admin\Order\AdminOrderItemListController;
@@ -52,6 +54,7 @@ use App\Http\Controllers\Product\SubCategoryController;
 use App\Http\Controllers\Ajax\Admin\CourierAjaxController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\User\UsercomplainController;
+
 
 // Admin
 Route::prefix('admin')->group(function () {
@@ -145,6 +148,10 @@ Route::prefix('admin')->group(function () {
         Route::get('product/edit/{id}',[AdminProductController::class,'productEdit'])->name('admin.productedit');
         Route::post('product/update/{id}',[AdminProductController::class,'productUpdate'])->name('admin.productUpdate');
 
+        // sales
+        Route::get('sales',[AdminsalesController::class,'index'])->name('sales.index');
+        Route::get('sales/product/show/{id}',[AdminsalesController::class,'salesProductShow'])->name('sales.product.show');
+        Route::get('sales/product/destroy/{id}',[AdminsalesController::class,'salesProductDestroy'])->name('sales.product.destroy');
 
         // Job
         Route::resource('job', JobController::class);
@@ -152,7 +159,14 @@ Route::prefix('admin')->group(function () {
         Route::get('ordercomplain',[OrdercomplainController::class, 'allcomplain'])->name('admin.order.complain.all');
         Route::get('show/complain/{id}',[OrdercomplainController::class,'showComplain'])->name('admin.show.complain');
         Route::post('customer/order/complain',[OrdercomplainController::class,'customerComplain'])->name('customer.complain');
+
+        // pdf
+        Route::get('/invoice',[AdminpdfController::class,'index'])->name('invoice');
+        Route::get('invoice-pdf/{type}',[AdminpdfController::class,'pdf'])->name('invoice.pdf');
+
     });
+
+
 });
 
 

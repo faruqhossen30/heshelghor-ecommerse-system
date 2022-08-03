@@ -95,12 +95,14 @@
                                                         onerror="this.onerror=null;this.src='{{ asset('frontend/images/placeholder.jpg') }}';"
                                                         data-placeholder-background="white" alt="product_img"
                                                         class="product_img lozad" style="width: auto; max-width:200px">
-                                                        <div class="product-offers d-flex align-items-center">
-                                                            @if ($product->discount > 0)
+
+                                                        @if ($product->discount > 0)
+                                                            <div class="product-offers d-flex align-items-center">
                                                                 <span>off</span>
                                                                 <span>{{ $product->discount }}%</span>
-                                                            @endif
-                                                        </div>
+                                                            </div>
+                                                        @endif
+
                                                     <div class="product-btn">
                                                         <button type="button" class="quickviewbutton"
                                                             data-productid="{{ $product->id }}">quick view</button>
