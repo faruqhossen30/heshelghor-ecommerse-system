@@ -100,9 +100,9 @@ $totalItem = count(Cart::content());
                                     </div>
 
                                 </div>
-                                <div class="location-details">
+                                {{-- <div class="location-details">
                                     <button type="button" class="btn btn-secondary mt-4">Next</button>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -170,7 +170,7 @@ $totalItem = count(Cart::content());
 
 
                                             <div class="form-group">
-                                                <span><input type="radio" name="payment_type" value=""> None</span>
+                                                {{-- <span><input type="radio" name="payment_type" value=""> None</span> --}}
                                                 <span><input type="radio" name="payment_type" value="cash"> Cash On Delivery</span>
                                                 <span><input type="radio" name="payment_type" value="online"> Payment Now</span>
                                             </div>

@@ -724,10 +724,7 @@
             <ul style="margin-bottom:0in;list-style-type: disc;margin-left:-0.25in;">
                 <li style="margin: 0in 0in 8pt; line-height: 2; font-size: 15px; font-family: Calibri, sans-serif;">
                     <strong><span style="font-size:12.0pt;color:#333333;">Delivery Timeline:</span></strong><span
-                        style='font-family:"Times New Roman",serif;font-size:12.0pt;color:#333333;'>&nbsp;The delivery
-                        might take longer than the usual timeframe/line to be followed by Heshelghor.com. Delivery might
-                        be delayed due to force majeure event which includes, but are not limited to, political unrest,
-                        political event, national/public holidays, etc.</span>
+                        style='font-family:"Times New Roman",serif;font-size:12.0pt;color:#333333;'>&nbsp;According to Bangladesh Bank Guideline, Heshelghor.com usual Delivery timeframe Inside Dhaka: is 3-5 working days (max), and Outside Dhaka: is 7-10 working days (max). The delivery might take longer than the usual timeframe due to force majeure event which includes, but are not limited to, political unrest, political event, national/public holidays, etc.</span>
                 </li>
             </ul>
         </div>

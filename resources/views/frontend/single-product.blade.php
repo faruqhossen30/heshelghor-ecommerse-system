@@ -196,8 +196,10 @@
                                 <li class="d-flex justify-content-between align-items-center">
                                     <div class="delivery-location-left d-flex align-items-center">
                                         <span class="delivery-icon"><i class="fa-solid fa-home"></i></span>
-                                        <span class="delivery-location ">Home Delivery <br> <small>2 - 4
-                                                day(s)</small></span>
+                                        <span class="delivery-location ">Home Delivery <br> <small>
+                                            Inside Dhaka: <strong>3-5</strong> working days (max)<br>
+                                            Outside Dhaka: <strong>7-10</strong> working days (max)
+                                        </small></span>
                                     </div>
 
                                 </li>
