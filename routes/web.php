@@ -55,6 +55,7 @@ use App\Http\Controllers\Frontend\ShoppageController;
 use App\Http\Controllers\Frontend\SubcategorypageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
+use App\Http\Controllers\User\UserorderinvoiceController;
 
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
@@ -130,7 +131,10 @@ Route::prefix('user')->group(function () {
         Route::get('dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
         Route::get('orders', [UserDashboardController::class, 'orders'])->name('user.order');
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
-        Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');;
+        Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');
+
+        Route::get('/invoice',[UserorderinvoiceController::class,'index'])->name('invoice');
+        Route::get('/invoice-pdf/{type}',[UserorderinvoiceController::class,'pdf'])->name('invoice.pdf');
 
         Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
@@ -148,6 +152,8 @@ Route::prefix('user')->group(function () {
         Route::post('complainstore',[UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
 
         Route::get('complain',[UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
+
+
 
     });
 });
