@@ -3,16 +3,17 @@
 @section('content')
 {{-- {{ $order }} --}}
 <!-- breadcrumb start -->
+
 <div class="breadcrumb-area no-padding">
     <div class="container">
         <DIV class="row">
             <div class="col-xl-6 offset-xl-3 offset-lg-3 col-lg-6">
                 <div class="breadcrumb-search-bar text-center  d-flex ">
                     <h2 class="text-white">Order Complete</h2>
-                    <div class="btn-group ms-3" role="group">
+                    {{-- <div class="btn-group ms-3" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            invoice pdf
+
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                              <li><a class="dropdown-item" target="_blank" href="{{route('invoice.pdf',['type'=>'stream'])}}">view</a></li>
@@ -20,8 +21,8 @@
 
 
                         </ul>
-                    </div>
-
+                    </div> --}}
+                    <a class="btn " target="_blank" href="{{route('user.order.pdf',$order->id)}}">view</a>
                 </div>
             </div>
         </DIV>

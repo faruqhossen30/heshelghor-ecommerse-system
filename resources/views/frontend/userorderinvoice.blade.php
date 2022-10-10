@@ -3,14 +3,19 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Invoice #{{ $order->invoice_number }}</title>
+
+    <style>
+        body {
+            font-family: 'examplefont', sans-serif;
+        }
+    </style>
 
     <style>
         html,
         body {
             margin: 10px;
             padding: 10px;
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
 
@@ -23,7 +28,7 @@
         p,
         span,
         label {
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
         table {
@@ -36,7 +41,7 @@
             height: 28px;
             text-align: left;
             font-size: 16px;
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
         table,
@@ -47,22 +52,26 @@
             font-size: 14px;
         }
 
+        th {
+            color: #fff;
+        }
+
         .heading {
             font-size: 24px;
             margin-top: 12px;
             margin-bottom: 12px;
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
         .small-heading {
             font-size: 18px;
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
         .total-heading {
             font-size: 18px;
             font-weight: 700;
-            font-family: sans-serif;
+            font-family: Nikosh;
         }
 
         .order-details tbody tr td:nth-child(1) {
@@ -88,7 +97,7 @@
         .company-data span {
             margin-bottom: 4px;
             display: inline-block;
-            font-family: sans-serif;
+            font-family: Nikosh;
             font-size: 14px;
             font-weight: 400;
         }
@@ -102,6 +111,7 @@
             color: #fff;
         }
     </style>
+
 </head>
 
 <body>
@@ -114,11 +124,12 @@
 
                     <img src="{{ public_path('frontend/images/logo.jpg') }}" height="80px" alt="">
                 </th>
-                <th width="50%" colspan="2" class="text-end company-data">
-                    <span>Invoice Id: #{{ $order->invoice_number }}</span> <br>
-                    <span>{{ $order->updated_at }}</span> <br>
-                    <span>Zip code : 7400 </span> <br>
+                <th width="50%" colspan="2" class="text-end company-data" style="color: #000;">
+                    <span>Invoice Id: # {{ $order[0]->invoice_number ?? 'none' }} </span> <br>
                     <span>Address: #58,Karbala Road, Jessore Sadar,jessore</span> <br>
+                    <span>Zip code : 7400 </span> <br>
+                    <span>Mobile:01928406434</span> <br>
+                    <span>Phone:+8802477763843</span> <br>
                 </th>
             </tr>
             <tr class="bg-blue">
@@ -129,38 +140,39 @@
         <tbody>
             <tr>
                 <td>Order Number:</td>
-                <td>{{ $order->order_number }}</td>
+                <td> {{ $order[0]->orderitems[0]->order_number ?? 'none' }} </td>
 
                 <td>Full Name:</td>
-                <td>{{ $order->user->name }}</td>
+                <td>{{ $order[0]->name }}</td>
             </tr>
             <tr>
                 <td>Tracking Id/No.:</td>
-                <td></td>
+                <td>{{ $order[0]->transaction_id }}</td>
 
                 <td>Email Id:</td>
-                <td>{{ $order->user->email }}</td>
+                <td>{{ $order[0]->email }}</td>
             </tr>
             <tr>
                 <td>Ordered Date:</td>
-                <td>{{ $order->updated_at }}</td>
+                <td>{{ $order[0]->created_at }}</td>
 
                 <td>Phone:</td>
-                <td>{{ $order->user->mobile }}</td>
+                <td>{{ $order[0]->phone }}</td>
             </tr>
             <tr>
                 <td>Payment Mode:</td>
-                <td>{{ $order->payment_type }}</td>
+                <td>{{ $order[0]->payment_type }}</td>
 
                 <td>Address:</td>
-                <td>{{ $order->user->address }}</td>
+                <td>{{ $order[0]->address }}</td>
             </tr>
+
             <tr>
                 <td>Order Status:</td>
-                <td>completed</td>
+                <td>{{ $orderstatus->status }}</td>
 
                 <td>Pin code:</td>
-                <td>{{ $order->order_pin_no }}</td>
+                <td>{{ $order[0]->orderitems[0]->order_pin_no }}</td>
             </tr>
         </tbody>
     </table>
@@ -173,45 +185,54 @@
                 </th>
             </tr>
             <tr class="bg-blue">
-                <th>ID</th>
+                <th>SL</th>
                 <th>Product</th>
                 <th>Price</th>
                 <th>Delivery Cost </th>
                 <th>Quantity</th>
-                <th>Total</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
 
+            @php
+                $serial = 1;
+            @endphp
 
-            <tr>
-                <td width="10%">16</td>
-                <td>
-                    @foreach ($order->orderitems as $item)
-                        <p>{{ $item->product->title  }}</p>
-                    @endforeach
-                </td>
-                <td width="10%">
-                    @foreach ($order->orderitems as $item)
-                        <p>{{ $item->price * $item->quantity }}</p>
-                    @endforeach
-                </td>
-                <td width="10%">{{ $order->total_delivery_cost   }}</td>
-                <td width="10%">
-                    @foreach ($order->orderitems as $item)
+
+            @foreach ($order[0]->orderitems as $item)
+                <tr>
+                    <td width="10%">{{ $serial++ }}</td>
+
+                    <td >
+                        <p style="font-size: 20px;">{{ $item->product->title }}  &#160; {{ $item->price }}<strong> x </strong>{{ $item->quantity }}</p>
+                        {{-- <p>৳ {{ $item->price * $item->quantity }}</p> --}}
+                    </td>
+
+
+                    <td width="10%">
+
+                        <p>{{ $item->price * $item->quantity }}
+
+                            {{-- <p>{{ $order[0]->orderitems[0]->price }}</p> --}}
+                    </td>
+                    <td width="10%">{{ $item->delivery_cost* $item->quantity}}</td>
+                    <td width="10%">
                         {{ $item->quantity }}
-                    @endforeach
-                </td>
-                <td width="15%" class="fw-bold">  @foreach ($order->orderitems as $item)
-                    <p>{{ $item->price * $item->quantity }}</p>
-                @endforeach</td>
-            </tr>
+                    </td>
+                    <td width="10%">
+                       {{$item->price * $item->quantity + ($item->delivery_cost* $item->quantity) }}
+                    </td>
 
+
+                </tr>
+            @endforeach
 
 
             <tr>
-                <td colspan="5" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
-                <td colspan="1" class="total-heading">{{  $order->total_product_price + $order->total_delivery_cost }}</td>
+                <td colspan="4" class="total-heading">Total Amount - <small>Inc. all vat/tax</small> :</td>
+                <td colspan="1" class="total-heading">Total</td>
+                <td colspan="1" class="total-heading">{{ $order[0]->total_product_price + $order[0]->total_delivery_cost}}</td>
             </tr>
         </tbody>
 

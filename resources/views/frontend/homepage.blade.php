@@ -194,8 +194,8 @@
                                 </div>
                                 <div class="market-content">
                                     <h5>{{ $market->name }}</h5>
-                                    <span> <i class="fa fa-map-marker"></i> Panthapath,Dhaka</span>
-                                    <span> <i class="fa-solid fa-location-arrow"></i> Panthapath,Dhaka</span>
+                                    <span> <i class="fa fa-map-marker"></i>{{ $market->address }}</span>
+                                    {{-- <span> <i class="fa-solid fa-location-arrow"></i>{{ $market->address }}</span> --}}
                                 </div>
                             </div>
                         </a>

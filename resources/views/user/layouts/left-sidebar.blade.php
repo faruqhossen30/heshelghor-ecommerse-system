@@ -90,10 +90,13 @@
                             <li>
                                 <a href="{{route('user.order')}}">My Orders</a>
                             </li>
+
                             <li>
                                 <a href="{{route('user.order.complain.all')}}">All Complain </a>
                             </li>
-
+                            <li>
+                                {{-- <a  target="_blank" href="{{route('user.order.pdf'), $Order->id}}">view</a> --}}
+                            </li>
                         </ul>
                     </div>
                 </li>

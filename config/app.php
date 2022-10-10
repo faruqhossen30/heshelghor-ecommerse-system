@@ -168,6 +168,8 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
+       
         /*
          * Application Service Providers...
          */
@@ -232,6 +234,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
+
+        'MPDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
 
     ],
 
