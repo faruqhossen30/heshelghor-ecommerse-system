@@ -56,6 +56,11 @@ Route::prefix('merchant')->group(function () {
         Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
         Route::post('gallary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
         Route::post('gallary/delete/{id}', [MerchantGalleryController::class, 'deleteSingleMedia'])->name('merchant.delete.gallery');
+
+        Route::get('reports/sales_report',function(){
+            return view('reports.sales-report');
+
+        });
     });
 });
 

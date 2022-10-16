@@ -137,6 +137,26 @@
                     </div>
                 </li>
                 <li>
+                    <a href="#sidebaraccounts" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebaraccounts">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Accounts </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebaraccounts">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="#">Sales Report</a>
+                            </li>
+                            <li>
+                                <a href="#">Add Brand</a>
+                            </li>
+                            <li>
+                                <a href="#">My added brand</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
                     <a href="#createShop" data-bs-toggle="collapse" aria-expanded="false" aria-controls="createShop">
                         <i class="mdi mdi-text-box-multiple-outline"></i>
                         <span> Shops </span>
