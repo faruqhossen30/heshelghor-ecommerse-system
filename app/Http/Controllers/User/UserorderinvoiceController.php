@@ -19,7 +19,7 @@ class UserorderinvoiceController extends Controller
      $order = Order::with('orderitems')->where('user_id', Auth::user()->id)->where('id', $id)->get();
 
             // return  $order
-            $orderstatus =Order::with('orderitems')->firstWhere('id', $id);
+            $orderstatus = Order::with('orderitems')->firstWhere('id', $id);
             // return $complain ;
 
              $html = view('frontend.userorderinvoice',compact('order','orderstatus' ))->render();

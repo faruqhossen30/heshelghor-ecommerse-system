@@ -145,7 +145,7 @@
                     <div class="collapse" id="sidebaraccounts">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">Sales Report</a>
+                                <a href="{{ route('sales.report') }}">Sales Report</a>
                             </li>
                             <li>
                                 <a href="#">Add Brand</a>

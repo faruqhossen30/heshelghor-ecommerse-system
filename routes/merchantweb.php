@@ -16,7 +16,8 @@ use App\Http\Controllers\Merchant\MyBrandController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 use App\Http\Controllers\Merchant\Shop\ShopController;
 use App\Http\Controllers\Merchant\OrderController;
-
+use App\Http\Controllers\Merchant\ReportsControler;
+use App\Http\Controllers\Merchant\ReportsController;
 use App\Http\Controllers\Product\ProductController;
 
 Route::prefix('merchant')->group(function () {
@@ -56,11 +57,12 @@ Route::prefix('merchant')->group(function () {
         Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
         Route::post('gallary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
         Route::post('gallary/delete/{id}', [MerchantGalleryController::class, 'deleteSingleMedia'])->name('merchant.delete.gallery');
-
-        Route::get('reports/sales_report',function(){
-            return view('reports.sales-report');
-
-        });
+        // merchent sales report
+       Route::get('reports/sales_report',[ReportsController::class,'SalesReport'])->name('sales.report');
+       Route::get('saleslist-filter/currentDate', [ReportsController::class,'currentDate'])->name('sales.list.currentDate');
+       Route::get('saleslist-filte/date', [ReportsController::class, 'salesListByDate'])->name('sales.list.date');
+       Route::get('saleslist-filter/week', [ReportsController::class,'salestListByWeek'])->name('sales.list.week');
+       Route::get('saleslist-filter/month', [ReportsController::class,'salseListByMonth'])->name('sales.list.month');
     });
 });
 

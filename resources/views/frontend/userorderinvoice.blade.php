@@ -212,7 +212,7 @@
 
                     <td width="10%">
 
-                        <p>{{ $item->price * $item->quantity }}
+                        <p>{{ $item->price * $item->quantity }}</p>
 
                             {{-- <p>{{ $order[0]->orderitems[0]->price }}</p> --}}
                     </td>

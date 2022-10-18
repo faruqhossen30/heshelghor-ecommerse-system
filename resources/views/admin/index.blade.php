@@ -48,12 +48,14 @@ $admin = Auth::guard('admin')->user();
                                         @endforeach
                                     </td>
                                     <td>
-                                        @if ($admin->can('admin.edit'))
+                                        {{-- @if ($admin->can('admin.edit')) --}}
+                                           @if (Auth::guard('admin')->user()->can('admin.edit'))
                                             <a class="btn btn-success text-white"
                                                 href="{{ route('admin.edit', $admin->id) }}" title="Edit"><span
                                                     class="mdi mdi-pencil"></span></a>
                                         @endif
-                                        @if ($admin->can('admin.delete'))
+                                        {{-- @if ($admin->can('admin.delete')) --}}
+                                        @if (Auth::guard('admin')->user()->can('admin.delete'))
                                             <form action="{{ route('admin.destroy', $admin->id) }}" method="post"
                                                 style="display: inline">
                                                 @csrf
