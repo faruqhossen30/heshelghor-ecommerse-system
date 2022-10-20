@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Merchant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auth\Marchant;
+use App\Models\Merchant\MerchantProfile;
+use App\Models\Merchant\Shop;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,4 +42,30 @@ class MerchantProfileController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+    * Display the specified resource.
+    *
+    * @param int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function merchantProfileDetails ($merchantId )
+    {
+         $merchantdetails = Shop::where('author_id', $merchantId )->latest()->get();
+        // return $merchantdetails;
+         return view('admin.merchant.merchent-details', compact('merchantdetails'));
+
+    }
+
+
+    public function merchantShopDetails($id){
+
+         $shop = Shop::find($id);
+        //  return $shop;
+         return view('admin.merchant.shopdetails', compact('shop'));
+
+    }
+
+
+
 }

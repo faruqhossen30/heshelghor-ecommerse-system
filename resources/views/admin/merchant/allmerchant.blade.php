@@ -73,7 +73,7 @@
                                             <td>{{ $merchant->phone_number }}</td>
                                             <td>{{ $merchant->email }}</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm text-white" href="#" title="Edit"><span
+                                                <a class="btn btn-success btn-sm text-white" href="{{ route('merchant.profile.details', $merchant->id) }}" title="Edit"><span
                                                         class="mdi mdi mdi-eye"></span></a>
                                                 <a class="btn btn-primary btn-sm text-white" href="" title="Edit"><span
                                                         class="mdi mdi-square-edit-outline"></span></a>

@@ -55,8 +55,8 @@ class AllListAPIController extends Controller
     // All Shoplist
     public function allShop()
     {
-        $merchants = Shop::active()->all();
-        return $merchants;
+        $shop = Shop::active()->all();
+        return $shop;
     }
     // allMarket
     public function allMarket()

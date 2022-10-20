@@ -95,14 +95,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="my-4">
-                            @if ($shop->status == 0)
-                            <a href="{{route('merchantshop.active', $shop->id)}}" class="btn btn-danger">Approve</a>
-                            @else
-                            <a href="{{route('merchantshop.deactive', $shop->id)}}" class="btn btn-danger">Deactive</a>
-                            @endif
-                            <a href="" class="btn btn-info">Cancel</a>
-                        </div>
+
                     </div>
                 </div>
             </div>

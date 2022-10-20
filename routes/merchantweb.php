@@ -16,8 +16,8 @@ use App\Http\Controllers\Merchant\MyBrandController;
 use App\Http\Controllers\Admin\MarchantRegisterController;
 use App\Http\Controllers\Merchant\Shop\ShopController;
 use App\Http\Controllers\Merchant\OrderController;
-use App\Http\Controllers\Merchant\ReportsControler;
-use App\Http\Controllers\Merchant\ReportsController;
+use App\Http\Controllers\Merchant\ProductstoctController;
+use App\Http\Controllers\Merchant\SalseReportsController;
 use App\Http\Controllers\Product\ProductController;
 
 Route::prefix('merchant')->group(function () {
@@ -52,17 +52,23 @@ Route::prefix('merchant')->group(function () {
         Route::get('order/canceltatus/{id}', [OrderController::class, 'orderCancel'])->name('marchant.order.cancel');
         // Profile
         Route::get('profile', [MerchantProfileController::class, 'index'])->name('merchant.profile');
+        Route::get('profile/details/{merchantId}',[MerchantProfileController::class,'merchantProfileDetails'])->name('merchant.profile.details');
+        Route::get('shop/details/{id}',[MerchantProfileController::class,'merchantShopDetails'])->name('merchant.shop.details');
         Route::post('profile/update/{id}', [MerchantProfileController::class, 'update'])->name('merchant.profile.update');
         // Gallery
         Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
         Route::post('gallary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
         Route::post('gallary/delete/{id}', [MerchantGalleryController::class, 'deleteSingleMedia'])->name('merchant.delete.gallery');
         // merchent sales report
-       Route::get('reports/sales_report',[ReportsController::class,'SalesReport'])->name('sales.report');
-       Route::get('saleslist-filter/currentDate', [ReportsController::class,'currentDate'])->name('sales.list.currentDate');
-       Route::get('saleslist-filte/date', [ReportsController::class, 'salesListByDate'])->name('sales.list.date');
-       Route::get('saleslist-filter/week', [ReportsController::class,'salestListByWeek'])->name('sales.list.week');
-       Route::get('saleslist-filter/month', [ReportsController::class,'salseListByMonth'])->name('sales.list.month');
+       Route::get('reports/sales_report',[SalseReportsController::class,'SalesReport'])->name('sales.report');
+       Route::get('saleslist-filter/currentDate', [SalseReportsController::class,'currentDate'])->name('sales.list.currentDate');
+       Route::get('saleslist-filte/date', [SalseReportsController::class, 'salesListByDate'])->name('sales.list.date');
+       Route::get('saleslist-filter/week', [SalseReportsController::class,'salestListByWeek'])->name('sales.list.week');
+       Route::get('saleslist-filter/month', [SalseReportsController::class,'salseListByMonth'])->name('sales.list.month');
+
+
+       Route::get('stock/product/{shopid}', [ProductstoctController::class,'stockProduct'])->name('stock.product');
+    //    Route::get('shop/', [ProductstoctController::class,'stockProduct'])->name('stock.product');
     });
 });
 

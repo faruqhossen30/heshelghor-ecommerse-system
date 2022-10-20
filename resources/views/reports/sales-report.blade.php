@@ -13,7 +13,7 @@
                         <div class="form-group ml-2">
                             <label class="" for="created_at">Current
                                 date</label>
-                            <input type="date" name="created_at" class="form-control " id="created_at">
+                            <input type="date" name="created_at" class="form-control " id="created_at" value="{{  $_GET['created_at'] ?? '' }}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -40,13 +40,13 @@
                                 <div class="form-group ml-2">
                                     <label class="" for="from_date">From date</label>
                                     <input type="date" name="from_date" class="form-control " id="from_date"
-                                        placeholder="From" value="{{ $_GET['from_date'] ?? '' }}">
+                                        placeholder="From" value="{{ $_GET['created_at'] ?? '' }}">
                                 </div>
 
                                 <div class="form-group ml-2">
                                     <label class="" for="to_date">To date</label>
                                     <input type="date" name="to_date" class="form-control" id="to_date"
-                                        placeholder="To" value="{{ $_GET['to_date'] ?? '' }}">
+                                        placeholder="To" value="{{ $_GET['created_at'] ?? '' }}">
                                 </div>
                             </div>
 
@@ -83,26 +83,26 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between p-1">
-                                <ul class="list-group list-group-horizontal " style="padding-bottom: 5px;">
+                            <div class="d-flex justify-content-between  ">
+                                <ul class="list-group list-group-horizontal btn-group-sm  mt-3"  style="align-items: center; margin:0 auto">
                                     <a href="{{ route('sales.report') }}"
-                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.report')) active @endif">All
+                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.report')) text-white  active @endif">All
                                         Time</a>
                                     <a href="{{ route('sales.list.week') }}"
-                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.list.week')) active @endif ">This
+                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.list.week')) text-white active @endif ">This
                                         week</a>
                                     <a href="{{ route('sales.list.month') }}"
-                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.list.month')) active @endif ">This
+                                        class="list-group-item btn btn-primary text-dark btn-sm @if (request()->routeIs('sales.list.month')) text-white active @endif ">This
                                         Month</a>
                                     <a href="{{ route('sales.list.currentDate') }}"
-                                        class="list-group-item btn btn-primary text-dark  @if (request()->routeIs('sales.list.currentDate')) active @endif "
+                                        class="list-group-item btn btn-primary text-dark  @if (request()->routeIs('sales.list.currentDate')) text-white active @endif "
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Find current Date
                                     </a>
                                     <a href="{{ route('sales.list.date') }}"
-                                        class="list-group-item btn btn-primary text-dark  @if (request()->routeIs('sales.list.date')) active @endif "
+                                        class="list-group-item btn btn-primary text-dark  @if (request()->routeIs('sales.list.date'))  text-white active @endif "
                                         data-bs-toggle="modal" data-bs-target="#datefilterModal">
-                                        Find date
+                                        Filter date
                                     </a>
                                 </ul>
                             </div>
@@ -176,12 +176,12 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">Total :</th>
                                             <th rowspan="1" colspan="1"></th>
                                             <th rowspan="1" colspan="1"></th>
                                             <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1"> <strong>Total <b>:</b></strong></th>
                                             <th rowspan="1" colspan="1"> ৳ {{ $subtotal }}</th>
-                                            <th rowspan="1" colspan="1">৳ {{ $totaldalivery }}</th>
+                                            <th rowspan="1" colspan="1">৳ {{ $totaldalivery }} </th>
                                             <th rowspan="1" colspan="1">৳ {{ $subtotal + $totaldalivery }}</th>
                                         </tr>
                                     </tfoot>

@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ReportsController extends Controller
+class SalseReportsController extends Controller
 {
    public function SalesReport(){
 
@@ -47,7 +47,7 @@ class ReportsController extends Controller
         [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->latest()->paginate(7);
 
 
-    $subtotal= Order::whereHas('orderitems',function ($query) use($merchantId) {
+    $subtotal= Order:: whereHas('orderitems',function ($query) use($merchantId) {
 
         $query->where('merchant_id', $merchantId);
 
@@ -88,6 +88,9 @@ class ReportsController extends Controller
 
             })->sum('total_delivery_cost');
 
+            // $totaldalivery= OrderItem::with('product', 'order')->where('merchant_id',
+            // $merchantId)->sum('delivery_cost');
+                // return $totaldalivery;
          return view('reports.sales-report', compact('orderitems', 'subtotal','totaldalivery'));
    }
 

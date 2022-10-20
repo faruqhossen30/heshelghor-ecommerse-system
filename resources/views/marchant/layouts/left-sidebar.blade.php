@@ -139,16 +139,19 @@
                 <li>
                     <a href="#sidebaraccounts" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sidebaraccounts">
                         <i class="mdi mdi-text-box-multiple-outline"></i>
-                        <span> Accounts </span>
+                        <span> Reports </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebaraccounts">
                         <ul class="nav-second-level">
                             <li>
+                                <a href="{{ route('shop.index') }}">Shop List</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('sales.report') }}">Sales Report</a>
                             </li>
                             <li>
-                                <a href="#">Add Brand</a>
+                                <a href="#">Products Stock Report</a>
                             </li>
                             <li>
                                 <a href="#">My added brand</a>

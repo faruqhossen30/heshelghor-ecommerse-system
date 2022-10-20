@@ -77,7 +77,7 @@
                                             {{$shop->mobile ?? 'N/A'}}
                                         </td>
                                         <td>
-                                            Merchatn
+                                           
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($shop->created_at)->diffForHumans() }}
