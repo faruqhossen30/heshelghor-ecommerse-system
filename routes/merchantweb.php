@@ -52,9 +52,7 @@ Route::prefix('merchant')->group(function () {
         Route::get('order/canceltatus/{id}', [OrderController::class, 'orderCancel'])->name('marchant.order.cancel');
         // Profile
         Route::get('profile', [MerchantProfileController::class, 'index'])->name('merchant.profile');
-        Route::get('profile/details/{merchantId}',[MerchantProfileController::class,'merchantProfileDetails'])->name('merchant.profile.details');
-        Route::get('shop/details/{id}',[MerchantProfileController::class,'merchantShopDetails'])->name('merchant.shop.details');
-        Route::post('profile/update/{id}', [MerchantProfileController::class, 'update'])->name('merchant.profile.update');
+
         // Gallery
         Route::get('gallary', [MerchantGalleryController::class, 'viewGallery'])->name('merchant.veiw.gallery');
         Route::post('gallary/sotre', [MerchantGalleryController::class, 'soteGallery'])->name('merchant.store.gallery');
@@ -67,8 +65,8 @@ Route::prefix('merchant')->group(function () {
        Route::get('saleslist-filter/month', [SalseReportsController::class,'salseListByMonth'])->name('sales.list.month');
 
 
-       Route::get('stock/product/{shopid}', [ProductstoctController::class,'stockProduct'])->name('stock.product');
-    //    Route::get('shop/', [ProductstoctController::class,'stockProduct'])->name('stock.product');
+       Route::get('stock/product/{id}', [ProductstoctController::class,'stockProduct'])->name('stock.product');
+       Route::get('shoplist', [ProductstoctController::class,'shoplist'])->name('shop.list');
     });
 });
 

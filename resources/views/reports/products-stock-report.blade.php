@@ -70,18 +70,16 @@
 
                                                 <td>
                                                     @if ($item->quantity > 0)
-                                                        <i class="fa-solid fa-check"></i>
+                                                        {{-- <i class="fa-solid fa-check"></i> --}}
                                                         <strong style="color:green"> In Stock -
                                                             {{ $item->quantity }}</strong>
                                                     @else
-                                                        <button type="button" class="btn btn-danger btn-md mt-3"><i
-                                                                class="fa-solid fa-ban"></i> Out Of
-                                                            Stock</button>
+                                                     <strong style="color:red">  Out Of
+                                                            Stock</strong>
+
                                                     @endif
 
                                                 </td>
-
-
                                             </tr>
                                         @endforeach
 

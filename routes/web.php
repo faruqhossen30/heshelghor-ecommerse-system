@@ -133,9 +133,7 @@ Route::prefix('user')->group(function () {
         Route::get('order/{id}', [UserDashboardController::class, 'showOrder'])->name('user.order.show');
         Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');
 
-        // Route::get('/invoice',[UserorderinvoiceController::class,'index'])->name('invoice');
-        // Route::get('/invoice-pdf',[UserorderinvoiceController::class,'pdf'])->name('invoice.pdf');
-
+       
         Route::get('pdf/{id}',[UserorderinvoiceController::class,'pdf'])->name('user.order.pdf');
 
         Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');

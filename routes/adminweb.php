@@ -50,6 +50,7 @@ use App\Http\Controllers\Setting\FooterSetting;
 use App\Http\Controllers\Product\SubCategoryController;
 // Ajax
 use App\Http\Controllers\Ajax\Admin\CourierAjaxController;
+use App\Http\Controllers\Merchant\MerchantProfileController;
 use App\Http\Controllers\Product\BrandController;
 use App\Http\Controllers\User\UsercomplainController;
 
@@ -145,7 +146,9 @@ Route::prefix('admin')->group(function () {
         Route::get('product/edit/{id}',[AdminProductController::class,'productEdit'])->name('admin.productedit');
         Route::post('product/update/{id}',[AdminProductController::class,'productUpdate'])->name('admin.productUpdate');
 
-
+        Route::get('profile/details/{merchantId}',[MerchantProfileController::class,'merchantProfileDetails'])->name('merchant.profile.details');
+        Route::get('shop/details/{id}',[MerchantProfileController::class,'merchantShopDetails'])->name('merchant.shop.details');
+        Route::post('profile/update/{id}', [MerchantProfileController::class, 'update'])->name('merchant.profile.update');
         // Job
         Route::resource('job', JobController::class);
 

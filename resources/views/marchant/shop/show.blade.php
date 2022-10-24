@@ -81,7 +81,7 @@
                                         </tbody>
                                     </table>
                                     <hr>
-                                    <a href="{{route('brand.edit', $brand->id)}}" class="btn btn-success">Edit Brand</a>
+                                    {{-- <a href="{{route('brand.edit', $brand->id)}}" class="btn btn-success">Edit Brand</a> --}}
                                 </div>
                             </div> <!-- end card-->
                         </div> <!-- end col -->
