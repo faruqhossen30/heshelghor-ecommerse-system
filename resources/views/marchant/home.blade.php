@@ -2,6 +2,8 @@
 $userID = Auth::guard('marchant')->user()->id;
 $totalordercount = App\Models\Merchant\OrderItem::where('merchant_id', $userID)->count();
 $totalorderpending = App\Models\Merchant\OrderItem::where('merchant_id', $userID)->where('accept_status', 0)->count();
+ $merchantId = Auth::guard('marchant')->user()->id;
+ $totalamount =App\Models\Merchant\OrderItem::with('product', 'order')->where('merchant_id', $merchantId)->sum('price');
 
 // dd($totalorderpending);
 @endphp
@@ -96,7 +98,7 @@ $totalorderpending = App\Models\Merchant\OrderItem::where('merchant_id', $userID
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="text-muted fw-normal mt-0 text-truncate" title="Booked Revenue">Total Sale</h5>
-                        <h3 class="my-2 py-1">৳<span data-plugin="counterup">0</span></h3>
+                        <h3 class="my-2 py-1">৳<span data-plugin="counterup"> {{ $totalamount }}</span></h3>
                         <p class="mb-0 text-muted">
                             <span class="text-success me-2"><span class="mdi mdi-arrow-up-bold"></span> 0%</span>
                             <span class="text-nowrap">Since last month</span>

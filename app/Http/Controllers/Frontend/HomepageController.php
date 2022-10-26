@@ -105,7 +105,7 @@ class HomepageController extends Controller
     {
         // return $request->all();
         $keyword = $request->keyword;
-        $products = Product::where('title', 'like', '%' . $request->keyword . '%')->take(4)->get();
+        $products = Product::active()->where('title', 'like', '%' . $request->keyword . '%')->take(4)->get();
         $data = view('frontend.ajax.ajaxproductsearch', compact('products', 'keyword'));
         return $data;
     }

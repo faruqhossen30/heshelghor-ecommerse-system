@@ -54,7 +54,7 @@ class SearchpageController extends Controller
             $view = $_GET['view'];
         }
 
-        $products = Product::when($keyword, function ($query, $keyword) {
+        $products = Product::active()->when($keyword, function ($query, $keyword) {
             return $query->where('title', 'like', '%' . $keyword . '%');
         })
         ->when($districtid, function ($query, $districtid) {

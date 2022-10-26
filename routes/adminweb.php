@@ -75,6 +75,7 @@ Route::prefix('admin')->group(function () {
         //Product
         Route::resource('category', CategoryController::class);
         Route::resource('subcategory', SubCategoryController::class);
+         Route::get('/status-update/{id}', [SubCategoryController::class, 'statusUpdate'])->name('subcategory.status.update');
         // Brand for Admin
         Route::resource('brands', BrandsController::class);
         // Route::get('trashbrand', [BrandController::class, 'trashbrand'])->name('brand.trashlist');

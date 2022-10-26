@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product\Category;
+use App\Models\Product\Product;
 use App\Models\Product\SubCategory;
 use Image;
 use Session;
 use Cviebrock\EloquentSluggable\Services\SlugService;
-
+use Illuminate\Support\Facades\DB;
 
 class SubCategoryController extends Controller
 {
@@ -26,7 +27,7 @@ class SubCategoryController extends Controller
             abort(403, 'You have no access this page.');
         };
 
-        $subcategories = SubCategory::all();
+        $subcategories = SubCategory::get();
         // return $subcategories;
         return view('admin.subcategory.subcategory', compact('subcategories'));
     }
@@ -224,4 +225,40 @@ class SubCategoryController extends Controller
         $allsubcategory = SubCategory::where('category_id', $request->category_id)->get();
         return $allsubcategory;
     }
+
+
+     public function statusUpdate($id){
+
+     $subcategories = DB::table('sub_categories')
+     ->select('status')
+     ->where('id','=' ,$id)
+     ->first();
+
+     if($subcategories->status == 1){
+        $status = '0';
+
+     }else{
+        $status = '1';
+     }
+
+     $values = array('status' => $status);
+     DB::table('sub_categories')->where('id',$id)->update($values);
+
+      $subcategory = SubCategory::select('status')
+      ->where('id','=' ,$id)
+      ->first();
+
+    //  return $subcategories;
+     if($subcategory->status == 0){
+         Product::where('subcategory_id', $id)->update(['status'=> 0]);
+        // return "abc";
+     }else{
+        // return 'def';
+         Product::where('subcategory_id', $id)->update(['status'=> 1]);
+     }
+
+
+
+     return redirect()->route('subcategory.index')->with('success', 'successfully data updated');
+     }
 }

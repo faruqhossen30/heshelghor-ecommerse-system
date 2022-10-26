@@ -24,7 +24,10 @@ class OrderController extends Controller
         $merchantId = Auth::guard('marchant')->user()->id;
         $orderitems = OrderItem::with('product', 'order')->where('merchant_id', $merchantId)->latest()->get();
         // return $orderitems;
-        return view('marchant.order.orders', compact('orderitems'));
+
+   
+    //  return $totalamount;
+        return view('marchant.order.orders', compact('orderitems',));
     }
 
     public function orderItem($id)

@@ -1,5 +1,5 @@
 @php
-$admin = Auth::guard('admin')->user();
+    $admin = Auth::guard('admin')->user();
 @endphp
 @extends('admin.layouts.app')
 
@@ -92,7 +92,9 @@ $admin = Auth::guard('admin')->user();
                                                     {{ $serial++ }}
                                                 </td>
                                                 <td>
-                                                    <img src="{{ asset('storage/subcategory/' . $category->photo) }}" width="50px" title="contact-img" class="rounded me-3"height="50px" alt="{{ $category->photo }}">
+                                                    <img src="{{ asset('storage/subcategory/' . $category->photo) }}"
+                                                        width="50px" title="contact-img"
+                                                        class="rounded me-3"height="50px" alt="{{ $category->photo }}">
 
                                                 </td>
                                                 <td>
@@ -115,16 +117,27 @@ $admin = Auth::guard('admin')->user();
                                                 <td>
                                                     {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     <span class="badge badge-soft-success">Active</span>
+                                                </td> --}}
+
+                                                <td>
+                                                    <?php if($category->status == 1) {?>
+                                                    <a href="{{ route('subcategory.status.update', $category->id) }}"
+                                                        class="btn btn-success">Active</a>
+
+                                                    <?php }else{?>
+
+                                                    <a href="{{ route('subcategory.status.update', $category->id) }}"
+                                                        class="btn btn-danger">Inactive</a>
+                                                    <?php }  ?>
                                                 </td>
                                                 <td>
                                                     <ul class="list-inline table-action m-0">
                                                         @if ($admin->can('subcategory.view') || $admin->can('subcategory.edit'))
                                                             <li class="list-inline-item">
                                                                 <a href="{{ route('subcategory.show', $category->id) }}"
-                                                                    class="action-icon"> <i
-                                                                        class="mdi mdi-eye"></i></a>
+                                                                    class="action-icon"> <i class="mdi mdi-eye"></i></a>
                                                             </li>
                                                         @endif
                                                         @if ($admin->can('subcategory.edit'))
@@ -134,7 +147,7 @@ $admin = Auth::guard('admin')->user();
                                                                         class="mdi mdi-square-edit-outline"></i></a>
                                                             </li>
                                                         @endif
-                                                        @if($admin->can('subcategory.delete'))
+                                                        @if ($admin->can('subcategory.delete'))
                                                             <li class="list-inline-item">
                                                                 {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
                                                                 <form

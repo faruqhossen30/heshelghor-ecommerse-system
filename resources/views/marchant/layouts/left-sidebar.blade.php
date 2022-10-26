@@ -154,13 +154,29 @@
                             <li>
                                 <a href="{{ route('sales.report') }}">Sales Report</a>
                             </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#sidebarwithdrawls" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="sidebarwithdrawls">
+                        <i class="mdi mdi-text-box-multiple-outline"></i>
+                        <span> Withdrawals </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarwithdrawls">
+                        <ul class="nav-second-level">
                             <li>
-                                {{-- <a href="{{ route('stock.product', $shop->id) }}">Products Stock Report</a> --}}
-                                {{-- <a href="{{ route('stock.product') }}">Products Stock Report</a> --}}
+                                <a href="#">Widthdraw Method</a>
                             </li>
                             <li>
-                                {{-- <a href="#">My added brand</a> --}}
+                                <a href="#">Seller withdraw</a>
                             </li>
+                            <li>
+                                <a href="#">Paindeing Seller withdraw</a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
