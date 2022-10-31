@@ -58,6 +58,7 @@
                                         <th>Address</th>
                                         <th>Mobile</th>
                                         <th>Email</th>
+                                        <th>Created BY</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -72,6 +73,7 @@
                                             <td>{{ $merchant->address }}</td>
                                             <td>{{ $merchant->phone_number }}</td>
                                             <td>{{ $merchant->email }}</td>
+                                            <td>{{ $merchant->created_by ?? 'none' }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm text-white" href="{{ route('merchant.profile.details', $merchant->id) }}" title="Edit"><span
                                                         class="mdi mdi mdi-eye"></span></a>

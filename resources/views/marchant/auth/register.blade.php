@@ -31,6 +31,15 @@ Register | Heshelghor
                     </span>
                 @enderror
             </div>
+            <div class="mb-2">
+                <label for="fullname" class="form-label">{{ __('Created By') }}</label>
+                <input class="form-control @error('created_by') is-invalid @enderror" name="created_by" type="text" id="fullname" placeholder="Enter your name" value="{{old('name')}}">
+                @error('created_by')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
             <div class="mb-2">
                 <label for="emailaddress" class="form-label">{{ __('E-Mail Address') }}</label>

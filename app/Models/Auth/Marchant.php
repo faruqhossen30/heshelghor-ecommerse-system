@@ -53,7 +53,8 @@ class Marchant extends Authenticatable implements HasMedia
         'nid_photo',
         'nid_photo',
         'tradelicense_photo',
-        'tin_photo'
+        'tin_photo',
+        'created_by'
     ];
 
     protected $guard = 'marchant';

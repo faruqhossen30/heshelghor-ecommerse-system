@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Auth\Marchant;
 use App\Models\Merchant\Shop;
 use App\Models\Product\Product;
+use App\Models\Withdrawral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MerchantController extends Controller
 {
@@ -62,5 +64,17 @@ class MerchantController extends Controller
         }
 
         return response()->json($result, 200);
+    }
+
+
+    public function merchantPayment( $merchantId){
+
+        // $merchantId = Auth::guard('marchant')
+        // ->user()
+        // ->id;
+        $paymentmethodlist = Withdrawral::where('merchant_id',$merchantId)->latest()->get();
+
+        return $merchantId;
+        return view('admin.payment.merchantpayment',compact('paymentmethodlist'));
     }
 }

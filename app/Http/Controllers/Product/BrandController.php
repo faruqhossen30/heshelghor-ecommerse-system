@@ -106,8 +106,8 @@ class BrandController extends Controller
         // return $request->all();
 
         $validate = $request->validate([
-            'name'        => 'required',
-            'description' => 'required',
+            'name' => 'required|unique:brands',
+            'description' => 'required'
         ]);
 
         $data = [

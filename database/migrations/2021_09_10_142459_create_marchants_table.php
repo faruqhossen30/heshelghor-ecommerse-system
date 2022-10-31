@@ -30,6 +30,7 @@ class CreateMarchantsTable extends Migration
             $table->string('nid_photo')->nullable();
             $table->string('tradelicense_photo')->nullable();
             $table->string('tin_photo')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
     }

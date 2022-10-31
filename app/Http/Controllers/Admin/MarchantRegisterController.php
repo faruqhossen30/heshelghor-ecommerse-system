@@ -57,6 +57,7 @@ class MarchantRegisterController extends Controller
             'password' => ['required', 'string', 'min:2', 'confirmed'],
             'phone_number' => ['required'],
             'address' => ['required'],
+
         ]);
     }
 
@@ -74,6 +75,7 @@ class MarchantRegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone_number'],
             'address' => $data['address'],
+            'created_by' => $data['created_by'],
         ]);
 
     }

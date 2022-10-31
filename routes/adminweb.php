@@ -126,6 +126,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/shop/deactive/{id}', [MerchantController::class, 'deactive'])->name('merchantshop.deactive');
 
         Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
+        Route::get('merchent/payment/request/{merchantId}',[MerchantController::class,'merchantPayment'])->name('merchant.payment.request');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
         // Settings

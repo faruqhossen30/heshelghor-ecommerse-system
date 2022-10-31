@@ -57,7 +57,7 @@ class BrandsController extends Controller
 
         if($image){
             $validate = $request->validate([
-                'name'        => 'required',
+                'name' => 'required|unique:brands',
                 'description' => 'required',
                 'image'       => 'mimes:png,jpg,gif,bmp|max:10240',
             ]);

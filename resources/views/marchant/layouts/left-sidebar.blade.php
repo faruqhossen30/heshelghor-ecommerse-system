@@ -171,7 +171,7 @@
                                 <a href="#">Widthdraw Method</a>
                             </li>
                             <li>
-                                <a href="#">Seller withdraw</a>
+                                <a href="{{ route('Withdrawal.index') }}">Seller withdraw</a>
                             </li>
                             <li>
                                 <a href="#">Paindeing Seller withdraw</a>

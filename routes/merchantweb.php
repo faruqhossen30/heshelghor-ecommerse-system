@@ -18,6 +18,7 @@ use App\Http\Controllers\Merchant\Shop\ShopController;
 use App\Http\Controllers\Merchant\OrderController;
 use App\Http\Controllers\Merchant\ProductstoctController;
 use App\Http\Controllers\Merchant\SalseReportsController;
+use App\Http\Controllers\Merchant\Withdrawals\WithdrawrlsController;
 use App\Http\Controllers\Product\ProductController;
 
 Route::prefix('merchant')->group(function () {
@@ -67,6 +68,16 @@ Route::prefix('merchant')->group(function () {
 
        Route::get('stock/product/{id}', [ProductstoctController::class,'stockProduct'])->name('stock.product');
        Route::get('shoplist', [ProductstoctController::class,'shoplist'])->name('shop.list');
+
+        Route::group(['prefix'=>'withdrawal','as'=>'Withdrawal.'], function(){
+
+            Route::get('/',      [WithdrawrlsController::class,'index'])->name('index');
+            Route::get('create/',[WithdrawrlsController::class,'create'])->name('create');
+            Route::post('store/', [WithdrawrlsController::class,'store'])->name('store');
+
+        });
+        
+
     });
 });
 

@@ -274,19 +274,39 @@ $countcourier = $allorder
                 {{-- Order End --}}
                 {{-- Merchant Start --}}
                 <li>
-                    <a href="#merchantTable" data-bs-toggle="collapse" aria-expanded="false"
+                    <a href="#Withdralsrequest" data-bs-toggle="collapse" aria-expanded="false"
                         aria-controls="sidebarTables">
                         <i class="mdi mdi-account-cash"></i>
                         <span> Merchant </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="merchantTable">
+                    <div class="collapse" id="Withdralsrequest">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('merchant.list.all') }}">Merchant List</a>
                             </li>
                             <li>
                                 <a href="{{ route('shop.list.all') }}">Shop List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- Merchant End --}}
+                {{-- Merchant Start --}}
+                <li>
+                    <a href="#merchantTable" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="sidebarTables">
+                        <i class="mdi mdi-account-cash"></i>
+                        <span> Seller </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="merchantTable">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="#">Withdrals request</a>
+                            </li>
+                            <li>
+                                <a href="#">Shop List</a>
                             </li>
                         </ul>
                     </div>

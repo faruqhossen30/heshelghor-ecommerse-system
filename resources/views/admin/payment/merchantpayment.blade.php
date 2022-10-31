@@ -1,7 +1,5 @@
-@php
-    $admin = Auth::guard('admin')->user();
-@endphp
 @extends('admin.layouts.app')
+
 @section('content')
 <div class="content">
 
@@ -12,12 +10,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title">shop List</h4>
+                    <h4 class="page-title">Delivery System List</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Heshelghor</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">HeshelGhor</a></li>
                             <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
-                            <li class="breadcrumb-item active">Category List</li>
+                            <li class="breadcrumb-item active">Delivery System List</li>
                         </ol>
                     </div>
                 </div>
@@ -28,29 +26,29 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-
-                <!-- sweetalert -->
-                {{-- <h6 class="alert alert-success ">{{ session('status') }}</h6> --}}
-                    {{-- @if (Session('status'))
-                        <button type="button" class="btn btn-info btn-xs" id="sa-basic">{{ session('status') }}</button>
-                    @endif --}}
-
                     <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <a href="{{route('paymentmethod.create')}}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Delivery System</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="float-sm-end">
+                                    <button type="button" class="btn btn-success mb-2 mb-sm-0"><i class="mdi mdi-cog"></i></button>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row -->
+
                         <div class="table-responsive">
                             <table class="table table-centered w-100 dt-responsive nowrap" id="basic-datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="all" style="width: 20px;">
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck">
-                                                <label class="form-check-label" for="productlistCheck">&nbsp;</label>
-                                            </div>
+                                        <th>
+                                            Serial
                                         </th>
-                                        <th class="all">SN</th>
-                                        <th class="all">Shop Name</th>
-                                        <th class="all">Mobile</th>
-                                        <th>Merchant</th>
-                                        <th>Date</th>
+                                        <th class="all"> Amount</th>
+                                        <th>Description</th>
+                                        <th>Created at</th>
                                         <th>Status</th>
                                         <th style="width: 85px;">Action</th>
                                     </tr>
@@ -59,49 +57,45 @@
                                     @php
                                         $serial = 1;
                                     @endphp
-                                    @foreach ($shops as $shop)
+                                    @foreach ($paymentmethodlist as $system)
                                     <tr>
                                         <td>
-                                            <div class="form-check mb-0 font-16">
-                                                <input class="form-check-input" type="checkbox" id="productlistCheck1">
-                                                <label class="form-check-label" for="productlistCheck1">&nbsp;</label>
-                                            </div>
+                                            {{$serial ++}}
                                         </td>
                                         <td>
-                                            {{$serial++}}
+                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$system->amount}}</a></h5>
+                                        </td>
+
+                                        <td>
+                                            {{$system->description}}
                                         </td>
                                         <td>
-                                            <h5 class="m-0 d-inline-block align-middle"><a href="#" class="text-dark">{{$shop->name}}</a></h5>
+                                            {{ Carbon\Carbon::parse($system->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
-                                            {{$shop->mobile ?? 'N/A'}}
-                                        </td>
-                                        <td>
-                                         {{$shop->merchant->name ?? 'N/A'}}
-                                        </td>
-                                        <td>
-                                            <h5 class="mt-0">
-                                                {{Carbon\Carbon::parse($shop->created_at)->format('d M')}}
-                                                <small class="text-muted">
-                                                    {{Carbon\Carbon::parse($shop->created_at)->format('h:m A')}}
-                                                </small>
-                                            </h5>
-                                        </td>
-                                        <td>
-                                            @if ($shop->status == 1)
                                             <span class="badge badge-soft-success">Active</span>
-                                            @else
-                                            <span class="badge badge-soft-danger">Pending</span>
-                                            @endif
                                         </td>
                                         <td>
                                             <ul class="list-inline table-action m-0">
-                                                <a href="{{route('merchantshop.viewshop', $shop->id)}}" class="btn @if ($shop->status == 1) btn-success @else btn-danger @endif btn-sm">View</a>
+                                                {{-- <li class="list-inline-item">
+                                                    <a href="{{route('paymentmethod.show', $system->id)}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                </li> --}}
+                                                <li class="list-inline-item">
+                                                    <a href="{{route('paymentmethod.edit', $system->id)}}" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    {{-- <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> --}}
+                                                    <form action="{{route('paymentmethod.destroy', $system->id)}}" method="post" >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none; background:none; color:gray; font-size:17px" type="submit" onclick="confirm('Sure ? Want to delete Tender ?')"><i class="mdi mdi-delete"></i></button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr>
-                                    @endforeach
 
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -143,6 +137,7 @@
 <!-- third party js ends -->
 <script src="{{ asset('backend')}}/assets/js/pages/product-list.init.js"></script>
 <script src="{{ asset('backend') }}/assets/js/pages/datatables.init.js"></script>
+
 <!-- sweetalert js -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -162,7 +157,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'shop has been created Successfully!'
+                title: 'Payment Method has been created Successfully!'
             })
         </script>
     @endif
@@ -183,7 +178,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: 'shop has been updated Successfully!'
+                title: 'Payment Method has been updated Successfully!'
             })
         </script>
     @endif
@@ -192,8 +187,9 @@
         <script>
             Swal.fire({
             icon: 'success',
-            title: 'shop has been deleted Successfully!',
+            title: 'Payment Method has been deleted Successfully!',
             })
         </script>
     @endif
+
 @endpush
