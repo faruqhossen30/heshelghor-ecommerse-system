@@ -67,14 +67,14 @@ class MerchantController extends Controller
     }
 
 
-    public function merchantPayment( $merchantId){
+    // public function merchantPayment( $merchantId){
 
-        // $merchantId = Auth::guard('marchant')
-        // ->user()
-        // ->id;
-        $paymentmethodlist = Withdrawral::where('merchant_id',$merchantId)->latest()->get();
+    //     // $merchantId = Auth::guard('marchant')
+    //     // ->user()
+    //     // ->id;
+    //     $paymentmethodlist = Withdrawral::where('merchant_id',$merchantId)->latest()->get();
 
-        return $merchantId;
-        return view('admin.payment.merchantpayment',compact('paymentmethodlist'));
-    }
+    //     return $merchantId;
+    //     return view('admin.payment.merchantpayment',compact('paymentmethodlist'));
+    // }
 }

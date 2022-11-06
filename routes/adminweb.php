@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\Attribute\TagController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\Location\UpazilaController;
+use App\Http\Controllers\Admin\MerchantpaymentController;
 use App\Http\Controllers\Admin\Order\OrdercomplainController;
 use App\Http\Controllers\Admin\Promotion\CategorypromotionController;
 use App\Http\Controllers\Admin\Promotion\ProductpromotionController;
@@ -126,7 +127,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/shop/deactive/{id}', [MerchantController::class, 'deactive'])->name('merchantshop.deactive');
 
         Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
-        Route::get('merchent/payment/request/{merchantId}',[MerchantController::class,'merchantPayment'])->name('merchant.payment.request');
+        Route::get('merchent/payment/request/',[MerchantpaymentController::class,'merchantPayment'])->name('merchant.payment.request');
+        Route::get('merchant/payment/list/{id}',[MerchantpaymentController::class ,'MerchantpaymentController'])->name('merchant.payment.list');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
         // Settings
