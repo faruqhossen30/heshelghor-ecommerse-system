@@ -11,7 +11,7 @@ use App\Models\Admin\Location\Upazila;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
-class CourierAjaxController extends Controller
+class CourierajaxController extends Controller
 {
     public function districtWiseCourierServiceList(Request $request)
     {
@@ -29,7 +29,7 @@ class CourierAjaxController extends Controller
         if ($request->ajax()) {
             // Working
 
-            // return $request->all();
+            return $request->all();
 
             $prdoduct_upazila_id         = $request->prdoduct_upazila_id;
             $product_delivery_upazila_id = $request->product_delivery_upazila_id;
@@ -46,7 +46,6 @@ class CourierAjaxController extends Controller
             $data = view('frontend.inc.test', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
 
             return $data;
-
         }
     }
     // For Cart Checkout page
@@ -74,7 +73,6 @@ class CourierAjaxController extends Controller
             $data = view('frontend.ajax.checkoutcourierlistoption', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
 
             return $data;
-
         }
     }
     public function upazilaWiseCourierServiceListForCheckoutPage(Request $request, $upazila_id)
@@ -98,7 +96,6 @@ class CourierAjaxController extends Controller
             $data = view('frontend.inc.checkouttest', compact('couriers', 'prdoduct_upazila_id', 'product_delivery_upazila_id', 'product_weight'));
 
             return $data;
-
         }
     }
 
@@ -126,6 +123,4 @@ class CourierAjaxController extends Controller
             return $upazilas;
         }
     }
-
-
 }
