@@ -45,8 +45,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Ajax\Frontend\SearchShopAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
-use App\Http\Controllers\Ajax\Frontend\CourierajaxController;
-use App\Http\Controllers\Ajax\Frontend\CheckoutCourierajaxController;
+use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
+use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\ProductpageController;
@@ -134,7 +134,7 @@ Route::prefix('user')->group(function () {
         Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');
 
 
-        Route::get('pdf/{id}',[UserorderinvoiceController::class,'pdf'])->name('user.order.pdf');
+        Route::get('pdf/{id}', [UserorderinvoiceController::class, 'pdf'])->name('user.order.pdf');
 
         Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
@@ -148,25 +148,23 @@ Route::prefix('user')->group(function () {
         Route::get('/review/edit/{id}', [UserProductReviewController::class, 'reviewproductedit'])->name('user.product.review.edit');
         Route::post('review/{id}', [UserProductReviewController::class, 'reviewproductupadte'])->name('user.product.review.update');
 
-        Route::get('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
-        Route::post('complainstore',[UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
+        Route::get('complain/{id}', [UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
+        Route::post('complainstore', [UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
 
-        Route::get('complain',[UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
-
-
-
+        Route::get('complain', [UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
     });
 });
+
 use App\Http\Controllers\PointManager\PointManagerLoginController;
 use App\Http\Controllers\PointManager\PointManagerHomeController;
 use App\Http\Controllers\PointManager\PointManagerCollectProductController;
 
 // Point-Manager
-Route::prefix('pointmanager')->group(function(){
+Route::prefix('pointmanager')->group(function () {
     Route::get('login', [PointManagerLoginController::class, 'showLoginForm'])->name('pointmanager.login');
     Route::post('login', [PointManagerLoginController::class, 'login'])->name('pointmanager.login');
 
-    Route::group(['middleware' => 'IsPointmanager'],function () {
+    Route::group(['middleware' => 'IsPointmanager'], function () {
         Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
         Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
         Route::get('stack-products', [PointManagerCollectProductController::class, 'stackProducts'])->name('pointmanager.stack.products');
@@ -190,11 +188,11 @@ use App\Http\Controllers\DeliveryMan\DeliveryManProductController;
 use App\Http\Controllers\DeliveryMan\DeliveryManCollectProductController;
 
 // Delivery Man
-Route::prefix('deliveryman')->group(function(){
+Route::prefix('deliveryman')->group(function () {
     Route::get('login', [DeliveryManLoginController::class, 'showLoginForm'])->name('deliveryman.login');
     Route::post('login', [DeliveryManLoginController::class, 'login'])->name('deliveryman.login');
 
-    Route::group(['middleware' => 'IsDeliveryman'],function () {
+    Route::group(['middleware' => 'IsDeliveryman'], function () {
         Route::post('logout', [DeliveryManLoginController::class, 'logout'])->name('deliveryman.logout');
         Route::get('home', [DeliveryManHomeController::class, 'index'])->name('deliveryman.home');
         Route::get('stack-products', [DeliveryManCollectProductController::class, 'stackProducts'])->name('deliveryman.stack.products');
@@ -221,16 +219,16 @@ Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemNam
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
 
-Route::get('checkdistrictwisecourierupalizalist', [CourierajaxController::class, 'districtWiseCourierServiceList']);
-Route::get('ajax/courier/', [CourierajaxController::class, 'districtWiseCourierServiceList']);
+Route::get('checkdistrictwisecourierupalizalist', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
 
-Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierajaxController::class, 'getdistrictbydivisionid']);
-Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierajaxController::class, 'getgetupazilabydistrictid']);
-Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierajaxController::class, 'upazilaWiseCourierServiceList']);
-Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierajaxController::class, 'courierlistforcartchekoutpage']);
+Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
+Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
+Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
+Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierAjaxController::class, 'courierlistforcartchekoutpage']);
 
 // For Checkout page
-Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierajaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
+Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
 
 
 
@@ -252,6 +250,7 @@ Route::get('/ajax/check-courier-division', [CheckoutCourierAjaxController::class
 
 // For Testing
 use App\Http\Controllers\FolderCreateControler;
+
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
 Route::get('/test', [TestController::class, 'forinvoice'])->name('test');
@@ -262,6 +261,7 @@ Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
 
 // SSLCOMMERZ Start
 use App\Http\Controllers\SslCommerzPaymentController;
+
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
