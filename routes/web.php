@@ -116,7 +116,7 @@ Route::get('wishlist/{id}', [WishlistController::class, 'removeProduct'])->name(
 Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name('addwishlist.store')->middleware('auth');
 
 
-
+// dd
 
 Auth::routes();
 // For Authincate User
