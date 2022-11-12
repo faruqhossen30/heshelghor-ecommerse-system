@@ -26,6 +26,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                             @if (Session::has('error'))
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                    <strong>Success !</strong> {{ session('error') }}
+                                </div>
+                            @endif
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
@@ -72,13 +80,13 @@
                                                                             id="exampleSelectRounded0" name="payment_id">
                                                                             <option selected value="">Select Category
                                                                             </option>
-                                                                            <option value="1">Bkash</option>
-                                                                            <option value="2">Rocket</option>
-                                                                            <option value="3">M-cash</option>
-                                                                            <option value="4">U-cash</option>
-                                                                            <option value="5">Nogad</option>
-                                                                            <option value="6">bank</option>
-                                                                       
+                                                                            <option value="Bkash">Bkash</option>
+                                                                            <option value="Rocket">Rocket</option>
+                                                                            <option value="M-cash">M-cash</option>
+                                                                            <option value="U-cash">U-cash</option>
+                                                                            <option value="Nogad">Nogad</option>
+                                                                            <option value="bank">bank</option>
+
                                                                         </select>
                                                                         <div class="text-danger">
                                                                             @error('payment_id')
@@ -89,23 +97,7 @@
 
                                                             </div>
 
-                                                            {{-- <div class="mb-2 row">
-                                                                <label class="col-md-2 col-form-label"
-                                                                    for="simpleinput">Payment Method</label>
-                                                                <div class="col-md-10">
-                                                                    <select
-                                                                        class="form-select @error('payment_id') is-invalid @enderror"
-                                                                        name="payment_id">
 
-
-                                                                    </select>
-                                                                    <div class="text-danger">
-                                                                        @error('payment_id')
-                                                                            <span>{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            </div> --}}
 
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"

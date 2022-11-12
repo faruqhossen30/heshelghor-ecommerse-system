@@ -21,7 +21,7 @@ class CheckoutCourierAjaxController extends Controller
             $delivery = CourierHasDelivery::pluck('division_id')->unique();
 
             $divisions = Division::whereIn('id', $delivery)->get();
-
+            // return $divisions;
             $data =  view('frontend.partials.checkout.deliverydivisions', compact('divisions'));
             return $data;
         }

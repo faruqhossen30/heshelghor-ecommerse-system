@@ -128,7 +128,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('allmerchant/search', [MerchantController::class, 'searchMerchant'])->name('admin.merchant.search');
         Route::get('merchent/payment/request/',[MerchantpaymentController::class,'merchantPayment'])->name('merchant.payment.request');
-        Route::get('merchant/payment/list/{id}',[MerchantpaymentController::class ,'MerchantpaymentController'])->name('merchant.payment.list');
+        Route::get('merchant/payment/details/{id}',[MerchantpaymentController::class ,'MerchantpaymentDetails'])->name('merchant.payment.details');
+
+         Route::get('merchant/status-payment/{id}', [MerchantpaymentController::class,'paymentStatus'])->name('payment.status');
         Route::get('/customers', [CustomerController::class, 'allCustomer'])->name('customer.list.all');
         Route::get('allcustomer/search', [CustomerController::class, 'searchCustomer'])->name('admin.customer.search');
         // Settings

@@ -2,30 +2,45 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Auth\Marchant;
 use App\Models\Withdrawral;
 use Illuminate\Http\Request;
+use App\Models\Auth\Marchant;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class MerchantpaymentController extends Controller
 {
    public function merchantPayment(){
 
-    $merchants = Marchant::latest()->get();
-
-    return view('admin.payment.merchantpayment',compact('merchants'));
+      $allwithdraw = Withdrawral::with('merchant','shop')->latest()->get();
+      // return $allwithdraw;
+    return view('admin.payment.merchantpayment',compact('allwithdraw'));
 
    }
 
 
-   public function MerchantpaymentController($id)
+   public function MerchantpaymentDetails($id)
    {
 
+        $withdraw = Withdrawral::with('merchant', 'shop')->latest()->get();
+    // return  $withdraw;
+    return view('admin.payment.marchentpaymentdtails',compact('withdraw'));
+   }
 
-   //  $withdrawls = Withdrawral::with('')->where('id',$id)->latest()->get();
 
-   //  return $withdrawls;
-    return view('admin.payment.merchantpaymentlist',compact('withdrawls'));
+   public function paymentStatus($id){
+
+      $withdrawsstatus = Withdrawral::select('status')
+      ->where('id','=' ,$id)
+      ->first();
+      if($withdrawsstatus->status == 1){
+         $status = '0';
+      }else{
+         $status = '1';
+      }
+      $values = array('status' => $status);
+      Withdrawral::where('id',$id)->update($values);
+    return redirect()->back()->with('success', 'successfully data updated');
    }
 }
