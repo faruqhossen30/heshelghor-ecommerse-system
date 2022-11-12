@@ -99,6 +99,7 @@ class CourierajaxController extends Controller
         }
     }
 // sdsdf
+// jkbjk
     public function getdistrictbydivisionid(Request $request, $division_id)
     {
         if ($request->ajax() && $division_id) {
