@@ -57,7 +57,7 @@ use App\Http\Controllers\Frontend\SubcategorypageController;
 use App\Http\Controllers\User\UsercomplainController;
 use App\Http\Controllers\User\UsercomplainControllerr;
 use App\Http\Controllers\User\UserorderinvoiceController;
-
+// ss
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 Route::get('/about-us', [HomepageController::class, 'aboutUs'])->name('aboutus');
 Route::get('/privacy-policy', [HomepageController::class, 'privacyPolicy'])->name('privacypolicy');
