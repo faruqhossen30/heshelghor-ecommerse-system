@@ -47,6 +47,7 @@ use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
 use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
+use App\Http\Controllers\Ajax\FrontEnd\CourierController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\ProductpageController;
@@ -219,16 +220,23 @@ Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemNam
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
 
-Route::get('checkdistrictwisecourierupalizalist', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
-Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+// Route::get('checkdistrictwisecourierupalizalist', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+// Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
 
-Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
-Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
-Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
-Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierAjaxController::class, 'courierlistforcartchekoutpage']);
+// Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
+// Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
+// Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
+// Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierAjaxController::class, 'courierlistforcartchekoutpage']);
+Route::get('checkdistrictwisecourierupalizalist', [CourierController::class, 'districtWiseCourierServiceList']);
+Route::get('ajax/courier/', [CourierController::class, 'districtWiseCourierServiceList']);
+
+Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierController::class, 'getdistrictbydivisionid']);
+Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierController::class, 'getgetupazilabydistrictid']);
+Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierController::class, 'upazilaWiseCourierServiceList']);
+Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierController::class, 'courierlistforcartchekoutpage']);
 
 // For Checkout page
-Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
+Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
 
 
 
