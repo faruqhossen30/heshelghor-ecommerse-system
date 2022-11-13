@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Ajax\Frontend;
+namespace App\Http\Controllers\Ajax\FrontEnd;
 
-use App\Http\Controllers\Controller;
 use App\Models\Admin\Courier\Courier;
 use App\Models\Admin\Courier\CourierHasDelivery;
 use App\Models\Admin\Courier\CourierHasPickup;
 use App\Models\Admin\Location\District;
 use App\Models\Admin\Location\Upazila;
 use App\Models\Product\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CourierajaxController extends Controller
+class CourierController extends Controller
 {
     public function districtWiseCourierServiceList(Request $request)
     {
