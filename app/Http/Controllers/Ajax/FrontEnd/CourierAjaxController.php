@@ -11,7 +11,7 @@ use App\Models\Admin\Location\Upazila;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
-class CourierAjaxController extends Controller
+class CourierajaxController extends Controller
 {
     public function districtWiseCourierServiceList(Request $request)
     {
