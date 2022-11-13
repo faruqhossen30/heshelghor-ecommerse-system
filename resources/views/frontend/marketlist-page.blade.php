@@ -4,7 +4,7 @@
         <!-- breadcrumb start -->
         <div class="breadcrumb-area pt-5 pb-5">
             <div class="container">
-                <class class="row">
+                <div class="row">
                     <div class="col-xl-6 offset-xl-3 offset-lg-3 col-lg-6">
                         <div class="breadcrumb-search-bar">
                             <form action="" class="d-flex align-items-center justify-content-center">
@@ -28,15 +28,16 @@
                                     <input type="text" name="keyword" class="form-control" placeholder="Enter Shop Name"
                                     @if (isset($_GET['keyword'])) value="{{$_GET['keyword']}}" @endif
                                     >
+                                      <button type="submit" class="p-2 border-1 border-white overflow-auto "> <i class="fa fa-search"></i></button>
                                 </div>
-                                <div class="breadcrumb-icon">
-                                    <i class="fa fa-search"></i>
-                                </div>
+                                {{-- <div class="breadcrumb-icon">
+                                    < type="submit" class="p-1"> <i class="fa fa-search"></i></>
+                                </div> --}}
                             </form>
 
                         </div>
                     </div>
-                </class>
+                </div>
             </div>
         </div>
         <!-- breadcrumb end -->

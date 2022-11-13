@@ -26,6 +26,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
@@ -49,7 +58,8 @@
                                                 <div>
                                                     <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">
                                                         Total Balance</h5>
-                                                    <h3 class="my-2 py-1">৳<span data-plugin="counterup"> {{ $totalwidrawals }}</span></h3>
+                                                    <h3 class="my-2 py-1">৳<span data-plugin="counterup">
+                                                            {{ $totalwidrawals }}</span></h3>
                                                     <p class="mb-0 text-muted">
                                                         <span class="text-success me-2"><span
                                                                 class="mdi mdi-arrow-up-bold"></span> 8.58%</span>
@@ -73,7 +83,8 @@
                                                     <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">
                                                         Available
                                                         Balance</h5>
-                                                    <h3 class="my-2 py-1">৳<span data-plugin="counterup">{{ $availablewithdrawal }}</span></h3>
+                                                    <h3 class="my-2 py-1">৳<span
+                                                            data-plugin="counterup">{{ $accountbalance }}</span></h3>
                                                     <p class="mb-0 text-muted">
                                                         <span class="text-success me-2"><span
                                                                 class="mdi mdi-arrow-up-bold"></span> 8.58%</span>
@@ -97,7 +108,8 @@
                                                     <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">
                                                         Pending
                                                         Withdrawrals</h5>
-                                                    <h3 class="my-2 py-1"><span data-plugin="counterup">{{ $prendingcount }}</span></h3>
+                                                    <h3 class="my-2 py-1"><span
+                                                            data-plugin="counterup">{{ $prendingcount }}</span></h3>
                                                     <p class="mb-0 text-muted">
                                                         <span class="text-success me-2"><span
                                                                 class="mdi mdi-arrow-up-bold"></span> 8.58%</span>
@@ -121,7 +133,9 @@
                                                     <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">
                                                         Complete
                                                         Withdrawrals</h5>
-                                                    <h3 class="my-2 py-1"><span data-plugin="counterup">{{ $countcompletewithdrawal }}</span></h3>
+                                                    <h3 class="my-2 py-1"><span
+                                                            data-plugin="counterup">{{ $countcompletewithdrawal }}</span>
+                                                    </h3>
                                                     <p class="mb-0 text-muted">
                                                         <span class="text-success me-2"><span
                                                                 class="mdi mdi-arrow-up-bold"></span> 8.58%</span>
