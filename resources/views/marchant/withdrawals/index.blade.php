@@ -26,27 +26,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-
-                       
-                            @if (Session::has('success'))
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    <strong>Success !</strong> {{ session('success') }}
-                                </div>
-                            @endif
-
-                        {{-- <div class="card-header">
-                            @if (Session::has('success'))
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    <strong>Success !</strong> {{ session('success') }}
-                                </div>
-                            @endif
-                        </div> --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
@@ -173,8 +161,7 @@
                                         <tr>
                                             <th class="all" style="width: 20px;">
                                                 <div class="form-check mb-0 font-16">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="productlistCheck">
+                                                    <input class="form-check-input" type="checkbox" id="productlistCheck">
                                                     <label class="form-check-label" for="productlistCheck">&nbsp;</label>
                                                 </div>
                                             </th>
