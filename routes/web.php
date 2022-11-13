@@ -148,25 +148,23 @@ Route::prefix('user')->group(function () {
         Route::get('/review/edit/{id}', [UserProductReviewController::class, 'reviewproductedit'])->name('user.product.review.edit');
         Route::post('review/{id}', [UserProductReviewController::class, 'reviewproductupadte'])->name('user.product.review.update');
 
-        Route::get('complain/{id}',[UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
-        Route::post('complainstore',[UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
+        Route::get('complain/{id}', [UsercomplainController::class, 'usercomplain'])->name('user.order.complain')->where('id', '[0-9]+');
+        Route::post('complainstore', [UsercomplainController::class, 'usercomplainstore'])->name('user.order.complain.store');
 
-        Route::get('complain',[UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
-
-
-
+        Route::get('complain', [UsercomplainController::class, 'allcomplain'])->name('user.order.complain.all');
     });
 });
+
 use App\Http\Controllers\PointManager\PointManagerLoginController;
 use App\Http\Controllers\PointManager\PointManagerHomeController;
 use App\Http\Controllers\PointManager\PointManagerCollectProductController;
 
 // Point-Manager
-Route::prefix('pointmanager')->group(function(){
+Route::prefix('pointmanager')->group(function () {
     Route::get('login', [PointManagerLoginController::class, 'showLoginForm'])->name('pointmanager.login');
     Route::post('login', [PointManagerLoginController::class, 'login'])->name('pointmanager.login');
 
-    Route::group(['middleware' => 'IsPointmanager'],function () {
+    Route::group(['middleware' => 'IsPointmanager'], function () {
         Route::post('logout', [PointManagerLoginController::class, 'logout'])->name('pointmanager.logout');
         Route::get('home', [PointManagerHomeController::class, 'index'])->name('pointmanager.home');
         Route::get('stack-products', [PointManagerCollectProductController::class, 'stackProducts'])->name('pointmanager.stack.products');
@@ -190,11 +188,11 @@ use App\Http\Controllers\DeliveryMan\DeliveryManProductController;
 use App\Http\Controllers\DeliveryMan\DeliveryManCollectProductController;
 
 // Delivery Man
-Route::prefix('deliveryman')->group(function(){
+Route::prefix('deliveryman')->group(function () {
     Route::get('login', [DeliveryManLoginController::class, 'showLoginForm'])->name('deliveryman.login');
     Route::post('login', [DeliveryManLoginController::class, 'login'])->name('deliveryman.login');
 
-    Route::group(['middleware' => 'IsDeliveryman'],function () {
+    Route::group(['middleware' => 'IsDeliveryman'], function () {
         Route::post('logout', [DeliveryManLoginController::class, 'logout'])->name('deliveryman.logout');
         Route::get('home', [DeliveryManHomeController::class, 'index'])->name('deliveryman.home');
         Route::get('stack-products', [DeliveryManCollectProductController::class, 'stackProducts'])->name('deliveryman.stack.products');
@@ -252,6 +250,7 @@ Route::get('/ajax/check-courier-division', [CheckoutCourierAjaxController::class
 
 // For Testing
 use App\Http\Controllers\FolderCreateControler;
+
 Route::get('folder', [FolderCreateControler::class, 'folder'])->name('folder');
 
 Route::get('/test', [TestController::class, 'forinvoice'])->name('test');
@@ -262,6 +261,7 @@ Route::get('allmedia', [TestController::class, 'allmedia'])->name('test');
 
 // SSLCOMMERZ Start
 use App\Http\Controllers\SslCommerzPaymentController;
+
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
