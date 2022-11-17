@@ -26,15 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
@@ -63,7 +55,8 @@
                                                                 <div class="col-md-10">
                                                                     <input name="amount" type="number" id="simpleinput"
                                                                         class="form-control @error('amount') is-invalid @enderror "
-                                                                        placeholder="Amount you want withdrawals">
+                                                                        placeholder="Amount you want withdrawals"
+                                                                        min="50" value="{{ old('amount') }}">
                                                                     <div class="text-danger">
                                                                         @error('amount')
                                                                             <span>{{ $message }}</span>
@@ -82,12 +75,24 @@
                                                                         id="exampleSelectRounded0" name="payment_id">
                                                                         <option selected value="">Select Category
                                                                         </option>
-                                                                        <option value="Bkash">Bkash</option>
-                                                                        <option value="Rocket">Rocket</option>
-                                                                        <option value="M-cash">M-cash</option>
-                                                                        <option value="U-cash">U-cash</option>
-                                                                        <option value="Nogad">Nogad</option>
-                                                                        <option value="bank">bank</option>
+                                                                        <option value=" Bkash"
+                                                                            {{ old('payment_id') == 'Bkash' ? 'selected' : '' }}>
+                                                                            Bkash</option>
+                                                                        <option value=" Rocket"
+                                                                            {{ old('payment_id') == 'Rocket' ? 'selected' : '' }}>
+                                                                            Rocket</option>
+                                                                        <option value=" M-cash"
+                                                                            {{ old('payment_id') == 'M-cash' ? 'selected' : '' }}>
+                                                                            M-cash</option>
+                                                                        <option value=" U-cash"
+                                                                            {{ old('payment_id') == 'U-cash' ? 'selected' : '' }}>
+                                                                            U-cash</option>
+                                                                        <option value=" Nogad"
+                                                                            {{ old('payment_id') == 'Nogad' ? 'selected' : '' }}>
+                                                                            Nogad</option>
+                                                                        <option value=" bank"
+                                                                            {{ old('payment_id') == 'bank' ? 'selected' : '' }}>
+                                                                            bank</option>
 
                                                                     </select>
                                                                     <div class="text-danger">

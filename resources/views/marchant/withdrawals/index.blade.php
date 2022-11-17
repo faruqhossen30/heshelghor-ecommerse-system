@@ -57,7 +57,7 @@
                                             <div class="d-flex justify-content-between">
                                                 <div>
                                                     <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">
-                                                        Total Balance</h5>
+                                                        Total Earns</h5>
                                                     <h3 class="my-2 py-1">৳<span data-plugin="counterup">
                                                             {{ $totalwidrawals }}</span></h3>
                                                     <p class="mb-0 text-muted">
@@ -172,7 +172,7 @@
                                             <th>Descriptions</th>
                                             <th>Payment</th>
                                             <th>Status</th>
-                                            <th style="width: 85px;">Action</th>
+                                            {{-- <th style="width: 85px;">Action</th> --}}
                                         </tr>
                                     </thead>
                                     @php
@@ -212,10 +212,10 @@
 
                                                 </td>
 
-                                                <td>
+                                                {{-- <td>
                                                     <a href="#" class="btn btn-danger btn-sm">View</a>
 
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

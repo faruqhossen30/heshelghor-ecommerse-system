@@ -20,32 +20,29 @@ class MerchantpaymentController extends Controller
         return view('admin.payment.merchantpayment', compact('allwithdraw'));
     }
 
-
     public function MerchantpaymentDetails($id)
     {
-
         $withdraw = Withdrawral::with('merchant', 'shop')->OrderBy('id','desc')->get();
         // return  $withdraw;
         return view('admin.payment.marchentpaymentdtails', compact('withdraw'));
     }
-
-
     public function paymentStatus($id)
     {
         // $merchantId = Auth::guard('marchant')->user()->id;
         $withdrawsstatus = Withdrawral::select('status')
             ->where('id', '=', $id)
             ->first();
-
-       
-
-        if ($withdrawsstatus->status == 1 ) {
+            
+        // return $withdrawamount ;
+        if ($withdrawsstatus->status == 1  ) {
             $status = '0';
         } else {
             $status = '1';
         }
         $values = array('status' => $status);
-        Withdrawral::where('id', $id)->update($values);
+
+            Withdrawral::where('id', $id)->update($values);
+
         return redirect()->back()->with('success', 'successfully data updated');
     }
 }

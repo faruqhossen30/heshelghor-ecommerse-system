@@ -61,21 +61,33 @@ class WithdrawrlsController extends Controller
         $requestwidrawalsamount = Withdrawral::where('merchant_id', $merchantId)
             ->where('status', '=', '1')
             ->sum('amount');
+        $requestwidrawalsmoney = Withdrawral::where('merchant_id', $merchantId)->latest()->get();
+
+        // return $requestwidrawalsmoney ;
         $pendingamount = Withdrawral::where('merchant_id', $merchantId)
             ->where('status', '=', '0')
             ->sum('amount');
 
         $accountbalance = $availablewithdrawal -  $requestwidrawalsamount;
 
+        $validate = $request->validate([
+            'amount'      => 'required',
+            'payment_id'  => 'required',
+            'description' => 'required',
+        ], [
+            'amount.required' => 'please minimum 50 tk enter',
+        ]);
+        $data = [
+            'amount'      => $request->amount,
+            'payment_id'  => $request->payment_id,
+            'description' => $request->description,
+            'merchant_id' => Auth::guard('marchant')->user()->id,
+        ];
         // return  $pendingamount;
-        if ($request->input('amount') <= $accountbalance && $pendingamount <= $accountbalance) {
+        if (
+         $request->input('amount') < $accountbalance && $pendingamount < $accountbalance  && $requestwidrawalsmoney[0]->status == 1) {
 
-            Withdrawral::create([
-                'amount'      => $request->amount,
-                'payment_id'  => $request->payment_id,
-                'description' => $request->description,
-                'merchant_id' => Auth::guard('marchant')->user()->id,
-            ]);
+            Withdrawral::create($data);
         } else {
             return redirect()->route('Withdrawal.index')->with('error', 'Insufficient Balance');
         }
