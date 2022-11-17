@@ -303,11 +303,11 @@ $countcourier = $allorder
                     <div class="collapse" id="merchantTable">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#">Withdrals request</a>
+                                <a href="{{ route('merchant.payment.request') }}">Withdrals request</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#">Shop List</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>

@@ -17,7 +17,8 @@ class CreateWithdrawralsTable extends Migration
             $table->id();
             $table->integer('amount');
             $table->text('description');
-            $table->unsignedBigInteger('payment_id');
+            $table->string('payment_id');
+            $table->unsignedBigInteger('merchant_id');
             $table->double('status');
             $table->timestamps();
         });

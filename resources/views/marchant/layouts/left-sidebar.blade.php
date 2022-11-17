@@ -167,15 +167,11 @@
                     </a>
                     <div class="collapse" id="sidebarwithdrawls">
                         <ul class="nav-second-level">
-                            <li>
-                                <a href="#">Widthdraw Method</a>
-                            </li>
+                           
                             <li>
                                 <a href="{{ route('Withdrawal.index') }}">Seller withdraw</a>
                             </li>
-                            <li>
-                                <a href="#">Paindeing Seller withdraw</a>
-                            </li>
+
 
                         </ul>
                     </div>

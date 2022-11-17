@@ -45,9 +45,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Ajax\Frontend\SearchShopAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SearchMarketAjaxController;
 use App\Http\Controllers\Ajax\Frontend\SingleproductShopAndMarketAjaxController;
-use App\Http\Controllers\Ajax\Frontend\CourierAjaxController;
-use App\Http\Controllers\Ajax\Frontend\CheckoutCourierAjaxController;
-use App\Http\Controllers\Ajax\FrontEnd\CourierController;
+use App\Http\Controllers\Ajax\Frontend\CourierajaxController;
+use App\Http\Controllers\Ajax\Frontend\CheckoutCourierajaxController;
 use App\Http\Controllers\Frontend\CategorylistpageController;
 use App\Http\Controllers\Frontend\CategorypageController;
 use App\Http\Controllers\Frontend\ProductpageController;
@@ -117,7 +116,7 @@ Route::get('wishlist/{id}', [WishlistController::class, 'removeProduct'])->name(
 Route::post('addtowishlist', [WishlistController::class, 'wishlistStore'])->name('addwishlist.store')->middleware('auth');
 
 
-
+// dd
 
 Auth::routes();
 // For Authincate User
@@ -135,7 +134,7 @@ Route::prefix('user')->group(function () {
         Route::get('order/cancel/{id}', [UserorderController::class, 'cancelOrder'])->name('user.order.cancel')->where('id', '[0-9]+');
 
 
-        Route::get('pdf/{id}', [UserorderinvoiceController::class, 'pdf'])->name('user.order.pdf');
+        Route::get('pdf/{id}',[UserorderinvoiceController::class,'pdf'])->name('user.order.pdf');
 
         Route::get('trackorder/{id}', [UserDashboardController::class, 'trackOrder'])->name('user.order.track')->where('id', '[0-9]+');
         Route::get('account', [UserDashboardController::class, 'account'])->name('user.account');
@@ -220,23 +219,16 @@ Route::get('paymentsystemname/{id}', [APIController::class, 'getPaymentSystemNam
 Route::get('getshop/{id}', [APIController::class, 'getShop']);
 Route::get('setting/setting-payment-system', [APIController::class, 'settingPaymentSystem']);
 
-// Route::get('checkdistrictwisecourierupalizalist', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
-// Route::get('ajax/courier/', [CourierAjaxController::class, 'districtWiseCourierServiceList']);
+Route::get('checkdistrictwisecourierupalizalist', [CourierajaxController::class, 'districtWiseCourierServiceList']);
+Route::get('ajax/courier/', [CourierajaxController::class, 'districtWiseCourierServiceList']);
 
-// Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierAjaxController::class, 'getdistrictbydivisionid']);
-// Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierAjaxController::class, 'getgetupazilabydistrictid']);
-// Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierAjaxController::class, 'upazilaWiseCourierServiceList']);
-// Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierAjaxController::class, 'courierlistforcartchekoutpage']);
-Route::get('checkdistrictwisecourierupalizalist', [CourierController::class, 'districtWiseCourierServiceList']);
-Route::get('ajax/courier/', [CourierController::class, 'districtWiseCourierServiceList']);
-
-Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierController::class, 'getdistrictbydivisionid']);
-Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierController::class, 'getgetupazilabydistrictid']);
-Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierController::class, 'upazilaWiseCourierServiceList']);
-Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierController::class, 'courierlistforcartchekoutpage']);
+Route::get('ajax/courier/getdistrictbydivisionid/{division_id}', [CourierajaxController::class, 'getdistrictbydivisionid']);
+Route::get('ajax/courier/getgetupazilabydistrictid/{district_id}', [CourierajaxController::class, 'getgetupazilabydistrictid']);
+Route::get('checkupazilawisecourierupalizalist/{upazila_id}', [CourierajaxController::class, 'upazilaWiseCourierServiceList']);
+Route::get('courierlistforcartchekoutpage/{upazila_id}', [CourierajaxController::class, 'courierlistforcartchekoutpage']);
 
 // For Checkout page
-Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
+Route::get('/ajax/checkupazilawisecourierupalizalistforcheckoutpage/{upazila_id}', [CourierajaxController::class, 'upazilaWiseCourierServiceListForCheckoutPage']);
 
 
 

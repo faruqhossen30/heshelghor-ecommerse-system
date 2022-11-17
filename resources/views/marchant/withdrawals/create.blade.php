@@ -26,6 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-6">
@@ -54,7 +55,8 @@
                                                                 <div class="col-md-10">
                                                                     <input name="amount" type="number" id="simpleinput"
                                                                         class="form-control @error('amount') is-invalid @enderror "
-                                                                        placeholder="Amount you want withdrawals">
+                                                                        placeholder="Amount you want withdrawals"
+                                                                        min="50" value="{{ old('amount') }}">
                                                                     <div class="text-danger">
                                                                         @error('amount')
                                                                             <span>{{ $message }}</span>
@@ -65,38 +67,32 @@
 
                                                             <div class="row mb-2">
 
-                                                                      <label class="col-md-2 col-form-label"  for="simpleinput">Payment Method</label>
-                                                                    <div class=" col-md-10">
-                                                                        <select
-                                                                            class="form-control @error('payment_id') is-invalid @enderror"
-                                                                            id="exampleSelectRounded0" name="payment_id">
-                                                                            <option selected value="">Select Category
-                                                                            </option>
-                                                                            <option value="1">Bkash</option>
-                                                                            <option value="2">Rocket</option>
-                                                                            <option value="3">M-cash</option>
-                                                                            <option value="4">U-cash</option>
-                                                                            <option value="5">Nogad</option>
-                                                                            <option value="6">bank</option>
-                                                                       
-                                                                        </select>
-                                                                        <div class="text-danger">
-                                                                            @error('payment_id')
-                                                                                <span>{{ $message }}</span>
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-
-                                                            </div>
-
-                                                            {{-- <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"
                                                                     for="simpleinput">Payment Method</label>
-                                                                <div class="col-md-10">
+                                                                <div class=" col-md-10">
                                                                     <select
-                                                                        class="form-select @error('payment_id') is-invalid @enderror"
-                                                                        name="payment_id">
-
+                                                                        class="form-control @error('payment_id') is-invalid @enderror"
+                                                                        id="exampleSelectRounded0" name="payment_id">
+                                                                        <option selected value="">Select Category
+                                                                        </option>
+                                                                        <option value=" Bkash"
+                                                                            {{ old('payment_id') == 'Bkash' ? 'selected' : '' }}>
+                                                                            Bkash</option>
+                                                                        <option value=" Rocket"
+                                                                            {{ old('payment_id') == 'Rocket' ? 'selected' : '' }}>
+                                                                            Rocket</option>
+                                                                        <option value=" M-cash"
+                                                                            {{ old('payment_id') == 'M-cash' ? 'selected' : '' }}>
+                                                                            M-cash</option>
+                                                                        <option value=" U-cash"
+                                                                            {{ old('payment_id') == 'U-cash' ? 'selected' : '' }}>
+                                                                            U-cash</option>
+                                                                        <option value=" Nogad"
+                                                                            {{ old('payment_id') == 'Nogad' ? 'selected' : '' }}>
+                                                                            Nogad</option>
+                                                                        <option value=" bank"
+                                                                            {{ old('payment_id') == 'bank' ? 'selected' : '' }}>
+                                                                            bank</option>
 
                                                                     </select>
                                                                     <div class="text-danger">
@@ -105,7 +101,10 @@
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                            </div> --}}
+
+                                                            </div>
+
+
 
                                                             <div class="mb-2 row">
                                                                 <label class="col-md-2 col-form-label"
