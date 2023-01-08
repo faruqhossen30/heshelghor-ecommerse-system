@@ -40,10 +40,11 @@
                         <ul class="footer-contact">
                             <li><strong><i class="fa fa-phone"></i></strong><span>+88 02477763843</span></li>
                             <li><strong><i class="fa fa-phone"></i></strong><span> +8801318-760087</span></li>
-                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Head Office</strong> - 58, Borhan Shah Road,
-                                    Karbala, Jashore-7400 <br> </span></li>
-                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Corporate Office</strong> - House:539/A (Ground Floor), Lane: 11 (East Side), Baridhara DOHS, Dhaka-1206</span></li>
-                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span>59, Kajipara, Puraton
+                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Head Office</strong> - Holding No-0718-00, Ground Floor, Abu Taleb Road,
+                                Puraton Koshba, Kajipara, Jashore-7400. <br> </span></li>
+                            <li><strong><i class="fa-solid fa-location-dot"></i></strong><span><strong style="display:inline; font-size:1rem ">Corporate Office</strong> - House:267 (3rd Floor),Road:3, Baridhara DOHS, Dhaka-1206.</span></li>
+                            <li><strong><i class="fa-solid fa-location-dot">
+                                </i></strong><span>59, Kajipara, Puraton
                                     Koshba, Jashore sadar, Jashore  <br>(Trade Licence )</span></li>
                         </ul>
                     </div>

@@ -168,8 +168,8 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
-       
+        // Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
